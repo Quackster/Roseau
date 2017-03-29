@@ -3,7 +3,7 @@ package org.alexdev.roseau.server.netty.connections;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.log.Log;
-import org.alexdev.roseau.messages.outgoing.handshake.HandshakeMessageComposer;
+import org.alexdev.roseau.messages.outgoing.handshake.HELLO;
 import org.alexdev.roseau.server.netty.readers.NettyRequest;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.ChannelStateEvent;
@@ -26,7 +26,7 @@ public class ConnectionHandler extends SimpleChannelHandler {
 			Log.println("Connection from " + ctx.getChannel().getRemoteAddress().toString().replace("/", "").split(":")[0]);
 		}
 		
-		ctx.getChannel().write(new HandshakeMessageComposer());
+		ctx.getChannel().write(new HELLO());
 		
 		this.sessionHandler.addSession(ctx.getChannel());
 
@@ -59,7 +59,7 @@ public class ConnectionHandler extends SimpleChannelHandler {
 			}
 
 			if (Roseau.getUtilities().getConfiguration().getBoolean("log-packets")) {
-				Log.println("Received: " + request.getMessageId() + " " + request.getMessageBody());
+				Log.println("Received: " + request.getMessageId() + " / " + request.getMessageBody());
 			}
 
 			if (player != null){

@@ -3,13 +3,16 @@ package org.alexdev.roseau.messages.incoming;
 import java.util.HashMap;
 
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.messages.headers.Incoming;
+import org.alexdev.roseau.messages.incoming.handshake.CHK_VERSION;
+import org.alexdev.roseau.messages.incoming.handshake.GETAVAILABLESETS;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 import com.google.common.collect.Maps;
 
 public class MessageHandler {
 	
-	private HashMap<Short, MessageEvent> messages;
+	private HashMap<Integer, MessageEvent> messages;
 
 	public MessageHandler() {
 		this.messages = Maps.newHashMap();
@@ -17,15 +20,14 @@ public class MessageHandler {
 	}
 	
 	public void register() {
-		
 		this.messages.clear();
-		
 		this.registerHandshakePackets();
 
 	}
 
 	private void registerHandshakePackets() {
-
+		this.messages.put(Incoming.CHK_VERSION, new CHK_VERSION());
+		this.messages.put(Incoming.GETAVAILABLESETS, new GETAVAILABLESETS());
 	}
 	
 	public void handleRequest(Player player, ClientMessage message) {
@@ -34,7 +36,7 @@ public class MessageHandler {
 		}
 	}
 
-	public HashMap<Short, MessageEvent> getMessages() {
+	public HashMap<Integer, MessageEvent> getMessages() {
 		return messages;
 	}
 

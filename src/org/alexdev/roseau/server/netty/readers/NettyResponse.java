@@ -58,7 +58,7 @@ public class NettyResponse implements Response
 		
 		try {
 			bodystream.write(str, 0, str.length);
-			bodystream.writeChar((char)2);
+			bodystream.write((char)2);
 		} catch (IOException e) {
 			Log.exception(e);
 		}

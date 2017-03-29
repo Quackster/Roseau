@@ -19,9 +19,7 @@
 
 package org.alexdev.roseau.server.netty.codec;
 
-import java.nio.ByteBuffer;
-
-import org.alexdev.roseau.log.Log;
+import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.server.encoding.Base64Encoding;
 import org.alexdev.roseau.server.netty.readers.NettyRequest;
 import org.jboss.netty.buffer.ChannelBuffer;
@@ -30,24 +28,43 @@ import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.handler.codec.frame.FrameDecoder;
 
 public class NetworkDecoder extends FrameDecoder {
-	
+
 	@Override
 	protected Object decode(ChannelHandlerContext ctx, Channel channel, ChannelBuffer buffer) {
-		
+
 		try  {		
-			
+
+
+
 			if (buffer.readableBytes() < 5) { // 3 letter long B64 length + 2 letter long B64 header
 				channel.close();
 				return null;
+			}	
+
+			Player player = (Player) ctx.getChannel().getAttachment();
+
+			if (player == null) {
+				return null;
 			}
-			
+
+			/*if (player.getNetwork().isEncrypted()) {
+
+				Log.println("Encryption: " + new String(buffer.array()));
+				return null;
+
+			} else {*/
 			byte[] length = buffer.readBytes(3).array();
-			
+			byte[] header = buffer.readBytes(2).array();
+
 			int decodedLength = Base64Encoding.DecodeInt32(length);
-			Log.println("Received: " + decodedLength + " / " + new String(buffer.array()));//decodedLength);
-			
+			int decodedHeader = Base64Encoding.DecodeInt32(header);
+
+			ChannelBuffer messageBuffer = buffer.readBytes(decodedLength - 2);
+			return new NettyRequest(decodedHeader, messageBuffer);
+
+
 			/*if (length[0] == 60) {
-				
+
 				buffer.discardReadBytes();
 
 				channel.write("<?xml version=\"1.0\"?>\r\n"
@@ -56,17 +73,18 @@ public class NetworkDecoder extends FrameDecoder {
 					+ "<allow-access-from domain=\"*\" to-ports=\"*\" />\r\n"
 					+ "</cross-domain-policy>\0");
 			} else {
-				
+
 				int messageLength = ByteBuffer.wrap(length).asIntBuffer().get();
 				ChannelBuffer messageBuffer = buffer.readBytes(messageLength);
 				Short header = messageBuffer.readShort();
 				return new NettyRequest(header, messageBuffer);
 			}*/
-			
+			//}
+
 		} catch (Exception e){
 
 		}
-					
+
 
 		return null;
 	}

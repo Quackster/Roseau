@@ -13,7 +13,6 @@ import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.server.IServerHandler;
 import org.alexdev.roseau.server.netty.NettyServer;
 import org.alexdev.roseau.util.Configuration;
-import org.alexdev.roseau.util.JarUtils;
 import org.alexdev.roseau.util.Util;
 
 public class Roseau {
