@@ -13,6 +13,8 @@ public class ALLUNITS implements OutgoingMessageComposer {
 
 	public ALLUNITS(List<Room> publicRooms) {
 		this.publicRooms = publicRooms;
+		
+		
 	}
 
 	@Override

@@ -72,7 +72,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements IR
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE room_type = " + RoomType.PUBLIC.getTypeCode(), sqlConnection);
+			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE room_type = " + RoomType.PUBLIC.getTypeCode() + " ORDER BY name", sqlConnection);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {

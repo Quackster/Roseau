@@ -6,6 +6,7 @@ import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.incoming.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.login.SYSTEMBROADCAST;
 import org.alexdev.roseau.messages.outgoing.room.ACTIVE_OBJECTS;
+import org.alexdev.roseau.messages.outgoing.room.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.room.OBJECTS_WORLD;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
@@ -25,6 +26,10 @@ public class LOGIN implements MessageEvent {
 			
 			player.send(new ACTIVE_OBJECTS());
 			player.send(new OBJECTS_WORLD(room));
+			
+			if (room.getData().getName().equals("Main Lobby")) {
+				player.send(new HEIGHTMAP(room.getData().getModel().getHeightMap()));
+			}
 			
 		} else {
 

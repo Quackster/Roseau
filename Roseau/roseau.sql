@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 30, 2017 at 11:06 PM
+-- Generation Time: Mar 30, 2017 at 11:29 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `wallpaper` varchar(5) NOT NULL DEFAULT '0',
   `floor` varchar(5) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `rooms`
@@ -104,7 +104,8 @@ INSERT INTO `rooms` (`id`, `name`, `room_type`, `date_created`, `owner_id`, `des
 (16, 'Hotel Kitchen', 1, '2017-03-30 20:58:19', -1, NULL, '', 0, 0, 25, 'kitchen', 'cr_kitchen', '0', '0'),
 (17, 'Cafe Ole', 1, '2017-03-30 20:58:19', -1, NULL, '', 0, 0, 25, 'cafe', 'taivas_cafe', '0', '0'),
 (19, 'Habburger''s', 1, '2017-03-30 21:04:13', -1, NULL, '', 0, 0, 25, 'habburger', 'habburger', '0', '0'),
-(20, 'Club Massiva', 1, '2017-03-30 20:36:00', -1, NULL, '', 0, 0, 25, 'club', 'bar_a', '0', '0');
+(20, 'Club Massiva', 1, '2017-03-30 20:36:00', -1, NULL, '', 0, 0, 25, 'club', 'bar_a', '0', '0'),
+(21, 'Habbo Lido II', 1, '2017-03-30 21:14:46', -1, NULL, '', 0, 0, 25, 'lido', 'pool_b', '0', '0');
 
 -- --------------------------------------------------------
 
