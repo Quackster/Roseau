@@ -3103,3 +3103,228 @@ Caused by: java.net.BindException: Address already in use: bind
 [03/31/2017 02:25:49] [ROSEAU] >> Received: GETADFORME / general
 [03/31/2017 02:25:49] [ROSEAU] >> Received: INITUNITLISTENER / 
 [03/31/2017 02:25:49] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 03:28:42
+-----------------------------------------
+
+[03/31/2017 03:28:42] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 03:28:42] [ROSEAU] >> Loading server...
+[03/31/2017 03:28:42] [ROSEAU] 
+[03/31/2017 03:28:42] [ROSEAU] >> Loading dependencies
+[03/31/2017 03:28:42] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 03:28:42] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 03:28:42] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 03:28:42] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 03:28:42] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 03:28:42] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 03:28:42] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 03:28:42] [ROSEAU] 
+[03/31/2017 03:28:42] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 03:28:43] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 03:28:43] [ROSEAU] 
+[03/31/2017 03:28:44] [ROSEAU] >> Settting up server
+[03/31/2017 03:28:44] [ROSEAU] >> Server is listening on 127.0.0.1:91
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 03:29:10
+-----------------------------------------
+
+[03/31/2017 03:29:10] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 03:29:10] [ROSEAU] >> Loading server...
+[03/31/2017 03:29:10] [ROSEAU] 
+[03/31/2017 03:29:10] [ROSEAU] >> Loading dependencies
+[03/31/2017 03:29:10] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 03:29:10] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 03:29:10] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 03:29:10] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 03:29:10] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 03:29:10] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 03:29:10] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 03:29:10] [ROSEAU] 
+[03/31/2017 03:29:11] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 03:29:11] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 03:29:11] [ROSEAU] 
+[03/31/2017 03:29:11] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 03:29:11] [ROSEAU] >> Error has occured!
+java.sql.SQLException: Column 'chat_type' not found.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1055)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:926)
+	at com.mysql.jdbc.ResultSetImpl.findColumn(ResultSetImpl.java:1093)
+	at com.mysql.jdbc.ResultSetImpl.getInt(ResultSetImpl.java:2734)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:349)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:46)
+
+[03/31/2017 03:29:11] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 03:29:11] [ROSEAU] >> Settting up server
+[03/31/2017 03:29:11] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 03:29:11] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:172)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:48)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[03/31/2017 03:29:11] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 03:29:11] [ROSEAU] >> Server could not listen on 127.0.0.1:91, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 03:29:17
+-----------------------------------------
+
+[03/31/2017 03:29:17] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 03:29:17] [ROSEAU] >> Loading server...
+[03/31/2017 03:29:17] [ROSEAU] 
+[03/31/2017 03:29:17] [ROSEAU] >> Loading dependencies
+[03/31/2017 03:29:17] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 03:29:17] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 03:29:17] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 03:29:17] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 03:29:17] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 03:29:17] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 03:29:17] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 03:29:17] [ROSEAU] 
+[03/31/2017 03:29:17] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 03:29:17] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 03:29:17] [ROSEAU] 
+[03/31/2017 03:29:17] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 03:29:17] [ROSEAU] >> Error has occured!
+java.sql.SQLException: Column 'chat_type' not found.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1055)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:926)
+	at com.mysql.jdbc.ResultSetImpl.findColumn(ResultSetImpl.java:1093)
+	at com.mysql.jdbc.ResultSetImpl.getInt(ResultSetImpl.java:2734)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:349)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:46)
+
+[03/31/2017 03:29:17] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 03:29:17] [ROSEAU] >> Settting up server
+[03/31/2017 03:29:17] [ROSEAU] >> Server is listening on 127.0.0.1:91
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 03:37:10
+-----------------------------------------
+
+[03/31/2017 03:37:10] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 03:37:10] [ROSEAU] >> Loading server...
+[03/31/2017 03:37:10] [ROSEAU] 
+[03/31/2017 03:37:10] [ROSEAU] >> Loading dependencies
+[03/31/2017 03:37:10] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 03:37:10] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 03:37:10] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 03:37:10] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 03:37:10] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 03:37:10] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 03:37:10] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 03:37:10] [ROSEAU] 
+[03/31/2017 03:37:10] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 03:37:10] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 03:37:10] [ROSEAU] 
+[03/31/2017 03:37:10] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 03:37:10] [ROSEAU] >> Error has occured!
+java.sql.SQLException: Column 'state' not found.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1055)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:926)
+	at com.mysql.jdbc.ResultSetImpl.findColumn(ResultSetImpl.java:1093)
+	at com.mysql.jdbc.ResultSetImpl.getInt(ResultSetImpl.java:2734)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:327)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:46)
+
+[03/31/2017 03:37:10] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 03:37:10] [ROSEAU] >> Settting up server
+[03/31/2017 03:37:10] [ROSEAU] >> Server is listening on 127.0.0.1:91
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 03:38:00
+-----------------------------------------
+
+[03/31/2017 03:38:00] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 03:38:00] [ROSEAU] >> Loading server...
+[03/31/2017 03:38:00] [ROSEAU] 
+[03/31/2017 03:38:00] [ROSEAU] >> Loading dependencies
+[03/31/2017 03:38:00] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 03:38:00] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 03:38:00] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 03:38:00] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 03:38:00] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 03:38:00] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 03:38:00] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 03:38:00] [ROSEAU] 
+[03/31/2017 03:38:00] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 03:38:00] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 03:38:00] [ROSEAU] 
+[03/31/2017 03:38:00] [ROSEAU] >> Settting up server
+[03/31/2017 03:38:00] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 03:38:00] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:172)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:48)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[03/31/2017 03:38:00] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 03:38:00] [ROSEAU] >> Server could not listen on 127.0.0.1:91, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 03:38:05
+-----------------------------------------
+
+[03/31/2017 03:38:05] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 03:38:05] [ROSEAU] >> Loading server...
+[03/31/2017 03:38:05] [ROSEAU] 
+[03/31/2017 03:38:05] [ROSEAU] >> Loading dependencies
+[03/31/2017 03:38:05] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 03:38:05] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 03:38:05] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 03:38:05] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 03:38:05] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 03:38:05] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 03:38:05] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 03:38:05] [ROSEAU] 
+[03/31/2017 03:38:05] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 03:38:05] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 03:38:05] [ROSEAU] 
+[03/31/2017 03:38:05] [ROSEAU] >> Settting up server
+[03/31/2017 03:38:05] [ROSEAU] >> Server is listening on 127.0.0.1:91

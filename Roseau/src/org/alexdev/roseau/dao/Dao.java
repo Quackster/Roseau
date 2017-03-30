@@ -5,4 +5,5 @@ public interface Dao {
 	public boolean connect();
 	public IPlayerDao getPlayer();
 	public boolean isConnected();
+	public IRoomDao getRoom();
 }

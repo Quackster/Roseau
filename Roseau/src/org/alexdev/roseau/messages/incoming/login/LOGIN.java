@@ -4,7 +4,6 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.incoming.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.login.SYSTEMBROADCAST;
-import org.alexdev.roseau.messages.outgoing.user.USEROBJECT;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class LOGIN implements MessageEvent {
@@ -18,8 +17,7 @@ public class LOGIN implements MessageEvent {
 		boolean authenticated = Roseau.getDataAccess().getPlayer().login(player, username, password);
 		
 		if (authenticated) {
-			//player.send(new USEROBJECT(player.getDetails()));
-			
+			player.login();
 		} else {
 			player.send(new SYSTEMBROADCAST("Login incorrect"));
 			player.getNetwork().close();
