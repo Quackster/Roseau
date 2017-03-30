@@ -29,10 +29,10 @@ import org.jboss.netty.handler.codec.frame.FrameDecoder;
 
 public class NetworkDecoder extends FrameDecoder {
 
-	private IServerHandler serverHandler;
+	//private IServerHandler serverHandler;
 	
 	public NetworkDecoder(IServerHandler serverHandler) {
-		this.serverHandler = serverHandler;
+		//this.serverHandler = serverHandler;
 	}
 
 	@Override
@@ -67,9 +67,9 @@ public class NetworkDecoder extends FrameDecoder {
 				request = "";
 			}
 			
-			if (header.equals("LOGIN") && this.serverHandler.getExtraData() != null) {
+			/*if (header.equals("LOGIN") && this.serverHandler.getExtraData() != null) {
 				request += " " + this.serverHandler.getExtraData();
-			}
+			}*/
 			
 			return new NettyRequest(header, request);
 

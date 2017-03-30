@@ -60,6 +60,15 @@ public class RoomManager {
 			return null;
 		}
 	}
+	
+	public Room getRoomByPort(int port) {
+
+		try {
+			return Roseau.getGame().getRoomManager().getLoadedRooms().stream().filter(r -> r.getData().getServerPort() == port).findFirst().get();
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 	public List<Room> getLoadedRooms() {
 		return loadedRooms;

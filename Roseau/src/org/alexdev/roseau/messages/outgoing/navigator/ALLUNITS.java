@@ -31,7 +31,7 @@ public class ALLUNITS implements OutgoingMessageComposer {
 			response.appendArgument(String.valueOf(room.getData().getUsersMax()), ',');
 			response.appendArgument(Roseau.getServerIP(), ',');
 			response.appendArgument(Roseau.getServerIP(), '/');
-			response.appendArgument(String.valueOf(room.getData().getServerHandler().getPort()), ',');
+			response.appendArgument(String.valueOf(room.getData().getServerPort()), ',');
 			response.appendArgument(room.getData().getName(), ',');
 			response.appendTabArgument(room.getData().getCCT());
 			response.appendArgument(String.valueOf(room.getData().getUsersNow()), ',');

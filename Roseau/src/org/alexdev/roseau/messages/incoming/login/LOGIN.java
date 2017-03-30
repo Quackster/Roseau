@@ -2,9 +2,11 @@ package org.alexdev.roseau.messages.incoming.login;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
-import org.alexdev.roseau.log.Log;
+import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.incoming.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.login.SYSTEMBROADCAST;
+import org.alexdev.roseau.messages.outgoing.room.ACTIVE_OBJECTS;
+import org.alexdev.roseau.messages.outgoing.room.OBJECTS_WORLD;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class LOGIN implements MessageEvent {
@@ -18,9 +20,11 @@ public class LOGIN implements MessageEvent {
 		boolean publicRoomAccess = reader.getArgumentAmount() > 2;
 
 		if (publicRoomAccess) {
-
-			Log.println("Public room access");
-
+			
+			Room room = Roseau.getGame().getRoomManager().getRoomByPort(player.getNetwork().getServerPort());
+			
+			player.send(new ACTIVE_OBJECTS());
+			player.send(new OBJECTS_WORLD(room));
 			
 		} else {
 

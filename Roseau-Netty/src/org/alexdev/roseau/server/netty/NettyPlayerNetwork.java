@@ -9,7 +9,7 @@ public class NettyPlayerNetwork extends IPlayerNetwork {
 	private Channel channel;
 
 	public NettyPlayerNetwork(Channel channel, int connectionId) {
-		super(connectionId);
+		super(connectionId, Integer.valueOf(channel.getLocalAddress().toString().split(":")[1]));
 		this.channel = channel;
 	}
 

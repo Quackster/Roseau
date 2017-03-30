@@ -52,6 +52,8 @@ public class Roseau {
 				game = new Game(dao);
 				game.load();
 
+				Log.println();
+				
 				startServer();
 			}
 

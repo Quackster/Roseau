@@ -31,6 +31,7 @@ public class RoomData {
 
 	private Room room;
 	private IServerHandler serverHandler = null;
+	private int serverPort = -1;
 	
 	public RoomData(Room room) {
 		this.room = room;
@@ -60,9 +61,13 @@ public class RoomData {
 						.asSubclass(IServerHandler.class)
 						.getDeclaredConstructor(String.class)
 						.newInstance(String.valueOf(id));
+			
+				this.serverPort  = Roseau.getServerPort() + id;
+				Log.println("[ROOM] [" + this.name + "] Starting public room server on port: " + this.serverPort);
 				
+		
 				this.serverHandler.setIp(Roseau.getServerIP());
-				this.serverHandler.setPort(Roseau.getServerPort() + id);
+				this.serverHandler.setPort(serverPort);
 				this.serverHandler.listenSocket();
 			}
 		} catch (Exception e) {
@@ -192,11 +197,12 @@ public class RoomData {
 		return this.model;
 	}
 
+	public int getServerPort() {
+		return serverPort;
+	}
+
 	public IServerHandler getServerHandler() {
 		return serverHandler;
 	}
 
-	public void setServerHandler(IServerHandler serverHandler) {
-		this.serverHandler = serverHandler;
-	}
 }

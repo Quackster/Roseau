@@ -8,7 +8,6 @@ import org.alexdev.roseau.server.IServerHandler;
 import org.alexdev.roseau.server.netty.codec.NetworkDecoder;
 import org.alexdev.roseau.server.netty.codec.NetworkEncoder;
 import org.alexdev.roseau.server.netty.connections.ConnectionHandler;
-import org.alexdev.roseau.server.netty.connections.SessionManager;
 import org.jboss.netty.bootstrap.ServerBootstrap;
 import org.jboss.netty.channel.ChannelException;
 import org.jboss.netty.channel.ChannelPipeline;

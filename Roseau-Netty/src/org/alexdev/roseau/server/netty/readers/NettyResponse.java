@@ -29,7 +29,6 @@ public class NettyResponse implements Response {
 		try {
 			this.bodystream.write('#');
 			this.append(header);
-			this.bodystream.write((char)13);
 
 		} catch (IOException e) {
 			e.printStackTrace();
