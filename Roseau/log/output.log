@@ -1,0 +1,1143 @@
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 01:58:43
+-----------------------------------------
+
+[03/30/2017 01:58:43] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 01:58:43] [ROSEAU] >> Loading server...
+[03/30/2017 01:58:43] [ROSEAU] 
+[03/30/2017 01:58:43] [ROSEAU] >> Loading dependencies
+[03/30/2017 01:58:43] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 01:58:43] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 01:58:43] [ROSEAU] 
+[03/30/2017 01:58:43] [ROSEAU] >> Settting up server
+[03/30/2017 01:58:43] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 01:58:56] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 01:59:11] [ROSEAU] >> Disconnection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:01:14
+-----------------------------------------
+
+[03/30/2017 02:01:14] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:01:14] [ROSEAU] >> Loading server...
+[03/30/2017 02:01:14] [ROSEAU] 
+[03/30/2017 02:01:14] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:01:14] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:01:14] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:01:14] [ROSEAU] 
+[03/30/2017 02:01:14] [ROSEAU] >> Settting up server
+[03/30/2017 02:01:14] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 02:01:14] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:1232
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:175)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:49)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[03/30/2017 02:01:14] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 02:01:14] [ROSEAU] >> Server could not listen on 127.0.0.1:1232, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:01:18
+-----------------------------------------
+
+[03/30/2017 02:01:18] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:01:18] [ROSEAU] >> Loading server...
+[03/30/2017 02:01:18] [ROSEAU] 
+[03/30/2017 02:01:18] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:01:18] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:01:19] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:01:19] [ROSEAU] 
+[03/30/2017 02:01:19] [ROSEAU] >> Settting up server
+[03/30/2017 02:01:19] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 02:01:37] [ROSEAU] >> Connection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:01:50
+-----------------------------------------
+
+[03/30/2017 02:01:50] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:01:50] [ROSEAU] >> Loading server...
+[03/30/2017 02:01:50] [ROSEAU] 
+[03/30/2017 02:01:50] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:01:50] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:01:51] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:01:51] [ROSEAU] 
+[03/30/2017 02:01:51] [ROSEAU] >> Settting up server
+[03/30/2017 02:01:51] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 02:02:04] [ROSEAU] >> Connection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:03:31
+-----------------------------------------
+
+[03/30/2017 02:03:31] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:03:31] [ROSEAU] >> Loading server...
+[03/30/2017 02:03:31] [ROSEAU] 
+[03/30/2017 02:03:31] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:03:31] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:03:32] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:03:32] [ROSEAU] 
+[03/30/2017 02:03:32] [ROSEAU] >> Settting up server
+[03/30/2017 02:03:32] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 02:04:05] [ROSEAU] >> Connection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:06:59
+-----------------------------------------
+
+[03/30/2017 02:06:59] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:06:59] [ROSEAU] >> Loading server...
+[03/30/2017 02:06:59] [ROSEAU] 
+[03/30/2017 02:06:59] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:06:59] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:06:59] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:06:59] [ROSEAU] 
+[03/30/2017 02:06:59] [ROSEAU] >> Settting up server
+[03/30/2017 02:06:59] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:07:35
+-----------------------------------------
+
+[03/30/2017 02:07:35] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:07:35] [ROSEAU] >> Loading server...
+[03/30/2017 02:07:35] [ROSEAU] 
+[03/30/2017 02:07:35] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:07:35] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:07:36] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:07:36] [ROSEAU] 
+[03/30/2017 02:07:36] [ROSEAU] >> Settting up server
+[03/30/2017 02:07:36] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 02:07:36] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:1232
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:175)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:49)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[03/30/2017 02:07:36] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 02:07:36] [ROSEAU] >> Server could not listen on 127.0.0.1:1232, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:07:43
+-----------------------------------------
+
+[03/30/2017 02:07:43] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:07:43] [ROSEAU] >> Loading server...
+[03/30/2017 02:07:43] [ROSEAU] 
+[03/30/2017 02:07:43] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:07:43] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:07:43] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:07:43] [ROSEAU] 
+[03/30/2017 02:07:43] [ROSEAU] >> Settting up server
+[03/30/2017 02:07:43] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 02:08:01] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 02:08:02] [ROSEAU] >> Received: 4 / @@D@EFQ
+[03/30/2017 02:08:02] [ROSEAU] >> Disconnection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:27:16
+-----------------------------------------
+
+[03/30/2017 02:27:16] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:27:16] [ROSEAU] >> Loading server...
+[03/30/2017 02:27:16] [ROSEAU] 
+[03/30/2017 02:27:16] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:27:16] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:27:16] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:27:16] [ROSEAU] 
+[03/30/2017 02:27:16] [ROSEAU] >> Settting up server
+[03/30/2017 02:27:16] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 02:27:16] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:1232
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:175)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:49)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[03/30/2017 02:27:16] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 02:27:16] [ROSEAU] >> Server could not listen on 127.0.0.1:1232, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:27:21
+-----------------------------------------
+
+[03/30/2017 02:27:21] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:27:21] [ROSEAU] >> Loading server...
+[03/30/2017 02:27:21] [ROSEAU] 
+[03/30/2017 02:27:21] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:27:21] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:27:21] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:27:21] [ROSEAU] 
+[03/30/2017 02:27:21] [ROSEAU] >> Settting up server
+[03/30/2017 02:27:21] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 02:27:35] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 02:27:42] [ROSEAU] >> Disconnection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:32:57
+-----------------------------------------
+
+[03/30/2017 02:32:57] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:32:57] [ROSEAU] >> Loading server...
+[03/30/2017 02:32:57] [ROSEAU] 
+[03/30/2017 02:32:57] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:32:57] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:32:57] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:32:57] [ROSEAU] 
+[03/30/2017 02:32:57] [ROSEAU] >> Settting up server
+[03/30/2017 02:32:57] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:34:10
+-----------------------------------------
+
+[03/30/2017 02:34:10] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:34:10] [ROSEAU] >> Loading server...
+[03/30/2017 02:34:10] [ROSEAU] 
+[03/30/2017 02:34:10] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:34:10] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:34:10] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:34:10] [ROSEAU] 
+[03/30/2017 02:34:10] [ROSEAU] >> Settting up server
+[03/30/2017 02:34:10] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 02:34:10] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:1232
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:175)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:49)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[03/30/2017 02:34:10] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 02:34:10] [ROSEAU] >> Server could not listen on 127.0.0.1:1232, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:34:14
+-----------------------------------------
+
+[03/30/2017 02:34:14] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:34:14] [ROSEAU] >> Loading server...
+[03/30/2017 02:34:14] [ROSEAU] 
+[03/30/2017 02:34:14] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:34:14] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:34:14] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:34:14] [ROSEAU] 
+[03/30/2017 02:34:14] [ROSEAU] >> Settting up server
+[03/30/2017 02:34:14] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 02:34:19] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 02:34:19] [ROSEAU] >> SENT: @@                                                                                                                                                                                                                                                             
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:35:33
+-----------------------------------------
+
+[03/30/2017 02:35:33] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:35:33] [ROSEAU] >> Loading server...
+[03/30/2017 02:35:33] [ROSEAU] 
+[03/30/2017 02:35:33] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:35:33] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:35:33] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:35:33] [ROSEAU] 
+[03/30/2017 02:35:33] [ROSEAU] >> Settting up server
+[03/30/2017 02:35:33] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 02:35:47] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 02:35:47] [ROSEAU] >> SENT: @@ 
+testing123                                                                                                                                                                                                                                                
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:36:43
+-----------------------------------------
+
+[03/30/2017 02:36:43] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:36:43] [ROSEAU] >> Loading server...
+[03/30/2017 02:36:43] [ROSEAU] 
+[03/30/2017 02:36:43] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:36:43] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:36:43] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:36:43] [ROSEAU] 
+[03/30/2017 02:36:43] [ROSEAU] >> Settting up server
+[03/30/2017 02:36:43] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 02:37:05] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 02:37:05] [ROSEAU] >> SENT: @@[0][10]testing123[0][1][0][1]
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:37:56
+-----------------------------------------
+
+[03/30/2017 02:37:56] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:37:56] [ROSEAU] >> Loading server...
+[03/30/2017 02:37:56] [ROSEAU] 
+[03/30/2017 02:37:56] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:37:56] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:37:56] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:37:56] [ROSEAU] 
+[03/30/2017 02:37:56] [ROSEAU] >> Settting up server
+[03/30/2017 02:37:56] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 02:38:18] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 02:38:18] [ROSEAU] >> SENT: @@[0][1]
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:43:38
+-----------------------------------------
+
+[03/30/2017 02:43:38] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:43:38] [ROSEAU] >> Loading server...
+[03/30/2017 02:43:38] [ROSEAU] 
+[03/30/2017 02:43:38] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:43:38] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:43:38] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:43:38] [ROSEAU] 
+[03/30/2017 02:43:38] [ROSEAU] >> Settting up server
+[03/30/2017 02:43:38] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 02:43:53] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 02:43:53] [ROSEAU] >> SENT: [0][2]@@[0][1]
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:44:37
+-----------------------------------------
+
+[03/30/2017 02:44:37] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:44:37] [ROSEAU] >> Loading server...
+[03/30/2017 02:44:37] [ROSEAU] 
+[03/30/2017 02:44:37] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:44:37] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:44:37] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:44:37] [ROSEAU] 
+[03/30/2017 02:44:37] [ROSEAU] >> Settting up server
+[03/30/2017 02:44:37] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 02:44:56] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 02:44:56] [ROSEAU] >> SENT: @@[0][1]
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:45:19
+-----------------------------------------
+
+[03/30/2017 02:45:19] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:45:19] [ROSEAU] >> Loading server...
+[03/30/2017 02:45:19] [ROSEAU] 
+[03/30/2017 02:45:19] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:45:19] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:45:19] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:45:19] [ROSEAU] 
+[03/30/2017 02:45:19] [ROSEAU] >> Settting up server
+[03/30/2017 02:45:19] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 02:45:32] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 02:45:32] [ROSEAU] >> SENT: @@
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 02:46:34
+-----------------------------------------
+
+[03/30/2017 02:46:34] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 02:46:34] [ROSEAU] >> Loading server...
+[03/30/2017 02:46:34] [ROSEAU] 
+[03/30/2017 02:46:34] [ROSEAU] >> Loading dependencies
+[03/30/2017 02:46:34] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 02:46:34] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 02:46:34] [ROSEAU] 
+[03/30/2017 02:46:34] [ROSEAU] >> Settting up server
+[03/30/2017 02:46:34] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 02:46:50] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 02:46:50] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 02:46:50] [ROSEAU] >> Received: 4 / @@D@EFQ
+[03/30/2017 02:46:50] [ROSEAU] >> Disconnection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 03:23:54
+-----------------------------------------
+
+[03/30/2017 03:23:54] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 03:23:54] [ROSEAU] >> Loading server...
+[03/30/2017 03:23:54] [ROSEAU] 
+[03/30/2017 03:23:54] [ROSEAU] >> Loading dependencies
+[03/30/2017 03:23:54] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 03:23:55] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 03:23:55] [ROSEAU] >> Error has occured!
+java.sql.SQLException: Unable to open a test connection to the given database. JDBC url = jdbc:mysql://127.0.0.1/roseau, username = root. Terminating connection pool. Original Exception: ------
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 1 ms ago.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2103)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:718)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:302)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:282)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at com.jolbox.bonecp.BoneCP.obtainRawInternalConnection(BoneCP.java:256)
+	at com.jolbox.bonecp.BoneCP.<init>(BoneCP.java:305)
+	at org.alexdev.roseau.dao.mysql.Storage.<init>(Storage.java:35)
+	at org.alexdev.roseau.dao.mysql.MySQLDao.connect(MySQLDao.java:28)
+	at org.alexdev.roseau.dao.mysql.MySQLDao.<init>(MySQLDao.java:16)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:42)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:280)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2026)
+	... 17 more
+------
+
+	at com.jolbox.bonecp.BoneCP.<init>(BoneCP.java:312)
+	at org.alexdev.roseau.dao.mysql.Storage.<init>(Storage.java:35)
+	at org.alexdev.roseau.dao.mysql.MySQLDao.connect(MySQLDao.java:28)
+	at org.alexdev.roseau.dao.mysql.MySQLDao.<init>(MySQLDao.java:16)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:42)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 1 ms ago.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2103)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:718)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:302)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:282)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at com.jolbox.bonecp.BoneCP.obtainRawInternalConnection(BoneCP.java:256)
+	at com.jolbox.bonecp.BoneCP.<init>(BoneCP.java:305)
+	... 4 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:280)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2026)
+	... 17 more
+
+[03/30/2017 03:23:55] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 03:23:55] [ROSEAU] >> Could not connect
+[03/30/2017 03:23:55] [ROSEAU] 
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 03:24:03
+-----------------------------------------
+
+[03/30/2017 03:24:03] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 03:24:03] [ROSEAU] >> Loading server...
+[03/30/2017 03:24:03] [ROSEAU] 
+[03/30/2017 03:24:03] [ROSEAU] >> Loading dependencies
+[03/30/2017 03:24:03] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 03:24:04] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 03:24:04] [ROSEAU] >> Error has occured!
+java.sql.SQLException: Unable to open a test connection to the given database. JDBC url = jdbc:mysql://127.0.0.1/roseau, username = root. Terminating connection pool. Original Exception: ------
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 0 ms ago.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2103)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:718)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:302)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:282)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at com.jolbox.bonecp.BoneCP.obtainRawInternalConnection(BoneCP.java:256)
+	at com.jolbox.bonecp.BoneCP.<init>(BoneCP.java:305)
+	at org.alexdev.roseau.dao.mysql.Storage.<init>(Storage.java:35)
+	at org.alexdev.roseau.dao.mysql.MySQLDao.connect(MySQLDao.java:28)
+	at org.alexdev.roseau.dao.mysql.MySQLDao.<init>(MySQLDao.java:16)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:42)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:280)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2026)
+	... 17 more
+------
+
+	at com.jolbox.bonecp.BoneCP.<init>(BoneCP.java:312)
+	at org.alexdev.roseau.dao.mysql.Storage.<init>(Storage.java:35)
+	at org.alexdev.roseau.dao.mysql.MySQLDao.connect(MySQLDao.java:28)
+	at org.alexdev.roseau.dao.mysql.MySQLDao.<init>(MySQLDao.java:16)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:42)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 0 ms ago.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2103)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:718)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:302)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:282)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at com.jolbox.bonecp.BoneCP.obtainRawInternalConnection(BoneCP.java:256)
+	at com.jolbox.bonecp.BoneCP.<init>(BoneCP.java:305)
+	... 4 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:280)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2026)
+	... 17 more
+
+[03/30/2017 03:24:04] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 03:24:04] [ROSEAU] >> Could not connect
+[03/30/2017 03:24:04] [ROSEAU] 
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 03:24:07
+-----------------------------------------
+
+[03/30/2017 03:24:07] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 03:24:07] [ROSEAU] >> Loading server...
+[03/30/2017 03:24:07] [ROSEAU] 
+[03/30/2017 03:24:07] [ROSEAU] >> Loading dependencies
+[03/30/2017 03:24:07] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 03:24:07] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 03:24:07] [ROSEAU] 
+[03/30/2017 03:24:07] [ROSEAU] >> Settting up server
+[03/30/2017 03:24:08] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 03:24:23] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 03:24:23] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 03:24:23] [ROSEAU] >> Received: 5 FQ
+[03/30/2017 03:24:23] [ROSEAU] >> RECEIVED PACKET: 5
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 03:32:20
+-----------------------------------------
+
+[03/30/2017 03:32:20] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 03:32:20] [ROSEAU] >> Loading server...
+[03/30/2017 03:32:20] [ROSEAU] 
+[03/30/2017 03:32:20] [ROSEAU] >> Loading dependencies
+[03/30/2017 03:32:20] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 03:32:20] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 03:32:20] [ROSEAU] 
+[03/30/2017 03:32:20] [ROSEAU] >> Settting up server
+[03/30/2017 03:32:20] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 03:34:33] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 03:34:33] [ROSEAU] >> Disconnection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 03:35:08
+-----------------------------------------
+
+[03/30/2017 03:35:08] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 03:35:08] [ROSEAU] >> Loading server...
+[03/30/2017 03:35:08] [ROSEAU] 
+[03/30/2017 03:35:08] [ROSEAU] >> Loading dependencies
+[03/30/2017 03:35:08] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 03:35:09] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 03:35:09] [ROSEAU] 
+[03/30/2017 03:35:09] [ROSEAU] >> Settting up server
+[03/30/2017 03:35:09] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 03:35:12] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 03:35:12] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 03:35:12] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 03:35:12] [ROSEAU] >> SENT: @ADFDXSADADSADSADSAS[0][2][1]
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 03:40:39
+-----------------------------------------
+
+[03/30/2017 03:40:39] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 03:40:39] [ROSEAU] >> Loading server...
+[03/30/2017 03:40:39] [ROSEAU] 
+[03/30/2017 03:40:39] [ROSEAU] >> Loading dependencies
+[03/30/2017 03:40:39] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 03:40:40] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 03:40:40] [ROSEAU] 
+[03/30/2017 03:40:40] [ROSEAU] >> Settting up server
+[03/30/2017 03:40:40] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 03:41:08] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 03:41:08] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 03:41:09] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 03:41:09] [ROSEAU] >> SENT: @ADFDXSADADSADSADSAS[0][2][1]
+[03/30/2017 03:41:26] [ROSEAU] >> Disconnection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 03:44:03
+-----------------------------------------
+
+[03/30/2017 03:44:03] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 03:44:03] [ROSEAU] >> Loading server...
+[03/30/2017 03:44:03] [ROSEAU] 
+[03/30/2017 03:44:03] [ROSEAU] >> Loading dependencies
+[03/30/2017 03:44:03] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 03:44:03] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 03:44:03] [ROSEAU] 
+[03/30/2017 03:44:03] [ROSEAU] >> Settting up server
+[03/30/2017 03:44:03] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 03:44:16] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 03:44:16] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 03:44:16] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 03:44:16] [ROSEAU] >> SENT: @ADFDXSADADSADSADSA[0][2][1]
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 03:45:18
+-----------------------------------------
+
+[03/30/2017 03:45:18] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 03:45:18] [ROSEAU] >> Loading server...
+[03/30/2017 03:45:18] [ROSEAU] 
+[03/30/2017 03:45:18] [ROSEAU] >> Loading dependencies
+[03/30/2017 03:45:18] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 03:45:18] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 03:45:18] [ROSEAU] 
+[03/30/2017 03:45:18] [ROSEAU] >> Settting up server
+[03/30/2017 03:45:19] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 03:45:36] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 03:45:36] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 03:45:36] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 03:45:36] [ROSEAU] >> SENT: @ADFDXSADADSADSADSAS[0][2][1]
+[03/30/2017 03:45:40] [ROSEAU] >> Disconnection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 03:45:55
+-----------------------------------------
+
+[03/30/2017 03:45:55] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 03:45:55] [ROSEAU] >> Loading server...
+[03/30/2017 03:45:55] [ROSEAU] 
+[03/30/2017 03:45:55] [ROSEAU] >> Loading dependencies
+[03/30/2017 03:45:55] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 03:45:55] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 03:45:55] [ROSEAU] 
+[03/30/2017 03:45:55] [ROSEAU] >> Settting up server
+[03/30/2017 03:45:55] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 03:45:59] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 03:45:59] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 03:45:59] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 03:45:59] [ROSEAU] >> SENT: @ADFDXSADADSADSA[0][2][1]
+[03/30/2017 03:46:07] [ROSEAU] >> Disconnection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 03:46:27
+-----------------------------------------
+
+[03/30/2017 03:46:27] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 03:46:27] [ROSEAU] >> Loading server...
+[03/30/2017 03:46:27] [ROSEAU] 
+[03/30/2017 03:46:27] [ROSEAU] >> Loading dependencies
+[03/30/2017 03:46:27] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 03:46:27] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 03:46:27] [ROSEAU] 
+[03/30/2017 03:46:27] [ROSEAU] >> Settting up server
+[03/30/2017 03:46:27] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 03:46:31] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 03:46:31] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 03:46:31] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 03:46:31] [ROSEAU] >> SENT: @ADFDXSADADSADSA[1]
+[03/30/2017 03:46:32] [ROSEAU] >> Encryption: @@B@q
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 03:48:44
+-----------------------------------------
+
+[03/30/2017 03:48:44] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 03:48:44] [ROSEAU] >> Loading server...
+[03/30/2017 03:48:44] [ROSEAU] 
+[03/30/2017 03:48:44] [ROSEAU] >> Loading dependencies
+[03/30/2017 03:48:44] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 03:48:45] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 03:48:45] [ROSEAU] 
+[03/30/2017 03:48:45] [ROSEAU] >> Settting up server
+[03/30/2017 03:48:45] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 03:49:01] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 03:49:01] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 03:49:02] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 03:49:02] [ROSEAU] >> SENT: @ADFDXSADADSADSADSAS[1]
+[03/30/2017 03:49:02] [ROSEAU] >> Encryption: @@B@q
+[03/30/2017 03:49:07] [ROSEAU] >> Disconnection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 03:49:31
+-----------------------------------------
+
+[03/30/2017 03:49:31] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 03:49:31] [ROSEAU] >> Loading server...
+[03/30/2017 03:49:31] [ROSEAU] 
+[03/30/2017 03:49:31] [ROSEAU] >> Loading dependencies
+[03/30/2017 03:49:31] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 03:49:31] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 03:49:31] [ROSEAU] 
+[03/30/2017 03:49:31] [ROSEAU] >> Settting up server
+[03/30/2017 03:49:31] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 03:49:37] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 03:49:37] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 03:49:37] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 03:49:37] [ROSEAU] >> SENT: @ADFDXSADADSADSADSAS[2][1]
+[03/30/2017 03:49:38] [ROSEAU] >> Encryption: @@B@q
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 04:03:33
+-----------------------------------------
+
+[03/30/2017 04:03:33] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 04:03:33] [ROSEAU] >> Loading server...
+[03/30/2017 04:03:33] [ROSEAU] 
+[03/30/2017 04:03:33] [ROSEAU] >> Loading dependencies
+[03/30/2017 04:03:33] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 04:03:33] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 04:03:33] [ROSEAU] 
+[03/30/2017 04:03:33] [ROSEAU] >> Settting up server
+[03/30/2017 04:03:33] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 04:03:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:1232
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:175)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:49)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[03/30/2017 04:03:33] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 04:03:33] [ROSEAU] >> Server could not listen on 127.0.0.1:1232, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 04:03:39
+-----------------------------------------
+
+[03/30/2017 04:03:39] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 04:03:39] [ROSEAU] >> Loading server...
+[03/30/2017 04:03:39] [ROSEAU] 
+[03/30/2017 04:03:39] [ROSEAU] >> Loading dependencies
+[03/30/2017 04:03:39] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 04:03:39] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 04:03:39] [ROSEAU] 
+[03/30/2017 04:03:39] [ROSEAU] >> Settting up server
+[03/30/2017 04:03:39] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 04:03:54] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 04:03:54] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 04:03:54] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 04:03:54] [ROSEAU] >> SENT: @Ae1{473cw:gqq8fj04h2k1y1:l049d33d8u2v:1j:hn59944eb09838kfg:u:5ky8[2][1]
+[03/30/2017 04:03:54] [ROSEAU] >> Encryption: @@B@q
+[03/30/2017 04:04:06] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/30/2017 04:04:07] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 04:04:07] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 04:04:08] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 04:04:08] [ROSEAU] >> SENT: @Ab30:2901yqv792ymz02jyf50r686l18oe0n:25h7m492n86x:84495w1:5[2][1]
+[03/30/2017 04:04:08] [ROSEAU] >> Encryption: @@B@q
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 04:07:51
+-----------------------------------------
+
+[03/30/2017 04:07:51] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 04:07:51] [ROSEAU] >> Loading server...
+[03/30/2017 04:07:51] [ROSEAU] 
+[03/30/2017 04:07:51] [ROSEAU] >> Loading dependencies
+[03/30/2017 04:07:51] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 04:07:51] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 04:07:51] [ROSEAU] 
+[03/30/2017 04:07:51] [ROSEAU] >> Settting up server
+[03/30/2017 04:07:51] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 04:08:15] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 04:08:15] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 04:08:15] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 04:08:15] [ROSEAU] >> SENT: @A31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl[2][1]
+[03/30/2017 04:08:15] [ROSEAU] >> Encryption: @@B@q
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 04:08:51
+-----------------------------------------
+
+[03/30/2017 04:08:51] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 04:08:51] [ROSEAU] >> Loading server...
+[03/30/2017 04:08:51] [ROSEAU] 
+[03/30/2017 04:08:51] [ROSEAU] >> Loading dependencies
+[03/30/2017 04:08:51] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 04:08:51] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 04:08:51] [ROSEAU] 
+[03/30/2017 04:08:51] [ROSEAU] >> Settting up server
+[03/30/2017 04:08:51] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 04:09:03] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 04:09:03] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 04:09:03] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 04:09:03] [ROSEAU] >> SENT: @A31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl[2][1]
+[03/30/2017 04:09:03] [ROSEAU] >> Encryption: @@B@q
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 04:11:08
+-----------------------------------------
+
+[03/30/2017 04:11:08] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 04:11:08] [ROSEAU] >> Loading server...
+[03/30/2017 04:11:08] [ROSEAU] 
+[03/30/2017 04:11:08] [ROSEAU] >> Loading dependencies
+[03/30/2017 04:11:08] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 04:11:08] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 04:11:08] [ROSEAU] 
+[03/30/2017 04:11:08] [ROSEAU] >> Settting up server
+[03/30/2017 04:11:08] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 04:11:22
+-----------------------------------------
+
+[03/30/2017 04:11:22] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 04:11:22] [ROSEAU] >> Loading server...
+[03/30/2017 04:11:22] [ROSEAU] 
+[03/30/2017 04:11:22] [ROSEAU] >> Loading dependencies
+[03/30/2017 04:11:22] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 04:11:23] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 04:11:23] [ROSEAU] 
+[03/30/2017 04:11:23] [ROSEAU] >> Settting up server
+[03/30/2017 04:11:23] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 04:11:23] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:1232
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:175)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:49)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[03/30/2017 04:11:23] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 04:11:23] [ROSEAU] >> Server could not listen on 127.0.0.1:1232, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 04:11:27
+-----------------------------------------
+
+[03/30/2017 04:11:27] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 04:11:27] [ROSEAU] >> Loading server...
+[03/30/2017 04:11:27] [ROSEAU] 
+[03/30/2017 04:11:27] [ROSEAU] >> Loading dependencies
+[03/30/2017 04:11:27] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 04:11:27] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 04:11:27] [ROSEAU] 
+[03/30/2017 04:11:27] [ROSEAU] >> Settting up server
+[03/30/2017 04:11:28] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 04:11:40] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 04:11:40] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 04:11:40] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 04:11:40] [ROSEAU] >> SENT: @A31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl[2][1]
+[03/30/2017 04:11:41] [ROSEAU] >> Encryption: @@B@q
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 04:16:15
+-----------------------------------------
+
+[03/30/2017 04:16:15] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 04:16:15] [ROSEAU] >> Loading server...
+[03/30/2017 04:16:15] [ROSEAU] 
+[03/30/2017 04:16:15] [ROSEAU] >> Loading dependencies
+[03/30/2017 04:16:15] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 04:16:15] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 04:16:15] [ROSEAU] 
+[03/30/2017 04:16:15] [ROSEAU] >> Settting up server
+[03/30/2017 04:16:15] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 04:16:28] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 04:16:28] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 04:16:28] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 04:16:28] [ROSEAU] >> SENT: @A31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl[2][1]
+[03/30/2017 04:16:28] [ROSEAU] >> Received: 49 / 
+[03/30/2017 04:16:28] [ROSEAU] >> Received: 9 / 
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 04:19:43
+-----------------------------------------
+
+[03/30/2017 04:19:43] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 04:19:43] [ROSEAU] >> Loading server...
+[03/30/2017 04:19:43] [ROSEAU] 
+[03/30/2017 04:19:43] [ROSEAU] >> Loading dependencies
+[03/30/2017 04:19:43] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 04:19:43] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 04:19:43] [ROSEAU] 
+[03/30/2017 04:19:43] [ROSEAU] >> Settting up server
+[03/30/2017 04:19:43] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+[03/30/2017 04:19:56] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 04:19:56] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 04:19:57] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 04:19:57] [ROSEAU] >> SENT: @A31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl[2][1]
+[03/30/2017 04:19:57] [ROSEAU] >> Received: 49 / 
+[03/30/2017 04:19:57] [ROSEAU] >> Received: 9 / 
+[03/30/2017 04:19:57] [ROSEAU] >> SENT: @H[100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,176,177,178,180,185,190,195,200,205,206,207,210,215,220,225,230,235,240,245,250,255,260,265,266,267,270,275,280,281,285,290,295,300,305,500,505,510,515,520,525,530,535,540,545,550,555,565,570,575,580,585,590,595,596,600,605,610,615,620,625,626,627,630,635,640,645,650,655,660,665,667,669,670,675,680,685,690,695,696,700,705,710,715,720,725,730,735,740][2][1]
+[03/30/2017 04:19:57] [ROSEAU] >> Received: 49 / 
+[03/30/2017 04:20:18] [ROSEAU] >> Received: 42 / @DAlex@@
+[03/30/2017 04:21:21] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/30/2017 04:21:32] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 04:21:32] [ROSEAU] >> SENT: @@[1]
+[03/30/2017 04:21:32] [ROSEAU] >> Received: 5 / FQ
+[03/30/2017 04:21:32] [ROSEAU] >> SENT: @A31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl[2][1]
+[03/30/2017 04:21:32] [ROSEAU] >> Received: 49 / 
+[03/30/2017 04:21:32] [ROSEAU] >> Received: 9 / 
+[03/30/2017 04:21:32] [ROSEAU] >> SENT: @H[100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,176,177,178,180,185,190,195,200,205,206,207,210,215,220,225,230,235,240,245,250,255,260,265,266,267,270,275,280,281,285,290,295,300,305,500,505,510,515,520,525,530,535,540,545,550,555,565,570,575,580,585,590,595,596,600,605,610,615,620,625,626,627,630,635,640,645,650,655,660,665,667,669,670,675,680,685,690,695,696,700,705,710,715,720,725,730,735,740][2][1]
+[03/30/2017 04:21:33] [ROSEAU] >> Received: 49 / 
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 04:23:34
+-----------------------------------------
+
+[03/30/2017 04:23:34] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 04:23:34] [ROSEAU] >> Loading server...
+[03/30/2017 04:23:34] [ROSEAU] 
+[03/30/2017 04:23:34] [ROSEAU] >> Loading dependencies
+[03/30/2017 04:23:34] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 04:23:34] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 04:23:34] [ROSEAU] 
+[03/30/2017 04:23:34] [ROSEAU] >> Settting up server
+[03/30/2017 04:23:34] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 04:23:34] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:1232
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:174)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:48)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[03/30/2017 04:23:34] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 04:23:34] [ROSEAU] >> Server could not listen on 127.0.0.1:1232, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 13:18:52
+-----------------------------------------
+
+[03/30/2017 13:18:52] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 13:18:52] [ROSEAU] >> Loading server...
+[03/30/2017 13:18:52] [ROSEAU] 
+[03/30/2017 13:18:52] [ROSEAU] >> Loading dependencies
+[03/30/2017 13:18:52] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 13:18:52] [ROSEAU] >> Error has occured!
+java.io.FileNotFoundException: C:\Users\Alex\workspace\Roseau\extensions\icarus_socket_extension.conf (The system cannot find the file specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at org.alexdev.roseau.util.Configuration.<init>(Configuration.java:20)
+	at org.alexdev.roseau.Roseau.loadDependencies(Roseau.java:75)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:39)
+
+[03/30/2017 13:18:52] [ROSEAU] >> ---------------------------------------------
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 13:19:00
+-----------------------------------------
+
+[03/30/2017 13:19:00] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 13:19:00] [ROSEAU] >> Loading server...
+[03/30/2017 13:19:00] [ROSEAU] 
+[03/30/2017 13:19:00] [ROSEAU] >> Loading dependencies
+[03/30/2017 13:19:00] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/30/2017 13:19:00] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/30/2017 13:19:00] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/30/2017 13:19:00] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/30/2017 13:19:00] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/30/2017 13:19:00] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/30/2017 13:19:00] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/30/2017 13:19:00] [ROSEAU] 
+[03/30/2017 13:19:00] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 13:19:00] [ROSEAU] >> Error has occured!
+java.lang.ClassNotFoundException: org.alexdev.roseau.netty.NettyServer
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.Roseau.loadDependencies(Roseau.java:100)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:39)
+
+[03/30/2017 13:19:00] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 13:19:00] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 13:19:00] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 13:19:00] [ROSEAU] 
+[03/30/2017 13:19:00] [ROSEAU] >> Settting up server
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 13:19:48
+-----------------------------------------
+
+[03/30/2017 13:19:48] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 13:19:48] [ROSEAU] >> Loading server...
+[03/30/2017 13:19:48] [ROSEAU] 
+[03/30/2017 13:19:48] [ROSEAU] >> Loading dependencies
+[03/30/2017 13:19:48] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/30/2017 13:19:48] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/30/2017 13:19:48] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/30/2017 13:19:48] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/30/2017 13:19:48] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/30/2017 13:19:48] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/30/2017 13:19:48] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/30/2017 13:19:48] [ROSEAU] 
+[03/30/2017 13:19:48] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 13:19:49] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 13:19:49] [ROSEAU] 
+[03/30/2017 13:19:49] [ROSEAU] >> Settting up server
+[03/30/2017 13:19:49] [ROSEAU] >> Server is listening on 127.0.0.1:1232
