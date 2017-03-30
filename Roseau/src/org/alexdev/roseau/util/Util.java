@@ -3,17 +3,13 @@ package org.alexdev.roseau.util;
 import java.io.File;
 import java.security.SecureRandom;
 
-import org.alexdev.roseau.pooling.ThreadPooling;
-
 public class Util {
 
 	private Configuration configuration;
-	private ThreadPooling threadPooling;
 	private SecureRandom secureRandom;
 
 	public Util() {
 		this.configuration = new Configuration(new File("roseau.properties"));
-		this.threadPooling = new ThreadPooling();
 		this.secureRandom = new SecureRandom();
 	}
 	
@@ -27,10 +23,6 @@ public class Util {
 	
 	public Configuration getConfiguration() {
 		return configuration;
-	}
-	
-	public ThreadPooling getThreadPool() {
-		return threadPooling;
 	}
 
 	public SecureRandom getRandom() {

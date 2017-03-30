@@ -767,3 +767,438 @@ Caused by: java.net.BindException: Address already in use: bind
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
 	at java.lang.Thread.run(Unknown Source)
 
+---------------------------------------------
+ 03/31/2017 03:58:48 - Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:172)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:48)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+---------------------------------------------
+ 03/31/2017 03:58:59 - Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:172)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:48)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+---------------------------------------------
+ 03/31/2017 03:59:55 - Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:172)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:48)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+---------------------------------------------
+ 03/31/2017 04:27:36 - Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:178)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:54)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+---------------------------------------------
+ 03/31/2017 05:34:19 - Error has occured!
+java.lang.NoSuchMethodException: org.alexdev.roseau.server.netty.NettyServer.<init>(org.alexdev.roseau.server.IServerHandler)
+	at java.lang.Class.getConstructor0(Unknown Source)
+	at java.lang.Class.getConstructor(Unknown Source)
+	at org.alexdev.roseau.Roseau.loadDependencies(Roseau.java:105)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:41)
+
+---------------------------------------------
+ 03/31/2017 05:34:20 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:34:20 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:34:48 - Error has occured!
+java.lang.NoSuchMethodException: org.alexdev.roseau.server.netty.NettyServer.<init>(org.alexdev.roseau.server.netty.NettyServer)
+	at java.lang.Class.getConstructor0(Unknown Source)
+	at java.lang.Class.getConstructor(Unknown Source)
+	at org.alexdev.roseau.Roseau.loadDependencies(Roseau.java:105)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:41)
+
+---------------------------------------------
+ 03/31/2017 05:34:49 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:34:49 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:35:26 - Error has occured!
+java.lang.NoSuchMethodException: org.alexdev.roseau.server.netty.NettyServer.<init>(java.lang.String)
+	at java.lang.Class.getConstructor0(Unknown Source)
+	at java.lang.Class.getConstructor(Unknown Source)
+	at org.alexdev.roseau.Roseau.loadDependencies(Roseau.java:105)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:41)
+
+---------------------------------------------
+ 03/31/2017 05:35:27 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:35:27 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:36:14 - Error has occured!
+java.lang.NoSuchMethodException: org.alexdev.roseau.server.netty.NettyServer.<init>(java.lang.String)
+	at java.lang.Class.getConstructor0(Unknown Source)
+	at java.lang.Class.getDeclaredConstructor(Unknown Source)
+	at org.alexdev.roseau.Roseau.loadDependencies(Roseau.java:105)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:41)
+
+---------------------------------------------
+ 03/31/2017 05:36:14 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:36:14 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:40:23 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:40:23 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:41:12 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:41:12 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:41:25 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:41:25 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:58)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:42:15 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:59)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:42:15 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:59)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:42:16 - Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:43)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:178)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:54)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+---------------------------------------------
+ 03/31/2017 05:42:23 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:59)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:42:23 - Error has occured!
+java.lang.NullPointerException
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:59)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:52)
+
+---------------------------------------------
+ 03/31/2017 05:43:42 - Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:43)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:179)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+---------------------------------------------
+ 03/31/2017 05:44:47 - Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:43)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:179)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+---------------------------------------------
+ 03/31/2017 05:47:01 - Error has occured!
+java.lang.IllegalArgumentException: hostname can't be null
+	at java.net.InetSocketAddress.checkHost(Unknown Source)
+	at java.net.InetSocketAddress.<init>(Unknown Source)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:43)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:65)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:53)
+
+---------------------------------------------
+ 03/31/2017 05:47:01 - Error has occured!
+java.lang.IllegalArgumentException: hostname can't be null
+	at java.net.InetSocketAddress.checkHost(Unknown Source)
+	at java.net.InetSocketAddress.<init>(Unknown Source)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:43)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:65)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:326)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:85)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:20)
+	at org.alexdev.roseau.game.Game.load(Game.java:21)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:53)
+

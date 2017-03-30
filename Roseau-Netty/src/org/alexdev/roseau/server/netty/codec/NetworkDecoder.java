@@ -20,6 +20,7 @@
 package org.alexdev.roseau.server.netty.codec;
 
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.server.IServerHandler;
 import org.alexdev.roseau.server.netty.readers.NettyRequest;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.Channel;
@@ -28,12 +29,16 @@ import org.jboss.netty.handler.codec.frame.FrameDecoder;
 
 public class NetworkDecoder extends FrameDecoder {
 
+	private IServerHandler serverHandler;
+	
+	public NetworkDecoder(IServerHandler serverHandler) {
+		this.serverHandler = serverHandler;
+	}
+
 	@Override
 	protected Object decode(ChannelHandlerContext ctx, Channel channel, ChannelBuffer buffer) {
 
 		try  {		
-
-
 
 			if (buffer.readableBytes() < 4) { // 3 letter long B64 length + 2 letter long B64 header
 				channel.close();
@@ -60,6 +65,10 @@ public class NetworkDecoder extends FrameDecoder {
 			} else {
 				header = content;
 				request = "";
+			}
+			
+			if (header.equals("LOGIN") && this.serverHandler.getExtraData() != null) {
+				request += " " + this.serverHandler.getExtraData();
 			}
 			
 			return new NettyRequest(header, request);

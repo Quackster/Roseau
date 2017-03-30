@@ -324,7 +324,8 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements IR
 		Room instance = new Room();
 
 		instance.getData().fill(row.getInt("id"), type, details == null ? 0 : details.getId(), details == null ? "" : details.getUsername(), row.getString("name"), 
-				row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"), row.getString("wallpaper"), row.getString("floor"));
+				row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"),
+				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"));
 
 		return instance;
 	}

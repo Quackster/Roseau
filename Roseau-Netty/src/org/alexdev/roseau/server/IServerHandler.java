@@ -1,16 +1,21 @@
 package org.alexdev.roseau.server;
 
 import org.alexdev.roseau.messages.incoming.MessageHandler;
+import org.alexdev.roseau.server.netty.connections.SessionManager;
 
 public abstract class IServerHandler {
 	
 	private int port;
 	private String ip;
+	private String extraData;
 	
 	private MessageHandler messages;
+	private SessionManager sessionManager;
 	
-	public IServerHandler() {
+	public IServerHandler(String extraData) {
 		this.messages = new MessageHandler();
+		this.sessionManager = new SessionManager();
+		this.extraData = extraData;
 	}
 	
 	public abstract boolean listenSocket();
@@ -34,5 +39,12 @@ public abstract class IServerHandler {
 	public MessageHandler getMessageHandler() {
 		return messages;
 	}
-	
+
+	public String getExtraData() {
+		return extraData;
+	}
+
+	public SessionManager getSessionManager() {
+		return sessionManager;
+	}
 }

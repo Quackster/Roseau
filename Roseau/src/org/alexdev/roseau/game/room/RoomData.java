@@ -8,6 +8,8 @@ import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.game.room.settings.RoomState;
 import org.alexdev.roseau.game.room.settings.RoomType;
+import org.alexdev.roseau.log.Log;
+import org.alexdev.roseau.server.IServerHandler;
 
 public class RoomData {
 
@@ -23,17 +25,18 @@ public class RoomData {
 	private int usersMax;
 	private String description;
 	private String model;
+	private String clazz;
 	private String wall;
 	private String floor;
 
 	private Room room;
+	private IServerHandler serverHandler = null;
 	
 	public RoomData(Room room) {
-		
 		this.room = room;
 	}
 	
-	public void fill(int id, RoomType type, int ownerId, String ownerName, String name, int state, String password, int usersNow, int usersMax, String description, String model, String wall,String floor) {
+	public void fill(int id, RoomType type, int ownerId, String ownerName, String name, int state, String password, int usersNow, int usersMax, String description, String model, String clazz, String wall,String floor) {
 
 		this.id = id;
 		this.roomType = type;
@@ -46,8 +49,25 @@ public class RoomData {
 		this.usersMax = usersMax;
 		this.description = description;
 		this.model = model;
+		this.clazz = clazz;
 		this.wall = wall;
 		this.floor = floor;
+		
+		try {
+			if (type == RoomType.PUBLIC) {
+				
+				this.serverHandler = Class.forName(Roseau.getSocketConfiguration().get("extension.socket.entry"))
+						.asSubclass(IServerHandler.class)
+						.getDeclaredConstructor(String.class)
+						.newInstance(String.valueOf(id));
+				
+				this.serverHandler.setIp(Roseau.getServerIP());
+				this.serverHandler.setPort(Roseau.getServerPort() + id);
+				this.serverHandler.listenSocket();
+			}
+		} catch (Exception e) {
+			Log.exception(e);
+		}
 	}
 	
 	public String getName() {
@@ -160,7 +180,23 @@ public class RoomData {
 		return Roseau.getDataAccess().getRoom().getModel(this.model);
 	}
 
+	public String getCCT() {
+		return clazz;
+	}
+	
 	public List<Integer> getRights() {
 		return new ArrayList<Integer>();
+	}
+
+	public String getModelName() {
+		return this.model;
+	}
+
+	public IServerHandler getServerHandler() {
+		return serverHandler;
+	}
+
+	public void setServerHandler(IServerHandler serverHandler) {
+		this.serverHandler = serverHandler;
 	}
 }

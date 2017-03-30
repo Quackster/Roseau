@@ -26,7 +26,6 @@ public class RoomModel
 	
 	private String name;
 	private String heightmap;
-	private String floorMap;
 	private String[][] squareChar;
 	
 	private int doorX;
@@ -42,7 +41,7 @@ public class RoomModel
 	public RoomModel(String name, String heightmap, int doorX, int doorY, int doorZ, int doorRot) {
 		
 		this.name = name;
-		this.heightmap = heightmap;
+		this.heightmap = heightmap.replace("" + (char)10, "");
 		this.doorX = doorX;
 		this.doorY = doorY;
 		this.doorZ = doorZ;
@@ -55,7 +54,6 @@ public class RoomModel
 		this.squares = new int[mapSizeX][mapSizeY];
 		this.squareHeight = new double[mapSizeX][mapSizeY];
 		this.squareChar = new String[mapSizeX][mapSizeY];
-
 
 		for (int y = 0; y < mapSizeY; y++) {
 			
@@ -86,29 +84,6 @@ public class RoomModel
 
 			}
 		}
-		
-		StringBuilder stringBuilder = new StringBuilder();
-
-		for (int i = 0; i < this.getMapSizeY(); i++) {
-			for (int j = 0; j < this.getMapSizeX(); j++) {
-
-				try {
-
-					if (j == this.getDoorX() && i == this.getDoorY())	{
-						stringBuilder.append(this.getDoorZ());
-					} else {
-
-						stringBuilder.append(this.getSquareChar()[j][i].toString());
-					}
-				}
-				catch (Exception e) {
-					stringBuilder.append("0");
-				}
-			}
-			stringBuilder.append((char)13);
-		}
-		
-		this.floorMap = stringBuilder.toString();
 
 	}
 	
@@ -119,10 +94,6 @@ public class RoomModel
 	
 	public String getHeightMap() {
 		return heightmap;
-	}
-	
-	public String getFloorMap() {
-		return floorMap;
 	}
 
 	private boolean isNumeric(String input) {

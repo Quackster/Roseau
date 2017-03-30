@@ -27,6 +27,14 @@ public class NettyRequest implements ClientMessage {
 
 		return consoleText;
 	}
+	
+	public int getArgumentAmount() {
+		return this.getArgumentAmount(" ");
+	}
+	
+	public int getArgumentAmount(String delimeter) {
+		return this.content.split(delimeter).length;
+	}
 
 	@Override
 	public String getArgument(int index) {

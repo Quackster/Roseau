@@ -1,4 +1,6 @@
-package org.alexdev.roseau.pooling;
+package org.alexdev.roseau.server.netty;
+
+import org.alexdev.roseau.pooling.FutureHandler;
 
 public class NonBlockingFuture<T> {
 	

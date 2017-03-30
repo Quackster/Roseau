@@ -6,8 +6,8 @@ import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.incoming.handshake.VERSIONCHECK;
 import org.alexdev.roseau.messages.incoming.login.GETCREDITS;
 import org.alexdev.roseau.messages.incoming.login.INFORETRIEVE;
-import org.alexdev.roseau.messages.incoming.login.INITUNITUSER;
 import org.alexdev.roseau.messages.incoming.login.LOGIN;
+import org.alexdev.roseau.messages.incoming.navigator.INITUNITLISTENER;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 import com.google.common.collect.Maps;
@@ -34,7 +34,7 @@ public class MessageHandler {
 	private void registerLoginPackets() {
 		this.messages.put("LOGIN", new LOGIN());
 		this.messages.put("INFORETRIEVE", new INFORETRIEVE());
-		this.messages.put("INITUNITUSER", new INITUNITUSER());
+		this.messages.put("INITUNITLISTENER", new INITUNITLISTENER());
 		this.messages.put("GETCREDITS", new GETCREDITS());
 	}
 	

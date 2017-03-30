@@ -22,6 +22,10 @@ public class Roseau {
 	private static Game game;
 	private static Dao dao;
 	private static boolean isDebug;
+	
+	private static String serverIP;
+	private static int serverPort;
+	private static Configuration socketConfiguration;
 
 	public static void main(String[] args) {
 
@@ -37,6 +41,9 @@ public class Roseau {
 			Log.startup();
 			loadDependencies();
 
+			serverIP = utilities.getConfiguration().get("server-ip");
+			serverPort = Integer.valueOf(utilities.getConfiguration().get("server-port"));
+			
 			if (utilities.getConfiguration().get("database-type").equalsIgnoreCase("mysql")) {
 				dao = new MySQLDao();
 			}
@@ -71,8 +78,8 @@ public class Roseau {
 			}
 		}
 		
-		Configuration socketConf = new Configuration(new File("extensions" + File.separator + "roseau_socket_extension.conf"));
-		libs.add(new File(socketConf.get("extension.socket.jar")));
+		socketConfiguration = new Configuration(new File("extensions" + File.separator + "roseau_socket_extension.conf"));
+		libs.add(new File(socketConfiguration.get("extension.socket.jar")));
 
 
 		try {
@@ -96,7 +103,7 @@ public class Roseau {
 			
 			Log.println();
 
-			server = Class.forName(socketConf.get("extension.socket.entry")).asSubclass(IServerHandler.class).newInstance();
+			server = Class.forName(socketConfiguration.get("extension.socket.entry")).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
 			
 			if (server == null) {
 				Log.println("Server null");
@@ -190,5 +197,29 @@ public class Roseau {
 
 	public static Dao getDataAccess() {
 		return dao;
+	}
+
+	public static String getServerIP() {
+		return serverIP;
+	}
+
+	public static void setServerIP(String serverIP) {
+		Roseau.serverIP = serverIP;
+	}
+
+	public static int getServerPort() {
+		return serverPort;
+	}
+
+	public static void setServerPort(int serverPort) {
+		Roseau.serverPort = serverPort;
+	}
+
+	public static Configuration getSocketConfiguration() {
+		return socketConfiguration;
+	}
+
+	public static void setSocketConfiguration(Configuration socketConfiguration) {
+		Roseau.socketConfiguration = socketConfiguration;
 	}
 }
