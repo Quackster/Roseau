@@ -12,7 +12,7 @@ public class Util {
 	private SecureRandom secureRandom;
 
 	public Util() {
-		this.configuration = new Configuration(new File("icarus.properties"));
+		this.configuration = new Configuration(new File("roseau.properties"));
 		this.threadPooling = new ThreadPooling();
 		this.secureRandom = new SecureRandom();
 	}

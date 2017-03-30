@@ -4,6 +4,7 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.handshake.HELLO;
+import org.alexdev.roseau.server.encoding.Base64Encoding;
 import org.alexdev.roseau.server.netty.readers.NettyRequest;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.ChannelStateEvent;
@@ -59,7 +60,7 @@ public class ConnectionHandler extends SimpleChannelHandler {
 			}
 
 			if (Roseau.getUtilities().getConfiguration().getBoolean("log-packets")) {
-				Log.println("Received: " + request.getMessageId() + " / " + request.getMessageBody());
+				Log.println("Received: " + request.getMessageId() + " / " + new String(Base64Encoding.EncodeInt32(request.getMessageId(), 2)) + " / " + request.getMessageBody());
 			}
 
 			if (player != null){

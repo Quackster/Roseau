@@ -11,7 +11,6 @@ import org.alexdev.roseau.dao.mysql.MySQLDao;
 import org.alexdev.roseau.game.Game;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.server.IServerHandler;
-import org.alexdev.roseau.server.netty.NettyServer;
 import org.alexdev.roseau.util.Configuration;
 import org.alexdev.roseau.util.JarUtils;
 import org.alexdev.roseau.util.Util;
@@ -109,7 +108,7 @@ public class Roseau {
 	}
 
 	private static void createConfig() throws IOException {
-		File file = new File("icarus.properties");
+		File file = new File("roseau.properties");
 
 		if (!file.isFile()) { 
 			file.createNewFile();
@@ -138,9 +137,9 @@ public class Roseau {
 		writer.println("database-type=mysql");
 		writer.println();
 		writer.println("mysql-hostname=127.0.0.1");
-		writer.println("mysql-username=root");
-		writer.println("mysql-password=changeme");
-		writer.println("mysql-database=icarusdb");
+		writer.println("mysql-username=user");
+		writer.println("mysql-password=");
+		writer.println("mysql-database=roseau");
 		writer.println();
 		writer.println("########################");
 		writer.println("###  Logging Config  ###");
