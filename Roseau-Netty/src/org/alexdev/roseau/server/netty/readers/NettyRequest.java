@@ -1,10 +1,5 @@
 package org.alexdev.roseau.server.netty.readers;
 
-import java.nio.charset.Charset;
-
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
-import org.alexdev.roseau.server.encoding.*;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class NettyRequest implements ClientMessage {

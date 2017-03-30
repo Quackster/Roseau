@@ -20,7 +20,6 @@
 package org.alexdev.roseau.server.netty.codec;
 
 import org.alexdev.roseau.game.player.Player;
-import org.alexdev.roseau.server.encoding.Base64Encoding;
 import org.alexdev.roseau.server.netty.readers.NettyRequest;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.Channel;

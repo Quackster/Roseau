@@ -3,8 +3,6 @@ package org.alexdev.roseau.server.netty.readers;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-import org.alexdev.roseau.log.Log;
-import org.alexdev.roseau.server.encoding.Base64Encoding;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 import org.jboss.netty.buffer.ChannelBuffer;
@@ -30,7 +28,8 @@ public class NettyResponse implements Response {
 
 		try {
 			this.bodystream.write('#');
-			this.bodystream.write(header.getBytes());
+			this.append(header);
+			this.bodystream.write((char)13);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -72,7 +71,7 @@ public class NettyResponse implements Response {
 			this.bodystream.write((char)13);
 			this.bodystream.write(key.getBytes());
 			this.bodystream.write('=');
-			this.bodystream.write(value.getBytes());	
+			this.bodystream.write(value.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -81,7 +80,6 @@ public class NettyResponse implements Response {
 	@Override
 	public void appendKV2Argument(String key, String value) {
 		try {
-
 			this.bodystream.write((char)13);
 			this.bodystream.write(key.getBytes());
 			this.bodystream.write(':');
@@ -117,6 +115,7 @@ public class NettyResponse implements Response {
 	}
 
 	@Override
+	//# @type \r data\r##
 	public ChannelBuffer get() {
 
 		if (!this.finalised) {

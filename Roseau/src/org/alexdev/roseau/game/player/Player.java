@@ -4,7 +4,6 @@ import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
 import org.alexdev.roseau.server.IPlayerNetwork;
-import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class Player implements IEntity {
 
@@ -13,23 +12,19 @@ public class Player implements IEntity {
 	private IPlayerNetwork network;
 
 	public Player(IPlayerNetwork network) {
-
 		this.network = network;
 		this.details = new PlayerDetails(this);
 	}
 	
-	public void invoke(short header, ClientMessage message) {
-		//Icarus.getServer().getMessageHandler().getMessages().get(header).handle(this, message);
-	}
-	
 	public void dispose() {
-		
-		this.details.dispose();
-		this.details = null;
 
-		this.machineId = null;
 	}
-	
+		
+	@Override
+	public EntityType getType() {
+		return EntityType.PLAYER;
+	}
+		
 	public void setMachineId(String machineId) {
 		this.machineId = machineId;
 	}
@@ -40,11 +35,6 @@ public class Player implements IEntity {
 
 	public PlayerDetails getDetails() {
 		return details;
-	}
-
-	@Override
-	public EntityType getType() {
-		return EntityType.PLAYER;
 	}
 
 	public IPlayerNetwork getNetwork() {

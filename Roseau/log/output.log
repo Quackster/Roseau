@@ -1851,3 +1851,1255 @@ Caused by: java.net.ConnectException: Connection refused: connect
 [03/30/2017 21:45:51] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
 [03/30/2017 21:45:51] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
 [03/30/2017 21:45:56] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/30/2017 22:02:02] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 22:02:02] [ROSEAU] >> SENT: #HELLO##
+[03/30/2017 22:02:02] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/30/2017 22:02:02] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/30/2017 22:02:02] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/30/2017 22:02:02] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/30/2017 22:02:35] [ROSEAU] >> Received: FINDUSER / 
+[03/30/2017 22:02:35] [ROSEAU] >> Disconnection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:02:29
+-----------------------------------------
+
+[03/31/2017 01:02:29] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:02:29] [ROSEAU] >> Loading server...
+[03/31/2017 01:02:29] [ROSEAU] 
+[03/31/2017 01:02:29] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:02:29] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:02:29] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:02:29] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:02:29] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:02:29] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:02:29] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:02:29] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:02:29] [ROSEAU] 
+[03/31/2017 01:02:29] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:02:29] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:02:29] [ROSEAU] 
+[03/31/2017 01:02:29] [ROSEAU] >> Settting up server
+[03/31/2017 01:02:29] [ROSEAU] >> Server is listening on 127.0.0.1:91
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:02:59
+-----------------------------------------
+
+[03/31/2017 01:02:59] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:02:59] [ROSEAU] >> Loading server...
+[03/31/2017 01:02:59] [ROSEAU] 
+[03/31/2017 01:02:59] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:02:59] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:02:59] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:02:59] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:02:59] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:02:59] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:02:59] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:02:59] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:02:59] [ROSEAU] 
+[03/31/2017 01:02:59] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:02:59] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:02:59] [ROSEAU] 
+[03/31/2017 01:02:59] [ROSEAU] >> Settting up server
+[03/31/2017 01:02:59] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 01:02:59] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:172)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:48)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[03/31/2017 01:02:59] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 01:02:59] [ROSEAU] >> Server could not listen on 127.0.0.1:91, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:03:04
+-----------------------------------------
+
+[03/31/2017 01:03:04] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:03:04] [ROSEAU] >> Loading server...
+[03/31/2017 01:03:04] [ROSEAU] 
+[03/31/2017 01:03:04] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:03:04] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:03:04] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:03:04] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:03:04] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:03:04] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:03:04] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:03:04] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:03:04] [ROSEAU] 
+[03/31/2017 01:03:04] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:03:05] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:03:05] [ROSEAU] 
+[03/31/2017 01:03:05] [ROSEAU] >> Settting up server
+[03/31/2017 01:03:05] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/31/2017 01:03:21] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:03:21] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:03:21] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:03:21] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:03:22] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:03:22] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:03:22] [ROSEAU] >> Received: LOGIN / dddd ddd
+[03/31/2017 01:03:22] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 01:03:22] [ROSEAU] >> Error has occured!
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'motto' in 'field list'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.Util.getInstance(Util.java:381)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1030)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734)
+	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1885)
+	at com.jolbox.bonecp.PreparedStatementHandle.executeQuery(PreparedStatementHandle.java:172)
+	at org.alexdev.roseau.dao.mysql.MySQLPlayerDao.login(MySQLPlayerDao.java:76)
+	at org.alexdev.roseau.messages.incoming.login.LOGIN.handle(LOGIN.java:17)
+	at org.alexdev.roseau.messages.incoming.MessageHandler.handleRequest(MessageHandler.java:42)
+	at org.alexdev.roseau.server.netty.connections.ConnectionHandler.messageReceived(ConnectionHandler.java:67)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:462)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.callDecode(FrameDecoder.java:443)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.messageReceived(FrameDecoder.java:303)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.SimpleChannelHandler.messageReceived(SimpleChannelHandler.java:142)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[03/31/2017 01:03:22] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 01:03:22] [ROSEAU] >> SENT: #BADNAME##
+[03/31/2017 01:03:22] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 01:03:22] [ROSEAU] >> Received: MESSENGERINIT / 
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:05:43
+-----------------------------------------
+
+[03/31/2017 01:05:43] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:05:43] [ROSEAU] >> Loading server...
+[03/31/2017 01:05:43] [ROSEAU] 
+[03/31/2017 01:05:43] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:05:43] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:05:43] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:05:43] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:05:43] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:05:43] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:05:43] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:05:43] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:05:43] [ROSEAU] 
+[03/31/2017 01:05:43] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:05:43] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:05:43] [ROSEAU] 
+[03/31/2017 01:05:43] [ROSEAU] >> Settting up server
+[03/31/2017 01:05:43] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/31/2017 01:05:50] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:05:50] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:05:50] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:05:50] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:05:50] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:05:50] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:05:51] [ROSEAU] >> Received: FINDUSER / 
+[03/31/2017 01:05:53] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 01:05:54] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:05:54] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:05:54] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:05:54] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:05:55] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:05:55] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:05:55] [ROSEAU] >> Received: LOGIN / d wdwd
+[03/31/2017 01:05:55] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 01:05:55] [ROSEAU] >> Error has occured!
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'motto' in 'field list'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.Util.getInstance(Util.java:381)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1030)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734)
+	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1885)
+	at com.jolbox.bonecp.PreparedStatementHandle.executeQuery(PreparedStatementHandle.java:172)
+	at org.alexdev.roseau.dao.mysql.MySQLPlayerDao.login(MySQLPlayerDao.java:76)
+	at org.alexdev.roseau.messages.incoming.login.LOGIN.handle(LOGIN.java:18)
+	at org.alexdev.roseau.messages.incoming.MessageHandler.handleRequest(MessageHandler.java:42)
+	at org.alexdev.roseau.server.netty.connections.ConnectionHandler.messageReceived(ConnectionHandler.java:67)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:462)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.callDecode(FrameDecoder.java:443)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.messageReceived(FrameDecoder.java:303)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.SimpleChannelHandler.messageReceived(SimpleChannelHandler.java:142)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[03/31/2017 01:05:55] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 01:05:55] [ROSEAU] >> SENT: #ERROR: login incorrect##
+[03/31/2017 01:05:55] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 01:05:55] [ROSEAU] >> Received: MESSENGERINIT / 
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:31:59
+-----------------------------------------
+
+[03/31/2017 01:31:59] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:31:59] [ROSEAU] >> Loading server...
+[03/31/2017 01:31:59] [ROSEAU] 
+[03/31/2017 01:31:59] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:31:59] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:31:59] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:31:59] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:31:59] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:31:59] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:31:59] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:31:59] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:31:59] [ROSEAU] 
+[03/31/2017 01:31:59] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:32:00] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:32:00] [ROSEAU] 
+[03/31/2017 01:32:00] [ROSEAU] >> Settting up server
+[03/31/2017 01:32:00] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/31/2017 01:32:08] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:32:08] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:32:09] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:32:09] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:32:09] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:32:09] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:32:09] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:32:09] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:32:09] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:32:09] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:32:09] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:32:31
+-----------------------------------------
+
+[03/31/2017 01:32:31] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:32:31] [ROSEAU] >> Loading server...
+[03/31/2017 01:32:31] [ROSEAU] 
+[03/31/2017 01:32:31] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:32:31] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:32:31] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:32:31] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:32:31] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:32:31] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:32:31] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:32:31] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:32:31] [ROSEAU] 
+[03/31/2017 01:32:31] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:32:31] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:32:31] [ROSEAU] 
+[03/31/2017 01:32:31] [ROSEAU] >> Settting up server
+[03/31/2017 01:32:31] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/31/2017 01:32:34] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:32:34] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:32:34] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:32:34] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:32:35] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:32:35] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:32:35] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:32:35] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]email=we3rejfpef3@cefc.com[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Alex[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:32:35] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:32:35] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:32:35] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:32:35] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:32:35] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]email=we3rejfpef3@cefc.com[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Alex[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:32:35] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:32:37] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 01:32:37] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 01:32:37] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 01:32:49] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 01:32:57] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:32:57] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:32:57] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:32:57] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:32:58] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:32:58] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:32:58] [ROSEAU] >> Received: LOGIN / sss ss
+[03/31/2017 01:32:58] [ROSEAU] >> SENT: #SYSTEMBROADCAST Login incorrect##
+[03/31/2017 01:32:58] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 01:32:58] [ROSEAU] >> Received: MESSENGERINIT / 
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:35:27
+-----------------------------------------
+
+[03/31/2017 01:35:27] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:35:27] [ROSEAU] >> Loading server...
+[03/31/2017 01:35:27] [ROSEAU] 
+[03/31/2017 01:35:27] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:35:27] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:35:27] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:35:27] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:35:27] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:35:27] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:35:27] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:35:27] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:35:27] [ROSEAU] 
+[03/31/2017 01:35:27] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:35:27] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:35:27] [ROSEAU] 
+[03/31/2017 01:35:27] [ROSEAU] >> Settting up server
+[03/31/2017 01:35:28] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/31/2017 01:35:31] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:35:31] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:35:31] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:35:31] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 01:35:31] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:35:32] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:35:32] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:35:34] [ROSEAU] >> Received: FINDUSER / 
+[03/31/2017 01:35:38] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 01:35:39] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:35:39] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:35:39] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:35:39] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 01:35:39] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:35:39] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:35:39] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:35:39] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:35:39] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:35:39] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:35:39] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:35:39] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:35:39] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:35:39] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:35:39] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:35:54] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 01:35:55] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 01:35:55] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:36:44
+-----------------------------------------
+
+[03/31/2017 01:36:44] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:36:44] [ROSEAU] >> Loading server...
+[03/31/2017 01:36:44] [ROSEAU] 
+[03/31/2017 01:36:44] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:36:44] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:36:44] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:36:44] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:36:44] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:36:44] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:36:44] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:36:44] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:36:44] [ROSEAU] 
+[03/31/2017 01:36:44] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:36:44] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:36:44] [ROSEAU] 
+[03/31/2017 01:36:44] [ROSEAU] >> Settting up server
+[03/31/2017 01:36:44] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/31/2017 01:36:57] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:36:57] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:36:58] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:36:58] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 01:36:58] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:36:58] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:36:58] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:36:58] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:36:58] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:36:58] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:36:58] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:36:58] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:36:58] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:36:58] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:37:01] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 01:37:01] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 01:37:01] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 01:37:06] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:37:07] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:37:08] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:37:09] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:38:49
+-----------------------------------------
+
+[03/31/2017 01:38:49] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:38:49] [ROSEAU] >> Loading server...
+[03/31/2017 01:38:49] [ROSEAU] 
+[03/31/2017 01:38:49] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:38:49] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:38:49] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:38:49] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:38:49] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:38:49] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:38:49] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:38:49] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:38:49] [ROSEAU] 
+[03/31/2017 01:38:49] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:38:49] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:38:49] [ROSEAU] 
+[03/31/2017 01:38:49] [ROSEAU] >> Settting up server
+[03/31/2017 01:38:49] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 01:38:49] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:46)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:172)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:48)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[03/31/2017 01:38:49] [ROSEAU] >> ---------------------------------------------
+[03/31/2017 01:38:49] [ROSEAU] >> Server could not listen on 127.0.0.1:91, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:38:54
+-----------------------------------------
+
+[03/31/2017 01:38:54] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:38:54] [ROSEAU] >> Loading server...
+[03/31/2017 01:38:54] [ROSEAU] 
+[03/31/2017 01:38:54] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:38:54] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:38:54] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:38:54] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:38:54] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:38:54] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:38:54] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:38:54] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:38:54] [ROSEAU] 
+[03/31/2017 01:38:54] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:38:55] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:38:55] [ROSEAU] 
+[03/31/2017 01:38:55] [ROSEAU] >> Settting up server
+[03/31/2017 01:38:55] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/31/2017 01:39:14] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:39:14] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:39:15] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:39:15] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 01:39:15] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:39:15] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:39:15] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:39:15] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:39:15] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:39:15] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:39:15] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:39:15] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:39:15] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:39:15] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:39:15] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:39:21] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 01:39:21] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 01:39:22] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 01:39:23] [ROSEAU] >> Disconnection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:39:33
+-----------------------------------------
+
+[03/31/2017 01:39:33] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:39:33] [ROSEAU] >> Loading server...
+[03/31/2017 01:39:33] [ROSEAU] 
+[03/31/2017 01:39:33] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:39:33] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:39:33] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:39:33] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:39:33] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:39:33] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:39:33] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:39:33] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:39:33] [ROSEAU] 
+[03/31/2017 01:39:34] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:39:34] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:39:34] [ROSEAU] 
+[03/31/2017 01:39:34] [ROSEAU] >> Settting up server
+[03/31/2017 01:39:34] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/31/2017 01:39:40] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:39:40] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:39:40] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:39:40] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 01:39:40] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:39:40] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:39:40] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:39:40] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:39:40] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:39:40] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:39:40] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:39:40] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:39:40] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:39:41] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:39:43] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 01:39:44] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 01:39:44] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 01:39:44] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:39:44] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:40:10] [ROSEAU] >> Received: UPDATE / name=Alexpassword=123email=we3rejfpef3@cefc.comfigure=1/&sh=-2147483645/255,255,255&lg=-2147483645/255,255,255&ls=-2147483645/255,255,255&ch=-2147483645/255,255,255&rs=-2147483645/255,255,255&hd=002/255,204,153&ey=001/255,204,153&fc=001/255,204,153&hr=-2147483645/255,204,153directMail=0birthday=01/01/1970phonenumber=customData=Icarus alpha testerhas_read_agreement=1sex=Malecountry=UK
+[03/31/2017 01:40:10] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:40:10] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:40:10] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:40:10] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:40:10] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:40:10] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:40:10] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:40:10] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:40:20] [ROSEAU] >> Received: UPDATE / name=Alexpassword=123email=we3rejfpef3@cefc.comfigure=1/&sh=-2147483645/255,255,255&lg=-2147483645/255,255,255&ls=-2147483645/255,255,255&ch=-2147483645/255,255,255&rs=-2147483645/255,255,255&hd=-2147483645/255,255,255&ey=-2147483645/255,255,255&fc=-2147483645/255,255,255&hr=-2147483645/255,255,255directMail=0birthday=01/01/1970phonenumber=customData=Icarus alpha testerhas_read_agreement=1sex=Malecountry=UK
+[03/31/2017 01:40:20] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:40:21] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:40:21] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:40:21] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:40:21] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:40:21] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:40:21] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:40:21] [ROSEAU] >> Received: GETCREDITS / 
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:41:02
+-----------------------------------------
+
+[03/31/2017 01:41:02] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:41:02] [ROSEAU] >> Loading server...
+[03/31/2017 01:41:02] [ROSEAU] 
+[03/31/2017 01:41:02] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:41:02] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:41:02] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:41:02] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:41:02] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:41:02] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:41:02] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:41:02] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:41:02] [ROSEAU] 
+[03/31/2017 01:41:02] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:41:03] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:41:03] [ROSEAU] 
+[03/31/2017 01:41:03] [ROSEAU] >> Settting up server
+[03/31/2017 01:41:03] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/31/2017 01:41:17] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:41:17] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:41:17] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:41:17] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 01:41:17] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:41:17] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:41:17] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:41:18] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:41:18] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=1/&sh=-2147483645/255,255,255&lg=-2147483645/255,255,255&ls=-2147483645/255,255,255&ch=-2147483645/255,255,255&rs=-2147483645/255,255,255&hd=-2147483645/255,255,255&ey=-2147483645/255,255,255&fc=-2147483645/255,255,255&hr=-2147483645/255,255,255[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:41:18] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:41:18] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:41:18] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:41:18] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:41:18] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:41:24] [ROSEAU] >> Disconnection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:47:14
+-----------------------------------------
+
+[03/31/2017 01:47:14] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:47:14] [ROSEAU] >> Loading server...
+[03/31/2017 01:47:14] [ROSEAU] 
+[03/31/2017 01:47:14] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:47:14] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:47:14] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:47:14] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:47:14] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:47:14] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:47:14] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:47:14] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:47:14] [ROSEAU] 
+[03/31/2017 01:47:14] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:47:14] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:47:14] [ROSEAU] 
+[03/31/2017 01:47:14] [ROSEAU] >> Settting up server
+[03/31/2017 01:47:14] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/31/2017 01:47:27] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:47:27] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:47:27] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:47:27] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 01:47:27] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:47:27] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:47:27] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:47:27] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:47:27] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:47:27] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:47:27] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:47:27] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:47:28] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:47:28] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:47:28] [ROSEAU] >> SENT: #WALLETBALANCE 5000##
+[03/31/2017 01:47:28] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT noaccount##
+[03/31/2017 01:47:28] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 01:47:30] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 01:47:31] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 01:47:31] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 01:48:39
+-----------------------------------------
+
+[03/31/2017 01:48:39] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 01:48:39] [ROSEAU] >> Loading server...
+[03/31/2017 01:48:39] [ROSEAU] 
+[03/31/2017 01:48:39] [ROSEAU] >> Loading dependencies
+[03/31/2017 01:48:39] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 01:48:39] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 01:48:39] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 01:48:39] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 01:48:39] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 01:48:39] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 01:48:39] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 01:48:39] [ROSEAU] 
+[03/31/2017 01:48:39] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 01:48:39] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 01:48:39] [ROSEAU] 
+[03/31/2017 01:48:39] [ROSEAU] >> Settting up server
+[03/31/2017 01:48:39] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/31/2017 01:48:51] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:48:51] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:48:52] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:48:52] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 01:48:52] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:48:52] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:48:52] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:48:52] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:48:52] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:48:52] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:48:52] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:48:52] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:48:52] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:48:52] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:48:52] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 01:48:52] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 01:48:52] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 01:48:55] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 01:48:55] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 01:48:55] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 01:49:01] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:49:01] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:49:04] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 01:49:05] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 01:49:05] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 01:49:11] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:49:11] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:49:14] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 01:49:14] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 01:49:14] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 01:49:18] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:49:18] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:49:32] [ROSEAU] >> Received: UPDATE / name=Alexpassword=123email=we3rejfpef3@cefc.comfigure=1/&sh=-2147483645/255,255,255&lg=-2147483645/255,255,255&ls=-2147483645/255,255,255&ch=-2147483645/255,255,255&rs=-2147483645/255,255,255&hd=002/255,204,153&ey=001/255,204,153&fc=001/255,204,153&hr=-2147483645/255,204,153directMail=0birthday=01/01/1970phonenumber=customData=Icarus alpha testerhas_read_agreement=1sex=Malecountry=UK
+[03/31/2017 01:49:32] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:49:32] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:49:32] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:49:32] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:49:32] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:49:32] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:49:32] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:49:32] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:49:32] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 01:49:32] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 01:49:32] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 01:52:03] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 01:52:12] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:52:12] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:52:12] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:52:12] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 01:52:12] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:52:12] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:52:12] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:52:13] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:52:13] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=1/&sh=-2147483645/255,255,255&lg=-2147483645/255,255,255&ls=-2147483645/255,255,255&ch=-2147483645/255,255,255&rs=-2147483645/255,255,255&hd=002/255,204,153&ey=001/255,204,153&fc=001/255,204,153&hr=-2147483645/255,204,153[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:52:13] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:52:13] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:52:13] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:52:13] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:52:13] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:52:13] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 01:52:13] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 01:52:13] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 01:52:19] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 01:52:55] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:52:55] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:52:56] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:52:56] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 01:52:56] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:52:56] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:52:56] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:52:56] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:52:56] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sh=-2147483645/255,255,255&lg=-2147483645/255,255,255&ls=-2147483645/255,255,255&ch=-2147483645/255,255,255&rs=-2147483645/255,255,255&hd=002/255,204,153&ey=001/255,204,153&fc=001/255,204,153&hr=-2147483645/255,204,153[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:52:56] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:52:56] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:52:56] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:52:56] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:52:56] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:52:56] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 01:52:56] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 01:52:56] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 01:53:58] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 01:54:07] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:54:07] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:54:07] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:54:07] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 01:54:07] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:54:07] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:54:07] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:54:08] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:54:08] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sh=255,255,255&lg=255,255,255&ls=255,255,255&ch=255,255,255&rs=255,255,255&hd=002/255,204,153&ey=001/255,204,153&fc=001/255,204,153&hr=255,204,153[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:54:08] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:54:08] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:54:08] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:54:08] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:54:08] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:54:08] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 01:54:08] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 01:54:08] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 01:54:14] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 01:55:43] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:55:43] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:55:43] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:55:43] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 01:55:43] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:55:43] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:55:43] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:55:44] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:55:44] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sh=001/255,255,255&lg=001/255,255,255&ls=001/255,255,255&ch=001/255,255,255&rs=001/255,255,255&hd=002/255,204,153&ey=001/255,204,153&fc=001/255,204,153&hr=001/255,204,153[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:55:44] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:55:44] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:55:44] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:55:44] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:55:44] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:55:44] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 01:55:44] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 01:55:44] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 01:56:27] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 01:57:18] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 01:57:18] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 01:57:18] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 01:57:18] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 01:57:18] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 01:57:18] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 01:57:18] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 01:57:18] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:57:18] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:57:18] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:57:18] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:57:18] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:57:18] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:57:19] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:57:19] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 01:57:19] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 01:57:19] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 01:57:21] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 01:57:22] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 01:57:22] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 01:59:23] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:59:23] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:59:39] [ROSEAU] >> Received: UPDATE / name=Alexpassword=123email=we3rejfpef3@cefc.comfigure=1/&sh=-2147483645/255,255,255&lg=-2147483645/255,255,255&ls=-2147483645/255,255,255&ch=-2147483645/255,255,255&rs=-2147483645/255,255,255&hd=002/255,204,153&ey=001/255,204,153&fc=001/255,204,153&hr=001/255,204,153directMail=0birthday=01/01/1970phonenumber=customData=Icarus alpha testerhas_read_agreement=1sex=Malecountry=UK
+[03/31/2017 01:59:39] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 01:59:39] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:59:39] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 01:59:39] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 01:59:39] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 01:59:39] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 01:59:39] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 01:59:39] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 01:59:39] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 01:59:39] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 01:59:39] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:00:39] [ROSEAU] >> Received: UPDATE / name=Alexpassword=123email=we3rejfpef3@cefc.comfigure=1/&sh=001/209,223,175&lg=001/152,134,62&ls=003/184,231,55&ch=015/184,231,55&rs=003/184,231,55&hd=002/255,204,153&ey=002/255,204,153&fc=001/255,204,153&hr=006/255,204,153directMail=0birthday=01/01/1970phonenumber=customData=Icarus alpha testerhas_read_agreement=1sex=Femalecountry=UK
+[03/31/2017 02:00:39] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 02:00:39] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:00:39] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:00:39] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:00:39] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 02:00:39] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 02:00:39] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:00:39] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:00:39] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 02:00:39] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:00:39] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:01:12] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:01:21] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:01:21] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:01:21] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:01:21] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:01:21] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:01:21] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:01:21] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:01:22] [ROSEAU] >> Received: LOGIN / test 123
+[03/31/2017 02:01:22] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:01:22] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:01:22] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 02:01:22] [ROSEAU] >> Received: INFORETRIEVE / test 123
+[03/31/2017 02:01:45] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:01:46] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:01:46] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:01:46] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:01:46] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:01:46] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:01:46] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:01:46] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:01:47] [ROSEAU] >> Received: LOGIN / test 123
+[03/31/2017 02:01:47] [ROSEAU] >> SENT: #USEROBJECT[13]name=test[13]figure=sh=001/209,223,175&lg=001/152,134,62&ls=003/184,231,55&ch=015/184,231,55&rs=003/184,231,55&hd=002/255,204,153&ey=002/255,204,153&fc=001/255,204,153&hr=006/255,204,153[13]email=ereewr@wwwwaaac.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=eating more cake, k?[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:01:47] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:01:47] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:01:47] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 02:01:47] [ROSEAU] >> Received: INFORETRIEVE / test 123
+[03/31/2017 02:01:47] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:01:47] [ROSEAU] >> SENT: #WALLETBALANCE[13]0##
+[03/31/2017 02:01:47] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:01:47] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:02:07] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:02:16] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:02:16] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:02:16] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:02:16] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:02:16] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:02:16] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:02:16] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:02:16] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 02:02:16] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=M[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:02:16] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:02:16] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:02:16] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 02:02:17] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 02:02:17] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:02:17] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 02:02:17] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:02:17] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:02:19] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 02:02:20] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 02:02:20] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 02:02:22] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:02:44] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:02:44] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:02:44] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:02:44] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:02:44] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:02:44] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:02:44] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:02:44] [ROSEAU] >> Received: LOGIN / test 123
+[03/31/2017 02:02:44] [ROSEAU] >> SENT: #USEROBJECT[13]name=test[13]figure=sh=001/209,223,175&lg=001/152,134,62&ls=003/184,231,55&ch=015/184,231,55&rs=003/184,231,55&hd=002/255,204,153&ey=002/255,204,153&fc=001/255,204,153&hr=006/255,204,153[13]email=ereewr@wwwwaaac.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=eating more cake, k?[13]has_read_agreement=1[13]sex=F[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:02:44] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:02:44] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:02:44] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 02:02:44] [ROSEAU] >> Received: INFORETRIEVE / test 123
+[03/31/2017 02:02:45] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:02:45] [ROSEAU] >> SENT: #WALLETBALANCE[13]0##
+[03/31/2017 02:02:45] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:02:45] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:03:48] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:03:57] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:03:57] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:03:57] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:03:57] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:03:57] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:03:58] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:03:58] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:03:58] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 02:03:58] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=Male[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:03:58] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:03:58] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:03:58] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 02:03:58] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 02:03:58] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:03:58] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 02:03:58] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:03:58] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:04:01] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 02:04:01] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:04:12] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:04:12] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:04:12] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:04:12] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:04:12] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:04:13] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:04:13] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:04:13] [ROSEAU] >> Received: LOGIN / test 123
+[03/31/2017 02:04:13] [ROSEAU] >> SENT: #USEROBJECT[13]name=test[13]figure=sh=001/209,223,175&lg=001/152,134,62&ls=003/184,231,55&ch=015/184,231,55&rs=003/184,231,55&hd=002/255,204,153&ey=002/255,204,153&fc=001/255,204,153&hr=006/255,204,153[13]email=ereewr@wwwwaaac.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=eating more cake, k?[13]has_read_agreement=1[13]sex=Female[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:04:13] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:04:13] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:04:13] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 02:04:13] [ROSEAU] >> Received: INFORETRIEVE / test 123
+[03/31/2017 02:04:13] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:04:13] [ROSEAU] >> SENT: #WALLETBALANCE[13]0##
+[03/31/2017 02:04:13] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:04:13] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:04:18] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:04:33] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:04:33] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:04:34] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:04:34] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:04:34] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:04:34] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:04:34] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:04:34] [ROSEAU] >> Received: LOGIN / test 123
+[03/31/2017 02:04:34] [ROSEAU] >> SENT: #USEROBJECT[13]name=test[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=ereewr@wwwwaaac.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=eating more cake, k?[13]has_read_agreement=1[13]sex=Female[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:04:34] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:04:34] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:04:34] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 02:04:34] [ROSEAU] >> Received: INFORETRIEVE / test 123
+[03/31/2017 02:04:34] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:04:34] [ROSEAU] >> SENT: #WALLETBALANCE[13]0##
+[03/31/2017 02:04:34] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:04:34] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:04:37] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 02:04:38] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 02:04:38] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 02:04:38] [ROSEAU] >> Received: INFORETRIEVE / test 123
+[03/31/2017 02:04:38] [ROSEAU] >> SENT: #USEROBJECT[13]name=test[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=ereewr@wwwwaaac.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=eating more cake, k?[13]has_read_agreement=1[13]sex=Female[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:04:40] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 02:04:41] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 02:04:41] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 02:05:10] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:05:16] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:05:16] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:05:17] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:05:17] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:05:17] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:05:17] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:05:17] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:05:20] [ROSEAU] >> Received: FINDUSER / Alex
+[03/31/2017 02:05:20] [ROSEAU] >> Received: APPROVENAME / Alex
+[03/31/2017 02:05:22] [ROSEAU] >> Received: FINDUSER / Alex123
+[03/31/2017 02:05:22] [ROSEAU] >> Received: APPROVENAME / Alex123
+[03/31/2017 02:05:42] [ROSEAU] >> Received: FINDUSER / Alex123
+[03/31/2017 02:06:02] [ROSEAU] >> Received: REGISTER / name=Alex123password=qwerty1email=dwqdq2@c.comfigure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223directMail=0birthday=03.09.1987phonenumber=+44customData=wwdwdhas_read_agreement=1sex=Malecountry=
+[03/31/2017 02:06:02] [ROSEAU] >> Received: LOGIN / Alex123 qwerty1
+[03/31/2017 02:06:02] [ROSEAU] >> SENT: #SYSTEMBROADCAST[13]Login incorrect##
+[03/31/2017 02:06:02] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:06:02] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:06:38] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:06:38] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:06:38] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:06:38] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:06:38] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:06:39] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:06:39] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:06:39] [ROSEAU] >> Received: LOGIN / test 123
+[03/31/2017 02:06:39] [ROSEAU] >> SENT: #USEROBJECT[13]name=test[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223[13]email=ereewr@wwwwaaac.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=eating more cake, k?[13]has_read_agreement=1[13]sex=Female[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:06:39] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:06:39] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:06:39] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 02:06:39] [ROSEAU] >> Received: INFORETRIEVE / test 123
+[03/31/2017 02:06:39] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:06:39] [ROSEAU] >> SENT: #WALLETBALANCE[13]0##
+[03/31/2017 02:06:39] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:06:39] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:06:42] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 02:06:42] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 02:06:42] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 02:06:46] [ROSEAU] >> Received: INFORETRIEVE / test 123
+[03/31/2017 02:06:46] [ROSEAU] >> SENT: #USEROBJECT[13]name=test[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223[13]email=ereewr@wwwwaaac.com[13]birthday=01/01/1970[13]phonenumber=+44[13]customData=eating more cake, k?[13]has_read_agreement=1[13]sex=Female[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:07:21] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:07:38] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:07:38] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:07:38] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:07:38] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:07:38] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:07:38] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:07:38] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:07:39] [ROSEAU] >> Received: LOGIN / test 123
+[03/31/2017 02:07:39] [ROSEAU] >> SENT: #USEROBJECT[13]name=test[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223[13]email=ereewr@wwwwaaac.com[13]birthday=01.01.19970[13]phonenumber=+44[13]customData=eating more cake, k?[13]has_read_agreement=1[13]sex=Female[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:07:39] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:07:39] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:07:39] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 02:07:39] [ROSEAU] >> Received: INFORETRIEVE / test 123
+[03/31/2017 02:07:39] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:07:39] [ROSEAU] >> SENT: #WALLETBALANCE[13]0##
+[03/31/2017 02:07:39] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:07:39] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:07:42] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 02:07:42] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 02:07:42] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 02:07:43] [ROSEAU] >> Received: INFORETRIEVE / test 123
+[03/31/2017 02:07:43] [ROSEAU] >> SENT: #USEROBJECT[13]name=test[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223[13]email=ereewr@wwwwaaac.com[13]birthday=01.01.19970[13]phonenumber=+44[13]customData=eating more cake, k?[13]has_read_agreement=1[13]sex=Female[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:08:06] [ROSEAU] >> Received: UPDATE / name=testpassword=123email=ereewr@wwwwaaac.comfigure=1/&sh=-2147483645/255,255,255&lg=-2147483645/255,255,255&ls=002/184,231,55&ch=016/184,231,55&rs=002/184,231,55&hd=001/255,204,153&ey=002/255,204,153&fc=001/255,204,153&hr=-2147483645/255,204,153directMail=0birthday=01.01.1997phonenumber=customData=eating more cake, k?has_read_agreement=1sex=Femalecountry=UK
+[03/31/2017 02:08:06] [ROSEAU] >> Received: LOGIN / test 123
+[03/31/2017 02:08:06] [ROSEAU] >> SENT: #USEROBJECT[13]name=test[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223[13]email=ereewr@wwwwaaac.com[13]birthday=01.01.19970[13]phonenumber=+44[13]customData=eating more cake, k?[13]has_read_agreement=1[13]sex=Female[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:08:06] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:08:06] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:08:06] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 02:08:06] [ROSEAU] >> Received: INFORETRIEVE / test 123
+[03/31/2017 02:08:06] [ROSEAU] >> SENT: #USEROBJECT[13]name=test[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223[13]email=ereewr@wwwwaaac.com[13]birthday=01.01.19970[13]phonenumber=+44[13]customData=eating more cake, k?[13]has_read_agreement=1[13]sex=Female[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:08:06] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:08:06] [ROSEAU] >> SENT: #WALLETBALANCE[13]0##
+[03/31/2017 02:08:06] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:08:06] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:10:38] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:10:48] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:10:48] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:10:49] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:10:49] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:10:49] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:10:49] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:10:49] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:10:49] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 02:10:49] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01.01.1997[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=Male[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:10:49] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:10:49] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:10:49] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 02:10:49] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 02:10:50] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:10:50] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 02:10:50] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:10:50] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:10:52] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 02:10:53] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 02:10:53] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 02:10:54] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:11:06] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:11:06] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:11:06] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:11:06] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:11:06] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:11:06] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:11:06] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:11:07] [ROSEAU] >> Received: LOGIN / test 123
+[03/31/2017 02:11:07] [ROSEAU] >> SENT: #USEROBJECT[13]name=test[13]figure=sh=001/255,255,255&lg=001/255,255,255&ls=002/184,231,255&ch=016/184,231,255&rs=002/184,231,255&hd=001/255,204,153&ey=002/255,204,153&fc=001/255,204,153&hr=001/255,204,153[13]email=ereewr@wwwwaaac.com[13]birthday=01.01.1997[13]phonenumber=+44[13]customData=eating more cake, k?[13]has_read_agreement=1[13]sex=Female[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:11:07] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:11:07] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:11:07] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/31/2017 02:11:07] [ROSEAU] >> Received: INFORETRIEVE / test 123
+[03/31/2017 02:11:07] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:11:07] [ROSEAU] >> SENT: #WALLETBALANCE[13]0##
+[03/31/2017 02:11:07] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:11:07] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:14:18] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:14:34] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:14:34] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:14:34] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:14:34] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:14:34] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:14:34] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:14:34] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:14:35] [ROSEAU] >> Received: LOGIN / 123 123
+[03/31/2017 02:14:35] [ROSEAU] >> SENT: #SYSTEMBROADCAST[13]Login incorrect##
+[03/31/2017 02:14:35] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:14:35] [ROSEAU] >> Received: MESSENGERINIT / 
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 02:22:10
+-----------------------------------------
+
+[03/31/2017 02:22:10] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 02:22:10] [ROSEAU] >> Loading server...
+[03/31/2017 02:22:10] [ROSEAU] 
+[03/31/2017 02:22:10] [ROSEAU] >> Loading dependencies
+[03/31/2017 02:22:10] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 02:22:10] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 02:22:10] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 02:22:10] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 02:22:10] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 02:22:10] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 02:22:10] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 02:22:10] [ROSEAU] 
+[03/31/2017 02:22:10] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 02:22:11] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 02:22:11] [ROSEAU] 
+[03/31/2017 02:22:11] [ROSEAU] >> Settting up server
+[03/31/2017 02:22:11] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/31/2017 02:22:17] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:22:17] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:22:17] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:22:17] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:22:17] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:22:17] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:22:17] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:22:18] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 02:22:18] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:22:18] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:22:18] [ROSEAU] >> Received: STAT / /ShockwaveVersion/10.4.1
+[03/31/2017 02:22:18] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/31/2017 02:22:30
+-----------------------------------------
+
+[03/31/2017 02:22:30] [ROSEAU] >> Roseau - Java Server
+[03/31/2017 02:22:30] [ROSEAU] >> Loading server...
+[03/31/2017 02:22:30] [ROSEAU] 
+[03/31/2017 02:22:30] [ROSEAU] >> Loading dependencies
+[03/31/2017 02:22:30] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/31/2017 02:22:30] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/31/2017 02:22:30] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/31/2017 02:22:30] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/31/2017 02:22:30] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/31/2017 02:22:30] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/31/2017 02:22:30] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/31/2017 02:22:30] [ROSEAU] 
+[03/31/2017 02:22:30] [ROSEAU] >> Connecting to MySQL server
+[03/31/2017 02:22:31] [ROSEAU] >> Connection to MySQL was a success
+[03/31/2017 02:22:31] [ROSEAU] 
+[03/31/2017 02:22:31] [ROSEAU] >> Settting up server
+[03/31/2017 02:22:31] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/31/2017 02:22:34] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:22:34] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:22:34] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:22:34] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:22:34] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:22:34] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:22:34] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:22:35] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 02:22:35] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:22:35] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:22:35] [ROSEAU] >> Received: STAT / /ShockwaveVersion/10.4.1
+[03/31/2017 02:22:35] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 02:22:35] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01.01.1997[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=Male[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:22:35] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:22:35] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 02:22:35] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:22:35] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:22:38] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 02:22:38] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 02:22:38] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 02:22:38] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 02:22:38] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01.01.1997[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=Male[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:22:59] [ROSEAU] >> Received: UPDATE / name=Alexpassword=123email=we3rejfpef3@cefc.comfigure=1/&sh=002/192,180,199&lg=002/198,179,214&ls=001/232,177,55&ch=003/232,177,55&rs=001/232,177,55&hd=001/255,204,153&ey=005/255,204,153&fc=001/255,204,153&hr=005/255,204,153directMail=0birthday=01.01.1997phonenumber=customData=Icarus alpha testerhas_read_agreement=1sex=Malecountry=UK
+[03/31/2017 02:22:59] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 02:22:59] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:22:59] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:22:59] [ROSEAU] >> Received: STAT / /ShockwaveVersion/10.4.1
+[03/31/2017 02:22:59] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 02:22:59] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01.01.1997[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=Male[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:22:59] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:22:59] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 02:22:59] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:22:59] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:23:00] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 02:23:00] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 02:23:00] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 02:23:40] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:23:51] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:23:51] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:23:52] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:23:52] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:23:52] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:23:52] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:23:52] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:23:52] [ROSEAU] >> Received: LOGIN / test 123
+[03/31/2017 02:23:52] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:23:52] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:23:52] [ROSEAU] >> Received: STAT / /ShockwaveVersion/10.4.1
+[03/31/2017 02:23:52] [ROSEAU] >> Received: INFORETRIEVE / test 123
+[03/31/2017 02:23:52] [ROSEAU] >> SENT: #USEROBJECT[13]name=test[13]figure=sh=002/192,180,199&lg=002/198,179,214&ls=001/232,177,55&ch=003/232,177,55&rs=001/232,177,55&hd=001/255,204,153&ey=005/255,204,153&fc=001/255,204,153&hr=005/255,204,153[13]email=ereewr@wwwwaaac.com[13]birthday=01.01.1997[13]phonenumber=+44[13]customData=eating more cake, k?[13]has_read_agreement=1[13]sex=Female[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:23:52] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:23:52] [ROSEAU] >> SENT: #WALLETBALANCE[13]0##
+[03/31/2017 02:23:52] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:23:52] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:23:59] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:24:06] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:24:06] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:24:07] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:24:07] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:24:07] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:24:07] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:24:07] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:24:10] [ROSEAU] >> Received: FINDUSER / Alex
+[03/31/2017 02:24:10] [ROSEAU] >> Received: APPROVENAME / Alex
+[03/31/2017 02:24:18] [ROSEAU] >> Received: FINDUSER / Alex
+[03/31/2017 02:24:18] [ROSEAU] >> Received: APPROVENAME / Alex
+[03/31/2017 02:24:28] [ROSEAU] >> Received: FINDUSER / Alex
+[03/31/2017 02:25:01] [ROSEAU] >> Received: REGISTER / name=Alexpassword=123email=wdd@cc.comfigure=sd=001/0&hr=008/231,201,163&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/255,237,179&ls=002/255,237,179&rs=002/255,237,179&lg=006/149,120,78&sh=003/121,94,83directMail=1birthday=02.08.1997phonenumber=+44customData=has_read_agreement=1sex=Malecountry=
+[03/31/2017 02:25:01] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 02:25:01] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:25:01] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:25:01] [ROSEAU] >> Received: STAT / /ShockwaveVersion/10.4.1
+[03/31/2017 02:25:01] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 02:25:01] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01.01.1997[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=Male[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:25:01] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:25:01] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 02:25:01] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:25:01] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:25:01] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 02:25:02] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 02:25:02] [ROSEAU] >> Received: SEARCHBUSYFLATS / 
+[03/31/2017 02:25:31] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/31/2017 02:25:45] [ROSEAU] >> Connection from 127.0.0.1
+[03/31/2017 02:25:45] [ROSEAU] >> SENT: #HELLO##
+[03/31/2017 02:25:45] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/31/2017 02:25:45] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[03/31/2017 02:25:45] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/31/2017 02:25:46] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/31/2017 02:25:46] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/31/2017 02:25:46] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/31/2017 02:25:46] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/31/2017 02:25:46] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/31/2017 02:25:46] [ROSEAU] >> Received: STAT / /ShockwaveVersion/10.4.1
+[03/31/2017 02:25:46] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/31/2017 02:25:46] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=008/231,201,163&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/255,237,179&ls=002/255,237,179&rs=002/255,237,179&lg=006/149,120,78&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01.01.1997[13]phonenumber=+44[13]customData=Icarus alpha tester[13]has_read_agreement=1[13]sex=Male[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[03/31/2017 02:25:46] [ROSEAU] >> Received: GETCREDITS / 
+[03/31/2017 02:25:46] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[03/31/2017 02:25:46] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[03/31/2017 02:25:46] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[03/31/2017 02:25:49] [ROSEAU] >> Received: GETADFORME / general
+[03/31/2017 02:25:49] [ROSEAU] >> Received: INITUNITLISTENER / 
+[03/31/2017 02:25:49] [ROSEAU] >> Received: SEARCHBUSYFLATS / 

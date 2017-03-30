@@ -6,7 +6,7 @@ import org.alexdev.roseau.game.player.PlayerDetails;
 public interface IPlayerDao {
 
 	public PlayerDetails getDetails(int userId);
-	public boolean login(Player player, String ssoTicket);
+	public boolean login(Player player, String username, String password);
 	public int getId(String username);
 
 }

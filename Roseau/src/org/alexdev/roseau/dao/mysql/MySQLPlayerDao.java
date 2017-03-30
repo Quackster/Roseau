@@ -38,7 +38,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 
 				sqlConnection = this.dao.getStorage().getConnection();
 				
-				preparedStatement = this.dao.getStorage().prepare("SELECT id, username, rank, sso_ticket, motto, figure, credits FROM users WHERE id = ? LIMIT 1", sqlConnection);
+				preparedStatement = this.dao.getStorage().prepare("SELECT id, username, rank, sso_ticket, mission, figure, email, credits, sex, country, badge, birthday FROM users WHERE id = ? LIMIT 1", sqlConnection);
 				preparedStatement.setInt(1, userId);
 				
 				resultSet = preparedStatement.executeQuery();
@@ -60,7 +60,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 	}
 
 	@Override
-	public boolean login(Player player, String ssoTicket) {
+	public boolean login(Player player, String username, String password) {
 		
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
@@ -69,9 +69,10 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT id, username, rank, sso_ticket, motto, figure, credits FROM users WHERE sso_ticket = ? LIMIT 1", sqlConnection);
-			preparedStatement.setString(1, ssoTicket);
-			
+			preparedStatement = this.dao.getStorage().prepare("SELECT id, username, rank, mission, figure, email, credits, sex, country, badge, birthday FROM users WHERE username = ? AND password = ? LIMIT 1", sqlConnection);
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, password);
+
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
@@ -121,7 +122,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 
 	@Override
 	public PlayerDetails fill(PlayerDetails details, ResultSet row) throws SQLException {
-		details.fill(row.getInt("id"), row.getString("username"), row.getString("motto"),  row.getString("figure"), row.getInt("rank"), row.getInt("credits"));
+		details.fill(row.getInt("id"), row.getString("username"), row.getString("mission"), row.getString("figure"), row.getString("email"), row.getInt("rank"), row.getInt("credits"), row.getString("sex"), row.getString("country"), row.getString("badge"), row.getString("birthday"));
 		return details;
 	}
 }
