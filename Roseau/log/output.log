@@ -1527,3 +1527,327 @@ Caused by: java.net.BindException: Address already in use: bind
 [03/30/2017 14:58:48] [ROSEAU] >> Received: 12 / @L / 
 [03/30/2017 14:58:48] [ROSEAU] >> Received: 26 / @Z / @Jclub_habbo
 [03/30/2017 14:59:07] [ROSEAU] >> Disconnection from 127.0.0.1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 21:36:27
+-----------------------------------------
+
+[03/30/2017 21:36:27] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 21:36:27] [ROSEAU] >> Loading server...
+[03/30/2017 21:36:27] [ROSEAU] 
+[03/30/2017 21:36:27] [ROSEAU] >> Loading dependencies
+[03/30/2017 21:36:27] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/30/2017 21:36:27] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/30/2017 21:36:27] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/30/2017 21:36:27] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/30/2017 21:36:27] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/30/2017 21:36:27] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/30/2017 21:36:27] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/30/2017 21:36:27] [ROSEAU] 
+[03/30/2017 21:36:27] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 21:36:28] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 21:36:28] [ROSEAU] >> Error has occured!
+java.sql.SQLException: Unable to open a test connection to the given database. JDBC url = jdbc:mysql://127.0.0.1/roseau, username = root. Terminating connection pool. Original Exception: ------
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 0 ms ago.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2103)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:718)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:302)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:282)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at com.jolbox.bonecp.BoneCP.obtainRawInternalConnection(BoneCP.java:256)
+	at com.jolbox.bonecp.BoneCP.<init>(BoneCP.java:305)
+	at org.alexdev.roseau.dao.mysql.Storage.<init>(Storage.java:35)
+	at org.alexdev.roseau.dao.mysql.MySQLDao.connect(MySQLDao.java:28)
+	at org.alexdev.roseau.dao.mysql.MySQLDao.<init>(MySQLDao.java:16)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:41)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:280)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2026)
+	... 17 more
+------
+
+	at com.jolbox.bonecp.BoneCP.<init>(BoneCP.java:312)
+	at org.alexdev.roseau.dao.mysql.Storage.<init>(Storage.java:35)
+	at org.alexdev.roseau.dao.mysql.MySQLDao.connect(MySQLDao.java:28)
+	at org.alexdev.roseau.dao.mysql.MySQLDao.<init>(MySQLDao.java:16)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:41)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 0 ms ago.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2103)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:718)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:302)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:282)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at com.jolbox.bonecp.BoneCP.obtainRawInternalConnection(BoneCP.java:256)
+	at com.jolbox.bonecp.BoneCP.<init>(BoneCP.java:305)
+	... 4 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:280)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2026)
+	... 17 more
+
+[03/30/2017 21:36:28] [ROSEAU] >> ---------------------------------------------
+[03/30/2017 21:36:28] [ROSEAU] >> Could not connect
+[03/30/2017 21:36:28] [ROSEAU] 
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 21:36:55
+-----------------------------------------
+
+[03/30/2017 21:36:55] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 21:36:55] [ROSEAU] >> Loading server...
+[03/30/2017 21:36:55] [ROSEAU] 
+[03/30/2017 21:36:55] [ROSEAU] >> Loading dependencies
+[03/30/2017 21:36:55] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/30/2017 21:36:55] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/30/2017 21:36:55] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/30/2017 21:36:55] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/30/2017 21:36:55] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/30/2017 21:36:55] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/30/2017 21:36:55] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/30/2017 21:36:55] [ROSEAU] 
+[03/30/2017 21:36:55] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 21:36:56] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 21:36:56] [ROSEAU] 
+[03/30/2017 21:36:56] [ROSEAU] >> Settting up server
+[03/30/2017 21:36:56] [ROSEAU] >> Server is listening on 127.0.0.1:1232
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 21:37:47
+-----------------------------------------
+
+[03/30/2017 21:37:47] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 21:37:48] [ROSEAU] >> Loading server...
+[03/30/2017 21:37:48] [ROSEAU] 
+[03/30/2017 21:37:48] [ROSEAU] >> Loading dependencies
+[03/30/2017 21:37:48] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/30/2017 21:37:48] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/30/2017 21:37:48] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/30/2017 21:37:48] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/30/2017 21:37:48] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/30/2017 21:37:48] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/30/2017 21:37:48] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/30/2017 21:37:48] [ROSEAU] 
+[03/30/2017 21:37:48] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 21:37:48] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 21:37:48] [ROSEAU] 
+[03/30/2017 21:37:48] [ROSEAU] >> Settting up server
+[03/30/2017 21:37:48] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/30/2017 21:37:50] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 21:37:50] [ROSEAU] >> SENT: #HELLO##
+[03/30/2017 21:37:50] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/30/2017 21:37:50] [ROSEAU] >> SENT: #SECRETKEY31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl ##
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 21:38:31
+-----------------------------------------
+
+[03/30/2017 21:38:31] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 21:38:31] [ROSEAU] >> Loading server...
+[03/30/2017 21:38:31] [ROSEAU] 
+[03/30/2017 21:38:31] [ROSEAU] >> Loading dependencies
+[03/30/2017 21:38:31] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/30/2017 21:38:31] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/30/2017 21:38:31] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/30/2017 21:38:31] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/30/2017 21:38:31] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/30/2017 21:38:31] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/30/2017 21:38:31] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/30/2017 21:38:31] [ROSEAU] 
+[03/30/2017 21:38:31] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 21:38:31] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 21:38:31] [ROSEAU] 
+[03/30/2017 21:38:31] [ROSEAU] >> Settting up server
+[03/30/2017 21:38:31] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/30/2017 21:38:35] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 21:38:35] [ROSEAU] >> SENT: #HELLO##
+[03/30/2017 21:38:35] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/30/2017 21:38:35] [ROSEAU] >> SENT: #SECRETKEY31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl[13]##
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 21:42:13
+-----------------------------------------
+
+[03/30/2017 21:42:13] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 21:42:13] [ROSEAU] >> Loading server...
+[03/30/2017 21:42:13] [ROSEAU] 
+[03/30/2017 21:42:13] [ROSEAU] >> Loading dependencies
+[03/30/2017 21:42:13] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/30/2017 21:42:13] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/30/2017 21:42:13] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/30/2017 21:42:13] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/30/2017 21:42:13] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/30/2017 21:42:13] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/30/2017 21:42:13] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/30/2017 21:42:13] [ROSEAU] 
+[03/30/2017 21:42:13] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 21:42:13] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 21:42:13] [ROSEAU] 
+[03/30/2017 21:42:13] [ROSEAU] >> Settting up server
+[03/30/2017 21:42:13] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/30/2017 21:42:18] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 21:42:18] [ROSEAU] >> SENT: #HELLO##
+[03/30/2017 21:42:18] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/30/2017 21:42:18] [ROSEAU] >> SENT: #SECRETKEY31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl[13]##
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 21:42:36
+-----------------------------------------
+
+[03/30/2017 21:42:36] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 21:42:36] [ROSEAU] >> Loading server...
+[03/30/2017 21:42:36] [ROSEAU] 
+[03/30/2017 21:42:36] [ROSEAU] >> Loading dependencies
+[03/30/2017 21:42:36] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/30/2017 21:42:36] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/30/2017 21:42:36] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/30/2017 21:42:36] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/30/2017 21:42:36] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/30/2017 21:42:36] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/30/2017 21:42:36] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/30/2017 21:42:36] [ROSEAU] 
+[03/30/2017 21:42:36] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 21:42:36] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 21:42:36] [ROSEAU] 
+[03/30/2017 21:42:36] [ROSEAU] >> Settting up server
+[03/30/2017 21:42:36] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/30/2017 21:42:39] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 21:42:39] [ROSEAU] >> SENT: #HELLO##
+[03/30/2017 21:42:39] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/30/2017 21:42:39] [ROSEAU] >> SENT: #SECRETKEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 21:42:54
+-----------------------------------------
+
+[03/30/2017 21:42:54] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 21:42:54] [ROSEAU] >> Loading server...
+[03/30/2017 21:42:54] [ROSEAU] 
+[03/30/2017 21:42:54] [ROSEAU] >> Loading dependencies
+[03/30/2017 21:42:54] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/30/2017 21:42:54] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/30/2017 21:42:54] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/30/2017 21:42:54] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/30/2017 21:42:54] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/30/2017 21:42:54] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/30/2017 21:42:54] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/30/2017 21:42:54] [ROSEAU] 
+[03/30/2017 21:42:54] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 21:42:54] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 21:42:54] [ROSEAU] 
+[03/30/2017 21:42:54] [ROSEAU] >> Settting up server
+[03/30/2017 21:42:54] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/30/2017 21:42:57] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 21:42:57] [ROSEAU] >> SENT: #HELLO##
+[03/30/2017 21:42:57] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/30/2017 21:42:57] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/30/2017 21:42:58] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/30/2017 21:42:58] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/30/2017 21:42:59] [ROSEAU] >> Received: FINDUSER / 
+[03/30/2017 21:43:42] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/30/2017 21:43:43] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 21:43:43] [ROSEAU] >> SENT: #HELLO##
+[03/30/2017 21:43:43] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/30/2017 21:43:43] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/30/2017 21:43:44] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/30/2017 21:43:44] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/30/2017 21:43:45] [ROSEAU] >> Received: FINDUSER / 
+[03/30/2017 21:43:54] [ROSEAU] >> Disconnection from 127.0.0.1
+[03/30/2017 21:44:12] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 21:44:12] [ROSEAU] >> SENT: #HELLO##
+[03/30/2017 21:44:12] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/30/2017 21:44:12] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/30/2017 21:44:12] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/30/2017 21:44:12] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/30/2017 21:44:13] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/30/2017 21:44:13] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/30/2017 21:44:13] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/30/2017 21:44:13] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/30/2017 21:44:13] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+
+-----------------------------------------
+-- SERVER BOOT TIME: 03/30/2017 21:45:45
+-----------------------------------------
+
+[03/30/2017 21:45:45] [ROSEAU] >> Roseau - Java Server
+[03/30/2017 21:45:45] [ROSEAU] >> Loading server...
+[03/30/2017 21:45:45] [ROSEAU] 
+[03/30/2017 21:45:45] [ROSEAU] >> Loading dependencies
+[03/30/2017 21:45:45] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[03/30/2017 21:45:45] [ROSEAU] >> Loading: guava-11.0.2.jar
+[03/30/2017 21:45:45] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[03/30/2017 21:45:45] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[03/30/2017 21:45:45] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[03/30/2017 21:45:45] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[03/30/2017 21:45:45] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[03/30/2017 21:45:45] [ROSEAU] 
+[03/30/2017 21:45:45] [ROSEAU] >> Connecting to MySQL server
+[03/30/2017 21:45:46] [ROSEAU] >> Connection to MySQL was a success
+[03/30/2017 21:45:46] [ROSEAU] 
+[03/30/2017 21:45:46] [ROSEAU] >> Settting up server
+[03/30/2017 21:45:46] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[03/30/2017 21:45:50] [ROSEAU] >> Connection from 127.0.0.1
+[03/30/2017 21:45:50] [ROSEAU] >> SENT: #HELLO##
+[03/30/2017 21:45:50] [ROSEAU] >> Received: VERSIONCHECK / client002
+[03/30/2017 21:45:50] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[03/30/2017 21:45:51] [ROSEAU] >> Received: KEYENCRYPTED / 964
+[03/30/2017 21:45:51] [ROSEAU] >> Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[03/30/2017 21:45:51] [ROSEAU] >> Received: LOGIN / Alex 123
+[03/30/2017 21:45:51] [ROSEAU] >> Received: MESSENGERINIT / 
+[03/30/2017 21:45:51] [ROSEAU] >> Received: UNIQUEMACHINEID / #88776211200101900
+[03/30/2017 21:45:51] [ROSEAU] >> Received: STAT / /ShockwaveVersion/12.2.8
+[03/30/2017 21:45:51] [ROSEAU] >> Received: INFORETRIEVE / Alex 123
+[03/30/2017 21:45:56] [ROSEAU] >> Disconnection from 127.0.0.1

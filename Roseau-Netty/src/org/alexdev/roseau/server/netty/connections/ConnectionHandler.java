@@ -60,7 +60,7 @@ public class ConnectionHandler extends SimpleChannelHandler {
 			}
 
 			if (Roseau.getUtilities().getConfiguration().getBoolean("log-packets")) {
-				Log.println("Received: " + request.getMessageId() + " / " + new String(Base64Encoding.EncodeInt32(request.getMessageId(), 2)) + " / " + request.getMessageBody());
+				Log.println("Received: " + request.getHeader() + " / " + request.getMessageBody());
 			}
 
 			if (player != null){

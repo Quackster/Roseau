@@ -5,119 +5,134 @@ import java.nio.charset.Charset;
 
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.server.encoding.Base64Encoding;
-import org.alexdev.roseau.server.encoding.WireEncoding;
 import org.alexdev.roseau.server.messages.Response;
+import org.alexdev.roseau.server.messages.SerializableObject;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBufferOutputStream;
 import org.jboss.netty.buffer.ChannelBuffers;
 
-public class NettyResponse implements Response
-{
+public class NettyResponse implements Response {
 
-	private int id;
+	private String header;
 	private boolean finalised;
 	private ChannelBufferOutputStream bodystream;
-	private ChannelBuffer body;
+	private ChannelBuffer body = null;
 
-	public NettyResponse() {
-		this.id = -1;
+	public NettyResponse() { }
+
+	@Override
+	public void init(String header) {
+
 		this.finalised = false;
 		this.body = ChannelBuffers.dynamicBuffer();
 		this.bodystream = new ChannelBufferOutputStream(body);
-	}
-	
-	public NettyResponse(int id) {
-		this.init(id);
-	}
+		this.header = header;
 
-	@Override
-	public void init(int id) {
-
-		this.id = id;
-		this.finalised = false;
-		this.body = ChannelBuffers.dynamicBuffer();
-		this.bodystream = new ChannelBufferOutputStream(body);
-		
-		try {	
-			byte[] header = Base64Encoding.EncodeInt32(id, 2);
-			this.bodystream.write(header, 0, header.length);
-
-		} catch (Exception e) {
-			Log.exception(e);
-		}
-	}
-
-	@Override
-	public void appendString(Object obj) {
-
-		if (obj == null) {
-			obj = "";
-		}
-		
-		byte[] str = obj.toString().getBytes();
-		
 		try {
-			bodystream.write(str, 0, str.length);
-			bodystream.write((char)2);
+			this.bodystream.write('#');
+			this.bodystream.write(header.getBytes());
+
 		} catch (IOException e) {
-			Log.exception(e);
+			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void appendInt32(Integer obj) {
+	public void append(String s) {
 		try {
-			this.bodystream.write(WireEncoding.EncodeInt32(obj), 0, 2);
+			this.bodystream.write(s.getBytes());
 		} catch (IOException e) {
-			Log.exception(e);
+			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void appendInt32(Boolean obj) {
-		try {	
-			this.bodystream.write(WireEncoding.EncodeInt32(obj ? 1 : 0), 0, 2);
-			
-		} catch (IOException e) {
-			Log.exception(e);
-		}
+	public void appendArgument(String arg) {
+		appendArgument(arg, ' ');
 	}
 
 	@Override
-	public void appendBoolean(Boolean obj) {
+	public void appendNewArgument(String arg) {
+		appendArgument(arg, (char)13);
+	}
+
+	@Override
+	public void appendPartArgument(String arg) {
+		appendArgument(arg, '/');
+	}
+
+	@Override
+	public void appendTabArgument(String arg) {
+		appendArgument(arg, (char)9);
+	}
+
+	@Override
+	public void appendKVArgument(String key, String value) {
 		try {
-			bodystream.writeByte(obj ? WireEncoding.POSITIVE : WireEncoding.NEGATIVE);
+			this.bodystream.write((char)13);
+			this.bodystream.write(key.getBytes());
+			this.bodystream.write('=');
+			this.bodystream.write(value.getBytes());	
 		} catch (IOException e) {
-			Log.exception(e);
+			e.printStackTrace();
 		}
 	}
 
+	@Override
+	public void appendKV2Argument(String key, String value) {
+		try {
+
+			this.bodystream.write((char)13);
+			this.bodystream.write(key.getBytes());
+			this.bodystream.write(':');
+			this.bodystream.write(value.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+
+	@Override
+	public void appendArgument(String arg, char delimiter) {
+		try {
+			this.bodystream.write(delimiter);
+			this.bodystream.write(arg.getBytes());	
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	@Override
+	public void appendObject(SerializableObject obj) {
+		obj.serialise(this);
+	}
+
+	@Override
 	public String getBodyString() {
-		
 		String str = new String(this.get().toString(Charset.defaultCharset()));
-		
 		for (int i = 0; i < 14; i++) { 
 			str = str.replace(Character.toString((char)i), "[" + i + "]");
 		}
-
 		return str;
 	}
-	
+
+	@Override
 	public ChannelBuffer get() {
 
 		if (!this.finalised) {
 			try {
-				this.bodystream.write((char)1);
+				this.bodystream.write('#');
+				this.bodystream.write('#');
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			this.finalised = true;
 		}
-		
+
 		return this.body;
 	}
 
-	public int getHeader() {
-		return this.id;
+	public String getHeader() {
+		return header;
 	}	
 }
