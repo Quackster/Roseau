@@ -42,7 +42,8 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements IR
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				roomModels.put(resultSet.getString("id"), new RoomModel(resultSet.getString("id"), resultSet.getString("heightmap"), resultSet.getInt("door_x"), resultSet.getInt("door_y"), resultSet.getInt("door_z"), resultSet.getInt("door_dir")));
+				roomModels.put(resultSet.getString("id"), new RoomModel(resultSet.getString("id"), resultSet.getString("heightmap"), resultSet.getInt("door_x"), resultSet.getInt("door_y"), 
+						resultSet.getInt("door_z"), resultSet.getInt("door_dir"), resultSet.getString("public_items")));
 			}
 
 		} catch (Exception e) {
@@ -72,7 +73,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements IR
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE room_type = " + RoomType.PUBLIC.getTypeCode() + " ORDER BY name", sqlConnection);
+			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE enabled = 1 AND room_type = " + RoomType.PUBLIC.getTypeCode() + " ORDER BY name", sqlConnection);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -323,7 +324,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements IR
 
 		Room instance = new Room();
 
-		instance.getData().fill(row.getInt("id"), type, details == null ? 0 : details.getId(), details == null ? "" : details.getUsername(), row.getString("name"), 
+		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getId(), details == null ? "" : details.getUsername(), row.getString("name"), 
 				row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"),
 				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"));
 

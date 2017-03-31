@@ -38,7 +38,7 @@ public class RoomManager {
 	
 	public List<Room> getPublicRooms() {
 		try {
-			return this.loadedRooms.stream().filter(room -> room.getData().getRoomType() == RoomType.PUBLIC).collect(Collectors.toList());
+			return this.loadedRooms.stream().filter(room -> room.getData().getRoomType() == RoomType.PUBLIC && room.getData().isHidden() == false).collect(Collectors.toList());
 		} catch (Exception e) {
 			return null;
 		}
@@ -46,7 +46,7 @@ public class RoomManager {
 	
 	public List<Room> getPlayerRooms(int userId) {
 		try {
-			return this.loadedRooms.stream().filter(room -> room.getData().getOwnerId() == userId).collect(Collectors.toList());
+			return this.loadedRooms.stream().filter(room -> room.getData().getOwnerId() == userId && room.getData().isHidden() == false).collect(Collectors.toList());
 		} catch (Exception e) {
 			return null;
 		}

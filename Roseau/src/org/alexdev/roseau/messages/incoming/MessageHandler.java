@@ -8,6 +8,8 @@ import org.alexdev.roseau.messages.incoming.login.GETCREDITS;
 import org.alexdev.roseau.messages.incoming.login.INFORETRIEVE;
 import org.alexdev.roseau.messages.incoming.login.LOGIN;
 import org.alexdev.roseau.messages.incoming.navigator.INITUNITLISTENER;
+import org.alexdev.roseau.messages.incoming.room.MOVE;
+import org.alexdev.roseau.messages.incoming.room.STATUSOK;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 import com.google.common.collect.Maps;
@@ -25,6 +27,7 @@ public class MessageHandler {
 		this.messages.clear();
 		this.registerHandshakePackets();
 		this.registerLoginPackets();
+		this.registerRoomPackets();
 	}
 
 	private void registerHandshakePackets() {
@@ -36,6 +39,11 @@ public class MessageHandler {
 		this.messages.put("INFORETRIEVE", new INFORETRIEVE());
 		this.messages.put("INITUNITLISTENER", new INITUNITLISTENER());
 		this.messages.put("GETCREDITS", new GETCREDITS());
+	}
+	
+	private void registerRoomPackets() {
+		this.messages.put("STATUSOK", new STATUSOK());
+		this.messages.put("Move", new MOVE());
 	}
 	
 	

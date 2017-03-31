@@ -32,14 +32,16 @@ public class RoomData {
 	private Room room;
 	private IServerHandler serverHandler = null;
 	private int serverPort = -1;
+	private boolean hidden;
 	
 	public RoomData(Room room) {
 		this.room = room;
 	}
 	
-	public void fill(int id, RoomType type, int ownerId, String ownerName, String name, int state, String password, int usersNow, int usersMax, String description, String model, String clazz, String wall,String floor) {
+	public void fill(int id, boolean hidden, RoomType type, int ownerId, String ownerName, String name, int state, String password, int usersNow, int usersMax, String description, String model, String clazz, String wall,String floor) {
 
 		this.id = id;
+		this.hidden = hidden;
 		this.roomType = type;
 		this.ownerId = ownerId;
 		this.ownerName = ownerName;
@@ -203,6 +205,14 @@ public class RoomData {
 
 	public IServerHandler getServerHandler() {
 		return serverHandler;
+	}
+
+	public boolean isHidden() {
+		return hidden;
+	}
+
+	public void setHidden(boolean hidden) {
+		this.hidden = hidden;
 	}
 
 }

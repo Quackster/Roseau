@@ -37,11 +37,13 @@ public class RoomModel
 	
 	private int[][] squares;
 	private double[][] squareHeight;
+	private String publicItems;
 
-	public RoomModel(String name, String heightmap, int doorX, int doorY, int doorZ, int doorRot) {
+	public RoomModel(String name, String heightmap, int doorX, int doorY, int doorZ, int doorRot, String publicItems) {
 		
 		this.name = name;
-		this.heightmap = heightmap.replace("" + (char)10, "");
+		this.heightmap = heightmap.replace(" ", (char)13 + "");
+		this.publicItems = publicItems.replace(" " + (char)10, "");
 		this.doorX = doorX;
 		this.doorY = doorY;
 		this.doorZ = doorZ;
@@ -148,5 +150,13 @@ public class RoomModel
 
 	public Point getDoorPosition() {
 		return new Point(this.doorX, this.doorY, this.doorZ);
+	}
+
+	public String getPublicItems() {
+		return publicItems;
+	}
+
+	public void setPublicItems(String publicItems) {
+		this.publicItems = publicItems;
 	}
 }

@@ -4,6 +4,7 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.dao.IPlayerDao;
 import org.alexdev.roseau.dao.IRoomDao;
+import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.log.Log;
 
 public class MySQLDao implements Dao {
@@ -30,7 +31,6 @@ public class MySQLDao implements Dao {
 				Roseau.getUtilities().getConfiguration().get("mysql-password"), 
 				Roseau.getUtilities().getConfiguration().get("mysql-database")); 
 
-
 		isConnected = storage.isConnected();
 
 		if (!isConnected) {
@@ -40,12 +40,10 @@ public class MySQLDao implements Dao {
 		}
 
 		Log.println();
+		
 
 		return isConnected;
 	}
-
-
-
 
 	public Storage getStorage() {
 		return storage;

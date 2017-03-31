@@ -10,17 +10,22 @@ import org.alexdev.roseau.game.room.player.RoomUser;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
+import org.alexdev.roseau.messages.outgoing.room.ACTIVE_OBJECTS;
+import org.alexdev.roseau.messages.outgoing.room.HEIGHTMAP;
+import org.alexdev.roseau.messages.outgoing.room.OBJECTS_WORLD;
+import org.alexdev.roseau.messages.outgoing.room.STATUS;
+import org.alexdev.roseau.messages.outgoing.room.USERS;
 
 public class Room {
 
 	private int privateId;
 	private boolean disposed;
 
-	private RoomData data;
+	private RoomData roomData;
 	private List<IEntity> entities;
 
 	public Room() {
-		this.data = new RoomData(this);
+		this.roomData = new RoomData(this);
 		this.entities = new ArrayList<IEntity>();
 	}
 
@@ -32,24 +37,41 @@ public class Room {
 		roomUser.setLoadingRoom(true);
 		roomUser.getStatuses().clear();
 
-		int floorData = Integer.parseInt(this.data.getFloor());
-		int wallData = Integer.parseInt(this.data.getWall());
 
-		if (floorData > 0) {
-
+		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
+			player.send(new ACTIVE_OBJECTS());
+			player.send(new OBJECTS_WORLD(this));
 		}
 
-		if (wallData > 0) {
-			
+		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
+
+			int floorData = Integer.parseInt(this.roomData.getFloor());
+			int wallData = Integer.parseInt(this.roomData.getWall());
+
+			if (floorData > 0) {
+
+			}
+
+			if (wallData > 0) {
+
+			}
+
+			if (roomUser.getRoom().hasRights(player.getDetails().getId(), true)) {
+
+
+			} else {
+
+			}
 		}
 
-		if (roomUser.getRoom().hasRights(player.getDetails().getId(), true)) {
-
-
-		} else {
-
+		if (this.roomData.getModel() == null) {
+			Log.println("Could not load heightmap for room model '" + this.roomData.getModelName() + "'");
+			return;
 		}
-
+		
+		player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
+		player.send(new USERS(this));
+		player.send(new STATUS(this));
 	}
 
 	public void leaveRoom(Player player, boolean hotelView) {
@@ -78,11 +100,11 @@ public class Room {
 
 	public boolean hasRights(int userId, boolean ownerCheckOnly) {
 
-		if (this.data.getOwnerId() == userId) {
+		if (this.roomData.getOwnerId() == userId) {
 			return true;
 		} else {
 			if (!ownerCheckOnly) {
-				return this.data.getRights().contains(userId);
+				return this.roomData.getRights().contains(userId);
 			}
 		}
 
@@ -123,10 +145,10 @@ public class Room {
 
 				this.clearData();
 
-				if (Roseau.getGame().getPlayerManager().findById(this.data.getOwnerId()) == null 
-						&& this.data.getRoomType() == RoomType.PRIVATE) { 
+				if (Roseau.getGame().getPlayerManager().findById(this.roomData.getOwnerId()) == null 
+						&& this.roomData.getRoomType() == RoomType.PRIVATE) { 
 
-					this.data = null;
+					this.roomData = null;
 					this.entities = null;
 					this.disposed = true;
 
@@ -203,7 +225,7 @@ public class Room {
 	}
 
 	public RoomData getData() {
-		return data;
+		return roomData;
 	}
 
 	public void save() {
