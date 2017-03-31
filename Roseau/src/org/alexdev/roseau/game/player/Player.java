@@ -25,6 +25,11 @@ public class Player implements IEntity {
 	
 	public void dispose() {
 
+		if (this.roomEntity != null) {
+			if (this.roomEntity.getRoom() != null) {
+				this.roomEntity.getRoom().leaveRoom(this, false);
+			}
+		}
 	}
 		
 	public void setMachineId(String machineId) {

@@ -5,6 +5,8 @@ import java.util.LinkedList;
 
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.RoomModel;
+import org.alexdev.roseau.messages.outgoing.room.STATUS;
+import org.alexdev.roseau.messages.outgoing.room.USERS;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.game.player.Player;
@@ -131,20 +133,20 @@ public abstract class RoomEntity {
 
 	public void stopWalking(boolean needsUpdate) {
 
-		if (this.statuses.containsKey("mv")) {
-			this.statuses.remove("mv");
-		}
 
-		this.needsUpdate = needsUpdate;
-		this.isWalking = false;
-		this.setPath(null);
-		this.updateStatus();
-		//this.room.getMapping().regenerateCollisionMap();
 
 	}
 
+	public STATUS getStatusComposer() {
+		return new STATUS(this.entity);
+	}
+	
+	public USERS getUsersComposer() {
+		return new USERS(this.entity);
+	}
+	
 	public void updateStatus() {
-		//this.room.send(new UserStatusMessageComposer(this.entity));
+		this.room.send(new STATUS(this.entity));
 	}
 
 	public boolean isDancing() {
@@ -219,11 +221,6 @@ public abstract class RoomEntity {
 
 	public void setNeedUpdate(boolean needsWalkUpdate) {
 		this.needsUpdate = needsWalkUpdate;
-
-		if (!this.needsUpdate) {
-			this.goal.setX(-1);
-			this.goal.setY(-1);
-		}
 	}
 
 	public Room getRoom() {

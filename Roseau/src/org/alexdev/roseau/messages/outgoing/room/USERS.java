@@ -1,22 +1,37 @@
 package org.alexdev.roseau.messages.outgoing.room;
 
-import org.alexdev.roseau.game.room.Room;
+import java.util.Arrays;
+import java.util.List;
+
+import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
 public class USERS implements OutgoingMessageComposer {
 
-	private Room room;
-
-	public USERS(Room room) {
-		this.room = room;
+	private List<IEntity> entities;
+	
+	public USERS(IEntity entity) {
+		this.entities = Arrays.asList(new IEntity[] { entity });
+	}
+	
+	public USERS(List<IEntity> entities) {
+		this.entities = entities;
 	}
 
 	@Override
 	public void write(Response response) {
-		response.init("USERS" + (char)13 + " " + "Alex" + " " +
-	"sd=001/0&hr=008/231,201,163&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/255,237,179&ls=002/255,237,179&rs=002/255,237,179&lg=006/149,120,78&sh=003/121,94,83" + 
-				" " + room.getData().getModel().getDoorX() + " " + room.getData().getModel().getDoorY() + " " + room.getData().getModel().getDoorZ() + " " + "a random motto ok");
+		response.init("USERS");
+		for (IEntity entity : this.entities) {
+			response.append(Character.toString((char)13));
+			response.appendArgument("");
+			response.appendArgument(entity.getDetails().getUsername());
+			response.appendArgument(entity.getDetails().getFigure());
+			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getX()));
+			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getY()));
+			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getZ()));
+			response.appendArgument(entity.getDetails().getMission());
+		}
 	}
 
 }

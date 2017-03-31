@@ -1,5 +1,8 @@
 package org.alexdev.roseau.game;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
 import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.game.player.PlayerManager;
 import org.alexdev.roseau.game.room.RoomManager;
@@ -9,6 +12,7 @@ public class Game {
 
 	PlayerManager playerManager;
 	RoomManager roomManager;
+	ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(8);
 	
 	public Game(Dao dao) throws Exception {
 		this.playerManager = new PlayerManager();
@@ -30,5 +34,9 @@ public class Game {
 
 	public RoomManager getRoomManager() {
 		return roomManager;
+	}
+
+	public ScheduledExecutorService getScheduler() {
+		return scheduler;
 	}
 }

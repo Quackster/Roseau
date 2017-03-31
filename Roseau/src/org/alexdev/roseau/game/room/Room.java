@@ -2,10 +2,15 @@ package org.alexdev.roseau.game.room;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.game.room.entity.RoomEntity;
+import org.alexdev.roseau.game.room.model.Point;
 import org.alexdev.roseau.game.room.player.RoomUser;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
@@ -16,18 +21,73 @@ import org.alexdev.roseau.messages.outgoing.room.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
 
-public class Room {
+public class Room implements Runnable {
 
 	private int privateId;
 	private boolean disposed;
 
 	private RoomData roomData;
 	private List<IEntity> entities;
+	private ScheduledFuture<?> tickTask = null;
 
 	public Room() {
 		this.roomData = new RoomData(this);
 		this.entities = new ArrayList<IEntity>();
 	}
+
+
+	@Override
+	public void run() {
+
+		Log.println("loop started");
+
+		while (true) {
+
+			try {
+				if (this.disposed ||
+						this.entities.size() == 0) {
+					break;
+				}
+
+				List<IEntity> update_entities = new ArrayList<IEntity>();
+				List<IEntity> entities = this.getEntities();
+
+				for (int i = 0; i < entities.size(); i++) {
+
+					IEntity entity = entities.get(i);
+
+					if (entity != null) {
+						if (entity.getRoomUser() != null) {
+
+							this.processEntity(entity);
+
+							RoomEntity room_user = entity.getRoomUser();
+
+							if (room_user.needsUpdate()) {
+								update_entities.add(entity);
+							}
+						}
+					}
+				}
+
+				if (update_entities.size() > 0) {
+					this.send(new STATUS(update_entities));
+				}
+
+			} catch (Exception e) {
+
+
+			}
+		}
+
+		Log.println("loop ended");
+	}
+
+	private void processEntity(IEntity entity) {
+		// TODO Auto-generated method stub
+
+	}
+
 
 	public void loadRoom(Player player) {
 
@@ -37,11 +97,17 @@ public class Room {
 		roomUser.setLoadingRoom(true);
 		roomUser.getStatuses().clear();
 
+		roomUser.getPosition().setX(this.roomData.getModel().getDoorX());
+		roomUser.getPosition().setY(this.roomData.getModel().getDoorY());
+		roomUser.getPosition().setZ(this.roomData.getModel().getDoorZ());
+		roomUser.setRotation(this.roomData.getModel().getDoorRot(), false);	
 
 		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
 			player.send(new ACTIVE_OBJECTS());
 			player.send(new OBJECTS_WORLD(this));
 		}
+
+		player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
 
@@ -68,10 +134,19 @@ public class Room {
 			Log.println("Could not load heightmap for room model '" + this.roomData.getModelName() + "'");
 			return;
 		}
-		
-		player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
-		player.send(new USERS(this));
-		player.send(new STATUS(this));
+
+		if (this.entities.size() > 0) {
+			this.send(player.getRoomUser().getUsersComposer());
+			this.send(player.getRoomUser().getStatusComposer());
+		} else {
+			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
+		}
+
+		this.entities.add(player);
+
+		player.send(new USERS(this.entities));
+		player.send(new STATUS(this.entities));
+
 	}
 
 	public void leaveRoom(Player player, boolean hotelView) {
@@ -168,6 +243,11 @@ public class Room {
 		if (this.entities != null) {
 			this.entities.clear();
 		}		
+
+		if (this.tickTask != null) {
+			this.tickTask.cancel(true);
+			this.tickTask = null;
+		}
 	}
 
 	public void send(OutgoingMessageComposer response, boolean checkRights) {
@@ -243,6 +323,11 @@ public class Room {
 
 	public void setUsers(ArrayList<IEntity> entities) {
 		this.entities = entities;
+	}
+
+	public boolean isValidStep(Point point, Point tmp, boolean isFinalMove) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
