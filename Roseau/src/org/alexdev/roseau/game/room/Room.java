@@ -103,9 +103,9 @@ public class Room implements Runnable {
 				int rotation = Rotation.calculate(roomUser.getPosition().getX(), roomUser.getPosition().getY(), next.getX(), next.getY());
 				double height = this.roomData.getModel().getHeight(next.getX(), next.getY());
 
-				roomUser.setRotation(rotation, true);
+				roomUser.setRotation(rotation, false);
 
-				roomUser.setStatus("mv", next.getX() + "," + next.getY() + "," + height);
+				roomUser.setStatus("mv", next.getX() + "," + next.getY() + "," + (int)height);
 				roomUser.setNeedUpdate(true);
 				roomUser.setNext(next);
 

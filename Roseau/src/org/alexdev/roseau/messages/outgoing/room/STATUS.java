@@ -29,16 +29,16 @@ public class STATUS implements OutgoingMessageComposer {
 			response.appendNewArgument(entity.getDetails().getUsername());
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getX()));
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getY()), ',');
-			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getZ()), ',');
-
+			
 			if (entity.getRoomUser().isWalking()) {
 				if (entity.getRoomUser().getNext() == null) {
 					entity.getRoomUser().setStatus("mv", "");
-					entity.getRoomUser().setWalking(false);;
+					entity.getRoomUser().setWalking(false);
 					entity.getRoomUser().stopWalking();
 				}
 			}
 			
+			response.appendArgument(String.valueOf((int)entity.getRoomUser().getPosition().getZ()), ',');			
 			response.appendArgument(String.valueOf(entity.getRoomUser().getHeadRotation()), ',');
 			response.appendArgument(String.valueOf(entity.getRoomUser().getRotation()), ',');
 			

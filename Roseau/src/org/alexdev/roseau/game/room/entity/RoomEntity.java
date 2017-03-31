@@ -56,8 +56,6 @@ public abstract class RoomEntity {
 		} else {
 			this.statuses.remove(key);
 		}
-		
-		this.needsUpdate = true;
 	}
 
 	public void walk() {
@@ -67,16 +65,17 @@ public abstract class RoomEntity {
 
 				Point next = this.next;
 	            this.position.setZ(this.getRoom().getData().getModel().getHeight(next.getX(), next.getY()));
-	            this.position = next;
-				
+	            this.position.setX(next.getX());
+	            this.position.setY(next.getY());
 			}
 		}
 
 	}
 
 	public void stopWalking() {
-		// TODO Auto-generated method stub
+        //this.position.setZ(this.getRoom().getData().getModel().getHeight(this.position.getX(),this.position.getY()));
 		
+		this.needsUpdate = true;
 	}
 
 	public void chat(String message, int bubble, int count, boolean shout, boolean spamCheck) {
