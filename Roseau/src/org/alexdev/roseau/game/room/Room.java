@@ -11,6 +11,7 @@ import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomEntity;
 import org.alexdev.roseau.game.room.model.Point;
+import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.game.room.player.RoomUser;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
@@ -20,6 +21,7 @@ import org.alexdev.roseau.messages.outgoing.room.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.room.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
+import org.alexdev.roseau.server.messages.Response;
 
 public class Room implements Runnable {
 
@@ -39,53 +41,80 @@ public class Room implements Runnable {
 	@Override
 	public void run() {
 
-		Log.println("loop started");
+		try {
+			if (this.disposed || this.entities.size() == 0) {
+				return;
+			}
 
-		while (true) {
+			List<IEntity> update_entities = new ArrayList<IEntity>();
+			List<IEntity> entities = this.getEntities();
 
-			try {
-				if (this.disposed ||
-						this.entities.size() == 0) {
-					break;
-				}
+			for (int i = 0; i < entities.size(); i++) {
 
-				List<IEntity> update_entities = new ArrayList<IEntity>();
-				List<IEntity> entities = this.getEntities();
+				IEntity entity = entities.get(i);
 
-				for (int i = 0; i < entities.size(); i++) {
+				if (entity != null) {
+					if (entity.getRoomUser() != null) {
 
-					IEntity entity = entities.get(i);
+						this.processEntity(entity);
 
-					if (entity != null) {
-						if (entity.getRoomUser() != null) {
+						RoomEntity room_user = entity.getRoomUser();
 
-							this.processEntity(entity);
-
-							RoomEntity room_user = entity.getRoomUser();
-
-							if (room_user.needsUpdate()) {
-								update_entities.add(entity);
-							}
+						if (room_user.needsUpdate()) {
+							update_entities.add(entity);
 						}
 					}
 				}
-
-				if (update_entities.size() > 0) {
-					this.send(new STATUS(update_entities));
-				}
-
-			} catch (Exception e) {
-
-
 			}
-		}
 
-		Log.println("loop ended");
+			if (update_entities.size() > 0) {
+				this.send(new STATUS(update_entities));
+
+				for (IEntity entity : update_entities) {
+					
+
+
+					entity.getRoomUser().walk();
+					
+					if (entity.getRoomUser().needsUpdate()) {
+						entity.getRoomUser().setNeedUpdate(false);
+					}
+				}
+			}
+
+		} catch (Exception e) {
+
+
+		}
 	}
 
 	private void processEntity(IEntity entity) {
-		// TODO Auto-generated method stub
 
+		RoomEntity roomUser = entity.getRoomUser();
+
+		if (roomUser.isWalking()) {
+			if (roomUser.getPath().size() > 0) {
+
+				Point next = roomUser.getPath().pop();
+
+				roomUser.setStatus("lay", "");
+				roomUser.setStatus("sit", "");
+
+				int rotation = Rotation.calculate(roomUser.getPosition().getX(), roomUser.getPosition().getY(), next.getX(), next.getY());
+				double height = this.roomData.getModel().getHeight(next.getX(), next.getY());
+
+				roomUser.setRotation(rotation, true);
+
+				roomUser.setStatus("mv", next.getX() + "," + next.getY() + "," + height);
+				roomUser.setNeedUpdate(true);
+				roomUser.setNext(next);
+
+			}
+			else {
+				roomUser.setNext(null);
+				roomUser.setNeedUpdate(true);
+			}
+		}
 	}
 
 
@@ -139,7 +168,10 @@ public class Room implements Runnable {
 			this.send(player.getRoomUser().getUsersComposer());
 			this.send(player.getRoomUser().getStatusComposer());
 		} else {
-			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
+			if (this.tickTask == null) {
+				this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
+				Log.println("started...");
+			}
 		}
 
 		this.entities.add(player);
@@ -149,9 +181,21 @@ public class Room implements Runnable {
 
 	}
 
+	public void send(OutgoingMessageComposer response, boolean checkRights) {
+
+		if (this.disposed) {
+			return;
+		}
+
+		for (Player player : this.getUsers()) {
+			player.send(response);
+		}
+	}
+
+
 	public void leaveRoom(Player player, boolean hotelView) {
 
-		if (hotelView) {;
+		if (hotelView) {
 
 		}
 
@@ -159,7 +203,7 @@ public class Room implements Runnable {
 
 		RoomUser roomUser = player.getRoomUser();
 
-		roomUser.stopWalking(false);
+		roomUser.setWalking(false);
 		roomUser.reset();
 
 		if (this.entities != null) {
@@ -205,7 +249,6 @@ public class Room implements Runnable {
 				this.clearData();
 				this.entities = null;
 
-
 				Roseau.getGame().getRoomManager().getLoadedRooms().remove(this);
 
 			} else {
@@ -250,19 +293,6 @@ public class Room implements Runnable {
 		}
 	}
 
-	public void send(OutgoingMessageComposer response, boolean checkRights) {
-
-		if (this.disposed) {
-			return;
-		}
-
-		for (Player player : this.getUsers()) {
-
-			if (checkRights && this.hasRights(player.getDetails().getId(), false)) {
-				player.send(response);
-			}
-		}
-	}
 
 
 	public void send(OutgoingMessageComposer response) {
@@ -325,9 +355,36 @@ public class Room implements Runnable {
 		this.entities = entities;
 	}
 
-	public boolean isValidStep(Point point, Point tmp, boolean isFinalMove) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isValidStep(Point current, Point neighbour, boolean isFinalMove) {
+
+		int mapSizeX = this.roomData.getModel().getMapSizeX();
+		int mapSizeY = this.roomData.getModel().getMapSizeY();
+
+		if (neighbour.getX() >= mapSizeX || neighbour.getY() >= mapSizeY) {
+			return false;
+		}
+
+		if (current.getX() >= mapSizeX || current.getY() >= mapSizeY) {
+			return false;
+		}
+
+		if (neighbour.getX() < 0 || neighbour.getY() < 0) {
+			return false;
+		}
+
+		if (current.getX() < 0 || current.getY() < 0) {
+			return false;
+		}
+
+		if (this.roomData.getModel().isBlocked(current.getX(), current.getY())) {
+			return false;
+		}
+
+		if (this.roomData.getModel().isBlocked(neighbour.getX(), neighbour.getY())) {
+			return false;
+		}
+
+		return true;
 	}
 
 }

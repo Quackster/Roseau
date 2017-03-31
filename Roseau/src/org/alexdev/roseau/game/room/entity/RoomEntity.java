@@ -3,6 +3,8 @@ package org.alexdev.roseau.game.room.entity;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import javax.swing.text.Position;
+
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
@@ -24,6 +26,7 @@ public abstract class RoomEntity {
 
 	private Point position;
 	private Point goal;
+	private Point next = null;
 
 	private int rotation;
 	private int headRotation;
@@ -33,8 +36,8 @@ public abstract class RoomEntity {
 
 	private Room room;
 
-	private boolean isWalking;
-	private boolean needsUpdate;
+	private boolean isWalking = false;
+	private boolean needsUpdate = false;
 
 	private IEntity entity;
 
@@ -45,7 +48,37 @@ public abstract class RoomEntity {
 		this.dispose();
 		this.entity = entity;
 	}
-	
+
+	public void setStatus(String key, String value) {
+
+		if (value.length() > 0) {
+			this.statuses.put(key, value);
+		} else {
+			this.statuses.remove(key);
+		}
+		
+		this.needsUpdate = true;
+	}
+
+	public void walk() {
+
+		if (this.isWalking) {
+			if (this.next != null) {
+
+				Point next = this.next;
+	            this.position.setZ(this.getRoom().getData().getModel().getHeight(next.getX(), next.getY()));
+	            this.position = next;
+				
+			}
+		}
+
+	}
+
+	public void stopWalking() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void chat(String message, int bubble, int count, boolean shout, boolean spamCheck) {
 
 		boolean isStaff = false;
@@ -96,7 +129,7 @@ public abstract class RoomEntity {
 		if (this.path != null) {
 			this.path.clear();
 		}
-		
+
 		this.statuses = null;
 		this.path = null;
 
@@ -105,7 +138,7 @@ public abstract class RoomEntity {
 
 		this.position = null;
 		this.goal = null;
-		
+
 		this.position = new Point(0, 0, 0);
 		this.goal = new Point(0, 0, 0);
 
@@ -131,20 +164,14 @@ public abstract class RoomEntity {
 		this.goal = goal;
 	}
 
-	public void stopWalking(boolean needsUpdate) {
-
-
-
-	}
-
 	public STATUS getStatusComposer() {
 		return new STATUS(this.entity);
 	}
-	
+
 	public USERS getUsersComposer() {
 		return new USERS(this.entity);
 	}
-	
+
 	public void updateStatus() {
 		this.room.send(new STATUS(this.entity));
 	}
@@ -248,5 +275,13 @@ public abstract class RoomEntity {
 
 	public IEntity getEntity() {
 		return entity;
+	}
+
+	public Point getNext() {
+		return next;
+	}
+
+	public void setNext(Point next) {
+		this.next = next;
 	}
 }

@@ -59,7 +59,7 @@ public class Roseau {
 
 
 		} catch (Exception e) {
-			return;
+			
 		}
 	}
 

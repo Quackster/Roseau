@@ -5,6 +5,7 @@ import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.game.room.player.RoomUser;
 import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
 import org.alexdev.roseau.server.IPlayerNetwork;
+import org.alexdev.roseau.server.messages.Response;
 
 public class Player implements IEntity {
 
@@ -48,6 +49,7 @@ public class Player implements IEntity {
 		return network;
 	}
 
+	
 	public void send(OutgoingMessageComposer response) {
 		this.network.send(response);
 	}
@@ -61,5 +63,6 @@ public class Player implements IEntity {
 	public RoomUser getRoomUser() {
 		return this.roomEntity;
 	}
+
 
 }

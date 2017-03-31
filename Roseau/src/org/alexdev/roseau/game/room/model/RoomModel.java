@@ -19,6 +19,8 @@
 
 package org.alexdev.roseau.game.room.model;
 
+import org.alexdev.roseau.log.Log;
+
 public class RoomModel 
 {
 	public final static int OPEN = 0;
@@ -41,50 +43,61 @@ public class RoomModel
 
 	public RoomModel(String name, String heightmap, int doorX, int doorY, int doorZ, int doorRot, String publicItems) {
 		
-		this.name = name;
-		this.heightmap = heightmap.replace(" ", (char)13 + "");
-		this.publicItems = publicItems.replace(" " + (char)10, "");
-		this.doorX = doorX;
-		this.doorY = doorY;
-		this.doorZ = doorZ;
-		this.doorRot = doorRot;
+		if (heightmap.contains((char)13 + "")) {
+			return;
+		}
+		
+		try {
+			this.name = name;
+			this.heightmap = heightmap.replace(" ", (char)13 + "");
+			this.publicItems = publicItems.replace(" " + (char)10, "");
+			this.doorX = doorX;
+			this.doorY = doorY;
+			this.doorZ = doorZ;
+			this.doorRot = doorRot;
 
-		String[] temporary = heightmap.split(Character.toString((char)13));
+			String[] temporary = heightmap.split(" ");
 
-		this.mapSizeX = temporary[0].length();
-		this.mapSizeY = temporary.length;
-		this.squares = new int[mapSizeX][mapSizeY];
-		this.squareHeight = new double[mapSizeX][mapSizeY];
-		this.squareChar = new String[mapSizeX][mapSizeY];
+			this.mapSizeX = temporary[0].length();
+			this.mapSizeY = temporary.length;
+			this.squares = new int[mapSizeX][mapSizeY];
+			this.squareHeight = new double[mapSizeX][mapSizeY];
+			this.squareChar = new String[mapSizeX][mapSizeY];
 
-		for (int y = 0; y < mapSizeY; y++) {
-			
-			if (y > 0) {
-				temporary[y] = temporary[y].substring(1);
-			}
-
-			for (int x = 0; x < mapSizeX; x++) {
+			for (int y = 0; y < mapSizeY; y++) {
 				
-				String square = temporary[y].substring(x,x + 1).trim().toLowerCase();
-
-				if (square.equals("x"))	{
-					squares[x][y] = CLOSED;
-					
-				} else if(isNumeric(square)) {
-					
-					squares[x][y] = OPEN;
-					squareHeight[x][y] = Double.parseDouble(square);
+				if (y > 0) {
+					temporary[y] = temporary[y];
 				}
-				
-				
-				if (this.doorX == x && this.doorY == y) {
-					squares[x][y] = OPEN;
-					squareHeight[x][y] = Double.parseDouble(this.doorZ + "");
-				}
-				
-				squareChar[x][y] = square;
 
+				for (int x = 0; x < mapSizeX; x++) {
+					
+					//Log.println(temporary[y].substring(x,  x +1));
+					
+					String square = temporary[y].substring(x,x + 1).trim().toLowerCase();
+
+					if (square.equals("x"))	{
+						squares[x][y] = CLOSED;
+						
+					} else if(isNumeric(square)) {
+						
+						squares[x][y] = OPEN;
+						squareHeight[x][y] = Double.parseDouble(square);
+					}
+					
+					
+					if (this.doorX == x && this.doorY == y) {
+						squares[x][y] = OPEN;
+						squareHeight[x][y] = Double.parseDouble(this.doorZ + "");
+					}
+					
+					squareChar[x][y] = square;
+
+				}
 			}
+		} catch (Exception e) {
+			Log.println("Error parsing room model: " + this.name);
+			e.printStackTrace();
 		}
 
 	}

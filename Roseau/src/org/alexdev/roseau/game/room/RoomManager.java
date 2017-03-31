@@ -1,5 +1,7 @@
 package org.alexdev.roseau.game.room;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +40,16 @@ public class RoomManager {
 	
 	public List<Room> getPublicRooms() {
 		try {
-			return this.loadedRooms.stream().filter(room -> room.getData().getRoomType() == RoomType.PUBLIC && room.getData().isHidden() == false).collect(Collectors.toList());
+			List<Room> rooms =  this.loadedRooms.stream().filter(room -> room.getData().getRoomType() == RoomType.PUBLIC && room.getData().isHidden() == false).collect(Collectors.toList());
+			
+			Collections.sort(rooms,new Comparator<Room>() {
+			    @Override
+			    public int compare(Room a, Room b) {
+			        return b.getUsers().size() - a.getUsers().size();
+			    }
+			});
+			
+			return rooms;
 		} catch (Exception e) {
 			return null;
 		}
