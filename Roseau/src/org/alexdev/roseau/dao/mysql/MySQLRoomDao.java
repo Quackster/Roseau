@@ -80,7 +80,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 				int id = resultSet.getInt("id");
 
-				Room room = Roseau.getGame().getRoomManager().find(id);
+				Room room = Roseau.getGame().getRoomManager().getRoomById(id);
 
 				if (room == null) {
 					room = this.fill(resultSet);
@@ -123,7 +123,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 				int id = resultSet.getInt("id");
 
-				Room room = Roseau.getGame().getRoomManager().find(id);
+				Room room = Roseau.getGame().getRoomManager().getRoomById(id);
 
 				if (room == null) {
 					room = this.fill(resultSet);
@@ -170,7 +170,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 				int id = resultSet.getInt("id");
 
-				room = Roseau.getGame().getRoomManager().find(id);
+				room = Roseau.getGame().getRoomManager().getRoomById(id);
 
 				if (room == null) {
 					room = this.fill(resultSet);

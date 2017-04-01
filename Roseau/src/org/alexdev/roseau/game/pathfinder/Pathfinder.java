@@ -56,8 +56,6 @@ public class Pathfinder {
 		map[current.getPosition().getX()][current.getPosition().getY()] = current;
 		openList.add(current);
 
-		System.out.println("openList: " + (openList.size() > 0));
-
 		while (openList.size() > 0) {
 			current = openList.pollFirst();
 			current.setInClosed(true);

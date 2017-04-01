@@ -63,7 +63,7 @@ public class RoomManager {
 		}
 	}
 
-	public Room find(int roomId) {
+	public Room getRoomById(int roomId) {
 
 		try {
 			return Roseau.getGame().getRoomManager().getLoadedRooms().stream().filter(r -> r.getData().getId() == roomId).findFirst().get();

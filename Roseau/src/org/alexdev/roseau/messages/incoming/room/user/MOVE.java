@@ -25,7 +25,7 @@ public class MOVE implements MessageEvent {
 			return;
 		}
 		
-		if (player.getRoomEntity().getRoom().getData().getModel().isBlocked(x, y)) {
+		if (!player.getRoomEntity().getRoom().getRoomMapping().isValidTile(x, y)) {
 			return;
 		}
 		
@@ -33,8 +33,6 @@ public class MOVE implements MessageEvent {
 			return;
 		}
 
-		System.out.println("walk req (" + x + ", " + y + ")");
-		
 		RoomEntity roomEntity = player.getRoomEntity();
 		roomEntity.getGoal().setX(x);
 		roomEntity.getGoal().setY(y);
@@ -42,12 +40,10 @@ public class MOVE implements MessageEvent {
 		LinkedList<Point> path = Pathfinder.makePath(player);
 
 		if (path == null) {
-			System.out.println("lol112233");
 			return;
 		}
 
 		if (path.size() == 0) {
-			System.out.println("lol123");
 			return;
 		}
 		

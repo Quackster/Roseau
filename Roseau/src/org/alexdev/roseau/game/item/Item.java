@@ -1,6 +1,9 @@
 package org.alexdev.roseau.game.item;
 
+import java.util.List;
+
 import org.alexdev.roseau.Roseau;
+import org.alexdev.roseau.game.pathfinder.AffectedTile;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
@@ -40,6 +43,33 @@ public class Item implements SerializableObject {
 		}
 	}
 	
+	public List<AffectedTile> getAffectedTiles() {
+		ItemDefinition definition = this.getDefinition();
+		return AffectedTile.getAffectedTilesAt(definition.getLength(), definition.getWidth(), this.x, this.y, this.rotation);
+	}
+	
+	public boolean canWalk() {
+
+		ItemDefinition definition = this.getDefinition();
+		
+	    boolean tile_valid = false;
+
+	    if (definition.getBehaviour().isCanSitOnTop()) {
+	        tile_valid = true;
+	    }
+
+	    if (definition.getBehaviour().isCanLayOnTop()) {
+	        tile_valid = true;
+	    }
+
+	    if (definition.getBehaviour().isCanStandOnTop()) {
+	        tile_valid = true;
+	    }
+
+	    return tile_valid; 
+	}
+
+	
 	public int getId() {
 		return id;
 	}
@@ -76,8 +106,5 @@ public class Item implements SerializableObject {
 	public void setZ(int z) {
 		this.z = z;
 	}
-
-
-
 
 }

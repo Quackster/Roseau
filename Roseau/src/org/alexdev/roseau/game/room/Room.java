@@ -174,7 +174,7 @@ public class Room implements Runnable {
 		} else {
 			if (this.tickTask == null) {
 				this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
-				Log.println("started...");
+				this.roomMapping.regenerateCollisionMaps();
 			}
 		}
 
@@ -403,6 +403,10 @@ public class Room implements Runnable {
 			if ((heightNeighour - heightCurrent) >= 1.2) {
 				return false;
 			}
+		}
+		
+		if (!this.roomMapping.isValidTile(current.getX(), current.getY())) {
+			return false;
 		}
 
 		return true;
