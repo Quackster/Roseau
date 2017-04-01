@@ -107,4 +107,12 @@ public class Item implements SerializableObject {
 		this.z = z;
 	}
 
+	public int getRotation() {
+		return rotation;
+	}
+
+	public void setRotation(int rotation) {
+		this.rotation = rotation;
+	}
+
 }

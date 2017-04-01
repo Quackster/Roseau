@@ -103,7 +103,7 @@ public class Room implements Runnable {
 				Point next = roomEntity.getPath().pop();
 
 				roomEntity.removeStatus("lay");
-				roomEntity.removeStatus("");
+				roomEntity.removeStatus("sit");
 
 				int rotation = Rotation.calculate(roomEntity.getPosition().getX(), roomEntity.getPosition().getY(), next.getX(), next.getY());
 				double height = this.roomData.getModel().getHeight(next.getX(), next.getY());

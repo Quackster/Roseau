@@ -5,11 +5,14 @@ import java.util.LinkedList;
 
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.RoomModel;
+import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
 import org.alexdev.roseau.messages.outgoing.room.user.CHAT_MESSAGE;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.IEntity;
+import org.alexdev.roseau.game.item.Item;
+import org.alexdev.roseau.game.item.ItemDefinition;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.model.Point;
 import org.alexdev.roseau.util.GameSettings;
@@ -73,6 +76,19 @@ public class RoomEntity {
 	public void stopWalking() {
 		
 		this.removeStatus("mv");
+		
+		Item item = this.room.getRoomMapping().getHighestItem(this.position.getX(), this.position.getY());
+		
+		if (item != null) {
+			ItemDefinition definition = item.getDefinition();
+			
+			if (definition.getBehaviour().isCanSitOnTop()) {
+				this.setRotation(item.getRotation(), false);
+				
+				this.removeStatus("dance");
+				this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()));
+			}
+		}
 		
 		this.isWalking = false;
 		this.needsUpdate = true;

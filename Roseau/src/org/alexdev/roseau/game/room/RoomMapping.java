@@ -80,5 +80,9 @@ public class RoomMapping {
 	    // just check the default model if the tile is valid
 	    return tile_valid;
 	}
+	
+	public Item getHighestItem(int x, int y) {
+		return this.tiles[x][y].getHighestItem();
+	}
 
 }
