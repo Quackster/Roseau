@@ -377,6 +377,23 @@ public class Room implements Runnable {
 		if (this.roomData.getModel().isBlocked(neighbour.getX(), neighbour.getY())) {
 			return false;
 		}
+		
+		double heightCurrent = this.roomData.getModel().getHeight(current);
+		double heightNeighour = this.roomData.getModel().getHeight(neighbour);
+		
+		if (heightCurrent > heightNeighour) {
+			
+			if ((heightCurrent - heightNeighour) >= 3.0) {
+				return false;
+			}
+		}
+		
+		if (heightNeighour > heightCurrent) {
+			
+			if ((heightNeighour - heightCurrent) >= 1.2) {
+				return false;
+			}
+		}
 
 		return true;
 	}

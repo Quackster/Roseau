@@ -1,4 +1,4 @@
-package org.alexdev.icarus.game.pathfinder;
+package org.alexdev.roseau.game.pathfinder;
 
 import org.alexdev.roseau.game.room.model.Point;
 
