@@ -8,8 +8,11 @@ import org.alexdev.roseau.messages.incoming.login.GETCREDITS;
 import org.alexdev.roseau.messages.incoming.login.INFORETRIEVE;
 import org.alexdev.roseau.messages.incoming.login.LOGIN;
 import org.alexdev.roseau.messages.incoming.navigator.INITUNITLISTENER;
-import org.alexdev.roseau.messages.incoming.room.MOVE;
 import org.alexdev.roseau.messages.incoming.room.STATUSOK;
+import org.alexdev.roseau.messages.incoming.room.user.DANCE;
+import org.alexdev.roseau.messages.incoming.room.user.MOVE;
+import org.alexdev.roseau.messages.incoming.room.user.STOP;
+import org.alexdev.roseau.messages.incoming.room.user.TALK;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 import com.google.common.collect.Maps;
@@ -44,6 +47,11 @@ public class MessageHandler {
 	private void registerRoomPackets() {
 		this.messages.put("STATUSOK", new STATUSOK());
 		this.messages.put("Move", new MOVE());
+		this.messages.put("Dance", new DANCE());
+		this.messages.put("STOP", new STOP());
+		this.messages.put("CHAT", new TALK());
+		this.messages.put("SHOUT", new TALK());
+		this.messages.put("WHISPER", new TALK());
 	}
 	
 	

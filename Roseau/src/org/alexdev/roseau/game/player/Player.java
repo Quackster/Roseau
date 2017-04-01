@@ -2,7 +2,7 @@ package org.alexdev.roseau.game.player;
 
 import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.entity.IEntity;
-import org.alexdev.roseau.game.room.player.RoomUser;
+import org.alexdev.roseau.game.room.entity.RoomEntity;
 import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
 import org.alexdev.roseau.server.IPlayerNetwork;
 import org.alexdev.roseau.server.messages.Response;
@@ -12,12 +12,12 @@ public class Player implements IEntity {
 	private String machineId;
 	private PlayerDetails details;
 	private IPlayerNetwork network;
-	private RoomUser roomEntity;
+	private RoomEntity roomEntity;
 
 	public Player(IPlayerNetwork network) {
 		this.network = network;
 		this.details = new PlayerDetails(this);
-		this.roomEntity = new RoomUser(this);
+		this.roomEntity = new RoomEntity(this);
 	}
 
 	public void login() {
@@ -60,7 +60,7 @@ public class Player implements IEntity {
 	}
 	
 	@Override
-	public RoomUser getRoomUser() {
+	public RoomEntity getRoomEntity() {
 		return this.roomEntity;
 	}
 

@@ -27,9 +27,9 @@ public class USERS implements OutgoingMessageComposer {
 			response.appendArgument("");
 			response.appendArgument(entity.getDetails().getUsername());
 			response.appendArgument(entity.getDetails().getFigure());
-			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getX()));
-			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getY()));
-			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getZ()));
+			response.appendArgument(String.valueOf(entity.getRoomEntity().getPosition().getX()));
+			response.appendArgument(String.valueOf(entity.getRoomEntity().getPosition().getY()));
+			response.appendArgument(String.valueOf(entity.getRoomEntity().getPosition().getZ()));
 			response.appendArgument(entity.getDetails().getMission());
 		}
 	}

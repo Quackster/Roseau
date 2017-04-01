@@ -9,6 +9,7 @@ import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
+import org.alexdev.roseau.messages.outgoing.room.user.CHAT_MESSAGE;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.game.player.Player;
@@ -18,7 +19,7 @@ import org.alexdev.roseau.util.GameSettings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-public abstract class RoomEntity {
+public class RoomEntity {
 
 	private int virtualId;
 	private int lastChatId;
@@ -49,13 +50,12 @@ public abstract class RoomEntity {
 		this.entity = entity;
 	}
 
+	public void removeStatus(String key) {
+		this.statuses.remove(key);
+	}
+	
 	public void setStatus(String key, String value) {
-
-		if (value.length() > 0) {
-			this.statuses.put(key, value);
-		} else {
-			this.statuses.remove(key);
-		}
+		this.statuses.put(key, value);
 	}
 
 	public void walk() {
@@ -73,12 +73,14 @@ public abstract class RoomEntity {
 	}
 
 	public void stopWalking() {
-        //this.position.setZ(this.getRoom().getData().getModel().getHeight(this.position.getX(),this.position.getY()));
 		
+		this.removeStatus("mv");
+		
+		this.isWalking = false;
 		this.needsUpdate = true;
 	}
 
-	public void chat(String message, int bubble, int count, boolean shout, boolean spamCheck) {
+	public void chat(String talkMessage, String header, boolean spamCheck) {
 
 		boolean isStaff = false;
 		Player player = null;
@@ -101,8 +103,7 @@ public abstract class RoomEntity {
 			}
 		}
 
-
-		//this.room.send(new TalkMessageComposer(this, shout, message, count, bubble));
+		this.room.send(new CHAT_MESSAGE(this, talkMessage, header));
 
 		if (spamCheck) {
 			if (!player.getDetails().hasFuse("moderator")) {
@@ -283,4 +284,5 @@ public abstract class RoomEntity {
 	public void setNext(Point next) {
 		this.next = next;
 	}
+
 }

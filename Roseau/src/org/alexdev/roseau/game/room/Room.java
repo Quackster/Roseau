@@ -12,7 +12,6 @@ import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomEntity;
 import org.alexdev.roseau.game.room.model.Point;
 import org.alexdev.roseau.game.room.model.Rotation;
-import org.alexdev.roseau.game.room.player.RoomUser;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
@@ -54,13 +53,13 @@ public class Room implements Runnable {
 				IEntity entity = entities.get(i);
 
 				if (entity != null) {
-					if (entity.getRoomUser() != null) {
+					if (entity.getRoomEntity() != null) {
 
 						this.processEntity(entity);
 
-						RoomEntity room_user = entity.getRoomUser();
+						RoomEntity roomEntity = entity.getRoomEntity();
 
-						if (room_user.needsUpdate()) {
+						if (roomEntity.needsUpdate()) {
 							update_entities.add(entity);
 						}
 					}
@@ -71,13 +70,9 @@ public class Room implements Runnable {
 				this.send(new STATUS(update_entities));
 
 				for (IEntity entity : update_entities) {
-					
-
-
-					entity.getRoomUser().walk();
-					
-					if (entity.getRoomUser().needsUpdate()) {
-						entity.getRoomUser().setNeedUpdate(false);
+					entity.getRoomEntity().walk();
+					if (entity.getRoomEntity().needsUpdate()) {
+						entity.getRoomEntity().setNeedUpdate(false);
 					}
 				}
 			}
@@ -90,29 +85,29 @@ public class Room implements Runnable {
 
 	private void processEntity(IEntity entity) {
 
-		RoomEntity roomUser = entity.getRoomUser();
+		RoomEntity roomEntity = entity.getRoomEntity();
 
-		if (roomUser.isWalking()) {
-			if (roomUser.getPath().size() > 0) {
+		if (roomEntity.isWalking()) {
+			if (roomEntity.getPath().size() > 0) {
 
-				Point next = roomUser.getPath().pop();
+				Point next = roomEntity.getPath().pop();
 
-				roomUser.setStatus("lay", "");
-				roomUser.setStatus("sit", "");
+				roomEntity.removeStatus("lay");
+				roomEntity.removeStatus("");
 
-				int rotation = Rotation.calculate(roomUser.getPosition().getX(), roomUser.getPosition().getY(), next.getX(), next.getY());
+				int rotation = Rotation.calculate(roomEntity.getPosition().getX(), roomEntity.getPosition().getY(), next.getX(), next.getY());
 				double height = this.roomData.getModel().getHeight(next.getX(), next.getY());
 
-				roomUser.setRotation(rotation, false);
+				roomEntity.setRotation(rotation, false);
 
-				roomUser.setStatus("mv", next.getX() + "," + next.getY() + "," + (int)height);
-				roomUser.setNeedUpdate(true);
-				roomUser.setNext(next);
+				roomEntity.setStatus("mv", " " + next.getX() + "," + next.getY() + "," + (int)height);
+				roomEntity.setNeedUpdate(true);
+				roomEntity.setNext(next);
 
 			}
 			else {
-				roomUser.setNext(null);
-				roomUser.setNeedUpdate(true);
+				roomEntity.setNext(null);
+				roomEntity.setNeedUpdate(true);
 			}
 		}
 	}
@@ -120,16 +115,15 @@ public class Room implements Runnable {
 
 	public void loadRoom(Player player) {
 
-		RoomUser roomUser = player.getRoomUser();
+		RoomEntity roomEntity = player.getRoomEntity();
 
-		roomUser.setRoom(this);
-		roomUser.setLoadingRoom(true);
-		roomUser.getStatuses().clear();
+		roomEntity.setRoom(this);
+		roomEntity.getStatuses().clear();
 
-		roomUser.getPosition().setX(this.roomData.getModel().getDoorX());
-		roomUser.getPosition().setY(this.roomData.getModel().getDoorY());
-		roomUser.getPosition().setZ(this.roomData.getModel().getDoorZ());
-		roomUser.setRotation(this.roomData.getModel().getDoorRot(), false);	
+		roomEntity.getPosition().setX(this.roomData.getModel().getDoorX());
+		roomEntity.getPosition().setY(this.roomData.getModel().getDoorY());
+		roomEntity.getPosition().setZ(this.roomData.getModel().getDoorZ());
+		roomEntity.setRotation(this.roomData.getModel().getDoorRot(), false);	
 
 		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
 			player.send(new ACTIVE_OBJECTS());
@@ -151,7 +145,7 @@ public class Room implements Runnable {
 
 			}
 
-			if (roomUser.getRoom().hasRights(player.getDetails().getId(), true)) {
+			if (roomEntity.getRoom().hasRights(player.getDetails().getId(), true)) {
 
 
 			} else {
@@ -165,8 +159,8 @@ public class Room implements Runnable {
 		}
 
 		if (this.entities.size() > 0) {
-			this.send(player.getRoomUser().getUsersComposer());
-			this.send(player.getRoomUser().getStatusComposer());
+			this.send(player.getRoomEntity().getUsersComposer());
+			this.send(player.getRoomEntity().getStatusComposer());
 		} else {
 			if (this.tickTask == null) {
 				this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
@@ -201,10 +195,10 @@ public class Room implements Runnable {
 
 		//this.send(new RemoveUserMessageComposer(player.getRoomUser().getVirtualId()));
 
-		RoomUser roomUser = player.getRoomUser();
+		RoomEntity roomUser = player.getRoomEntity();
 
 		roomUser.setWalking(false);
-		roomUser.reset();
+		roomUser.dispose();
 
 		if (this.entities != null) {
 			this.entities.remove(player);
