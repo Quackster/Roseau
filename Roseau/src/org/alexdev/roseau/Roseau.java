@@ -40,20 +40,18 @@ public class Roseau {
 			createConfig();
 			Log.startup();
 			loadDependencies();
-
-			serverIP = utilities.getConfiguration().get("server-ip");
-			serverPort = Integer.valueOf(utilities.getConfiguration().get("server-port"));
 			
-			if (utilities.getConfiguration().get("database-type").equalsIgnoreCase("mysql")) {
+			serverIP = utilities.getConfiguration().get("Server", "server.ip", String.class);
+			serverPort = utilities.getConfiguration().get("Server", "server.port", int.class);	
+			
+			if (utilities.getConfiguration().get("Database", "type", String.class).equalsIgnoreCase("mysql")) {
 				dao = new MySQLDao();
 			}
 
 			if (dao.isConnected()) {
 				game = new Game(dao);
 				game.load();
-
 				Log.println();
-				
 				startServer();
 			}
 
@@ -122,7 +120,17 @@ public class Roseau {
 		if (!file.isFile()) { 
 			file.createNewFile();
 			PrintWriter writer = new PrintWriter(file.getAbsoluteFile());
-			writeConfiguration(writer);
+			writeMainConfiguration(writer);
+			writer.flush();
+			writer.close();
+		}
+		
+		file = new File("habbohotel.properties");
+
+		if (!file.isFile()) { 
+			file.createNewFile();
+			PrintWriter writer = new PrintWriter(file.getAbsoluteFile());
+			writeHabboHotelConfiguration(writer);
 			writer.flush();
 			writer.close();
 		}
@@ -130,58 +138,50 @@ public class Roseau {
 		utilities = new Util();
 	}
 
-	private static void writeConfiguration(PrintWriter writer) {
-
-		writer.println("#######################");
-		writer.println("###  Server Config  ###");
-		writer.println("#######################");
+	private static void writeMainConfiguration(PrintWriter writer) {
+		writer.println("[Server]");
+		writer.println("server.ip=127.0.0.1");
+		writer.println("server.port=30000");
 		writer.println();
-		writer.println("server-ip=127.0.0.1");
-		writer.println("server-port=30000");
+		writer.println("[Database]");
+		writer.println("type=mysql");
+		writer.println("mysql.hostname=127.0.0.1");
+		writer.println("mysql.username=user");
+		writer.println("mysql.password=");
+		writer.println("mysql.database=roseau");
 		writer.println();
-		writer.println("#########################");
-		writer.println("###  Database Config  ###");
-		writer.println("#########################");
+		writer.println("[Logging]");
+		writer.println("log.errors=true");
+		writer.println("log.output=true");
+		writer.println("log.connections=true");
+		writer.println("log.packets=true");
 		writer.println();
-		writer.println("database-type=mysql");
-		writer.println();
-		writer.println("mysql-hostname=127.0.0.1");
-		writer.println("mysql-username=user");
-		writer.println("mysql-password=");
-		writer.println("mysql-database=roseau");
-		writer.println();
-		writer.println("########################");
-		writer.println("###  Logging Config  ###");
-		writer.println("########################");
-		writer.println();
-		writer.println("log-errors=true");
-		writer.println("log-output=true");
-		writer.println("log-connections=true");
-		writer.println("log-packets=true");
-		writer.println();
-		writer.println("#######################");
-		writer.println("###  Plugin Config  ###");
-		writer.println("#######################");
-		writer.println();
-		writer.println("plugin.runtime.timeout=5");
-		writer.println("plugin.runtime.timeout.unit=SECONDS");
 
 	}
 
+	private static void writeHabboHotelConfiguration(PrintWriter writer) {
+		writer.println("[Register]");
+		writer.println("user.name.chars=1234567890qwertyuiopasdfghjklzxcvbnm-=?!@:.,");
+		writer.println();
+
+	}
+
+	
 	private static void startServer() {
 
-		String IPAddress = utilities.getConfiguration().get("server-ip");
-		int serverPort = Integer.valueOf(utilities.getConfiguration().get("server-port"));
+		String serverIP = utilities.getConfiguration().get("Server", "server.ip", String.class);
+		int serverPort = utilities.getConfiguration().get("Server", "server.port", int.class);
+		
 
 		Log.println("Settting up server");
 
-		server.setIp(IPAddress);
+		server.setIp(serverIP);
 		server.setPort(serverPort);
 
 		if (server.listenSocket()) {
-			Log.println("Server is listening on " + IPAddress + ":" + serverPort);
+			Log.println("Server is listening on " + serverIP + ":" + serverPort);
 		} else {
-			Log.println("Server could not listen on " + IPAddress + ":" + serverPort + ", please double check everything is correct in icarus.properties");
+			Log.println("Server could not listen on " + serverPort + ":" + serverPort + ", please double check everything is correct in icarus.properties");
 		}
 	}
 

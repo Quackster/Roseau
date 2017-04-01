@@ -332,11 +332,11 @@ public class ItemBehaviour
 		return canStackOnTop;
 	}
 
-	public boolean isRequiresRightsForInteraction() {
+	public boolean getRequiresRightsForInteraction() {
 		return requiresRightsForInteraction;
 	}
 
-	public boolean isRequiresTouchingForInteraction() {
+	public boolean getRequiresTouchingForInteraction() {
 		return requiresTouchingForInteraction;
 	}
 

@@ -21,9 +21,40 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 	}
 
 	@Override
+	public void createPlayer(String username, String password, String email, String mission, String figure, int credits, String sex, String birthday) {
+		
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			sqlConnection = this.dao.getStorage().getConnection();
+			
+			preparedStatement = this.dao.getStorage().prepare("INSERT INTO users (username, password, email, mission, figure, credits, sex, birthday) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", sqlConnection);
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, password);
+			preparedStatement.setString(3, email);
+			preparedStatement.setString(4, mission);
+			preparedStatement.setString(5, figure);
+			preparedStatement.setInt(6, Roseau.getUtilities().getHabboConfig().get("Register", "user.default.credits", int.class));
+			preparedStatement.setString(7, sex);
+			preparedStatement.setString(8, birthday);
+			preparedStatement.execute();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(resultSet);
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
+	}
+	
+	@Override
 	public PlayerDetails getDetails(int userId) {
 
-		Player player = Roseau.getGame().getPlayerManager().findById(userId);
+		Player player = Roseau.getGame().getPlayerManager().getById(userId);
 		PlayerDetails details = new PlayerDetails(player);
 		
 		if (player != null) {
@@ -124,5 +155,36 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 	public PlayerDetails fill(PlayerDetails details, ResultSet row) throws SQLException {
 		details.fill(row.getInt("id"), row.getString("username"), row.getString("mission"), row.getString("figure"), row.getString("email"), row.getInt("rank"), row.getInt("credits"), row.getString("sex"), row.getString("country"), row.getString("badge"), row.getString("birthday"));
 		return details;
+	}
+
+	@Override
+	public boolean isNameTaken(String name) {
+		boolean nameTaken = false;
+		
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+
+			sqlConnection = this.dao.getStorage().getConnection();
+			preparedStatement = this.dao.getStorage().prepare("SELECT id FROM users WHERE username = ? LIMIT 1", sqlConnection);
+			preparedStatement.setString(1, name);
+			
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				nameTaken = true;
+			}
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(resultSet);
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
+		
+		return nameTaken;
 	}
 }

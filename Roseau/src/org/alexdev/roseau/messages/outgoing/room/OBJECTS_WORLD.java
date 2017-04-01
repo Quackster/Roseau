@@ -2,7 +2,6 @@ package org.alexdev.roseau.messages.outgoing.room;
 
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.room.Room;
-import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 

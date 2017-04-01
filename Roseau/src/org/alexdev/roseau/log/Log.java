@@ -48,7 +48,7 @@ public class Log {
 			System.out.println(string);
 		}
 
-		if (Roseau.getUtilities().getConfiguration().getBoolean("log-output")) {
+		if (Roseau.getUtilities().getConfiguration().get("Logging", "log.output", boolean.class)) {
 			writeToFile("log/output.log", string);
 		}
 
@@ -65,7 +65,7 @@ public class Log {
 		e.printStackTrace();
 		println("---------------------------------------------");
 
-		if (Roseau.getUtilities().getConfiguration().getBoolean("log-errors")) {
+		if (Roseau.getUtilities().getConfiguration().get("Logging", "log.errors", boolean.class)) {
 			writeToFile("log/error.log", "---------------------------------------------");
 			writeToFile("log/error.log", " " + DateTime.now() + " - Error has occured!");
 			writeToFile("log/error.log", exceptionAsString);

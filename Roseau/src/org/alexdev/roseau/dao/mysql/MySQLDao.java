@@ -28,11 +28,11 @@ public class MySQLDao implements Dao {
 	public boolean connect() {
 
 		Log.println("Connecting to MySQL server");
-
-		storage = new Storage(Roseau.getUtilities().getConfiguration().get("mysql-hostname"), 
-				Roseau.getUtilities().getConfiguration().get("mysql-username"), 
-				Roseau.getUtilities().getConfiguration().get("mysql-password"), 
-				Roseau.getUtilities().getConfiguration().get("mysql-database")); 
+		
+		storage = new Storage(Roseau.getUtilities().getConfiguration().get("Database", "mysql.hostname", String.class), 
+				Roseau.getUtilities().getConfiguration().get("Database", "mysql.username", String.class), 
+				Roseau.getUtilities().getConfiguration().get("Database", "mysql.password", String.class), 
+				Roseau.getUtilities().getConfiguration().get("Database", "mysql.database", String.class)); 
 
 		isConnected = storage.isConnected();
 

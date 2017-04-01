@@ -9,6 +9,9 @@ import org.alexdev.roseau.messages.incoming.login.INFORETRIEVE;
 import org.alexdev.roseau.messages.incoming.login.LOGIN;
 import org.alexdev.roseau.messages.incoming.navigator.GETUNITUSERS;
 import org.alexdev.roseau.messages.incoming.navigator.INITUNITLISTENER;
+import org.alexdev.roseau.messages.incoming.register.APPROVENAME;
+import org.alexdev.roseau.messages.incoming.register.FINDUSER;
+import org.alexdev.roseau.messages.incoming.register.REGISTER;
 import org.alexdev.roseau.messages.incoming.room.CREATEFLAT;
 import org.alexdev.roseau.messages.incoming.room.GOAWAY;
 import org.alexdev.roseau.messages.incoming.room.STATUSOK;
@@ -33,13 +36,9 @@ public class MessageHandler {
 		this.messages.clear();
 		this.registerHandshakePackets();
 		this.registerLoginPackets();
+		this.registerRegisterPackets();
 		this.registerNavigatorPackets();
 		this.registerRoomPackets();
-	}
-
-	private void registerNavigatorPackets() {
-		this.messages.put("INITUNITLISTENER", new INITUNITLISTENER());
-		this.messages.put("GETUNITUSERS", new GETUNITUSERS());
 	}
 
 	private void registerHandshakePackets() {
@@ -49,8 +48,18 @@ public class MessageHandler {
 	private void registerLoginPackets() {
 		this.messages.put("LOGIN", new LOGIN());
 		this.messages.put("INFORETRIEVE", new INFORETRIEVE());
-
 		this.messages.put("GETCREDITS", new GETCREDITS());
+	}
+		
+	private void registerRegisterPackets() {
+		this.messages.put("APPROVENAME", new APPROVENAME());
+		this.messages.put("FINDUSER", new FINDUSER());
+		this.messages.put("REGISTER", new REGISTER());
+	}
+
+	private void registerNavigatorPackets() {
+		this.messages.put("INITUNITLISTENER", new INITUNITLISTENER());
+		this.messages.put("GETUNITUSERS", new GETUNITUSERS());
 	}
 	
 	private void registerRoomPackets() {

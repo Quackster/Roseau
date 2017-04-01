@@ -2,7 +2,6 @@ package org.alexdev.roseau.messages.incoming.room;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
-import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.incoming.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.room.FLATCREATED;
 import org.alexdev.roseau.server.messages.ClientMessage;

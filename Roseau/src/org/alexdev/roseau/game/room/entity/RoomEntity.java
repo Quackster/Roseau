@@ -5,7 +5,6 @@ import java.util.LinkedList;
 
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.RoomModel;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
 import org.alexdev.roseau.messages.outgoing.room.user.CHAT_MESSAGE;
@@ -60,7 +59,6 @@ public class RoomEntity {
 	}
 
 	public void walk() {
-
 		if (this.isWalking) {
 			if (this.next != null) {
 
@@ -70,7 +68,6 @@ public class RoomEntity {
 	            this.position.setY(next.getY());
 			}
 		}
-
 	}
 
 	public void stopWalking() {

@@ -21,7 +21,6 @@ import org.alexdev.roseau.messages.outgoing.room.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.room.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
-import org.alexdev.roseau.server.IServerHandler;
 
 public class Room implements Runnable {
 
@@ -267,7 +266,7 @@ public class Room implements Runnable {
 
 				this.clearData();
 
-				if (Roseau.getGame().getPlayerManager().findById(this.roomData.getOwnerId()) == null 
+				if (Roseau.getGame().getPlayerManager().getById(this.roomData.getOwnerId()) == null 
 						&& this.roomData.getRoomType() == RoomType.PRIVATE) { 
 
 					this.roomData = null;

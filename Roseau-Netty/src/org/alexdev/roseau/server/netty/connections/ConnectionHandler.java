@@ -29,7 +29,7 @@ public class ConnectionHandler extends SimpleChannelHandler {
 		
 		Player player = (Player) ctx.getChannel().getAttachment();
 		
-		if (Roseau.getUtilities().getConfiguration().getBoolean("log-connections")) {
+		if (Roseau.getUtilities().getConfiguration().get("Logging", "log.connections", Boolean.class)) {
 			Log.println("[" + player.getNetwork().getConnectionId() + "] Connection from " + ctx.getChannel().getRemoteAddress().toString().replace("/", "").split(":")[0]);
 		}
 
@@ -42,7 +42,7 @@ public class ConnectionHandler extends SimpleChannelHandler {
 		
 		Player player = (Player) ctx.getChannel().getAttachment();
 		
-		if (Roseau.getUtilities().getConfiguration().getBoolean("log-connections")) {
+		if (Roseau.getUtilities().getConfiguration().get("Logging", "log.connections", Boolean.class)) {
 			Log.println("[" + player.getNetwork().getConnectionId() + "] Disconnection from " + ctx.getChannel().getRemoteAddress().toString().replace("/", "").split(":")[0]);
 		}
 		
@@ -62,7 +62,7 @@ public class ConnectionHandler extends SimpleChannelHandler {
 				return;
 			}
 
-			if (Roseau.getUtilities().getConfiguration().getBoolean("log-packets")) {
+			if (Roseau.getUtilities().getConfiguration().get("Logging", "log.packets", Boolean.class)) {
 				Log.println("[" + player.getNetwork().getConnectionId() + "] Received: " + request.getHeader() + " / " + request.getMessageBody());
 			}
 

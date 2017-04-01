@@ -1,4 +1,4 @@
-package org.alexdev.roseau.messages.outgoing.login;
+package org.alexdev.roseau.messages.outgoing.user;
 
 import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
