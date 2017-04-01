@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.entity.IEntity;
+import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomEntity;
 import org.alexdev.roseau.game.room.model.Point;
@@ -20,7 +21,7 @@ import org.alexdev.roseau.messages.outgoing.room.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.room.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
-import org.alexdev.roseau.server.messages.Response;
+import org.alexdev.roseau.server.IServerHandler;
 
 public class Room implements Runnable {
 
@@ -28,12 +29,21 @@ public class Room implements Runnable {
 	private boolean disposed;
 
 	private RoomData roomData;
+	private RoomMapping roomMapping;
+	
 	private List<IEntity> entities;
+	private List<Item> items;
 	private ScheduledFuture<?> tickTask = null;
 
 	public Room() {
 		this.roomData = new RoomData(this);
+		this.roomMapping = new RoomMapping(this);
 		this.entities = new ArrayList<IEntity>();
+	}
+	
+
+	public void loadData() {
+		this.items = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName());
 	}
 
 
@@ -397,5 +407,26 @@ public class Room implements Runnable {
 
 		return true;
 	}
+
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+
+	public RoomMapping getRoomMapping() {
+		return roomMapping;
+	}
+
+
+	public void setRoomMapping(RoomMapping roomMapping) {
+		this.roomMapping = roomMapping;
+	}
+
 
 }

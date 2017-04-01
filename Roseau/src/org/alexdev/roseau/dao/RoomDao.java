@@ -7,7 +7,7 @@ import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.RoomModel;
 
-public interface IRoomDao {
+public interface RoomDao {
 
 	public List<Room> getPublicRooms(boolean storeInMemory);
 	public List<Room> getPlayerRooms(PlayerDetails details);

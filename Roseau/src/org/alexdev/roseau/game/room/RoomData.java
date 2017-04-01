@@ -40,6 +40,7 @@ public class RoomData {
 	
 	public void fill(int id, boolean hidden, RoomType type, int ownerId, String ownerName, String name, int state, String password, int usersNow, int usersMax, String description, String model, String clazz, String wall,String floor) {
 
+		
 		this.id = id;
 		this.hidden = hidden;
 		this.roomType = type;
@@ -55,6 +56,7 @@ public class RoomData {
 		this.clazz = clazz;
 		this.wall = wall;
 		this.floor = floor;
+		
 		
 		try {
 			if (type == RoomType.PUBLIC) {
@@ -75,6 +77,8 @@ public class RoomData {
 		} catch (Exception e) {
 			Log.exception(e);
 		}
+		
+		this.room.loadData();
 	}
 	
 	public String getName() {

@@ -2,10 +2,8 @@ package org.alexdev.roseau.messages.incoming.room.user;
 
 import java.util.LinkedList;
 
-import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.pathfinder.Pathfinder;
 import org.alexdev.roseau.game.player.Player;
-import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomEntity;
 import org.alexdev.roseau.game.room.model.Point;
 import org.alexdev.roseau.messages.incoming.MessageEvent;

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.alexdev.roseau.Roseau;
-import org.alexdev.roseau.dao.IRoomDao;
+import org.alexdev.roseau.dao.RoomDao;
 import org.alexdev.roseau.dao.util.IProcessStorage;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
@@ -21,7 +21,7 @@ import org.alexdev.roseau.log.Log;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements IRoomDao {
+public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements RoomDao {
 
 	private MySQLDao dao;
 	private Map<String, RoomModel> roomModels;
@@ -43,7 +43,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements IR
 
 			while (resultSet.next()) {
 				roomModels.put(resultSet.getString("id"), new RoomModel(resultSet.getString("id"), resultSet.getString("heightmap"), resultSet.getInt("door_x"), resultSet.getInt("door_y"), 
-						resultSet.getInt("door_z"), resultSet.getInt("door_dir"), resultSet.getString("public_items")));
+						resultSet.getInt("door_z"), resultSet.getInt("door_dir")));
 			}
 
 		} catch (Exception e) {

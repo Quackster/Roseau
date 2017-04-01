@@ -5,7 +5,6 @@ import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.game.room.entity.RoomEntity;
 import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
 import org.alexdev.roseau.server.IPlayerNetwork;
-import org.alexdev.roseau.server.messages.Response;
 
 public class Player implements IEntity {
 

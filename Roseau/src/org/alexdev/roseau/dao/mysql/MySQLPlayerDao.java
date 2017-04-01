@@ -6,13 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.alexdev.roseau.Roseau;
-import org.alexdev.roseau.dao.IPlayerDao;
+import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.util.IProcessStorage;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.log.Log;
 
-public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> implements IPlayerDao {
+public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> implements PlayerDao {
 
 	private MySQLDao dao;
 

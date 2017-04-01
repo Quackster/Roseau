@@ -3,8 +3,6 @@ package org.alexdev.roseau.game.room.entity;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import javax.swing.text.Position;
-
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
