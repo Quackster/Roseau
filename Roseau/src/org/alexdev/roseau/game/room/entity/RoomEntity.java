@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.RoomModel;
+import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
 import org.alexdev.roseau.messages.outgoing.room.user.CHAT_MESSAGE;
@@ -53,7 +54,7 @@ public class RoomEntity {
 	public void removeStatus(String key) {
 		this.statuses.remove(key);
 	}
-	
+
 	public void setStatus(String key, String value) {
 		this.statuses.put(key, value);
 	}
@@ -63,30 +64,38 @@ public class RoomEntity {
 			if (this.next != null) {
 
 				Point next = this.next;
-	            this.position.setZ(this.getRoom().getData().getModel().getHeight(next.getX(), next.getY()));
-	            this.position.setX(next.getX());
-	            this.position.setY(next.getY());
+				this.position.setZ(this.getRoom().getData().getModel().getHeight(next.getX(), next.getY()));
+				this.position.setX(next.getX());
+				this.position.setY(next.getY());
 			}
 		}
 	}
 
 	public void stopWalking() {
-		
+
 		this.removeStatus("mv");
-		
+
 		Item item = this.room.getRoomMapping().getHighestItem(this.position.getX(), this.position.getY());
-		
+
 		if (item != null) {
 			ItemDefinition definition = item.getDefinition();
-			
-			if (definition.getBehaviour().isCanSitOnTop()) {
-				this.setRotation(item.getRotation(), false);
+
+			if (definition != null) {
 				
-				this.removeStatus("dance");
-				this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()));
+				Log.println("non-null definition id: " + item.getDefinitionId());
+
+				if (definition.getBehaviour().isCanSitOnTop()) {
+					this.setRotation(item.getRotation(), false);
+
+					this.removeStatus("dance");
+					this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()));
+				}
+
+			} else {
+				Log.println("null definition id: " + item.getDefinitionId());
 			}
 		}
-		
+
 		this.isWalking = false;
 		this.needsUpdate = true;
 	}
@@ -152,6 +161,9 @@ public class RoomEntity {
 
 		this.position = new Point(0, 0, 0);
 		this.goal = new Point(0, 0, 0);
+		
+		this.needsUpdate = false;
+		this.isWalking = false;
 
 		this.lastChatId = 0;
 		this.virtualId = -1;

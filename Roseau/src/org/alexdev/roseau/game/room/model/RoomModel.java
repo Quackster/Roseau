@@ -42,13 +42,9 @@ public class RoomModel
 
 	public RoomModel(String name, String heightmap, int doorX, int doorY, int doorZ, int doorRot) {
 		
-		if (heightmap.contains((char)13 + "")) {
-			return;
-		}
-		
 		try {
 			this.name = name;
-			this.heightmap = heightmap.replace(" ", (char)13 + "");
+			this.heightmap = heightmap.replace(Character.toString((char)13), "").replace(Character.toString((char)10), "").replace(" ", Character.toString((char)13));
 			this.doorX = doorX;
 			this.doorY = doorY;
 			this.doorZ = doorZ;
@@ -74,7 +70,7 @@ public class RoomModel
 					
 					String square = temporary[y].substring(x,x + 1).trim().toLowerCase();
 
-					if (square.equals("x"))	{
+					if (square.toLowerCase().equals("x"))	{
 						squares[x][y] = CLOSED;
 						
 					} else if(isNumeric(square)) {

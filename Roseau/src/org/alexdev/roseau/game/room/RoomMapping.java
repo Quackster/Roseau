@@ -10,77 +10,77 @@ public class RoomMapping {
 
 	public RoomMapping(Room room) {
 		this.room = room;
-		
+
 	}
-	
+
 	public void regenerateCollisionMaps() {
-		
+
 		int mapSizeX = this.room.getData().getModel().getMapSizeX();
 		int mapSizeY = this.room.getData().getModel().getMapSizeY();
-		
+
 		this.tiles = new RoomTile[mapSizeX][mapSizeY];
-		
-	    for (int y = 0; y < mapSizeY; y++) {
-	        for (int x = 0; x < mapSizeX; x++) {
-	            this.tiles[x][y] = new RoomTile(this.room);
-	            this.tiles[x][y].setHeight(this.room.getData().getModel().getHeight(x, y));
-	        }
-	    }
-	    
-	    for (int i = 0; i < this.room.getItems().size(); i++) {
-	    	
-	    	Item item = this.room.getItems().get(i);
-	    	
-	    	if (item == null) {
-	            continue;
-	        }
 
-	        double stacked_height = 0;
+		for (int y = 0; y < mapSizeY; y++) {
+			for (int x = 0; x < mapSizeX; x++) {
+				this.tiles[x][y] = new RoomTile(this.room);
+				this.tiles[x][y].setHeight(this.room.getData().getModel().getHeight(x, y));
+			}
+		}
 
-	        if (item.getDefinition().getBehaviour().isCanStackOnTop()) {
-	            stacked_height = item.getDefinition().getHeight();
-	        }
+		for (int i = 0; i < this.room.getItems().size(); i++) {
 
-	        this.checkHighestItem(item, item.getX(), item.getY());
+			Item item = this.room.getItems().get(i);
 
-	        this.tiles[item.getX()][item.getY()].setHeight(this.tiles[item.getX()][item.getY()].getHeight() + stacked_height);
-	        this.tiles[item.getX()][item.getY()].getItems().add(item);
-	        
-	        for (AffectedTile tile : item.getAffectedTiles()) {
+			if (item == null) {
+				continue;
+			}
 
-	        	this.checkHighestItem(item, tile.getX(), tile.getY());
-		        this.tiles[tile.getX()][tile.getY()].setHeight(this.tiles[tile.getX()][tile.getY()].getHeight() + stacked_height);
-	        }
-	    }
+			double stacked_height = 0;
+
+			if (item.getDefinition().getBehaviour().isCanStackOnTop()) {
+				stacked_height = item.getDefinition().getHeight();
+			}
+
+			this.checkHighestItem(item, item.getX(), item.getY());
+
+			this.tiles[item.getX()][item.getY()].setHeight(this.tiles[item.getX()][item.getY()].getHeight() + stacked_height);
+			this.tiles[item.getX()][item.getY()].getItems().add(item);
+
+			for (AffectedTile tile : item.getAffectedTiles()) {
+
+				this.checkHighestItem(item, tile.getX(), tile.getY());
+				this.tiles[tile.getX()][tile.getY()].setHeight(this.tiles[tile.getX()][tile.getY()].getHeight() + stacked_height);
+			}
+		}
 	}
 
 	private void checkHighestItem(Item item, int x, int y) {
-	    Item highest_item = this.tiles[x][y].getHighestItem();
+		Item highest_item = this.tiles[x][y].getHighestItem();
 
-	    if (highest_item == null) {
-	        this.tiles[x][y].setHighestItem(item);
-	    }
-	    else {
-	        if (item.getZ() > highest_item.getZ()) {
-	            this.tiles[x][y].setHighestItem(item);
-	        }
-	    }
+		if (highest_item == null) {
+			this.tiles[x][y].setHighestItem(item);
+		}
+		else {
+			if (item.getZ() > highest_item.getZ()) {
+				this.tiles[x][y].setHighestItem(item);
+			}
+		}
 	}
-	
+
 	public boolean isValidTile(int x, int y) {
 
-	    Item item = this.tiles[x][y].getHighestItem();
-	    boolean tile_valid = (this.room.getData().getModel().isBlocked(x, y) == false);
+		Item item = this.tiles[x][y].getHighestItem();
+		boolean tile_valid = (this.room.getData().getModel().isBlocked(x, y) == false);
 
-	    if (item != null) {
-	        tile_valid = item.canWalk();
-	    }
+		if (item != null) {
+			tile_valid = item.canWalk();
+		}
 
-	    // This is returned when there's no items found, it will
-	    // just check the default model if the tile is valid
-	    return tile_valid;
+		// This is returned when there's no items found, it will
+		// just check the default model if the tile is valid
+		return tile_valid;
 	}
-	
+
 	public Item getHighestItem(int x, int y) {
 		return this.tiles[x][y].getHighestItem();
 	}

@@ -115,4 +115,8 @@ public class Item implements SerializableObject {
 		this.rotation = rotation;
 	}
 
+	public int getDefinitionId() {
+		return this.definition;
+	}
+
 }

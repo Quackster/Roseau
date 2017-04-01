@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 01, 2017 at 09:40 AM
+-- Generation Time: Apr 01, 2017 at 08:04 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -967,7 +967,7 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (2493, 'lounge_private_bigsofa', '', 1, 1, 1, 'NULL', 'PFC', '', ''),
 (2494, 'lounge_table_threea', '', 1, 1, 0, 'NULL', 'PF', '', ''),
 (2495, 'lounge_table_threeb', '', 1, 1, 0, 'NULL', 'PF', '', ''),
-(2496, 'lounge_table_threec', '', 1, 1, 0, 'NULL', 'PF', '', ''),
+(2496, 'lounge_table_threec', '', 1, 1, 0, 'NULL', 'PFC', '', ''),
 (2497, 'lounge_private_bigcorner', '', 1, 1, 0, 'NULL', 'PF', '', ''),
 (2498, 'lounge_bara', '', 1, 1, 0, 'NULL', 'PF', '', ''),
 (2499, 'infokiosk', '', 1, 1, 0, 'NULL', 'PF', '', ''),
@@ -988,7 +988,7 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (2514, 'pub_pineapple_small', '', 1, 1, 0, 'NULL', 'PF', '', ''),
 (2515, 'fatsblox', '', 1, 1, 0, 'NULL', 'PF', '', ''),
 (2516, 'fatsofaa', '', 1, 1, 1, 'NULL', 'PFC', '', ''),
-(2517, 'pub_sofa2', '', 1, 1, 0, 'NULL', 'PF', '', ''),
+(2517, 'pub_sofa2', '', 1, 1, 1, 'NULL', 'PFC', '', ''),
 (2518, 'pub_sofa', '', 1, 1, 1, 'NULL', 'PFC', '', ''),
 (2519, 'bardesk1', '', 1, 1, 0, 'NULL', 'PF', '', ''),
 (2520, 'pub_chair', '', 1, 1, 1, 'NULL', 'PFC', '', ''),
@@ -2077,7 +2077,6 @@ INSERT INTO `room_public_items` (`id`, `definitionid`, `model`, `x`, `y`, `z`, `
 (1357, 2533, 'malja_bar_b', 0, 19, 9, 2, NULL, NULL),
 (1358, 2533, 'malja_bar_b', 2, 19, 3, 0, NULL, NULL),
 (1359, 2537, 'malja_bar_b', 0, 22, 3, 0, NULL, NULL),
-(1360, 2538, 'cr_kitchen', 31, 0, 2111, 6, NULL, NULL),
 (1361, 2, 'model_d', 4, 7, 0, 0, NULL, NULL),
 (1362, 1, 'model_d', 4, 8, 0, 0, NULL, NULL),
 (1363, 1, 'model_d', 4, 9, 0, 0, NULL, NULL),
@@ -2181,7 +2180,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `birthday` varchar(30) NOT NULL DEFAULT '01/01/1970',
   `has_logged_in` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `users`
@@ -2189,7 +2188,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `figure`, `credits`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
 (2, 'test', '123', 1, 44324323, 1490046606, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', 0, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=008/231,201,163&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/255,237,179&ls=002/255,237,179&rs=002/255,237,179&lg=006/149,120,78&sh=003/121,94,83', 5000, 'Male', 'UK', '', '01.01.1997', 1);
+(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=008/231,201,163&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/255,237,179&ls=002/255,237,179&rs=002/255,237,179&lg=006/149,120,78&sh=003/121,94,83', 5000, 'Male', 'UK', '', '01.01.1997', 1),
+(7, 'Alex444', '123', 1, NULL, NULL, 'ee2ee@cc.com', 'roseau = the best', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/199,69,217&ls=002/199,69,217&rs=002/199,69,217&lg=002/198,179,214&sh=002/192,180,199', 4000, 'Male', 'UK', '', '08.10.1997', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
