@@ -2,14 +2,19 @@ package org.alexdev.roseau.server.messages;
 
 public interface Response {
 
-	public void init(int id);
-	public void appendString(Object obj);
-	public void appendInt32(Integer obj);
-	public void appendInt32(Boolean obj);
-	public void appendBoolean(Boolean obj);
+	public void init(String header);
+	public void append(String s);
+	public void appendArgument(String arg);
+	public void appendNewArgument(String arg);
+	public void appendPartArgument(String arg);
+	public void appendTabArgument(String arg);
+	public void appendKVArgument(String key, String value);
+	public void appendKV2Argument(String key, String value);
+	public void appendArgument(String arg, char delimiter);
+	public void appendObject(SerializableObject obj);
 	public String getBodyString();
 	public Object get();
 
-	public int getHeader();
+	public String getHeader();
 
 }

@@ -1,15 +1,23 @@
 package org.alexdev.roseau.game.player;
 
 import org.alexdev.roseau.game.entity.IEntity;
+import org.alexdev.roseau.server.messages.Response;
+import org.alexdev.roseau.server.messages.SerializableObject;
 
-public class PlayerDetails {
+public class PlayerDetails implements SerializableObject {
 
 	private int id = -1;
-	private String username = "Alex";
-	private String motto = "banana man";
+	private String username;
+	private String mission;
 	private String figure;
+	private String email;
 	private int rank;
 	private int credits;
+	private String sex;
+	private String country;
+	private String badge;
+	private String birthday;
+	
 	
 	private boolean authenticated;
 	private IEntity entity;
@@ -19,26 +27,37 @@ public class PlayerDetails {
 		this.entity = session;
 	}
 	
-	public void fill(int id, String username, String motto, String figure, int rank, int credits) {
-		
+	public void fill(int id, String username, String mission, String figure, String email, int rank, int credits, String sex, String country, String badge, String birthday) {
 		this.id = id;
 		this.username = username;
-		this.motto = motto;
+		this.mission = mission;
 		this.figure = figure;
+		this.email = email;
 		this.rank = rank;
 		this.credits = credits;
-		this.authenticated = true;
+		this.sex = sex;
+		this.country = country;
+		this.badge = badge;
+		this.birthday = birthday;
+	}
+	
+	@Override
+	public void serialise(Response response) {
+        response.appendKVArgument("name", this.username);
+        response.appendKVArgument("figure", this.figure); 
+        response.appendKVArgument("email", this.email);
+        response.appendKVArgument("birthday", this.birthday);
+        response.appendKVArgument("phonenumber", "+44");
+        response.appendKVArgument("customData", this.mission);
+        response.appendKVArgument("has_read_agreement", "1");
+        response.appendKVArgument("sex", this.sex);
+        response.appendKVArgument("country", this.country);
+        response.appendKVArgument("has_special_rights", "0");
+        response.appendKVArgument("badge_type", this.badge);
 	}
 	
 	public boolean hasFuse(String fuse) {
 		return false;
-	}
-	
-	public void dispose() {
-		
-		this.username = null;
-		this.motto = null;
-		this.figure = null;
 	}
 	
 	public int getId() {
@@ -61,12 +80,12 @@ public class PlayerDetails {
 		this.username = username;
 	}
 
-	public String getMotto() {
-		return motto;
+	public String getMission() {
+		return mission;
 	}
 
-	public void setMotto(String motto) {
-		this.motto = motto;
+	public void setMission(String motto) {
+		this.mission = motto;
 	}
 
 	public String getFigure() {
@@ -77,17 +96,40 @@ public class PlayerDetails {
 		this.figure = figure;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public int getRank() {
 		return rank;
 	}
 
 	public void setCredits(int newTotal, boolean sendUpdate) {
 		this.credits = newTotal;
-		
 	}
 	
 	public int getCredits() {
 		return credits;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public String getBadge() {
+		return badge;
+	}
+
+	public String getBirthday() {
+		return birthday;
 	}
 
 	public IEntity getEntity() {

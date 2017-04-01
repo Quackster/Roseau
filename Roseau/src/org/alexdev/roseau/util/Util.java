@@ -1,19 +1,21 @@
 package org.alexdev.roseau.util;
 
 import java.io.File;
+import java.io.IOException;
 import java.security.SecureRandom;
 
-import org.alexdev.roseau.pooling.ThreadPooling;
+import org.ini4j.InvalidFileFormatException;
+import org.ini4j.Wini;
 
 public class Util {
 
-	private Configuration configuration;
-	private ThreadPooling threadPooling;
+	private Wini configuration;
 	private SecureRandom secureRandom;
+	private Wini habboConfig;
 
-	public Util() {
-		this.configuration = new Configuration(new File("roseau.properties"));
-		this.threadPooling = new ThreadPooling();
+	public Util() throws InvalidFileFormatException, IOException {
+		this.configuration = new Wini(new File("roseau.properties"));
+		this.habboConfig =  new Wini(new File("habbohotel.properties"));
 		this.secureRandom = new SecureRandom();
 	}
 	
@@ -25,17 +27,15 @@ public class Util {
 		return System.currentTimeMillis() / 1000L; // return timestamp converted to seconds
 	}
 	
-	public Configuration getConfiguration() {
+	public Wini getConfiguration() {
 		return configuration;
-	}
-	
-	public ThreadPooling getThreadPool() {
-		return threadPooling;
 	}
 
 	public SecureRandom getRandom() {
 		return secureRandom;
 	}
 
-
+	public Wini getHabboConfig() {
+		return habboConfig;
+	}
 }

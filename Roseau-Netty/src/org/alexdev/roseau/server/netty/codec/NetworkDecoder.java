@@ -20,7 +20,7 @@
 package org.alexdev.roseau.server.netty.codec;
 
 import org.alexdev.roseau.game.player.Player;
-import org.alexdev.roseau.server.encoding.Base64Encoding;
+import org.alexdev.roseau.server.IServerHandler;
 import org.alexdev.roseau.server.netty.readers.NettyRequest;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.Channel;
@@ -29,14 +29,18 @@ import org.jboss.netty.handler.codec.frame.FrameDecoder;
 
 public class NetworkDecoder extends FrameDecoder {
 
+	//private IServerHandler serverHandler;
+	
+	public NetworkDecoder(IServerHandler serverHandler) {
+		//this.serverHandler = serverHandler;
+	}
+
 	@Override
 	protected Object decode(ChannelHandlerContext ctx, Channel channel, ChannelBuffer buffer) {
 
 		try  {		
 
-
-
-			if (buffer.readableBytes() < 5) { // 3 letter long B64 length + 2 letter long B64 header
+			if (buffer.readableBytes() < 4) { // 3 letter long B64 length + 2 letter long B64 header
 				channel.close();
 				return null;
 			}	
@@ -46,40 +50,28 @@ public class NetworkDecoder extends FrameDecoder {
 			if (player == null) {
 				return null;
 			}
-
-			/*if (player.getNetwork().isEncrypted()) {
-
-				Log.println("Encryption: " + new String(buffer.array()));
-				return null;
-
-			} else {*/
-			byte[] length = buffer.readBytes(3).array();
-			byte[] header = buffer.readBytes(2).array();
-
-			int decodedLength = Base64Encoding.DecodeInt32(length);
-			int decodedHeader = Base64Encoding.DecodeInt32(header);
-
-			ChannelBuffer messageBuffer = buffer.readBytes(decodedLength - 2);
-			return new NettyRequest(decodedHeader, messageBuffer);
-
-
-			/*if (length[0] == 60) {
-
-				buffer.discardReadBytes();
-
-				channel.write("<?xml version=\"1.0\"?>\r\n"
-					+ "<!DOCTYPE cross-domain-policy SYSTEM \"/xml/dtds/cross-domain-policy.dtd\">\r\n"
-					+ "<cross-domain-policy>\r\n"
-					+ "<allow-access-from domain=\"*\" to-ports=\"*\" />\r\n"
-					+ "</cross-domain-policy>\0");
+			
+			byte[] message_length = buffer.readBytes(4).array();
+			byte[] message = buffer.readBytes(Integer.parseInt(new String(message_length).replaceAll("[^0-9]",""))).array();
+			
+			String content = new String(message);
+			
+			String request = null;
+			String header = null;
+			
+			if (content.contains(" ")) {
+				header = content.split(" ")[0];
+				request = content.substring(header.length() + 1);
 			} else {
-
-				int messageLength = ByteBuffer.wrap(length).asIntBuffer().get();
-				ChannelBuffer messageBuffer = buffer.readBytes(messageLength);
-				Short header = messageBuffer.readShort();
-				return new NettyRequest(header, messageBuffer);
+				header = content;
+				request = "";
+			}
+			
+			/*if (header.equals("LOGIN") && this.serverHandler.getExtraData() != null) {
+				request += " " + this.serverHandler.getExtraData();
 			}*/
-			//}
+			
+			return new NettyRequest(header, request);
 
 		} catch (Exception e){
 
