@@ -7,6 +7,7 @@ import org.alexdev.roseau.messages.incoming.handshake.VERSIONCHECK;
 import org.alexdev.roseau.messages.incoming.login.GETCREDITS;
 import org.alexdev.roseau.messages.incoming.login.INFORETRIEVE;
 import org.alexdev.roseau.messages.incoming.login.LOGIN;
+import org.alexdev.roseau.messages.incoming.navigator.GETUNITUSERS;
 import org.alexdev.roseau.messages.incoming.navigator.INITUNITLISTENER;
 import org.alexdev.roseau.messages.incoming.room.STATUSOK;
 import org.alexdev.roseau.messages.incoming.room.user.DANCE;
@@ -30,7 +31,13 @@ public class MessageHandler {
 		this.messages.clear();
 		this.registerHandshakePackets();
 		this.registerLoginPackets();
+		this.registerNavigatorPackets();
 		this.registerRoomPackets();
+	}
+
+	private void registerNavigatorPackets() {
+		this.messages.put("INITUNITLISTENER", new INITUNITLISTENER());
+		this.messages.put("GETUNITUSERS", new GETUNITUSERS());
 	}
 
 	private void registerHandshakePackets() {
@@ -40,7 +47,7 @@ public class MessageHandler {
 	private void registerLoginPackets() {
 		this.messages.put("LOGIN", new LOGIN());
 		this.messages.put("INFORETRIEVE", new INFORETRIEVE());
-		this.messages.put("INITUNITLISTENER", new INITUNITLISTENER());
+
 		this.messages.put("GETCREDITS", new GETCREDITS());
 	}
 	

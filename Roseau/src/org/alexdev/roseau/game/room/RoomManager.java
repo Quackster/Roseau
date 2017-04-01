@@ -80,6 +80,15 @@ public class RoomManager {
 			return null;
 		}
 	}
+	
+	public Room getRoomByName(String name) {
+
+		try {
+			return Roseau.getGame().getRoomManager().getLoadedRooms().stream().filter(r -> r.getData().getName().equals(name)).findFirst().get();
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 	public List<Room> getLoadedRooms() {
 		return loadedRooms;
