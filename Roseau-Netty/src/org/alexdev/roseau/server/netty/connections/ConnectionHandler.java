@@ -23,26 +23,29 @@ public class ConnectionHandler extends SimpleChannelHandler {
 	@Override
 	public void channelOpen(ChannelHandlerContext ctx, ChannelStateEvent e) {
 
-		if (Roseau.getUtilities().getConfiguration().getBoolean("log-connections")) {
-			Log.println("Connection from " + ctx.getChannel().getRemoteAddress().toString().replace("/", "").split(":")[0]);
-		}
-		
 		ctx.getChannel().write(new HELLO());
 		
 		this.serverHandler.getSessionManager().addSession(ctx.getChannel());
+		
+		Player player = (Player) ctx.getChannel().getAttachment();
+		
+		if (Roseau.getUtilities().getConfiguration().getBoolean("log-connections")) {
+			Log.println("[" + player.getNetwork().getConnectionId() + "] Connection from " + ctx.getChannel().getRemoteAddress().toString().replace("/", "").split(":")[0]);
+		}
 
 	} 
 
 	@Override
 	public void channelClosed(ChannelHandlerContext ctx, ChannelStateEvent e) {
-
-		if (Roseau.getUtilities().getConfiguration().getBoolean("log-connections")) {
-			Log.println("Disconnection from " + ctx.getChannel().getRemoteAddress().toString().replace("/", "").split(":")[0]);
-		}
 		
 		this.serverHandler.getSessionManager().removeSession(ctx.getChannel());
 		
 		Player player = (Player) ctx.getChannel().getAttachment();
+		
+		if (Roseau.getUtilities().getConfiguration().getBoolean("log-connections")) {
+			Log.println("[" + player.getNetwork().getConnectionId() + "] Disconnection from " + ctx.getChannel().getRemoteAddress().toString().replace("/", "").split(":")[0]);
+		}
+		
 		player.dispose();
 		
 	}
@@ -60,7 +63,7 @@ public class ConnectionHandler extends SimpleChannelHandler {
 			}
 
 			if (Roseau.getUtilities().getConfiguration().getBoolean("log-packets")) {
-				Log.println("Received: " + request.getHeader() + " / " + request.getMessageBody());
+				Log.println("[" + player.getNetwork().getConnectionId() + "] Received: " + request.getHeader() + " / " + request.getMessageBody());
 			}
 
 			if (player != null){

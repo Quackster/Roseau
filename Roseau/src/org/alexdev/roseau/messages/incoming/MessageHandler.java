@@ -9,6 +9,7 @@ import org.alexdev.roseau.messages.incoming.login.INFORETRIEVE;
 import org.alexdev.roseau.messages.incoming.login.LOGIN;
 import org.alexdev.roseau.messages.incoming.navigator.GETUNITUSERS;
 import org.alexdev.roseau.messages.incoming.navigator.INITUNITLISTENER;
+import org.alexdev.roseau.messages.incoming.room.CREATEFLAT;
 import org.alexdev.roseau.messages.incoming.room.GOAWAY;
 import org.alexdev.roseau.messages.incoming.room.STATUSOK;
 import org.alexdev.roseau.messages.incoming.room.user.DANCE;
@@ -61,6 +62,7 @@ public class MessageHandler {
 		this.messages.put("SHOUT", new TALK());
 		this.messages.put("WHISPER", new TALK());
 		this.messages.put("GOAWAY", new GOAWAY());
+		this.messages.put("CREATEFLAT", new CREATEFLAT());
 	}
 	
 	

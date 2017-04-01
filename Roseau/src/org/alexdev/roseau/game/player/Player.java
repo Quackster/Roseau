@@ -1,7 +1,9 @@
 package org.alexdev.roseau.game.player;
 
+import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.entity.IEntity;
+import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomEntity;
 import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
 import org.alexdev.roseau.server.IPlayerNetwork;
@@ -12,6 +14,8 @@ public class Player implements IEntity {
 	private PlayerDetails details;
 	private IPlayerNetwork network;
 	private RoomEntity roomEntity;
+	
+	private Player createdFlat = null;
 
 	public Player(IPlayerNetwork network) {
 		this.network = network;
@@ -30,6 +34,13 @@ public class Player implements IEntity {
 				this.roomEntity.getRoom().leaveRoom(this, false);
 			}
 		}
+		
+		/*if (this.createdFlat != null) {
+			Player player = this.createdFlat;
+		
+			Room room = Roseau.getGame().getRoomManager().getRoomByPort(103);
+			room.loadRoom(player);
+		}*/
 	}
 		
 	public void setMachineId(String machineId) {
@@ -61,6 +72,14 @@ public class Player implements IEntity {
 	@Override
 	public RoomEntity getRoomEntity() {
 		return this.roomEntity;
+	}
+
+	public Player getCreatedFlat() {
+		return createdFlat;
+	}
+
+	public void setCreatedFlat(Player player) {
+		this.createdFlat = player;
 	}
 
 

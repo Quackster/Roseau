@@ -21,6 +21,16 @@ public class PlayerManager {
 		}
 	}
 	
+	public Player getIdenticalPlayer(int userId, int connectionId) {
+		
+		try {
+			return this.players.values().stream().filter(s -> s.getDetails().getId() == userId && s.getNetwork().getConnectionId() != connectionId).findFirst().get();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	
 	public Player findByName(String name) {
 		
 		try {

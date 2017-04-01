@@ -16,13 +16,15 @@ public class SessionManager {
 		sessions = new ConcurrentHashMap<Integer, Player>();
 	}
 	
-	public boolean addSession(Channel channel) {
+	public Player addSession(Channel channel) {
 		
 		Player player = new Player(new NettyPlayerNetwork(channel, channel.getId()));
 		channel.setAttachment(player);
 		
 		Roseau.getGame().getPlayerManager().getPlayers().put(channel.getId(), player);
-		return sessions.putIfAbsent(channel.getId(), player) == null;
+		sessions.putIfAbsent(channel.getId(), player);
+		
+		return player;
 	}
 
 	public void removeSession(Channel channel) { 
