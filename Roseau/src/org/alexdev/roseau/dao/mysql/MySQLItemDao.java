@@ -46,7 +46,8 @@ public class MySQLItemDao implements ItemDao {
 						resultSet.getInt("height"),
 						resultSet.getString("behaviour"),
 						resultSet.getString("name"),
-						resultSet.getString("description")));
+						resultSet.getString("description"),
+						resultSet.getString("dataclass")));
 			}
 
 		} catch (Exception e) {
@@ -77,6 +78,9 @@ public class MySQLItemDao implements ItemDao {
 			preparedStatement.setString(1, model);
 			resultSet = preparedStatement.executeQuery();
 
+			/*				obj.itemData = result.getString("object");
+				obj.customData = result.getString("data");*/
+			
 			while (resultSet.next()) {
 				items.add(new Item(resultSet.getInt("id"),
 						-1,

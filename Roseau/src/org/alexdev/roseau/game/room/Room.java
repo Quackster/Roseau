@@ -102,6 +102,8 @@ public class Room implements Runnable {
 
 		RoomEntity roomEntity = entity.getRoomUser();
 
+		//this.send(new SHOWPROGRAM(roomEntity.getPosition()));
+
 		if (roomEntity.isWalking()) {
 			if (roomEntity.getPath().size() > 0) {
 
@@ -187,6 +189,10 @@ public class Room implements Runnable {
 
 		player.send(new USERS(this.entities));
 		player.send(new STATUS(this.entities));
+
+		if (this.roomData.getModelName().equals("pool_b")) {
+
+		}
 
 	}
 
@@ -402,19 +408,19 @@ public class Room implements Runnable {
 
 		Item currentItem = this.roomMapping.getHighestItem(current.getX(), current.getY());
 		Item neighbourItem = this.roomMapping.getHighestItem(neighbour.getX(), neighbour.getY());
-		
+
 		if (neighbourItem != null) {
 			if (neighbourItem.getDefinition().getSprite().equals("poolEnter")) {
 				return player.getDetails().getPoolFigure().length() > 0;
 			}
 		}
-		
+
 		if (currentItem != null) {
 			if (currentItem.getDefinition().getSprite().equals("poolEnter")) {
 				return player.getDetails().getPoolFigure().length() > 0;
 			}
 		}
-		
+
 		if (heightCurrent > heightNeighour) {
 
 			if ((heightCurrent - heightNeighour) >= 3.0) {
@@ -428,9 +434,22 @@ public class Room implements Runnable {
 				return false;
 			}
 		}
-		
-		if (!this.roomMapping.isValidTile(current.getX(), current.getY())) {
+
+		if (this.getData().getModel().isBlocked(current.getX(), current.getY())) {
 			return false;
+		}
+
+		if (!current.sameAs(player.getRoomUser().getPosition())) {
+			if (currentItem != null) {
+				if (!isFinalMove) {
+					return false;
+				}
+
+				if (isFinalMove) {
+					return currentItem.canWalk();
+
+				}
+			}
 		}
 
 		return true;

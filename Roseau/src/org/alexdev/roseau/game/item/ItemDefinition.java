@@ -12,8 +12,9 @@ public class ItemDefinition {
 	private ItemBehaviour behaviour;
 	private String name;
 	private String description;
+	private String dataClass;
 	
-	public ItemDefinition(int id, String sprite, String color, int length, int width, double height, String behaviour, String name, String description) {
+	public ItemDefinition(int id, String sprite, String color, int length, int width, double height, String behaviour, String name, String description, String dataClass) {
 		this.id = id;
 		this.sprite = sprite;
 		this.color = color;
@@ -23,7 +24,7 @@ public class ItemDefinition {
 		this.stringBehaviour = behaviour;
 		this.name = name;
 		this.description = description;
-		
+		this.dataClass = dataClass;
 		this.behaviour = ItemBehaviour.parse(this.stringBehaviour);
 	}
 
@@ -62,6 +63,10 @@ public class ItemDefinition {
 	public String getDescription() {
 		return description;
 	}
-	
+
+	public String getDataClass() {
+		return dataClass;
+	}
+
 	
 }

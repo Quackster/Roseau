@@ -110,7 +110,6 @@ public class RoomEntity {
 				if (this.entity instanceof Player) {
 					if (definition.getSprite().equals("poolBooth")) {
 						((Player) this.entity).send(new OPEN_UIMAKOPPI());
-						item.showProgram(item.getItemData(), "close");
 					}
 				}
 			}

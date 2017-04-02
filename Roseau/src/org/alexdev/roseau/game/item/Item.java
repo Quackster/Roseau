@@ -5,7 +5,6 @@ import java.util.List;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.pathfinder.AffectedTile;
 import org.alexdev.roseau.game.room.Room;
-import org.alexdev.roseau.messages.outgoing.items.SHOW_PROGRAM;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
@@ -58,23 +57,13 @@ public class Item implements SerializableObject {
 				response.appendArgument(Integer.toString(definition.getWidth()));
 				response.appendArgument(Integer.toString(this.rotation));
 				response.appendArgument(Integer.toString((int)this.z));
-				response.appendArgument("");//this.definition.color);
+				response.appendArgument(definition.getColor());
 
 				response.appendArgument(definition.getName(), '/');
 				response.appendArgument(definition.getDescription(), '/');
 
-				// Teleporter?
-				/*if(this.teleporterID > 0)
-	    	{
-	    		msg.appendArgument("extr=", '/');
-	    		msg.appendArgument(Integer.toString(this.teleporterID), '/');
-	    	}*/
-
-				// Custom data?
-				if(this.customData != null)
-				{
-					// Append custom data class
-					response.appendArgument("", '/');
+				if (this.customData != null) {
+					response.appendArgument(definition.getDataClass(), '/');
 					response.appendArgument(this.customData, '/');
 				}
 			}
@@ -107,18 +96,13 @@ public class Item implements SerializableObject {
 		if (definition.getSprite().equals("poolBooth")) {
 			tile_valid = true;
 		}
-		
+
 		if (definition.getSprite().equals("poolEnter")) {
 			tile_valid = true;
 		}
 
 		return tile_valid; 
 	}
-
-	public void showProgram(String program, String data) {
-		this.room.send(new SHOW_PROGRAM(program, data));
-	}
-
 
 	public int getId() {
 		return id;

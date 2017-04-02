@@ -41,7 +41,13 @@ public class MessageHandler {
 		this.registerRegisterPackets();
 		this.registerNavigatorPackets();
 		this.registerRoomPackets();
+		this.registerItemPackets();
 
+	}
+
+	private void registerItemPackets() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void registerUserPackets() {
