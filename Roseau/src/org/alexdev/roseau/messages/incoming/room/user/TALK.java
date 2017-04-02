@@ -9,7 +9,7 @@ public class TALK implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 
-		if (player.getRoomEntity().getRoom() == null) {
+		if (player.getRoomUser().getRoom() == null) {
 			return;
 		}
 		
@@ -23,7 +23,7 @@ public class TALK implements MessageEvent {
 			return;
 		}
 		
-		player.getRoomEntity().chat(talkMessage, reader.getHeader(), true);
+		player.getRoomUser().chat(talkMessage, reader.getHeader(), true);
 		
 	}
 

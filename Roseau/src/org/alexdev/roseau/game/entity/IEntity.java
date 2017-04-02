@@ -6,6 +6,6 @@ import org.alexdev.roseau.game.room.entity.RoomEntity;
 public interface IEntity {
 
 	public PlayerDetails getDetails();
-	public RoomEntity getRoomEntity();
+	public RoomEntity getRoomUser();
 	public EntityType getType();
 }

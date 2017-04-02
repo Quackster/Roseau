@@ -35,3 +35,618 @@
 [04/02/2017 22:40:02] [ROSEAU] 
 [04/02/2017 22:40:02] [ROSEAU] >> Settting up server
 [04/02/2017 22:40:02] [ROSEAU] >> Server is listening on 127.0.0.1:91
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/02/2017 23:22:10
+-----------------------------------------
+
+[04/02/2017 23:22:10] [ROSEAU] >> Roseau - Java Server
+[04/02/2017 23:22:10] [ROSEAU] >> Loading server...
+[04/02/2017 23:22:10] [ROSEAU] 
+[04/02/2017 23:22:10] [ROSEAU] >> Loading dependencies
+[04/02/2017 23:22:10] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[04/02/2017 23:22:10] [ROSEAU] >> Loading: guava-11.0.2.jar
+[04/02/2017 23:22:10] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[04/02/2017 23:22:10] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[04/02/2017 23:22:10] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[04/02/2017 23:22:10] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[04/02/2017 23:22:10] [ROSEAU] >> Loading: ini4j-0.5.5-SNAPSHOT.jar
+[04/02/2017 23:22:10] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[04/02/2017 23:22:10] [ROSEAU] 
+[04/02/2017 23:22:10] [ROSEAU] >> Connecting to MySQL server
+[04/02/2017 23:22:10] [ROSEAU] >> Connection to MySQL was a success
+[04/02/2017 23:22:10] [ROSEAU] 
+[04/02/2017 23:22:10] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/02/2017 23:22:10] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/02/2017 23:22:10] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/02/2017 23:22:10] [ROSEAU] >> [ROOM] [Club Massiva: dancefloor] Starting public room server on port: 120
+[04/02/2017 23:22:10] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/02/2017 23:22:10] [ROSEAU] >> [ROOM] [Habbo Lido II] Starting public room server on port: 112
+[04/02/2017 23:22:10] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/02/2017 23:22:10] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/02/2017 23:22:10] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/02/2017 23:22:10] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/02/2017 23:22:10] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/02/2017 23:22:10] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/02/2017 23:22:10] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/02/2017 23:22:10] [ROSEAU] 
+[04/02/2017 23:22:10] [ROSEAU] >> Settting up server
+[04/02/2017 23:22:10] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[04/02/2017 23:32:12] [ROSEAU] >> SENT: #HELLO##
+[04/02/2017 23:32:12] [ROSEAU] >> [2131694521] Connection from 127.0.0.1
+[04/02/2017 23:32:12] [ROSEAU] >> [2131694521] Received: VERSIONCHECK / client002
+[04/02/2017 23:32:12] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[04/02/2017 23:32:12] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/02/2017 23:32:12] [ROSEAU] >> [2131694521] Received: KEYENCRYPTED / 964
+[04/02/2017 23:32:12] [ROSEAU] >> [2131694521] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/02/2017 23:32:14] [ROSEAU] >> [2131694521] Received: FINDUSER / 
+[04/02/2017 23:32:16] [ROSEAU] >> [2131694521] Disconnection from 127.0.0.1
+[04/02/2017 23:32:17] [ROSEAU] >> SENT: #HELLO##
+[04/02/2017 23:32:17] [ROSEAU] >> [-888308992] Connection from 127.0.0.1
+[04/02/2017 23:32:17] [ROSEAU] >> [-888308992] Received: VERSIONCHECK / client002
+[04/02/2017 23:32:17] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[04/02/2017 23:32:17] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/02/2017 23:32:17] [ROSEAU] >> [-888308992] Received: KEYENCRYPTED / 964
+[04/02/2017 23:32:17] [ROSEAU] >> [-888308992] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/02/2017 23:32:18] [ROSEAU] >> [-888308992] Received: LOGIN / Alex 123
+[04/02/2017 23:32:18] [ROSEAU] >> [-888308992] Received: MESSENGERINIT / 
+[04/02/2017 23:32:18] [ROSEAU] >> [-888308992] Received: UNIQUEMACHINEID / #88776211200101900
+[04/02/2017 23:32:18] [ROSEAU] >> [-888308992] Received: STAT / /ShockwaveVersion/10.4.1
+[04/02/2017 23:32:18] [ROSEAU] >> [-888308992] Received: INFORETRIEVE / Alex 123
+[04/02/2017 23:32:18] [ROSEAU] >> SENT: #USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01.01.1997[13]phonenumber=+44[13]customData=so i herd u liek duckz[13]has_read_agreement=1[13]sex=Male[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[04/02/2017 23:32:18] [ROSEAU] >> [-888308992] Received: GETCREDITS / 
+[04/02/2017 23:32:18] [ROSEAU] >> SENT: #WALLETBALANCE[13]5000##
+[04/02/2017 23:32:18] [ROSEAU] >> SENT: #MESSENGERSMSACCOUNT[13]noaccount##
+[04/02/2017 23:32:18] [ROSEAU] >> SENT: #MESSENGERSREADY##
+[04/02/2017 23:32:20] [ROSEAU] >> [-888308992] Received: GETADFORME / general
+[04/02/2017 23:32:21] [ROSEAU] >> [-888308992] Received: INITUNITLISTENER / 
+[04/02/2017 23:32:21] [ROSEAU] >> SENT: #ALLUNITS[13]Basement Lobby,0,25,127.0.0.1/127.0.0.1,116,Basement Lobby[9]lobby,0,25,floorlobby_a[13]Cafe Ole,0,25,127.0.0.1/127.0.0.1,108,Cafe Ole[9]cafe,0,25,taivas_cafe[13]Club Massiva,0,25,127.0.0.1/127.0.0.1,113,Club Massiva[9]club,0,25,bar_a[13]Habbo Lido,0,25,127.0.0.1/127.0.0.1,104,Habbo Lido[9]lido,0,25,pool_a[13]Habbo Lido II,0,25,127.0.0.1/127.0.0.1,112,Habbo Lido II[9]lido,0,25,pool_b[13]Habburger's,0,25,127.0.0.1/127.0.0.1,110,Habburger's[9]habburger,0,25,habburger[13]Hotel Kitchen,0,25,127.0.0.1/127.0.0.1,107,Hotel Kitchen[9]kitchen,0,25,cr_kitchen[13]Main Lobby,0,25,127.0.0.1/127.0.0.1,103,Main Lobby[9]lobby,0,25,lobby_a[13]Median Lobby,0,25,127.0.0.1/127.0.0.1,117,Median Lobby[9]lobby,0,25,floorlobby_b[13]Skylight Lobby,0,25,127.0.0.1/127.0.0.1,118,Skylight Lobby[9]lobby,0,25,floorlobby_c[13]The Dirty Duck Pub,0,25,127.0.0.1/127.0.0.1,105,The Dirty Duck Pub[9]pub,0,25,pub_a[13]Theatredrome,0,25,127.0.0.1/127.0.0.1,115,Theatredrome[9]theatredrome,0,25,theater##
+[04/02/2017 23:32:21] [ROSEAU] >> [-888308992] Received: SEARCHBUSYFLATS / 
+[04/02/2017 23:32:37] [ROSEAU] >> SENT: #HELLO##
+[04/02/2017 23:32:37] [ROSEAU] >> [2011872296] Connection from 127.0.0.1
+[04/02/2017 23:32:38] [ROSEAU] >> [2011872296] Received: VERSIONCHECK / client002
+[04/02/2017 23:32:38] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[04/02/2017 23:32:38] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/02/2017 23:32:38] [ROSEAU] >> [2011872296] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/02/2017 23:32:38] [ROSEAU] >> [2011872296] Received: KEYENCRYPTED / 964
+[04/02/2017 23:32:38] [ROSEAU] >> [2011872296] Received: LOGIN / Alex 123 0
+[04/02/2017 23:32:38] [ROSEAU] >> SENT: #ACTIVE_OBJECTS 0##
+[04/02/2017 23:32:38] [ROSEAU] >> SENT: # OBJECTS WORLD 0 taivas_cafe##
+[04/02/2017 23:32:38] [ROSEAU] >> SENT: #HEIGHTMAP[13]XXXXXXXXXXXXX111111X[13]XXXXXXXXXXXXX1111111[13]XXXXXXXXXXXXX1111111[13]XXXXXXXXXXXXX1111111[13]XXXXXXXXXXXXX1111111[13]XXX11111111111111111[13]XXX11111111111111111[13]XX111111111111111111[13]XX111111111111111111[13]XX111111111111111111[13]XXX11111111111111111[13]111111111XXXXXXX1111[13]111111111X0000000000[13]111111111X0000000000[13]111111111X0000000000[13]111111111X0000000000[13]111111111X0000000000[13]111111111X0000000000[13]111111111X0000000000[13]111111111X0000000000[13]111111111X0000000000[13]X11111111X0000000000[13]XX1111111X0000000000[13]XXX111111X0000000000[13]XXXX11111X0000000000[13]XXXXX111110000000000[13]XXXXXX11110000000000[13]XXXXXXX1110000000000[13]XXXXXXXX11000000000X[13]XXXXXXXXXX00000000XX[13]XXXXXXXXXXXXXX00XXXX[13]XXXXXXXXXXXXXX00XXXX##
+[04/02/2017 23:32:38] [ROSEAU] >> SENT: #USERS[13]  Alex sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83 14 29 0.0 so i herd u liek duckz##
+[04/02/2017 23:32:38] [ROSEAU] >> SENT: #STATUS [13]Alex 14,29,0,2,2/##
+[04/02/2017 23:32:38] [ROSEAU] >> [-888308992] Received: GETADFORME / general
+[04/02/2017 23:32:38] [ROSEAU] >> [2011872296] Received: STATUSOK / 
+[04/02/2017 23:32:38] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:32:39] [ROSEAU] >> [2011872296] Received: Move / 15 7
+[04/02/2017 23:32:39] [ROSEAU] >> SENT: #STATUS [13]Alex 14,29,0,1,1/mv 15,28,0/##
+[04/02/2017 23:32:40] [ROSEAU] >> SENT: #STATUS [13]Alex 15,28,0,0,0/mv 15,27,0/##
+[04/02/2017 23:32:40] [ROSEAU] >> [2011872296] Received: Move / 15 13
+[04/02/2017 23:32:40] [ROSEAU] >> SENT: #STATUS [13]Alex 15,27,0,0,0/mv 15,26,0/##
+[04/02/2017 23:32:41] [ROSEAU] >> [2011872296] Received: Move / 17 17
+[04/02/2017 23:32:41] [ROSEAU] >> SENT: #STATUS [13]Alex 15,26,0,1,1/mv 16,25,0/##
+[04/02/2017 23:32:41] [ROSEAU] >> [2011872296] Received: Move / 18 22
+[04/02/2017 23:32:41] [ROSEAU] >> SENT: #STATUS [13]Alex 16,25,0,1,1/mv 17,24,0/##
+[04/02/2017 23:32:42] [ROSEAU] >> [2011872296] Received: Move / 18 24
+[04/02/2017 23:32:42] [ROSEAU] >> SENT: #STATUS [13]Alex 17,24,0,2,2/mv 18,24,0/##
+[04/02/2017 23:32:42] [ROSEAU] >> SENT: #STATUS [13]Alex 18,24,0,2,2/##
+[04/02/2017 23:32:43] [ROSEAU] >> [2011872296] Received: Move / 18 25
+[04/02/2017 23:32:43] [ROSEAU] >> SENT: #STATUS [13]Alex 18,24,0,4,4/mv 18,25,0/##
+[04/02/2017 23:32:43] [ROSEAU] >> SENT: #STATUS [13]Alex 18,25,0,4,4/##
+[04/02/2017 23:32:44] [ROSEAU] >> [2011872296] Received: Move / 18 23
+[04/02/2017 23:32:44] [ROSEAU] >> SENT: #STATUS [13]Alex 18,25,0,0,0/mv 18,24,0/##
+[04/02/2017 23:32:45] [ROSEAU] >> [2011872296] Received: Move / 19 23
+[04/02/2017 23:32:45] [ROSEAU] >> SENT: #STATUS [13]Alex 18,24,0,1,1/mv 19,23,0/##
+[04/02/2017 23:32:45] [ROSEAU] >> SENT: #STATUS [13]Alex 19,23,0,1,1/##
+[04/02/2017 23:32:48] [ROSEAU] >> [-888308992] Received: GETUNITUSERS / /Habbo Lido
+[04/02/2017 23:32:48] [ROSEAU] >> SENT: #UNITMEMBERS##
+[04/02/2017 23:32:49] [ROSEAU] >> [2011872296] Received: Move / 19 10
+[04/02/2017 23:32:49] [ROSEAU] >> [-888308992] Received: GETUNITUSERS / /The Dirty Duck Pub
+[04/02/2017 23:32:49] [ROSEAU] >> SENT: #UNITMEMBERS##
+[04/02/2017 23:32:49] [ROSEAU] >> SENT: #STATUS [13]Alex 19,23,0,0,0/mv 19,22,0/##
+[04/02/2017 23:32:50] [ROSEAU] >> SENT: #STATUS [13]Alex 19,22,0,0,0/mv 19,21,0/##
+[04/02/2017 23:32:50] [ROSEAU] >> [2011872296] Disconnection from 127.0.0.1
+[04/02/2017 23:32:50] [ROSEAU] >> SENT: #STATUS [13]Alex -99,-99,0,0,0/##
+[04/02/2017 23:32:51] [ROSEAU] >> SENT: #HELLO##
+[04/02/2017 23:32:51] [ROSEAU] >> [-1816692575] Connection from 127.0.0.1
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: VERSIONCHECK / client002
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: KEYENCRYPTED / 964
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: LOGIN / Alex 123 0
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #ACTIVE_OBJECTS 0##
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: # OBJECTS WORLD 0 pub_a[13]1214 pub_fence 8 12 3 0[13]1213 pub_fence 18 11 2 0[13]1212 pub_fence 8 11 3 1[13]1211 pub_chair2 6 11 3 4[13]1210 pub_chair2 5 11 3 4[13]1209 pub_chair2 3 11 3 4[13]1208 pub_chair2 2 11 3 4[13]1207 pub_fence 18 10 2 0[13]1206 pub_fence 18 9 2 0[13]1205 bardesk3 11 9 2 0[13]1204 bardesk4 10 9 2 0[13]1203 pub_fence 18 8 2 0[13]1202 pub_chair 12 8 2 6[13]1201 bardesk1 11 8 2 0[13]1200 pub_fence 18 7 2 0[13]1199 bardesk2 11 7 2 0[13]1198 pub_fence 18 6 2 0[13]1197 pub_chair 12 6 2 6[13]1196 bardesk1 11 6 2 0[13]1195 pub_fence 18 5 2 1[13]1194 bardesk2 11 5 2 0[13]1193 pub_chair 12 4 2 6[13]1192 bardesk1 11 4 2 0[13]1191 bardesk2 11 3 2 0[13]1190 pub_chair 12 2 2 6[13]1189 bardesk1 11 2 2 0[13]1188 pub_sofa 21 1 1 4[13]1187 pub_sofa 20 1 1 4[13]1186 pub_sofa2 19 1 1 4[13]1215 pub_fence 18 12 2 0[13]1216 pub_fence 8 13 3 0[13]1217 pub_chair2 9 13 2 2[13]1218 pub_chair3 14 13 2 2[13]1219 pub_table2 15 13 2 1[13]1220 pub_chair3 16 13 2 6[13]1221 pub_fence 18 13 2 0[13]1222 pub_fence 8 14 3 2[13]1223 pub_chair2 9 14 2 2[13]1224 pub_chair3 14 14 2 2[13]1225 pub_table2 15 14 2 2[13]1226 pub_chair3 16 14 2 6[13]1227 pub_fence 18 14 2 0[13]1228 pub_table 1 15 3 0[13]1229 pub_fence 5 15 3 1[13]1230 pub_fence 18 15 2 0[13]1231 pub_sofa2 1 16 3 2[13]1232 pub_fence 5 16 3 0[13]1233 pub_fence 18 16 2 0[13]1234 pub_sofa 1 17 3 2[13]1235 pub_fence 5 17 3 0[13]1236 pub_chair3 13 17 2 4[13]1237 pub_chair3 14 17 2 4[13]1238 pub_chair3 15 17 2 4[13]1239 pub_chair3 16 17 2 4[13]1240 pub_fence 18 17 2 0[13]1241 pub_sofa 1 18 3 2[13]1242 pub_fence 5 18 3 0[13]1243 pub_table2 13 18 2 5[13]1244 pub_table2 14 18 2 6[13]1245 pub_table2 15 18 2 6[13]1246 pub_table2 16 18 2 4[13]1247 pub_fence 18 18 2 0[13]1248 pub_sofa 2 19 3 0[13]1249 pub_sofa2 3 19 3 0[13]1250 pub_fence 5 19 3 0[13]1251 pub_chair3 13 19 2 0[13]1252 pub_chair3 14 19 2 0[13]1253 pub_chair3 15 19 2 0[13]1254 pub_chair3 16 19 2 0[13]1255 pub_fence 18 19 2 0[13]1256 pub_fence 1 20 3 5[13]1257 pub_fence 2 20 3 6[13]1258 pub_fence 3 20 3 6[13]1259 pub_fence 4 20 3 6[13]1260 pub_fence 5 20 3 3[13]1261 pub_fence 18 20 2 0[13]1262 pub_sofa2 7 21 1 4[13]1263 pub_sofa 8 21 1 4[13]1264 pub_fence 12 21 2 5[13]1265 pub_fence 13 21 2 6[13]1266 pub_fence 14 21 2 6[13]1267 pub_fence 15 21 2 6[13]1268 pub_fence 16 21 2 6[13]1269 pub_fence 17 21 2 6[13]1270 pub_fence 18 21 2 3[13]1271 pub_sofa2 6 22 1 2[13]1272 pub_table 15 22 0 0[13]1273 pub_chair2 16 22 0 4[13]1274 pub_chair2 17 22 0 4[13]1275 pub_sofa 6 23 1 2[13]1276 pub_table2 8 23 1 1[13]1277 pub_sofa 6 24 1 2[13]1278 pub_table2 8 24 1 0[13]1279 pub_sofa 6 25 1 2[13]1280 pub_table2 8 25 1 2##
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #HEIGHTMAP[13]xxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxx2222222211111xxx[13]xxxxxxxxx2222222211111xxx[13]xxxxxxxxx2222222211111xxx[13]xxxxxxxxx2222222211111xxx[13]xxxxxxxxx2222222222111xxx[13]xxxxxxxxx2222222222111xxx[13]xxxxxxxxx2222222222000xxx[13]xxxxxxxxx2222222222000xxx[13]xxxxxxxxx2222222222000xxx[13]xxxxxxxxx2222222222000xxx[13]x333333332222222222000xxx[13]x333333332222222222000xxx[13]x333333332222222222000xxx[13]x333333332222222222000xxx[13]x333333332222222222000xxx[13]x333332222222222222000xxx[13]x333332222222222222000xxx[13]x333332222222222222000xxx[13]x333332222222222222000xxx[13]x333333332222222222000xxx[13]xxxxx31111112222222000xxx[13]xxxxx31111111000000000xxx[13]xxxxx31111111000000000xxx[13]xxxxx31111111000000000xxx[13]xxxxx31111111000000000xxx[13]xxxxxxxxxxxxxxx00xxxxxxxx[13]xxxxxxxxxxxxxxx00xxxxxxxx[13]xxxxxxxxxxxxxxx00xxxxxxxx[13]xxxxxxxxxxxxxxx00xxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxx##
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #USERS[13]  Alex sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83 15 25 0.0 so i herd u liek duckz##
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #STATUS [13]Alex 15,25,0,2,2/##
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: STATUSOK / 
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: STATUSOK / 
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: STATUSOK / 
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: STATUSOK / 
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: STATUSOK / 
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: STATUSOK / 
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: STATUSOK / 
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: STATUSOK / 
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: STATUSOK / 
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:32:52] [ROSEAU] >> [-1816692575] Received: Move / 14 24
+[04/02/2017 23:32:52] [ROSEAU] >> [-888308992] Received: GETADFORME / general
+[04/02/2017 23:32:52] [ROSEAU] >> SENT: #STATUS [13]Alex 15,25,0,7,7/mv 14,24,0/##
+[04/02/2017 23:32:53] [ROSEAU] >> SENT: #STATUS [13]Alex 14,24,0,7,7/##
+[04/02/2017 23:32:53] [ROSEAU] >> [-1816692575] Received: Move / 12 17
+[04/02/2017 23:32:53] [ROSEAU] >> SENT: #STATUS [13]Alex 14,24,0,7,7/mv 13,23,0/##
+[04/02/2017 23:32:54] [ROSEAU] >> SENT: #STATUS [13]Alex 13,23,0,7,7/mv 12,22,1/##
+[04/02/2017 23:32:54] [ROSEAU] >> [-1816692575] Received: Move / 10 17
+[04/02/2017 23:32:54] [ROSEAU] >> SENT: #STATUS [13]Alex 12,22,1,7,7/mv 11,21,1/##
+[04/02/2017 23:32:55] [ROSEAU] >> SENT: #STATUS [13]Alex 11,21,1,7,7/mv 10,20,2/##
+[04/02/2017 23:32:55] [ROSEAU] >> SENT: #STATUS [13]Alex 10,20,2,0,0/mv 10,19,2/##
+[04/02/2017 23:32:56] [ROSEAU] >> SENT: #STATUS [13]Alex 10,19,2,0,0/mv 10,18,2/##
+[04/02/2017 23:32:56] [ROSEAU] >> [-1816692575] Received: Move / 9 14
+[04/02/2017 23:32:56] [ROSEAU] >> SENT: #STATUS [13]Alex 10,18,2,7,7/mv 9,17,2/##
+[04/02/2017 23:32:57] [ROSEAU] >> SENT: #STATUS [13]Alex 9,17,2,0,0/mv 9,16,2/##
+[04/02/2017 23:32:57] [ROSEAU] >> SENT: #STATUS [13]Alex 9,16,2,0,0/mv 9,15,2/##
+[04/02/2017 23:32:58] [ROSEAU] >> SENT: #STATUS [13]Alex 9,15,2,0,0/mv 9,14,2/##
+[04/02/2017 23:32:58] [ROSEAU] >> SENT: #STATUS [13]Alex 9,14,2,2,2/sit 3.0/##
+[04/02/2017 23:32:59] [ROSEAU] >> [-1816692575] Received: Move / 9 13
+[04/02/2017 23:32:59] [ROSEAU] >> SENT: #STATUS [13]Alex 9,14,2,0,0/mv 9,13,2/##
+[04/02/2017 23:33:00] [ROSEAU] >> SENT: #STATUS [13]Alex 9,13,2,2,2/sit 3.0/##
+[04/02/2017 23:33:00] [ROSEAU] >> [-1816692575] Received: Move / 10 13
+[04/02/2017 23:33:01] [ROSEAU] >> SENT: #STATUS [13]Alex 9,13,2,2,2/mv 10,13,2/##
+[04/02/2017 23:33:01] [ROSEAU] >> SENT: #STATUS [13]Alex 10,13,2,2,2/##
+[04/02/2017 23:33:01] [ROSEAU] >> [-1816692575] Received: Move / 11 13
+[04/02/2017 23:33:02] [ROSEAU] >> SENT: #STATUS [13]Alex 10,13,2,2,2/mv 11,13,2/##
+[04/02/2017 23:33:02] [ROSEAU] >> [-1816692575] Received: Move / 13 14
+[04/02/2017 23:33:02] [ROSEAU] >> SENT: #STATUS [13]Alex 11,13,2,2,2/mv 12,13,2/##
+[04/02/2017 23:33:03] [ROSEAU] >> SENT: #STATUS [13]Alex 12,13,2,3,3/mv 13,14,2/##
+[04/02/2017 23:33:03] [ROSEAU] >> SENT: #STATUS [13]Alex 13,14,2,3,3/##
+[04/02/2017 23:33:03] [ROSEAU] >> [-1816692575] Received: STATUSOK / 
+[04/02/2017 23:33:03] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:34:00] [ROSEAU] >> [-888308992] Received: FINDUSER / dddd
+[04/02/2017 23:34:00] [ROSEAU] >> [-888308992] Received: UINFO_MATCH / /dddd
+[04/02/2017 23:34:19] [ROSEAU] >> [-888308992] Received: SEARCHBUSYFLATS / /0,11
+[04/02/2017 23:34:21] [ROSEAU] >> [-1816692575] Received: Move / 13 4
+[04/02/2017 23:34:21] [ROSEAU] >> [-888308992] Received: GETUNITUSERS / /Club Massiva
+[04/02/2017 23:34:21] [ROSEAU] >> SENT: #UNITMEMBERS##
+[04/02/2017 23:34:21] [ROSEAU] >> SENT: #STATUS [13]Alex 13,14,2,0,0/mv 13,13,2/##
+[04/02/2017 23:34:21] [ROSEAU] >> [-1816692575] Received: STATUSOK / 
+[04/02/2017 23:34:21] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:34:22] [ROSEAU] >> [-1816692575] Received: Move / 14 4
+[04/02/2017 23:34:22] [ROSEAU] >> [-888308992] Received: GETUNITUSERS / /Habbo Lido
+[04/02/2017 23:34:22] [ROSEAU] >> SENT: #UNITMEMBERS##
+[04/02/2017 23:34:22] [ROSEAU] >> SENT: #STATUS [13]Alex 13,13,2,1,1/mv 14,12,2/##
+[04/02/2017 23:34:22] [ROSEAU] >> SENT: #STATUS [13]Alex 14,12,2,0,0/mv 14,11,2/##
+[04/02/2017 23:34:23] [ROSEAU] >> SENT: #STATUS [13]Alex 14,11,2,0,0/mv 14,10,2/##
+[04/02/2017 23:34:23] [ROSEAU] >> [-1816692575] Received: Move / 14 4
+[04/02/2017 23:34:23] [ROSEAU] >> SENT: #STATUS [13]Alex 14,10,2,0,0/mv 14,9,2/##
+[04/02/2017 23:34:23] [ROSEAU] >> [-888308992] Received: GETUNITUSERS / /Habbo Lido
+[04/02/2017 23:34:23] [ROSEAU] >> SENT: #UNITMEMBERS##
+[04/02/2017 23:34:24] [ROSEAU] >> SENT: #STATUS [13]Alex 14,9,2,0,0/mv 14,8,2/##
+[04/02/2017 23:34:24] [ROSEAU] >> [-1816692575] Disconnection from 127.0.0.1
+[04/02/2017 23:34:24] [ROSEAU] >> SENT: #STATUS [13]Alex -99,-99,0,0,0/##
+[04/02/2017 23:34:26] [ROSEAU] >> SENT: #HELLO##
+[04/02/2017 23:34:26] [ROSEAU] >> [1802665499] Connection from 127.0.0.1
+[04/02/2017 23:34:27] [ROSEAU] >> [1802665499] Received: VERSIONCHECK / client002
+[04/02/2017 23:34:27] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[04/02/2017 23:34:27] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/02/2017 23:34:27] [ROSEAU] >> [1802665499] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/02/2017 23:34:27] [ROSEAU] >> [1802665499] Received: KEYENCRYPTED / 964
+[04/02/2017 23:34:27] [ROSEAU] >> [1802665499] Received: LOGIN / Alex 123 0
+[04/02/2017 23:34:27] [ROSEAU] >> SENT: #ACTIVE_OBJECTS 0##
+[04/02/2017 23:34:27] [ROSEAU] >> SENT: # OBJECTS WORLD 0 pool_a[13]666 flower2b 2 28 7 0[13]667 flower2a 2 29 7 0[13]668 flower2b 19 30 7 0[13]669 flower2a 19 31 7 0[13]670 box 6 32 7 0[13]671 flower1 13 33 7 0[13]672 pool_chairy 10 34 7 4[13]673 umbrellay 8 35 7 0[13]674 pool_chairy 9 35 7 2[13]675 pool_tabley 10 35 7 0[13]676 pool_chairy 11 35 7 6[13]677 umbrellap 15 35 7 0[13]678 pool_chairy 10 36 7 0[13]679 pool_chairp 15 36 7 4[13]680 pool_chairo 22 36 7 4[13]681 pool_chairp 14 37 7 2[13]682 pool_tablep 15 37 7 0[13]683 pool_chairp 16 37 7 6[13]684 umbrellao 20 37 7 0[13]685 pool_chairo 21 37 7 2[13]686 pool_tabo 22 37 7 0[13]687 pool_chairo 22 38 7 0[13]688 pool_chairg 18 42 7 4[13]689 umbrellag 16 43 7 0[13]690 pool_chairg 17 43 7 2[13]691 pool_tablg 18 43 7 0[13]692 pool_chairg 19 43 7 6[13]693 pool_chairg 18 44 7 0##
+[04/02/2017 23:34:27] [ROSEAU] >> SENT: #HEIGHTMAP[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxx7xxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxx777xxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxx7777777xxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxx77777777xxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx77777777xxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx777777777xxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7xxx777777xxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7x777777777xxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7xxx77777777xxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7x777777777x7xxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7xxx7777777777xxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx777777777777xxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx77777777777x2111xxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7777777777x221111xxxxxxxxxxx[13]xxxxxxxxx7777777777777777x2211111xxxxxxxxxx[13]xxxxxxxxx7777777777777777x22211111xxxxxxxxx[13]xxxxxxxxx7777777777777777x222211111xxxxxxxx[13]xxxxxx77777777777777777777x222211111xxxxxxx[13]xxxxxx7777777xx777777777777x222211111xxxxxx[13]xxxxxx7777777xx77777777777772222111111xxxxx[13]xxxxxx777777777777777777777x22221111111xxxx[13]xx7777777777777777777777x322222211111111xxx[13]77777777777777777777777x33222222111111111xx[13]7777777777777777777777x333222222211111111xx[13]xx7777777777777777777x333322222222111111xxx[13]xx7777777777777777777333332222222221111xxxx[13]xx777xxx777777777777733333222222222211xxxxx[13]xx777x7x77777777777773333322222222222xxxxxx[13]xx777x7x7777777777777x33332222222222xxxxxxx[13]xxx77x7x7777777777777xx333222222222xxxxxxxx[13]xxxx77777777777777777xxx3222222222xxxxxxxxx[13]xxxxx777777777777777777xx22222222xxxxxxxxxx[13]xxxxxx777777777777777777x2222222xxxxxxxxxxx[13]xxxxxxx777777777777777777222222xxxxxxxxxxxx[13]xxxxxxxx7777777777777777722222xxxxxxxxxxxxx[13]xxxxxxxxx77777777777777772222xxxxxxxxxxxxxx[13]xxxxxxxxxx777777777777777222xxxxxxxxxxxxxxx[13]xxxxxxxxxxx77777777777777x2xxxxxxxxxxxxxxxx[13]xxxxxxxxxxxx77777777777777xxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxx777777777777xxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxx7777777777xxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx77777777xxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxx777777xxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxx7777xxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxx77xxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx##
+[04/02/2017 23:34:27] [ROSEAU] >> SENT: #USERS[13]  Alex sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83 2 25 7.0 so i herd u liek duckz ch=s02/255,255,255##
+[04/02/2017 23:34:27] [ROSEAU] >> SENT: #STATUS [13]Alex 2,25,7,2,2/##
+[04/02/2017 23:34:27] [ROSEAU] >> [1802665499] Received: STATUSOK / 
+[04/02/2017 23:34:27] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:34:27] [ROSEAU] >> [1802665499] Received: STATUSOK / 
+[04/02/2017 23:34:27] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:34:27] [ROSEAU] >> [-888308992] Received: GETADFORME / general
+[04/02/2017 23:34:40] [ROSEAU] >> [1802665499] Received: Move / 20 28
+[04/02/2017 23:34:40] [ROSEAU] >> poolEnter - 502
+[04/02/2017 23:34:40] [ROSEAU] >> [1802665499] Received: Move / 20 28
+[04/02/2017 23:34:40] [ROSEAU] >> poolEnter - 502
+[04/02/2017 23:35:12] [ROSEAU] >> [1802665499] Received: Move / 20 28
+[04/02/2017 23:35:12] [ROSEAU] >> poolEnter - 502
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/02/2017 23:43:42
+-----------------------------------------
+
+[04/02/2017 23:43:42] [ROSEAU] >> Roseau - Java Server
+[04/02/2017 23:43:42] [ROSEAU] >> Loading server...
+[04/02/2017 23:43:42] [ROSEAU] 
+[04/02/2017 23:43:42] [ROSEAU] >> Loading dependencies
+[04/02/2017 23:43:42] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[04/02/2017 23:43:42] [ROSEAU] >> Loading: guava-11.0.2.jar
+[04/02/2017 23:43:42] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[04/02/2017 23:43:42] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[04/02/2017 23:43:42] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[04/02/2017 23:43:42] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[04/02/2017 23:43:42] [ROSEAU] >> Loading: ini4j-0.5.5-SNAPSHOT.jar
+[04/02/2017 23:43:42] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[04/02/2017 23:43:42] [ROSEAU] 
+[04/02/2017 23:43:42] [ROSEAU] >> Connecting to MySQL server
+[04/02/2017 23:43:43] [ROSEAU] >> Connection to MySQL was a success
+[04/02/2017 23:43:43] [ROSEAU] 
+[04/02/2017 23:43:43] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/02/2017 23:43:43] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/02/2017 23:43:43] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/02/2017 23:43:43] [ROSEAU] >> [ROOM] [Club Massiva: dancefloor] Starting public room server on port: 120
+[04/02/2017 23:43:43] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/02/2017 23:43:43] [ROSEAU] >> [ROOM] [Habbo Lido II] Starting public room server on port: 112
+[04/02/2017 23:43:43] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/02/2017 23:43:43] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/02/2017 23:43:43] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/02/2017 23:43:43] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/02/2017 23:43:43] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/02/2017 23:43:43] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/02/2017 23:43:43] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/02/2017 23:43:43] [ROSEAU] 
+[04/02/2017 23:43:43] [ROSEAU] >> Settting up server
+[04/02/2017 23:43:43] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[04/02/2017 23:43:49] [ROSEAU] >> SENT: #HELLO##
+[04/02/2017 23:43:49] [ROSEAU] >> [363116530] Connection from 127.0.0.1
+[04/02/2017 23:43:50] [ROSEAU] >> [363116530] Received: VERSIONCHECK / client002
+[04/02/2017 23:43:50] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[04/02/2017 23:43:50] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/02/2017 23:43:50] [ROSEAU] >> [363116530] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/02/2017 23:43:50] [ROSEAU] >> [363116530] Received: KEYENCRYPTED / 964
+[04/02/2017 23:43:50] [ROSEAU] >> [363116530] Received: LOGIN / Alex 123 0
+[04/02/2017 23:43:50] [ROSEAU] >> SENT: #ACTIVE_OBJECTS 0##
+[04/02/2017 23:43:50] [ROSEAU] >> SENT: # OBJECTS WORLD 0 pool_a[13]666 flower2b 2 28 7 0[13]667 flower2a 2 29 7 0[13]668 flower2b 19 30 7 0[13]669 flower2a 19 31 7 0[13]670 box 6 32 7 0[13]671 flower1 13 33 7 0[13]672 pool_chairy 10 34 7 4[13]673 umbrellay 8 35 7 0[13]674 pool_chairy 9 35 7 2[13]675 pool_tabley 10 35 7 0[13]676 pool_chairy 11 35 7 6[13]677 umbrellap 15 35 7 0[13]678 pool_chairy 10 36 7 0[13]679 pool_chairp 15 36 7 4[13]680 pool_chairo 22 36 7 4[13]681 pool_chairp 14 37 7 2[13]682 pool_tablep 15 37 7 0[13]683 pool_chairp 16 37 7 6[13]684 umbrellao 20 37 7 0[13]685 pool_chairo 21 37 7 2[13]686 pool_tabo 22 37 7 0[13]687 pool_chairo 22 38 7 0[13]688 pool_chairg 18 42 7 4[13]689 umbrellag 16 43 7 0[13]690 pool_chairg 17 43 7 2[13]691 pool_tablg 18 43 7 0[13]692 pool_chairg 19 43 7 6[13]693 pool_chairg 18 44 7 0##
+[04/02/2017 23:43:50] [ROSEAU] >> SENT: #HEIGHTMAP[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxx7xxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxx777xxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxx7777777xxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxx77777777xxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx77777777xxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx777777777xxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7xxx777777xxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7x777777777xxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7xxx77777777xxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7x777777777x7xxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7xxx7777777777xxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx777777777777xxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx77777777777x2111xxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7777777777x221111xxxxxxxxxxx[13]xxxxxxxxx7777777777777777x2211111xxxxxxxxxx[13]xxxxxxxxx7777777777777777x22211111xxxxxxxxx[13]xxxxxxxxx7777777777777777x222211111xxxxxxxx[13]xxxxxx77777777777777777777x222211111xxxxxxx[13]xxxxxx7777777xx777777777777x222211111xxxxxx[13]xxxxxx7777777xx77777777777772222111111xxxxx[13]xxxxxx777777777777777777777x22221111111xxxx[13]xx7777777777777777777777x322222211111111xxx[13]77777777777777777777777x33222222111111111xx[13]7777777777777777777777x333222222211111111xx[13]xx7777777777777777777x333322222222111111xxx[13]xx7777777777777777777333332222222221111xxxx[13]xx777xxx777777777777733333222222222211xxxxx[13]xx777x7x77777777777773333322222222222xxxxxx[13]xx777x7x7777777777777x33332222222222xxxxxxx[13]xxx77x7x7777777777777xx333222222222xxxxxxxx[13]xxxx77777777777777777xxx3222222222xxxxxxxxx[13]xxxxx777777777777777777xx22222222xxxxxxxxxx[13]xxxxxx777777777777777777x2222222xxxxxxxxxxx[13]xxxxxxx777777777777777777222222xxxxxxxxxxxx[13]xxxxxxxx7777777777777777722222xxxxxxxxxxxxx[13]xxxxxxxxx77777777777777772222xxxxxxxxxxxxxx[13]xxxxxxxxxx777777777777777222xxxxxxxxxxxxxxx[13]xxxxxxxxxxx77777777777777x2xxxxxxxxxxxxxxxx[13]xxxxxxxxxxxx77777777777777xxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxx777777777777xxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxx7777777777xxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx77777777xxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxx777777xxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxx7777xxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxx77xxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx##
+[04/02/2017 23:43:50] [ROSEAU] >> SENT: #USERS[13]  Alex sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83 2 25 7.0 so i herd u liek duckz ch=s02/255,255,255##
+[04/02/2017 23:43:50] [ROSEAU] >> SENT: #STATUS [13]Alex 2,25,7,2,2/##
+[04/02/2017 23:43:50] [ROSEAU] >> [363116530] Received: STATUSOK / 
+[04/02/2017 23:43:50] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:43:50] [ROSEAU] >> [363116530] Received: STATUSOK / 
+[04/02/2017 23:43:50] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:43:50] [ROSEAU] >> [363116530] Received: STATUSOK / 
+[04/02/2017 23:43:50] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:43:53] [ROSEAU] >> [363116530] Received: Move / 22 28
+[04/02/2017 23:43:55] [ROSEAU] >> [363116530] Received: Move / 20 28
+[04/02/2017 23:43:55] [ROSEAU] >> [363116530] Received: Move / 20 28
+[04/02/2017 23:43:55] [ROSEAU] >> SENT: #STATUS [13]Alex 2,25,7,3,3/mv 3,26,7/##
+[04/02/2017 23:43:56] [ROSEAU] >> SENT: #STATUS [13]Alex 3,26,7,3,3/mv 4,27,7/##
+[04/02/2017 23:43:56] [ROSEAU] >> SENT: #STATUS [13]Alex 4,27,7,2,2/mv 5,27,7/##
+[04/02/2017 23:43:57] [ROSEAU] >> SENT: #STATUS [13]Alex 5,27,7,2,2/mv 6,27,7/##
+[04/02/2017 23:43:57] [ROSEAU] >> SENT: #STATUS [13]Alex 6,27,7,2,2/mv 7,27,7/##
+[04/02/2017 23:43:58] [ROSEAU] >> SENT: #STATUS [13]Alex 7,27,7,3,3/mv 8,28,7/##
+[04/02/2017 23:43:58] [ROSEAU] >> SENT: #STATUS [13]Alex 8,28,7,2,2/mv 9,28,7/##
+[04/02/2017 23:43:59] [ROSEAU] >> SENT: #STATUS [13]Alex 9,28,7,2,2/mv 10,28,7/##
+[04/02/2017 23:43:59] [ROSEAU] >> SENT: #STATUS [13]Alex 10,28,7,2,2/mv 11,28,7/##
+[04/02/2017 23:44:00] [ROSEAU] >> SENT: #STATUS [13]Alex 11,28,7,2,2/mv 12,28,7/##
+[04/02/2017 23:44:00] [ROSEAU] >> SENT: #STATUS [13]Alex 12,28,7,2,2/mv 13,28,7/##
+[04/02/2017 23:44:01] [ROSEAU] >> SENT: #STATUS [13]Alex 13,28,7,2,2/mv 14,28,7/##
+[04/02/2017 23:44:01] [ROSEAU] >> SENT: #STATUS [13]Alex 14,28,7,2,2/mv 15,28,7/##
+[04/02/2017 23:44:02] [ROSEAU] >> SENT: #STATUS [13]Alex 15,28,7,2,2/mv 16,28,7/##
+[04/02/2017 23:44:02] [ROSEAU] >> SENT: #STATUS [13]Alex 16,28,7,2,2/mv 17,28,7/##
+[04/02/2017 23:44:03] [ROSEAU] >> SENT: #STATUS [13]Alex 17,28,7,2,2/mv 18,28,7/##
+[04/02/2017 23:44:03] [ROSEAU] >> SENT: #STATUS [13]Alex 18,28,7,2,2/mv 19,28,7/##
+[04/02/2017 23:44:04] [ROSEAU] >> SENT: #STATUS [13]Alex 19,28,7,2,2/mv 20,28,7/##
+[04/02/2017 23:44:04] [ROSEAU] >> SENT: #STATUS [13]Alex 20,28,7,2,2/swim/##
+[04/02/2017 23:44:05] [ROSEAU] >> [363116530] Received: Move / 20 25
+[04/02/2017 23:44:05] [ROSEAU] >> SENT: #STATUS [13]Alex 20,28,7,0,0/mv 20,27,7/##
+[04/02/2017 23:44:06] [ROSEAU] >> SENT: #STATUS [13]Alex 20,27,7,0,0/mv 20,26,7/##
+[04/02/2017 23:44:06] [ROSEAU] >> SENT: #STATUS [13]Alex 20,26,7,0,0/mv 20,25,7/##
+[04/02/2017 23:44:07] [ROSEAU] >> SENT: #STATUS [13]Alex 20,25,7,0,0/##
+[04/02/2017 23:44:08] [ROSEAU] >> [363116530] Received: Move / 20 28
+[04/02/2017 23:44:08] [ROSEAU] >> [363116530] Received: Move / 20 28
+[04/02/2017 23:44:08] [ROSEAU] >> SENT: #STATUS [13]Alex 20,25,7,4,4/mv 20,26,7/##
+[04/02/2017 23:44:09] [ROSEAU] >> SENT: #STATUS [13]Alex 20,26,7,4,4/mv 20,27,7/##
+[04/02/2017 23:44:09] [ROSEAU] >> SENT: #STATUS [13]Alex 20,27,7,4,4/mv 20,28,7/##
+[04/02/2017 23:44:10] [ROSEAU] >> SENT: #STATUS [13]Alex 20,28,7,4,4/swim/##
+[04/02/2017 23:44:11] [ROSEAU] >> [363116530] Received: Move / 22 28
+[04/02/2017 23:44:11] [ROSEAU] >> [363116530] Received: Move / 25 29
+[04/02/2017 23:44:12] [ROSEAU] >> [363116530] Received: Move / 26 28
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/02/2017 23:44:38
+-----------------------------------------
+
+[04/02/2017 23:44:38] [ROSEAU] >> Roseau - Java Server
+[04/02/2017 23:44:38] [ROSEAU] >> Loading server...
+[04/02/2017 23:44:38] [ROSEAU] 
+[04/02/2017 23:44:38] [ROSEAU] >> Loading dependencies
+[04/02/2017 23:44:38] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[04/02/2017 23:44:38] [ROSEAU] >> Loading: guava-11.0.2.jar
+[04/02/2017 23:44:38] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[04/02/2017 23:44:38] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[04/02/2017 23:44:38] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[04/02/2017 23:44:38] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[04/02/2017 23:44:38] [ROSEAU] >> Loading: ini4j-0.5.5-SNAPSHOT.jar
+[04/02/2017 23:44:38] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[04/02/2017 23:44:38] [ROSEAU] 
+[04/02/2017 23:44:38] [ROSEAU] >> Connecting to MySQL server
+[04/02/2017 23:44:38] [ROSEAU] >> Connection to MySQL was a success
+[04/02/2017 23:44:38] [ROSEAU] 
+[04/02/2017 23:44:38] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/02/2017 23:44:38] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/02/2017 23:44:38] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/02/2017 23:44:38] [ROSEAU] >> [ROOM] [Club Massiva: dancefloor] Starting public room server on port: 120
+[04/02/2017 23:44:38] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/02/2017 23:44:38] [ROSEAU] >> [ROOM] [Habbo Lido II] Starting public room server on port: 112
+[04/02/2017 23:44:38] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/02/2017 23:44:38] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/02/2017 23:44:38] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/02/2017 23:44:38] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/02/2017 23:44:38] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/02/2017 23:44:38] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/02/2017 23:44:38] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/02/2017 23:44:38] [ROSEAU] 
+[04/02/2017 23:44:38] [ROSEAU] >> Settting up server
+[04/02/2017 23:44:38] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[04/02/2017 23:44:42] [ROSEAU] >> SENT: #HELLO##
+[04/02/2017 23:44:42] [ROSEAU] >> [-1890992589] Connection from 127.0.0.1
+[04/02/2017 23:44:42] [ROSEAU] >> [-1890992589] Received: VERSIONCHECK / client002
+[04/02/2017 23:44:42] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[04/02/2017 23:44:42] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/02/2017 23:44:42] [ROSEAU] >> [-1890992589] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/02/2017 23:44:42] [ROSEAU] >> [-1890992589] Received: KEYENCRYPTED / 964
+[04/02/2017 23:44:42] [ROSEAU] >> [-1890992589] Received: LOGIN / Alex 123 0
+[04/02/2017 23:44:42] [ROSEAU] >> SENT: #ACTIVE_OBJECTS 0##
+[04/02/2017 23:44:42] [ROSEAU] >> SENT: # OBJECTS WORLD 0 pool_a[13]666 flower2b 2 28 7 0[13]667 flower2a 2 29 7 0[13]668 flower2b 19 30 7 0[13]669 flower2a 19 31 7 0[13]670 box 6 32 7 0[13]671 flower1 13 33 7 0[13]672 pool_chairy 10 34 7 4[13]673 umbrellay 8 35 7 0[13]674 pool_chairy 9 35 7 2[13]675 pool_tabley 10 35 7 0[13]676 pool_chairy 11 35 7 6[13]677 umbrellap 15 35 7 0[13]678 pool_chairy 10 36 7 0[13]679 pool_chairp 15 36 7 4[13]680 pool_chairo 22 36 7 4[13]681 pool_chairp 14 37 7 2[13]682 pool_tablep 15 37 7 0[13]683 pool_chairp 16 37 7 6[13]684 umbrellao 20 37 7 0[13]685 pool_chairo 21 37 7 2[13]686 pool_tabo 22 37 7 0[13]687 pool_chairo 22 38 7 0[13]688 pool_chairg 18 42 7 4[13]689 umbrellag 16 43 7 0[13]690 pool_chairg 17 43 7 2[13]691 pool_tablg 18 43 7 0[13]692 pool_chairg 19 43 7 6[13]693 pool_chairg 18 44 7 0##
+[04/02/2017 23:44:42] [ROSEAU] >> SENT: #HEIGHTMAP[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxx7xxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxx777xxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxx7777777xxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxx77777777xxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx77777777xxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx777777777xxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7xxx777777xxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7x777777777xxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7xxx77777777xxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7x777777777x7xxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7xxx7777777777xxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx777777777777xxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx77777777777x2111xxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7777777777x221111xxxxxxxxxxx[13]xxxxxxxxx7777777777777777x2211111xxxxxxxxxx[13]xxxxxxxxx7777777777777777x22211111xxxxxxxxx[13]xxxxxxxxx7777777777777777x222211111xxxxxxxx[13]xxxxxx77777777777777777777x222211111xxxxxxx[13]xxxxxx7777777xx777777777777x222211111xxxxxx[13]xxxxxx7777777xx77777777777772222111111xxxxx[13]xxxxxx777777777777777777777x22221111111xxxx[13]xx7777777777777777777777x322222211111111xxx[13]77777777777777777777777x33222222111111111xx[13]7777777777777777777777x333222222211111111xx[13]xx7777777777777777777x333322222222111111xxx[13]xx7777777777777777777333332222222221111xxxx[13]xx777xxx777777777777733333222222222211xxxxx[13]xx777x7x77777777777773333322222222222xxxxxx[13]xx777x7x7777777777777x33332222222222xxxxxxx[13]xxx77x7x7777777777777xx333222222222xxxxxxxx[13]xxxx77777777777777777xxx3222222222xxxxxxxxx[13]xxxxx777777777777777777xx22222222xxxxxxxxxx[13]xxxxxx777777777777777777x2222222xxxxxxxxxxx[13]xxxxxxx777777777777777777222222xxxxxxxxxxxx[13]xxxxxxxx7777777777777777722222xxxxxxxxxxxxx[13]xxxxxxxxx77777777777777772222xxxxxxxxxxxxxx[13]xxxxxxxxxx777777777777777222xxxxxxxxxxxxxxx[13]xxxxxxxxxxx77777777777777x2xxxxxxxxxxxxxxxx[13]xxxxxxxxxxxx77777777777777xxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxx777777777777xxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxx7777777777xxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx77777777xxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxx777777xxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxx7777xxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxx77xxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx##
+[04/02/2017 23:44:42] [ROSEAU] >> SENT: #USERS[13]  Alex sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83 2 25 7.0 so i herd u liek duckz ch=s02/255,255,255##
+[04/02/2017 23:44:42] [ROSEAU] >> SENT: #STATUS [13]Alex 2,25,7,2,2/##
+[04/02/2017 23:44:43] [ROSEAU] >> [-1890992589] Received: STATUSOK / 
+[04/02/2017 23:44:43] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:44:43] [ROSEAU] >> [-1890992589] Received: STATUSOK / 
+[04/02/2017 23:44:43] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:44:43] [ROSEAU] >> [-1890992589] Received: STATUSOK / 
+[04/02/2017 23:44:43] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:44:43] [ROSEAU] >> [-1890992589] Received: Move / 27 28
+[04/02/2017 23:44:43] [ROSEAU] >> SENT: #STATUS [13]Alex 2,25,7,3,3/mv 3,26,7/##
+[04/02/2017 23:44:44] [ROSEAU] >> SENT: #STATUS [13]Alex 3,26,7,3,3/mv 4,27,7/##
+[04/02/2017 23:44:44] [ROSEAU] >> SENT: #STATUS [13]Alex 4,27,7,2,2/mv 5,27,7/##
+[04/02/2017 23:44:45] [ROSEAU] >> SENT: #STATUS [13]Alex 5,27,7,2,2/mv 6,27,7/##
+[04/02/2017 23:44:45] [ROSEAU] >> SENT: #STATUS [13]Alex 6,27,7,2,2/mv 7,27,7/##
+[04/02/2017 23:44:46] [ROSEAU] >> SENT: #STATUS [13]Alex 7,27,7,3,3/mv 8,28,7/##
+[04/02/2017 23:44:46] [ROSEAU] >> SENT: #STATUS [13]Alex 8,28,7,2,2/mv 9,28,7/##
+[04/02/2017 23:44:47] [ROSEAU] >> SENT: #STATUS [13]Alex 9,28,7,2,2/mv 10,28,7/##
+[04/02/2017 23:44:47] [ROSEAU] >> SENT: #STATUS [13]Alex 10,28,7,2,2/mv 11,28,7/##
+[04/02/2017 23:44:48] [ROSEAU] >> SENT: #STATUS [13]Alex 11,28,7,2,2/mv 12,28,7/##
+[04/02/2017 23:44:48] [ROSEAU] >> SENT: #STATUS [13]Alex 12,28,7,2,2/mv 13,28,7/##
+[04/02/2017 23:44:49] [ROSEAU] >> SENT: #STATUS [13]Alex 13,28,7,2,2/mv 14,28,7/##
+[04/02/2017 23:44:49] [ROSEAU] >> SENT: #STATUS [13]Alex 14,28,7,2,2/mv 15,28,7/##
+[04/02/2017 23:44:50] [ROSEAU] >> SENT: #STATUS [13]Alex 15,28,7,2,2/mv 16,28,7/##
+[04/02/2017 23:44:50] [ROSEAU] >> SENT: #STATUS [13]Alex 16,28,7,2,2/mv 17,28,7/##
+[04/02/2017 23:44:51] [ROSEAU] >> SENT: #STATUS [13]Alex 17,28,7,2,2/mv 18,28,7/##
+[04/02/2017 23:44:51] [ROSEAU] >> SENT: #STATUS [13]Alex 18,28,7,2,2/mv 19,28,7/##
+[04/02/2017 23:44:52] [ROSEAU] >> SENT: #STATUS [13]Alex 19,28,7,2,2/mv 20,28,7/##
+[04/02/2017 23:44:52] [ROSEAU] >> SENT: #STATUS [13]Alex 20,28,7,1,1/mv 21,27,3/swim/##
+[04/02/2017 23:44:53] [ROSEAU] >> SENT: #STATUS [13]Alex 21,27,3,3,3/mv 22,28,3/swim/##
+[04/02/2017 23:44:53] [ROSEAU] >> SENT: #STATUS [13]Alex 22,28,3,2,2/mv 23,28,3/swim/##
+[04/02/2017 23:44:54] [ROSEAU] >> SENT: #STATUS [13]Alex 23,28,3,2,2/mv 24,28,3/swim/##
+[04/02/2017 23:44:54] [ROSEAU] >> SENT: #STATUS [13]Alex 24,28,3,2,2/mv 25,28,3/swim/##
+[04/02/2017 23:44:55] [ROSEAU] >> [-1890992589] Received: Move / 26 29
+[04/02/2017 23:44:55] [ROSEAU] >> SENT: #STATUS [13]Alex 25,28,3,3,3/mv 26,29,2/swim/##
+[04/02/2017 23:44:55] [ROSEAU] >> SENT: #STATUS [13]Alex 26,29,2,3,3/swim/##
+[04/02/2017 23:44:56] [ROSEAU] >> [-1890992589] Received: Move / 31 26
+[04/02/2017 23:44:56] [ROSEAU] >> SENT: #STATUS [13]Alex 26,29,2,1,1/mv 27,28,2/swim/##
+[04/02/2017 23:44:56] [ROSEAU] >> [-1890992589] Received: Move / 29 24
+[04/02/2017 23:44:56] [ROSEAU] >> SENT: #STATUS [13]Alex 27,28,2,1,1/mv 28,27,2/swim/##
+[04/02/2017 23:44:57] [ROSEAU] >> [-1890992589] Received: Move / 31 25
+[04/02/2017 23:44:57] [ROSEAU] >> SENT: #STATUS [13]Alex 28,27,2,1,1/mv 29,26,2/swim/##
+[04/02/2017 23:44:57] [ROSEAU] >> [-1890992589] Received: Move / 30 28
+[04/02/2017 23:44:57] [ROSEAU] >> SENT: #STATUS [13]Alex 29,26,2,4,4/mv 29,27,2/swim/##
+[04/02/2017 23:44:58] [ROSEAU] >> SENT: #STATUS [13]Alex 29,27,2,3,3/mv 30,28,2/swim/##
+[04/02/2017 23:44:58] [ROSEAU] >> [-1890992589] Received: Move / 21 19
+[04/02/2017 23:44:58] [ROSEAU] >> SENT: #STATUS [13]Alex 30,28,2,7,7/mv 29,27,2/swim/##
+[04/02/2017 23:44:59] [ROSEAU] >> SENT: #STATUS [13]Alex 29,27,2,7,7/mv 28,26,2/swim/##
+[04/02/2017 23:44:59] [ROSEAU] >> SENT: #STATUS [13]Alex 28,26,2,7,7/mv 27,25,2/swim/##
+[04/02/2017 23:45:00] [ROSEAU] >> SENT: #STATUS [13]Alex 27,25,2,7,7/mv 26,24,2/swim/##
+[04/02/2017 23:45:00] [ROSEAU] >> SENT: #STATUS [13]Alex 26,24,2,7,7/mv 25,23,3/swim/##
+[04/02/2017 23:45:01] [ROSEAU] >> SENT: #STATUS [13]Alex 25,23,3,7,7/mv 24,22,7/swim/##
+[04/02/2017 23:45:01] [ROSEAU] >> SENT: #STATUS [13]Alex 24,22,7,7,7/mv 23,21,7/swim/##
+[04/02/2017 23:45:02] [ROSEAU] >> SENT: #STATUS [13]Alex 23,21,7,7,7/mv 22,20,7/swim/##
+[04/02/2017 23:45:02] [ROSEAU] >> SENT: #STATUS [13]Alex 22,20,7,7,7/mv 21,19,7/swim/##
+[04/02/2017 23:45:03] [ROSEAU] >> [-1890992589] Received: Move / 23 28
+[04/02/2017 23:45:03] [ROSEAU] >> SENT: #STATUS [13]Alex 21,19,7,3,3/mv 22,20,7/swim/##
+[04/02/2017 23:45:03] [ROSEAU] >> SENT: #STATUS [13]Alex 22,20,7,3,3/mv 23,21,7/swim/##
+[04/02/2017 23:45:04] [ROSEAU] >> SENT: #STATUS [13]Alex 23,21,7,4,4/mv 23,22,7/swim/##
+[04/02/2017 23:45:04] [ROSEAU] >> SENT: #STATUS [13]Alex 23,22,7,4,4/mv 23,23,7/swim/##
+[04/02/2017 23:45:04] [ROSEAU] >> [-1890992589] Received: Move / 21 27
+[04/02/2017 23:45:05] [ROSEAU] >> SENT: #STATUS [13]Alex 23,23,7,5,5/mv 22,24,7/swim/##
+[04/02/2017 23:45:05] [ROSEAU] >> SENT: #STATUS [13]Alex 22,24,7,5,5/mv 21,25,7/swim/##
+[04/02/2017 23:45:06] [ROSEAU] >> SENT: #STATUS [13]Alex 21,25,7,5,5/mv 20,26,7/swim/##
+[04/02/2017 23:45:06] [ROSEAU] >> SENT: #STATUS [13]Alex 20,26,7,3,3/mv 21,27,3/swim/##
+[04/02/2017 23:45:07] [ROSEAU] >> SENT: #STATUS [13]Alex 21,27,3,3,3/swim/##
+[04/02/2017 23:45:08] [ROSEAU] >> [-1890992589] Received: Move / 21 27
+[04/02/2017 23:45:08] [ROSEAU] >> [-1890992589] Received: Move / 21 28
+[04/02/2017 23:45:08] [ROSEAU] >> [-1890992589] Received: LOOKTO / 21 28
+[04/02/2017 23:45:08] [ROSEAU] >> [-1890992589] Received: Move / 21 28
+[04/02/2017 23:45:09] [ROSEAU] >> [-1890992589] Received: Move / 17 26
+[04/02/2017 23:45:09] [ROSEAU] >> SENT: #STATUS [13]Alex 21,27,3,7,7/mv 20,26,7/swim/##
+[04/02/2017 23:45:09] [ROSEAU] >> [-1890992589] Received: STATUSOK / 
+[04/02/2017 23:45:09] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:45:10] [ROSEAU] >> SENT: #STATUS [13]Alex 20,26,7,6,6/mv 19,26,7/swim/##
+[04/02/2017 23:45:10] [ROSEAU] >> SENT: #STATUS [13]Alex 19,26,7,6,6/mv 18,26,7/swim/##
+[04/02/2017 23:45:11] [ROSEAU] >> [-1890992589] Received: Move / 21 28
+[04/02/2017 23:45:11] [ROSEAU] >> SENT: #STATUS [13]Alex 18,26,7,6,6/mv 17,26,7/swim/##
+[04/02/2017 23:45:11] [ROSEAU] >> [-1890992589] Received: Move / 20 28
+[04/02/2017 23:45:11] [ROSEAU] >> SENT: #STATUS [13]Alex 17,26,7,3,3/mv 18,27,7/swim/##
+[04/02/2017 23:45:12] [ROSEAU] >> [-1890992589] Received: Move / 21 28
+[04/02/2017 23:45:12] [ROSEAU] >> [-1890992589] Received: Move / 20 28
+[04/02/2017 23:45:12] [ROSEAU] >> SENT: #STATUS [13]Alex 18,27,7,2,2/mv 19,27,7/swim/##
+[04/02/2017 23:45:12] [ROSEAU] >> SENT: #STATUS [13]Alex 19,27,7,3,3/mv 20,28,7/swim/##
+[04/02/2017 23:45:13] [ROSEAU] >> SENT: #STATUS [13]Alex 20,28,7,3,3/##
+[04/02/2017 23:45:14] [ROSEAU] >> [-1890992589] Received: Move / 21 28
+[04/02/2017 23:45:14] [ROSEAU] >> [-1890992589] Received: Move / 20 28
+[04/02/2017 23:45:15] [ROSEAU] >> [-1890992589] Received: Move / 22 28
+[04/02/2017 23:45:15] [ROSEAU] >> SENT: #STATUS [13]Alex 20,28,7,1,1/mv 21,27,3/swim/##
+[04/02/2017 23:45:15] [ROSEAU] >> [-1890992589] Received: Move / 24 28
+[04/02/2017 23:45:15] [ROSEAU] >> SENT: #STATUS [13]Alex 21,27,3,3,3/mv 22,28,3/swim/##
+[04/02/2017 23:45:16] [ROSEAU] >> SENT: #STATUS [13]Alex 22,28,3,2,2/mv 23,28,3/swim/##
+[04/02/2017 23:45:16] [ROSEAU] >> SENT: #STATUS [13]Alex 23,28,3,2,2/mv 24,28,3/swim/##
+[04/02/2017 23:45:17] [ROSEAU] >> SENT: #STATUS [13]Alex 24,28,3,2,2/swim/##
+[04/02/2017 23:45:18] [ROSEAU] >> [-1890992589] Received: Move / 19 28
+[04/02/2017 23:45:18] [ROSEAU] >> SENT: #STATUS [13]Alex 24,28,3,6,6/mv 23,28,3/swim/##
+[04/02/2017 23:45:19] [ROSEAU] >> SENT: #STATUS [13]Alex 23,28,3,6,6/mv 22,28,3/swim/##
+[04/02/2017 23:45:19] [ROSEAU] >> SENT: #STATUS [13]Alex 22,28,3,5,5/mv 21,29,3/swim/##
+[04/02/2017 23:45:20] [ROSEAU] >> SENT: #STATUS [13]Alex 21,29,3,6,6/mv 20,29,7/swim/##
+[04/02/2017 23:45:20] [ROSEAU] >> SENT: #STATUS [13]Alex 20,29,7,7,7/mv 19,28,7/swim/##
+[04/02/2017 23:45:21] [ROSEAU] >> SENT: #STATUS [13]Alex 19,28,7,7,7/swim/##
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/02/2017 23:47:48
+-----------------------------------------
+
+[04/02/2017 23:47:48] [ROSEAU] >> Roseau - Java Server
+[04/02/2017 23:47:48] [ROSEAU] >> Loading server...
+[04/02/2017 23:47:48] [ROSEAU] 
+[04/02/2017 23:47:48] [ROSEAU] >> Loading dependencies
+[04/02/2017 23:47:48] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[04/02/2017 23:47:48] [ROSEAU] >> Loading: guava-11.0.2.jar
+[04/02/2017 23:47:48] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[04/02/2017 23:47:48] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[04/02/2017 23:47:48] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[04/02/2017 23:47:48] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[04/02/2017 23:47:48] [ROSEAU] >> Loading: ini4j-0.5.5-SNAPSHOT.jar
+[04/02/2017 23:47:48] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[04/02/2017 23:47:48] [ROSEAU] 
+[04/02/2017 23:47:48] [ROSEAU] >> Connecting to MySQL server
+[04/02/2017 23:47:48] [ROSEAU] >> Connection to MySQL was a success
+[04/02/2017 23:47:48] [ROSEAU] 
+[04/02/2017 23:47:48] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/02/2017 23:47:48] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/02/2017 23:47:48] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/02/2017 23:47:48] [ROSEAU] >> [ROOM] [Club Massiva: dancefloor] Starting public room server on port: 120
+[04/02/2017 23:47:48] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/02/2017 23:47:48] [ROSEAU] >> [ROOM] [Habbo Lido II] Starting public room server on port: 112
+[04/02/2017 23:47:48] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/02/2017 23:47:48] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/02/2017 23:47:48] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/02/2017 23:47:48] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/02/2017 23:47:48] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/02/2017 23:47:48] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/02/2017 23:47:48] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/02/2017 23:47:48] [ROSEAU] 
+[04/02/2017 23:47:48] [ROSEAU] >> Settting up server
+[04/02/2017 23:47:48] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[04/02/2017 23:47:52] [ROSEAU] >> SENT: #HELLO##
+[04/02/2017 23:47:52] [ROSEAU] >> [-1571904244] Connection from 127.0.0.1
+[04/02/2017 23:47:53] [ROSEAU] >> [-1571904244] Received: VERSIONCHECK / client002
+[04/02/2017 23:47:53] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[04/02/2017 23:47:53] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/02/2017 23:47:53] [ROSEAU] >> [-1571904244] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/02/2017 23:47:53] [ROSEAU] >> [-1571904244] Received: KEYENCRYPTED / 964
+[04/02/2017 23:47:53] [ROSEAU] >> [-1571904244] Received: LOGIN / Alex 123 0
+[04/02/2017 23:47:53] [ROSEAU] >> SENT: #ACTIVE_OBJECTS 0##
+[04/02/2017 23:47:53] [ROSEAU] >> SENT: # OBJECTS WORLD 0 pool_a[13]666 flower2b 2 28 7 0[13]667 flower2a 2 29 7 0[13]668 flower2b 19 30 7 0[13]669 flower2a 19 31 7 0[13]670 box 6 32 7 0[13]671 flower1 13 33 7 0[13]672 pool_chairy 10 34 7 4[13]673 umbrellay 8 35 7 0[13]674 pool_chairy 9 35 7 2[13]675 pool_tabley 10 35 7 0[13]676 pool_chairy 11 35 7 6[13]677 umbrellap 15 35 7 0[13]678 pool_chairy 10 36 7 0[13]679 pool_chairp 15 36 7 4[13]680 pool_chairo 22 36 7 4[13]681 pool_chairp 14 37 7 2[13]682 pool_tablep 15 37 7 0[13]683 pool_chairp 16 37 7 6[13]684 umbrellao 20 37 7 0[13]685 pool_chairo 21 37 7 2[13]686 pool_tabo 22 37 7 0[13]687 pool_chairo 22 38 7 0[13]688 pool_chairg 18 42 7 4[13]689 umbrellag 16 43 7 0[13]690 pool_chairg 17 43 7 2[13]691 pool_tablg 18 43 7 0[13]692 pool_chairg 19 43 7 6[13]693 pool_chairg 18 44 7 0##
+[04/02/2017 23:47:53] [ROSEAU] >> SENT: #HEIGHTMAP[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxx7xxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxx777xxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxx7777777xxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxx77777777xxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx77777777xxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx777777777xxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7xxx777777xxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7x777777777xxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7xxx77777777xxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7x777777777x7xxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7xxx7777777777xxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx777777777777xxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx77777777777x2111xxxxxxxxxxxx[13]xxxxxxxxxxxxxxx7777777777x221111xxxxxxxxxxx[13]xxxxxxxxx7777777777777777x2211111xxxxxxxxxx[13]xxxxxxxxx7777777777777777x22211111xxxxxxxxx[13]xxxxxxxxx7777777777777777x222211111xxxxxxxx[13]xxxxxx77777777777777777777x222211111xxxxxxx[13]xxxxxx7777777xx777777777777x222211111xxxxxx[13]xxxxxx7777777xx77777777777772222111111xxxxx[13]xxxxxx777777777777777777777x22221111111xxxx[13]xx7777777777777777777777x322222211111111xxx[13]77777777777777777777777x33222222111111111xx[13]7777777777777777777777x333222222211111111xx[13]xx7777777777777777777x333322222222111111xxx[13]xx7777777777777777777333332222222221111xxxx[13]xx777xxx777777777777733333222222222211xxxxx[13]xx777x7x77777777777773333322222222222xxxxxx[13]xx777x7x7777777777777x33332222222222xxxxxxx[13]xxx77x7x7777777777777xx333222222222xxxxxxxx[13]xxxx77777777777777777xxx3222222222xxxxxxxxx[13]xxxxx777777777777777777xx22222222xxxxxxxxxx[13]xxxxxx777777777777777777x2222222xxxxxxxxxxx[13]xxxxxxx777777777777777777222222xxxxxxxxxxxx[13]xxxxxxxx7777777777777777722222xxxxxxxxxxxxx[13]xxxxxxxxx77777777777777772222xxxxxxxxxxxxxx[13]xxxxxxxxxx777777777777777222xxxxxxxxxxxxxxx[13]xxxxxxxxxxx77777777777777x2xxxxxxxxxxxxxxxx[13]xxxxxxxxxxxx77777777777777xxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxx777777777777xxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxx7777777777xxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx77777777xxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxx777777xxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxx7777xxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxx77xxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx##
+[04/02/2017 23:47:53] [ROSEAU] >> SENT: #USERS[13]  Alex sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83 2 25 7.0 so i herd u liek duckz ch=s02/255,255,255##
+[04/02/2017 23:47:53] [ROSEAU] >> SENT: #STATUS [13]Alex 2,25,7,2,2/##
+[04/02/2017 23:47:53] [ROSEAU] >> [-1571904244] Received: STATUSOK / 
+[04/02/2017 23:47:53] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:47:53] [ROSEAU] >> [-1571904244] Received: STATUSOK / 
+[04/02/2017 23:47:53] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:47:53] [ROSEAU] >> [-1571904244] Received: STATUSOK / 
+[04/02/2017 23:47:53] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:47:57] [ROSEAU] >> [-1571904244] Received: Move / 25 27
+[04/02/2017 23:47:57] [ROSEAU] >> SENT: #STATUS [13]Alex 2,25,7,3,3/mv 3,26,7/##
+[04/02/2017 23:47:57] [ROSEAU] >> [-1571904244] Received: Move / 25 27
+[04/02/2017 23:47:57] [ROSEAU] >> SENT: #STATUS [13]Alex 3,26,7,3,3/mv 4,27,7/##
+[04/02/2017 23:47:58] [ROSEAU] >> SENT: #STATUS [13]Alex 4,27,7,2,2/mv 5,27,7/##
+[04/02/2017 23:47:58] [ROSEAU] >> SENT: #STATUS [13]Alex 5,27,7,2,2/mv 6,27,7/##
+[04/02/2017 23:47:59] [ROSEAU] >> SENT: #STATUS [13]Alex 6,27,7,2,2/mv 7,27,7/##
+[04/02/2017 23:47:59] [ROSEAU] >> SENT: #STATUS [13]Alex 7,27,7,2,2/mv 8,27,7/##
+[04/02/2017 23:48:00] [ROSEAU] >> SENT: #STATUS [13]Alex 8,27,7,2,2/mv 9,27,7/##
+[04/02/2017 23:48:00] [ROSEAU] >> SENT: #STATUS [13]Alex 9,27,7,2,2/mv 10,27,7/##
+[04/02/2017 23:48:01] [ROSEAU] >> SENT: #STATUS [13]Alex 10,27,7,2,2/mv 11,27,7/##
+[04/02/2017 23:48:01] [ROSEAU] >> SENT: #STATUS [13]Alex 11,27,7,2,2/mv 12,27,7/##
+[04/02/2017 23:48:02] [ROSEAU] >> SENT: #STATUS [13]Alex 12,27,7,2,2/mv 13,27,7/##
+[04/02/2017 23:48:02] [ROSEAU] >> SENT: #STATUS [13]Alex 13,27,7,2,2/mv 14,27,7/##
+[04/02/2017 23:48:03] [ROSEAU] >> SENT: #STATUS [13]Alex 14,27,7,2,2/mv 15,27,7/##
+[04/02/2017 23:48:03] [ROSEAU] >> SENT: #STATUS [13]Alex 15,27,7,2,2/mv 16,27,7/##
+[04/02/2017 23:48:04] [ROSEAU] >> SENT: #STATUS [13]Alex 16,27,7,2,2/mv 17,27,7/##
+[04/02/2017 23:48:04] [ROSEAU] >> SENT: #STATUS [13]Alex 17,27,7,2,2/mv 18,27,7/##
+[04/02/2017 23:48:05] [ROSEAU] >> SENT: #STATUS [13]Alex 18,27,7,2,2/mv 19,27,7/##
+[04/02/2017 23:48:05] [ROSEAU] >> SENT: #STATUS [13]Alex 19,27,7,3,3/mv 20,28,7/##
+[04/02/2017 23:48:06] [ROSEAU] >> SENT: #STATUS [13]Alex 20,28,7,1,1/mv 21,27,3/swim/##
+[04/02/2017 23:48:06] [ROSEAU] >> SENT: #STATUS [13]Alex 21,27,3,2,2/mv 22,27,3/swim/##
+[04/02/2017 23:48:07] [ROSEAU] >> SENT: #STATUS [13]Alex 22,27,3,2,2/mv 23,27,3/swim/##
+[04/02/2017 23:48:07] [ROSEAU] >> SENT: #STATUS [13]Alex 23,27,3,2,2/mv 24,27,3/swim/##
+[04/02/2017 23:48:08] [ROSEAU] >> [-1571904244] Received: Move / 26 27
+[04/02/2017 23:48:08] [ROSEAU] >> SENT: #STATUS [13]Alex 24,27,3,2,2/mv 25,27,3/swim/##
+[04/02/2017 23:48:08] [ROSEAU] >> SENT: #STATUS [13]Alex 25,27,3,2,2/mv 26,27,2/swim/##
+[04/02/2017 23:48:08] [ROSEAU] >> [-1571904244] Received: Move / 28 29
+[04/02/2017 23:48:09] [ROSEAU] >> [-1571904244] Received: Move / 28 29
+[04/02/2017 23:48:09] [ROSEAU] >> SENT: #STATUS [13]Alex 26,27,2,3,3/mv 27,28,2/swim/##
+[04/02/2017 23:48:09] [ROSEAU] >> SENT: #STATUS [13]Alex 27,28,2,3,3/mv 28,29,2/swim/##
+[04/02/2017 23:48:10] [ROSEAU] >> [-1571904244] Received: Move / 23 21
+[04/02/2017 23:48:10] [ROSEAU] >> SENT: #STATUS [13]Alex 28,29,2,7,7/mv 27,28,2/swim/##
+[04/02/2017 23:48:10] [ROSEAU] >> SENT: #STATUS [13]Alex 27,28,2,7,7/mv 26,27,2/swim/##
+[04/02/2017 23:48:11] [ROSEAU] >> SENT: #STATUS [13]Alex 26,27,2,7,7/mv 25,26,3/swim/##
+[04/02/2017 23:48:11] [ROSEAU] >> SENT: #STATUS [13]Alex 25,26,3,7,7/mv 24,25,3/swim/##
+[04/02/2017 23:48:12] [ROSEAU] >> SENT: #STATUS [13]Alex 24,25,3,6,6/mv 23,25,3/swim/##
+[04/02/2017 23:48:12] [ROSEAU] >> SENT: #STATUS [13]Alex 23,25,3,5,5/mv 22,26,3/swim/##
+[04/02/2017 23:48:13] [ROSEAU] >> SENT: #STATUS [13]Alex 22,26,3,5,5/mv 21,27,3/swim/##
+[04/02/2017 23:48:13] [ROSEAU] >> SENT: #STATUS [13]Alex 21,27,3,5,5/mv 20,28,7/swim/##
+[04/02/2017 23:48:14] [ROSEAU] >> SENT: #STATUS [13]Alex 20,28,7,0,0/mv 20,27,7/##
+[04/02/2017 23:48:14] [ROSEAU] >> SENT: #STATUS [13]Alex 20,27,7,0,0/mv 20,26,7/##
+[04/02/2017 23:48:15] [ROSEAU] >> SENT: #STATUS [13]Alex 20,26,7,1,1/mv 21,25,7/##
+[04/02/2017 23:48:15] [ROSEAU] >> SENT: #STATUS [13]Alex 21,25,7,1,1/mv 22,24,7/##
+[04/02/2017 23:48:16] [ROSEAU] >> SENT: #STATUS [13]Alex 22,24,7,1,1/mv 23,23,7/##
+[04/02/2017 23:48:16] [ROSEAU] >> SENT: #STATUS [13]Alex 23,23,7,0,0/mv 23,22,7/##
+[04/02/2017 23:48:17] [ROSEAU] >> [-1571904244] Received: Move / 37 28
+[04/02/2017 23:48:17] [ROSEAU] >> SENT: #STATUS [13]Alex 23,22,7,4,4/mv 23,23,7/##
+[04/02/2017 23:48:17] [ROSEAU] >> SENT: #STATUS [13]Alex 23,23,7,5,5/mv 22,24,7/##
+[04/02/2017 23:48:18] [ROSEAU] >> SENT: #STATUS [13]Alex 22,24,7,5,5/mv 21,25,7/##
+[04/02/2017 23:48:18] [ROSEAU] >> [-1571904244] Received: Move / 23 10
+[04/02/2017 23:48:18] [ROSEAU] >> SENT: #STATUS [13]Alex 21,25,7,1,1/mv 22,24,7/##
+[04/02/2017 23:48:18] [ROSEAU] >> [-1571904244] Disconnection from 127.0.0.1
+[04/02/2017 23:48:18] [ROSEAU] >> SENT: #STATUS [13]Alex -99,-99,0,1,1/##
+[04/02/2017 23:48:20] [ROSEAU] >> SENT: #HELLO##
+[04/02/2017 23:48:20] [ROSEAU] >> [-1082347840] Connection from 127.0.0.1
+[04/02/2017 23:48:20] [ROSEAU] >> [-1082347840] Received: VERSIONCHECK / client002
+[04/02/2017 23:48:20] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[04/02/2017 23:48:20] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/02/2017 23:48:20] [ROSEAU] >> [-1082347840] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/02/2017 23:48:20] [ROSEAU] >> [-1082347840] Received: KEYENCRYPTED / 964
+[04/02/2017 23:48:20] [ROSEAU] >> [-1082347840] Received: LOGIN / Alex 123 0
+[04/02/2017 23:48:20] [ROSEAU] >> SENT: #ACTIVE_OBJECTS 0##
+[04/02/2017 23:48:20] [ROSEAU] >> SENT: # OBJECTS WORLD 0 pool_b[13]694 umbrella2 33 2 7 0[13]695 pool_2sofa2 18 3 8 4[13]696 pool_2sofa1 19 3 8 4[13]697 pool_2sofa2 20 3 8 4[13]698 pool_2sofa1 21 3 8 4[13]699 pool_2sofa2 22 3 8 4[13]700 pool_2sofa1 23 3 8 4[13]701 pool_chair2 33 3 7 4[13]702 pool_chair2 32 4 7 2[13]703 pool_table2 33 4 7 0[13]704 pool_chair2 34 4 7 6[13]705 pool_2sofa2 16 5 8 2[13]706 pool_chair2 33 5 7 0[13]707 pool_2sofa1 16 6 8 2[13]708 pool_2sofa2 16 7 8 2[13]709 pool_chair2 35 7 7 4[13]710 flower1 14 8 9 0[13]711 pool_2sofa1 16 8 8 2[13]712 umbrella2 33 8 7 0[13]713 pool_chair2 34 8 7 2[13]714 pool_table2 35 8 7 0[13]715 pool_chair2 36 8 7 6[13]716 pool_2sofa2 14 9 9 2[13]717 pool_2sofa2 16 9 8 2[13]718 pool_chair2 35 9 7 0[13]719 pool_2sofa1 14 10 9 2[13]720 pool_2sofa1 16 10 8 2[13]721 pool_2sofa2 14 11 9 2[13]722 pool_2sofa2 16 11 8 2[13]723 pool_2sofa1 14 12 9 2[13]724 pool_2sofa1 16 12 8 2[13]725 flower2b 3 13 7 2[13]726 flower2a 4 13 7 2[13]727 pool_2sofa2 14 13 9 2[13]728 pool_2sofa2 16 13 8 2[13]729 pool_2sofa1 14 14 9 2[13]730 pool_2sofa1 16 14 8 2##
+[04/02/2017 23:48:20] [ROSEAU] >> SENT: #HEIGHTMAP[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx7xxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx777xxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxx8888888x7xxx77777xxxxxxxxxx[13]xxxxxxxxxxxxxxxxxx8888888x7xxx777777xxxxxxxxx[13]xxxxxxxxxxxxxxxx88xxxxx77x7x777777777xxxxxxxx[13]xxxxxxxxxxxxxxxx88x7777777777777777777xxxxxxx[13]xxxxxxxxxxxxxxxx88x77777777777777777777xxxxxx[13]xxxxxxxxxxxxxx9988x77777777777777777777xxxxxx[13]xxxxxxxxxxxxxx9988x7777777777777777777x00xxxx[13]xxxxxxxxxxxxxx9988x777777777777777777x0000xxx[13]xxxxxxxxxxxxxx9988x7777777x0000000000000000xx[13]xxxxxxxxxxxxxx9988x777777x000000000000000000x[13]7777777777xxxx9988777777x0x0000000000000000xx[13]x7777777777xxx998877777x000x00000000000000xxx[13]xx7777777777xx99887777x00000x000000000000xxxx[13]xxx7777777777x9988777x0000000x0000000000xxxxx[13]xxxx777777777x777777x00000000x000000000xxxxxx[13]xxxxx777777777777777000000000x00000000xxxxxxx[13]xxxxxx77777777777777000000000x0000000xxxxxxxx[13]xxxxxxx777777x7777770000000000xxxx00xxxxxxxxx[13]xxxxxxxx77777777777xx0000000000000xxxxxxxxxxx[13]xxxxxxxxx777777110000x000000000000xxxxxxxxxxx[13]xxxxxxxxxx7x77x1100000x0000000000xxxxxxxxxxxx[13]xxxxxxxxxxx777x11000000x00000000xxxxxxxxxxxxx[13]xxxxxxxxxxxx771110000000x000000xxxxxxxxxxxxxx[13]xxxxxxxxxxxxx111100000000x0000xxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxx11100000000x000xxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxx1100000000x00xxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxx110000000x0xxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxx110000000xxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxx1100000xxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxx11000xxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxx110xxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxx1xxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[13]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx##
+[04/02/2017 23:48:20] [ROSEAU] >> SENT: #USERS[13]  Alex sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83 9 21 7.0 so i herd u liek duckz ch=s02/255,255,255##
+[04/02/2017 23:48:20] [ROSEAU] >> SENT: #STATUS [13]Alex 9,21,7,2,2/##
+[04/02/2017 23:48:20] [ROSEAU] >> [-1082347840] Received: STATUSOK / 
+[04/02/2017 23:48:20] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:48:20] [ROSEAU] >> [-1082347840] Received: STATUSOK / 
+[04/02/2017 23:48:20] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:48:20] [ROSEAU] >> [-1082347840] Received: STATUSOK / 
+[04/02/2017 23:48:20] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:48:20] [ROSEAU] >> [-1082347840] Received: STATUSOK / 
+[04/02/2017 23:48:20] [ROSEAU] >> SENT: #OK##
+[04/02/2017 23:48:24] [ROSEAU] >> [-1082347840] Received: Move / 20 24
+[04/02/2017 23:48:25] [ROSEAU] >> SENT: #STATUS [13]Alex 9,21,7,3,3/mv 10,22,7/##
+[04/02/2017 23:48:25] [ROSEAU] >> [-1082347840] Received: Move / 18 25
+[04/02/2017 23:48:25] [ROSEAU] >> SENT: #STATUS [13]Alex 10,22,7,2,2/mv 11,22,7/##
+[04/02/2017 23:48:26] [ROSEAU] >> SENT: #STATUS [13]Alex 11,22,7,3,3/mv 12,23,7/##
+[04/02/2017 23:48:26] [ROSEAU] >> SENT: #STATUS [13]Alex 12,23,7,2,2/mv 13,23,7/##
+[04/02/2017 23:48:27] [ROSEAU] >> SENT: #STATUS [13]Alex 13,23,7,1,1/mv 14,22,7/##
+[04/02/2017 23:48:27] [ROSEAU] >> SENT: #STATUS [13]Alex 14,22,7,1,1/mv 15,21,7/##
+[04/02/2017 23:48:28] [ROSEAU] >> SENT: #STATUS [13]Alex 15,21,7,2,2/mv 16,21,7/##
+[04/02/2017 23:48:28] [ROSEAU] >> SENT: #STATUS [13]Alex 16,21,7,2,2/mv 17,21,7/##
+[04/02/2017 23:48:29] [ROSEAU] >> SENT: #STATUS [13]Alex 17,21,7,3,3/mv 18,22,0/swim/##
+[04/02/2017 23:48:29] [ROSEAU] >> SENT: #STATUS [13]Alex 18,22,0,4,4/mv 18,23,0/swim/##
+[04/02/2017 23:48:29] [ROSEAU] >> [-1082347840] Received: Move / 18 26
+[04/02/2017 23:48:30] [ROSEAU] >> SENT: #STATUS [13]Alex 18,23,0,4,4/mv 18,24,0/swim/##
+[04/02/2017 23:48:30] [ROSEAU] >> [-1082347840] Received: Move / 18 26
+[04/02/2017 23:48:30] [ROSEAU] >> SENT: #STATUS [13]Alex 18,24,0,4,4/mv 18,25,0/swim/##
+[04/02/2017 23:48:31] [ROSEAU] >> SENT: #STATUS [13]Alex 18,25,0,4,4/mv 18,26,0/swim/##
+[04/02/2017 23:48:31] [ROSEAU] >> [-1082347840] Received: Move / 19 26
+[04/02/2017 23:48:31] [ROSEAU] >> SENT: #STATUS [13]Alex 18,26,0,2,2/mv 19,26,0/swim/##
+[04/02/2017 23:48:31] [ROSEAU] >> [-1082347840] Received: Move / 20 28
+[04/02/2017 23:48:32] [ROSEAU] >> SENT: #STATUS [13]Alex 19,26,0,4,4/mv 19,27,0/swim/##
+[04/02/2017 23:48:32] [ROSEAU] >> SENT: #STATUS [13]Alex 19,27,0,3,3/mv 20,28,0/swim/##
+[04/02/2017 23:48:33] [ROSEAU] >> SENT: #STATUS [13]Alex 20,28,0,3,3/swim/##

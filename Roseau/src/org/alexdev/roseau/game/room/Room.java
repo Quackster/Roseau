@@ -68,11 +68,11 @@ public class Room implements Runnable {
 				IEntity entity = entities.get(i);
 
 				if (entity != null) {
-					if (entity.getRoomEntity() != null) {
+					if (entity.getRoomUser() != null) {
 
 						this.processEntity(entity);
 
-						RoomEntity roomEntity = entity.getRoomEntity();
+						RoomEntity roomEntity = entity.getRoomUser();
 
 						if (roomEntity.needsUpdate()) {
 							update_entities.add(entity);
@@ -85,9 +85,9 @@ public class Room implements Runnable {
 				this.send(new STATUS(update_entities));
 
 				for (IEntity entity : update_entities) {
-					entity.getRoomEntity().walk();
-					if (entity.getRoomEntity().needsUpdate()) {
-						entity.getRoomEntity().setNeedUpdate(false);
+					entity.getRoomUser().walkedPositionUpdate();
+					if (entity.getRoomUser().needsUpdate()) {
+						entity.getRoomUser().setNeedUpdate(false);
 					}
 				}
 			}
@@ -100,7 +100,7 @@ public class Room implements Runnable {
 
 	private void processEntity(IEntity entity) {
 
-		RoomEntity roomEntity = entity.getRoomEntity();
+		RoomEntity roomEntity = entity.getRoomUser();
 
 		if (roomEntity.isWalking()) {
 			if (roomEntity.getPath().size() > 0) {
@@ -130,7 +130,7 @@ public class Room implements Runnable {
 
 	public void loadRoom(Player player) {
 
-		RoomEntity roomEntity = player.getRoomEntity();
+		RoomEntity roomEntity = player.getRoomUser();
 
 		roomEntity.setRoom(this);
 		roomEntity.getStatuses().clear();
@@ -174,8 +174,8 @@ public class Room implements Runnable {
 		}
 
 		if (this.entities.size() > 0) {
-			this.send(player.getRoomEntity().getUsersComposer());
-			this.send(player.getRoomEntity().getStatusComposer());
+			this.send(player.getRoomUser().getUsersComposer());
+			this.send(player.getRoomUser().getStatusComposer());
 		} else {
 			if (this.tickTask == null) {
 				this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
@@ -210,7 +210,7 @@ public class Room implements Runnable {
 
 		//this.send(new RemoveUserMessageComposer(player.getRoomUser().getVirtualId()));
 
-		RoomEntity roomUser = player.getRoomEntity();
+		RoomEntity roomUser = player.getRoomUser();
 		roomUser.dispose();
 		roomUser.getPosition().setX(-99);
 		roomUser.getPosition().setY(-99);
@@ -400,7 +400,21 @@ public class Room implements Runnable {
 		double heightCurrent = this.roomData.getModel().getHeight(current);
 		double heightNeighour = this.roomData.getModel().getHeight(neighbour);
 
-		//if (!this.roomData.getModel().hasPool()) {
+		Item currentItem = this.roomMapping.getHighestItem(current.getX(), current.getY());
+		Item neighbourItem = this.roomMapping.getHighestItem(neighbour.getX(), neighbour.getY());
+		
+		if (neighbourItem != null) {
+			if (neighbourItem.getDefinition().getSprite().equals("poolEnter")) {
+				return true;
+			}
+		}
+		
+		if (currentItem != null) {
+			if (currentItem.getDefinition().getSprite().equals("poolEnter")) {
+				return true;
+			}
+		}
+		
 		if (heightCurrent > heightNeighour) {
 
 			if ((heightCurrent - heightNeighour) >= 3.0) {
@@ -414,8 +428,7 @@ public class Room implements Runnable {
 				return false;
 			}
 		}
-		//}
-
+		
 		if (!this.roomMapping.isValidTile(current.getX(), current.getY())) {
 			return false;
 		}
@@ -434,7 +447,7 @@ public class Room implements Runnable {
 	}
 
 
-	public RoomMapping getRoomMapping() {
+	public RoomMapping getMapping() {
 		return roomMapping;
 	}
 

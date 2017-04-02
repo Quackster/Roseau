@@ -107,6 +107,10 @@ public class Item implements SerializableObject {
 		if (definition.getSprite().equals("poolBooth")) {
 			tile_valid = true;
 		}
+		
+		if (definition.getSprite().equals("poolEnter")) {
+			tile_valid = true;
+		}
 
 		return tile_valid; 
 	}

@@ -40,17 +40,17 @@ public class Pathfinder {
 	private static PathfinderNode makePathReversed(IEntity entity) {
 		MinMaxPriorityQueue<PathfinderNode> openList = MinMaxPriorityQueue.maximumSize(256).create();
 
-		PathfinderNode[][] map = new PathfinderNode[entity.getRoomEntity().getModel().getMapSizeX()][entity.getRoomEntity().getModel().getMapSizeY()];
+		PathfinderNode[][] map = new PathfinderNode[entity.getRoomUser().getModel().getMapSizeX()][entity.getRoomUser().getModel().getMapSizeY()];
 		PathfinderNode node;
 		Point tmp;
 
 		int cost;
 		int diff;
 
-		PathfinderNode current = new PathfinderNode(entity.getRoomEntity().getPosition());
+		PathfinderNode current = new PathfinderNode(entity.getRoomUser().getPosition());
 		current.setCost(0);
 
-		Point end = entity.getRoomEntity().getGoal();
+		Point end = entity.getRoomUser().getGoal();
 		PathfinderNode finish = new PathfinderNode(end);
 
 		map[current.getPosition().getX()][current.getPosition().getY()] = current;
@@ -65,7 +65,7 @@ public class Pathfinder {
 
 				boolean isFinalMove = (tmp.getX() == end.getX() && tmp.getY() == end.getY());
 
-				if (entity.getRoomEntity().getRoom().isValidStep(new Point(current.getPosition().getX(), current.getPosition().getY(), current.getPosition().getZ()), tmp, isFinalMove)) {
+				if (entity.getRoomUser().getRoom().isValidStep(new Point(current.getPosition().getX(), current.getPosition().getY(), current.getPosition().getZ()), tmp, isFinalMove)) {
 					if (map[tmp.getX()][tmp.getY()] == null) {
 						node = new PathfinderNode(tmp);
 						map[tmp.getX()][tmp.getY()] = node;

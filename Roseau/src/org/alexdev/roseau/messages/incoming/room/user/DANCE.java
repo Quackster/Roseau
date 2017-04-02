@@ -9,12 +9,12 @@ public class DANCE implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 		
-		if (player.getRoomEntity().getRoom() == null) {
+		if (player.getRoomUser().getRoom() == null) {
 			return;
 		}
 		
-		player.getRoomEntity().setStatus("dance", "");
-		player.getRoomEntity().setNeedUpdate(true);
+		player.getRoomUser().setStatus("dance", "");
+		player.getRoomUser().setNeedUpdate(true);
 	}
 
 }

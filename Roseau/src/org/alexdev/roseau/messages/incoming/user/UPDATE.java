@@ -17,8 +17,8 @@ public class UPDATE implements MessageEvent {
 			player.getDetails().setPoolFigure(poolFigure);
 			player.getDetails().save();
 			
-			if (player.getRoomEntity().getRoom() != null) {
-				player.getRoomEntity().getRoom().send(player.getRoomEntity().getUsersComposer());
+			if (player.getRoomUser().getRoom() != null) {
+				player.getRoomUser().getRoom().send(player.getRoomUser().getUsersComposer());
 			}
 		} else {
 			

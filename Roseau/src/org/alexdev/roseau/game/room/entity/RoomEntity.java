@@ -59,7 +59,11 @@ public class RoomEntity {
 		this.statuses.put(key, value);
 	}
 
-	public void walk() {
+	public boolean containsStatus(String string) {
+		return this.statuses.containsKey(string);
+	}
+
+	public void walkedPositionUpdate() {
 		if (this.isWalking) {
 			if (this.next != null) {
 
@@ -69,13 +73,27 @@ public class RoomEntity {
 				this.position.setY(next.getY());
 			}
 		}
+
+		Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
+
+		if (item != null) {
+			ItemDefinition definition = item.getDefinition();
+
+			if (definition.getSprite().equals("poolEnter")) {
+				if (this.containsStatus("swim")) {
+					this.removeStatus("swim");
+				} else {
+					this.setStatus("swim", "");
+				}
+			}
+		}
 	}
 
 	public void stopWalking() {
 
 		this.removeStatus("mv");
 
-		Item item = this.room.getRoomMapping().getHighestItem(this.position.getX(), this.position.getY());
+		Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
 
 		if (item != null) {
 			ItemDefinition definition = item.getDefinition();
@@ -95,13 +113,14 @@ public class RoomEntity {
 						item.showProgram(item.getItemData(), "close");
 					}
 				}
-
 			}
 		}
 
 		this.isWalking = false;
 		this.needsUpdate = true;
 	}
+
+
 
 	public void chat(String talkMessage, String header, boolean spamCheck) {
 

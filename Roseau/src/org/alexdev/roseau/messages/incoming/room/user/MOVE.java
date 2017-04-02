@@ -2,6 +2,7 @@ package org.alexdev.roseau.messages.incoming.room.user;
 
 import java.util.LinkedList;
 
+import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.pathfinder.Pathfinder;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomEntity;
@@ -21,19 +22,26 @@ public class MOVE implements MessageEvent {
 		int x = Integer.valueOf(reader.getArgument(0));
 		int y = Integer.valueOf(reader.getArgument(1));
 		
-		if (player.getRoomEntity().getRoom() == null) {
+		if (player.getRoomUser().getRoom() == null) {
 			return;
 		}
 		
-		if (!player.getRoomEntity().getRoom().getRoomMapping().isValidTile(x, y)) {
+		if (!player.getRoomUser().getRoom().getMapping().isValidTile(x, y)) {
+			
+			/*Item item = player.getRoomUser().getRoom().getMapping().getHighestItem(x, y);
+			
+			if (item != null) {
+				Log.println(item.getDefinition().getSprite() + " - " + item.getDefinitionId());
+			}
+			*/
 			return;
 		}
 		
-		if (player.getRoomEntity().getPosition().sameAs(new Point(x, y))) {
+		if (player.getRoomUser().getPosition().sameAs(new Point(x, y))) {
 			return;
 		}
 
-		RoomEntity roomEntity = player.getRoomEntity();
+		RoomEntity roomEntity = player.getRoomUser();
 		roomEntity.getGoal().setX(x);
 		roomEntity.getGoal().setY(y);
 

@@ -9,7 +9,7 @@ public class STOP implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 
-		if (player.getRoomEntity().getRoom() == null) {
+		if (player.getRoomUser().getRoom() == null) {
 			return;
 		}
 		
@@ -20,8 +20,8 @@ public class STOP implements MessageEvent {
 		String stopWhat = reader.getArgument(0);
 		
 		if (stopWhat.equals("Dance")) {
-			player.getRoomEntity().removeStatus("dance");
-			player.getRoomEntity().setNeedUpdate(true);
+			player.getRoomUser().removeStatus("dance");
+			player.getRoomUser().setNeedUpdate(true);
 		}
 	}
 

@@ -26,22 +26,22 @@ public class STATUS implements OutgoingMessageComposer {
 		
 		for (IEntity entity : this.entities) {
 			response.appendNewArgument(entity.getDetails().getUsername());
-			response.appendArgument(String.valueOf(entity.getRoomEntity().getPosition().getX()));
-			response.appendArgument(String.valueOf(entity.getRoomEntity().getPosition().getY()), ',');
+			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getX()));
+			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getY()), ',');
 			
-			if (entity.getRoomEntity().isWalking()) {
-				if (entity.getRoomEntity().getNext() == null) {
-					entity.getRoomEntity().stopWalking();
+			if (entity.getRoomUser().isWalking()) {
+				if (entity.getRoomUser().getNext() == null) {
+					entity.getRoomUser().stopWalking();
 				}
 			}
 			
-			response.appendArgument(String.valueOf((int)entity.getRoomEntity().getPosition().getZ()), ',');			
-			response.appendArgument(String.valueOf(entity.getRoomEntity().getHeadRotation()), ',');
-			response.appendArgument(String.valueOf(entity.getRoomEntity().getRotation()), ',');
+			response.appendArgument(String.valueOf((int)entity.getRoomUser().getPosition().getZ()), ',');			
+			response.appendArgument(String.valueOf(entity.getRoomUser().getHeadRotation()), ',');
+			response.appendArgument(String.valueOf(entity.getRoomUser().getRotation()), ',');
 			
 			String status = "/";
 
-			for (Entry<String, String> set : entity.getRoomEntity().getStatuses().entrySet()) {
+			for (Entry<String, String> set : entity.getRoomUser().getStatuses().entrySet()) {
 				status += set.getKey() + set.getValue() + "/";
 			}
 			

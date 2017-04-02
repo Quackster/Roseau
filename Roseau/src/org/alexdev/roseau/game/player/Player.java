@@ -68,7 +68,7 @@ public class Player implements IEntity {
 	}
 	
 	@Override
-	public RoomEntity getRoomEntity() {
+	public RoomEntity getRoomUser() {
 		return this.roomEntity;
 	}
 
