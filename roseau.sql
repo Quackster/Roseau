@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 02, 2017 at 08:20 AM
+-- Generation Time: Apr 02, 2017 at 12:11 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -2182,7 +2182,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `birthday` varchar(30) NOT NULL DEFAULT '01/01/1970',
   `has_logged_in` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `users`
@@ -2190,8 +2190,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `figure`, `pool_figure`, `credits`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
 (2, 'test', '123', 1, 44324323, 1490046606, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', '', 0, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=008/231,201,163&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/255,237,179&ls=002/255,237,179&rs=002/255,237,179&lg=006/149,120,78&sh=003/121,94,83', 'ch=s02/253,146,160', 5000, 'Male', 'UK', '', '01.01.1997', 1),
-(7, 'Alex444', '123', 1, NULL, NULL, 'ee2ee@cc.com', 'roseau = the best', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/199,69,217&ls=002/199,69,217&rs=002/199,69,217&lg=002/198,179,214&sh=002/192,180,199', '', 4000, 'Male', 'UK', '', '08.10.1997', 0);
+(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83', 'ch=s02/255,255,255', 5000, 'Male', 'UK', '', '01.01.1997', 1),
+(7, 'Alex444', '123', 1, NULL, NULL, 'ee2ee@cc.com', 'roseau = the best', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/199,69,217&ls=002/199,69,217&rs=002/199,69,217&lg=002/198,179,214&sh=002/192,180,199', '', 4000, 'Male', 'UK', '', '08.10.1997', 0),
+(8, 'Alex1336', '123', 1, NULL, NULL, 'wdd@cc.com', 'wdddw', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 4000, 'Male', 'UK', '', '04.08.1997', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
