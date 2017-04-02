@@ -214,21 +214,17 @@ public class Room implements Runnable {
 
 		}
 
-		//this.send(new RemoveUserMessageComposer(player.getRoomUser().getVirtualId()));
+		if (this.entities != null) {
+			this.entities.remove(player);
+		}
 
 		RoomEntity roomUser = player.getRoomUser();
 		roomUser.dispose();
 		roomUser.getPosition().setX(-99);
 		roomUser.getPosition().setY(-99);
 		this.send(roomUser.getStatusComposer());
-
 		roomUser.setWalking(false);
-
-
-		if (this.entities != null) {
-			this.entities.remove(player);
-		}
-
+		
 		this.dispose();
 	}
 
