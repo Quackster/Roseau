@@ -19,6 +19,7 @@ public class LOGIN implements MessageEvent {
 
 		if (authenticated) {
 			
+			player.getDetails().setAuthenticated(true);
 			player.getDetails().setPassword(password);
 			
 			if (reader.getArgumentAmount() > 2) {

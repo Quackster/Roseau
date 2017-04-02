@@ -1,0 +1,37 @@
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/02/2017 22:40:02
+-----------------------------------------
+
+[04/02/2017 22:40:02] [ROSEAU] >> Roseau - Java Server
+[04/02/2017 22:40:02] [ROSEAU] >> Loading server...
+[04/02/2017 22:40:02] [ROSEAU] 
+[04/02/2017 22:40:02] [ROSEAU] >> Loading dependencies
+[04/02/2017 22:40:02] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[04/02/2017 22:40:02] [ROSEAU] >> Loading: guava-11.0.2.jar
+[04/02/2017 22:40:02] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[04/02/2017 22:40:02] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[04/02/2017 22:40:02] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[04/02/2017 22:40:02] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[04/02/2017 22:40:02] [ROSEAU] >> Loading: ini4j-0.5.5-SNAPSHOT.jar
+[04/02/2017 22:40:02] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[04/02/2017 22:40:02] [ROSEAU] 
+[04/02/2017 22:40:02] [ROSEAU] >> Connecting to MySQL server
+[04/02/2017 22:40:02] [ROSEAU] >> Connection to MySQL was a success
+[04/02/2017 22:40:02] [ROSEAU] 
+[04/02/2017 22:40:02] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/02/2017 22:40:02] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/02/2017 22:40:02] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/02/2017 22:40:02] [ROSEAU] >> [ROOM] [Club Massiva: dancefloor] Starting public room server on port: 120
+[04/02/2017 22:40:02] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/02/2017 22:40:02] [ROSEAU] >> [ROOM] [Habbo Lido II] Starting public room server on port: 112
+[04/02/2017 22:40:02] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/02/2017 22:40:02] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/02/2017 22:40:02] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/02/2017 22:40:02] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/02/2017 22:40:02] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/02/2017 22:40:02] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/02/2017 22:40:02] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/02/2017 22:40:02] [ROSEAU] 
+[04/02/2017 22:40:02] [ROSEAU] >> Settting up server
+[04/02/2017 22:40:02] [ROSEAU] >> Server is listening on 127.0.0.1:91

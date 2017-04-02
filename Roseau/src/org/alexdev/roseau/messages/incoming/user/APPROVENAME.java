@@ -5,7 +5,6 @@ import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.incoming.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.register.NAME_APPROVED;
 import org.alexdev.roseau.messages.outgoing.register.NAME_UNACCEPTABLE;
-import org.alexdev.roseau.messages.outgoing.user.SYSTEMBROADCAST;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class APPROVENAME implements MessageEvent {

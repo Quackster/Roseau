@@ -5,7 +5,6 @@ import java.util.LinkedList;
 
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.RoomModel;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
 import org.alexdev.roseau.messages.outgoing.room.pool.OPEN_UIMAKOPPI;

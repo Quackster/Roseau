@@ -10,12 +10,7 @@ import org.alexdev.roseau.server.messages.ClientMessage;
 public class GETCREDITS implements MessageEvent {
 
 	@Override
-	public void handle(Player player, ClientMessage reader) {
-		
-		if (player.getDetails().getUsername() != null) {
-			player.getDetails().setAuthenticated(true);
-		}
-		
+	public void handle(Player player, ClientMessage reader) {	
 		player.send(new WALLETBALANCE(player.getDetails().getCredits()));
 		player.send(new MESSENGERSMSACCOUNT());
 		player.send(new MESSENGERSREADY());

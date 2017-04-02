@@ -10,8 +10,6 @@ import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.util.IProcessStorage;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
-import org.alexdev.roseau.game.room.Room;
-import org.alexdev.roseau.game.room.RoomData;
 import org.alexdev.roseau.log.Log;
 
 public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> implements PlayerDao {

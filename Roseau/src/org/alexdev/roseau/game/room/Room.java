@@ -21,8 +21,6 @@ import org.alexdev.roseau.messages.outgoing.room.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.room.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
-import org.alexdev.roseau.messages.outgoing.room.pool.JUMPDATA;
-import org.alexdev.roseau.messages.outgoing.room.pool.OPEN_UIMAKOPPI;
 
 public class Room implements Runnable {
 
@@ -189,22 +187,6 @@ public class Room implements Runnable {
 
 		player.send(new USERS(this.entities));
 		player.send(new STATUS(this.entities));
-
-		if (this.roomData.getModel().hasPool()) {
-			//player.getRoomEntity().setStatus("swim", "");
-			//player.getRoomEntity().setNeedUpdate(true);
-			
-			//String data = msg.nextArgument((char)13);
-			player.send(new JUMPDATA());
-			
-			// Start replay for diving user, show user on camera for other clients
-			/*ServerMessage notify = new ServerMessage("JUMPDATA");
-			notify.appendNewArgument(comm.getUserObject().name);
-			notify.appendNewArgument(data);
-			comm.getSpaceInstance().broadcast(notify);*/
-			
-			
-		}
 
 	}
 

@@ -9,7 +9,9 @@ public class INFORETRIEVE implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-		player.send(new USEROBJECT(player.getDetails()));
-	}
 
+		if (player.getDetails().isAuthenticated()) {
+			player.send(new USEROBJECT(player.getDetails()));
+		}
+	}
 }
