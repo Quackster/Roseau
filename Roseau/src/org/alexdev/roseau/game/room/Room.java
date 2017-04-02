@@ -179,10 +179,7 @@ public class Room implements Runnable {
 			this.send(player.getRoomUser().getUsersComposer());
 			this.send(player.getRoomUser().getStatusComposer());
 		} else {
-			if (this.tickTask == null) {
-				this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
-				this.roomMapping.regenerateCollisionMaps();
-			}
+			this.init();
 		}
 
 		this.entities.add(player);
@@ -246,12 +243,12 @@ public class Room implements Runnable {
 	}
 
 	public void init() {
-
-		if (this.getUsers().size() != 0) {
-			return;
-		}
-
 		this.disposed = false;
+		
+		if (this.tickTask == null) {
+			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
+			this.roomMapping.regenerateCollisionMaps();
+		}
 
 	}
 

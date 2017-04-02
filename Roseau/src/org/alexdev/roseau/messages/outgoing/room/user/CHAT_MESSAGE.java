@@ -1,27 +1,25 @@
 package org.alexdev.roseau.messages.outgoing.room.user;
 
-import org.alexdev.roseau.game.room.entity.RoomEntity;
 import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
 public class CHAT_MESSAGE implements OutgoingMessageComposer {
 
-	private RoomEntity roomEntity;
-	private String talkMessage;
 	private String header;
+	private String talkMessage;
+	private String username;
 
-	public CHAT_MESSAGE(RoomEntity roomEntity, String talkMessage, String header) {
-		this.roomEntity = roomEntity;
-		this.talkMessage = talkMessage;
+	public CHAT_MESSAGE(String header,  String username, String talkMessage) {
 		this.header = header;
-		
+		this.username = username;
+		this.talkMessage = talkMessage;
 	}
 
 	@Override
 	public void write(Response response) {
 
 		response.init(this.header);
-		response.appendNewArgument(this.roomEntity.getEntity().getDetails().getUsername());
+		response.appendNewArgument(this.username);
 		response.appendArgument(this.talkMessage);
 	}
 

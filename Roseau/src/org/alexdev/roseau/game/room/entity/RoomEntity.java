@@ -43,8 +43,8 @@ public class RoomEntity {
 
 	private IEntity entity;
 
-	private long chatFloodTimer;
-	private int chatCount;
+	//private long chatFloodTimer;
+	//private int chatCount;
 
 	public RoomEntity(IEntity entity) {
 		this.dispose();
@@ -121,7 +121,7 @@ public class RoomEntity {
 
 
 
-	public void chat(String talkMessage, String header, boolean spamCheck) {
+	/*public void chat(String talkMessage, String header, boolean spamCheck) {
 
 		boolean isStaff = false;
 		Player player = null;
@@ -159,7 +159,7 @@ public class RoomEntity {
 
 			}
 		}
-	}
+	}*/
 
 	public void dispose() {
 
