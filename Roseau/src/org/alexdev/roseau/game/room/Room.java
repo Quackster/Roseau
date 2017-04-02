@@ -368,7 +368,7 @@ public class Room implements Runnable {
 		this.entities = entities;
 	}
 
-	public boolean isValidStep(Point current, Point neighbour, boolean isFinalMove) {
+	public boolean isValidStep(IEntity player, Point current, Point neighbour, boolean isFinalMove) {
 
 		int mapSizeX = this.roomData.getModel().getMapSizeX();
 		int mapSizeY = this.roomData.getModel().getMapSizeY();
@@ -405,13 +405,13 @@ public class Room implements Runnable {
 		
 		if (neighbourItem != null) {
 			if (neighbourItem.getDefinition().getSprite().equals("poolEnter")) {
-				return true;
+				return player.getDetails().getPoolFigure().length() > 0;
 			}
 		}
 		
 		if (currentItem != null) {
 			if (currentItem.getDefinition().getSprite().equals("poolEnter")) {
-				return true;
+				return player.getDetails().getPoolFigure().length() > 0;
 			}
 		}
 		
