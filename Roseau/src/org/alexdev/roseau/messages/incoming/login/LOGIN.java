@@ -18,11 +18,13 @@ public class LOGIN implements MessageEvent {
 		boolean authenticated = Roseau.getDataAccess().getPlayer().login(player, username, password);
 
 		if (authenticated) {
+			
+			player.getDetails().setPassword(password);
+			
 			if (reader.getArgumentAmount() > 2) {
 				Room room = Roseau.getGame().getRoomManager().getRoomByPort(player.getNetwork().getServerPort());
 				room.loadRoom(player);
 			} else {
-				player.getDetails().setPassword(password);
 				player.login();
 			}
 		} else {
