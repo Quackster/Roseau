@@ -181,13 +181,13 @@ public class Room implements Runnable {
 		} else {
 			this.init();
 		}
-		
+
 		player.send(new USERS(this.entities));
 		player.send(new STATUS(this.entities));
-		
+
 		player.send(player.getRoomUser().getUsersComposer());
 		player.send(player.getRoomUser().getStatusComposer());
-		
+
 		this.entities.add(player);
 
 
@@ -226,7 +226,7 @@ public class Room implements Runnable {
 		roomUser.getPosition().setY(-99);
 		this.send(roomUser.getStatusComposer());
 		roomUser.setWalking(false);
-		
+
 		this.dispose();
 	}
 
@@ -249,7 +249,7 @@ public class Room implements Runnable {
 
 	public void init() {
 		this.disposed = false;
-		
+
 		if (this.tickTask == null) {
 			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
 			this.roomMapping.regenerateCollisionMaps();
@@ -406,6 +406,7 @@ public class Room implements Runnable {
 
 		Item currentItem = this.roomMapping.getHighestItem(current.getX(), current.getY());
 		Item neighbourItem = this.roomMapping.getHighestItem(neighbour.getX(), neighbour.getY());
+		Item playerItem = this.roomMapping.getHighestItem(player.getRoomUser().getPosition().getX(), player.getRoomUser().getPosition().getY());
 
 		if (neighbourItem != null) {
 			if (neighbourItem.getDefinition().getSprite().equals("poolEnter")) {
@@ -420,7 +421,6 @@ public class Room implements Runnable {
 		}
 
 		if (heightCurrent > heightNeighour) {
-
 			if ((heightCurrent - heightNeighour) >= 3.0) {
 				return false;
 			}
@@ -433,13 +433,35 @@ public class Room implements Runnable {
 			}
 		}
 
-		if (this.getData().getModel().isBlocked(current.getX(), current.getY())) {
-			return false;
+		/*if (currentItem != null && playerItem != null) {
+			if (playerItem == currentItem) {
+				return true;
+			}
 		}
+
+		if (neighbourItem != null && playerItem != null) {
+			if (playerItem ==neighbourItem) {
+				return true;
+			}
+		}*/
+
 
 		if (!current.sameAs(player.getRoomUser().getPosition())) {
 			if (currentItem != null) {
 				if (!isFinalMove) {
+					
+					if (currentItem != null && playerItem != null) {
+						if (playerItem == currentItem) {
+							return true;
+						}
+					}
+
+					if (neighbourItem != null && playerItem != null) {
+						if (playerItem ==neighbourItem) {
+							return true;
+						}
+					}
+					
 					return false;
 				}
 

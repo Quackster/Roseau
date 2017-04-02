@@ -83,6 +83,9 @@ public class RoomEntity {
 				if (this.containsStatus("swim")) {
 					this.removeStatus("swim");
 				} else {
+					
+					
+					
 					this.setStatus("swim", "");
 				}
 			}
