@@ -40,7 +40,31 @@ public class RoomManager {
 	
 	public List<Room> getPublicRooms() {
 		try {
-			List<Room> rooms =  this.loadedRooms.stream().filter(room -> room.getData().getRoomType() == RoomType.PUBLIC && room.getData().isHidden() == false).collect(Collectors.toList());
+			List<Room> rooms =  this.loadedRooms.stream().filter(
+					room -> room.getData().getRoomType() == RoomType.PUBLIC && 
+					room.getData().isHidden() == false)
+					.collect(Collectors.toList());
+			
+			Collections.sort(rooms,new Comparator<Room>() {
+			    @Override
+			    public int compare(Room a, Room b) {
+			        return b.getUsers().size() - a.getUsers().size();
+			    }
+			});
+			
+			return rooms;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public List<Room> getPopularRooms() {
+		try {
+			List<Room> rooms =  this.loadedRooms.stream().filter(
+					room -> room.getData().getRoomType() == RoomType.PRIVATE && 
+					room.getData().isHidden() == false && 
+					room.getData().getUsersNow() > 0).
+					collect(Collectors.toList());
 			
 			Collections.sort(rooms,new Comparator<Room>() {
 			    @Override

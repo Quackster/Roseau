@@ -181,11 +181,16 @@ public class Room implements Runnable {
 		} else {
 			this.init();
 		}
-
-		this.entities.add(player);
-
+		
 		player.send(new USERS(this.entities));
 		player.send(new STATUS(this.entities));
+		
+		player.send(player.getRoomUser().getUsersComposer());
+		player.send(player.getRoomUser().getStatusComposer());
+		
+		this.entities.add(player);
+
+
 
 		if (this.roomData.getModelName().equals("pool_b")) {
 
