@@ -8,6 +8,7 @@ import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
+import org.alexdev.roseau.messages.outgoing.room.pool.OPEN_UIMAKOPPI;
 import org.alexdev.roseau.messages.outgoing.room.user.CHAT_MESSAGE;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.IEntity;
@@ -81,8 +82,6 @@ public class RoomEntity {
 			ItemDefinition definition = item.getDefinition();
 
 			if (definition != null) {
-				
-				Log.println("non-null definition id: " + item.getDefinitionId());
 
 				if (definition.getBehaviour().isCanSitOnTop()) {
 					this.setRotation(item.getRotation(), false);
@@ -91,8 +90,13 @@ public class RoomEntity {
 					this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()));
 				}
 
-			} else {
-				Log.println("null definition id: " + item.getDefinitionId());
+				if (this.entity instanceof Player) {
+					if (definition.getSprite().equals("poolBooth")) {
+						((Player) this.entity).send(new OPEN_UIMAKOPPI());
+						item.showProgram(item.getItemData(), "close");
+					}
+				}
+
 			}
 		}
 
@@ -161,7 +165,7 @@ public class RoomEntity {
 
 		this.position = new Point(0, 0, 0);
 		this.goal = new Point(0, 0, 0);
-		
+
 		this.needsUpdate = false;
 		this.isWalking = false;
 

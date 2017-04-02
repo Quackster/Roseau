@@ -79,12 +79,15 @@ public class MySQLItemDao implements ItemDao {
 
 			while (resultSet.next()) {
 				items.add(new Item(resultSet.getInt("id"),
+						-1,
 						"",
 						resultSet.getInt("x"),
 						resultSet.getInt("y"),
 						resultSet.getDouble("z"),
 						resultSet.getInt("rotation"),
-						resultSet.getInt("definitionid")));
+						resultSet.getInt("definitionid"),
+						resultSet.getString("object"),
+						resultSet.getString("data")));
 			}
 
 		} catch (Exception e) {

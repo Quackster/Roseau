@@ -10,6 +10,7 @@ public interface PlayerDao {
 	public boolean login(Player player, String userna, String password);
 	public int getId(String username);
 	public boolean isNameTaken(String name);
+	void updatePlayer(PlayerDetails details);
 	
 
 }

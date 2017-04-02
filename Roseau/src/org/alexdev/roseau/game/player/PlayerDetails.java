@@ -1,5 +1,6 @@
 package org.alexdev.roseau.game.player;
 
+import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
@@ -17,7 +18,8 @@ public class PlayerDetails implements SerializableObject {
 	private String country;
 	private String badge;
 	private String birthday;
-	
+	private String poolFigure;
+	private String password;
 	
 	private boolean authenticated;
 	private IEntity entity;
@@ -27,7 +29,7 @@ public class PlayerDetails implements SerializableObject {
 		this.entity = session;
 	}
 	
-	public void fill(int id, String username, String mission, String figure, String email, int rank, int credits, String sex, String country, String badge, String birthday) {
+	public void fill(int id, String username, String mission, String figure, String poolFigure, String email, int rank, int credits, String sex, String country, String badge, String birthday) {
 		this.id = id;
 		this.username = username;
 		this.mission = mission;
@@ -39,6 +41,7 @@ public class PlayerDetails implements SerializableObject {
 		this.country = country;
 		this.badge = badge;
 		this.birthday = birthday;
+		this.poolFigure = poolFigure;
 	}
 	
 	@Override
@@ -54,6 +57,10 @@ public class PlayerDetails implements SerializableObject {
         response.appendKVArgument("country", this.country);
         response.appendKVArgument("has_special_rights", "0");
         response.appendKVArgument("badge_type", this.badge);
+	}
+	
+	public void save() {
+		Roseau.getDataAccess().getPlayer().updatePlayer(this);
 	}
 	
 	public boolean hasFuse(String fuse) {
@@ -132,11 +139,31 @@ public class PlayerDetails implements SerializableObject {
 		return birthday;
 	}
 
+	public String getPoolFigure() {
+		return poolFigure;
+	}
+
+	public void setPoolFigure(String poolFigure) {
+		this.poolFigure = poolFigure;
+	}
+
 	public IEntity getEntity() {
 		return entity;
 	}
 
 	public void setEntity(IEntity entity) {
 		this.entity = entity;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 }

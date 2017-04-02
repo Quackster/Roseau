@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.alexdev.roseau.game.entity.IEntity;
+import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
@@ -31,6 +32,13 @@ public class USERS implements OutgoingMessageComposer {
 			response.appendArgument(String.valueOf(entity.getRoomEntity().getPosition().getY()));
 			response.appendArgument(String.valueOf(entity.getRoomEntity().getPosition().getZ()));
 			response.appendArgument(entity.getDetails().getMission());
+			//response.appendArgument("ch=s02/53,51,44");
+			
+			Room room = entity.getRoomEntity().getRoom();
+			
+			if (room.getData().getModel().hasPool()) {
+				response.appendArgument(entity.getDetails().getPoolFigure());
+			}
 		}
 	}
 

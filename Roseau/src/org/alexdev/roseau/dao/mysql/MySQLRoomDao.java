@@ -43,7 +43,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 			while (resultSet.next()) {
 				roomModels.put(resultSet.getString("id"), new RoomModel(resultSet.getString("id"), resultSet.getString("heightmap"), resultSet.getInt("door_x"), resultSet.getInt("door_y"), 
-						resultSet.getInt("door_z"), resultSet.getInt("door_dir")));
+						resultSet.getInt("door_z"), resultSet.getInt("door_dir"), resultSet.getByte("has_pool") == 1));
 			}
 
 		} catch (Exception e) {

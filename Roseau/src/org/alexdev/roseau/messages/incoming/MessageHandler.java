@@ -9,9 +9,6 @@ import org.alexdev.roseau.messages.incoming.login.INFORETRIEVE;
 import org.alexdev.roseau.messages.incoming.login.LOGIN;
 import org.alexdev.roseau.messages.incoming.navigator.GETUNITUSERS;
 import org.alexdev.roseau.messages.incoming.navigator.INITUNITLISTENER;
-import org.alexdev.roseau.messages.incoming.register.APPROVENAME;
-import org.alexdev.roseau.messages.incoming.register.FINDUSER;
-import org.alexdev.roseau.messages.incoming.register.REGISTER;
 import org.alexdev.roseau.messages.incoming.room.CREATEFLAT;
 import org.alexdev.roseau.messages.incoming.room.GOAWAY;
 import org.alexdev.roseau.messages.incoming.room.STATUSOK;
@@ -19,6 +16,10 @@ import org.alexdev.roseau.messages.incoming.room.user.DANCE;
 import org.alexdev.roseau.messages.incoming.room.user.MOVE;
 import org.alexdev.roseau.messages.incoming.room.user.STOP;
 import org.alexdev.roseau.messages.incoming.room.user.TALK;
+import org.alexdev.roseau.messages.incoming.user.APPROVENAME;
+import org.alexdev.roseau.messages.incoming.user.FINDUSER;
+import org.alexdev.roseau.messages.incoming.user.REGISTER;
+import org.alexdev.roseau.messages.incoming.user.UPDATE;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 import com.google.common.collect.Maps;
@@ -34,11 +35,17 @@ public class MessageHandler {
 	
 	public void register() {
 		this.messages.clear();
+		this.registerUserPackets();
 		this.registerHandshakePackets();
 		this.registerLoginPackets();
 		this.registerRegisterPackets();
 		this.registerNavigatorPackets();
 		this.registerRoomPackets();
+
+	}
+
+	private void registerUserPackets() {
+		this.messages.put("UPDATE", new UPDATE());
 	}
 
 	private void registerHandshakePackets() {

@@ -21,6 +21,7 @@ import org.alexdev.roseau.messages.outgoing.room.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.room.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
+import org.alexdev.roseau.messages.outgoing.room.pool.OPEN_UIMAKOPPI;
 
 public class Room implements Runnable {
 
@@ -29,7 +30,7 @@ public class Room implements Runnable {
 
 	private RoomData roomData;
 	private RoomMapping roomMapping;
-	
+
 	private List<IEntity> entities;
 	private List<Item> items;
 	private ScheduledFuture<?> tickTask = null;
@@ -39,10 +40,16 @@ public class Room implements Runnable {
 		this.roomMapping = new RoomMapping(this);
 		this.entities = new ArrayList<IEntity>();
 	}
-	
+
 
 	public void loadData() {
 		this.items = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName());
+
+		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
+			for (Item item : this.items) {
+				item.setRoom(this);
+			}
+		}
 	}
 
 
@@ -181,6 +188,10 @@ public class Room implements Runnable {
 
 		player.send(new USERS(this.entities));
 		player.send(new STATUS(this.entities));
+
+		/*if (this.roomData.getModelName().equals("pool_b")) {
+			player.send(new OPEN_UIMAKOPPI());
+		}*/
 
 	}
 
@@ -390,24 +401,24 @@ public class Room implements Runnable {
 		if (this.roomData.getModel().isBlocked(neighbour.getX(), neighbour.getY())) {
 			return false;
 		}
-		
+
 		double heightCurrent = this.roomData.getModel().getHeight(current);
 		double heightNeighour = this.roomData.getModel().getHeight(neighbour);
-		
+
 		if (heightCurrent > heightNeighour) {
-			
+
 			if ((heightCurrent - heightNeighour) >= 3.0) {
 				return false;
 			}
 		}
-		
+
 		if (heightNeighour > heightCurrent) {
-			
+
 			if ((heightNeighour - heightCurrent) >= 1.2) {
 				return false;
 			}
 		}
-		
+
 		if (!this.roomMapping.isValidTile(current.getX(), current.getY())) {
 			return false;
 		}

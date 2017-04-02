@@ -22,6 +22,7 @@ public class LOGIN implements MessageEvent {
 				Room room = Roseau.getGame().getRoomManager().getRoomByPort(player.getNetwork().getServerPort());
 				room.loadRoom(player);
 			} else {
+				player.getDetails().setPassword(password);
 				player.login();
 			}
 		} else {

@@ -39,8 +39,9 @@ public class RoomModel
 	
 	private int[][] squares;
 	private double[][] squareHeight;
+	private boolean hasPool;
 
-	public RoomModel(String name, String heightmap, int doorX, int doorY, int doorZ, int doorRot) {
+	public RoomModel(String name, String heightmap, int doorX, int doorY, int doorZ, int doorRot, boolean hasPool) {
 		
 		try {
 			this.name = name;
@@ -57,6 +58,7 @@ public class RoomModel
 			this.squares = new int[mapSizeX][mapSizeY];
 			this.squareHeight = new double[mapSizeX][mapSizeY];
 			this.squareChar = new String[mapSizeX][mapSizeY];
+			this.hasPool = hasPool;
 
 			for (int y = 0; y < mapSizeY; y++) {
 				
@@ -157,5 +159,13 @@ public class RoomModel
 
 	public Point getDoorPosition() {
 		return new Point(this.doorX, this.doorY, this.doorZ);
+	}
+
+	public boolean hasPool() {
+		return hasPool;
+	}
+
+	public void setHasPool(boolean hasPool) {
+		this.hasPool = hasPool;
 	}
 }

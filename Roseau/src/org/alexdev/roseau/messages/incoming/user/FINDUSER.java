@@ -1,4 +1,4 @@
-package org.alexdev.roseau.messages.incoming.register;
+package org.alexdev.roseau.messages.incoming.user;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
