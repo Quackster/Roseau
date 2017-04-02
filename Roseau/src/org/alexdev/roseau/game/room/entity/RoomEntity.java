@@ -8,15 +8,11 @@ import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
 import org.alexdev.roseau.messages.outgoing.room.pool.OPEN_UIMAKOPPI;
-import org.alexdev.roseau.messages.outgoing.room.user.CHAT_MESSAGE;
-import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.ItemDefinition;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.model.Point;
-import org.alexdev.roseau.util.GameSettings;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 

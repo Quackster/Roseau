@@ -9,9 +9,13 @@ import org.alexdev.roseau.messages.incoming.login.INFORETRIEVE;
 import org.alexdev.roseau.messages.incoming.login.LOGIN;
 import org.alexdev.roseau.messages.incoming.navigator.GETUNITUSERS;
 import org.alexdev.roseau.messages.incoming.navigator.INITUNITLISTENER;
+import org.alexdev.roseau.messages.incoming.navigator.SEARCHBUSYFLATS;
+import org.alexdev.roseau.messages.incoming.navigator.SEARCHFLATFORUSER;
 import org.alexdev.roseau.messages.incoming.room.CREATEFLAT;
 import org.alexdev.roseau.messages.incoming.room.GOAWAY;
+import org.alexdev.roseau.messages.incoming.room.GOTOFLAT;
 import org.alexdev.roseau.messages.incoming.room.STATUSOK;
+import org.alexdev.roseau.messages.incoming.room.TRYFLAT;
 import org.alexdev.roseau.messages.incoming.room.user.DANCE;
 import org.alexdev.roseau.messages.incoming.room.user.MOVE;
 import org.alexdev.roseau.messages.incoming.room.user.STOP;
@@ -73,6 +77,8 @@ public class MessageHandler {
 	private void registerNavigatorPackets() {
 		this.messages.put("INITUNITLISTENER", new INITUNITLISTENER());
 		this.messages.put("GETUNITUSERS", new GETUNITUSERS());
+		this.messages.put("SEARCHFLATFORUSER", new SEARCHFLATFORUSER());
+		this.messages.put("SEARCHBUSYFLATS", new SEARCHBUSYFLATS());
 	}
 	
 	private void registerRoomPackets() {
@@ -85,6 +91,8 @@ public class MessageHandler {
 		this.messages.put("WHISPER", new TALK());
 		this.messages.put("GOAWAY", new GOAWAY());
 		this.messages.put("CREATEFLAT", new CREATEFLAT());
+		this.messages.put("TRYFLAT", new TRYFLAT());
+		this.messages.put("GOTOFLAT", new GOTOFLAT());
 	}
 	
 	

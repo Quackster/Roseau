@@ -3,6 +3,7 @@ package org.alexdev.roseau;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class Roseau {
 	private static String serverIP;
 	private static int serverPort;
 	private static Configuration socketConfiguration;
+	private static IServerHandler privateRoomServer;
 
 	public static void main(String[] args) {
 
@@ -167,7 +169,7 @@ public class Roseau {
 	}
 
 	
-	private static void startServer() {
+	private static void startServer() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
 
 		String serverIP = utilities.getConfiguration().get("Server", "server.ip", String.class);
 		int serverPort = utilities.getConfiguration().get("Server", "server.port", int.class);
@@ -177,7 +179,12 @@ public class Roseau {
 
 		server.setIp(serverIP);
 		server.setPort(serverPort);
-
+		
+		privateRoomServer = Class.forName(socketConfiguration.get("extension.socket.entry")).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
+		privateRoomServer.setIp(serverIP);
+		privateRoomServer.setPort(serverPort - 1);
+		privateRoomServer.listenSocket();
+		
 		if (server.listenSocket()) {
 			Log.println("Server is listening on " + serverIP + ":" + serverPort);
 		} else {

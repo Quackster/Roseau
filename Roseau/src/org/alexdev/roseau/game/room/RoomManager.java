@@ -45,12 +45,12 @@ public class RoomManager {
 					room.getData().isHidden() == false)
 					.collect(Collectors.toList());
 			
-			Collections.sort(rooms,new Comparator<Room>() {
+			/*Collections.sort(rooms,new Comparator<Room>() {
 			    @Override
 			    public int compare(Room a, Room b) {
 			        return b.getUsers().size() - a.getUsers().size();
 			    }
-			});
+			});*/
 			
 			return rooms;
 		} catch (Exception e) {

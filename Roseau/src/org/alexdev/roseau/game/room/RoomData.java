@@ -163,14 +163,6 @@ public class RoomData {
 		return usersNow;
 	}
 
-	public String getThumbnail() {
-		return thumbnail;
-	}
-
-	public void setThumbnail(String thumbnail) {
-		this.thumbnail = thumbnail;
-	}
-
 	public RoomType getRoomType() {
 		return roomType;
 	}

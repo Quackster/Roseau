@@ -2,14 +2,16 @@ package org.alexdev.roseau.game.room.settings;
 
 public enum RoomState {
 	
-	OPEN(0),
-	DOORBELL(1),
-	PASSWORD(2);
+	OPEN(0, "open"),
+	DOORBELL(1, "locked"),
+	PASSWORD(2, "password");
 	
 	private int stateCode;
-
-	RoomState(int stateCode) {
+	private String toString;
+	
+	RoomState(int stateCode, String toString) {
 		this.stateCode = stateCode;
+		this.toString = toString;
 	}
 	
 	public int getStateCode() {
@@ -24,5 +26,10 @@ public enum RoomState {
 		}
 		
 		return RoomState.OPEN;
+	}
+
+	@Override
+	public String toString() {
+		return toString;
 	}
 }

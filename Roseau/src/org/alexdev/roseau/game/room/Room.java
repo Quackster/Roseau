@@ -21,8 +21,12 @@ import org.alexdev.roseau.messages.outgoing.room.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.room.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.room.STATUS;
 import org.alexdev.roseau.messages.outgoing.room.USERS;
+import org.alexdev.roseau.messages.outgoing.room.entry.FLAT_PROPERTY;
+import org.alexdev.roseau.messages.outgoing.room.entry.ROOM_READY;
+import org.alexdev.roseau.server.messages.Response;
+import org.alexdev.roseau.server.messages.SerializableObject;
 
-public class Room implements Runnable {
+public class Room implements Runnable, SerializableObject {
 
 	private int privateId;
 	private boolean disposed;
@@ -142,24 +146,19 @@ public class Room implements Runnable {
 		roomEntity.getPosition().setZ(this.roomData.getModel().getDoorZ());
 		roomEntity.setRotation(this.roomData.getModel().getDoorRot(), false);	
 
-		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
-			player.send(new ACTIVE_OBJECTS());
-			player.send(new OBJECTS_WORLD(this));
-		}
-
-		player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
-
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
 
-			int floorData = Integer.parseInt(this.roomData.getFloor());
+			player.send(new ROOM_READY(this.roomData.getDescription()));
+			
 			int wallData = Integer.parseInt(this.roomData.getWall());
-
-			if (floorData > 0) {
-
-			}
+			int floorData = Integer.parseInt(this.roomData.getFloor());
 
 			if (wallData > 0) {
-
+				player.send(new FLAT_PROPERTY("wallpaper", this.roomData.getWall()));
+			}	
+			
+			if (floorData > 0) {
+				player.send(new FLAT_PROPERTY("floor", this.roomData.getFloor()));
 			}
 
 			if (roomEntity.getRoom().hasRights(player.getDetails().getId(), true)) {
@@ -173,7 +172,12 @@ public class Room implements Runnable {
 		if (this.roomData.getModel() == null) {
 			Log.println("Could not load heightmap for room model '" + this.roomData.getModelName() + "'");
 			return;
-		}
+		}	
+		
+		player.send(new ACTIVE_OBJECTS());
+		player.send(new OBJECTS_WORLD(this));
+		
+		player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
 
 		if (this.entities.size() > 0) {
 			this.send(player.getRoomUser().getUsersComposer());
@@ -493,6 +497,34 @@ public class Room implements Runnable {
 
 	public void setRoomMapping(RoomMapping roomMapping) {
 		this.roomMapping = roomMapping;
+	}
+
+
+	@Override
+	public void serialise(Response response) {
+		//(int)Row["id"] + "/" + (string)Row["name"] + 
+		//"/" + (string)Row["owner"] + 
+		//"/" + (string)Row["door"] + 
+		//"/" + (string)Row["pass"] + 
+		//"/" + (string)Row["floor"] + 
+		//"/83.117.80.215/
+		//83.117.80.215/
+		//37120/
+		//0
+		///null/
+		//" + (string)Row["desc"] + "";
+		response.appendNewArgument(String.valueOf(this.roomData.getId()));
+		response.appendPartArgument(this.roomData.getName());
+		response.appendPartArgument(this.roomData.getOwnerName());
+		response.appendPartArgument(this.roomData.getState().toString());
+		response.appendPartArgument(""); // password...
+		response.appendPartArgument("floor1");//this.roomData.getModelName());	
+		response.appendPartArgument(Roseau.getServerIP());
+		response.appendPartArgument(Roseau.getServerIP());
+		response.appendPartArgument(String.valueOf(Roseau.getServerPort() - 1));
+		response.appendPartArgument("0");
+		response.appendPartArgument("null");
+		response.appendPartArgument(this.roomData.getDescription());
 	}
 
 
