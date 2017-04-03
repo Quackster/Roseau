@@ -3,7 +3,7 @@ package org.alexdev.roseau.server.netty.connections;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.log.Log;
-import org.alexdev.roseau.messages.outgoing.handshake.HELLO;
+import org.alexdev.roseau.messages.outgoing.HELLO;
 import org.alexdev.roseau.server.IServerHandler;
 import org.alexdev.roseau.server.netty.readers.NettyRequest;
 import org.jboss.netty.channel.ChannelHandlerContext;

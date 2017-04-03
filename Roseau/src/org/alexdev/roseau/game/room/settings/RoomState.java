@@ -3,7 +3,7 @@ package org.alexdev.roseau.game.room.settings;
 public enum RoomState {
 	
 	OPEN(0, "open"),
-	DOORBELL(1, "locked"),
+	DOORBELL(1, "closed"),
 	PASSWORD(2, "password");
 	
 	private int stateCode;

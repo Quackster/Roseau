@@ -1,0 +1,45 @@
+package org.alexdev.roseau.messages.outgoing;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.alexdev.roseau.game.entity.IEntity;
+import org.alexdev.roseau.game.room.Room;
+import org.alexdev.roseau.messages.OutgoingMessageComposer;
+import org.alexdev.roseau.server.messages.Response;
+
+public class USERS implements OutgoingMessageComposer {
+
+	private List<IEntity> entities;
+	
+	public USERS(IEntity entity) {
+		this.entities = Arrays.asList(new IEntity[] { entity });
+	}
+	
+	public USERS(List<IEntity> entities) {
+		this.entities = entities;
+	}
+
+	@Override
+	public void write(Response response) {
+		response.init("USERS");
+		for (IEntity entity : this.entities) {
+			response.append(Character.toString((char)13));
+			response.appendArgument("");
+			response.appendArgument(entity.getDetails().getUsername());
+			response.appendArgument(entity.getDetails().getFigure());
+			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getX()));
+			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getY()));
+			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getZ()));
+			response.appendArgument(entity.getDetails().getMission());
+			//response.appendArgument("ch=s02/53,51,44");
+			
+			Room room = entity.getRoomUser().getRoom();
+			
+			if (room.getData().getModel().hasPool()) {
+				response.appendArgument(entity.getDetails().getPoolFigure());
+			}
+		}
+	}
+
+}

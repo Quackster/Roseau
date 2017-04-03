@@ -22,7 +22,7 @@ package org.alexdev.roseau.server.netty.codec;
 import java.nio.charset.Charset;
 
 import org.alexdev.roseau.log.Log;
-import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
+import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.netty.readers.NettyResponse;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;

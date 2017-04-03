@@ -15,14 +15,14 @@ import org.alexdev.roseau.game.room.model.Point;
 import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
-import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
-import org.alexdev.roseau.messages.outgoing.room.ACTIVE_OBJECTS;
-import org.alexdev.roseau.messages.outgoing.room.HEIGHTMAP;
-import org.alexdev.roseau.messages.outgoing.room.OBJECTS_WORLD;
-import org.alexdev.roseau.messages.outgoing.room.STATUS;
-import org.alexdev.roseau.messages.outgoing.room.USERS;
-import org.alexdev.roseau.messages.outgoing.room.entry.FLAT_PROPERTY;
-import org.alexdev.roseau.messages.outgoing.room.entry.ROOM_READY;
+import org.alexdev.roseau.messages.OutgoingMessageComposer;
+import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
+import org.alexdev.roseau.messages.outgoing.FLAT_PROPERTY;
+import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
+import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
+import org.alexdev.roseau.messages.outgoing.ROOM_READY;
+import org.alexdev.roseau.messages.outgoing.STATUS;
+import org.alexdev.roseau.messages.outgoing.USERS;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
@@ -37,6 +37,7 @@ public class Room implements Runnable, SerializableObject {
 	private List<IEntity> entities;
 	private List<Item> items;
 	private ScheduledFuture<?> tickTask = null;
+	private List<Integer> rights;
 
 	public Room() {
 		this.roomData = new RoomData(this);
@@ -47,7 +48,8 @@ public class Room implements Runnable, SerializableObject {
 
 	public void loadData() {
 		this.items = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName());
-
+		this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getId());
+		
 		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
 			for (Item item : this.items) {
 				item.setRoom(this);
@@ -174,8 +176,8 @@ public class Room implements Runnable, SerializableObject {
 			return;
 		}	
 		
-		player.send(new ACTIVE_OBJECTS());
 		player.send(new OBJECTS_WORLD(this));
+		player.send(new ACTIVE_OBJECTS(this));
 		
 		player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
 
@@ -244,7 +246,7 @@ public class Room implements Runnable, SerializableObject {
 			return true;
 		} else {
 			if (!ownerCheckOnly) {
-				return this.roomData.getRights().contains(userId);
+				return this.rights.contains(userId);
 			}
 		}
 
@@ -266,14 +268,12 @@ public class Room implements Runnable, SerializableObject {
 		try {
 
 			if (forceDisposal) {
-
 				this.clearData();
 				this.entities = null;
-
 				Roseau.getGame().getRoomManager().getLoadedRooms().remove(this);
 
 			} else {
-
+				
 				if (this.disposed) {
 					return;
 				}
@@ -293,7 +293,6 @@ public class Room implements Runnable, SerializableObject {
 
 					Roseau.getGame().getRoomManager().getLoadedRooms().remove(this);
 				}
-
 			}
 
 		} catch (Exception e) {

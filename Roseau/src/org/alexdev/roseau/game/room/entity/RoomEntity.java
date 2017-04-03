@@ -5,9 +5,9 @@ import java.util.LinkedList;
 
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.RoomModel;
-import org.alexdev.roseau.messages.outgoing.room.STATUS;
-import org.alexdev.roseau.messages.outgoing.room.USERS;
-import org.alexdev.roseau.messages.outgoing.room.pool.OPEN_UIMAKOPPI;
+import org.alexdev.roseau.messages.outgoing.OPEN_UIMAKOPPI;
+import org.alexdev.roseau.messages.outgoing.STATUS;
+import org.alexdev.roseau.messages.outgoing.USERS;
 import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.ItemDefinition;
@@ -109,6 +109,7 @@ public class RoomEntity {
 				if (this.entity instanceof Player) {
 					if (definition.getSprite().equals("poolBooth")) {
 						((Player) this.entity).send(new OPEN_UIMAKOPPI());
+						item.showProgram("closed");
 					}
 				}
 			}

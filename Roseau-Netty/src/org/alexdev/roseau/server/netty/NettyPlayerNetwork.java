@@ -1,6 +1,6 @@
 package org.alexdev.roseau.server.netty;
 
-import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
+import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.IPlayerNetwork;
 import org.jboss.netty.channel.Channel;
 

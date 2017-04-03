@@ -1,6 +1,6 @@
 package org.alexdev.roseau.server;
 
-import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
+import org.alexdev.roseau.messages.OutgoingMessageComposer;
 
 public abstract class IPlayerNetwork {
 

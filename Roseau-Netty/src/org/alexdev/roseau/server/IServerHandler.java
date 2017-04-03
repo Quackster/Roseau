@@ -1,6 +1,6 @@
 package org.alexdev.roseau.server;
 
-import org.alexdev.roseau.messages.incoming.MessageHandler;
+import org.alexdev.roseau.messages.MessageHandler;
 import org.alexdev.roseau.server.netty.connections.SessionManager;
 
 public abstract class IServerHandler {

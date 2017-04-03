@@ -30,6 +30,15 @@ public class PlayerManager {
 		}
 	}
 	
+	public Player getPlayerByIdPort(int userId, int port, int connectionId) {
+		
+		try {
+			return this.players.values().stream().filter(s -> s.getDetails().getId() == userId && s.getNetwork().getServerPort() == port && s.getNetwork().getConnectionId() != connectionId).findFirst().get();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	
 	public Player getByName(String name) {
 		

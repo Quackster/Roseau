@@ -20,7 +20,6 @@ public class RoomData {
 	private String name;
 	private RoomState state;
 	private String password;
-	private String thumbnail;
 	private int usersNow;
 	private int usersMax;
 	private String description;
@@ -185,10 +184,6 @@ public class RoomData {
 
 	public String getCCT() {
 		return clazz;
-	}
-	
-	public List<Integer> getRights() {
-		return new ArrayList<Integer>();
 	}
 
 	public String getModelName() {

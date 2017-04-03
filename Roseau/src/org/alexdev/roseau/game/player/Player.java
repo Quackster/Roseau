@@ -7,7 +7,7 @@ import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomEntity;
-import org.alexdev.roseau.messages.outgoing.OutgoingMessageComposer;
+import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.IPlayerNetwork;
 
 public class Player implements IEntity {

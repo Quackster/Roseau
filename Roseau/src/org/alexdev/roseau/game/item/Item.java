@@ -5,6 +5,7 @@ import java.util.List;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.pathfinder.AffectedTile;
 import org.alexdev.roseau.game.room.Room;
+import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
@@ -39,35 +40,35 @@ public class Item implements SerializableObject {
 
 		ItemDefinition definition = this.getDefinition();
 
-		if (definition.getBehaviour().isOnFloor()) {
-			if (definition.getBehaviour().isPassiveObject()) {
+		//if (definition.getBehaviour().isOnFloor()) {
+		if (definition.getBehaviour().isPassiveObject()) {
 
-				response.appendNewArgument(Integer.toString(this.id));
-				response.appendArgument(definition.getSprite());
-				response.appendArgument(Integer.toString(this.x));
-				response.appendArgument(Integer.toString(this.y));
-				response.appendArgument(Integer.toString((int)this.z));
-				response.appendArgument(Integer.toString(this.rotation));
-			} else {
-				response.appendNewArgument(Integer.toString(this.id));
-				response.appendArgument(definition.getSprite(), ',');
-				response.appendArgument(Integer.toString(this.x));
-				response.appendArgument(Integer.toString(this.y));
-				response.appendArgument(Integer.toString(definition.getLength()));
-				response.appendArgument(Integer.toString(definition.getWidth()));
-				response.appendArgument(Integer.toString(this.rotation));
-				response.appendArgument(Integer.toString((int)this.z));
-				response.appendArgument(definition.getColor());
+			response.appendNewArgument(Integer.toString(this.id));
+			response.appendArgument(definition.getSprite());
+			response.appendArgument(Integer.toString(this.x));
+			response.appendArgument(Integer.toString(this.y));
+			response.appendArgument(Integer.toString((int)this.z));
+			response.appendArgument(Integer.toString(this.rotation));
+		} else {
+			response.appendNewArgument(Integer.toString(this.id));
+			response.appendArgument(definition.getSprite(), ',');
+			response.appendArgument(Integer.toString(this.x));
+			response.appendArgument(Integer.toString(this.y));
+			response.appendArgument(Integer.toString(definition.getLength()));
+			response.appendArgument(Integer.toString(definition.getWidth()));
+			response.appendArgument(Integer.toString(this.rotation));
+			response.appendArgument(Integer.toString((int)this.z));
+			response.appendArgument(definition.getColor());
 
-				response.appendArgument(definition.getName(), '/');
-				response.appendArgument(definition.getDescription(), '/');
+			response.appendArgument(definition.getName(), '/');
+			response.appendArgument(definition.getDescription(), '/');
 
-				if (this.customData != null) {
-					response.appendArgument(definition.getDataClass(), '/');
-					response.appendArgument(this.customData, '/');
-				}
+			if (this.customData != null) {
+				response.appendArgument(definition.getDataClass(), '/');
+				response.appendArgument(this.customData, '/');
 			}
 		}
+		//}
 	}
 
 	public List<AffectedTile> getAffectedTiles() {
@@ -175,6 +176,10 @@ public class Item implements SerializableObject {
 
 	public void setCustomData(String customData) {
 		this.customData = customData;
+	}
+
+	public void showProgram(String data) {
+		this.getRoom().send(new SHOWPROGRAM(this.itemData, data));
 	}
 
 }
