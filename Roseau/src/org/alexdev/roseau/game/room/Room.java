@@ -49,7 +49,7 @@ public class Room implements Runnable, SerializableObject {
 	public void loadData() {
 		this.items = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName());
 		this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getId());
-		
+
 		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
 			for (Item item : this.items) {
 				item.setRoom(this);
@@ -143,22 +143,24 @@ public class Room implements Runnable, SerializableObject {
 		roomEntity.setRoom(this);
 		roomEntity.getStatuses().clear();
 
-		roomEntity.getPosition().setX(this.roomData.getModel().getDoorX());
-		roomEntity.getPosition().setY(this.roomData.getModel().getDoorY());
-		roomEntity.getPosition().setZ(this.roomData.getModel().getDoorZ());
-		roomEntity.setRotation(this.roomData.getModel().getDoorRot(), false);	
+		if (this.roomData.getModel() != null) {
+			roomEntity.getPosition().setX(this.roomData.getModel().getDoorX());
+			roomEntity.getPosition().setY(this.roomData.getModel().getDoorY());
+			roomEntity.getPosition().setZ(this.roomData.getModel().getDoorZ());
+			roomEntity.setRotation(this.roomData.getModel().getDoorRot(), false);
+		}
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
 
 			player.send(new ROOM_READY(this.roomData.getDescription()));
-			
+
 			int wallData = Integer.parseInt(this.roomData.getWall());
 			int floorData = Integer.parseInt(this.roomData.getFloor());
 
 			if (wallData > 0) {
 				player.send(new FLAT_PROPERTY("wallpaper", this.roomData.getWall()));
 			}	
-			
+
 			if (floorData > 0) {
 				player.send(new FLAT_PROPERTY("floor", this.roomData.getFloor()));
 			}
@@ -173,13 +175,15 @@ public class Room implements Runnable, SerializableObject {
 
 		if (this.roomData.getModel() == null) {
 			Log.println("Could not load heightmap for room model '" + this.roomData.getModelName() + "'");
-			return;
+			//return;
 		}	
-		
+
 		player.send(new OBJECTS_WORLD(this));
 		player.send(new ACTIVE_OBJECTS(this));
-		
+
+		if (this.roomData.getModel() != null) {
 		player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
+		}
 
 		if (this.entities.size() > 0) {
 			this.send(player.getRoomUser().getUsersComposer());
@@ -273,7 +277,7 @@ public class Room implements Runnable, SerializableObject {
 				Roseau.getGame().getRoomManager().getLoadedRooms().remove(this);
 
 			} else {
-				
+
 				if (this.disposed) {
 					return;
 				}
@@ -452,7 +456,7 @@ public class Room implements Runnable, SerializableObject {
 		if (!current.sameAs(player.getRoomUser().getPosition())) {
 			if (currentItem != null) {
 				if (!isFinalMove) {
-					
+
 					if (currentItem != null && playerItem != null) {
 						if (playerItem == currentItem) {
 							return true;
@@ -464,7 +468,7 @@ public class Room implements Runnable, SerializableObject {
 							return true;
 						}
 					}
-					
+
 					return false;
 				}
 

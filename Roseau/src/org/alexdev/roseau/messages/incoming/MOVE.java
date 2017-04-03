@@ -9,6 +9,7 @@ import org.alexdev.roseau.game.room.entity.RoomEntity;
 import org.alexdev.roseau.game.room.model.Point;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
+import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class MOVE implements MessageEvent {
@@ -26,12 +27,12 @@ public class MOVE implements MessageEvent {
 		if (player.getRoomUser().getRoom() == null) {
 			return;
 		}
-		Item item = player.getRoomUser().getRoom().getMapping().getHighestItem(x, y);
+		
+		/*Item item = player.getRoomUser().getRoom().getMapping().getHighestItem(x, y);
 
 		if (item != null) {
 			Log.println(item.getDefinition().getSprite() + " - " + item.getDefinitionId());
-		}
-
+		}*/
 
 		if (!player.getRoomUser().getRoom().getMapping().isValidTile(x, y)) {
 			return;
@@ -57,6 +58,10 @@ public class MOVE implements MessageEvent {
 
 		roomEntity.setPath(path);
 		roomEntity.setWalking(true);
+		
+		/*if (x == 9 && y == 8) {
+			player.send(new OBJECTS_WORLD("lobby"));
+		}*/
 	}
 
 }
