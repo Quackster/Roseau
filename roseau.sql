@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 03, 2017 at 07:21 PM
+-- Generation Time: Apr 03, 2017 at 07:55 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `item_definitions` (
   `description` varchar(150) COLLATE latin1_general_ci NOT NULL DEFAULT 'Unknown description',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uni` (`sprite`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=2623 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=2624 ;
 
 --
 -- Dumping data for table `item_definitions`
@@ -1024,7 +1024,8 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (2619, 'cafe_fence1', '', 1, 1, 0, '', 'PF', 'Unknown name', 'Unknown description'),
 (2620, 'cafe_fence2', '', 1, 1, 0, '', 'PF', 'Unknown name', 'Unknown description'),
 (2621, 'cafe_fence3', '', 1, 1, 0, '', 'PF', 'Unknown name', 'Unknown description'),
-(2622, 'cafe_fence4', '', 1, 1, 0, '', 'PF', 'Unknown name', 'Unknown description');
+(2622, 'cafe_fence4', '', 1, 1, 0, '', 'PF', 'Unknown name', 'Unknown description'),
+(2623, 'cafe_barchair', '', 1, 1, 1, '', 'PFC', 'Unknown name', 'Unknown description');
 
 -- --------------------------------------------------------
 
@@ -1186,7 +1187,7 @@ CREATE TABLE IF NOT EXISTS `room_public_items` (
   `data` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `uni` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=889 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=911 ;
 
 --
 -- Dumping data for table `room_public_items`
@@ -2076,7 +2077,29 @@ INSERT INTO `room_public_items` (`id`, `definitionid`, `model`, `x`, `y`, `z`, `
 (885, 2503, 'taivas_cafe', 4, 18, 1, 2, NULL, NULL),
 (886, 2504, 'taivas_cafe', 4, 16, 1, 2, NULL, NULL),
 (887, 2503, 'taivas_cafe', 13, 18, 1, 2, NULL, NULL),
-(888, 2504, 'taivas_cafe', 13, 16, 1, 2, NULL, NULL);
+(888, 2504, 'taivas_cafe', 13, 16, 1, 2, NULL, NULL),
+(889, 2501, 'taivas_cafe', 13, 23, 0, 0, NULL, NULL),
+(890, 2500, 'taivas_cafe', 12, 23, 0, 2, NULL, NULL),
+(891, 2500, 'taivas_cafe', 14, 23, 0, 6, NULL, NULL),
+(892, 2500, 'taivas_cafe', 12, 19, 0, 0, NULL, NULL),
+(893, 2500, 'taivas_cafe', 11, 17, 0, 2, NULL, NULL),
+(894, 2500, 'taivas_cafe', 11, 16, 0, 2, NULL, NULL),
+(895, 2500, 'taivas_cafe', 14, 16, 0, 6, NULL, NULL),
+(896, 2500, 'taivas_cafe', 14, 17, 0, 6, NULL, NULL),
+(897, 2500, 'taivas_cafe', 12, 14, 0, 4, NULL, NULL),
+(898, 2500, 'taivas_cafe', 3, 18, 1, 2, NULL, NULL),
+(899, 2500, 'taivas_cafe', 3, 17, 1, 2, NULL, NULL),
+(900, 2500, 'taivas_cafe', 6, 18, 1, 6, NULL, NULL),
+(901, 2500, 'taivas_cafe', 6, 17, 1, 6, NULL, NULL),
+(902, 2623, 'taivas_cafe', 6, 6, 1, 6, NULL, NULL),
+(903, 2623, 'taivas_cafe', 6, 7, 1, 6, NULL, NULL),
+(904, 2422, 'taivas_cafe', 0, 11, 1, 4, NULL, NULL),
+(905, 2422, 'taivas_cafe', 1, 11, 1, 4, NULL, NULL),
+(906, 2422, 'taivas_cafe', 2, 11, 1, 4, NULL, NULL),
+(907, 2623, 'taivas_cafe', 0, 12, 1, 0, NULL, NULL),
+(908, 2623, 'taivas_cafe', 1, 12, 1, 0, NULL, NULL),
+(909, 2623, 'taivas_cafe', 2, 12, 1, 0, NULL, NULL),
+(910, 2623, 'taivas_cafe', 1, 16, 1, 6, NULL, NULL);
 
 -- --------------------------------------------------------
 
