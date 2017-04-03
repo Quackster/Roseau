@@ -5,6 +5,7 @@ import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.MessageEvent;
+import org.alexdev.roseau.messages.outgoing.ALLUNITS;
 import org.alexdev.roseau.messages.outgoing.UNITMEMBERS;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
@@ -19,6 +20,7 @@ public class GETUNITUSERS implements MessageEvent {
 			return;
 		}
 		
+		player.send(new ALLUNITS(Roseau.getGame().getRoomManager().getPublicRooms()));
 		player.send(new UNITMEMBERS(publicRoom.getEntities(EntityType.PLAYER)));
 	}
 

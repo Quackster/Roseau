@@ -73,7 +73,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE enabled = 1 AND room_type = " + RoomType.PUBLIC.getTypeCode() + " ORDER BY name", sqlConnection);
+			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE enabled = 1 AND room_type = " + RoomType.PUBLIC.getTypeCode() + " ORDER BY order_id ASC", sqlConnection);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {

@@ -19,17 +19,20 @@ public class TRYFLAT implements MessageEvent {
 
 		Room room = Roseau.getGame().getRoomManager().getRoomById(id);
 
-		if (room != null) {
-			
+		if (room == null) {
+			return;
+		}
+		
+		if (!room.hasRights(player.getDetails().getId(), false)) {
 			if (room.getData().getState() == RoomState.PASSWORD) {
 				if (!password.equals(room.getData().getPassword())) {
 					player.send(new ERROR("Incorrect flat password"));
 					return;
 				}
 			}
-			
-			player.getRoomUser().setRoom(room);
-			player.send(new FLAT_LETIN());
 		}
+
+		player.getRoomUser().setRoom(room);
+		player.send(new FLAT_LETIN());
 	}
 }
