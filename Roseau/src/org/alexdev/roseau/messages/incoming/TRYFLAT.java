@@ -4,6 +4,7 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.settings.RoomState;
+import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.ERROR;
 import org.alexdev.roseau.messages.outgoing.FLAT_LETIN;
@@ -31,6 +32,8 @@ public class TRYFLAT implements MessageEvent {
 				}
 			}
 		}
+		
+		Log.println("??");
 
 		player.getRoomUser().setRoom(room);
 		player.send(new FLAT_LETIN());

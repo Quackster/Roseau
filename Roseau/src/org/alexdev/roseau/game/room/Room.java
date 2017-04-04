@@ -19,6 +19,7 @@ import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
 import org.alexdev.roseau.messages.outgoing.FLAT_PROPERTY;
 import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
+import org.alexdev.roseau.messages.outgoing.LOGOUT;
 import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.ROOM_READY;
 import org.alexdev.roseau.messages.outgoing.STATUS;
@@ -232,16 +233,10 @@ public class Room implements Runnable, SerializableObject {
 
 		RoomEntity roomUser = player.getRoomUser();
 		roomUser.dispose();
-		roomUser.getPosition().setX(-99);
-		roomUser.getPosition().setY(-99);
-		this.send(roomUser.getStatusComposer());
-		roomUser.setWalking(false);
 
+		this.send(new LOGOUT(player.getDetails().getUsername()));
+		
 		this.dispose();
-	}
-
-	public boolean hasRights(Player player, boolean ownerCheckOnly) {
-		return this.hasRights(player.getDetails().getId(), ownerCheckOnly);
 	}
 
 	public boolean hasRights(int userId, boolean ownerCheckOnly) {
