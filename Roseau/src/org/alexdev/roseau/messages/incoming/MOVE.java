@@ -2,14 +2,11 @@ package org.alexdev.roseau.messages.incoming;
 
 import java.util.LinkedList;
 
-import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.pathfinder.Pathfinder;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomEntity;
 import org.alexdev.roseau.game.room.model.Point;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
-import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class MOVE implements MessageEvent {

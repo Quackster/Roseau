@@ -16,7 +16,9 @@ import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
+import org.alexdev.roseau.messages.error.ErrorType;
 import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
+import org.alexdev.roseau.messages.outgoing.ERROR;
 import org.alexdev.roseau.messages.outgoing.FLAT_PROPERTY;
 import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.LOGOUT;
@@ -149,6 +151,8 @@ public class Room implements Runnable, SerializableObject {
 			roomEntity.getPosition().setY(this.roomData.getModel().getDoorY());
 			roomEntity.getPosition().setZ(this.roomData.getModel().getDoorZ());
 			roomEntity.setRotation(this.roomData.getModel().getDoorRot(), false);
+			
+			
 		}
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
@@ -201,11 +205,8 @@ public class Room implements Runnable, SerializableObject {
 
 		this.entities.add(player);
 
+player.send(new ERROR(ErrorType.MODERATOR, "testing123"));
 
-
-		if (this.roomData.getModelName().equals("pool_b")) {
-
-		}
 
 	}
 
