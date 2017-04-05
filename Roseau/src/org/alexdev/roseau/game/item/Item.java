@@ -129,13 +129,13 @@ public class Item implements SerializableObject {
 		if (definition.getSprite().equals("poolBooth")) {
 			tile_valid = true;
 		}
-
+		
 		if (definition.getSprite().equals("poolEnter")) {
-			tile_valid = (player.getRoomUser().containsStatus("swim") == false);
+			tile_valid = player.getDetails().getPoolFigure().length() > 0;
 		}
 		
 		if (definition.getSprite().equals("poolExit")) {
-			tile_valid = (player.getRoomUser().containsStatus("swim") == true);
+			tile_valid = player.getDetails().getPoolFigure().length() > 0;
 		}
 
 		return tile_valid; 

@@ -411,14 +411,8 @@ public class Room implements Runnable, SerializableObject {
 		Item neighbourItem = this.roomMapping.getHighestItem(neighbour.getX(), neighbour.getY());
 		Item playerItem = this.roomMapping.getHighestItem(player.getRoomUser().getPosition().getX(), player.getRoomUser().getPosition().getY());
 
-		if (neighbourItem != null) {
-			if (neighbourItem.getDefinition().getSprite().equals("poolEnter")) {
-				return player.getDetails().getPoolFigure().length() > 0;
-			}
-		}
-
 		if (currentItem != null) {
-			if (currentItem.getDefinition().getSprite().equals("poolEnter")) {
+			if (currentItem.getDefinition().getSprite().equals("poolEnter") || currentItem.getDefinition().getSprite().equals("poolExit")) {
 				return player.getDetails().getPoolFigure().length() > 0;
 			}
 		}

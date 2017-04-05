@@ -55,6 +55,11 @@ public class RoomEntity {
 	}
 
 	public void setStatus(String key, String value) {
+		
+		if (this.containsStatus(key)) {
+			this.removeStatus(key);
+		}
+		
 		this.statuses.put(key, value);
 	}
 
@@ -81,39 +86,48 @@ public class RoomEntity {
 				ItemDefinition definition = item.getDefinition();
 
 				if (definition.getSprite().equals("poolEnter")) {
-
+					this.setStatus("swim", "");
+					this.poolInteractor(item, "enter");
 					return;
 
 				} else if (definition.getSprite().equals("poolExit")) {
-					this.forceStopWalking();
-	
-					String[] positions = item.getCustomData().split(" ", 2);
-					
-					Position warp = new Position(positions[0]);
-					Position goal = new Position(positions[1]);
-					
-					this.position = warp;
-					this.goal = goal;
-					
-					this.sendStatusComposer();	
 					this.removeStatus("swim");
-				
-					this.path.addAll(Pathfinder.makePath(this.entity));
-					
-					this.isWalking = true;
-					item.showProgram("exit");
+					this.poolInteractor(item, "exit");
 					return;
 				}
 			}
 		}
 	}
 
+	private void poolInteractor(Item item, String program) {
+		this.forceStopWalking();
+		this.needsUpdate = false;
+		
+		String[] positions = item.getCustomData().split(" ", 2);
+		
+		Position warp = new Position(positions[0]);
+		Position goal = new Position(positions[1]);
+		
+		this.position.setX(warp.getX());
+		this.position.setY(warp.getY());
+		this.position.setZ(this.room.getMapping().getTile(warp.getX(), warp.getY()).getHeight());
+		
+		this.sendStatusComposer();
+		item.showProgram(program);
+		
+		this.goal.setX(goal.getX());
+		this.goal.setY(goal.getY());
+		this.goal.setZ(this.room.getMapping().getTile(goal.getX(), goal.getY()).getHeight());
+		this.path.addAll(Pathfinder.makePath(this.entity));
+		
+
+		this.isWalking = true;
+	}
+
 	public void forceStopWalking() {
 
 		this.removeStatus("mv");
-
 		this.path.clear();
-		this.needsUpdate = true;
 	}
 
 	public void stopWalking() {

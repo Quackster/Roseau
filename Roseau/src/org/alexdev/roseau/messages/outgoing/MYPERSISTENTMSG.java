@@ -14,7 +14,7 @@ public class MYPERSISTENTMSG implements OutgoingMessageComposer {
 	@Override
 	public void write(Response response) {
 		response.init("MYPERSISTENTMSG");
-		response.appendArgument(this.personalMessage);
+		response.appendNewArgument(this.personalMessage);
 	}
 
 }
