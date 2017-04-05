@@ -2,7 +2,7 @@ package org.alexdev.roseau.game.pathfinder;
 
 import java.util.LinkedList;
 
-import org.alexdev.roseau.game.entity.IEntity;
+import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.model.Position;
 
 import com.google.common.collect.Lists;
@@ -21,7 +21,7 @@ public class Pathfinder {
 			new Position(-1, -1, 0)
 	};
 	
-	public static LinkedList<Position> makePath(IEntity entity) {
+	public static LinkedList<Position> makePath(Entity entity) {
 
 		LinkedList<Position> squares = new LinkedList<>();
 
@@ -37,7 +37,7 @@ public class Pathfinder {
 		return new LinkedList<Position>(Lists.reverse(squares));
 	}
 
-	private static PathfinderNode makePathReversed(IEntity entity) {
+	private static PathfinderNode makePathReversed(Entity entity) {
 		MinMaxPriorityQueue<PathfinderNode> openList = MinMaxPriorityQueue.maximumSize(256).create();
 
 		PathfinderNode[][] map = new PathfinderNode[entity.getRoomUser().getModel().getMapSizeX()][entity.getRoomUser().getModel().getMapSizeY()];

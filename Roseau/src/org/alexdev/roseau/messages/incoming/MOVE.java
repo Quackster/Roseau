@@ -35,7 +35,7 @@ public class MOVE implements MessageEvent {
 			Log.println(item.getDefinition().getSprite() + " - " + item.getDefinitionId());
 		}*/
 
-		if (!player.getRoomUser().getRoom().getMapping().isValidTile(x, y)) {
+		if (!player.getRoomUser().getRoom().getMapping().isValidTile(player, x, y)) {
 			return;
 		}
 

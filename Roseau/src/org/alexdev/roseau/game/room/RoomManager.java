@@ -69,7 +69,7 @@ public class RoomManager {
 			Collections.sort(rooms,new Comparator<Room>() {
 			    @Override
 			    public int compare(Room a, Room b) {
-			        return b.getUsers().size() - a.getUsers().size();
+			        return b.getPlayers().size() - a.getPlayers().size();
 			    }
 			});
 			

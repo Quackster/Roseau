@@ -3,27 +3,27 @@ package org.alexdev.roseau.messages.outgoing;
 import java.util.Arrays;
 import java.util.List;
 
-import org.alexdev.roseau.game.entity.IEntity;
+import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
 public class USERS implements OutgoingMessageComposer {
 
-	private List<IEntity> entities;
+	private List<Entity> entities;
 	
-	public USERS(IEntity entity) {
-		this.entities = Arrays.asList(new IEntity[] { entity });
+	public USERS(Entity entity) {
+		this.entities = Arrays.asList(new Entity[] { entity });
 	}
 	
-	public USERS(List<IEntity> entities) {
+	public USERS(List<Entity> entities) {
 		this.entities = entities;
 	}
 
 	@Override
 	public void write(Response response) {
 		response.init("USERS");
-		for (IEntity entity : this.entities) {
+		for (Entity entity : this.entities) {
 			response.append(Character.toString((char)13));
 			response.appendArgument("");
 			response.appendArgument(entity.getDetails().getUsername());

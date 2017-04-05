@@ -5,16 +5,16 @@ import org.alexdev.roseau.game.player.Player;
 public enum EntityType {
 
 	PLAYER(Player.class),
-	PET(IEntity.class),
-	BOT(IEntity.class);
+	PET(Entity.class),
+	BOT(Entity.class);
 	
-	Class<? extends IEntity> clazz;
+	Class<? extends Entity> clazz;
 	
-	EntityType(Class<? extends IEntity> clazz) {
+	EntityType(Class<? extends Entity> clazz) {
 		this.clazz = clazz;
 	}
 
-	public Class<? extends IEntity> getClazz() {
+	public Class<? extends Entity> getClazz() {
 		return clazz;
 	}
 	

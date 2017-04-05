@@ -2,7 +2,7 @@ package org.alexdev.roseau.game.room;
 
 import java.util.ArrayList;
 import org.alexdev.roseau.Roseau;
-import org.alexdev.roseau.game.entity.IEntity;
+import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.game.room.settings.RoomState;
 import org.alexdev.roseau.game.room.settings.RoomType;
@@ -152,11 +152,11 @@ public class RoomData {
 
 	public int getUsersNow() {
 
-		if (this.room.getUsers() == null) {
-			this.room.setUsers(new ArrayList<IEntity>());
+		if (this.room.getPlayers() == null) {
+			this.room.setUsers(new ArrayList<Entity>());
 		}
 
-		this.usersNow = this.room.getUsers().size();
+		this.usersNow = this.room.getPlayers().size();
 		return usersNow;
 	}
 

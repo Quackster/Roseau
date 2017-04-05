@@ -1,7 +1,7 @@
 package org.alexdev.roseau.game.player;
 
 import org.alexdev.roseau.Roseau;
-import org.alexdev.roseau.game.entity.IEntity;
+import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
@@ -22,9 +22,9 @@ public class PlayerDetails implements SerializableObject {
 	private String password;
 	
 	private boolean authenticated;
-	private IEntity entity;
+	private Entity entity;
 	
-	public PlayerDetails(IEntity session) {
+	public PlayerDetails(Entity session) {
 		this.authenticated = false;
 		this.entity = session;
 	}
@@ -147,11 +147,11 @@ public class PlayerDetails implements SerializableObject {
 		this.poolFigure = poolFigure;
 	}
 
-	public IEntity getEntity() {
+	public Entity getEntity() {
 		return entity;
 	}
 
-	public void setEntity(IEntity entity) {
+	public void setEntity(Entity entity) {
 		this.entity = entity;
 	}
 

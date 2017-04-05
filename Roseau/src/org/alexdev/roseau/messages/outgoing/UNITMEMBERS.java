@@ -2,15 +2,15 @@ package org.alexdev.roseau.messages.outgoing;
 
 import java.util.List;
 
-import org.alexdev.roseau.game.entity.IEntity;
+import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
 public class UNITMEMBERS implements OutgoingMessageComposer {
 
-	private List<IEntity> entities;
+	private List<Entity> entities;
 
-	public UNITMEMBERS(List<IEntity> entities) {
+	public UNITMEMBERS(List<Entity> entities) {
 		this.entities = entities;
 	}
 
@@ -18,7 +18,7 @@ public class UNITMEMBERS implements OutgoingMessageComposer {
 	public void write(Response response) {
 		response.init("UNITMEMBERS");
 		
-		for (IEntity entity : this.entities) {
+		for (Entity entity : this.entities) {
 			response.appendNewArgument(entity.getDetails().getUsername());
 		}
 	}

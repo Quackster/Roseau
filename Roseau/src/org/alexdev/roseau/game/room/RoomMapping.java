@@ -1,5 +1,6 @@
 package org.alexdev.roseau.game.room;
 
+import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.pathfinder.AffectedTile;
 
@@ -67,7 +68,7 @@ public class RoomMapping {
 		}
 	}
 
-	public boolean isValidTile(int x, int y) {
+	public boolean isValidTile(Entity entity, int x, int y) {
 
 		RoomTile tile = this.tiles[x][y];
 		
@@ -79,7 +80,7 @@ public class RoomMapping {
 		boolean tile_valid = (this.room.getData().getModel().isBlocked(x, y) == false);
 
 		if (item != null) {
-			tile_valid = item.canWalk();
+			tile_valid = item.canWalk(entity);
 		}
 
 		// This is returned when there's no items found, it will

@@ -9,9 +9,10 @@ import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.messages.outgoing.OPEN_UIMAKOPPI;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
-import org.alexdev.roseau.game.entity.IEntity;
+import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.ItemDefinition;
+import org.alexdev.roseau.game.pathfinder.Pathfinder;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.model.Position;
 import com.google.common.collect.Lists;
@@ -39,12 +40,12 @@ public class RoomEntity {
 	private boolean needsUpdate = false;
 	private boolean canWalk = true;
 
-	private IEntity entity;
+	private Entity entity;
 
 	//private long chatFloodTimer;
 	//private int chatCount;
 
-	public RoomEntity(IEntity entity) {
+	public RoomEntity(Entity entity) {
 		this.dispose();
 		this.entity = entity;
 	}
@@ -72,19 +73,47 @@ public class RoomEntity {
 			}
 		}
 
-		Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
+		if (this.entity instanceof Player) {
+			
+			Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
 
-		if (item != null) {
-			ItemDefinition definition = item.getDefinition();
+			if (item != null) {
+				ItemDefinition definition = item.getDefinition();
 
-			if (definition.getSprite().equals("poolEnter")) {
-				if (this.containsStatus("swim")) {
+				if (definition.getSprite().equals("poolEnter")) {
+
+					return;
+
+				} else if (definition.getSprite().equals("poolExit")) {
+					this.forceStopWalking();
+	
+					String[] positions = item.getCustomData().split(" ", 2);
+					
+					Position warp = new Position(positions[0]);
+					Position goal = new Position(positions[1]);
+					
+					this.position = warp;
+					this.goal = goal;
+					
+					this.sendStatusComposer();	
 					this.removeStatus("swim");
-				} else {
-					this.setStatus("swim", "");
+				
+					this.path.addAll(Pathfinder.makePath(this.entity));
+					
+					this.isWalking = true;
+					item.showProgram("exit");
+					return;
 				}
 			}
 		}
+	}
+
+	public void forceStopWalking() {
+
+		this.removeStatus("mv");
+
+		this.path.clear();
+		this.needsUpdate = true;
 	}
 
 	public void stopWalking() {
@@ -107,10 +136,10 @@ public class RoomEntity {
 
 				if (this.entity instanceof Player) {
 					if (definition.getSprite().equals("poolBooth")) {
-						
+
 						item.showProgram("close");
 						item.lockTiles(); // users cant walk on this tile
-						
+
 						((Player) this.entity).send(new OPEN_UIMAKOPPI());
 						((Player) this.entity).getRoomUser().toggleWalkAbility();
 					}
@@ -163,16 +192,16 @@ public class RoomEntity {
 			}
 		}
 	}*/
-	
+
 	public void lookTowards(Position look) {
-		
+
 		if (this.isWalking) {
 			return;
 		}
-		
+
 		int diff = this.bodyRotation - Rotation.calculateHumanDirection(this.position.getX(), this.position.getY(), look.getX(), look.getY());
-		
-		
+
+
 		if ((this.bodyRotation % 2) == 0)
 		{
 			if (diff > 0)
@@ -188,7 +217,7 @@ public class RoomEntity {
 				this.headRotation = this.bodyRotation;
 			}
 		}
-		
+
 
 		this.needsUpdate = true;
 	}
@@ -238,6 +267,10 @@ public class RoomEntity {
 
 	public void setGoal(Position goal) {
 		this.goal = goal;
+	}
+	
+	public void sendStatusComposer() {
+		this.room.send(new STATUS(this.entity));
 	}
 
 	public STATUS getStatusComposer() {
@@ -349,7 +382,7 @@ public class RoomEntity {
 		this.isWalking = isWalking;
 	}
 
-	public IEntity getEntity() {
+	public Entity getEntity() {
 		return entity;
 	}
 
@@ -364,7 +397,7 @@ public class RoomEntity {
 	public void toggleWalkAbility() {
 		this.canWalk = !this.canWalk;
 	}
-	
+
 	public boolean canWalk() {
 		return this.canWalk;
 	}

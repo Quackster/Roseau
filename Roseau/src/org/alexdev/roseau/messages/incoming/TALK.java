@@ -53,7 +53,7 @@ public class TALK implements MessageEvent {
 			
 			player.getRoomUser().getRoom().send(new CHAT_MESSAGE(reader.getHeader(), player.getDetails().getUsername(), reader.getMessageBody()));
 			
-			for (Player roomPlayer : player.getRoomUser().getRoom().getUsers()) {
+			for (Player roomPlayer : player.getRoomUser().getRoom().getPlayers()) {
 				if (roomPlayer == player) {
 					continue;
 				}

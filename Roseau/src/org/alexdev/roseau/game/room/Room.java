@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
-import org.alexdev.roseau.game.entity.IEntity;
+import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomEntity;
@@ -16,15 +16,12 @@ import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
-import org.alexdev.roseau.messages.error.ErrorType;
 import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
-import org.alexdev.roseau.messages.outgoing.ERROR;
 import org.alexdev.roseau.messages.outgoing.FLAT_PROPERTY;
 import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.LOGOUT;
 import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.ROOM_READY;
-import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
 import org.alexdev.roseau.server.messages.Response;
@@ -38,7 +35,7 @@ public class Room implements Runnable, SerializableObject {
 	private RoomData roomData;
 	private RoomMapping roomMapping;
 
-	private List<IEntity> entities;
+	private List<Entity> entities;
 	private List<Item> items;
 	private ScheduledFuture<?> tickTask = null;
 	private List<Integer> rights;
@@ -46,7 +43,7 @@ public class Room implements Runnable, SerializableObject {
 	public Room() {
 		this.roomData = new RoomData(this);
 		this.roomMapping = new RoomMapping(this);
-		this.entities = new ArrayList<IEntity>();
+		this.entities = new ArrayList<Entity>();
 	}
 
 
@@ -70,12 +67,12 @@ public class Room implements Runnable, SerializableObject {
 				return;
 			}
 
-			List<IEntity> update_entities = new ArrayList<IEntity>();
-			List<IEntity> entities = this.getEntities();
+			List<Entity> update_entities = new ArrayList<Entity>();
+			List<Entity> entities = this.getEntities();
 
 			for (int i = 0; i < entities.size(); i++) {
 
-				IEntity entity = entities.get(i);
+				Entity entity = entities.get(i);
 
 				if (entity != null) {
 					if (entity.getRoomUser() != null) {
@@ -94,7 +91,7 @@ public class Room implements Runnable, SerializableObject {
 			if (update_entities.size() > 0) {
 				this.send(new STATUS(update_entities));
 
-				for (IEntity entity : update_entities) {
+				for (Entity entity : update_entities) {
 					entity.getRoomUser().walkedPositionUpdate();
 					if (entity.getRoomUser().needsUpdate()) {
 						entity.getRoomUser().setNeedUpdate(false);
@@ -108,7 +105,7 @@ public class Room implements Runnable, SerializableObject {
 		}
 	}
 
-	private void processEntity(IEntity entity) {
+	private void processEntity(Entity entity) {
 
 		RoomEntity roomEntity = entity.getRoomUser();
 
@@ -121,7 +118,7 @@ public class Room implements Runnable, SerializableObject {
 
 				roomEntity.removeStatus("lay");
 				roomEntity.removeStatus("sit");
-				
+
 				int rotation = Rotation.calculateHumanMoveDirection(roomEntity.getPosition().getX(), roomEntity.getPosition().getY(), next.getX(), next.getY());
 				double height = this.roomData.getModel().getHeight(next.getX(), next.getY());
 
@@ -152,8 +149,8 @@ public class Room implements Runnable, SerializableObject {
 			roomEntity.getPosition().setY(this.roomData.getModel().getDoorY());
 			roomEntity.getPosition().setZ(this.roomData.getModel().getDoorZ());
 			roomEntity.setRotation(this.roomData.getModel().getDoorRot(), false);
-			
-			
+
+
 		}
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
@@ -188,12 +185,12 @@ public class Room implements Runnable, SerializableObject {
 		player.send(new ACTIVE_OBJECTS(this));
 
 		if (this.roomData.getModel() != null) {
-		player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
+			player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
 		}
 
 		if (this.entities.size() > 0) {
 			this.send(player.getRoomUser().getUsersComposer());
-			this.send(player.getRoomUser().getStatusComposer());
+			player.getRoomUser().sendStatusComposer();
 		} else {
 			this.init();
 		}
@@ -213,7 +210,7 @@ public class Room implements Runnable, SerializableObject {
 			return;
 		}
 
-		for (Player player : this.getUsers()) {
+		for (Player player : this.getPlayers()) {
 			player.send(response);
 		}
 	}
@@ -233,7 +230,7 @@ public class Room implements Runnable, SerializableObject {
 		roomUser.dispose();
 
 		this.send(new LOGOUT(player.getDetails().getUsername()));
-		
+
 		this.dispose();
 	}
 
@@ -275,7 +272,7 @@ public class Room implements Runnable, SerializableObject {
 					return;
 				}
 
-				if (this.getUsers().size() > 0) {
+				if (this.getPlayers().size() > 0) {
 					return;
 				}
 
@@ -318,16 +315,16 @@ public class Room implements Runnable, SerializableObject {
 			return;
 		}
 
-		for (Player player : this.getUsers()) {
+		for (Player player : this.getPlayers()) {
 			player.send(response);
 		}
 	}
 
-	public List<Player> getUsers() {
+	public List<Player> getPlayers() {
 
 		List<Player> sessions = new ArrayList<Player>();
 
-		for (IEntity entity : this.getEntities(EntityType.PLAYER)) {
+		for (Entity entity : this.getEntities(EntityType.PLAYER)) {
 			Player player = (Player)entity;
 			sessions.add(player);
 		}
@@ -335,10 +332,10 @@ public class Room implements Runnable, SerializableObject {
 		return sessions;
 	}
 
-	public List<IEntity> getEntities(EntityType type) {
-		List<IEntity> e = new ArrayList<IEntity>();
+	public List<Entity> getEntities(EntityType type) {
+		List<Entity> e = new ArrayList<Entity>();
 
-		for (IEntity entity : this.entities) {
+		for (Entity entity : this.entities) {
 			if (entity.getType() == type) {
 				e.add(entity);
 			}
@@ -347,7 +344,7 @@ public class Room implements Runnable, SerializableObject {
 		return e;
 	}
 
-	public List<IEntity> getEntities() {
+	public List<Entity> getEntities() {
 		return entities;
 	}
 
@@ -368,11 +365,11 @@ public class Room implements Runnable, SerializableObject {
 		this.dispose(false);
 	}
 
-	public void setUsers(ArrayList<IEntity> entities) {
+	public void setUsers(ArrayList<Entity> entities) {
 		this.entities = entities;
 	}
 
-	public boolean isValidStep(IEntity player, Position current, Position neighbour, boolean isFinalMove) {
+	public boolean isValidStep(Entity player, Position current, Position neighbour, boolean isFinalMove) {
 
 		int mapSizeX = this.roomData.getModel().getMapSizeX();
 		int mapSizeY = this.roomData.getModel().getMapSizeY();
@@ -399,6 +396,12 @@ public class Room implements Runnable, SerializableObject {
 
 		if (this.roomData.getModel().isBlocked(neighbour.getX(), neighbour.getY())) {
 			return false;
+		}
+
+		if (current.getX() != this.roomData.getModel().getDoorX() && current.getY() != this.roomData.getModel().getDoorY()) {
+			if (!this.roomMapping.isValidTile(player, current.getX(), current.getY())) {
+				return false;
+			}
 		}
 
 		double heightCurrent = this.roomData.getModel().getHeight(current);
@@ -466,7 +469,7 @@ public class Room implements Runnable, SerializableObject {
 				}
 
 				if (isFinalMove) {
-					return currentItem.canWalk();
+					return currentItem.canWalk(player);
 
 				}
 			}

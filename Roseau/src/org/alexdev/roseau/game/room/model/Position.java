@@ -8,8 +8,15 @@ public class Position {
 
 	public Position() {
 		this(0, 0, 0);
+	
 	}
-
+	
+	public Position(String position) {
+		String[] coords = position.split(",", 2);
+		this.X = Short.parseShort(coords[0]);
+		this.Y = Short.parseShort(coords[1]);
+	}
+	
 	public Position(int x, int y) {
 		this.X = x;
 		this.Y = y;
