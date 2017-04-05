@@ -11,7 +11,8 @@ public class RoomTile {
 	private double height = 0;
 	private List<Item> items;
 	private Item highestItem = null;
-
+	private boolean overrideLock = false;
+	
 	public RoomTile(Room room) {
 		this.room = room;
 		this.items = new ArrayList<Item>();
@@ -39,6 +40,14 @@ public class RoomTile {
 
 	public void setHighestItem(Item highestItem) {
 		this.highestItem = highestItem;
+	}
+
+	public boolean hasOverrideLock() {
+		return overrideLock;
+	}
+
+	public void setOverrideLock(boolean overrideLock) {
+		this.overrideLock = overrideLock;
 	}
 
 }

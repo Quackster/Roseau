@@ -14,6 +14,10 @@ public class MOVE implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 
+		if (!player.getRoomUser().canWalk()) {
+			return;
+		}
+		
 		if (reader.getArgumentAmount() < 2) {
 			return;
 		}

@@ -1,4 +1,4 @@
-package org.alexdev.roseau.messages.outgoing;
+package org.alexdev.roseau.messages.incoming;
 
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.ItemDefinition;
@@ -12,7 +12,6 @@ public class CLOSE_UIMAKOPPI implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-		
 		
 		if (player.getRoomUser().getRoom() == null) {
 			return;
@@ -31,7 +30,12 @@ public class CLOSE_UIMAKOPPI implements MessageEvent {
 			}
 			
 			if (definition.getSprite().equals("poolBooth")) {
+				
 				item.showProgram("open");
+				item.unlockTiles(); // users can now walk on this tile
+				
+				player.getRoomUser().toggleWalkAbility();
+				
 			}
 		}
 	}

@@ -37,6 +37,7 @@ public class RoomEntity {
 
 	private boolean isWalking = false;
 	private boolean needsUpdate = false;
+	private boolean canWalk = true;
 
 	private IEntity entity;
 
@@ -80,9 +81,6 @@ public class RoomEntity {
 				if (this.containsStatus("swim")) {
 					this.removeStatus("swim");
 				} else {
-					
-					
-					
 					this.setStatus("swim", "");
 				}
 			}
@@ -109,9 +107,12 @@ public class RoomEntity {
 
 				if (this.entity instanceof Player) {
 					if (definition.getSprite().equals("poolBooth")) {
-						//item.showProgram("closed");
+						
 						item.showProgram("close");
+						item.lockTiles(); // users cant walk on this tile
+						
 						((Player) this.entity).send(new OPEN_UIMAKOPPI());
+						((Player) this.entity).getRoomUser().toggleWalkAbility();
 					}
 				}
 			}
@@ -358,6 +359,14 @@ public class RoomEntity {
 
 	public void setNext(Position next) {
 		this.next = next;
+	}
+
+	public void toggleWalkAbility() {
+		this.canWalk = !this.canWalk;
+	}
+	
+	public boolean canWalk() {
+		return this.canWalk;
 	}
 
 }

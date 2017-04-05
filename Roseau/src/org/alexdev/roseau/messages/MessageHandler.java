@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.incoming.APPROVENAME;
+import org.alexdev.roseau.messages.incoming.CLOSE_UIMAKOPPI;
 import org.alexdev.roseau.messages.incoming.CREATEFLAT;
 import org.alexdev.roseau.messages.incoming.DANCE;
 import org.alexdev.roseau.messages.incoming.FINDUSER;
@@ -26,7 +27,6 @@ import org.alexdev.roseau.messages.incoming.TALK;
 import org.alexdev.roseau.messages.incoming.TRYFLAT;
 import org.alexdev.roseau.messages.incoming.UPDATE;
 import org.alexdev.roseau.messages.incoming.VERSIONCHECK;
-import org.alexdev.roseau.messages.outgoing.CLOSE_UIMAKOPPI;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 import com.google.common.collect.Maps;

@@ -24,6 +24,7 @@ import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.LOGOUT;
 import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.ROOM_READY;
+import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
 import org.alexdev.roseau.server.messages.Response;
@@ -204,10 +205,6 @@ public class Room implements Runnable, SerializableObject {
 		player.send(player.getRoomUser().getStatusComposer());
 
 		this.entities.add(player);
-
-player.send(new ERROR(ErrorType.MODERATOR, "testing123"));
-
-
 	}
 
 	public void send(OutgoingMessageComposer response, boolean checkRights) {

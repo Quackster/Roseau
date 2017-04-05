@@ -69,7 +69,13 @@ public class RoomMapping {
 
 	public boolean isValidTile(int x, int y) {
 
-		Item item = this.tiles[x][y].getHighestItem();
+		RoomTile tile = this.tiles[x][y];
+		
+		if (tile.hasOverrideLock()) {
+			return false;
+		}
+		
+		Item item = tile.getHighestItem();
 		boolean tile_valid = (this.room.getData().getModel().isBlocked(x, y) == false);
 
 		if (item != null) {
@@ -79,6 +85,10 @@ public class RoomMapping {
 		// This is returned when there's no items found, it will
 		// just check the default model if the tile is valid
 		return tile_valid;
+	}
+	
+	public RoomTile getTile(int x, int y) {
+		return this.tiles[x][y];
 	}
 
 	public Item getHighestItem(int x, int y) {

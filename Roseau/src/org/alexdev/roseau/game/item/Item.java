@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.pathfinder.AffectedTile;
+import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
+import org.alexdev.roseau.game.room.RoomTile;
+import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
@@ -39,6 +42,10 @@ public class Item implements SerializableObject {
 	public void serialise(Response response) {
 
 		ItemDefinition definition = this.getDefinition();
+		
+		if (definition.getBehaviour().isInvisible()) {
+			return;
+		}
 
 		//if (definition.getBehaviour().isOnFloor()) {
 		if (definition.getBehaviour().isPassiveObject()) {
@@ -105,8 +112,45 @@ public class Item implements SerializableObject {
 		if (definition.getSprite().equals("poolEnter")) {
 			tile_valid = true;
 		}
+		
+		for (Player player : this.getRoom().getUsers()) {
+			if (player.getRoomUser().getPosition().sameAs(new Position(this.x, this.y))) {
+				tile_valid = false;
+			}
+		}
+		
 
 		return tile_valid; 
+	}
+	
+	public RoomTile getTileInstance() {
+		return this.getRoom().getMapping().getTile(this.x, this.y);
+	}
+	
+	public void lockTiles() {
+		this.getRoom().getMapping().getTile(this.x, this.y).setOverrideLock(true);
+		
+		if (this.customData != null) {
+			for (String coordinate : this.customData.split(" ")) {
+				int x = Integer.valueOf(coordinate.split(",")[0]);
+				int y = Integer.valueOf(coordinate.split(",")[1]);
+				
+				this.getRoom().getMapping().getTile(x, y).setOverrideLock(true);
+			}
+		}
+	}
+	
+	public void unlockTiles() {
+		this.getRoom().getMapping().getTile(this.x, this.y).setOverrideLock(false);
+		
+		if (this.customData != null) {
+			for (String coordinate : this.customData.split(" ")) {
+				int x = Integer.valueOf(coordinate.split(",")[0]);
+				int y = Integer.valueOf(coordinate.split(",")[1]);
+				
+				this.getRoom().getMapping().getTile(x, y).setOverrideLock(false);
+			}
+		}
 	}
 
 	public int getId() {
