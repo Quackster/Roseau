@@ -98,7 +98,7 @@ public class RoomModel
 
 	}
 	
-	public double getHeight(Point point) {
+	public double getHeight(Position point) {
 		return squareHeight[point.getX()][point.getY()];
 	}
 	
@@ -157,8 +157,8 @@ public class RoomModel
 		return squareChar;
 	}
 
-	public Point getDoorPosition() {
-		return new Point(this.doorX, this.doorY, this.doorZ);
+	public Position getDoorPosition() {
+		return new Position(this.doorX, this.doorY, this.doorZ);
 	}
 
 	public boolean hasPool() {

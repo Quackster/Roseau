@@ -14,6 +14,8 @@ import org.alexdev.roseau.messages.incoming.GOTOFLAT;
 import org.alexdev.roseau.messages.incoming.INFORETRIEVE;
 import org.alexdev.roseau.messages.incoming.INITUNITLISTENER;
 import org.alexdev.roseau.messages.incoming.LOGIN;
+import org.alexdev.roseau.messages.incoming.MESSENGER_INIT;
+import org.alexdev.roseau.messages.incoming.MESSENGER_SENDMSG;
 import org.alexdev.roseau.messages.incoming.MOVE;
 import org.alexdev.roseau.messages.incoming.REGISTER;
 import org.alexdev.roseau.messages.incoming.SEARCHBUSYFLATS;
@@ -24,6 +26,7 @@ import org.alexdev.roseau.messages.incoming.TALK;
 import org.alexdev.roseau.messages.incoming.TRYFLAT;
 import org.alexdev.roseau.messages.incoming.UPDATE;
 import org.alexdev.roseau.messages.incoming.VERSIONCHECK;
+import org.alexdev.roseau.messages.outgoing.CLOSE_UIMAKOPPI;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 import com.google.common.collect.Maps;
@@ -45,13 +48,9 @@ public class MessageHandler {
 		this.registerRegisterPackets();
 		this.registerNavigatorPackets();
 		this.registerRoomPackets();
+		this.registerMessengerPackets();
 		this.registerItemPackets();
 
-	}
-
-	private void registerItemPackets() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	private void registerUserPackets() {
@@ -93,6 +92,18 @@ public class MessageHandler {
 		this.messages.put("CREATEFLAT", new CREATEFLAT());
 		this.messages.put("TRYFLAT", new TRYFLAT());
 		this.messages.put("GOTOFLAT", new GOTOFLAT());
+		this.messages.put("CLOSE_UIMAKOPPI", new CLOSE_UIMAKOPPI());
+		
+	}
+	
+	private void registerMessengerPackets() {
+		this.messages.put("MESSENGERINIT", new MESSENGER_INIT());
+		this.messages.put("MESSENGER_SENDMSG", new MESSENGER_SENDMSG());
+	}
+
+	private void registerItemPackets() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

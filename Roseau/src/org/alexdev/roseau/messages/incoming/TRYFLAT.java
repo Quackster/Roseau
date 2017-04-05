@@ -16,7 +16,12 @@ public class TRYFLAT implements MessageEvent {
 	public void handle(Player player, ClientMessage reader) {
 
 		int id = Integer.valueOf(reader.getArgument(1, "/"));
-		String password = reader.getArgument(2, "/");
+		String password = "";
+		
+		if (reader.getArgumentAmount("/") > 2) {
+			password = reader.getArgument(2, "/");
+			Log.println("password: " + password);
+		}
 
 		Room room = Roseau.getGame().getRoomManager().getRoomById(id);
 

@@ -1,21 +1,21 @@
 package org.alexdev.roseau.game.pathfinder;
 
-import org.alexdev.roseau.game.room.model.Point;
+import org.alexdev.roseau.game.room.model.Position;
 
 public class PathfinderNode implements Comparable<PathfinderNode> {
 	
-    private Point position;
+    private Position position;
     private PathfinderNode nextNode;
 
     private Integer cost = Integer.MAX_VALUE;
     private boolean inOpen = false;
     private boolean inClosed = false;
 
-    public Point getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(Point position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
@@ -51,7 +51,7 @@ public class PathfinderNode implements Comparable<PathfinderNode> {
         this.inClosed = inClosed;
     }
 
-    public PathfinderNode(Point current) {
+    public PathfinderNode(Position current) {
         this.position = current;
     }
 

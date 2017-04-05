@@ -11,7 +11,7 @@ import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomEntity;
-import org.alexdev.roseau.game.room.model.Point;
+import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
@@ -116,12 +116,12 @@ public class Room implements Runnable, SerializableObject {
 		if (roomEntity.isWalking()) {
 			if (roomEntity.getPath().size() > 0) {
 
-				Point next = roomEntity.getPath().pop();
+				Position next = roomEntity.getPath().pop();
 
 				roomEntity.removeStatus("lay");
 				roomEntity.removeStatus("sit");
-
-				int rotation = Rotation.calculate(roomEntity.getPosition().getX(), roomEntity.getPosition().getY(), next.getX(), next.getY());
+				
+				int rotation = Rotation.calculateHumanMoveDirection(roomEntity.getPosition().getX(), roomEntity.getPosition().getY(), next.getX(), next.getY());
 				double height = this.roomData.getModel().getHeight(next.getX(), next.getY());
 
 				roomEntity.setRotation(rotation, false);
@@ -375,7 +375,7 @@ player.send(new ERROR(ErrorType.MODERATOR, "testing123"));
 		this.entities = entities;
 	}
 
-	public boolean isValidStep(IEntity player, Point current, Point neighbour, boolean isFinalMove) {
+	public boolean isValidStep(IEntity player, Position current, Position neighbour, boolean isFinalMove) {
 
 		int mapSizeX = this.roomData.getModel().getMapSizeX();
 		int mapSizeY = this.roomData.getModel().getMapSizeY();

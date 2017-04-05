@@ -70,6 +70,10 @@ public class Item implements SerializableObject {
 		}
 		//}
 	}
+	
+	public void showProgram(String data) {
+		this.getRoom().send(new SHOWPROGRAM(this.itemData, data));
+	}
 
 	public List<AffectedTile> getAffectedTiles() {
 		ItemDefinition definition = this.getDefinition();
@@ -178,8 +182,5 @@ public class Item implements SerializableObject {
 		this.customData = customData;
 	}
 
-	public void showProgram(String data) {
-		this.getRoom().send(new SHOWPROGRAM(this.itemData, data));
-	}
 
 }

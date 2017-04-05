@@ -16,7 +16,7 @@ public class SHOWPROGRAM implements OutgoingMessageComposer {
 	@Override
 	public void write(Response response) {
 		response.init("SHOWPROGRAM");
-		response.appendArgument(this.itemData);
+		response.appendNewArgument(this.itemData);
 		response.appendArgument(this.data);
 	}
 

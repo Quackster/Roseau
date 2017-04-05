@@ -3,38 +3,38 @@ package org.alexdev.roseau.game.pathfinder;
 import java.util.LinkedList;
 
 import org.alexdev.roseau.game.entity.IEntity;
-import org.alexdev.roseau.game.room.model.Point;
+import org.alexdev.roseau.game.room.model.Position;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.MinMaxPriorityQueue;
 
 public class Pathfinder {
 
-	public static final Point[] MOVE_POINTS = new Point[]{
-			new Point(0, -1, 0),
-			new Point(0, 1, 0),
-			new Point(1, 0, 0),
-			new Point(-1, 0, 0),
-			new Point(1, -1, 0),
-			new Point(-1, 1, 0),
-			new Point(1, 1, 0),
-			new Point(-1, -1, 0)
+	public static final Position[] MOVE_POINTS = new Position[]{
+			new Position(0, -1, 0),
+			new Position(0, 1, 0),
+			new Position(1, 0, 0),
+			new Position(-1, 0, 0),
+			new Position(1, -1, 0),
+			new Position(-1, 1, 0),
+			new Position(1, 1, 0),
+			new Position(-1, -1, 0)
 	};
 	
-	public static LinkedList<Point> makePath(IEntity entity) {
+	public static LinkedList<Position> makePath(IEntity entity) {
 
-		LinkedList<Point> squares = new LinkedList<>();
+		LinkedList<Position> squares = new LinkedList<>();
 
 		PathfinderNode nodes = makePathReversed(entity);
 
 		if (nodes != null) {
 			while (nodes.getNextNode() != null) {
-				squares.add(new Point(nodes.getPosition().getX(), nodes.getPosition().getY()));
+				squares.add(new Position(nodes.getPosition().getX(), nodes.getPosition().getY()));
 				nodes = nodes.getNextNode();
 			}
 		}
 
-		return new LinkedList<Point>(Lists.reverse(squares));
+		return new LinkedList<Position>(Lists.reverse(squares));
 	}
 
 	private static PathfinderNode makePathReversed(IEntity entity) {
@@ -42,7 +42,7 @@ public class Pathfinder {
 
 		PathfinderNode[][] map = new PathfinderNode[entity.getRoomUser().getModel().getMapSizeX()][entity.getRoomUser().getModel().getMapSizeY()];
 		PathfinderNode node;
-		Point tmp;
+		Position tmp;
 
 		int cost;
 		int diff;
@@ -50,7 +50,7 @@ public class Pathfinder {
 		PathfinderNode current = new PathfinderNode(entity.getRoomUser().getPosition());
 		current.setCost(0);
 
-		Point end = entity.getRoomUser().getGoal();
+		Position end = entity.getRoomUser().getGoal();
 		PathfinderNode finish = new PathfinderNode(end);
 
 		map[current.getPosition().getX()][current.getPosition().getY()] = current;
@@ -65,7 +65,7 @@ public class Pathfinder {
 
 				boolean isFinalMove = (tmp.getX() == end.getX() && tmp.getY() == end.getY());
 
-				if (entity.getRoomUser().getRoom().isValidStep(entity, new Point(current.getPosition().getX(), current.getPosition().getY(), current.getPosition().getZ()), tmp, isFinalMove)) {
+				if (entity.getRoomUser().getRoom().isValidStep(entity, new Position(current.getPosition().getX(), current.getPosition().getY(), current.getPosition().getZ()), tmp, isFinalMove)) {
 					if (map[tmp.getX()][tmp.getY()] == null) {
 						node = new PathfinderNode(tmp);
 						map[tmp.getX()][tmp.getY()] = node;

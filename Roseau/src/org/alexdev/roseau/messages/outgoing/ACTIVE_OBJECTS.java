@@ -2,6 +2,7 @@ package org.alexdev.roseau.messages.outgoing;
 
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.room.Room;
+import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
@@ -15,13 +16,17 @@ public class ACTIVE_OBJECTS implements OutgoingMessageComposer {
 
 	@Override
 	public void write(Response response) {
-		response.init("ITEMS");// " + room.getData().getModelName());
+		response.init("ACTIVE_OBJECTS");
 
-		for (Item item : this.room.getItems()) {
-			if (!item.getDefinition().getBehaviour().isPassiveObject()) {
+		if (this.room != null) {
+			
+			if (this.room.getData().getRoomType() == RoomType.PUBLIC) {
+				return;
+			}
+			
+			for (Item item : this.room.getItems()) {
 				response.appendObject(item);
 			}
 		}
 	}
-
 }

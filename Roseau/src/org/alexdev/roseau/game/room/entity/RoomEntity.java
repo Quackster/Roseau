@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.RoomModel;
+import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.messages.outgoing.OPEN_UIMAKOPPI;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
@@ -12,7 +13,7 @@ import org.alexdev.roseau.game.entity.IEntity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.ItemDefinition;
 import org.alexdev.roseau.game.player.Player;
-import org.alexdev.roseau.game.room.model.Point;
+import org.alexdev.roseau.game.room.model.Position;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -22,15 +23,15 @@ public class RoomEntity {
 	private int lastChatId;
 	private int danceId;
 
-	private Point position;
-	private Point goal;
-	private Point next = null;
+	private Position position;
+	private Position goal;
+	private Position next = null;
 
-	private int rotation;
+	private int bodyRotation;
 	private int headRotation;
 
 	private HashMap<String, String> statuses;
-	private LinkedList<Point> path;
+	private LinkedList<Position> path;
 
 	private Room room;
 
@@ -63,7 +64,7 @@ public class RoomEntity {
 		if (this.isWalking) {
 			if (this.next != null) {
 
-				Point next = this.next;
+				Position next = this.next;
 				this.position.setZ(this.getRoom().getData().getModel().getHeight(next.getX(), next.getY()));
 				this.position.setX(next.getX());
 				this.position.setY(next.getY());
@@ -108,8 +109,9 @@ public class RoomEntity {
 
 				if (this.entity instanceof Player) {
 					if (definition.getSprite().equals("poolBooth")) {
+						//item.showProgram("closed");
+						item.showProgram("close");
 						((Player) this.entity).send(new OPEN_UIMAKOPPI());
-						item.showProgram("closed");
 					}
 				}
 			}
@@ -160,6 +162,35 @@ public class RoomEntity {
 			}
 		}
 	}*/
+	
+	public void lookTowards(Position look) {
+		
+		if (this.isWalking) {
+			return;
+		}
+		
+		int diff = this.bodyRotation - Rotation.calculateHumanDirection(this.position.getX(), this.position.getY(), look.getX(), look.getY());
+		
+		
+		if ((this.bodyRotation % 2) == 0)
+		{
+			if (diff > 0)
+			{
+				this.headRotation = (this.bodyRotation - 1);
+			}
+			else if (diff < 0)
+			{
+				this.headRotation = (this.bodyRotation + 1);
+			}
+			else
+			{
+				this.headRotation = this.bodyRotation;
+			}
+		}
+		
+
+		this.needsUpdate = true;
+	}
 
 	public void dispose() {
 
@@ -180,8 +211,8 @@ public class RoomEntity {
 		this.position = null;
 		this.goal = null;
 
-		this.position = new Point(0, 0, 0);
-		this.goal = new Point(0, 0, 0);
+		this.position = new Position(0, 0, 0);
+		this.goal = new Position(0, 0, 0);
 
 		this.needsUpdate = false;
 		this.isWalking = false;
@@ -192,19 +223,19 @@ public class RoomEntity {
 
 	}
 
-	public Point getPosition() {
+	public Position getPosition() {
 		return position;
 	}
 
-	public void setPosition(Point position) {
+	public void setPosition(Position position) {
 		this.position = position;
 	}
 
-	public Point getGoal() {
+	public Position getGoal() {
 		return goal;
 	}
 
-	public void setGoal(Point goal) {
+	public void setGoal(Position goal) {
 		this.goal = goal;
 	}
 
@@ -248,11 +279,11 @@ public class RoomEntity {
 	}
 
 	public int getRotation() {
-		return rotation;
+		return bodyRotation;
 	}
 
 	public void setRotation(int rotation) {
-		this.rotation = rotation;
+		this.bodyRotation = rotation;
 	}
 
 	public int getHeadRotation() {
@@ -264,7 +295,7 @@ public class RoomEntity {
 		this.headRotation = rotation;
 
 		if (!headOnly) {
-			this.rotation = rotation;
+			this.bodyRotation = rotation;
 		}
 	}
 
@@ -272,12 +303,12 @@ public class RoomEntity {
 		return statuses;
 	}
 
-	public LinkedList<Point> getPath() {
+	public LinkedList<Position> getPath() {
 		return path;
 	}
 
 
-	public void setPath(LinkedList<Point> path) {
+	public void setPath(LinkedList<Position> path) {
 
 		if (this.path != null) {
 			this.path.clear();
@@ -321,11 +352,11 @@ public class RoomEntity {
 		return entity;
 	}
 
-	public Point getNext() {
+	public Position getNext() {
 		return next;
 	}
 
-	public void setNext(Point next) {
+	public void setNext(Position next) {
 		this.next = next;
 	}
 

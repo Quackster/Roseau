@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import org.alexdev.roseau.game.pathfinder.Pathfinder;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomEntity;
-import org.alexdev.roseau.game.room.model.Point;
+import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
@@ -35,7 +35,7 @@ public class MOVE implements MessageEvent {
 			return;
 		}
 
-		if (player.getRoomUser().getPosition().sameAs(new Point(x, y))) {
+		if (player.getRoomUser().getPosition().sameAs(new Position(x, y))) {
 			return;
 		}
 
@@ -43,7 +43,7 @@ public class MOVE implements MessageEvent {
 		roomEntity.getGoal().setX(x);
 		roomEntity.getGoal().setY(y);
 
-		LinkedList<Point> path = Pathfinder.makePath(player);
+		LinkedList<Position> path = Pathfinder.makePath(player);
 
 		if (path == null) {
 			return;

@@ -1,22 +1,22 @@
 package org.alexdev.roseau.game.room.model;
 
-public class Point {
+public class Position {
 
 	private int X;
 	private int Y;
 	private double Z;
 
-	public Point() {
+	public Position() {
 		this(0, 0, 0);
 	}
 
-	public Point(int x, int y) {
+	public Position(int x, int y) {
 		this.X = x;
 		this.Y = y;
 		this.Z = 0;
 	}
 
-	public Point(int x, int y, double i) {
+	public Position(int x, int y, double i) {
 		this.X = x;
 		this.Y = y;
 		this.Z = i;
@@ -46,23 +46,30 @@ public class Point {
 		Z = z;
 	}
 
-	public Point add(Point other) {
-		return new Point(other.getX() + getX(), other.getY() + getY(), other.getZ() + getZ());
+	public Position add(Position other) {
+		return new Position(other.getX() + getX(), other.getY() + getY(), other.getZ() + getZ());
 	}
 
-	public Point subtract(Point other) {
-		return new Point(other.getX() - getX(), other.getY() - getY(), other.getZ() - getZ());
+	public Position subtract(Position other) {
+		return new Position(other.getX() - getX(), other.getY() - getY(), other.getZ() - getZ());
 	}
 
 
-	public int getDistanceSquared(Point point) {
+	public int getDistanceSquared(Position point) {
 		int dx = this.getX() - point.getX();
 		int dy = this.getY() - point.getY();
 
 		return (dx * dx) + (dy * dy);
 	}
+	
+	public int getDistance(Position point) {
+return (int)Math.hypot(this.getX() - point.getX(), this.getY() - point.getY());
+	}
+	
+	
+	
 
-	public boolean sameAs(Point point) {	
+	public boolean sameAs(Position point) {	
 		return (this.X == point.getX() && this.Y == point.getY());
 	}
 

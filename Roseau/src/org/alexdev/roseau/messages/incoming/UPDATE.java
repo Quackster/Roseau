@@ -37,9 +37,40 @@ country=UK*/
 			String password = reader.getArgument(1, Character.toString((char)13)).split("=")[1];
 			String email = reader.getArgument(2, Character.toString((char)13)).split("=")[1];
 			String figure = reader.getArgument(3, Character.toString((char)13)).substring(7); // remove "figure="
-			//String birthday = reader.getArgument(5, Character.toString((char)13)).split("=")[1];
-			String mission = reader.getArgument(7, Character.toString((char)13)).substring(11); // remove "customData=" in case they put a = in their motto
+			String mission = reader.getArgument(7, Character.toString((char)13)).substring(11);// remove "customData=" in case they put a = in their motto
 			String sex = reader.getArgument(9, Character.toString((char)13)).split("=")[1];
+			
+			
+			if (password.length() > 50) {
+				password = email.substring(0, 50);
+				return;
+			}
+			
+			if (email.length() > 256) {
+				email = email.substring(0, 256);
+				return;
+			}
+			
+			if (mission.length() > 100) {
+				mission = mission.substring(0, 100);
+				return;
+			}
+			
+			if (sex.length() < 4) {
+				return;
+			}
+			
+			if (sex.length() > 6) {
+				return;
+			}
+			
+			if (password.length() < 3) {
+				return;
+			}
+			
+			if (figure.length() < 3) {
+				return;
+			}
 			
 			player.getDetails().setPassword(password);
 			player.getDetails().setEmail(email);
