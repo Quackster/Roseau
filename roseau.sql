@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2017 at 04:26 PM
+-- Generation Time: Apr 05, 2017 at 11:22 AM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -37,8 +37,7 @@ CREATE TABLE IF NOT EXISTS `item_definitions` (
   `behaviour` varchar(25) CHARACTER SET latin1 NOT NULL,
   `name` varchar(100) COLLATE latin1_general_ci NOT NULL DEFAULT 'Unknown name',
   `description` varchar(150) COLLATE latin1_general_ci NOT NULL DEFAULT 'Unknown description',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uni` (`sprite`)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=2624 ;
 
 --
@@ -1122,7 +1121,7 @@ INSERT INTO `rooms` (`id`, `name`, `order_id`, `room_type`, `enabled`, `hidden`,
 (27, 'Skylight Lobby', 2, 1, 1, 0, '2017-03-31 03:28:12', -1, NULL, '', 0, 0, 40, 'lobby', 'floorlobby_c', '0', '0'),
 (29, 'Club Massiva: dancefloor', 4, 1, 0, 1, '2017-03-31 04:40:51', -1, NULL, '', 0, 0, 40, 'club', 'bar_b', '0', '0'),
 (30, 'Cunning Fox Gamehall', 13, 1, 1, 0, '2017-04-03 10:39:23', -1, NULL, '', 0, 0, 40, 'gamehall', 'hallC', '0', '0'),
-(31, 'Alex''s Room', 0, 0, 1, 0, '2017-04-02 19:01:58', 5, 'description lol!!!', 'topkek', 2, 0, 25, 'floor1', 'model_c', '0', '0');
+(31, 'Alex''s Room', 0, 0, 1, 0, '2017-04-02 19:01:58', 5, 'description lol!!!', 'topkek', 0, 0, 25, 'floor1', 'model_c', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -1187,7 +1186,7 @@ CREATE TABLE IF NOT EXISTS `room_public_items` (
   `data` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `uni` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=911 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=912 ;
 
 --
 -- Dumping data for table `room_public_items`
@@ -2146,7 +2145,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `figure`, `pool_figure`, `credits`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
 (2, 'test', '123', 1, 44324323, 1490046606, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', 'ch=s01/51,120,201', 0, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83', 'ch=s02/255,99,147', 5000, 'Male', 'UK', '', '01.01.1997', 1);
+(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83', 'ch=s02/255,146,90', 5000, 'Male', 'UK', '', '01.01.1997', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
