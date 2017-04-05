@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2017 at 11:22 AM
+-- Generation Time: Apr 05, 2017 at 01:01 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -1193,8 +1193,8 @@ CREATE TABLE IF NOT EXISTS `room_public_items` (
 --
 
 INSERT INTO `room_public_items` (`id`, `definitionid`, `model`, `x`, `y`, `z`, `rotation`, `object`, `data`) VALUES
-(1, 501, 'pool_a', 17, 11, 0, 0, 'curtains1', '19,11'),
-(2, 501, 'pool_a', 17, 9, 0, 0, 'curtains2', '19,9'),
+(1, 501, 'pool_a', 17, 11, 0, 0, 'curtains1', '18,11'),
+(2, 501, 'pool_a', 17, 9, 0, 0, 'curtains2', '18,9'),
 (3, 502, 'pool_a', 20, 28, 0, 0, 'Splash0', '21,28 22,28'),
 (4, 503, 'pool_a', 21, 28, 0, 0, 'Splash0', '20,28 19,28'),
 (5, 502, 'pool_b', 17, 21, 0, 0, 'Splash0', '17,22 17,23'),
@@ -2144,8 +2144,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `figure`, `pool_figure`, `credits`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
-(2, 'test', '123', 1, 44324323, 1490046606, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', 'ch=s01/51,120,201', 0, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83', 'ch=s02/255,146,90', 5000, 'Male', 'UK', '', '01.01.1997', 1);
+(2, 'test', '123', 1, 44324323, 1490046606, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', 'ch=s01/250,56,49', 0, 'Female', 'UK', '', '01.01.1997', 1),
+(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83', 'ch=s02/255,255,255', 5000, 'Male', 'UK', '', '01.01.1997', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
