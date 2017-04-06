@@ -5,7 +5,6 @@ import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.BUDDYADDREQUESTS;
 import org.alexdev.roseau.messages.outgoing.BUDDYLIST;
 import org.alexdev.roseau.messages.outgoing.MESSENGERREADY;
-import org.alexdev.roseau.messages.outgoing.MESSENGER_MSG;
 import org.alexdev.roseau.messages.outgoing.MYPERSISTENTMSG;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
