@@ -28,6 +28,8 @@ public class TALK implements MessageEvent {
 		}
 
 		if (reader.getHeader().equals("WHISPER")) {
+			
+			// Handle whispers
 			String[] args = talkMessage.split(" ");
 
 			if (args.length > 1) {
@@ -36,6 +38,8 @@ public class TALK implements MessageEvent {
 				String message = talkMessage.substring(username.length() + 1);
 
 				Player whispered = Roseau.getGame().getPlayerManager().getByName(username);
+
+				talkMessage = message;
 
 				CHAT_MESSAGE response = new CHAT_MESSAGE("WHISPER", player.getDetails().getUsername(), message);
 				player.send(response);
@@ -46,27 +50,51 @@ public class TALK implements MessageEvent {
 					}
 				}
 			} else {
+				talkMessage =  reader.getMessageBody();
 				CHAT_MESSAGE response = new CHAT_MESSAGE("WHISPER", player.getDetails().getUsername(), reader.getMessageBody());
 				player.send(response);
 			}
 		} else {
-			
+
+			// Handle chat and shout
+			talkMessage = reader.getMessageBody();
+
 			player.getRoomUser().getRoom().send(new CHAT_MESSAGE(reader.getHeader(), player.getDetails().getUsername(), reader.getMessageBody()));
-			
-			for (Player roomPlayer : player.getRoomUser().getRoom().getPlayers()) {
-				if (roomPlayer == player) {
-					continue;
-				}
-				
-				Position currentPoint = player.getRoomUser().getPosition();
-				Position playerPoint = roomPlayer.getRoomUser().getPosition();
-				
-				Log.println("Chat distance: " + currentPoint.getDistance(playerPoint));
-				
-				if (currentPoint.getDistance(playerPoint) <= 30) {
-					roomPlayer.getRoomUser().lookTowards(playerPoint);
+
+			if (reader.getHeader().equals("CHAT")) {
+
+				for (Player roomPlayer : player.getRoomUser().getRoom().getPlayers()) {
+					if (roomPlayer == player) {
+						continue;
+					}
+
+					Position currentPoint = player.getRoomUser().getPosition();
+					Position playerPoint = roomPlayer.getRoomUser().getPosition();
+
+					Log.println("Chat distance: " + currentPoint.getDistance(playerPoint));
+
+					if (currentPoint.getDistance(playerPoint) <= 30) {
+						roomPlayer.getRoomUser().lookTowards(playerPoint);
+					}
 				}
 			}
+		}
+
+		// Show users mouth moving when chatting
+		if (reader.getHeader().equals("CHAT") || reader.getHeader().equals("SHOUT")) {
+
+			int talkDuration = 1;
+			
+			if (talkMessage.length() > 1) {
+				if (talkMessage.length() >= 10) {
+					talkDuration = 5;
+				} else {
+					talkDuration = talkMessage.length() / 2;
+				}
+			}
+			
+			player.getRoomUser().setStatus("talk", "", false, talkDuration, true);
+
 		}
 
 		//player.getRoomUser().chat(talkMessage, reader.getHeader(), true);

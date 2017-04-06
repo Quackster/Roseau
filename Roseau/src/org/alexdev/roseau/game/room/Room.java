@@ -10,6 +10,7 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
+import org.alexdev.roseau.game.item.ItemDefinition;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.game.room.entity.RoomUserStatus;
@@ -106,6 +107,8 @@ public class Room implements Runnable, SerializableObject {
 						}
 					}
 					
+					entity.getRoomUser().walkedPositionUpdate();
+					
 					if (entity.getRoomUser().playerNeedsUpdate()) {
 						entity.getRoomUser().setNeedUpdate(false);
 					}
@@ -121,10 +124,8 @@ public class Room implements Runnable, SerializableObject {
 	private void processEntity(Entity entity) {
 
 		RoomUser roomEntity = entity.getRoomUser();
-
+		
 		if (roomEntity.isWalking()) {
-			
-			
 			
 			if (roomEntity.getPath().size() > 0) {
 
@@ -216,7 +217,7 @@ public class Room implements Runnable, SerializableObject {
 			player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
 		}
 
-		player.getRoomUser().setStatus("carryd", " tea", false, 5);
+		//player.getRoomUser().setStatus("carryd", " tea", false, 5);
 
 		if (this.entities.size() > 0) {
 			this.send(player.getRoomUser().getUsersComposer());

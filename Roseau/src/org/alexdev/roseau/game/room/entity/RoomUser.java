@@ -18,7 +18,6 @@ import org.alexdev.roseau.game.pathfinder.Pathfinder;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.model.Position;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 public class RoomUser {
 
@@ -57,33 +56,36 @@ public class RoomUser {
 	}
 
 	public void setStatus(String key, String value) {
-		this.setStatus(key, value, true, -1);
+		this.setStatus(key, value, false);
+	}
+	
+	public void setStatus(String key, String value, boolean needs_update) {
+		this.setStatus(key, value, true, -1, needs_update);
 	}
 	
 	public void setStatus(String key, String value, boolean infinite, int duration) {
+		this.setStatus(key, value, infinite, duration, false);
+	}
+
+	public void setStatus(String key, String value, boolean infinite, int duration, boolean needs_update) {
 		
 		if (this.containsStatus(key)) {
 			this.removeStatus(key);
 		}
 		
 		this.statuses.put(key, new RoomUserStatus(key, value, infinite, duration));
+		
+		if (needs_update) {
+			this.needsUpdate = true;
+		}
 	}
 
+	
 	public boolean containsStatus(String string) {
 		return this.statuses.containsKey(string);
 	}
 
-	/*public void walkedPositionUpdate() {
-		if (this.isWalking) {
-			if (this.next != null) {
-
-				Position next = this.next;
-				this.position.setZ(this.getRoom().getData().getModel().getHeight(next.getX(), next.getY()));
-				this.position.setX(next.getX());
-				this.position.setY(next.getY());
-			}
-		}
-
+	public void walkedPositionUpdate() {
 		if (this.entity instanceof Player) {
 			
 			Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
@@ -103,11 +105,13 @@ public class RoomUser {
 				}
 			}
 		}
-	}*/
+	}
 
 	public void poolInteractor(Item item, String program) {
+		this.isWalking = false;
+		this.next = null;
+		
 		this.forceStopWalking();
-		this.needsUpdate = false;
 		
 		String[] positions = item.getCustomData().split(" ", 2);
 		
@@ -117,8 +121,9 @@ public class RoomUser {
 		this.position.setX(warp.getX());
 		this.position.setY(warp.getY());
 		this.position.setZ(this.room.getMapping().getTile(warp.getX(), warp.getY()).getHeight());
+		this.needsUpdate = true;
 		
-		this.sendStatusComposer();
+		//this.sendStatusComposer();
 		item.showProgram(program);
 		
 		this.goal.setX(goal.getX());
