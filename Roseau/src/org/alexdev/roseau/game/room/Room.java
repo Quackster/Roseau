@@ -2,6 +2,7 @@ package org.alexdev.roseau.game.room;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -10,7 +11,8 @@ import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
-import org.alexdev.roseau.game.room.entity.RoomEntity;
+import org.alexdev.roseau.game.room.entity.RoomUser;
+import org.alexdev.roseau.game.room.entity.RoomUserStatus;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.game.room.settings.RoomType;
@@ -79,9 +81,9 @@ public class Room implements Runnable, SerializableObject {
 
 						this.processEntity(entity);
 
-						RoomEntity roomEntity = entity.getRoomUser();
+						RoomUser roomEntity = entity.getRoomUser();
 
-						if (roomEntity.needsUpdate()) {
+						if (roomEntity.playerNeedsUpdate()) {
 							update_entities.add(entity);
 						}
 					}
@@ -92,8 +94,19 @@ public class Room implements Runnable, SerializableObject {
 				this.send(new STATUS(update_entities));
 
 				for (Entity entity : update_entities) {
-					entity.getRoomUser().walkedPositionUpdate();
-					if (entity.getRoomUser().needsUpdate()) {
+					
+					if (entity.getRoomUser().isWalking()) {
+						if (entity.getRoomUser().getNext() != null) {
+
+							Position next = entity.getRoomUser().getNext();
+							
+							entity.getRoomUser().getPosition().setZ(this.roomData.getModel().getHeight(next.getX(), next.getY()));
+							entity.getRoomUser().getPosition().setX(next.getX());
+							entity.getRoomUser().getPosition().setY(next.getY());
+						}
+					}
+					
+					if (entity.getRoomUser().playerNeedsUpdate()) {
 						entity.getRoomUser().setNeedUpdate(false);
 					}
 				}
@@ -107,11 +120,12 @@ public class Room implements Runnable, SerializableObject {
 
 	private void processEntity(Entity entity) {
 
-		RoomEntity roomEntity = entity.getRoomUser();
-
-		//this.send(new SHOWPROGRAM(roomEntity.getPosition()));
+		RoomUser roomEntity = entity.getRoomUser();
 
 		if (roomEntity.isWalking()) {
+			
+			
+			
 			if (roomEntity.getPath().size() > 0) {
 
 				Position next = roomEntity.getPath().pop();
@@ -134,12 +148,26 @@ public class Room implements Runnable, SerializableObject {
 				roomEntity.setNeedUpdate(true);
 			}
 		}
+		
+		for (Entry<String, RoomUserStatus> set : entity.getRoomUser().getStatuses().entrySet()) {
+
+			RoomUserStatus statusEntry = set.getValue();
+
+			if (!statusEntry.isInfinite()) {
+				statusEntry.tick();
+
+				if (statusEntry.getDuration() == 0) {
+					entity.getRoomUser().removeStatus(statusEntry.getKey());
+					entity.getRoomUser().setNeedUpdate(true);
+				}
+			}
+		}
 	}
 
 
 	public void loadRoom(Player player) {
 
-		RoomEntity roomEntity = player.getRoomUser();
+		RoomUser roomEntity = player.getRoomUser();
 
 		roomEntity.setRoom(this);
 		roomEntity.getStatuses().clear();
@@ -188,12 +216,15 @@ public class Room implements Runnable, SerializableObject {
 			player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
 		}
 
+		player.getRoomUser().setStatus("carryd", " tea", false, 5);
+
 		if (this.entities.size() > 0) {
 			this.send(player.getRoomUser().getUsersComposer());
 			player.getRoomUser().sendStatusComposer();
 		} else {
 			this.init();
 		}
+		
 
 		player.send(new USERS(this.entities));
 		player.send(new STATUS(this.entities));
@@ -226,7 +257,7 @@ public class Room implements Runnable, SerializableObject {
 			this.entities.remove(player);
 		}
 
-		RoomEntity roomUser = player.getRoomUser();
+		RoomUser roomUser = player.getRoomUser();
 		roomUser.dispose();
 
 		this.send(new LOGOUT(player.getDetails().getUsername()));

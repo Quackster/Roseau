@@ -6,7 +6,7 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.Room;
-import org.alexdev.roseau.game.room.entity.RoomEntity;
+import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.IPlayerNetwork;
 
@@ -15,7 +15,7 @@ public class Player implements Entity {
 	private String machineId;
 	private PlayerDetails details;
 	private IPlayerNetwork network;
-	private RoomEntity roomEntity;
+	private RoomUser roomEntity;
 	
 	private Player createdFlat = null;
 	private List<Room> rooms;
@@ -23,7 +23,7 @@ public class Player implements Entity {
 	public Player(IPlayerNetwork network) {
 		this.network = network;
 		this.details = new PlayerDetails(this);
-		this.roomEntity = new RoomEntity(this);
+		this.roomEntity = new RoomUser(this);
 	}
 
 	public void cacheUserData() {
@@ -79,7 +79,7 @@ public class Player implements Entity {
 	}
 	
 	@Override
-	public RoomEntity getRoomUser() {
+	public RoomUser getRoomUser() {
 		return this.roomEntity;
 	}
 }

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import org.alexdev.roseau.game.pathfinder.Pathfinder;
 import org.alexdev.roseau.game.player.Player;
-import org.alexdev.roseau.game.room.entity.RoomEntity;
+import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
@@ -43,7 +43,7 @@ public class MOVE implements MessageEvent {
 			return;
 		}
 
-		RoomEntity roomEntity = player.getRoomUser();
+		RoomUser roomEntity = player.getRoomUser();
 		roomEntity.getGoal().setX(x);
 		roomEntity.getGoal().setY(y);
 

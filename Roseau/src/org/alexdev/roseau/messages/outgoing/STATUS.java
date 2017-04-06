@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import org.alexdev.roseau.game.entity.Entity;
+import org.alexdev.roseau.game.room.entity.RoomUserStatus;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
@@ -41,8 +42,13 @@ public class STATUS implements OutgoingMessageComposer {
 			
 			String status = "/";
 
-			for (Entry<String, String> set : entity.getRoomUser().getStatuses().entrySet()) {
-				status += set.getKey() + set.getValue() + "/";
+			for (Entry<String, RoomUserStatus> set : entity.getRoomUser().getStatuses().entrySet()) {
+				
+				RoomUserStatus statusEntry = set.getValue();
+				
+				status += statusEntry.getKey();
+				status += statusEntry.getValue();
+				status += "/";
 			}
 			
 			response.append(status);

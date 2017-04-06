@@ -1,7 +1,9 @@
 package org.alexdev.roseau.game.room.entity;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.RoomModel;
@@ -18,7 +20,7 @@ import org.alexdev.roseau.game.room.model.Position;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-public class RoomEntity {
+public class RoomUser {
 
 	private int virtualId;
 	private int lastChatId;
@@ -31,7 +33,7 @@ public class RoomEntity {
 	private int bodyRotation;
 	private int headRotation;
 
-	private HashMap<String, String> statuses;
+	private ConcurrentHashMap<String, RoomUserStatus> statuses;
 	private LinkedList<Position> path;
 
 	private Room room;
@@ -45,7 +47,7 @@ public class RoomEntity {
 	//private long chatFloodTimer;
 	//private int chatCount;
 
-	public RoomEntity(Entity entity) {
+	public RoomUser(Entity entity) {
 		this.dispose();
 		this.entity = entity;
 	}
@@ -55,19 +57,23 @@ public class RoomEntity {
 	}
 
 	public void setStatus(String key, String value) {
+		this.setStatus(key, value, true, -1);
+	}
+	
+	public void setStatus(String key, String value, boolean infinite, int duration) {
 		
 		if (this.containsStatus(key)) {
 			this.removeStatus(key);
 		}
 		
-		this.statuses.put(key, value);
+		this.statuses.put(key, new RoomUserStatus(key, value, infinite, duration));
 	}
 
 	public boolean containsStatus(String string) {
 		return this.statuses.containsKey(string);
 	}
 
-	public void walkedPositionUpdate() {
+	/*public void walkedPositionUpdate() {
 		if (this.isWalking) {
 			if (this.next != null) {
 
@@ -97,9 +103,9 @@ public class RoomEntity {
 				}
 			}
 		}
-	}
+	}*/
 
-	private void poolInteractor(Item item, String program) {
+	public void poolInteractor(Item item, String program) {
 		this.forceStopWalking();
 		this.needsUpdate = false;
 		
@@ -249,7 +255,7 @@ public class RoomEntity {
 		this.statuses = null;
 		this.path = null;
 
-		this.statuses = Maps.newHashMap();
+		this.statuses = new ConcurrentHashMap<String, RoomUserStatus>();
 		this.path = Lists.newLinkedList();
 
 		this.position = null;
@@ -347,7 +353,7 @@ public class RoomEntity {
 		}
 	}
 
-	public HashMap<String, String> getStatuses() {
+	public ConcurrentHashMap<String, RoomUserStatus> getStatuses() {
 		return statuses;
 	}
 
@@ -365,7 +371,7 @@ public class RoomEntity {
 		this.path = path;
 	}
 
-	public boolean needsUpdate() {
+	public boolean playerNeedsUpdate() {
 		return needsUpdate;
 	}
 
