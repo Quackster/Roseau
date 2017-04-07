@@ -1,6 +1,7 @@
 package org.alexdev.roseau.dao.mysql;
 
 import org.alexdev.roseau.Roseau;
+import org.alexdev.roseau.dao.CatalogueDao;
 import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.dao.ItemDao;
 import org.alexdev.roseau.dao.PlayerDao;
@@ -15,6 +16,7 @@ public class MySQLDao implements Dao {
 	private PlayerDao player;
 	private RoomDao room;
 	private ItemDao item;
+	private CatalogueDao catalogue;
 
 	public MySQLDao() {
 
@@ -22,6 +24,7 @@ public class MySQLDao implements Dao {
 		this.player = new MySQLPlayerDao(this);
 		this.room = new MySQLRoomDao(this);
 		this.item = new MySQLItemDao(this);
+		this.catalogue = new MySQLCatalogueDao(this);
 	}
 
 	@Override
@@ -71,4 +74,8 @@ public class MySQLDao implements Dao {
 		return item;
 	}
 
+	@Override
+	public CatalogueDao getCatalogue() {
+		return catalogue;
+	}
 }

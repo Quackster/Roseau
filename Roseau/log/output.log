@@ -1,0 +1,1183 @@
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/07/2017 21:55:40
+-----------------------------------------
+
+[04/07/2017 21:55:40] [ROSEAU] >> Roseau - Java Server
+[04/07/2017 21:55:40] [ROSEAU] >> Loading server...
+[04/07/2017 21:55:40] [ROSEAU] 
+[04/07/2017 21:55:40] [ROSEAU] >> Loading dependencies
+[04/07/2017 21:55:40] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[04/07/2017 21:55:40] [ROSEAU] >> Loading: guava-11.0.2.jar
+[04/07/2017 21:55:40] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[04/07/2017 21:55:40] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[04/07/2017 21:55:40] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[04/07/2017 21:55:40] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[04/07/2017 21:55:40] [ROSEAU] >> Loading: ini4j-0.5.5-SNAPSHOT.jar
+[04/07/2017 21:55:40] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[04/07/2017 21:55:40] [ROSEAU] 
+[04/07/2017 21:55:40] [ROSEAU] >> Connecting to MySQL server
+[04/07/2017 21:55:40] [ROSEAU] >> Connection to MySQL was a success
+[04/07/2017 21:55:40] [ROSEAU] 
+[04/07/2017 21:55:40] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/07/2017 21:55:40] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/07/2017 21:55:40] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/07/2017 21:55:40] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/07/2017 21:55:40] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/07/2017 21:55:41] [ROSEAU] >> [ROOM] [Habbo Lido II] Starting public room server on port: 112
+[04/07/2017 21:55:41] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/07/2017 21:55:41] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/07/2017 21:55:41] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/07/2017 21:55:41] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/07/2017 21:55:41] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/07/2017 21:55:41] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/07/2017 21:55:41] [ROSEAU] >> [ROOM] [Cunning Fox Gamehall] Starting public room server on port: 121
+[04/07/2017 21:55:41] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 21:55:41] [ROSEAU] >> Error has occured!
+java.sql.SQLException: Column 'credits' not found.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1055)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:926)
+	at com.mysql.jdbc.ResultSetImpl.findColumn(ResultSetImpl.java:1093)
+	at com.mysql.jdbc.ResultSetImpl.getInt(ResultSetImpl.java:2734)
+	at org.alexdev.roseau.dao.mysql.MySQLCatalogueDao.getBuyableItems(MySQLCatalogueDao.java:37)
+	at org.alexdev.roseau.game.catalogue.CatalogueManager.load(CatalogueManager.java:12)
+	at org.alexdev.roseau.game.Game.load(Game.java:33)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+
+[04/07/2017 21:55:41] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 21:55:41] [ROSEAU] 
+[04/07/2017 21:55:41] [ROSEAU] >> Settting up server
+[04/07/2017 21:55:41] [ROSEAU] >> Server is listening on 127.0.0.1:91
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/07/2017 21:57:20
+-----------------------------------------
+
+[04/07/2017 21:57:20] [ROSEAU] >> Roseau - Java Server
+[04/07/2017 21:57:20] [ROSEAU] >> Loading server...
+[04/07/2017 21:57:20] [ROSEAU] 
+[04/07/2017 21:57:20] [ROSEAU] >> Loading dependencies
+[04/07/2017 21:57:20] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[04/07/2017 21:57:20] [ROSEAU] >> Loading: guava-11.0.2.jar
+[04/07/2017 21:57:20] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[04/07/2017 21:57:20] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[04/07/2017 21:57:20] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[04/07/2017 21:57:20] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[04/07/2017 21:57:20] [ROSEAU] >> Loading: ini4j-0.5.5-SNAPSHOT.jar
+[04/07/2017 21:57:20] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[04/07/2017 21:57:20] [ROSEAU] 
+[04/07/2017 21:57:20] [ROSEAU] >> Connecting to MySQL server
+[04/07/2017 21:57:20] [ROSEAU] >> Connection to MySQL was a success
+[04/07/2017 21:57:20] [ROSEAU] 
+[04/07/2017 21:57:20] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/07/2017 21:57:20] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/07/2017 21:57:20] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/07/2017 21:57:20] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/07/2017 21:57:20] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/07/2017 21:57:20] [ROSEAU] >> [ROOM] [Habbo Lido II] Starting public room server on port: 112
+[04/07/2017 21:57:20] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/07/2017 21:57:20] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/07/2017 21:57:20] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/07/2017 21:57:20] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/07/2017 21:57:20] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/07/2017 21:57:20] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/07/2017 21:57:20] [ROSEAU] >> [ROOM] [Cunning Fox Gamehall] Starting public room server on port: 121
+[04/07/2017 21:57:20] [ROSEAU] 
+[04/07/2017 21:57:20] [ROSEAU] >> Settting up server
+[04/07/2017 21:57:20] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[04/07/2017 21:57:32] [ROSEAU] >> SENT: # HELLO##
+[04/07/2017 21:57:32] [ROSEAU] >> [-435297174] Connection from 127.0.0.1
+[04/07/2017 21:57:33] [ROSEAU] >> [-435297174] Received: VERSIONCHECK / client002
+[04/07/2017 21:57:33] [ROSEAU] >> SENT: # ENCRYPTION_OFF##
+[04/07/2017 21:57:33] [ROSEAU] >> SENT: # SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/07/2017 21:57:33] [ROSEAU] >> [-435297174] Received: KEYENCRYPTED / 964
+[04/07/2017 21:57:33] [ROSEAU] >> [-435297174] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/07/2017 21:57:33] [ROSEAU] >> [-435297174] Received: LOGIN / Alex 123
+[04/07/2017 21:57:33] [ROSEAU] >> [-435297174] Received: MESSENGERINIT / 
+[04/07/2017 21:57:33] [ROSEAU] >> SENT: # MYPERSISTENTMSG[13]message placeholder##
+[04/07/2017 21:57:33] [ROSEAU] >> SENT: # BUDDYLIST[13]2[9]Testing[9]dummy text1[13]dummy text2[9]01/01/1970 10:12:13[13]3[9]TestAgain[9]dummy text3[13]dummy text4[9]01/01/1970 10:12:13##
+[04/07/2017 21:57:33] [ROSEAU] >> SENT: # BUDDYADDREQUESTS[13]/Placeholder##
+[04/07/2017 21:57:33] [ROSEAU] >> SENT: # MESSENGERREADY##
+[04/07/2017 21:57:33] [ROSEAU] >> [-435297174] Received: UNIQUEMACHINEID / #88776211200101900
+[04/07/2017 21:57:33] [ROSEAU] >> [-435297174] Received: STAT / /ShockwaveVersion/10.4.1
+[04/07/2017 21:57:33] [ROSEAU] >> [-435297174] Received: INFORETRIEVE / Alex 123
+[04/07/2017 21:57:33] [ROSEAU] >> SENT: # USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/215,193,135&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01.01.1997[13]phonenumber=+44[13]customData=so i herd u liek duckz[13]has_read_agreement=1[13]sex=Male[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[04/07/2017 21:57:34] [ROSEAU] >> [-435297174] Received: GETCREDITS / 
+[04/07/2017 21:57:34] [ROSEAU] >> SENT: # WALLETBALANCE[13]5000##
+[04/07/2017 21:57:34] [ROSEAU] >> SENT: # MESSENGERSMSACCOUNT[13]noaccount##
+[04/07/2017 21:57:34] [ROSEAU] >> SENT: # MESSENGERSREADY##
+[04/07/2017 21:57:36] [ROSEAU] >> [-435297174] Received: GETADFORME / general
+[04/07/2017 21:57:37] [ROSEAU] >> [-435297174] Received: INITUNITLISTENER / 
+[04/07/2017 21:57:37] [ROSEAU] >> SENT: # ALLUNITS[13]Main Lobby,0,40,127.0.0.1/127.0.0.1,103,Main Lobby[9]lobby,0,40,lobby_a[13]Median Lobby,0,40,127.0.0.1/127.0.0.1,117,Median Lobby[9]lobby,0,40,floorlobby_b[13]Skylight Lobby,0,40,127.0.0.1/127.0.0.1,118,Skylight Lobby[9]lobby,0,40,floorlobby_c[13]Basement Lobby,0,35,127.0.0.1/127.0.0.1,116,Basement Lobby[9]lobby,0,35,floorlobby_a[13]Habbo Lido,0,40,127.0.0.1/127.0.0.1,104,Habbo Lido[9]lido,0,40,pool_a[13]Habbo Lido II,0,30,127.0.0.1/127.0.0.1,112,Habbo Lido II[9]lido,0,30,pool_b[13]Club Massiva,0,40,127.0.0.1/127.0.0.1,113,Club Massiva[9]club,0,40,bar_a[13]Theatredrome,0,25,127.0.0.1/127.0.0.1,115,Theatredrome[9]theatredrome,0,25,theater[13]Habburger's,0,40,127.0.0.1/127.0.0.1,110,Habburger's[9]habburger,0,40,habburger[13]The Dirty Duck Pub,0,40,127.0.0.1/127.0.0.1,105,The Dirty Duck Pub[9]pub,0,40,pub_a[13]Hotel Kitchen,0,25,127.0.0.1/127.0.0.1,107,Hotel Kitchen[9]kitchen,0,25,cr_kitchen[13]Cafe Ole,0,40,127.0.0.1/127.0.0.1,108,Cafe Ole[9]cafe,0,40,taivas_cafe[13]Cunning Fox Gamehall,0,40,127.0.0.1/127.0.0.1,121,Cunning Fox Gamehall[9]gamehall,0,40,hallC##
+[04/07/2017 21:57:37] [ROSEAU] >> [-435297174] Received: SEARCHBUSYFLATS / 
+[04/07/2017 21:57:37] [ROSEAU] >> SENT: # BUSY_FLAT_RESULTS 1##
+[04/07/2017 21:57:42] [ROSEAU] >> [-435297174] Received: SEARCHBUSYFLATS / /0,11
+[04/07/2017 21:57:42] [ROSEAU] >> SENT: # BUSY_FLAT_RESULTS 1##
+[04/07/2017 21:57:43] [ROSEAU] >> [-435297174] Received: SEARCHFLATFORUSER / /Alex
+[04/07/2017 21:57:43] [ROSEAU] >> SENT: # BUSY_FLAT_RESULTS 1[13]42/room123/Alex/open//floor1/127.0.0.1/127.0.0.1/90/0/null/description xd##
+[04/07/2017 21:57:49] [ROSEAU] >> SENT: # HELLO##
+[04/07/2017 21:57:49] [ROSEAU] >> [-2112758474] Connection from 127.0.0.1
+[04/07/2017 21:57:49] [ROSEAU] >> [-2112758474] Received: VERSIONCHECK / client002
+[04/07/2017 21:57:49] [ROSEAU] >> SENT: # ENCRYPTION_OFF##
+[04/07/2017 21:57:49] [ROSEAU] >> SENT: # SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/07/2017 21:57:49] [ROSEAU] >> [-2112758474] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/07/2017 21:57:49] [ROSEAU] >> [-2112758474] Received: KEYENCRYPTED / 964
+[04/07/2017 21:57:49] [ROSEAU] >> [-2112758474] Received: LOGIN / Alex 123
+[04/07/2017 21:57:49] [ROSEAU] >> [-2112758474] Received: TRYFLAT / /42/
+[04/07/2017 21:57:49] [ROSEAU] >> ??
+[04/07/2017 21:57:49] [ROSEAU] >> SENT: # FLAT_LETIN##
+[04/07/2017 21:57:50] [ROSEAU] >> [-2112758474] Received: GOTOFLAT / /42
+[04/07/2017 21:57:50] [ROSEAU] >> SENT: # ROOM_READY[13]description xd##
+[04/07/2017 21:57:50] [ROSEAU] >> SENT: # OBJECTS WORLD 0 model_e##
+[04/07/2017 21:57:50] [ROSEAU] >> SENT: # ACTIVE_OBJECTS##
+[04/07/2017 21:57:50] [ROSEAU] >> SENT: # HEIGHTMAP[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx##
+[04/07/2017 21:57:50] [ROSEAU] >> SENT: # USERS##
+[04/07/2017 21:57:50] [ROSEAU] >> SENT: # STATUS ##
+[04/07/2017 21:57:50] [ROSEAU] >> SENT: # USERS[13]  Alex sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/215,193,135&sh=003/121,94,83 1 5 0.0 so i herd u liek duckz##
+[04/07/2017 21:57:50] [ROSEAU] >> SENT: # STATUS [13]Alex 1,5,0,2,2/##
+[04/07/2017 21:57:51] [ROSEAU] >> [-435297174] Received: GETADFORME / general
+[04/07/2017 21:57:51] [ROSEAU] >> [-2112758474] Received: STATUSOK / 
+[04/07/2017 21:57:51] [ROSEAU] >> SENT: # OK##
+[04/07/2017 21:57:53] [ROSEAU] >> [-2112758474] Received: Move / 6 6
+[04/07/2017 21:57:53] [ROSEAU] >> SENT: # STATUS [13]Alex 1,5,0,3,3/mv 2,6,0/##
+[04/07/2017 21:57:53] [ROSEAU] >> SENT: # STATUS [13]Alex 2,6,0,2,2/mv 3,6,0/##
+[04/07/2017 21:57:53] [ROSEAU] >> [-2112758474] Received: Move / 8 7
+[04/07/2017 21:57:54] [ROSEAU] >> SENT: # STATUS [13]Alex 3,6,0,3,3/mv 4,7,0/##
+[04/07/2017 21:57:54] [ROSEAU] >> [-2112758474] Received: Move / 6 5
+[04/07/2017 21:57:54] [ROSEAU] >> SENT: # STATUS [13]Alex 4,7,0,1,1/mv 5,6,0/##
+[04/07/2017 21:57:55] [ROSEAU] >> SENT: # STATUS [13]Alex 5,6,0,1,1/mv 6,5,0/##
+[04/07/2017 21:57:55] [ROSEAU] >> SENT: # STATUS [13]Alex 6,5,0,1,1/##
+[04/07/2017 21:57:55] [ROSEAU] >> [-2112758474] Received: Move / 8 6
+[04/07/2017 21:57:56] [ROSEAU] >> SENT: # STATUS [13]Alex 6,5,0,2,2/mv 7,5,0/##
+[04/07/2017 21:57:56] [ROSEAU] >> SENT: # STATUS [13]Alex 7,5,0,3,3/mv 8,6,0/##
+[04/07/2017 21:57:57] [ROSEAU] >> SENT: # STATUS [13]Alex 8,6,0,3,3/##
+[04/07/2017 21:57:57] [ROSEAU] >> [-2112758474] Received: Move / 9 6
+[04/07/2017 21:57:58] [ROSEAU] >> SENT: # STATUS [13]Alex 8,6,0,2,2/mv 9,6,0/##
+[04/07/2017 21:57:58] [ROSEAU] >> SENT: # STATUS [13]Alex 9,6,0,2,2/##
+[04/07/2017 21:57:59] [ROSEAU] >> [-2112758474] Received: Move / 8 8
+[04/07/2017 21:57:59] [ROSEAU] >> SENT: # STATUS [13]Alex 9,6,0,4,4/mv 9,7,0/##
+[04/07/2017 21:58:00] [ROSEAU] >> SENT: # STATUS [13]Alex 9,7,0,5,5/mv 8,8,0/##
+[04/07/2017 21:58:00] [ROSEAU] >> SENT: # STATUS [13]Alex 8,8,0,5,5/##
+[04/07/2017 21:58:03] [ROSEAU] >> [-435297174] Received: GETORDERINFO / /A1 PYN Alex
+[04/07/2017 21:58:04] [ROSEAU] >> [-435297174] Received: GETORDERINFO / /A1 PYN Alex
+[04/07/2017 21:58:04] [ROSEAU] >> [-435297174] Received: GETORDERINFO / /A1 PYN Alex
+[04/07/2017 21:58:04] [ROSEAU] >> [-435297174] Received: GETORDERINFO / /A1 PYN Alex
+[04/07/2017 21:58:08] [ROSEAU] >> [-435297174] Received: GETORDERINFO / /A1 TUN Alex
+[04/07/2017 21:58:08] [ROSEAU] >> [-435297174] Received: GETORDERINFO / /A1 TUN Alex
+[04/07/2017 21:58:09] [ROSEAU] >> [-435297174] Received: GETORDERINFO / /A1 TUN Alex
+[04/07/2017 21:58:11] [ROSEAU] >> [-435297174] Received: GETORDERINFO / /a2 ovi3 Alex
+[04/07/2017 21:58:11] [ROSEAU] >> [-435297174] Received: GETORDERINFO / /a2 ovi3 Alex
+[04/07/2017 22:00:32] [ROSEAU] >> [-435297174] Received: GETORDERINFO / /a2 ovi3 Alex
+[04/07/2017 22:00:32] [ROSEAU] >> [-435297174] Received: GETORDERINFO / /a2 ovi3 Alex
+[04/07/2017 22:00:32] [ROSEAU] >> [-435297174] Received: GETORDERINFO / /a2 ovi3 Alex
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/07/2017 22:02:31
+-----------------------------------------
+
+[04/07/2017 22:02:31] [ROSEAU] >> Roseau - Java Server
+[04/07/2017 22:02:31] [ROSEAU] >> Loading server...
+[04/07/2017 22:02:31] [ROSEAU] 
+[04/07/2017 22:02:31] [ROSEAU] >> Loading dependencies
+[04/07/2017 22:02:31] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[04/07/2017 22:02:31] [ROSEAU] >> Loading: guava-11.0.2.jar
+[04/07/2017 22:02:31] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[04/07/2017 22:02:31] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[04/07/2017 22:02:31] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[04/07/2017 22:02:31] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[04/07/2017 22:02:31] [ROSEAU] >> Loading: ini4j-0.5.5-SNAPSHOT.jar
+[04/07/2017 22:02:31] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[04/07/2017 22:02:31] [ROSEAU] 
+[04/07/2017 22:02:31] [ROSEAU] >> Connecting to MySQL server
+[04/07/2017 22:02:32] [ROSEAU] >> Connection to MySQL was a success
+[04/07/2017 22:02:32] [ROSEAU] 
+[04/07/2017 22:02:32] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:103
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:72)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:322)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:86)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:22)
+	at org.alexdev.roseau.game.Game.load(Game.java:31)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:117
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:72)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:322)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:86)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:22)
+	at org.alexdev.roseau.game.Game.load(Game.java:31)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:118
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:72)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:322)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:86)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:22)
+	at org.alexdev.roseau.game.Game.load(Game.java:31)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:116
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:72)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:322)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:86)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:22)
+	at org.alexdev.roseau.game.Game.load(Game.java:31)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:104
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:72)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:322)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:86)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:22)
+	at org.alexdev.roseau.game.Game.load(Game.java:31)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> [ROOM] [Habbo Lido II] Starting public room server on port: 112
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:112
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:72)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:322)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:86)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:22)
+	at org.alexdev.roseau.game.Game.load(Game.java:31)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:113
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:72)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:322)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:86)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:22)
+	at org.alexdev.roseau.game.Game.load(Game.java:31)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:115
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:72)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:322)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:86)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:22)
+	at org.alexdev.roseau.game.Game.load(Game.java:31)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:110
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:72)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:322)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:86)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:22)
+	at org.alexdev.roseau.game.Game.load(Game.java:31)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:105
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:72)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:322)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:86)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:22)
+	at org.alexdev.roseau.game.Game.load(Game.java:31)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:107
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:72)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:322)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:86)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:22)
+	at org.alexdev.roseau.game.Game.load(Game.java:31)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:108
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:72)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:322)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:86)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:22)
+	at org.alexdev.roseau.game.Game.load(Game.java:31)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> [ROOM] [Cunning Fox Gamehall] Starting public room server on port: 121
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:121
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.RoomData.fill(RoomData.java:72)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:322)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:86)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:22)
+	at org.alexdev.roseau.game.Game.load(Game.java:31)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] 
+[04/07/2017 22:02:32] [ROSEAU] >> Settting up server
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:90
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:186)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:57)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:188)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:57)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:02:32] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:02:32] [ROSEAU] >> Server could not listen on 91:91, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/07/2017 22:02:37
+-----------------------------------------
+
+[04/07/2017 22:02:37] [ROSEAU] >> Roseau - Java Server
+[04/07/2017 22:02:37] [ROSEAU] >> Loading server...
+[04/07/2017 22:02:37] [ROSEAU] 
+[04/07/2017 22:02:37] [ROSEAU] >> Loading dependencies
+[04/07/2017 22:02:37] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[04/07/2017 22:02:37] [ROSEAU] >> Loading: guava-11.0.2.jar
+[04/07/2017 22:02:37] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[04/07/2017 22:02:37] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[04/07/2017 22:02:37] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[04/07/2017 22:02:37] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[04/07/2017 22:02:37] [ROSEAU] >> Loading: ini4j-0.5.5-SNAPSHOT.jar
+[04/07/2017 22:02:37] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[04/07/2017 22:02:37] [ROSEAU] 
+[04/07/2017 22:02:37] [ROSEAU] >> Connecting to MySQL server
+[04/07/2017 22:02:38] [ROSEAU] >> Connection to MySQL was a success
+[04/07/2017 22:02:38] [ROSEAU] 
+[04/07/2017 22:02:38] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/07/2017 22:02:38] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/07/2017 22:02:38] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/07/2017 22:02:38] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/07/2017 22:02:38] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/07/2017 22:02:38] [ROSEAU] >> [ROOM] [Habbo Lido II] Starting public room server on port: 112
+[04/07/2017 22:02:38] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/07/2017 22:02:38] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/07/2017 22:02:38] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/07/2017 22:02:38] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/07/2017 22:02:38] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/07/2017 22:02:38] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/07/2017 22:02:38] [ROSEAU] >> [ROOM] [Cunning Fox Gamehall] Starting public room server on port: 121
+[04/07/2017 22:02:38] [ROSEAU] 
+[04/07/2017 22:02:38] [ROSEAU] >> Settting up server
+[04/07/2017 22:02:38] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[04/07/2017 22:03:00] [ROSEAU] >> SENT: # HELLO##
+[04/07/2017 22:03:00] [ROSEAU] >> [254865894] Connection from 127.0.0.1
+[04/07/2017 22:03:00] [ROSEAU] >> [254865894] Received: VERSIONCHECK / client002
+[04/07/2017 22:03:00] [ROSEAU] >> SENT: # ENCRYPTION_OFF##
+[04/07/2017 22:03:00] [ROSEAU] >> SENT: # SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/07/2017 22:03:00] [ROSEAU] >> [254865894] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/07/2017 22:03:00] [ROSEAU] >> [254865894] Received: KEYENCRYPTED / 964
+[04/07/2017 22:03:00] [ROSEAU] >> [254865894] Received: LOGIN / Alex 123
+[04/07/2017 22:03:00] [ROSEAU] >> [254865894] Received: TRYFLAT / /42/
+[04/07/2017 22:03:07] [ROSEAU] >> [254865894] Disconnection from 127.0.0.1
+[04/07/2017 22:03:14] [ROSEAU] >> SENT: # HELLO##
+[04/07/2017 22:03:14] [ROSEAU] >> [-1080280855] Connection from 127.0.0.1
+[04/07/2017 22:03:14] [ROSEAU] >> [-1080280855] Received: VERSIONCHECK / client002
+[04/07/2017 22:03:14] [ROSEAU] >> SENT: # ENCRYPTION_OFF##
+[04/07/2017 22:03:14] [ROSEAU] >> SENT: # SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/07/2017 22:03:14] [ROSEAU] >> [-1080280855] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/07/2017 22:03:14] [ROSEAU] >> [-1080280855] Received: KEYENCRYPTED / 964
+[04/07/2017 22:03:14] [ROSEAU] >> [-1080280855] Received: LOGIN / Alex 123
+[04/07/2017 22:03:14] [ROSEAU] >> [-1080280855] Received: TRYFLAT / /42/
+[04/07/2017 22:03:17] [ROSEAU] >> [-1080280855] Disconnection from 127.0.0.1
+[04/07/2017 22:03:31] [ROSEAU] >> SENT: # HELLO##
+[04/07/2017 22:03:31] [ROSEAU] >> [2082647070] Connection from 127.0.0.1
+[04/07/2017 22:03:31] [ROSEAU] >> [2082647070] Received: VERSIONCHECK / client002
+[04/07/2017 22:03:31] [ROSEAU] >> SENT: # ENCRYPTION_OFF##
+[04/07/2017 22:03:31] [ROSEAU] >> SENT: # SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/07/2017 22:03:31] [ROSEAU] >> [2082647070] Received: KEYENCRYPTED / 964
+[04/07/2017 22:03:31] [ROSEAU] >> [2082647070] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/07/2017 22:03:31] [ROSEAU] >> [2082647070] Received: LOGIN / Alex 123
+[04/07/2017 22:03:31] [ROSEAU] >> [2082647070] Received: MESSENGERINIT / 
+[04/07/2017 22:03:31] [ROSEAU] >> SENT: # MYPERSISTENTMSG[13]message placeholder##
+[04/07/2017 22:03:31] [ROSEAU] >> SENT: # BUDDYLIST[13]2[9]Testing[9]dummy text1[13]dummy text2[9]01/01/1970 10:12:13[13]3[9]TestAgain[9]dummy text3[13]dummy text4[9]01/01/1970 10:12:13##
+[04/07/2017 22:03:31] [ROSEAU] >> SENT: # BUDDYADDREQUESTS[13]/Placeholder##
+[04/07/2017 22:03:31] [ROSEAU] >> SENT: # MESSENGERREADY##
+[04/07/2017 22:03:31] [ROSEAU] >> [2082647070] Received: UNIQUEMACHINEID / #88776211200101900
+[04/07/2017 22:03:31] [ROSEAU] >> [2082647070] Received: STAT / /ShockwaveVersion/10.4.1
+[04/07/2017 22:03:31] [ROSEAU] >> [2082647070] Received: INFORETRIEVE / Alex 123
+[04/07/2017 22:03:31] [ROSEAU] >> SENT: # USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/215,193,135&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01.01.1997[13]phonenumber=+44[13]customData=so i herd u liek duckz[13]has_read_agreement=1[13]sex=Male[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[04/07/2017 22:03:32] [ROSEAU] >> [2082647070] Received: GETCREDITS / 
+[04/07/2017 22:03:32] [ROSEAU] >> SENT: # WALLETBALANCE[13]5000##
+[04/07/2017 22:03:32] [ROSEAU] >> SENT: # MESSENGERSMSACCOUNT[13]noaccount##
+[04/07/2017 22:03:32] [ROSEAU] >> SENT: # MESSENGERSREADY##
+[04/07/2017 22:03:34] [ROSEAU] >> [2082647070] Received: GETADFORME / general
+[04/07/2017 22:03:35] [ROSEAU] >> [2082647070] Received: INITUNITLISTENER / 
+[04/07/2017 22:03:35] [ROSEAU] >> SENT: # ALLUNITS[13]Main Lobby,0,40,127.0.0.1/127.0.0.1,103,Main Lobby[9]lobby,0,40,lobby_a[13]Median Lobby,0,40,127.0.0.1/127.0.0.1,117,Median Lobby[9]lobby,0,40,floorlobby_b[13]Skylight Lobby,0,40,127.0.0.1/127.0.0.1,118,Skylight Lobby[9]lobby,0,40,floorlobby_c[13]Basement Lobby,0,35,127.0.0.1/127.0.0.1,116,Basement Lobby[9]lobby,0,35,floorlobby_a[13]Habbo Lido,0,40,127.0.0.1/127.0.0.1,104,Habbo Lido[9]lido,0,40,pool_a[13]Habbo Lido II,0,30,127.0.0.1/127.0.0.1,112,Habbo Lido II[9]lido,0,30,pool_b[13]Club Massiva,0,40,127.0.0.1/127.0.0.1,113,Club Massiva[9]club,0,40,bar_a[13]Theatredrome,0,25,127.0.0.1/127.0.0.1,115,Theatredrome[9]theatredrome,0,25,theater[13]Habburger's,0,40,127.0.0.1/127.0.0.1,110,Habburger's[9]habburger,0,40,habburger[13]The Dirty Duck Pub,0,40,127.0.0.1/127.0.0.1,105,The Dirty Duck Pub[9]pub,0,40,pub_a[13]Hotel Kitchen,0,25,127.0.0.1/127.0.0.1,107,Hotel Kitchen[9]kitchen,0,25,cr_kitchen[13]Cafe Ole,0,40,127.0.0.1/127.0.0.1,108,Cafe Ole[9]cafe,0,40,taivas_cafe[13]Cunning Fox Gamehall,0,40,127.0.0.1/127.0.0.1,121,Cunning Fox Gamehall[9]gamehall,0,40,hallC##
+[04/07/2017 22:03:35] [ROSEAU] >> [2082647070] Received: SEARCHBUSYFLATS / 
+[04/07/2017 22:03:35] [ROSEAU] >> SENT: # BUSY_FLAT_RESULTS 1##
+[04/07/2017 22:03:38] [ROSEAU] >> [2082647070] Received: SEARCHBUSYFLATS / /0,11
+[04/07/2017 22:03:38] [ROSEAU] >> SENT: # BUSY_FLAT_RESULTS 1##
+[04/07/2017 22:03:40] [ROSEAU] >> [2082647070] Received: SEARCHFLATFORUSER / /Alex
+[04/07/2017 22:03:40] [ROSEAU] >> SENT: # BUSY_FLAT_RESULTS 1[13]42/room123/Alex/open//floor1/127.0.0.1/127.0.0.1/90/0/null/description xd##
+[04/07/2017 22:03:41] [ROSEAU] >> SENT: # HELLO##
+[04/07/2017 22:03:41] [ROSEAU] >> [1169783496] Connection from 127.0.0.1
+[04/07/2017 22:03:42] [ROSEAU] >> [1169783496] Received: VERSIONCHECK / client002
+[04/07/2017 22:03:42] [ROSEAU] >> SENT: # ENCRYPTION_OFF##
+[04/07/2017 22:03:42] [ROSEAU] >> SENT: # SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/07/2017 22:03:42] [ROSEAU] >> [1169783496] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/07/2017 22:03:42] [ROSEAU] >> [1169783496] Received: KEYENCRYPTED / 964
+[04/07/2017 22:03:42] [ROSEAU] >> [1169783496] Received: LOGIN / Alex 123
+[04/07/2017 22:03:42] [ROSEAU] >> [1169783496] Received: TRYFLAT / /42/
+[04/07/2017 22:03:42] [ROSEAU] >> ??
+[04/07/2017 22:03:42] [ROSEAU] >> SENT: # FLAT_LETIN##
+[04/07/2017 22:03:43] [ROSEAU] >> [1169783496] Received: GOTOFLAT / /42
+[04/07/2017 22:03:43] [ROSEAU] >> SENT: # ROOM_READY[13]description xd##
+[04/07/2017 22:03:43] [ROSEAU] >> SENT: # OBJECTS WORLD 0 model_e##
+[04/07/2017 22:03:43] [ROSEAU] >> SENT: # ACTIVE_OBJECTS##
+[04/07/2017 22:03:43] [ROSEAU] >> SENT: # HEIGHTMAP[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx##
+[04/07/2017 22:03:43] [ROSEAU] >> SENT: # USERS##
+[04/07/2017 22:03:43] [ROSEAU] >> SENT: # STATUS ##
+[04/07/2017 22:03:43] [ROSEAU] >> SENT: # USERS[13]  Alex sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/215,193,135&sh=003/121,94,83 1 5 0.0 so i herd u liek duckz##
+[04/07/2017 22:03:43] [ROSEAU] >> SENT: # STATUS [13]Alex 1,5,0,2,2/##
+[04/07/2017 22:03:43] [ROSEAU] >> [2082647070] Received: GETADFORME / general
+[04/07/2017 22:03:43] [ROSEAU] >> [1169783496] Received: STATUSOK / 
+[04/07/2017 22:03:43] [ROSEAU] >> SENT: # OK##
+[04/07/2017 22:03:44] [ROSEAU] >> [1169783496] Received: Move / 7 5
+[04/07/2017 22:03:44] [ROSEAU] >> SENT: # STATUS [13]Alex 1,5,0,2,2/mv 2,5,0/##
+[04/07/2017 22:03:45] [ROSEAU] >> [1169783496] Received: Move / 5 6
+[04/07/2017 22:03:45] [ROSEAU] >> SENT: # STATUS [13]Alex 2,5,0,3,3/mv 3,6,0/##
+[04/07/2017 22:03:45] [ROSEAU] >> SENT: # STATUS [13]Alex 3,6,0,2,2/mv 4,6,0/##
+[04/07/2017 22:03:46] [ROSEAU] >> SENT: # STATUS [13]Alex 4,6,0,2,2/mv 5,6,0/##
+[04/07/2017 22:03:46] [ROSEAU] >> SENT: # STATUS [13]Alex 5,6,0,2,2/##
+[04/07/2017 22:03:47] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A2 PIA Alex
+[04/07/2017 22:03:47] [ROSEAU] >> right_wallpart_0
+[04/07/2017 22:03:48] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A2 PIA Alex
+[04/07/2017 22:03:48] [ROSEAU] >> right_wallpart_0
+[04/07/2017 22:03:53] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A1 BJA Alex
+[04/07/2017 22:03:53] [ROSEAU] >> left_wallpart_0
+[04/07/2017 22:03:53] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A1 BJA Alex
+[04/07/2017 22:03:53] [ROSEAU] >> left_wallpart_0
+[04/07/2017 22:03:57] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A2 BAA Alex
+[04/07/2017 22:03:57] [ROSEAU] >> left_wallpart_1
+[04/07/2017 22:03:57] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A2 BAA Alex
+[04/07/2017 22:03:57] [ROSEAU] >> left_wallpart_1
+[04/07/2017 22:04:01] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A2 TAA Alex
+[04/07/2017 22:04:01] [ROSEAU] >> left_wallpart_1
+[04/07/2017 22:04:01] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A2 TAA Alex
+[04/07/2017 22:04:01] [ROSEAU] >> left_wallpart_1
+[04/07/2017 22:04:01] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A2 TAA Alex
+[04/07/2017 22:04:01] [ROSEAU] >> left_wallpart_1
+[04/07/2017 22:04:02] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A2 TAA Alex
+[04/07/2017 22:04:02] [ROSEAU] >> left_wallpart_1
+[04/07/2017 22:04:12] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A1 JLA Alex
+[04/07/2017 22:04:12] [ROSEAU] >> left_wallmask_0
+[04/07/2017 22:04:12] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A1 JLA Alex
+[04/07/2017 22:04:12] [ROSEAU] >> left_wallmask_0
+[04/07/2017 22:04:12] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A1 JLA Alex
+[04/07/2017 22:04:12] [ROSEAU] >> left_wallmask_0
+[04/07/2017 22:04:13] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A1 JLA Alex
+[04/07/2017 22:04:13] [ROSEAU] >> left_wallmask_0
+[04/07/2017 22:04:17] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A1 PYN Alex
+[04/07/2017 22:04:17] [ROSEAU] >> left_wallmask_0
+[04/07/2017 22:04:18] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A1 PYN Alex
+[04/07/2017 22:04:18] [ROSEAU] >> left_wallmask_0
+[04/07/2017 22:04:18] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A1 PYN Alex
+[04/07/2017 22:04:18] [ROSEAU] >> left_wallmask_0
+[04/07/2017 22:04:21] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A2 PSN Alex
+[04/07/2017 22:04:21] [ROSEAU] >> left_wallpart_1
+[04/07/2017 22:04:21] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A2 PSN Alex
+[04/07/2017 22:04:21] [ROSEAU] >> left_wallpart_1
+[04/07/2017 22:04:22] [ROSEAU] >> [2082647070] Received: GETORDERINFO / /A2 PSN Alex
+[04/07/2017 22:04:22] [ROSEAU] >> left_wallpart_1
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/07/2017 22:04:54
+-----------------------------------------
+
+[04/07/2017 22:04:54] [ROSEAU] >> Roseau - Java Server
+[04/07/2017 22:04:54] [ROSEAU] >> Loading server...
+[04/07/2017 22:04:54] [ROSEAU] 
+[04/07/2017 22:04:54] [ROSEAU] >> Loading dependencies
+[04/07/2017 22:04:54] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[04/07/2017 22:04:54] [ROSEAU] >> Loading: guava-11.0.2.jar
+[04/07/2017 22:04:54] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[04/07/2017 22:04:54] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[04/07/2017 22:04:54] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[04/07/2017 22:04:54] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[04/07/2017 22:04:54] [ROSEAU] >> Loading: ini4j-0.5.5-SNAPSHOT.jar
+[04/07/2017 22:04:54] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[04/07/2017 22:04:54] [ROSEAU] 
+[04/07/2017 22:04:54] [ROSEAU] >> Connecting to MySQL server
+[04/07/2017 22:04:54] [ROSEAU] >> Connection to MySQL was a success
+[04/07/2017 22:04:54] [ROSEAU] 
+[04/07/2017 22:04:54] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/07/2017 22:04:54] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/07/2017 22:04:54] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/07/2017 22:04:54] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/07/2017 22:04:54] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/07/2017 22:04:54] [ROSEAU] >> [ROOM] [Habbo Lido II] Starting public room server on port: 112
+[04/07/2017 22:04:54] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/07/2017 22:04:54] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/07/2017 22:04:54] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/07/2017 22:04:54] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/07/2017 22:04:54] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/07/2017 22:04:54] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/07/2017 22:04:54] [ROSEAU] >> [ROOM] [Cunning Fox Gamehall] Starting public room server on port: 121
+[04/07/2017 22:04:54] [ROSEAU] 
+[04/07/2017 22:04:54] [ROSEAU] >> Settting up server
+[04/07/2017 22:04:54] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[04/07/2017 22:05:02] [ROSEAU] >> SENT: # HELLO##
+[04/07/2017 22:05:02] [ROSEAU] >> [-373457271] Connection from 127.0.0.1
+[04/07/2017 22:05:02] [ROSEAU] >> [-373457271] Received: VERSIONCHECK / client002
+[04/07/2017 22:05:02] [ROSEAU] >> SENT: # ENCRYPTION_OFF##
+[04/07/2017 22:05:02] [ROSEAU] >> SENT: # SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/07/2017 22:05:02] [ROSEAU] >> [-373457271] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/07/2017 22:05:02] [ROSEAU] >> [-373457271] Received: KEYENCRYPTED / 964
+[04/07/2017 22:05:02] [ROSEAU] >> [-373457271] Received: LOGIN / Alex 123
+[04/07/2017 22:05:02] [ROSEAU] >> [-373457271] Received: TRYFLAT / /42/
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/07/2017 22:05:56
+-----------------------------------------
+
+[04/07/2017 22:05:56] [ROSEAU] >> Roseau - Java Server
+[04/07/2017 22:05:56] [ROSEAU] >> Loading server...
+[04/07/2017 22:05:56] [ROSEAU] 
+[04/07/2017 22:05:56] [ROSEAU] >> Loading dependencies
+[04/07/2017 22:05:56] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[04/07/2017 22:05:56] [ROSEAU] >> Loading: guava-11.0.2.jar
+[04/07/2017 22:05:56] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[04/07/2017 22:05:56] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[04/07/2017 22:05:56] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[04/07/2017 22:05:56] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[04/07/2017 22:05:56] [ROSEAU] >> Loading: ini4j-0.5.5-SNAPSHOT.jar
+[04/07/2017 22:05:56] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[04/07/2017 22:05:56] [ROSEAU] 
+[04/07/2017 22:05:56] [ROSEAU] >> Connecting to MySQL server
+[04/07/2017 22:05:56] [ROSEAU] >> Connection to MySQL was a success
+[04/07/2017 22:05:56] [ROSEAU] 
+[04/07/2017 22:05:56] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/07/2017 22:05:56] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/07/2017 22:05:56] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/07/2017 22:05:56] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/07/2017 22:05:56] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/07/2017 22:05:56] [ROSEAU] >> [ROOM] [Habbo Lido II] Starting public room server on port: 112
+[04/07/2017 22:05:56] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/07/2017 22:05:56] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/07/2017 22:05:56] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/07/2017 22:05:56] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/07/2017 22:05:56] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/07/2017 22:05:56] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/07/2017 22:05:56] [ROSEAU] >> [ROOM] [Cunning Fox Gamehall] Starting public room server on port: 121
+[04/07/2017 22:05:56] [ROSEAU] 
+[04/07/2017 22:05:56] [ROSEAU] >> Settting up server
+[04/07/2017 22:05:56] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[04/07/2017 22:05:59] [ROSEAU] >> SENT: # HELLO##
+[04/07/2017 22:05:59] [ROSEAU] >> [995268286] Connection from 127.0.0.1
+[04/07/2017 22:05:59] [ROSEAU] >> [995268286] Received: VERSIONCHECK / client002
+[04/07/2017 22:05:59] [ROSEAU] >> SENT: # ENCRYPTION_OFF##
+[04/07/2017 22:05:59] [ROSEAU] >> SENT: # SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/07/2017 22:05:59] [ROSEAU] >> [995268286] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/07/2017 22:05:59] [ROSEAU] >> [995268286] Received: KEYENCRYPTED / 964
+[04/07/2017 22:05:59] [ROSEAU] >> [995268286] Received: LOGIN / Alex 123
+[04/07/2017 22:05:59] [ROSEAU] >> [995268286] Received: TRYFLAT / /42/
+[04/07/2017 22:05:59] [ROSEAU] >> ??
+[04/07/2017 22:05:59] [ROSEAU] >> SENT: # FLAT_LETIN##
+[04/07/2017 22:06:00] [ROSEAU] >> [995268286] Received: GOTOFLAT / /42
+[04/07/2017 22:06:00] [ROSEAU] >> SENT: # ROOM_READY[13]description xd##
+[04/07/2017 22:06:00] [ROSEAU] >> SENT: # OBJECTS WORLD 0 model_e##
+[04/07/2017 22:06:00] [ROSEAU] >> SENT: # ACTIVE_OBJECTS##
+[04/07/2017 22:06:00] [ROSEAU] >> SENT: # HEIGHTMAP[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx##
+[04/07/2017 22:06:00] [ROSEAU] >> SENT: # USERS##
+[04/07/2017 22:06:00] [ROSEAU] >> SENT: # STATUS ##
+[04/07/2017 22:06:00] [ROSEAU] >> SENT: # USERS[13]  Alex sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/215,193,135&sh=003/121,94,83 1 5 0.0 so i herd u liek duckz##
+[04/07/2017 22:06:00] [ROSEAU] >> SENT: # STATUS [13]Alex 1,5,0,2,2/##
+[04/07/2017 22:06:00] [ROSEAU] >> [995268286] Received: STATUSOK / 
+[04/07/2017 22:06:00] [ROSEAU] >> SENT: # OK##
+[04/07/2017 22:06:01] [ROSEAU] >> [995268286] Received: Move / 6 4
+[04/07/2017 22:06:01] [ROSEAU] >> SENT: # STATUS [13]Alex 1,5,0,1,1/mv 2,4,0/##
+[04/07/2017 22:06:02] [ROSEAU] >> SENT: # STATUS [13]Alex 2,4,0,2,2/mv 3,4,0/##
+[04/07/2017 22:06:02] [ROSEAU] >> [995268286] Received: Move / 5 5
+[04/07/2017 22:06:02] [ROSEAU] >> SENT: # STATUS [13]Alex 3,4,0,2,2/mv 4,4,0/##
+[04/07/2017 22:06:03] [ROSEAU] >> SENT: # STATUS [13]Alex 4,4,0,3,3/mv 5,5,0/##
+[04/07/2017 22:06:03] [ROSEAU] >> SENT: # STATUS [13]Alex 5,5,0,3,3/##
+[04/07/2017 22:06:13] [ROSEAU] >> [995268286] Disconnection from 127.0.0.1
+[04/07/2017 22:06:21] [ROSEAU] >> SENT: # HELLO##
+[04/07/2017 22:06:21] [ROSEAU] >> [-1636427165] Connection from 127.0.0.1
+[04/07/2017 22:06:22] [ROSEAU] >> [-1636427165] Received: VERSIONCHECK / client002
+[04/07/2017 22:06:22] [ROSEAU] >> SENT: # ENCRYPTION_OFF##
+[04/07/2017 22:06:22] [ROSEAU] >> SENT: # SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/07/2017 22:06:22] [ROSEAU] >> [-1636427165] Received: KEYENCRYPTED / 964
+[04/07/2017 22:06:22] [ROSEAU] >> [-1636427165] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/07/2017 22:06:22] [ROSEAU] >> [-1636427165] Received: LOGIN / Alex 123
+[04/07/2017 22:06:22] [ROSEAU] >> [-1636427165] Received: MESSENGERINIT / 
+[04/07/2017 22:06:22] [ROSEAU] >> SENT: # MYPERSISTENTMSG[13]message placeholder##
+[04/07/2017 22:06:22] [ROSEAU] >> SENT: # BUDDYLIST[13]2[9]Testing[9]dummy text1[13]dummy text2[9]01/01/1970 10:12:13[13]3[9]TestAgain[9]dummy text3[13]dummy text4[9]01/01/1970 10:12:13##
+[04/07/2017 22:06:22] [ROSEAU] >> SENT: # BUDDYADDREQUESTS[13]/Placeholder##
+[04/07/2017 22:06:22] [ROSEAU] >> SENT: # MESSENGERREADY##
+[04/07/2017 22:06:22] [ROSEAU] >> [-1636427165] Received: UNIQUEMACHINEID / #88776211200101900
+[04/07/2017 22:06:22] [ROSEAU] >> [-1636427165] Received: STAT / /ShockwaveVersion/10.4.1
+[04/07/2017 22:06:22] [ROSEAU] >> [-1636427165] Received: INFORETRIEVE / Alex 123
+[04/07/2017 22:06:22] [ROSEAU] >> SENT: # USEROBJECT[13]name=Alex[13]figure=sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/215,193,135&sh=003/121,94,83[13]email=we3rejfpef3@cefc.com[13]birthday=01.01.1997[13]phonenumber=+44[13]customData=so i herd u liek duckz[13]has_read_agreement=1[13]sex=Male[13]country=UK[13]has_special_rights=0[13]badge_type=##
+[04/07/2017 22:06:23] [ROSEAU] >> [-1636427165] Received: GETCREDITS / 
+[04/07/2017 22:06:23] [ROSEAU] >> SENT: # WALLETBALANCE[13]5000##
+[04/07/2017 22:06:23] [ROSEAU] >> SENT: # MESSENGERSMSACCOUNT[13]noaccount##
+[04/07/2017 22:06:23] [ROSEAU] >> SENT: # MESSENGERSREADY##
+[04/07/2017 22:06:25] [ROSEAU] >> [-1636427165] Received: GETADFORME / general
+[04/07/2017 22:06:26] [ROSEAU] >> [-1636427165] Received: INITUNITLISTENER / 
+[04/07/2017 22:06:26] [ROSEAU] >> SENT: # ALLUNITS[13]Main Lobby,0,40,127.0.0.1/127.0.0.1,103,Main Lobby[9]lobby,0,40,lobby_a[13]Median Lobby,0,40,127.0.0.1/127.0.0.1,117,Median Lobby[9]lobby,0,40,floorlobby_b[13]Skylight Lobby,0,40,127.0.0.1/127.0.0.1,118,Skylight Lobby[9]lobby,0,40,floorlobby_c[13]Basement Lobby,0,35,127.0.0.1/127.0.0.1,116,Basement Lobby[9]lobby,0,35,floorlobby_a[13]Habbo Lido,0,40,127.0.0.1/127.0.0.1,104,Habbo Lido[9]lido,0,40,pool_a[13]Habbo Lido II,0,30,127.0.0.1/127.0.0.1,112,Habbo Lido II[9]lido,0,30,pool_b[13]Club Massiva,0,40,127.0.0.1/127.0.0.1,113,Club Massiva[9]club,0,40,bar_a[13]Theatredrome,0,25,127.0.0.1/127.0.0.1,115,Theatredrome[9]theatredrome,0,25,theater[13]Habburger's,0,40,127.0.0.1/127.0.0.1,110,Habburger's[9]habburger,0,40,habburger[13]The Dirty Duck Pub,0,40,127.0.0.1/127.0.0.1,105,The Dirty Duck Pub[9]pub,0,40,pub_a[13]Hotel Kitchen,0,25,127.0.0.1/127.0.0.1,107,Hotel Kitchen[9]kitchen,0,25,cr_kitchen[13]Cafe Ole,0,40,127.0.0.1/127.0.0.1,108,Cafe Ole[9]cafe,0,40,taivas_cafe[13]Cunning Fox Gamehall,0,40,127.0.0.1/127.0.0.1,121,Cunning Fox Gamehall[9]gamehall,0,40,hallC##
+[04/07/2017 22:06:26] [ROSEAU] >> [-1636427165] Received: SEARCHBUSYFLATS / 
+[04/07/2017 22:06:26] [ROSEAU] >> SENT: # BUSY_FLAT_RESULTS 1##
+[04/07/2017 22:06:28] [ROSEAU] >> [-1636427165] Received: SEARCHBUSYFLATS / /0,11
+[04/07/2017 22:06:28] [ROSEAU] >> SENT: # BUSY_FLAT_RESULTS 1##
+[04/07/2017 22:06:29] [ROSEAU] >> [-1636427165] Received: SEARCHFLATFORUSER / /Alex
+[04/07/2017 22:06:29] [ROSEAU] >> SENT: # BUSY_FLAT_RESULTS 1[13]42/room123/Alex/open//floor1/127.0.0.1/127.0.0.1/90/0/null/description xd##
+[04/07/2017 22:06:31] [ROSEAU] >> SENT: # HELLO##
+[04/07/2017 22:06:31] [ROSEAU] >> [45784720] Connection from 127.0.0.1
+[04/07/2017 22:06:32] [ROSEAU] >> [45784720] Received: VERSIONCHECK / client002
+[04/07/2017 22:06:32] [ROSEAU] >> SENT: # ENCRYPTION_OFF##
+[04/07/2017 22:06:32] [ROSEAU] >> SENT: # SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/07/2017 22:06:32] [ROSEAU] >> [45784720] Received: CLIENTIP / MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/07/2017 22:06:32] [ROSEAU] >> [45784720] Received: KEYENCRYPTED / 964
+[04/07/2017 22:06:32] [ROSEAU] >> [45784720] Received: LOGIN / Alex 123
+[04/07/2017 22:06:32] [ROSEAU] >> [45784720] Received: TRYFLAT / /42/
+[04/07/2017 22:06:32] [ROSEAU] >> ??
+[04/07/2017 22:06:32] [ROSEAU] >> SENT: # FLAT_LETIN##
+[04/07/2017 22:06:33] [ROSEAU] >> [45784720] Received: GOTOFLAT / /42
+[04/07/2017 22:06:33] [ROSEAU] >> SENT: # ROOM_READY[13]description xd##
+[04/07/2017 22:06:33] [ROSEAU] >> SENT: # OBJECTS WORLD 0 model_e##
+[04/07/2017 22:06:33] [ROSEAU] >> SENT: # ACTIVE_OBJECTS##
+[04/07/2017 22:06:33] [ROSEAU] >> SENT: # HEIGHTMAP[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xx0000000000[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx[13]xxxxxxxxxxxx##
+[04/07/2017 22:06:33] [ROSEAU] >> SENT: # USERS##
+[04/07/2017 22:06:33] [ROSEAU] >> SENT: # STATUS ##
+[04/07/2017 22:06:33] [ROSEAU] >> SENT: # USERS[13]  Alex sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/215,193,135&sh=003/121,94,83 1 5 0.0 so i herd u liek duckz##
+[04/07/2017 22:06:33] [ROSEAU] >> SENT: # STATUS [13]Alex 1,5,0,2,2/##
+[04/07/2017 22:06:33] [ROSEAU] >> [-1636427165] Received: GETADFORME / general
+[04/07/2017 22:06:33] [ROSEAU] >> [45784720] Received: STATUSOK / 
+[04/07/2017 22:06:33] [ROSEAU] >> SENT: # OK##
+[04/07/2017 22:06:36] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A2 PIA Alex
+[04/07/2017 22:06:36] [ROSEAU] >> table_armas
+[04/07/2017 22:06:36] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A2 PIA Alex
+[04/07/2017 22:06:36] [ROSEAU] >> table_armas
+[04/07/2017 22:06:38] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A1 PEA Alex
+[04/07/2017 22:06:38] [ROSEAU] >> bench_armas
+[04/07/2017 22:06:38] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A1 PEA Alex
+[04/07/2017 22:06:38] [ROSEAU] >> bench_armas
+[04/07/2017 22:06:40] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A1 PPA Alex
+[04/07/2017 22:06:40] [ROSEAU] >> small_table_armas
+[04/07/2017 22:06:42] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A1 JAA Alex
+[04/07/2017 22:06:42] [ROSEAU] >> small_chair_armas
+[04/07/2017 22:06:45] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A2 deal 20 Alex
+[04/07/2017 22:06:45] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:06:45] [ROSEAU] >> Error has occured!
+java.lang.NullPointerException
+	at org.alexdev.roseau.messages.incoming.GETORDERINFO.handle(GETORDERINFO.java:19)
+	at org.alexdev.roseau.messages.MessageHandler.handleRequest(MessageHandler.java:118)
+	at org.alexdev.roseau.server.netty.connections.ConnectionHandler.messageReceived(ConnectionHandler.java:70)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:462)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.callDecode(FrameDecoder.java:443)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.messageReceived(FrameDecoder.java:303)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.SimpleChannelHandler.messageReceived(SimpleChannelHandler.java:142)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:06:45] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:06:45] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A2 deal 20 Alex
+[04/07/2017 22:06:45] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:06:45] [ROSEAU] >> Error has occured!
+java.lang.NullPointerException
+	at org.alexdev.roseau.messages.incoming.GETORDERINFO.handle(GETORDERINFO.java:19)
+	at org.alexdev.roseau.messages.MessageHandler.handleRequest(MessageHandler.java:118)
+	at org.alexdev.roseau.server.netty.connections.ConnectionHandler.messageReceived(ConnectionHandler.java:70)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:462)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.callDecode(FrameDecoder.java:443)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.messageReceived(FrameDecoder.java:303)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.SimpleChannelHandler.messageReceived(SimpleChannelHandler.java:142)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:06:45] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:06:46] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A2 deal 20 Alex
+[04/07/2017 22:06:46] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:06:46] [ROSEAU] >> Error has occured!
+java.lang.NullPointerException
+	at org.alexdev.roseau.messages.incoming.GETORDERINFO.handle(GETORDERINFO.java:19)
+	at org.alexdev.roseau.messages.MessageHandler.handleRequest(MessageHandler.java:118)
+	at org.alexdev.roseau.server.netty.connections.ConnectionHandler.messageReceived(ConnectionHandler.java:70)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:462)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.callDecode(FrameDecoder.java:443)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.messageReceived(FrameDecoder.java:303)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.SimpleChannelHandler.messageReceived(SimpleChannelHandler.java:142)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:06:46] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:06:51] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A1 PYS Alex
+[04/07/2017 22:06:51] [ROSEAU] >> table_silo_med
+[04/07/2017 22:06:51] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A1 PYS Alex
+[04/07/2017 22:06:51] [ROSEAU] >> table_silo_med
+[04/07/2017 22:06:55] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A1 S2S Alex
+[04/07/2017 22:06:55] [ROSEAU] >> bed_silo_two
+[04/07/2017 22:06:58] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A2 OLYMPIA Alex
+[04/07/2017 22:06:58] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:06:58] [ROSEAU] >> Error has occured!
+java.lang.NullPointerException
+	at org.alexdev.roseau.messages.incoming.GETORDERINFO.handle(GETORDERINFO.java:19)
+	at org.alexdev.roseau.messages.MessageHandler.handleRequest(MessageHandler.java:118)
+	at org.alexdev.roseau.server.netty.connections.ConnectionHandler.messageReceived(ConnectionHandler.java:70)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:462)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.callDecode(FrameDecoder.java:443)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.messageReceived(FrameDecoder.java:303)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.SimpleChannelHandler.messageReceived(SimpleChannelHandler.java:142)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:06:58] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:07:01] [ROSEAU] >> [-1636427165] Received: GETORDERINFO / /A2 VOIMA Alex
+[04/07/2017 22:07:01] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:07:01] [ROSEAU] >> Error has occured!
+java.lang.NullPointerException
+	at org.alexdev.roseau.messages.incoming.GETORDERINFO.handle(GETORDERINFO.java:19)
+	at org.alexdev.roseau.messages.MessageHandler.handleRequest(MessageHandler.java:118)
+	at org.alexdev.roseau.server.netty.connections.ConnectionHandler.messageReceived(ConnectionHandler.java:70)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:462)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.callDecode(FrameDecoder.java:443)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.messageReceived(FrameDecoder.java:303)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.SimpleChannelHandler.messageReceived(SimpleChannelHandler.java:142)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/07/2017 22:07:01] [ROSEAU] >> ---------------------------------------------
+[04/07/2017 22:07:32] [ROSEAU] >> [45784720] Received: Move / 10 5
+[04/07/2017 22:07:32] [ROSEAU] >> SENT: # STATUS [13]Alex 1,5,0,2,2/mv 2,5,0/##
+[04/07/2017 22:07:32] [ROSEAU] >> [45784720] Received: STATUSOK / 
+[04/07/2017 22:07:32] [ROSEAU] >> SENT: # OK##
+[04/07/2017 22:07:32] [ROSEAU] >> SENT: # STATUS [13]Alex 2,5,0,2,2/mv 3,5,0/##
+[04/07/2017 22:07:33] [ROSEAU] >> SENT: # STATUS [13]Alex 3,5,0,2,2/mv 4,5,0/##
+[04/07/2017 22:07:33] [ROSEAU] >> SENT: # STATUS [13]Alex 4,5,0,2,2/mv 5,5,0/##
+[04/07/2017 22:07:34] [ROSEAU] >> SENT: # STATUS [13]Alex 5,5,0,2,2/mv 6,5,0/##
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/07/2017 22:08:04
+-----------------------------------------
+
+[04/07/2017 22:08:04] [ROSEAU] >> Roseau - Java Server
+[04/07/2017 22:08:04] [ROSEAU] >> Loading server...
+[04/07/2017 22:08:04] [ROSEAU] 
+[04/07/2017 22:08:04] [ROSEAU] >> Loading dependencies
+[04/07/2017 22:08:04] [ROSEAU] >> Loading: bonecp-0.7.1.RELEASE.jar
+[04/07/2017 22:08:04] [ROSEAU] >> Loading: guava-11.0.2.jar
+[04/07/2017 22:08:04] [ROSEAU] >> Loading: mysql-connector-java-5.1.6-bin.jar
+[04/07/2017 22:08:04] [ROSEAU] >> Loading: netty-3.10.5.Final.jar
+[04/07/2017 22:08:04] [ROSEAU] >> Loading: slf4j-api-1.7.2.jar
+[04/07/2017 22:08:04] [ROSEAU] >> Loading: slf4j-simple-1.7.2.jar
+[04/07/2017 22:08:04] [ROSEAU] >> Loading: ini4j-0.5.5-SNAPSHOT.jar
+[04/07/2017 22:08:04] [ROSEAU] >> Loading: Roseau_socket_netty.jar
+[04/07/2017 22:08:04] [ROSEAU] 
+[04/07/2017 22:08:04] [ROSEAU] >> Connecting to MySQL server
+[04/07/2017 22:08:05] [ROSEAU] >> Connection to MySQL was a success
+[04/07/2017 22:08:05] [ROSEAU] 
+[04/07/2017 22:08:05] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/07/2017 22:08:05] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/07/2017 22:08:05] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/07/2017 22:08:05] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/07/2017 22:08:05] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/07/2017 22:08:05] [ROSEAU] >> [ROOM] [Habbo Lido II] Starting public room server on port: 112
+[04/07/2017 22:08:05] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/07/2017 22:08:05] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/07/2017 22:08:05] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/07/2017 22:08:05] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/07/2017 22:08:05] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/07/2017 22:08:05] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/07/2017 22:08:05] [ROSEAU] >> [ROOM] [Cunning Fox Gamehall] Starting public room server on port: 121
+[04/07/2017 22:08:05] [ROSEAU] 
+[04/07/2017 22:08:05] [ROSEAU] >> Settting up server
+[04/07/2017 22:08:05] [ROSEAU] >> Server is listening on 127.0.0.1:91

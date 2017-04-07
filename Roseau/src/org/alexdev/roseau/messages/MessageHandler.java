@@ -10,6 +10,7 @@ import org.alexdev.roseau.messages.incoming.DANCE;
 import org.alexdev.roseau.messages.incoming.FINDUSER;
 import org.alexdev.roseau.messages.incoming.GETCREDITS;
 import org.alexdev.roseau.messages.incoming.GETFLATINFO;
+import org.alexdev.roseau.messages.incoming.GETORDERINFO;
 import org.alexdev.roseau.messages.incoming.GETUNITUSERS;
 import org.alexdev.roseau.messages.incoming.GOAWAY;
 import org.alexdev.roseau.messages.incoming.GOTOFLAT;
@@ -108,8 +109,7 @@ public class MessageHandler {
 	}
 
 	private void registerItemPackets() {
-		// TODO Auto-generated method stub
-		
+		this.messages.put("GETORDERINFO", new GETORDERINFO());
 	}
 	
 	

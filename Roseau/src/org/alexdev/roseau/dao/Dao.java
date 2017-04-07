@@ -7,4 +7,5 @@ public interface Dao {
 	public boolean isConnected();
 	public RoomDao getRoom();
 	public ItemDao getItem();
+	CatalogueDao getCatalogue();
 }

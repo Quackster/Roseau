@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2017 at 01:06 PM
+-- Generation Time: Apr 07, 2017 at 02:08 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS `catalogue` (
   `definition_id` int(11) NOT NULL,
   `sprite` varchar(100) NOT NULL DEFAULT '',
   `call_id` varchar(20) NOT NULL DEFAULT '',
-  `price` bigint(20) NOT NULL DEFAULT '0',
-  `cat` char(3) NOT NULL DEFAULT '',
+  `credits` bigint(20) NOT NULL DEFAULT '0',
+  `category` char(3) NOT NULL DEFAULT '',
   KEY `id` (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=90 ;
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `catalogue` (
 -- Dumping data for table `catalogue`
 --
 
-INSERT INTO `catalogue` (`id`, `definition_id`, `sprite`, `call_id`, `price`, `cat`) VALUES
+INSERT INTO `catalogue` (`id`, `definition_id`, `sprite`, `call_id`, `credits`, `category`) VALUES
 (1, 2544, 'chair_plasto', 'EHP', 2, 'A1'),
 (2, 2556, 'table_plasto_square', 'BHP', 2, 'A1'),
 (3, 2581, 'table_plasto_bigsquare', 'DHP', 2, 'A1'),
