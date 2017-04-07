@@ -55,7 +55,7 @@ public class Room implements Runnable, SerializableObject {
 
 		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
 			for (Item item : this.items) {
-				item.setRoom(this);
+				item.setRoomId(this.getData().getId());
 			}
 		}
 	}
@@ -257,6 +257,8 @@ public class Room implements Runnable, SerializableObject {
 			this.entities.remove(player);
 		}
 
+		player.getInventory().dispose();
+		
 		RoomUser roomUser = player.getRoomUser();
 		roomUser.dispose();
 

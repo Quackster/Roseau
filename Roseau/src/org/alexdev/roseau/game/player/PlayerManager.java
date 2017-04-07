@@ -21,6 +21,15 @@ public class PlayerManager {
 		}
 	}
 	
+	public Player getPrivateRoomPlayer(int userId) {
+		
+		try {
+			return this.players.values().stream().filter(s -> s.getDetails().getId() == userId).findFirst().get();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	public Player getIdenticalPlayer(int userId, int connectionId) {
 		
 		try {

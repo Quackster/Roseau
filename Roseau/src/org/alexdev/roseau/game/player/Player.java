@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
+import org.alexdev.roseau.game.inventory.Inventory;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomUser;
@@ -17,6 +18,7 @@ public class Player implements Entity {
 	private PlayerDetails details;
 	private IPlayerNetwork network;
 	private RoomUser roomEntity;
+	private Inventory inventory;
 	
 	private Player createdFlat = null;
 	private Room lastCreatedRoom;
@@ -25,7 +27,42 @@ public class Player implements Entity {
 		this.network = network;
 		this.details = new PlayerDetails(this);
 		this.roomEntity = new RoomUser(this);
+		this.inventory = new Inventory(this);
 		this.lastCreatedRoom = null;
+	}
+	
+	public void login() {
+		
+	}
+	
+	public Player getPrivateRoomPlayer() {
+		
+		try {
+			return Roseau.getGame()
+					.getPlayerManager()
+					.getPlayers()
+					.values().stream()
+					.filter(s -> s.getDetails().getId() == this.details.getId() && 
+					s.getNetwork().getServerPort() == (Roseau.getServerPort() - 1)).findFirst().get();
+			
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public void dispose() {
+
+		if (this.roomEntity != null) {
+			if (this.roomEntity.getRoom() != null) {
+				this.roomEntity.getRoom().leaveRoom(this, false);
+			}
+		}
+		
+		this.inventory.dispose();
+	}
+	
+	public void send(OutgoingMessageComposer response) {
+		this.network.send(response);
 	}
 	
 	public void kick() {
@@ -38,20 +75,11 @@ public class Player implements Entity {
 			List<Player> players = Roseau.getGame().getPlayerManager().getPlayers().values().stream().filter(s -> s.getDetails().getId() == this.details.getId()).collect(Collectors.toList());
 			
 			for (Player player : players) {
-				player.getNetwork().close();
+				player.kick();
 			}
 			
 		} catch (Exception e) {
 			return;
-		}
-	}
-	
-	public void dispose() {
-
-		if (this.roomEntity != null) {
-			if (this.roomEntity.getRoom() != null) {
-				this.roomEntity.getRoom().leaveRoom(this, false);
-			}
 		}
 	}
 		
@@ -71,10 +99,7 @@ public class Player implements Entity {
 		return network;
 	}
 
-	public void send(OutgoingMessageComposer response) {
-		this.network.send(response);
-	}
-	
+
 	public Player getCreatedFlat() {
 		return createdFlat;
 	}
@@ -104,4 +129,10 @@ public class Player implements Entity {
 	public void setLastCreatedRoom(Room lastCreatedRoom) {
 		this.lastCreatedRoom = lastCreatedRoom;
 	}
+
+	public Inventory getInventory() {
+		return inventory;
+	}
+
+
 }

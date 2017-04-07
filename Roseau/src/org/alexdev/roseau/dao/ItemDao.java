@@ -10,5 +10,8 @@ public interface ItemDao {
 
 	public Map<Integer, ItemDefinition> getDefinitions();
 	public List<Item> getPublicRoomItems(String model);
+	List<Item> getRoomItems(int roomId);
+	void saveItem(Item item);
+	void deleteItem(long id);
 
 }

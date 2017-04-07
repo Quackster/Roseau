@@ -35,6 +35,8 @@ public class LOGIN implements MessageEvent {
 				room.loadRoom(player);
 			}
 			
+			player.login();
+			
 			
 		} else {
 			player.send(new SYSTEMBROADCAST("Your username or password was incorrect."));

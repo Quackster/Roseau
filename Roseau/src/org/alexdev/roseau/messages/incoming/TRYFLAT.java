@@ -42,9 +42,11 @@ public class TRYFLAT implements MessageEvent {
 			}
 		}
 		
-		Log.println("??");
-
 		player.getRoomUser().setRoom(room);
+		player.getInventory().load();
+		
+		Log.println("Inventory size: " + player.getInventory().getItems().size());
+		
 		player.send(new FLAT_LETIN());
 	}
 }

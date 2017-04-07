@@ -14,25 +14,23 @@ import org.alexdev.roseau.server.messages.SerializableObject;
 public class Item implements SerializableObject {
 
 	private int id;
-	private String sprite;
 	private int x;
 	private int y;
 	private int definition;
 	private double z;
 	private int rotation;
-	private Room room;
+	private int room;
 	private String itemData;
 	private String customData;
 
-	public Item(int id, int roomId, String sprite, int x, int y, double z, int rotation, int definition, String itemData, String customData) {
+	public Item(int id, int roomId, int ownerId, int x, int y, double z, int rotation, int definition, String itemData, String customData, String extraData) {
 		this.id = id;
-		this.sprite = sprite;
 		this.x = x;
 		this.y = y;
 		this.z = z;
 		this.rotation = rotation;
 		this.definition = definition;
-		this.room = Roseau.getGame().getRoomManager().getRoomById(roomId);
+		this.room = roomId;
 		this.itemData = itemData;
 		this.customData = customData;
 	}
@@ -175,11 +173,6 @@ public class Item implements SerializableObject {
 		return id;
 	}
 
-	public String getSprite() {
-		return sprite;
-	}
-
-
 	public int getX() {
 		return x;
 	}
@@ -221,10 +214,14 @@ public class Item implements SerializableObject {
 	}
 
 	public Room getRoom() {
+		return Roseau.getGame().getRoomManager().getRoomById(this.room);
+	}
+	
+	public int getRoomId() {
 		return room;
 	}
 
-	public void setRoom(Room room) {
+	public void setRoomId(int room) {
 		this.room = room;
 	}
 
