@@ -44,7 +44,6 @@ public class MySQLDao implements Dao {
 
 		Log.println();
 		
-
 		return isConnected;
 	}
 

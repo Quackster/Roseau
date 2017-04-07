@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2017 at 01:01 PM
+-- Generation Time: Apr 07, 2017 at 01:06 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -19,6 +19,115 @@ SET time_zone = "+00:00";
 --
 -- Database: `roseau`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `catalogue`
+--
+
+CREATE TABLE IF NOT EXISTS `catalogue` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `definition_id` int(11) NOT NULL,
+  `sprite` varchar(100) NOT NULL DEFAULT '',
+  `call_id` varchar(20) NOT NULL DEFAULT '',
+  `price` bigint(20) NOT NULL DEFAULT '0',
+  `cat` char(3) NOT NULL DEFAULT '',
+  KEY `id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=90 ;
+
+--
+-- Dumping data for table `catalogue`
+--
+
+INSERT INTO `catalogue` (`id`, `definition_id`, `sprite`, `call_id`, `price`, `cat`) VALUES
+(1, 2544, 'chair_plasto', 'EHP', 2, 'A1'),
+(2, 2556, 'table_plasto_square', 'BHP', 2, 'A1'),
+(3, 2581, 'table_plasto_bigsquare', 'DHP', 2, 'A1'),
+(4, 1179, 'door', 'ovi', 5, 'a2'),
+(5, 1180, 'doorB', 'ovi2', 3, 'a2'),
+(6, 1181, 'doorC', 'ovi3', 4, 'a2'),
+(8, 1105, 'pizza', 'PIZ', 2, 'A1'),
+(9, 1106, 'drinks', 'DRK', 2, 'A1'),
+(10, 1112, 'bottle', 'PUL', 1, 'A2'),
+(11, 1126, 'red_tv', 'RTV', 3, 'A2'),
+(12, 1127, 'wood_tv', 'WTV', 4, 'A2'),
+(13, 1155, 'tv_luxus', 'DIGITV', 6, 'A2'),
+(14, 1157, 'sink', 'LAVUAARI', 3, 'A1'),
+(15, 1158, 'toilet', 'PYTTYSIN', 2, 'A2'),
+(16, 1161, 'toilet_red', 'PYTTYPUN', 2, 'A2'),
+(17, 1162, 'toilet_yell', 'PYTTYKELT', 2, 'A2'),
+(18, 1156, 'bath', 'AMME', 6, 'A2'),
+(19, 1160, 'tile', 'KAAKELISIN', 2, 'A2'),
+(20, 1163, 'tile_red', 'KAAKELIPUN', 2, 'A2'),
+(21, 1164, 'tile_yell', 'KAAKELIKELT', 2, 'A2'),
+(22, 1136, 'sofachair_polyfon_girl', 'GIRLSTP', 3, 'A1'),
+(23, 1137, 'bed_polyfon_girl_one', 'GIRLS1P', 3, 'A1'),
+(24, 1138, 'bed_polyfon_girl', 'GIRLS2P', 4, 'A2'),
+(25, 1139, 'sofa_polyfon_girl', 'GIRLSHP', 4, 'A2'),
+(26, 1045, 'carpet_polar', 'MURLOVE', 4, 'A2'),
+(27, 1019, 'sofachair_polyfon', 'STP', 3, 'A1'),
+(28, 2556, 'table_plasto_square', 'B9P', 2, 'A1'),
+(29, 1159, 'duck', 'KUMIANKKA', 1, 'A1'),
+(30, 1044, 'carpet_armas', 'RMA', 2, 'A1'),
+(31, 1118, 'bar_chair_armas', 'BJA', 1, 'A1'),
+(32, 1116, 'bar_armas', 'BAA', 4, 'A2'),
+(33, 1041, 'lamp_armas', 'JLA', 2, 'A1'),
+(34, 1039, 'small_chair_armas', 'JAA', 1, 'A1'),
+(35, 1038, 'small_table_armas', 'PPA', 2, 'A1'),
+(36, 1042, 'bed_armas_one', 'S1A', 2, 'A1'),
+(37, 1032, 'bed_armas_two', 'S2A', 3, 'A2'),
+(38, 1040, 'fireplace_armas', 'TAA', 4, 'A2'),
+(39, 1035, 'shelves_armas', 'KHA', 3, 'A1'),
+(40, 1177, 'lamp2_armas', 'KYA', 2, 'A2'),
+(41, 1174, 'soft_sofachair_norja', 'STN', 3, 'A2'),
+(42, 1015, 'chair_norja', 'TUN', 2, 'A1'),
+(43, 1014, 'couch_norja', 'PEN', 2, 'A1'),
+(44, 2410, 'table_norja_med', 'PYN', 2, 'A1'),
+(45, 1001, 'shelves_norja', 'HYN', 3, 'A1'),
+(46, 1175, 'soft_sofa_norja', 'PSN', 4, 'A2'),
+(48, 1029, 'bed_silo_one', 'S1S', 3, 'A1'),
+(49, 1030, 'bed_silo_two', 'S2S', 3, 'A1'),
+(50, 1003, 'shelves_silo', 'KHS', 3, 'A1'),
+(51, 1007, 'table_silo_med', 'PYS', 2, 'A1'),
+(52, 1013, 'sofa_silo', 'SHS', 3, 'A1'),
+(53, 1021, 'sofachair_silo', 'STS', 2, 'A1'),
+(54, -1, 'chesstable_silo', 'TLP', 20, 'A2'),
+(55, 1012, 'chair_silo', 'TUS', 2, 'A1'),
+(56, 1031, 'table_silo_small', 'PPS', 1, 'A1'),
+(57, 2573, 'table_plasto_round', 'CHP', 2, 'A1'),
+(58, 2592, 'table_plasto_4leg', 'AHP', 0, 'A1'),
+(59, 2600, 'chair_plasty', 'PL1', 2, 'A2'),
+(60, 1037, 'table_armas', 'PIA', 3, 'A2'),
+(61, 1036, 'bench_armas', 'PEA', 2, 'A1'),
+(62, 1117, 'bartable_armas', 'BTA', 3, 'A1'),
+(63, 1140, 'bed_budgetb_one', 'S1BVALKO', 2, 'A1'),
+(64, 1141, 'bed_budgetb', 'S2BVALKO', 3, 'A1'),
+(65, 1033, 'bed_budget_one', 'S1B', 2, 'A1'),
+(66, 1034, 'bed_budget', 'S2B', 3, 'A1'),
+(67, 1172, 'bar_basic', 'BABA', 4, 'A2'),
+(68, 1178, 'fridge', 'FDG', 6, 'A2'),
+(69, 1176, 'lamp_basic', 'BLMP', 3, 'A1'),
+(70, 1026, 'bed_polyfon_one', 'S1P', 3, 'A1'),
+(71, 1004, 'table_polyfon_small', 'PPP', 1, 'A1'),
+(72, 1005, 'chair_polyfon', 'TUP', 2, 'A1'),
+(73, -1, 'sofa_polyfon', 'SHP', 4, 'A2'),
+(74, 1025, 'bed_polyfon', 'S2P', 3, 'A2'),
+(75, 1016, 'table_polyfon_med', 'PMP', 3, 'A1'),
+(76, 1011, 'stand_polyfon_z', 'LTP', 1, 'A1'),
+(77, 1113, 'bardesk_polyfon', 'BTP', 2, 'A1'),
+(78, 1114, 'bardeskcorner_polyfon', 'BKP', 2, 'A1'),
+(79, 1110, 'bar_polyfon', 'BAP', 5, 'A2'),
+(80, 1002, 'shelves_polyfon', 'KHP', 4, 'A2'),
+(81, 1017, 'doormat_love', 'OSB', 1, 'A1'),
+(82, 1142, 'plant_pineapple', 'ANANAS', 2, 'A1'),
+(83, 1144, 'plant_small_cactus', 'PIKKUKAKTUS', 1, 'A1'),
+(84, 1143, 'plant_fruittree', 'PUU', 2, 'A1'),
+(85, 1145, 'plant_bonsai', 'BONSAI', 3, 'A2'),
+(86, 1147, 'plant_yukka', 'JUKKA', 3, 'A2'),
+(87, 1146, 'plant_big_cactus', 'ISOKAKTUS', 2, 'A2'),
+(88, 1154, 'plant_rose', 'RUUSU', 3, 'A2'),
+(89, 1153, 'plant_sunflower', 'AURINKO', 3, 'A2');
 
 -- --------------------------------------------------------
 
@@ -1084,7 +1193,7 @@ CREATE TABLE IF NOT EXISTS `messenger_requests` (
 CREATE TABLE IF NOT EXISTS `rooms` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
   `name` varchar(75) NOT NULL,
-  `order_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL DEFAULT '-1',
   `room_type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = private room, 1 = public',
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `hidden` tinyint(1) NOT NULL DEFAULT '0',
@@ -1100,7 +1209,7 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `wallpaper` varchar(5) NOT NULL DEFAULT '0',
   `floor` varchar(5) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 --
 -- Dumping data for table `rooms`
@@ -1121,7 +1230,7 @@ INSERT INTO `rooms` (`id`, `name`, `order_id`, `room_type`, `enabled`, `hidden`,
 (27, 'Skylight Lobby', 2, 1, 1, 0, '2017-03-31 03:28:12', -1, NULL, '', 0, 0, 40, 'lobby', 'floorlobby_c', '0', '0'),
 (29, 'Club Massiva: dancefloor', 4, 1, 0, 1, '2017-03-31 04:40:51', -1, NULL, '', 0, 0, 40, 'club', 'bar_b', '0', '0'),
 (30, 'Cunning Fox Gamehall', 13, 1, 1, 0, '2017-04-03 10:39:23', -1, NULL, '', 0, 0, 40, 'gamehall', 'hallC', '0', '0'),
-(31, 'Alex''s Room', 0, 0, 1, 0, '2017-04-02 19:01:58', 5, 'description lol!!!', 'topkek', 0, 0, 25, 'floor1', 'model_c', '0', '0');
+(42, 'room123', -1, 0, 1, 0, '2017-04-07 02:14:38', 5, 'description xd', '', 0, 0, 25, 'floor1', 'model_e', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -1186,7 +1295,7 @@ CREATE TABLE IF NOT EXISTS `room_public_items` (
   `data` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `uni` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=912 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=914 ;
 
 --
 -- Dumping data for table `room_public_items`
@@ -2038,7 +2147,7 @@ INSERT INTO `room_public_items` (`id`, `definitionid`, `model`, `x`, `y`, `z`, `
 (843, 2500, 'taivas_cafe', 8, 14, 1, 0, NULL, NULL),
 (876, 2500, 'taivas_cafe', 11, 6, 1, 6, NULL, NULL),
 (875, 2500, 'taivas_cafe', 11, 5, 1, 6, NULL, NULL),
-(874, 2502, 'taivas_cafe', 10, 6, 1, 2, NULL, NULL),
+(874, 2502, 'taivas_cafe', 10, 6, 1, 0, NULL, NULL),
 (855, 2621, 'taivas_cafe', 9, 12, 1, 0, NULL, NULL),
 (848, 2622, 'taivas_cafe', 9, 11, 1, 2, NULL, NULL),
 (849, 2621, 'taivas_cafe', 10, 11, 1, 2, NULL, NULL),
@@ -2098,7 +2207,8 @@ INSERT INTO `room_public_items` (`id`, `definitionid`, `model`, `x`, `y`, `z`, `
 (907, 2623, 'taivas_cafe', 0, 12, 1, 0, NULL, NULL),
 (908, 2623, 'taivas_cafe', 1, 12, 1, 0, NULL, NULL),
 (909, 2623, 'taivas_cafe', 2, 12, 1, 0, NULL, NULL),
-(910, 2623, 'taivas_cafe', 1, 16, 1, 6, NULL, NULL);
+(910, 2623, 'taivas_cafe', 1, 16, 1, 6, NULL, NULL),
+(913, 1194, 'model_a', 4, 4, 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2144,8 +2254,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `figure`, `pool_figure`, `credits`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
-(2, 'test', '123', 1, 44324323, 1490046606, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', 'ch=s01/250,56,49', 0, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=004/115,99,70&hd=002/169,124,68&ey=003/0&fc=001/169,124,68&bd=001/169,124,68&lh=001/169,124,68&rh=001/169,124,68&ch=009/102,102,102&ls=002/102,102,102&rs=002/102,102,102&lg=006/149,120,78&sh=003/121,94,83', 'ch=s02/255,255,255', 5000, 'Male', 'UK', '', '01.01.1997', 1);
+(2, 'test', '123', 1, 44324323, 1490046606, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', 'ch=s01/255,146,90', 0, 'Female', 'UK', '', '01.01.1997', 1),
+(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/215,193,135&sh=003/121,94,83', '', 5000, 'Male', 'UK', '', '01.01.1997', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

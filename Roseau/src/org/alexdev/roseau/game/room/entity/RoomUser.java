@@ -1,7 +1,5 @@
 package org.alexdev.roseau.game.room.entity;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -85,7 +83,7 @@ public class RoomUser {
 		return this.statuses.containsKey(string);
 	}
 
-	public void walkedPositionUpdate() {
+	public void walkItemTrigger() {
 		if (this.entity instanceof Player) {
 			
 			Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());

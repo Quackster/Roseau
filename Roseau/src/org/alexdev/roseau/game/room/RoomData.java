@@ -204,4 +204,8 @@ public class RoomData {
 		this.hidden = hidden;
 	}
 
+	public void save() {
+		Roseau.getDataAccess().getRoom().updateRoom(this.room);
+	}
+
 }

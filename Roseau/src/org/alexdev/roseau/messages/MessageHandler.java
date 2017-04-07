@@ -9,6 +9,7 @@ import org.alexdev.roseau.messages.incoming.CREATEFLAT;
 import org.alexdev.roseau.messages.incoming.DANCE;
 import org.alexdev.roseau.messages.incoming.FINDUSER;
 import org.alexdev.roseau.messages.incoming.GETCREDITS;
+import org.alexdev.roseau.messages.incoming.GETFLATINFO;
 import org.alexdev.roseau.messages.incoming.GETUNITUSERS;
 import org.alexdev.roseau.messages.incoming.GOAWAY;
 import org.alexdev.roseau.messages.incoming.GOTOFLAT;
@@ -21,11 +22,13 @@ import org.alexdev.roseau.messages.incoming.MOVE;
 import org.alexdev.roseau.messages.incoming.REGISTER;
 import org.alexdev.roseau.messages.incoming.SEARCHBUSYFLATS;
 import org.alexdev.roseau.messages.incoming.SEARCHFLATFORUSER;
+import org.alexdev.roseau.messages.incoming.SETFLATINFO;
 import org.alexdev.roseau.messages.incoming.STATUSOK;
 import org.alexdev.roseau.messages.incoming.STOP;
 import org.alexdev.roseau.messages.incoming.TALK;
 import org.alexdev.roseau.messages.incoming.TRYFLAT;
 import org.alexdev.roseau.messages.incoming.UPDATE;
+import org.alexdev.roseau.messages.incoming.UPDATEFLAT;
 import org.alexdev.roseau.messages.incoming.VERSIONCHECK;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
@@ -78,6 +81,9 @@ public class MessageHandler {
 		this.messages.put("GETUNITUSERS", new GETUNITUSERS());
 		this.messages.put("SEARCHFLATFORUSER", new SEARCHFLATFORUSER());
 		this.messages.put("SEARCHBUSYFLATS", new SEARCHBUSYFLATS());
+		this.messages.put("SETFLATINFO", new SETFLATINFO());
+		this.messages.put("GETFLATINFO", new GETFLATINFO());
+		this.messages.put("UPDATEFLAT", new UPDATEFLAT());
 	}
 	
 	private void registerRoomPackets() {

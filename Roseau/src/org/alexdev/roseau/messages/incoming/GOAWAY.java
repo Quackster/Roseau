@@ -10,7 +10,7 @@ public class GOAWAY implements MessageEvent {
 	public void handle(Player player, ClientMessage reader) {
 	
 		player.dispose();
-		player.getNetwork().close();
+		player.kick();
 	}
 
 }

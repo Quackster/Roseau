@@ -1,6 +1,7 @@
 package org.alexdev.roseau.game.player;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
@@ -18,18 +19,31 @@ public class Player implements Entity {
 	private RoomUser roomEntity;
 	
 	private Player createdFlat = null;
-	private List<Room> rooms;
+	private Room lastCreatedRoom;
 
 	public Player(IPlayerNetwork network) {
 		this.network = network;
 		this.details = new PlayerDetails(this);
 		this.roomEntity = new RoomUser(this);
+		this.lastCreatedRoom = null;
 	}
-
-	public void cacheUserData() {
-
-		// Load player rooms 
-		this.rooms = Roseau.getDataAccess().getRoom().getPlayerRooms(this.details, true);
+	
+	public void kick() {
+		this.network.close();
+	}
+	
+	public void kickAllConnections() {
+		
+		try {
+			List<Player> players = Roseau.getGame().getPlayerManager().getPlayers().values().stream().filter(s -> s.getDetails().getId() == this.details.getId()).collect(Collectors.toList());
+			
+			for (Player player : players) {
+				player.getNetwork().close();
+			}
+			
+		} catch (Exception e) {
+			return;
+		}
 	}
 	
 	public void dispose() {
@@ -70,7 +84,7 @@ public class Player implements Entity {
 	}
 
 	public List<Room> getRooms() {
-		return rooms;
+		return Roseau.getDataAccess().getRoom().getPlayerRooms(this.details, true);
 	}
 	
 	@Override
@@ -81,5 +95,13 @@ public class Player implements Entity {
 	@Override
 	public RoomUser getRoomUser() {
 		return this.roomEntity;
+	}
+
+	public Room getLastCreatedRoom() {
+		return lastCreatedRoom;
+	}
+
+	public void setLastCreatedRoom(Room lastCreatedRoom) {
+		this.lastCreatedRoom = lastCreatedRoom;
 	}
 }

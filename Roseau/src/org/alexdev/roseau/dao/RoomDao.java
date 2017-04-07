@@ -17,7 +17,7 @@ public interface RoomDao {
 	public List<Integer> getRoomRights(int roomId);
 	public void updateRoom(Room room);
 	public RoomModel getModel(String model);
-	public Room createRoom(Player player, String name, String description, String model, int category, int usersMax, int tradeState);
 	public void deleteRoom(Room room);
+	Room createRoom(Player player, String name, String description, String model, int state);
 	
 }

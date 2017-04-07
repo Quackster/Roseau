@@ -134,6 +134,35 @@ public class Storage {
 		return value;
 	}
 	
+	public int getInt(String query) {
+		
+		int value = -1;
+		
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			sqlConnection = this.getConnection();
+			preparedStatement = this.prepare(query, sqlConnection);
+			
+			resultSet = preparedStatement.executeQuery();
+			resultSet.next();
+			
+			value = resultSet.getInt(query.split(" ")[1]);
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(resultSet);
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
+
+		return value;
+	}
+	
 	public void checkDriver() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

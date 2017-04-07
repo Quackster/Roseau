@@ -34,8 +34,7 @@ public class LOGIN implements MessageEvent {
 				Room room = Roseau.getGame().getRoomManager().getRoomByPort(player.getNetwork().getServerPort());
 				room.loadRoom(player);
 			}
-				
-			player.cacheUserData();
+			
 			
 		} else {
 			player.send(new SYSTEMBROADCAST("Your username or password was incorrect."));

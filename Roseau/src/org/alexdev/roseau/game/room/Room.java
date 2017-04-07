@@ -10,7 +10,6 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
-import org.alexdev.roseau.game.item.ItemDefinition;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.game.room.entity.RoomUserStatus;
@@ -107,7 +106,7 @@ public class Room implements Runnable, SerializableObject {
 						}
 					}
 					
-					entity.getRoomUser().walkedPositionUpdate();
+					entity.getRoomUser().walkItemTrigger();
 					
 					if (entity.getRoomUser().playerNeedsUpdate()) {
 						entity.getRoomUser().setNeedUpdate(false);
@@ -527,27 +526,16 @@ public class Room implements Runnable, SerializableObject {
 
 	@Override
 	public void serialise(Response response) {
-		//(int)Row["id"] + "/" + (string)Row["name"] + 
-		//"/" + (string)Row["owner"] + 
-		//"/" + (string)Row["door"] + 
-		//"/" + (string)Row["pass"] + 
-		//"/" + (string)Row["floor"] + 
-		//"/83.117.80.215/
-		//83.117.80.215/
-		//37120/
-		//0
-		///null/
-		//" + (string)Row["desc"] + "";
 		response.appendNewArgument(String.valueOf(this.roomData.getId()));
 		response.appendPartArgument(this.roomData.getName());
 		response.appendPartArgument(this.roomData.getOwnerName());
 		response.appendPartArgument(this.roomData.getState().toString());
-		response.appendPartArgument(""); // password...
-		response.appendPartArgument("floor1");//this.roomData.getModelName());	
+		response.appendPartArgument("");//this.roomData.getPassword()); // password...
+		response.appendPartArgument("floor1");
 		response.appendPartArgument(Roseau.getServerIP());
 		response.appendPartArgument(Roseau.getServerIP());
 		response.appendPartArgument(String.valueOf(Roseau.getServerPort() - 1));
-		response.appendPartArgument("0");
+		response.appendPartArgument(String.valueOf(this.roomData.getUsersNow()));
 		response.appendPartArgument("null");
 		response.appendPartArgument(this.roomData.getDescription());
 	}
