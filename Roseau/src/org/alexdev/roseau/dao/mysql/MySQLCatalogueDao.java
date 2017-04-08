@@ -34,7 +34,7 @@ public class MySQLCatalogueDao implements CatalogueDao {
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				buyableItems.put(resultSet.getString("call_id"), new CatalogueItem(resultSet.getInt("definition_id"), resultSet.getInt("credits")));
+				buyableItems.put(resultSet.getString("call_id"), new CatalogueItem(resultSet.getString("call_id"), resultSet.getInt("definition_id"), resultSet.getInt("credits")));
 			}
 
 		} catch (Exception e) {

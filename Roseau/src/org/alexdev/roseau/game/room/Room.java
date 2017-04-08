@@ -26,6 +26,8 @@ import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.ROOM_READY;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
+import org.alexdev.roseau.messages.outgoing.YOUARECONTROLLER;
+import org.alexdev.roseau.messages.outgoing.YOUAREOWNER;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
@@ -196,11 +198,10 @@ public class Room implements Runnable, SerializableObject {
 				player.send(new FLAT_PROPERTY("floor", this.roomData.getFloor()));
 			}
 
-			if (roomEntity.getRoom().hasRights(player.getDetails().getId(), true)) {
-
-
-			} else {
-
+			if (this.roomData.getOwnerId() == player.getDetails().getId()) {	
+				player.send(new YOUAREOWNER());
+			} else if (this.hasRights(player.getDetails().getId(), false)) {
+				player.send(new YOUARECONTROLLER());
 			}
 		}
 
@@ -487,7 +488,7 @@ public class Room implements Runnable, SerializableObject {
 					}
 
 					if (neighbourItem != null && playerItem != null) {
-						if (playerItem ==neighbourItem) {
+						if (playerItem == neighbourItem) {
 							return true;
 						}
 					}

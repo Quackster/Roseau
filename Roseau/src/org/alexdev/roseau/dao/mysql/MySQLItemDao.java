@@ -9,11 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.alexdev.roseau.dao.ItemDao;
-import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.util.IProcessStorage;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.ItemDefinition;
-import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.log.Log;
 
 import com.google.common.collect.Lists;

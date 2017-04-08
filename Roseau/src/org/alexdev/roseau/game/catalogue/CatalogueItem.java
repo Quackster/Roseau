@@ -7,10 +7,16 @@ public class CatalogueItem {
 
 	private int credits;
 	private int definitionId;
+	private String callId;
 	
-	public CatalogueItem(int definitionId, int credits) {
+	public CatalogueItem(String callId, int definitionId, int credits) {
+		this.callId = callId;
 		this.credits = credits;
 		this.definitionId = definitionId;
+	}
+
+	public String getCallId() {
+		return callId;
 	}
 
 	public int getCredits() {

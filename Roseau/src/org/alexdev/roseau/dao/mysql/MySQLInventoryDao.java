@@ -60,6 +60,7 @@ public class MySQLInventoryDao extends IProcessStorage<Item, ResultSet> implemen
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		Item item = null;
 
 		try {
 
@@ -70,11 +71,9 @@ public class MySQLInventoryDao extends IProcessStorage<Item, ResultSet> implemen
 			
 			resultSet = preparedStatement.executeQuery();
 				
-			if (!resultSet.next()) {
-				return null;
+			if (resultSet.next()) {
+				item = this.fill(resultSet);
 			}
-
-			return this.fill(resultSet);
 			
 		} catch (Exception e) {
 			Log.exception(e);
@@ -84,7 +83,7 @@ public class MySQLInventoryDao extends IProcessStorage<Item, ResultSet> implemen
 			Storage.closeSilently(sqlConnection);
 		}
 
-		return null;
+		return item;
 	}
 
 	@Override

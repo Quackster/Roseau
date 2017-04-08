@@ -2,8 +2,6 @@ package org.alexdev.roseau.game.inventory;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
