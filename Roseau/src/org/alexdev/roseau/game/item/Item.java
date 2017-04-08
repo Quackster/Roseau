@@ -61,21 +61,27 @@ public class Item implements SerializableObject {
 			/*
 			 * Start snippet taken from prjOwnage
 			 * (This is needed to receive the correct ID back when rotating/moving)
+			 * 
+			 * Slightly modified to work with the higher digits, and the 2.1 billion limit shit
 			 */
-			 int zero = this.id;
+			 
+			int zero = this.id;
              String zstring = "00000000000";
              int j = 0;
-             while (j < String.valueOf(zero).length())
-             {
-                 zstring = zstring + "0";
+             
+             while (j < String.valueOf(zero).length()) {
+                 for (int i = 0; i < String.valueOf(zero).length(); i++) {
+                	 zstring += "00";
+                 }
+                 
                  j++;
              }
              /*
               * End snippet taken from prjOwnage
               */
-			
-			response.appendNewArgument(zstring);
-			response.append(Integer.toString(this.id));
+            response.appendNewArgument("");
+            response.append(zstring);
+            response.append(Integer.toString(this.id));
 			response.appendArgument(definition.getSprite(), ',');
 			response.appendArgument(Integer.toString(this.x));
 			response.appendArgument(Integer.toString(this.y));
