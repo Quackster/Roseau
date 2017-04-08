@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.alexdev.roseau.dao.ItemDao;
 import org.alexdev.roseau.dao.util.IProcessStorage;
@@ -67,9 +68,9 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 	}
 
 	@Override
-	public Map<Integer, Item> getPublicRoomItems(String model) {
+	public ConcurrentHashMap<Integer, Item> getPublicRoomItems(String model) {
 		
-		Map<Integer, Item> items = Maps.newHashMap();
+		ConcurrentHashMap<Integer, Item> items = new ConcurrentHashMap<Integer, Item>();
 		
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
@@ -113,9 +114,9 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 	
 
 	@Override
-	public Map<Integer, Item> getRoomItems(int roomId) {
+	public ConcurrentHashMap<Integer, Item> getRoomItems(int roomId) {
 
-		Map<Integer, Item> items = Maps.newHashMap();
+		ConcurrentHashMap<Integer, Item> items = new ConcurrentHashMap<Integer, Item>();
 
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;

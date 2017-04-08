@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -41,7 +42,7 @@ public class Room implements Runnable, SerializableObject {
 	private RoomMapping roomMapping;
 
 	private List<Entity> entities;
-	private Map<Integer, Item> items;
+	private ConcurrentHashMap<Integer, Item> items;
 	private ScheduledFuture<?> tickTask = null;
 	private List<Integer> rights;
 
@@ -276,6 +277,8 @@ public class Room implements Runnable, SerializableObject {
 		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
 			
 			this.items = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName());
+			
+			Log.println("Items: " + this.items.size());
 			
 			for (Item item : this.items.values()) {
 				item.setRoomId(this.getData().getId());

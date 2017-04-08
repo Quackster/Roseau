@@ -3,6 +3,7 @@ package org.alexdev.roseau.game.room;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.pathfinder.AffectedTile;
+import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_UPDATE;
 import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
 
@@ -30,11 +31,10 @@ public class RoomMapping {
 			}
 		}
 
-		for (int i = 0; i < this.room.getItems().size(); i++) {
-
-			Item item = this.room.getItems().get(i);
+		for (Item item : this.room.getItems().values()) {
 
 			if (item == null) {
+				Log.println("lol????");
 				continue;
 			}
 
