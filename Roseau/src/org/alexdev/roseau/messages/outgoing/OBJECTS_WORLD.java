@@ -26,7 +26,7 @@ public class OBJECTS_WORLD implements OutgoingMessageComposer {
 
 		if (this.room != null) {
 			response.appendArgument(room.getData().getModelName());
-			for (Item item : this.room.getItems()) {
+			for (Item item : this.room.getItems().values()) {
 				if (item.getDefinition().getBehaviour().isPassiveObject()) {
 					response.appendObject(item);
 				}

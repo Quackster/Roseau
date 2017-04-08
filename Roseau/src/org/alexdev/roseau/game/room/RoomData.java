@@ -74,8 +74,6 @@ public class RoomData {
 		} catch (Exception e) {
 			Log.exception(e);
 		}
-		
-		this.room.loadData();
 	}
 	
 	public String getName() {

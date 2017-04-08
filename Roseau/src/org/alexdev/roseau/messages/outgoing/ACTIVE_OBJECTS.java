@@ -24,7 +24,7 @@ public class ACTIVE_OBJECTS implements OutgoingMessageComposer {
 				return;
 			}
 			
-			for (Item item : this.room.getItems()) {
+			for (Item item : this.room.getItems().values()) {
 				response.appendObject(item);
 			}
 		}

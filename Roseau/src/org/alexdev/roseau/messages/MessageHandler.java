@@ -21,6 +21,8 @@ import org.alexdev.roseau.messages.incoming.LOGIN;
 import org.alexdev.roseau.messages.incoming.MESSENGER_INIT;
 import org.alexdev.roseau.messages.incoming.MESSENGER_SENDMSG;
 import org.alexdev.roseau.messages.incoming.MOVE;
+import org.alexdev.roseau.messages.incoming.MOVESTUFF;
+import org.alexdev.roseau.messages.incoming.PLACESTUFFFROMSTRIP;
 import org.alexdev.roseau.messages.incoming.PURCHASE;
 import org.alexdev.roseau.messages.incoming.REGISTER;
 import org.alexdev.roseau.messages.incoming.SEARCHBUSYFLATS;
@@ -114,6 +116,8 @@ public class MessageHandler {
 		this.messages.put("GETORDERINFO", new GETORDERINFO());
 		this.messages.put("GETSTRIP", new GETSTRIP());
 		this.messages.put("PURCHASE", new PURCHASE());
+		this.messages.put("PLACESTUFFFROMSTRIP", new PLACESTUFFFROMSTRIP());
+		this.messages.put("MOVESTUFF", new MOVESTUFF());
 	}
 	
 	

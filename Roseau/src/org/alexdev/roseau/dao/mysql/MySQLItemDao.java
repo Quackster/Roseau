@@ -15,6 +15,7 @@ import org.alexdev.roseau.game.item.ItemDefinition;
 import org.alexdev.roseau.log.Log;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements ItemDao {
 
@@ -66,9 +67,9 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 	}
 
 	@Override
-	public List<Item> getPublicRoomItems(String model) {
+	public Map<Integer, Item> getPublicRoomItems(String model) {
 		
-		List<Item> items = new ArrayList<Item>();
+		Map<Integer, Item> items = Maps.newHashMap();
 		
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
@@ -86,7 +87,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 			 * ;*/
 			
 			while (resultSet.next()) {
-				items.add(new Item(resultSet.getInt("id"),
+				items.put(resultSet.getInt("id"), new Item(resultSet.getInt("id"),
 						-1,
 						-1,
 						resultSet.getInt("x"),
@@ -112,9 +113,9 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 	
 
 	@Override
-	public List<Item> getRoomItems(int roomId) {
+	public Map<Integer, Item> getRoomItems(int roomId) {
 
-		List<Item> items = Lists.newArrayList();
+		Map<Integer, Item> items = Maps.newHashMap();
 
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
@@ -127,7 +128,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				items.add(this.fill(resultSet));
+				items.put(resultSet.getInt("id"), this.fill(resultSet));
 			}
 
 		} catch (Exception e) {

@@ -3,6 +3,7 @@ package org.alexdev.roseau.game.room;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.pathfinder.AffectedTile;
+import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
 
 public class RoomMapping {
 
@@ -88,6 +89,28 @@ public class RoomMapping {
 		return tile_valid;
 	}
 	
+	public void addItem(Item item) {
+
+	    item.setRoomId(this.room.getData().getId());
+	    //item->extra_data = "";
+
+	    this.room.getItems().put(item.getId(), item);
+
+	    if (item.getDefinition().getBehaviour().isOnFloor()) {
+	        this.handleItemAdjustment(item);
+	        this.regenerateCollisionMaps();
+	    }
+
+	    this.room.send(new ACTIVE_OBJECTS(this.room));
+	    item.save();
+	}
+
+	
+	private void handleItemAdjustment(Item item) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public RoomTile getTile(int x, int y) {
 		return this.tiles[x][y];
 	}

@@ -2,6 +2,7 @@ package org.alexdev.roseau.game.room;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -40,7 +41,7 @@ public class Room implements Runnable, SerializableObject {
 	private RoomMapping roomMapping;
 
 	private List<Entity> entities;
-	private List<Item> items;
+	private Map<Integer, Item> items;
 	private ScheduledFuture<?> tickTask = null;
 	private List<Integer> rights;
 
@@ -49,19 +50,6 @@ public class Room implements Runnable, SerializableObject {
 		this.roomMapping = new RoomMapping(this);
 		this.entities = new ArrayList<Entity>();
 	}
-
-
-	public void loadData() {
-		this.items = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName());
-		this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getId());
-
-		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
-			for (Item item : this.items) {
-				item.setRoomId(this.getData().getId());
-			}
-		}
-	}
-
 
 	@Override
 	public void run() {
@@ -200,6 +188,7 @@ public class Room implements Runnable, SerializableObject {
 
 			if (this.roomData.getOwnerId() == player.getDetails().getId()) {	
 				player.send(new YOUAREOWNER());
+				roomEntity.setStatus("flatctrl", " useradmin");
 			} else if (this.hasRights(player.getDetails().getId(), false)) {
 				player.send(new YOUARECONTROLLER());
 			}
@@ -207,18 +196,8 @@ public class Room implements Runnable, SerializableObject {
 
 		if (this.roomData.getModel() == null) {
 			Log.println("Could not load heightmap for room model '" + this.roomData.getModelName() + "'");
-			//return;
 		}	
-
-		player.send(new OBJECTS_WORLD(this));
-		player.send(new ACTIVE_OBJECTS(this));
-
-		if (this.roomData.getModel() != null) {
-			player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
-		}
-
-		//player.getRoomUser().setStatus("carryd", " tea", false, 5);
-
+		
 		if (this.entities.size() > 0) {
 			this.send(player.getRoomUser().getUsersComposer());
 			player.getRoomUser().sendStatusComposer();
@@ -226,6 +205,12 @@ public class Room implements Runnable, SerializableObject {
 			this.init();
 		}
 		
+		player.send(new OBJECTS_WORLD(this));
+		player.send(new ACTIVE_OBJECTS(this));
+
+		if (this.roomData.getModel() != null) {
+			player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
+		}
 
 		player.send(new USERS(this.entities));
 		player.send(new STATUS(this.entities));
@@ -286,9 +271,22 @@ public class Room implements Runnable, SerializableObject {
 
 		if (this.tickTask == null) {
 			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
-			this.roomMapping.regenerateCollisionMaps();
 		}
-
+		
+		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
+			
+			this.items = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName());
+			
+			for (Item item : this.items.values()) {
+				item.setRoomId(this.getData().getId());
+			}
+			
+		} else {
+			this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getId());
+			this.items = Roseau.getDataAccess().getItem().getRoomItems(this.roomData.getId());
+		}
+		
+		this.roomMapping.regenerateCollisionMaps();
 	}
 
 	public void dispose(boolean forceDisposal) {
@@ -507,15 +505,9 @@ public class Room implements Runnable, SerializableObject {
 	}
 
 
-	public List<Item> getItems() {
+	public Map<Integer, Item> getItems() {
 		return items;
 	}
-
-
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-
 
 	public RoomMapping getMapping() {
 		return roomMapping;
@@ -541,6 +533,15 @@ public class Room implements Runnable, SerializableObject {
 		response.appendPartArgument(String.valueOf(this.roomData.getUsersNow()));
 		response.appendPartArgument("null");
 		response.appendPartArgument(this.roomData.getDescription());
+	}
+
+	public Item getItem(int id) {
+		
+		if (this.items.containsKey(id)) {
+			return this.items.get(id);
+		}
+		
+		return null;
 	}
 
 

@@ -9,8 +9,8 @@ import org.alexdev.roseau.game.item.ItemDefinition;
 public interface ItemDao {
 
 	public Map<Integer, ItemDefinition> getDefinitions();
-	public List<Item> getPublicRoomItems(String model);
-	List<Item> getRoomItems(int roomId);
+	public Map<Integer, Item> getPublicRoomItems(String model);
+	Map<Integer, Item> getRoomItems(int roomId);
 	void saveItem(Item item);
 	void deleteItem(long id);
 

@@ -33,6 +33,7 @@ public class Roseau {
 
 		try {
 
+			
 			for (String arg : args) {
 				if (arg.equalsIgnoreCase("-debug")) {
 					isDebug = true;

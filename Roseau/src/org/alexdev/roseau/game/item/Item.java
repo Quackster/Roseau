@@ -54,7 +54,18 @@ public class Item implements SerializableObject {
 			response.appendArgument(Integer.toString((int)this.z));
 			response.appendArgument(Integer.toString(this.rotation));
 		} else {
-			response.appendNewArgument(Integer.toString(this.id));
+			
+			 int zero = this.id;
+             String zstring = "00000000000";
+             int j = 0;
+             while (j < String.valueOf(zero).length())
+             {
+                 zstring = zstring + "0";
+                 j++;
+             }
+			
+			response.appendNewArgument(zstring);
+			response.append(Integer.toString(this.id));
 			response.appendArgument(definition.getSprite(), ',');
 			response.appendArgument(Integer.toString(this.x));
 			response.appendArgument(Integer.toString(this.y));
@@ -168,6 +179,11 @@ public class Item implements SerializableObject {
 			}
 		}
 	}
+	
+	public void save() {
+		Roseau.getDataAccess().getItem().saveItem(this);
+	}
+
 
 	public int getId() {
 		return id;
@@ -240,6 +256,5 @@ public class Item implements SerializableObject {
 	public void setCustomData(String customData) {
 		this.customData = customData;
 	}
-
 
 }
