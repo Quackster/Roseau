@@ -97,8 +97,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 						resultSet.getInt("rotation"),
 						resultSet.getInt("definitionid"),
 						resultSet.getString("object"),
-						resultSet.getString("data"),
-						""));
+						resultSet.getString("data")));
 			}
 
 		} catch (Exception e) {
@@ -185,7 +184,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 		
 		//public Item(int id, int roomId, int ownerId, int x, int y, double z, int rotation, int definition, String itemData, String customData, String extraData) {
 		
-		Item item = new Item(row.getInt("id"), row.getInt("room_id"), row.getInt("user_id"), row.getInt("x"), row.getInt("y"), row.getDouble("z"), row.getInt("rotation"), row.getInt("item_id"), "", "", row.getString("extra_data"));
+		Item item = new Item(row.getInt("id"), row.getInt("room_id"), row.getInt("user_id"), row.getInt("x"), row.getInt("y"), row.getDouble("z"), row.getInt("rotation"), row.getInt("item_id"), "", row.getString("extra_data"));
 		return item;
 	}
 }

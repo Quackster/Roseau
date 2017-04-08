@@ -12,6 +12,8 @@ import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
+import com.google.common.base.Strings;
+
 public class Item implements SerializableObject {
 
 	private int id;
@@ -24,7 +26,7 @@ public class Item implements SerializableObject {
 	private String itemData;
 	private String customData;
 
-	public Item(int id, int roomId, int ownerId, int x, int y, double z, int rotation, int definition, String itemData, String customData, String extraData) {
+	public Item(int id, int roomId, int ownerId, int x, int y, double z, int rotation, int definition, String itemData, String customData) {
 		this.id = id;
 		this.x = x;
 		this.y = y;
@@ -56,6 +58,10 @@ public class Item implements SerializableObject {
 			response.appendArgument(Integer.toString(this.rotation));
 		} else {
 			
+			/*
+			 * Start snippet taken from prjOwnage
+			 * (This is needed to receive the correct ID back when rotating/moving)
+			 */
 			 int zero = this.id;
              String zstring = "00000000000";
              int j = 0;
@@ -64,9 +70,12 @@ public class Item implements SerializableObject {
                  zstring = zstring + "0";
                  j++;
              }
+             /*
+              * End snippet taken from prjOwnage
+              */
 			
 			response.appendNewArgument(zstring);
-			response.append(Integer.toString(this.id));
+			response.appendArgument(Integer.toString(this.id));
 			response.appendArgument(definition.getSprite(), ',');
 			response.appendArgument(Integer.toString(this.x));
 			response.appendArgument(Integer.toString(this.y));
@@ -79,10 +88,10 @@ public class Item implements SerializableObject {
 			response.appendArgument(definition.getName(), '/');
 			response.appendArgument(definition.getDescription(), '/');
 
-			if (this.customData != null) {
+			/*if (this.customData != null) {
 				response.appendArgument(definition.getDataClass(), '/');
 				response.appendArgument(this.customData, '/');
-			}
+			}*/
 		}
 		//}
 	}
