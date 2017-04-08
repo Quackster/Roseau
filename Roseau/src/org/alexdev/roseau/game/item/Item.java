@@ -194,6 +194,9 @@ public class Item implements SerializableObject {
 		Roseau.getDataAccess().getItem().saveItem(this);
 	}
 
+	public void delete() {
+		Roseau.getDataAccess().getItem().deleteItem(this.id);
+	}
 
 	public int getId() {
 		return id;

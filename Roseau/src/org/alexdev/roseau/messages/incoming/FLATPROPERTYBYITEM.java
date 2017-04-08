@@ -15,7 +15,7 @@ public class FLATPROPERTYBYITEM implements MessageEvent {
 		String decoration = reader.getArgument(1, "/");
 		int itemId = Integer.valueOf(reader.getArgument(2, "/"));
 
-		Room room = player.getPrivateRoomPlayer().getRoomUser().getRoom();
+		Room room = player.getRoomUser().getRoom();
 
 		if (room == null) {
 			return;
@@ -25,7 +25,7 @@ public class FLATPROPERTYBYITEM implements MessageEvent {
 			return;
 		}
 
-		Item item = player.getPrivateRoomPlayer().getInventory().getItem(itemId);
+		Item item = player.getInventory().getItem(itemId);
 
 		if (item == null) {
 			return;
@@ -41,6 +41,10 @@ public class FLATPROPERTYBYITEM implements MessageEvent {
 			room.getData().setFloor(item.getCustomData());
 		}
 	
+		player.getInventory().removeItem(item);
+		
+		item.delete();
+		
 		room.send(new FLATPROPERTY(decoration, item.getCustomData()));
 		room.getData().save();
 	}

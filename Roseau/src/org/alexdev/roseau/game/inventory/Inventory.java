@@ -1,17 +1,21 @@
 package org.alexdev.roseau.game.inventory;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.messages.outgoing.STRIPINFO;
 
 public class Inventory {
 
 	private boolean initalised;
 	private Player player;
+	
 	private List<Item> items;
-
+	private Map<Integer, List<Item>> paginatedItems;
+	
 	public Inventory(Player player) {
 		this.initalised = false;
 		this.player = player;
@@ -19,11 +23,15 @@ public class Inventory {
 	
 	public void load() {
 			
-			// Clear any previous inventory items, etc
-			this.dispose();
-			
-			// Reload new inventory
-			this.items = Roseau.getDataAccess().getInventory().getInventoryItems(this.player.getDetails().getId());
+		// Clear any previous inventory items, etc
+		this.dispose();
+		
+		// Reload new inventory
+		this.items = Roseau.getDataAccess().getInventory().getInventoryItems(this.player.getDetails().getId());
+	}
+	
+	public void refreshPagination() {
+		
 	}
 	
 
@@ -36,6 +44,28 @@ public class Inventory {
 		} else {
 			return null;
 		}
+	}
+	
+	public void removeItem(Item item) {
+		
+		if (item != null) {
+			this.items.remove(item);
+		}
+		
+		this.refreshPagination();
+	}
+	
+	public void addItem(Item item) {
+		
+		if (item != null) {
+			this.items.add(item);
+		}
+		
+		this.refreshPagination();
+	}
+	
+	public void refresh() {
+		this.player.send(new STRIPINFO(this.items));
 	}
 	
 	public void dispose() {
