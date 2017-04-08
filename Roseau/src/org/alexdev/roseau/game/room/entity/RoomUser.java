@@ -41,46 +41,9 @@ public class RoomUser {
 
 	private Entity entity;
 
-	//private long chatFloodTimer;
-	//private int chatCount;
-
 	public RoomUser(Entity entity) {
 		this.dispose();
 		this.entity = entity;
-	}
-
-	public void removeStatus(String key) {
-		this.statuses.remove(key);
-	}
-
-	public void setStatus(String key, String value) {
-		this.setStatus(key, value, false);
-	}
-	
-	public void setStatus(String key, String value, boolean needs_update) {
-		this.setStatus(key, value, true, -1, needs_update);
-	}
-	
-	public void setStatus(String key, String value, boolean infinite, int duration) {
-		this.setStatus(key, value, infinite, duration, false);
-	}
-
-	public void setStatus(String key, String value, boolean infinite, int duration, boolean needs_update) {
-		
-		if (this.containsStatus(key)) {
-			this.removeStatus(key);
-		}
-		
-		this.statuses.put(key, new RoomUserStatus(key, value, infinite, duration));
-		
-		if (needs_update) {
-			this.needsUpdate = true;
-		}
-	}
-
-	
-	public boolean containsStatus(String string) {
-		return this.statuses.containsKey(string);
 	}
 
 	public void walkItemTrigger() {
@@ -132,13 +95,7 @@ public class RoomUser {
 
 		this.isWalking = true;
 	}
-
-	public void forceStopWalking() {
-
-		this.removeStatus("mv");
-		this.path.clear();
-	}
-
+	
 	public void stopWalking() {
 
 		this.removeStatus("mv");
@@ -274,6 +231,45 @@ public class RoomUser {
 		this.virtualId = -1;
 		this.danceId = 0;
 
+	}
+	
+	public void removeStatus(String key) {
+		this.statuses.remove(key);
+	}
+
+	public void setStatus(String key, String value) {
+		this.setStatus(key, value, false);
+	}
+	
+	public void setStatus(String key, String value, boolean needs_update) {
+		this.setStatus(key, value, true, -1, needs_update);
+	}
+	
+	public void setStatus(String key, String value, boolean infinite, int duration) {
+		this.setStatus(key, value, infinite, duration, false);
+	}
+
+	public void setStatus(String key, String value, boolean infinite, int duration, boolean needs_update) {
+		
+		if (this.containsStatus(key)) {
+			this.removeStatus(key);
+		}
+		
+		this.statuses.put(key, new RoomUserStatus(key, value, infinite, duration));
+		
+		if (needs_update) {
+			this.needsUpdate = true;
+		}
+	}
+
+	public void forceStopWalking() {
+
+		this.removeStatus("mv");
+		this.path.clear();
+	}
+	
+	public boolean containsStatus(String string) {
+		return this.statuses.containsKey(string);
 	}
 
 	public Position getPosition() {
