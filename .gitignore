@@ -1,0 +1,7 @@
+
+# Ignore directories #
+
+Roseau/log/error.log
+Roseau/log/output.log
+Roseau/Roseau-Netty/bin
+Roseau/Roseau/bin
