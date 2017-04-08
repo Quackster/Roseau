@@ -3,6 +3,7 @@ package org.alexdev.roseau.game.room;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.pathfinder.AffectedTile;
+import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_UPDATE;
 import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
 
 public class RoomMapping {
@@ -51,6 +52,8 @@ public class RoomMapping {
 			for (AffectedTile tile : item.getAffectedTiles()) {
 
 				this.checkHighestItem(item, tile.getX(), tile.getY());
+				
+				this.tiles[tile.getX()][tile.getY()].getItems().add(item);
 				this.tiles[tile.getX()][tile.getY()].setHeight(this.tiles[tile.getX()][tile.getY()].getHeight() + stacked_height);
 			}
 		}
@@ -102,6 +105,17 @@ public class RoomMapping {
 	    }
 
 	    this.room.send(new ACTIVE_OBJECTS(this.room));
+	    item.save();
+	}
+	
+	public void updateItemPosition(Item item) {
+
+	    if (item.getDefinition().getBehaviour().isOnFloor()) {
+	        this.handleItemAdjustment(item);
+	        this.regenerateCollisionMaps();
+	    }
+
+	    this.room.send(new ACTIVEOBJECT_UPDATE(item));
 	    item.save();
 	}
 

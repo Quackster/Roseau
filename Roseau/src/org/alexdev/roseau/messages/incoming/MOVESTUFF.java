@@ -4,7 +4,6 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.MessageEvent;
-import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class MOVESTUFF implements MessageEvent {
@@ -38,7 +37,7 @@ public class MOVESTUFF implements MessageEvent {
 		item.setY(y);
 		item.setRotation(rotation);
 
-		room.send(new ACTIVE_OBJECTS(room));
+		room.getMapping().updateItemPosition(item);
 	}
 
 }
