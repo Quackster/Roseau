@@ -7,6 +7,7 @@ import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.pathfinder.AffectedTile;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.RoomTile;
+import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
@@ -90,7 +91,7 @@ public class Item implements SerializableObject {
 		this.getRoom().send(new SHOWPROGRAM(this.itemData, data));
 	}
 
-	public List<AffectedTile> getAffectedTiles() {
+	public List<Position> getAffectedTiles() {
 		
 		/*if (this.customData != null) {
 			if (this.customData.length() > 0) {

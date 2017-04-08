@@ -1,82 +1,39 @@
 package org.alexdev.roseau.game.pathfinder;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class AffectedTile
-{
-	private int x;
-	private int y;
-	private int i;
+import org.alexdev.roseau.game.room.model.Position;
+
+import com.google.common.collect.Lists;
+
+public class AffectedTile {
 	
-	public AffectedTile() {
-		this.x = 0;
-		this.y = 0;
-		this.i = 0;
-	}
-	
-	public AffectedTile(int x, int y, int i) {
-		this.x = x;
-		this.y = y;
-		this.i = i;
-	}
-	
-	public static List<AffectedTile> getAffectedTilesAt(int length, int width, int posX, int posY, int rotation) {
+	/*
+	 * Credits to Mike and Nillus for this, this was 
+	 * taken from Blunk V5 because the same bullshit code from Uber and other crappy emulators didn't work!
+	 */
+	public static List<Position> getAffectedTilesAt(int length, int width, int posX, int posY, int rotation) {
 		
-		List<AffectedTile> points = new ArrayList<AffectedTile>();
-
-		if (length > 1)	{
+		List<Position> tiles = Lists.newArrayList();
+		
+		// Is this a non-square item?
+		if (length != width) {
+			
+			// Flip rotation
 			if (rotation == 0 || rotation == 4) {
-				for (int i = 1; i < length; i++) {
-					points.add(new AffectedTile(posX, posY + i, i));
-
-					for (int j = 1; j < width; j++) {
-						points.add(new AffectedTile(posX + j, posY + i, (i < j) ? j : i));
-					}
-				}
-			} else if (rotation == 2 || rotation == 6) {
-				for (int i = 1; i < length; i++) {
-					points.add(new AffectedTile(posX + i, posY, i));
-
-					for (int j = 1; j < width; j++) {
-						points.add(new AffectedTile(posX + i, posY + j, (i < j) ? j : i));
-					}
-				}
-			}
-		}
-
-		if (width > 1) {
-			if (rotation == 0 || rotation == 4) {
-				for (int i = 1; i < width; i++) {
-					points.add(new AffectedTile(posX + i, posY, i));
-
-					for (int j = 1; j < length; j++) {
-						points.add(new AffectedTile(posX + i, posY + j, (i < j) ? j : i));
-					}
-				}
-			} else if (rotation == 2 || rotation == 6) {
-				for (int i = 1; i < width; i++) {
-					points.add(new AffectedTile(posX, posY + i, i));
-
-					for (int j = 1; j < length; j++) {
-						points.add(new AffectedTile(posX + j, posY + i, (i < j) ? j : i));
-					}
-				}
+				int tmpL = length;
+				length = width;
+				width = tmpL;
 			}
 		}
 		
-		return points;
+		for (int iX = posX; iX < posX + width; iX++) {
+			for (int iY = posY; iY < posY + length; iY++) {
+				tiles.add(new Position(iX, iY));
+			}
+		}
+		
+		return tiles;
 	}
 
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public int getI() {
-		return i;
-	}
 }
