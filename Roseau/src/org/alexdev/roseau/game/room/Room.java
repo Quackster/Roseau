@@ -21,7 +21,7 @@ import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
-import org.alexdev.roseau.messages.outgoing.FLAT_PROPERTY;
+import org.alexdev.roseau.messages.outgoing.FLATPROPERTY;
 import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.LOGOUT;
 import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
@@ -172,29 +172,6 @@ public class Room implements Runnable, SerializableObject {
 
 		}
 
-		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
-
-			player.send(new ROOM_READY(this.roomData.getDescription()));
-
-			int wallData = Integer.parseInt(this.roomData.getWall());
-			int floorData = Integer.parseInt(this.roomData.getFloor());
-
-			if (wallData > 0) {
-				player.send(new FLAT_PROPERTY("wallpaper", this.roomData.getWall()));
-			}	
-
-			if (floorData > 0) {
-				player.send(new FLAT_PROPERTY("floor", this.roomData.getFloor()));
-			}
-
-			if (this.roomData.getOwnerId() == player.getDetails().getId()) {	
-				player.send(new YOUAREOWNER());
-				roomEntity.setStatus("flatctrl", " useradmin");
-			} else if (this.hasRights(player.getDetails().getId(), false)) {
-				player.send(new YOUARECONTROLLER());
-			}
-		}
-
 		if (this.roomData.getModel() == null) {
 			Log.println("Could not load heightmap for room model '" + this.roomData.getModelName() + "'");
 		}	
@@ -204,6 +181,29 @@ public class Room implements Runnable, SerializableObject {
 			player.getRoomUser().sendStatusComposer();
 		} else {
 			this.init();
+		}
+
+		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
+
+			player.send(new ROOM_READY(this.roomData.getDescription()));
+
+			int wallData = Integer.parseInt(this.roomData.getWall());
+			int floorData = Integer.parseInt(this.roomData.getFloor());
+
+			if (wallData > 0) {
+				player.send(new FLATPROPERTY("wallpaper", this.roomData.getWall()));
+			}	
+
+			if (floorData > 0) {
+				player.send(new FLATPROPERTY("floor", this.roomData.getFloor()));
+			}
+
+			if (this.roomData.getOwnerId() == player.getDetails().getId()) {	
+				player.send(new YOUAREOWNER());
+				roomEntity.setStatus("flatctrl", " useradmin");
+			} else if (this.hasRights(player.getDetails().getId(), false)) {
+				player.send(new YOUARECONTROLLER());
+			}
 		}
 		
 		player.send(new OBJECTS_WORLD(this));
