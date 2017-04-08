@@ -16,32 +16,25 @@ public class GETORDERINFO implements MessageEvent {
 
 		String callId = reader.getArgument(1);
 
-		if (callId.equals("L") || callId.equals("T")) {
-			
-			if (!player.getPrivateRoomPlayer().getRoomUser().getRoom().hasRights(player.getDetails().getId(), false)) {
-				player.send(new SYSTEMBROADCAST("Can't buy wallpaper or floor decorations for a room you don't have rights to!"));
-				return;
-			}
-			
-			player.send(new ORDERINFO((callId.equals("T") ? "wallpaper" : "floor") + " " + reader.getArgument(2), 2));
-			
-		} else {
+		CatalogueItem item = Roseau.getGame().getCatalogueManager().getItemByCall(callId);
 
-			CatalogueItem item = Roseau.getGame().getCatalogueManager().getItemByCall(callId);
-
-			if (item == null) {
-				return;
-			}
-
-			ItemDefinition definition = item.getDefinition();
-
-			if (definition == null) {
-				return;
-			}
-
-			player.send(new ORDERINFO(item.getCallId(), item.getCredits()));
+		if (item == null) {
+			return;
 		}
 
+		ItemDefinition definition = item.getDefinition();
+
+		if (definition == null) {
+			return;
+		}
+
+		String extraData = "";
+
+		if (callId.equals("L") || callId.equals("T")) {
+			extraData += " " + reader.getArgument(2);
+		}
+
+		player.send(new ORDERINFO(item.getCallId() + extraData, item.getCredits()));
 	}
 
 }

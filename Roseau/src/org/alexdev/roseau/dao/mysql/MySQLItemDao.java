@@ -155,7 +155,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 			sqlConnection = this.dao.getStorage().getConnection();
 			
 			preparedStatement = this.dao.getStorage().prepare("UPDATE items SET extra_data = ?, x = ?, y = ?, z = ?, rotation = ?, room_id = ? WHERE id = ?", sqlConnection);
-			preparedStatement.setString(1, "");
+			preparedStatement.setString(1, item.getCustomData());
 			preparedStatement.setInt(2, item.getX());
 			preparedStatement.setInt(3, item.getY());
 			preparedStatement.setDouble(4, item.getZ());

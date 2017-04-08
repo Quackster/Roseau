@@ -8,6 +8,7 @@ import org.alexdev.roseau.messages.incoming.CLOSE_UIMAKOPPI;
 import org.alexdev.roseau.messages.incoming.CREATEFLAT;
 import org.alexdev.roseau.messages.incoming.DANCE;
 import org.alexdev.roseau.messages.incoming.FINDUSER;
+import org.alexdev.roseau.messages.incoming.FLATPROPERTYBYITEM;
 import org.alexdev.roseau.messages.incoming.GETCREDITS;
 import org.alexdev.roseau.messages.incoming.GETFLATINFO;
 import org.alexdev.roseau.messages.incoming.GETORDERINFO;
@@ -118,6 +119,7 @@ public class MessageHandler {
 		this.messages.put("PURCHASE", new PURCHASE());
 		this.messages.put("PLACESTUFFFROMSTRIP", new PLACESTUFFFROMSTRIP());
 		this.messages.put("MOVESTUFF", new MOVESTUFF());
+		this.messages.put("FLATPROPERTYBYITEM", new FLATPROPERTYBYITEM());
 	}
 	
 	

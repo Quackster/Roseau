@@ -18,7 +18,7 @@ public class PURCHASE implements MessageEvent {
 		
 		String callId = reader.getArgument(0).replace("/", "");
 		
-		Room room = player.getPrivateRoomPlayer().getRoomUser().getRoom();
+		/*Room room = player.getPrivateRoomPlayer().getRoomUser().getRoom();
 					
 		if (callId.equals("floor")) {
 			
@@ -40,7 +40,7 @@ public class PURCHASE implements MessageEvent {
 			room.getData().save();
 			
 			return;
-		} 		
+		}*/	
 		
 		CatalogueItem product = Roseau.getGame().getCatalogueManager().getItemByCall(callId);
 		
@@ -53,6 +53,11 @@ public class PURCHASE implements MessageEvent {
 		if (oldCredits >= product.getCredits()) {
 			
 			Item item = Roseau.getDataAccess().getInventory().newItem(product.getDefinition().getId(), player.getDetails().getId(), "");
+			
+			if (item.getDefinition().getBehaviour().isDecoration()) {
+				item.setCustomData(reader.getArgument(1));
+				item.save();
+			}
 			
 			player.send(new SYSTEMBROADCAST("Buying successful!"));
 			
