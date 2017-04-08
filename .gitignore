@@ -3,5 +3,6 @@
 
 Roseau/log/error.log
 Roseau/log/output.log
+Roseau/bin/
 Roseau/Roseau-Netty/bin
-Roseau/Roseau/bin
+Roseau/Roseau/bin/
