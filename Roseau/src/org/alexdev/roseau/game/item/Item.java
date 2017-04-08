@@ -75,7 +75,7 @@ public class Item implements SerializableObject {
               */
 			
 			response.appendNewArgument(zstring);
-			response.appendArgument(Integer.toString(this.id));
+			response.append(Integer.toString(this.id));
 			response.appendArgument(definition.getSprite(), ',');
 			response.appendArgument(Integer.toString(this.x));
 			response.appendArgument(Integer.toString(this.y));

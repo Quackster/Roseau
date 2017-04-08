@@ -14,28 +14,29 @@ public class MOVESTUFF implements MessageEvent {
 		int itemId = Integer.valueOf(reader.getArgument(0));
 		int x = Integer.valueOf(reader.getArgument(1));
 		int y = Integer.valueOf(reader.getArgument(2));
-		int rotation = Integer.valueOf(reader.getArgument(3));
-		
-	
+
 		Room room = player.getRoomUser().getRoom();
-		
+
 		if (room == null) {
 			return;
 		}
-		
+
 		if (!room.hasRights(player.getDetails().getId(), false)) {
 			return;
 		}
-		
+
 		Item item = room.getItem(itemId);
-		
+
 		if (item == null) {
 			return;
 		}
-		
+
 		item.setX(x);
 		item.setY(y);
-		item.setRotation(rotation);
+
+		if (reader.getArgumentAmount() > 3) {
+			item.setRotation(Integer.valueOf(reader.getArgument(3)));
+		}
 
 		room.getMapping().updateItemPosition(item);
 	}

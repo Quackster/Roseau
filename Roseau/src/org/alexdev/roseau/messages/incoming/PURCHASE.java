@@ -4,8 +4,10 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.catalogue.CatalogueItem;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.ADDSTRIPITEM;
+import org.alexdev.roseau.messages.outgoing.FLATPROPERTY;
 import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
@@ -15,6 +17,30 @@ public class PURCHASE implements MessageEvent {
 	public void handle(Player player, ClientMessage reader) {
 		
 		String callId = reader.getArgument(0).replace("/", "");
+		
+		Room room = player.getPrivateRoomPlayer().getRoomUser().getRoom();
+					
+		if (callId.equals("floor")) {
+			
+			String decoration = reader.getArgument(1);
+			
+			player.send(new FLATPROPERTY("floor", decoration));
+			room.getData().setFloor(decoration);
+			room.getData().save();
+			
+			return;
+		} 
+		
+		if (callId.equals("wallpaper")) {
+			
+			String decoration = reader.getArgument(1);
+			
+			player.send(new FLATPROPERTY("wallpaper", decoration));
+			room.getData().setWall(decoration);
+			room.getData().save();
+			
+			return;
+		} 		
 		
 		CatalogueItem product = Roseau.getGame().getCatalogueManager().getItemByCall(callId);
 		
