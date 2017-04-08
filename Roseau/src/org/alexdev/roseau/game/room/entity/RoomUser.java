@@ -48,7 +48,7 @@ public class RoomUser {
 
 	public void walkItemTrigger() {
 		if (this.entity instanceof Player) {
-			
+
 			Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
 
 			if (item != null) {
@@ -71,64 +71,67 @@ public class RoomUser {
 	public void poolInteractor(Item item, String program) {
 		this.isWalking = false;
 		this.next = null;
-		
+
 		this.forceStopWalking();
-		
+
 		String[] positions = item.getCustomData().split(" ", 2);
-		
+
 		Position warp = new Position(positions[0]);
 		Position goal = new Position(positions[1]);
-		
+
 		this.position.setX(warp.getX());
 		this.position.setY(warp.getY());
 		this.position.setZ(this.room.getMapping().getTile(warp.getX(), warp.getY()).getHeight());
 		this.needsUpdate = true;
-		
+
 		//this.sendStatusComposer();
 		item.showProgram(program);
-		
+
 		this.goal.setX(goal.getX());
 		this.goal.setY(goal.getY());
 		this.goal.setZ(this.room.getMapping().getTile(goal.getX(), goal.getY()).getHeight());
 		this.path.addAll(Pathfinder.makePath(this.entity));
-		
+
 
 		this.isWalking = true;
 	}
-	
+
 	public void stopWalking() {
 
 		this.removeStatus("mv");
 
+		this.isWalking = false;
+		this.needsUpdate = true;
+		
 		Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
 
-		if (item != null) {
-			ItemDefinition definition = item.getDefinition();
+		if (item == null) {
+			return;	
+		}
+		
+		ItemDefinition definition = item.getDefinition();
 
-			if (definition != null) {
+		if (definition == null) {
+			return;
+		}
 
-				if (definition.getBehaviour().isCanSitOnTop()) {
-					this.setRotation(item.getRotation(), false);
+		if (definition.getBehaviour().isCanSitOnTop()) {
+			this.setRotation(item.getRotation(), false);
+			this.removeStatus("dance");
+			this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()));
+		}
 
-					this.removeStatus("dance");
-					this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()));
-				}
+		if (this.entity instanceof Player) {
+			if (definition.getSprite().equals("poolBooth")) {
 
-				if (this.entity instanceof Player) {
-					if (definition.getSprite().equals("poolBooth")) {
+				item.showProgram("close");
+				item.lockTiles(); // users cant walk on this tile
 
-						item.showProgram("close");
-						item.lockTiles(); // users cant walk on this tile
-
-						((Player) this.entity).send(new OPEN_UIMAKOPPI());
-						((Player) this.entity).getRoomUser().toggleWalkAbility();
-					}
-				}
+				((Player) this.entity).send(new OPEN_UIMAKOPPI());
+				((Player) this.entity).getRoomUser().toggleWalkAbility();
 			}
 		}
 
-		this.isWalking = false;
-		this.needsUpdate = true;
 	}
 
 
@@ -232,7 +235,7 @@ public class RoomUser {
 		this.danceId = 0;
 
 	}
-	
+
 	public void removeStatus(String key) {
 		this.statuses.remove(key);
 	}
@@ -240,23 +243,23 @@ public class RoomUser {
 	public void setStatus(String key, String value) {
 		this.setStatus(key, value, false);
 	}
-	
+
 	public void setStatus(String key, String value, boolean needs_update) {
 		this.setStatus(key, value, true, -1, needs_update);
 	}
-	
+
 	public void setStatus(String key, String value, boolean infinite, int duration) {
 		this.setStatus(key, value, infinite, duration, false);
 	}
 
 	public void setStatus(String key, String value, boolean infinite, int duration, boolean needs_update) {
-		
+
 		if (this.containsStatus(key)) {
 			this.removeStatus(key);
 		}
-		
+
 		this.statuses.put(key, new RoomUserStatus(key, value, infinite, duration));
-		
+
 		if (needs_update) {
 			this.needsUpdate = true;
 		}
@@ -267,7 +270,7 @@ public class RoomUser {
 		this.removeStatus("mv");
 		this.path.clear();
 	}
-	
+
 	public boolean containsStatus(String string) {
 		return this.statuses.containsKey(string);
 	}
@@ -287,7 +290,7 @@ public class RoomUser {
 	public void setGoal(Position goal) {
 		this.goal = goal;
 	}
-	
+
 	public void sendStatusComposer() {
 		this.room.send(new STATUS(this.entity));
 	}
