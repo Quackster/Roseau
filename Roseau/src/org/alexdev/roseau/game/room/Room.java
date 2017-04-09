@@ -42,7 +42,7 @@ public class Room implements Runnable, SerializableObject {
 	private RoomMapping roomMapping;
 
 	private List<Entity> entities = new ArrayList<Entity>();
-	
+
 	private ConcurrentHashMap<Integer, Item> passiveObjects;
 	private ConcurrentHashMap<Integer, Item> items;
 	private ScheduledFuture<?> tickTask = null;
@@ -87,20 +87,20 @@ public class Room implements Runnable, SerializableObject {
 				this.send(new STATUS(update_entities));
 
 				for (Entity entity : update_entities) {
-					
+
 					if (entity.getRoomUser().isWalking()) {
 						if (entity.getRoomUser().getNext() != null) {
 
 							Position next = entity.getRoomUser().getNext();
-							
+
 							entity.getRoomUser().getPosition().setZ(this.roomData.getModel().getHeight(next.getX(), next.getY()));
 							entity.getRoomUser().getPosition().setX(next.getX());
 							entity.getRoomUser().getPosition().setY(next.getY());
 						}
 					}
-					
+
 					entity.getRoomUser().walkItemTrigger();
-					
+
 					if (entity.getRoomUser().playerNeedsUpdate()) {
 						entity.getRoomUser().setNeedUpdate(false);
 					}
@@ -116,9 +116,9 @@ public class Room implements Runnable, SerializableObject {
 	private void processEntity(Entity entity) {
 
 		RoomUser roomEntity = entity.getRoomUser();
-		
+
 		if (roomEntity.isWalking()) {
-			
+
 			if (roomEntity.getPath().size() > 0) {
 
 				Position next = roomEntity.getPath().pop();
@@ -141,7 +141,7 @@ public class Room implements Runnable, SerializableObject {
 				roomEntity.setNeedUpdate(true);
 			}
 		}
-		
+
 		for (Entry<String, RoomUserStatus> set : entity.getRoomUser().getStatuses().entrySet()) {
 
 			RoomUserStatus statusEntry = set.getValue();
@@ -177,7 +177,7 @@ public class Room implements Runnable, SerializableObject {
 		if (this.roomData.getModel() == null) {
 			Log.println("Could not load heightmap for room model '" + this.roomData.getModelName() + "'");
 		}	
-		
+
 		if (this.entities.size() > 0) {
 			this.send(player.getRoomUser().getUsersComposer());
 			player.getRoomUser().sendStatusComposer();
@@ -207,7 +207,7 @@ public class Room implements Runnable, SerializableObject {
 				player.send(new YOUARECONTROLLER());
 			}
 		}
-	    
+
 		if (this.roomData.getModel() != null) {
 			player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
 		}
@@ -215,7 +215,7 @@ public class Room implements Runnable, SerializableObject {
 		player.send(new OBJECTS_WORLD(this.roomData.getModelName(), this.passiveObjects));
 		player.send(new ACTIVE_OBJECTS(this));
 		player.send(new ITEMS(this));
-		
+
 
 		player.send(new USERS(this.entities));
 		player.send(new STATUS(this.entities));
@@ -249,7 +249,7 @@ public class Room implements Runnable, SerializableObject {
 		}
 
 		player.getInventory().dispose();
-		
+
 		RoomUser roomUser = player.getRoomUser();
 		roomUser.dispose();
 
@@ -277,20 +277,20 @@ public class Room implements Runnable, SerializableObject {
 		if (this.tickTask == null) {
 			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
 		}
-		
+
 		this.passiveObjects = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName());
-		
+
 		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
 
 			for (Item item : this.passiveObjects.values()) {
 				item.setRoomId(this.getData().getId());
 			}
-			
+
 		} else {
 			this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getId());
 			this.items = Roseau.getDataAccess().getItem().getRoomItems(this.roomData.getId());
 		}
-		
+
 		this.roomMapping.regenerateCollisionMaps();
 	}
 
@@ -400,22 +400,11 @@ public class Room implements Runnable, SerializableObject {
 
 	public boolean isValidStep(Entity player, Position current, Position neighbour, boolean isFinalMove) {
 
-		int mapSizeX = this.roomData.getModel().getMapSizeX();
-		int mapSizeY = this.roomData.getModel().getMapSizeY();
-
-		if (neighbour.getX() >= mapSizeX || neighbour.getY() >= mapSizeY) {
+		if (this.roomData.getModel().invalidXYCoords(current.getX(), current.getY())) {
 			return false;
 		}
 
-		if (current.getX() >= mapSizeX || current.getY() >= mapSizeY) {
-			return false;
-		}
-
-		if (neighbour.getX() < 0 || neighbour.getY() < 0) {
-			return false;
-		}
-
-		if (current.getX() < 0 || current.getY() < 0) {
+		if (this.roomData.getModel().invalidXYCoords(neighbour.getX(), neighbour.getY())) {
 			return false;
 		}
 
@@ -427,18 +416,10 @@ public class Room implements Runnable, SerializableObject {
 			return false;
 		}
 
-		if (current.getX() != this.roomData.getModel().getDoorX() && current.getY() != this.roomData.getModel().getDoorY()) {
-			if (!this.roomMapping.isValidTile(player, current.getX(), current.getY())) {
-				return false;
-			}
-		}
-
 		double heightCurrent = this.roomData.getModel().getHeight(current);
 		double heightNeighour = this.roomData.getModel().getHeight(neighbour);
 
 		Item currentItem = this.roomMapping.getHighestItem(current.getX(), current.getY());
-		Item neighbourItem = this.roomMapping.getHighestItem(neighbour.getX(), neighbour.getY());
-		Item playerItem = this.roomMapping.getHighestItem(player.getRoomUser().getPosition().getX(), player.getRoomUser().getPosition().getY());
 
 		if (currentItem != null) {
 			if (currentItem.getDefinition().getSprite().equals("poolEnter") || currentItem.getDefinition().getSprite().equals("poolExit")) {
@@ -448,54 +429,32 @@ public class Room implements Runnable, SerializableObject {
 
 		if (heightCurrent > heightNeighour) {
 			if ((heightCurrent - heightNeighour) >= 3.0) {
-				Log.println("error difference: " + (heightCurrent - heightNeighour));
 				return false;
 			}
 		}
 
 		if (heightNeighour > heightCurrent) {
-
 			if ((heightNeighour - heightCurrent) >= 1.2) {
-				Log.println("error difference: " + (heightNeighour - heightCurrent));
 				return false;
 			}
 		}
 
-		/*if (currentItem != null && playerItem != null) {
-			if (playerItem == currentItem) {
-				return true;
+		if (!current.sameAs(this.roomData.getModel().getDoorPosition())) {
+
+			if (!this.roomMapping.isValidTile(player, current.getX(), current.getY())) {
+				return false;
 			}
-		}
 
-		if (neighbourItem != null && playerItem != null) {
-			if (playerItem ==neighbourItem) {
-				return true;
-			}
-		}*/
-
-
-		if (!current.sameAs(player.getRoomUser().getPosition())) {
-			if (currentItem != null) {
-				if (!isFinalMove) {
-
-					if (currentItem != null && playerItem != null) {
-						if (playerItem == currentItem) {
-							return true;
-						}
+			if (!current.sameAs(player.getRoomUser().getPosition())) {
+				if (currentItem != null) {
+					if (!isFinalMove) {
+						return currentItem.getDefinition().getBehaviour().isCanStandOnTop();
 					}
 
-					if (neighbourItem != null && playerItem != null) {
-						if (playerItem == neighbourItem) {
-							return true;
-						}
+					if (isFinalMove) {
+						return currentItem.canWalk(player);
+
 					}
-
-					return false;
-				}
-
-				if (isFinalMove) {
-					return currentItem.canWalk(player);
-
 				}
 			}
 		}
@@ -535,11 +494,11 @@ public class Room implements Runnable, SerializableObject {
 	}
 
 	public Item getItem(int id) {
-		
+
 		if (this.items.containsKey(id)) {
 			return this.items.get(id);
 		}
-		
+
 		return null;
 	}
 

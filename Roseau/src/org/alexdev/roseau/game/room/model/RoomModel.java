@@ -147,11 +147,7 @@ public class RoomModel
 	
 	public double getHeight(int x, int y) {
 		
-		if (x >= this.mapSizeX) {
-			return 0;
-		}
-		
-		if (y >= this.mapSizeY) {
+		if (this.invalidXYCoords(x, y)) {
 			return 0;
 		}
 		
@@ -160,6 +156,14 @@ public class RoomModel
 	
 	public boolean isBlocked(int x, int y) {
 		
+		if (this.invalidXYCoords(x, y)) {
+			return true;
+		}
+		
+		return squares[x][y] == RoomModel.CLOSED;
+	}
+
+	public boolean invalidXYCoords(int x, int y) {
 		if (x >= this.mapSizeX) {
 			return true;
 		}
@@ -168,7 +172,15 @@ public class RoomModel
 			return true;
 		}
 		
-		return squares[x][y] == RoomModel.CLOSED;
+		if (x < 0) {
+			return true;
+		}
+		
+		if (y < 0) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	public String[][] getSquareChar() {

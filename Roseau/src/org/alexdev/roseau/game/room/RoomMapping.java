@@ -76,11 +76,7 @@ public class RoomMapping {
 
 	private void checkHighestItem(Item item, int x, int y) {
 
-		if (x >= this.room.getData().getModel().getMapSizeX()) {
-			return;
-		}
-
-		if (y >= this.room.getData().getModel().getMapSizeY()) {
+		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
 			return;
 		}
 
@@ -98,11 +94,7 @@ public class RoomMapping {
 
 	public boolean isValidTile(Entity entity, int x, int y) {
 
-		if (x >= this.room.getData().getModel().getMapSizeX()) {
-			return false;
-		}
-
-		if (y >= this.room.getData().getModel().getMapSizeY()) {
+		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
 			return false;
 		}
 
@@ -172,11 +164,7 @@ public class RoomMapping {
 
 	private double getStackHeight(int x, int y) {
 
-		if (x >= this.room.getData().getModel().getMapSizeX()) {
-			return 0;
-		}
-
-		if (y >= this.room.getData().getModel().getMapSizeY()) {
+		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
 			return 0;
 		}
 
@@ -185,11 +173,7 @@ public class RoomMapping {
 
 	public RoomTile getTile(int x, int y) {
 
-		if (x >= this.room.getData().getModel().getMapSizeX()) {
-			return null;
-		}
-
-		if (y >= this.room.getData().getModel().getMapSizeY()) {
+		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
 			return null;
 		}
 
@@ -198,11 +182,7 @@ public class RoomMapping {
 
 	public Item getHighestItem(int x, int y) {
 
-		if (x >= this.room.getData().getModel().getMapSizeX()) {
-			return null;
-		}
-
-		if (y >= this.room.getData().getModel().getMapSizeY()) {
+		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
 			return null;
 		}
 
