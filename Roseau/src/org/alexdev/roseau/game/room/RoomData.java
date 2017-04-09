@@ -149,11 +149,6 @@ public class RoomData {
 	}
 
 	public int getUsersNow() {
-
-		if (this.room.getPlayers() == null) {
-			this.room.setUsers(new ArrayList<Entity>());
-		}
-
 		this.usersNow = this.room.getPlayers().size();
 		return usersNow;
 	}

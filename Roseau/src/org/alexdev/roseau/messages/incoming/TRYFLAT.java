@@ -20,15 +20,17 @@ public class TRYFLAT implements MessageEvent {
 		
 		if (reader.getArgumentAmount("/") > 2) {
 			password = reader.getArgument(2, "/");
-			Log.println("password: " + password);
 		}
 
 		Room room = Roseau.getGame().getRoomManager().getRoomById(id);
 
 		if (room == null) {
-			room = Roseau.getDataAccess().getRoom().getRoom(id);
+			room = Roseau.getDataAccess().getRoom().getRoom(id, true);
 			
 			if (room == null) {
+				
+				Log.println("Grabbed new room from database: " + id);
+				
 				return;
 			}
 		}
@@ -44,8 +46,6 @@ public class TRYFLAT implements MessageEvent {
 		
 		player.getRoomUser().setRoom(room);
 		player.getInventory().load();
-		
-		Log.println("Inventory size: " + player.getInventory().getItems().size());
 		
 		player.send(new FLAT_LETIN());
 	}

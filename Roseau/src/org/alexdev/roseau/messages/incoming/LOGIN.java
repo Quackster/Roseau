@@ -3,6 +3,7 @@ package org.alexdev.roseau.messages.incoming;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
+import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
 import org.alexdev.roseau.server.messages.ClientMessage;
@@ -32,6 +33,20 @@ public class LOGIN implements MessageEvent {
 			
 			if (reader.getArgumentAmount() > 2) {
 				Room room = Roseau.getGame().getRoomManager().getRoomByPort(player.getNetwork().getServerPort());
+				
+				if (room == null) {
+					
+					int publicRoomId = player.getNetwork().getServerPort() - Roseau.getServerPort();
+					
+					room = Roseau.getDataAccess().getRoom().getRoom(publicRoomId, true);
+					
+					if (room == null) {
+						Log.println("Grabbed new room from database: " + publicRoomId);
+						return;
+					}
+				}
+				
+				
 				room.loadRoom(player);
 			}
 			

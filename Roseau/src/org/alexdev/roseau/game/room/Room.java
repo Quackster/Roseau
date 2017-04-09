@@ -36,13 +36,14 @@ import org.alexdev.roseau.server.messages.SerializableObject;
 
 public class Room implements Runnable, SerializableObject {
 
-	private int privateId;
+	private int orderId = -1;
 	private boolean disposed;
 
 	private RoomData roomData;
 	private RoomMapping roomMapping;
 
-	private List<Entity> entities;
+	private List<Entity> entities = new ArrayList<Entity>();
+	
 	private ConcurrentHashMap<Integer, Item> passiveObjects;
 	private ConcurrentHashMap<Integer, Item> items;
 	private ScheduledFuture<?> tickTask = null;
@@ -393,17 +394,8 @@ public class Room implements Runnable, SerializableObject {
 		Roseau.getDataAccess().getRoom().updateRoom(this);
 	}
 
-	public int getVirtualId() {
-		this.privateId = this.privateId + 1;
-		return this.privateId;
-	}
-
 	public void dispose() {
 		this.dispose(false);
-	}
-
-	public void setUsers(ArrayList<Entity> entities) {
-		this.entities = entities;
 	}
 
 	public boolean isValidStep(Entity player, Position current, Position neighbour, boolean isFinalMove) {
@@ -482,7 +474,7 @@ public class Room implements Runnable, SerializableObject {
 		}*/
 
 
-		/*if (!current.sameAs(player.getRoomUser().getPosition())) {
+		if (!current.sameAs(player.getRoomUser().getPosition())) {
 			if (currentItem != null) {
 				if (!isFinalMove) {
 
@@ -506,7 +498,7 @@ public class Room implements Runnable, SerializableObject {
 
 				}
 			}
-		}*/
+		}
 
 		return true;
 	}
@@ -555,8 +547,12 @@ public class Room implements Runnable, SerializableObject {
 		return passiveObjects;
 	}
 
-	public void setPassiveObjects(ConcurrentHashMap<Integer, Item> passiveObjects) {
-		this.passiveObjects = passiveObjects;
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
 
 

@@ -84,6 +84,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 				if (room == null) {
 					room = this.fill(resultSet);
+					room.setOrderId(resultSet.getInt("order_id"));
 				}
 
 				rooms.add(room);

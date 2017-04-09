@@ -8,6 +8,8 @@ import org.alexdev.roseau.game.pathfinder.AffectedTile;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.RoomTile;
 import org.alexdev.roseau.game.room.model.Position;
+import org.alexdev.roseau.log.Log;
+import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_UPDATE;
 import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
@@ -20,7 +22,7 @@ public class Item implements SerializableObject {
 	private int definition;
 	private double z;
 	private int rotation;
-	private int room;
+	private int roomId;
 	private String itemData;
 	private String customData;
 
@@ -41,7 +43,7 @@ public class Item implements SerializableObject {
 		this.z = z;
 		this.rotation = rotation;
 
-		this.room = roomId;
+		this.roomId = roomId;
 		this.itemData = itemData;
 		this.customData = customData;
 	}
@@ -109,10 +111,6 @@ public class Item implements SerializableObject {
 				}
 			}
 		}
-	}
-
-	public void showProgram(String data) {
-		this.getRoom().send(new SHOWPROGRAM(this.itemData, data));
 	}
 
 	public List<Position> getAffectedTiles() {
@@ -189,6 +187,20 @@ public class Item implements SerializableObject {
 			}
 		}
 	}
+	
+	public void showProgram(String data) {
+		this.getRoom().send(new SHOWPROGRAM(this.itemData, data));
+	}
+	
+	public void updateStatus() {
+		Room room = this.getRoom();
+		
+		if (room != null) {
+			room.send(new ACTIVEOBJECT_UPDATE(this));
+		} else {
+			Log.println("update item: " + this.roomId);
+		}
+	}
 
 	public void save() {
 		Roseau.getDataAccess().getItem().saveItem(this);
@@ -260,15 +272,15 @@ public class Item implements SerializableObject {
 	}
 
 	public Room getRoom() {
-		return Roseau.getGame().getRoomManager().getRoomById(this.room);
+		return Roseau.getGame().getRoomManager().getRoomById(this.roomId);
 	}
 
 	public int getRoomId() {
-		return room;
+		return roomId;
 	}
 
 	public void setRoomId(int room) {
-		this.room = room;
+		this.roomId = room;
 	}
 
 	public String getItemData() {

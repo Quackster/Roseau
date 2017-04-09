@@ -60,6 +60,7 @@ public class RoomMapping {
 			this.checkHighestItem(item, item.getX(), item.getY());
 
 			RoomTile roomTile = this.getTile(item.getX(), item.getY());
+			
 			roomTile.getItems().add(item);
 			roomTile.setHeight(roomTile.getHeight() + stacked_height);
 
@@ -68,6 +69,8 @@ public class RoomMapping {
 				this.checkHighestItem(item, tile.getX(), tile.getY());
 
 				RoomTile affectedRoomTile = this.getTile(tile.getX(), tile.getY());
+				
+				affectedRoomTile.getItems().add(item);
 				affectedRoomTile.setHeight(affectedRoomTile.getHeight() + stacked_height);
 			}
 		}
@@ -131,7 +134,7 @@ public class RoomMapping {
 			this.regenerateCollisionMaps();
 		}
 
-		this.room.send(new ACTIVEOBJECT_UPDATE(item));
+	    item.updateStatus();	    
 		item.save();
 	}
 
@@ -140,9 +143,9 @@ public class RoomMapping {
 		
 	    if (rotation_only) {
 	        for (Item items : this.getTile(item.getX(), item.getY()).getItems()) {
-	            if (items != item && item.getZ() <= items.getZ()) {
+	            if (items != item && items.getZ() >= item.getZ()) {
 	                items.setRotation(item.getRotation());
-	                ///items->updateStatus();
+	                items.updateStatus();
 	            }
 	        }
 	    }
