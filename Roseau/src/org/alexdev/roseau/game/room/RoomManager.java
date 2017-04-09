@@ -48,7 +48,7 @@ public class RoomManager {
 			Collections.sort(rooms,new Comparator<Room>() {
 			    @Override
 			    public int compare(Room a, Room b) {
-			        return b.getOrderId() - a.getOrderId();
+			        return a.getOrderId() - b.getOrderId();
 			    }
 			});
 			

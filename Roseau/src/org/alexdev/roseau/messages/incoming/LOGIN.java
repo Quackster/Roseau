@@ -36,6 +36,12 @@ public class LOGIN implements MessageEvent {
 				
 				if (room == null) {
 					
+					// Since public rooms need to bind to their own port, I've made it so
+					// the ID of the public room is just the current players connected port minus the main server IP
+					// eg; 30045 - 30001 = public room ID 44
+					// 
+					// pree simple m8
+					//
 					int publicRoomId = player.getNetwork().getServerPort() - Roseau.getServerPort();
 					
 					room = Roseau.getDataAccess().getRoom().getRoom(publicRoomId, true);
