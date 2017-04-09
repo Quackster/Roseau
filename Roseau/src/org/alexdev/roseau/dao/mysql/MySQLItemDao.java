@@ -3,9 +3,7 @@ package org.alexdev.roseau.dao.mysql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -14,9 +12,6 @@ import org.alexdev.roseau.dao.util.IProcessStorage;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.ItemDefinition;
 import org.alexdev.roseau.log.Log;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements ItemDao {
 
@@ -91,7 +86,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 				items.put(resultSet.getInt("id"), new Item(resultSet.getInt("id"),
 						-1,
 						-1,
-						resultSet.getInt("x"),
+						resultSet.getString("x"),
 						resultSet.getInt("y"),
 						resultSet.getDouble("z"),
 						resultSet.getInt("rotation"),
@@ -156,7 +151,12 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 			
 			preparedStatement = this.dao.getStorage().prepare("UPDATE items SET extra_data = ?, x = ?, y = ?, z = ?, rotation = ?, room_id = ? WHERE id = ?", sqlConnection);
 			preparedStatement.setString(1, item.getCustomData());
+			
+			if (item.getDefinition().getBehaviour().isOnWall()) {
+				preparedStatement.setString(2, item.getWallPosition());	
+			} else {
 			preparedStatement.setInt(2, item.getX());
+			}
 			preparedStatement.setInt(3, item.getY());
 			preparedStatement.setDouble(4, item.getZ());
 			preparedStatement.setInt(5, item.getRotation());
@@ -184,7 +184,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 		
 		//public Item(int id, int roomId, int ownerId, int x, int y, double z, int rotation, int definition, String itemData, String customData, String extraData) {
 		
-		Item item = new Item(row.getInt("id"), row.getInt("room_id"), row.getInt("user_id"), row.getInt("x"), row.getInt("y"), row.getDouble("z"), row.getInt("rotation"), row.getInt("item_id"), "", row.getString("extra_data"));
+		Item item = new Item(row.getInt("id"), row.getInt("room_id"), row.getInt("user_id"), row.getString("x"), row.getInt("y"), row.getDouble("z"), row.getInt("rotation"), row.getInt("item_id"), "", row.getString("extra_data"));
 		return item;
 	}
 }

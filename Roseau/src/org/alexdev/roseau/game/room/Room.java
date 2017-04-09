@@ -23,6 +23,7 @@ import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
 import org.alexdev.roseau.messages.outgoing.FLATPROPERTY;
 import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
+import org.alexdev.roseau.messages.outgoing.ITEMS;
 import org.alexdev.roseau.messages.outgoing.LOGOUT;
 import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.ROOM_READY;
@@ -42,6 +43,7 @@ public class Room implements Runnable, SerializableObject {
 	private RoomMapping roomMapping;
 
 	private List<Entity> entities;
+	private ConcurrentHashMap<Integer, Item> passiveObjects;
 	private ConcurrentHashMap<Integer, Item> items;
 	private ScheduledFuture<?> tickTask = null;
 	private List<Integer> rights;
@@ -205,13 +207,15 @@ public class Room implements Runnable, SerializableObject {
 				player.send(new YOUARECONTROLLER());
 			}
 		}
-		
-		player.send(new OBJECTS_WORLD(this));
-		player.send(new ACTIVE_OBJECTS(this));
-
+	    
 		if (this.roomData.getModel() != null) {
 			player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
 		}
+
+		player.send(new OBJECTS_WORLD(this.roomData.getModelName(), this.passiveObjects));
+		player.send(new ACTIVE_OBJECTS(this));
+		player.send(new ITEMS(this));
+		
 
 		player.send(new USERS(this.entities));
 		player.send(new STATUS(this.entities));
@@ -274,13 +278,11 @@ public class Room implements Runnable, SerializableObject {
 			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
 		}
 		
+		this.passiveObjects = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName());
+		
 		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
-			
-			this.items = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName());
-			
-			Log.println("Items: " + this.items.size());
-			
-			for (Item item : this.items.values()) {
+
+			for (Item item : this.passiveObjects.values()) {
 				item.setRoomId(this.getData().getId());
 			}
 			
@@ -454,6 +456,7 @@ public class Room implements Runnable, SerializableObject {
 
 		if (heightCurrent > heightNeighour) {
 			if ((heightCurrent - heightNeighour) >= 3.0) {
+				Log.println("error difference: " + (heightCurrent - heightNeighour));
 				return false;
 			}
 		}
@@ -461,6 +464,7 @@ public class Room implements Runnable, SerializableObject {
 		if (heightNeighour > heightCurrent) {
 
 			if ((heightNeighour - heightCurrent) >= 1.2) {
+				Log.println("error difference: " + (heightNeighour - heightCurrent));
 				return false;
 			}
 		}
@@ -478,7 +482,7 @@ public class Room implements Runnable, SerializableObject {
 		}*/
 
 
-		if (!current.sameAs(player.getRoomUser().getPosition())) {
+		/*if (!current.sameAs(player.getRoomUser().getPosition())) {
 			if (currentItem != null) {
 				if (!isFinalMove) {
 
@@ -502,13 +506,13 @@ public class Room implements Runnable, SerializableObject {
 
 				}
 			}
-		}
+		}*/
 
 		return true;
 	}
 
 
-	public Map<Integer, Item> getItems() {
+	public ConcurrentHashMap<Integer, Item> getItems() {
 		return items;
 	}
 
@@ -545,6 +549,14 @@ public class Room implements Runnable, SerializableObject {
 		}
 		
 		return null;
+	}
+
+	public ConcurrentHashMap<Integer, Item> getPassiveObjects() {
+		return passiveObjects;
+	}
+
+	public void setPassiveObjects(ConcurrentHashMap<Integer, Item> passiveObjects) {
+		this.passiveObjects = passiveObjects;
 	}
 
 

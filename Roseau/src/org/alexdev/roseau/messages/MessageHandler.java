@@ -23,6 +23,7 @@ import org.alexdev.roseau.messages.incoming.MESSENGER_INIT;
 import org.alexdev.roseau.messages.incoming.MESSENGER_SENDMSG;
 import org.alexdev.roseau.messages.incoming.MOVE;
 import org.alexdev.roseau.messages.incoming.MOVESTUFF;
+import org.alexdev.roseau.messages.incoming.PLACEITEMFROMSTRIP;
 import org.alexdev.roseau.messages.incoming.PLACESTUFFFROMSTRIP;
 import org.alexdev.roseau.messages.incoming.PURCHASE;
 import org.alexdev.roseau.messages.incoming.REGISTER;
@@ -118,6 +119,7 @@ public class MessageHandler {
 		this.messages.put("GETSTRIP", new GETSTRIP());
 		this.messages.put("PURCHASE", new PURCHASE());
 		this.messages.put("PLACESTUFFFROMSTRIP", new PLACESTUFFFROMSTRIP());
+		this.messages.put("PLACEITEMFROMSTRIP", new PLACEITEMFROMSTRIP());
 		this.messages.put("MOVESTUFF", new MOVESTUFF());
 		this.messages.put("FLATPROPERTYBYITEM", new FLATPROPERTYBYITEM());
 	}

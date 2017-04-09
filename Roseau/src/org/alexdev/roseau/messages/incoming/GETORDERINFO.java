@@ -6,7 +6,6 @@ import org.alexdev.roseau.game.item.ItemDefinition;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.ORDERINFO;
-import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class GETORDERINFO implements MessageEvent {
@@ -30,7 +29,7 @@ public class GETORDERINFO implements MessageEvent {
 
 		String extraData = "";
 
-		if (callId.equals("L") || callId.equals("T")) {
+		if (callId.equals("L") || callId.equals("T") || callId.equals("juliste")) {
 			extraData += " " + reader.getArgument(2);
 		}
 

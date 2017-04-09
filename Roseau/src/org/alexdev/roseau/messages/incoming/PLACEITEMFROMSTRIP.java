@@ -6,15 +6,12 @@ import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
-public class PLACESTUFFFROMSTRIP implements MessageEvent {
+public class PLACEITEMFROMSTRIP implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 		
 		int itemId = Integer.valueOf(reader.getArgument(0));
-		int x = Integer.valueOf(reader.getArgument(1));
-		int y = Integer.valueOf(reader.getArgument(2));
-		int rotation = Integer.valueOf(reader.getArgument(3));
 		
 		Item item = player.getInventory().getItem(itemId);
 		
@@ -31,11 +28,17 @@ public class PLACESTUFFFROMSTRIP implements MessageEvent {
 		if (!room.hasRights(player.getDetails().getId(), false)) {
 			return;
 		}
+
+		if (!item.getDefinition().getBehaviour().isOnWall()) {
+			return;
+		}
 		
-		item.setX(x);
-		item.setY(y);
-		item.setRotation(0);
-		room.getMapping().addItem(item, false);
+		String wallPosition = reader.getMessageBody().replace(itemId + " ", "");
+		
+		item.setWallPosition(wallPosition);
+		item.save();
+		
+		room.getMapping().addItem(item, true);
 		
 		player.getInventory().removeItem(item);
 		//player.getInventory().refresh();

@@ -1,12 +1,17 @@
 package org.alexdev.roseau.game.room;
 
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
-import org.alexdev.roseau.game.pathfinder.AffectedTile;
 import org.alexdev.roseau.game.room.model.Position;
+import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
+import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_ADD;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_UPDATE;
 import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
+import org.alexdev.roseau.messages.outgoing.ITEMS;
 
 public class RoomMapping {
 
@@ -32,10 +37,17 @@ public class RoomMapping {
 			}
 		}
 
-		for (Item item : this.room.getItems().values()) {
+		ConcurrentHashMap<Integer, Item> items;
+
+		if (room.getData().getRoomType() == RoomType.PUBLIC) { 
+			items = room.getPassiveObjects();
+		} else {
+			items = room.getItems();
+		}
+
+		for (Item item : items.values()) {
 
 			if (item == null) {
-				Log.println("lol????");
 				continue;
 			}
 
@@ -47,15 +59,16 @@ public class RoomMapping {
 
 			this.checkHighestItem(item, item.getX(), item.getY());
 
-			this.tiles[item.getX()][item.getY()].setHeight(this.tiles[item.getX()][item.getY()].getHeight() + stacked_height);
-			this.tiles[item.getX()][item.getY()].getItems().add(item);
+			RoomTile roomTile = this.getTile(item.getX(), item.getY());
+			roomTile.getItems().add(item);
+			roomTile.setHeight(roomTile.getHeight() + stacked_height);
 
 			for (Position tile : item.getAffectedTiles()) {
 
 				this.checkHighestItem(item, tile.getX(), tile.getY());
-				
-				this.tiles[tile.getX()][tile.getY()].getItems().add(item);
-				this.tiles[tile.getX()][tile.getY()].setHeight(this.tiles[tile.getX()][tile.getY()].getHeight() + stacked_height);
+
+				RoomTile affectedRoomTile = this.getTile(tile.getX(), tile.getY());
+				affectedRoomTile.setHeight(affectedRoomTile.getHeight() + stacked_height);
 			}
 		}
 	}
@@ -76,11 +89,11 @@ public class RoomMapping {
 	public boolean isValidTile(Entity entity, int x, int y) {
 
 		RoomTile tile = this.tiles[x][y];
-		
+
 		if (tile.hasOverrideLock()) {
 			return false;
 		}
-		
+
 		Item item = tile.getHighestItem();
 		boolean tile_valid = (this.room.getData().getModel().isBlocked(x, y) == false);
 
@@ -92,38 +105,55 @@ public class RoomMapping {
 		// just check the default model if the tile is valid
 		return tile_valid;
 	}
-	
-	public void addItem(Item item) {
 
-	    item.setRoomId(this.room.getData().getId());
-	    //item->extra_data = "";
+	public void addItem(Item item, boolean wall_item) {
 
-	    this.room.getItems().put(item.getId(), item);
+		item.setRoomId(this.room.getData().getId());
+		//item->extra_data = "";
 
-	    if (item.getDefinition().getBehaviour().isOnFloor()) {
-	        this.handleItemAdjustment(item);
-	        this.regenerateCollisionMaps();
-	    }
+		this.room.getItems().put(item.getId(), item);
 
-	    this.room.send(new ACTIVE_OBJECTS(this.room));
-	    item.save();
-	}
-	
-	public void updateItemPosition(Item item) {
-
-	    if (item.getDefinition().getBehaviour().isOnFloor()) {
-	        this.handleItemAdjustment(item);
-	        this.regenerateCollisionMaps();
-	    }
-
-	    this.room.send(new ACTIVEOBJECT_UPDATE(item));
-	    item.save();
-	}
-
-	
-	private void handleItemAdjustment(Item item) {
-		// TODO Auto-generated method stub
+		if (!wall_item) {
+			if (item.getDefinition().getBehaviour().isOnFloor()) {
+				this.handleItemAdjustment(item, false);
+				this.regenerateCollisionMaps();
+			}
+		}
 		
+		this.room.send(new ACTIVEOBJECT_ADD(item));
+		item.save();
+	}
+
+	public void updateItemPosition(Item item, boolean rotation_only) {
+
+		if (item.getDefinition().getBehaviour().isOnFloor()) {
+			this.handleItemAdjustment(item, rotation_only);
+			this.regenerateCollisionMaps();
+		}
+
+		this.room.send(new ACTIVEOBJECT_UPDATE(item));
+		item.save();
+	}
+
+
+	private void handleItemAdjustment(Item item, boolean rotation_only) {
+		
+	    if (rotation_only) {
+	        for (Item items : this.getTile(item.getX(), item.getY()).getItems()) {
+	            if (items != item && item.getZ() <= items.getZ()) {
+	                items.setRotation(item.getRotation());
+	                ///items->updateStatus();
+	            }
+	        }
+	    }
+	    else {
+	        item.setZ(this.getStackHeight(item.getX(), item.getY()));
+	    }
+
+	}
+
+	private double getStackHeight(int x, int y) {
+		return this.tiles[x][y].getHeight();
 	}
 
 	public RoomTile getTile(int x, int y) {

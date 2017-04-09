@@ -123,7 +123,7 @@ public class MySQLInventoryDao extends IProcessStorage<Item, ResultSet> implemen
 
 	@Override
 	public Item fill(ResultSet row) throws Exception {
-		Item item = new Item(row.getInt("id"), row.getInt("room_id"), row.getInt("user_id"), row.getInt("x"), row.getInt("y"), row.getDouble("z"), row.getInt("rotation"), row.getInt("item_id"), "", row.getString("extra_data"));
+		Item item = new Item(row.getInt("id"), row.getInt("room_id"), row.getInt("user_id"), row.getString("x"), row.getInt("y"), row.getDouble("z"), row.getInt("rotation"), row.getInt("item_id"), "", row.getString("extra_data"));
 		return item;
 	}
 

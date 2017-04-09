@@ -4,10 +4,8 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.catalogue.CatalogueItem;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
-import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.ADDSTRIPITEM;
-import org.alexdev.roseau.messages.outgoing.FLATPROPERTY;
 import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
@@ -54,7 +52,7 @@ public class PURCHASE implements MessageEvent {
 			
 			Item item = Roseau.getDataAccess().getInventory().newItem(product.getDefinition().getId(), player.getDetails().getId(), "");
 			
-			if (item.getDefinition().getBehaviour().isDecoration()) {
+			if (item.getDefinition().getBehaviour().isDecoration() || callId.equals("juliste")) {
 				item.setCustomData(reader.getArgument(1));
 				item.save();
 			}

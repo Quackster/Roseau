@@ -19,33 +19,6 @@ public class STRIPINFO implements OutgoingMessageComposer {
 		response.init("STRIPINFO");
 
 		for (Item item : this.items) {
-
-			/*		msg.appendArgument(Integer.toString(this.ID), '|');
-		msg.appendArgument("blunk", '|');
-		if(this.definition.behaviour.STUFF)
-		{
-			msg.appendArgument("S", '|');
-		}
-		else if(this.definition.behaviour.ITEM)
-		{
-			msg.appendArgument("I", '|');
-		}
-		msg.appendArgument(Integer.toString(stripSlotID), '|');
-		msg.appendArgument(this.definition.sprite, '|');
-		msg.appendArgument(this.definition.name, '|');
-		if(this.definition.behaviour.STUFF)
-		{
-			msg.appendArgument(this.customData, '|');
-			msg.appendArgument(Integer.toString(this.definition.length), '|');
-			msg.appendArgument(Integer.toString(this.definition.width), '|');
-			msg.appendArgument(this.definition.color, '|');
-		}
-		else if(this.definition.behaviour.ITEM)
-		{
-			msg.appendArgument(this.customData, '|');
-			msg.appendArgument(this.customData, '|');
-		}*/
-
 			response.appendNewArgument("roseau");
 			response.appendArgument(String.valueOf(item.getId()), ';');
 			response.appendArgument("0", ';');
