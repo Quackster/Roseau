@@ -14,7 +14,7 @@ public class PLACESTUFFFROMSTRIP implements MessageEvent {
 		int itemId = Integer.valueOf(reader.getArgument(0));
 		int x = Integer.valueOf(reader.getArgument(1));
 		int y = Integer.valueOf(reader.getArgument(2));
-		int rotation = Integer.valueOf(reader.getArgument(3));
+		//int rotation = Integer.valueOf(reader.getArgument(3));
 		
 		Item item = player.getInventory().getItem(itemId);
 		

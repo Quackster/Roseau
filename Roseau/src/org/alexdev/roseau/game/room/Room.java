@@ -2,7 +2,6 @@ package org.alexdev.roseau.game.room;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
@@ -302,7 +301,7 @@ public class Room implements Runnable, SerializableObject {
 			if (forceDisposal) {
 				this.clearData();
 				this.entities = null;
-				Roseau.getGame().getRoomManager().getLoadedRooms().remove(this);
+				Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getId());
 
 			} else {
 
@@ -319,11 +318,12 @@ public class Room implements Runnable, SerializableObject {
 				if (Roseau.getGame().getPlayerManager().getById(this.roomData.getOwnerId()) == null 
 						&& this.roomData.getRoomType() == RoomType.PRIVATE) { 
 
-					this.roomData = null;
+
 					this.entities = null;
 					this.disposed = true;
 
-					Roseau.getGame().getRoomManager().getLoadedRooms().remove(this);
+					Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getId());
+					this.roomData = null;
 				}
 			}
 

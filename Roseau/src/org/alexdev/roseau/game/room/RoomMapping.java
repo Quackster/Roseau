@@ -1,17 +1,12 @@
 package org.alexdev.roseau.game.room;
 
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.settings.RoomType;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_ADD;
-import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_UPDATE;
-import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
-import org.alexdev.roseau.messages.outgoing.ITEMS;
 
 public class RoomMapping {
 
@@ -60,7 +55,7 @@ public class RoomMapping {
 			this.checkHighestItem(item, item.getX(), item.getY());
 
 			RoomTile roomTile = this.getTile(item.getX(), item.getY());
-			
+
 			roomTile.getItems().add(item);
 			roomTile.setHeight(roomTile.getHeight() + stacked_height);
 
@@ -69,14 +64,26 @@ public class RoomMapping {
 				this.checkHighestItem(item, tile.getX(), tile.getY());
 
 				RoomTile affectedRoomTile = this.getTile(tile.getX(), tile.getY());
-				
-				affectedRoomTile.getItems().add(item);
-				affectedRoomTile.setHeight(affectedRoomTile.getHeight() + stacked_height);
+
+				if (affectedRoomTile != null) {
+
+					affectedRoomTile.getItems().add(item);
+					affectedRoomTile.setHeight(affectedRoomTile.getHeight() + stacked_height);
+				}
 			}
 		}
 	}
 
 	private void checkHighestItem(Item item, int x, int y) {
+
+		if (x >= this.room.getData().getModel().getMapSizeX()) {
+			return;
+		}
+
+		if (y >= this.room.getData().getModel().getMapSizeY()) {
+			return;
+		}
+
 		Item highest_item = this.tiles[x][y].getHighestItem();
 
 		if (highest_item == null) {
@@ -90,6 +97,14 @@ public class RoomMapping {
 	}
 
 	public boolean isValidTile(Entity entity, int x, int y) {
+
+		if (x >= this.room.getData().getModel().getMapSizeX()) {
+			return false;
+		}
+
+		if (y >= this.room.getData().getModel().getMapSizeY()) {
+			return false;
+		}
 
 		RoomTile tile = this.tiles[x][y];
 
@@ -122,7 +137,7 @@ public class RoomMapping {
 				this.regenerateCollisionMaps();
 			}
 		}
-		
+
 		this.room.send(new ACTIVEOBJECT_ADD(item));
 		item.save();
 	}
@@ -134,36 +149,63 @@ public class RoomMapping {
 			this.regenerateCollisionMaps();
 		}
 
-	    item.updateStatus();	    
+		item.updateStatus();	    
 		item.save();
 	}
 
 
 	private void handleItemAdjustment(Item item, boolean rotation_only) {
-		
-	    if (rotation_only) {
-	        for (Item items : this.getTile(item.getX(), item.getY()).getItems()) {
-	            if (items != item && items.getZ() >= item.getZ()) {
-	                items.setRotation(item.getRotation());
-	                items.updateStatus();
-	            }
-	        }
-	    }
-	    else {
-	        item.setZ(this.getStackHeight(item.getX(), item.getY()));
-	    }
+
+		if (rotation_only) {
+			for (Item items : this.getTile(item.getX(), item.getY()).getItems()) {
+				if (items != item && items.getZ() >= item.getZ()) {
+					items.setRotation(item.getRotation());
+					items.updateStatus();
+				}
+			}
+		}
+		else {
+			item.setZ(this.getStackHeight(item.getX(), item.getY()));
+		}
 
 	}
 
 	private double getStackHeight(int x, int y) {
+
+		if (x >= this.room.getData().getModel().getMapSizeX()) {
+			return 0;
+		}
+
+		if (y >= this.room.getData().getModel().getMapSizeY()) {
+			return 0;
+		}
+
 		return this.tiles[x][y].getHeight();
 	}
 
 	public RoomTile getTile(int x, int y) {
+
+		if (x >= this.room.getData().getModel().getMapSizeX()) {
+			return null;
+		}
+
+		if (y >= this.room.getData().getModel().getMapSizeY()) {
+			return null;
+		}
+
 		return this.tiles[x][y];
 	}
 
 	public Item getHighestItem(int x, int y) {
+
+		if (x >= this.room.getData().getModel().getMapSizeX()) {
+			return null;
+		}
+
+		if (y >= this.room.getData().getModel().getMapSizeY()) {
+			return null;
+		}
+
 		return this.tiles[x][y].getHighestItem();
 	}
 

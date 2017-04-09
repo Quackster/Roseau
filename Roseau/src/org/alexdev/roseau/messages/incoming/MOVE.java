@@ -1,11 +1,11 @@
 package org.alexdev.roseau.messages.incoming;
 
 import java.util.LinkedList;
-
 import org.alexdev.roseau.game.pathfinder.Pathfinder;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.game.room.model.Position;
+import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
@@ -15,10 +15,12 @@ public class MOVE implements MessageEvent {
 	public void handle(Player player, ClientMessage reader) {
 
 		if (!player.getRoomUser().canWalk()) {
+			Log.println("debug 1");
 			return;
 		}
 		
 		if (reader.getArgumentAmount() < 2) {
+			Log.println("debug 2");
 			return;
 		}
 
@@ -26,6 +28,7 @@ public class MOVE implements MessageEvent {
 		int y = Integer.valueOf(reader.getArgument(1));
 
 		if (player.getRoomUser().getRoom() == null) {
+			Log.println("debug 3");
 			return;
 		}
 		
@@ -50,10 +53,12 @@ public class MOVE implements MessageEvent {
 		LinkedList<Position> path = Pathfinder.makePath(player);
 
 		if (path == null) {
+			Log.println("debug 4");
 			return;
 		}
 
 		if (path.size() == 0) {
+			Log.println("debug 5");
 			return;
 		}
 

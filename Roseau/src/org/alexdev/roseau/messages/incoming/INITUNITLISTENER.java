@@ -16,5 +16,6 @@ public class INITUNITLISTENER implements MessageEvent {
       	*/
 		
 		player.send(new ALLUNITS(Roseau.getGame().getRoomManager().getPublicRooms()));
+	
 	}
 }

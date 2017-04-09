@@ -146,10 +146,28 @@ public class RoomModel
 	}
 	
 	public double getHeight(int x, int y) {
+		
+		if (x >= this.mapSizeX) {
+			return 0;
+		}
+		
+		if (y >= this.mapSizeY) {
+			return 0;
+		}
+		
 		return squareHeight[x][y];
 	}
 	
 	public boolean isBlocked(int x, int y) {
+		
+		if (x >= this.mapSizeX) {
+			return true;
+		}
+		
+		if (y >= this.mapSizeY) {
+			return true;
+		}
+		
 		return squares[x][y] == RoomModel.CLOSED;
 	}
 

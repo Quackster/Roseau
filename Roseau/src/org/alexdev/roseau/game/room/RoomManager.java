@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.room.settings.RoomType;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 public class RoomManager {
@@ -54,6 +53,7 @@ public class RoomManager {
 			
 			return rooms;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

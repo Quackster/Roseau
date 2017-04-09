@@ -1,8 +1,6 @@
 package org.alexdev.roseau.game.room;
 
-import java.util.ArrayList;
 import org.alexdev.roseau.Roseau;
-import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.game.room.settings.RoomState;
 import org.alexdev.roseau.game.room.settings.RoomType;

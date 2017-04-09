@@ -3,7 +3,6 @@ package org.alexdev.roseau.messages.incoming;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
@@ -26,12 +25,9 @@ allsuperuser=0*/
 		
 		String description = message.split(Character.toString((char)13))[0].substring(12); // remove "description=" prefix
 		String password = message.split(Character.toString((char)13))[1].substring(9); // remove "password=" prefix
-	
-		Log.println(description + " // " + password);
-		
+
 		room.getData().setDescription(description);
 		room.getData().setPassword(password);
 		room.getData().save();
 	}
-
 }
