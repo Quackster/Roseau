@@ -33,14 +33,18 @@ public class PLACEITEMFROMSTRIP implements MessageEvent {
 			return;
 		}
 		
-		String wallPosition = reader.getMessageBody().replace(itemId + " ", "");
+		//String wallPosition = reader.getMessageBody().replace(itemId + " ", "");
 		
-		item.setWallPosition(wallPosition);
-		item.save();
+		//item.setWallPosition(wallPosition);
+		//item.save();
 		
-		room.getMapping().addItem(item, true);
+		item.delete(); // delete the item because they dont display anyways
+		
+		// dont bother adding the item the room
+		// room.getMapping().addItem(item, true);
 		
 		player.getInventory().removeItem(item);
 	}
 
 }
+       
