@@ -12,9 +12,9 @@ public interface RoomDao {
 	public List<Room> getPublicRooms(boolean storeInMemory);
 	public List<Room> getPlayerRooms(PlayerDetails details);
 	public List<Room> getPlayerRooms(PlayerDetails details, boolean storeInMemory);
-	public Room getRoom(int roomId);
-	public Room getRoom(int roomId, boolean storeInMemory);
-	public List<Integer> getRoomRights(int roomId);
+	public Room getRoom(int roomID);
+	public Room getRoom(int roomID, boolean storeInMemory);
+	public List<Integer> getRoomRights(int roomID);
 	public void updateRoom(Room room);
 	public RoomModel getModel(String model);
 	public void deleteRoom(Room room);

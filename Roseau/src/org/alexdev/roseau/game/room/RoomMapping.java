@@ -117,10 +117,10 @@ public class RoomMapping {
 
 	public void addItem(Item item, boolean wall_item) {
 
-		item.setRoomId(this.room.getData().getId());
+		item.setRoomID(this.room.getData().getID());
 		//item->extra_data = "";
 
-		this.room.getItems().put(item.getId(), item);
+		this.room.getItems().put(item.getID(), item);
 
 		if (!wall_item) {
 			if (item.getDefinition().getBehaviour().isOnFloor()) {
@@ -147,11 +147,11 @@ public class RoomMapping {
 
 	public void removeItem(Item item) {
 		
-		item.setRoomId(0);
+		item.setRoomID(0);
 		item.save();
 		
-		this.room.send(new ACTIVEOBJECT_REMOVE(item.getId()));
-		this.room.getItems().remove(item.getId());
+		this.room.send(new ACTIVEOBJECT_REMOVE(item.getPacketID()));
+		this.room.getItems().remove(item.getID());
 		
 	}
 	

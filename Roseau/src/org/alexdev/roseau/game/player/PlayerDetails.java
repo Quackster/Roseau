@@ -67,7 +67,7 @@ public class PlayerDetails implements SerializableObject {
 		return false;
 	}
 	
-	public int getId() {
+	public int getID() {
 		return id;
 	}
 

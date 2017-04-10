@@ -45,7 +45,7 @@ public class TALK implements MessageEvent {
 				player.send(response);
 
 				if (whispered != null) {
-					if (whispered.getDetails().getId() != player.getDetails().getId()) {
+					if (whispered.getDetails().getID() != player.getDetails().getID()) {
 						whispered.send(response);
 					}
 				}

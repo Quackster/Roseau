@@ -22,7 +22,7 @@ public class MySQLInventoryDao extends IProcessStorage<Item, ResultSet> implemen
 	}
 
 	@Override
-	public List<Item> getInventoryItems(int userId) {
+	public List<Item> getInventoryItems(int userID) {
 
 		List<Item> items = Lists.newArrayList();
 		
@@ -35,7 +35,7 @@ public class MySQLInventoryDao extends IProcessStorage<Item, ResultSet> implemen
 			sqlConnection = this.dao.getStorage().getConnection();
 			
 			preparedStatement = this.dao.getStorage().prepare("SELECT id, user_id, item_id, room_id, x, y, z, rotation, extra_data FROM items WHERE room_id = 0 AND user_id = ?", sqlConnection);
-			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(1, userID);
 			
 			resultSet = preparedStatement.executeQuery();
 	
@@ -55,7 +55,7 @@ public class MySQLInventoryDao extends IProcessStorage<Item, ResultSet> implemen
 	}
 
 	@Override
-	public Item getItem(long id) {
+	public Item getItem(long ID) {
 
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
@@ -67,7 +67,7 @@ public class MySQLInventoryDao extends IProcessStorage<Item, ResultSet> implemen
 			sqlConnection = this.dao.getStorage().getConnection();
 			
 			preparedStatement = this.dao.getStorage().prepare("SELECT id, user_id, item_id, room_id, x, y, z, rotation, extra_data FROM items WHERE id = ? LIMIT 1", sqlConnection);
-			preparedStatement.setLong(1, id);
+			preparedStatement.setLong(1, ID);
 			
 			resultSet = preparedStatement.executeQuery();
 				
@@ -87,7 +87,7 @@ public class MySQLInventoryDao extends IProcessStorage<Item, ResultSet> implemen
 	}
 
 	@Override
-	public Item newItem(int itemId, int ownerId, String extraData) {
+	public Item newItem(int itemID, int ownerID, String extraData) {
 
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
@@ -99,8 +99,8 @@ public class MySQLInventoryDao extends IProcessStorage<Item, ResultSet> implemen
 			sqlConnection = this.dao.getStorage().getConnection();
 			preparedStatement = this.dao.getStorage().prepare("INSERT INTO items (user_id, item_id, extra_data) VALUES(?, ?, ?)", sqlConnection);
 			
-			preparedStatement.setInt(1, ownerId);
-			preparedStatement.setInt(2, itemId);
+			preparedStatement.setInt(1, ownerID);
+			preparedStatement.setInt(2, itemID);
 			preparedStatement.setString(3, extraData);
 			preparedStatement.executeUpdate();
 

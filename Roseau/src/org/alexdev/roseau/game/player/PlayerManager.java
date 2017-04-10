@@ -12,37 +12,37 @@ public class PlayerManager {
 		this.players = new ConcurrentHashMap<Integer, Player>();
 	}
 
-	public Player getById(int userId) {
+	public Player getByID(int userID) {
 		
 		try {
-			return this.players.values().stream().filter(s -> s.getDetails().getId() == userId).findFirst().get();
+			return this.players.values().stream().filter(s -> s.getDetails().getID() == userID).findFirst().get();
 		} catch (Exception e) {
 			return null;
 		}
 	}
 	
-	public Player getPrivateRoomPlayer(int userId) {
+	public Player getPrivateRoomPlayer(int userID) {
 		
 		try {
-			return this.players.values().stream().filter(s -> s.getDetails().getId() == userId).findFirst().get();
+			return this.players.values().stream().filter(s -> s.getDetails().getID() == userID).findFirst().get();
 		} catch (Exception e) {
 			return null;
 		}
 	}
 	
-	public Player getIdenticalPlayer(int userId, int connectionId) {
+	public Player getIDenticalPlayer(int userID, int connectionID) {
 		
 		try {
-			return this.players.values().stream().filter(s -> s.getDetails().getId() == userId && s.getNetwork().getConnectionId() != connectionId).findFirst().get();
+			return this.players.values().stream().filter(s -> s.getDetails().getID() == userID && s.getNetwork().getConnectionId() != connectionID).findFirst().get();
 		} catch (Exception e) {
 			return null;
 		}
 	}
 	
-	public Player getPlayerByIdPort(int userId, int port, int connectionId) {
+	public Player getPlayerByIDPort(int userID, int port, int connectionID) {
 		
 		try {
-			return this.players.values().stream().filter(s -> s.getDetails().getId() == userId && s.getNetwork().getServerPort() == port && s.getNetwork().getConnectionId() != connectionId).findFirst().get();
+			return this.players.values().stream().filter(s -> s.getDetails().getID() == userID && s.getNetwork().getServerPort() == port && s.getNetwork().getConnectionId() != connectionID).findFirst().get();
 		} catch (Exception e) {
 			return null;
 		}
@@ -58,12 +58,12 @@ public class PlayerManager {
 		}
 	}
 	
-	public PlayerDetails getPlayerData(int userId) {
+	public PlayerDetails getPlayerData(int userID) {
 		
-		Player player = this.getById(userId);
+		Player player = this.getByID(userID);
 		
 		if (player == null) {
-			return Roseau.getDataAccess().getPlayer().getDetails(userId);
+			return Roseau.getDataAccess().getPlayer().getDetails(userID);
 		}
 		
 		return player.getDetails();
@@ -81,7 +81,7 @@ public class PlayerManager {
 				continue;
 			}
 			
-			if (session.getDetails().getId() == player.getDetails().getId()) {
+			if (session.getDetails().getID() == player.getDetails().getID()) {
 				if (session.getNetwork().getConnectionId() != player.getNetwork().getConnectionId()) { // user tries to login twice
 					return true;
 				}

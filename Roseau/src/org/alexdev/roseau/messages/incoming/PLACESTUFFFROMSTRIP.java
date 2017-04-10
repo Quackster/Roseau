@@ -11,12 +11,12 @@ public class PLACESTUFFFROMSTRIP implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 		
-		int itemId = Integer.valueOf(reader.getArgument(0));
+		int itemID = Integer.valueOf(reader.getArgument(0));
 		int x = Integer.valueOf(reader.getArgument(1));
 		int y = Integer.valueOf(reader.getArgument(2));
 		//int rotation = Integer.valueOf(reader.getArgument(3));
 		
-		Item item = player.getInventory().getItem(itemId);
+		Item item = player.getInventory().getItem(itemID);
 		
 		if (item == null) {
 			return;
@@ -28,7 +28,7 @@ public class PLACESTUFFFROMSTRIP implements MessageEvent {
 			return;
 		}
 		
-		if (!room.hasRights(player.getDetails().getId(), false)) {
+		if (!room.hasRights(player.getDetails().getID(), false)) {
 			return;
 		}
 		

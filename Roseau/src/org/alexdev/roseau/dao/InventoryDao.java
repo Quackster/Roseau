@@ -6,10 +6,10 @@ import org.alexdev.roseau.game.item.Item;
 
 public interface InventoryDao {
 
-	List<Item> getInventoryItems(int userId);
+	List<Item> getInventoryItems(int userID);
 
 	Item getItem(long id);
 
-	Item newItem(int itemId, int ownerId, String extraData);
+	Item newItem(int itemID, int ownerID, String extraData);
 
 }

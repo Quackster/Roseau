@@ -22,7 +22,7 @@ public class TRYFLAT implements MessageEvent {
 			password = reader.getArgument(2, "/");
 		}
 
-		Room room = Roseau.getGame().getRoomManager().getRoomById(id);
+		Room room = Roseau.getGame().getRoomManager().getRoomByID(id);
 
 		if (room == null) {
 			room = Roseau.getDataAccess().getRoom().getRoom(id, true);
@@ -35,7 +35,7 @@ public class TRYFLAT implements MessageEvent {
 			}
 		}
 		
-		if (!room.hasRights(player.getDetails().getId(), false)) {
+		if (!room.hasRights(player.getDetails().getID(), false)) {
 			if (room.getData().getState() == RoomState.PASSWORD) {
 				if (!password.equals(room.getData().getPassword())) {
 					player.send(new ERROR("Incorrect flat password"));

@@ -14,7 +14,7 @@ import org.alexdev.roseau.server.IPlayerNetwork;
 
 public class Player implements Entity {
 
-	private String machineId;
+	private String machineID;
 	private PlayerDetails details;
 	private IPlayerNetwork network;
 	private RoomUser roomEntity;
@@ -42,7 +42,7 @@ public class Player implements Entity {
 					.getPlayerManager()
 					.getPlayers()
 					.values().stream()
-					.filter(s -> s.getDetails().getId() == this.details.getId() && 
+					.filter(s -> s.getDetails().getID() == this.details.getID() && 
 					s.getNetwork().getServerPort() == (Roseau.getServerPort() - 1)).findFirst().get();
 			
 		} catch (Exception e) {
@@ -72,7 +72,7 @@ public class Player implements Entity {
 	public void kickAllConnections() {
 		
 		try {
-			List<Player> players = Roseau.getGame().getPlayerManager().getPlayers().values().stream().filter(s -> s.getDetails().getId() == this.details.getId()).collect(Collectors.toList());
+			List<Player> players = Roseau.getGame().getPlayerManager().getPlayers().values().stream().filter(s -> s.getDetails().getID() == this.details.getID()).collect(Collectors.toList());
 			
 			for (Player player : players) {
 				player.kick();
@@ -83,12 +83,12 @@ public class Player implements Entity {
 		}
 	}
 		
-	public void setMachineId(String machineId) {
-		this.machineId = machineId;
+	public void setMachineID(String machineID) {
+		this.machineID = machineID;
 	}
 
-	public String getMachineId() {
-		return machineId;
+	public String getMachineID() {
+		return machineID;
 	}
 
 	public PlayerDetails getDetails() {

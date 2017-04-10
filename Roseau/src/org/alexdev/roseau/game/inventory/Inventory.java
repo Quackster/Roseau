@@ -19,9 +19,11 @@ public class Inventory {
 	private Map<Integer, List<Item>> paginatedItems;
 
 	private int cursor;
+	
+	public final static int MAX_ITEMS_PER_PAGE = 4;
 
 	public Inventory(Player player) {
-		
+
 		this.player = player;
 		this.paginatedItems = new HashMap<Integer, List<Item>>();
 		this.cursor = 0;
@@ -31,23 +33,20 @@ public class Inventory {
 
 		this.dispose();
 
-		this.items = Roseau.getDataAccess().getInventory().getInventoryItems(this.player.getDetails().getId());
+		this.items = Roseau.getDataAccess().getInventory().getInventoryItems(this.player.getDetails().getID());
 		this.refreshPagination();
 	}
 
 	public void refreshPagination() {
-
-		Log.println("items: " + this.items.size());
-
+		
 		this.paginatedItems.clear();
 
 		int pageID = 0;
 		int counter = 0;
 
-
 		for (Item item : this.items) {
 
-			if (counter > 6) {
+			if (counter > (MAX_ITEMS_PER_PAGE - 1)) {
 				pageID++;
 				counter = 0;
 			} else {
@@ -65,7 +64,7 @@ public class Inventory {
 
 	public Item getItem(int id) {
 
-		Optional<Item> inventoryItem = this.items.stream().filter(item -> item.getId() == id).findFirst();
+		Optional<Item> inventoryItem = this.items.stream().filter(item -> item.getID() == id).findFirst();
 
 		if (inventoryItem.isPresent()) {
 			return inventoryItem.get();
@@ -75,12 +74,19 @@ public class Inventory {
 	}
 
 	public void removeItem(Item item) {
+		this.removeItem(item, true);
+	}
+	
+	public void removeItem(Item item, boolean refreshPagination) {
 
 		if (item != null) {
 			this.items.remove(item);
 		}
 
-		this.refreshPagination();
+		if (refreshPagination) {
+			this.refreshPagination();
+
+		}
 	}
 
 	public void addItem(Item item) {

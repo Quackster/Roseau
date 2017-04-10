@@ -28,7 +28,7 @@ public class ItemDefinition {
 		this.behaviour = ItemBehaviour.parse(this.stringBehaviour);
 	}
 
-	public int getId() {
+	public int getID() {
 		return id;
 	}
 	

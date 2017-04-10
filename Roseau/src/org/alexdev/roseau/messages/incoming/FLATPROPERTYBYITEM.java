@@ -13,7 +13,7 @@ public class FLATPROPERTYBYITEM implements MessageEvent {
 	public void handle(Player player, ClientMessage reader) {
 		
 		String decoration = reader.getArgument(1, "/");
-		int itemId = Integer.valueOf(reader.getArgument(2, "/"));
+		int itemID = Integer.valueOf(reader.getArgument(2, "/"));
 
 		Room room = player.getRoomUser().getRoom();
 
@@ -21,11 +21,11 @@ public class FLATPROPERTYBYITEM implements MessageEvent {
 			return;
 		}
 
-		if (!room.hasRights(player.getDetails().getId(), false)) {
+		if (!room.hasRights(player.getDetails().getID(), false)) {
 			return;
 		}
 
-		Item item = player.getInventory().getItem(itemId);
+		Item item = player.getInventory().getItem(itemID);
 
 		if (item == null) {
 			return;

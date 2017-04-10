@@ -78,7 +78,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 			preparedStatement.setString(1, model);
 			resultSet = preparedStatement.executeQuery();
 
-			/*	public Item(int id, int roomId, int ownerId, int x, int y, double z, int rotation, int definition, String itemData, String customData, String extraData) {
+			/*	public Item(int id, int roomID, int ownerID, int x, int y, double z, int rotation, int definition, String itemData, String customData, String extraData) {
 			 * 
 			 * ;*/
 			
@@ -108,7 +108,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 	
 
 	@Override
-	public ConcurrentHashMap<Integer, Item> getRoomItems(int roomId) {
+	public ConcurrentHashMap<Integer, Item> getRoomItems(int roomID) {
 
 		ConcurrentHashMap<Integer, Item> items = new ConcurrentHashMap<Integer, Item>();
 
@@ -119,7 +119,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM items WHERE room_id = " + roomId, sqlConnection);
+			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM items WHERE room_id = " + roomID, sqlConnection);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -160,8 +160,8 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 			preparedStatement.setInt(3, item.getY());
 			preparedStatement.setDouble(4, item.getZ());
 			preparedStatement.setInt(5, item.getRotation());
-			preparedStatement.setInt(6, item.getRoomId());
-			preparedStatement.setLong(7, item.getId());
+			preparedStatement.setInt(6, item.getRoomID());
+			preparedStatement.setLong(7, item.getID());
 			preparedStatement.executeUpdate();
 
 		} catch (Exception e) {
@@ -174,15 +174,15 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 	}
 
 	@Override
-	public void deleteItem(long id) {
-		this.dao.getStorage().execute("DELETE FROM items WHERE id = " + id);
+	public void deleteItem(long ID) {
+		this.dao.getStorage().execute("DELETE FROM items WHERE id = " + ID);
 	}
 
 	
 	@Override
 	public Item fill(ResultSet row) throws Exception {
 		
-		//public Item(int id, int roomId, int ownerId, int x, int y, double z, int rotation, int definition, String itemData, String customData, String extraData) {
+		//public Item(int id, int roomID, int ownerID, int x, int y, double z, int rotation, int definition, String itemData, String customData, String extraData) {
 		
 		Item item = new Item(row.getInt("id"), row.getInt("room_id"), row.getInt("user_id"), row.getString("x"), row.getInt("y"), row.getDouble("z"), row.getInt("rotation"), row.getInt("item_id"), "", row.getString("extra_data"));
 		return item;

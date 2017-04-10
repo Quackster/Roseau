@@ -25,8 +25,8 @@ public class RoomManager {
 
 	public void add(Room room) {
 
-		if (!this.loadedRooms.containsKey(room.getData().getId())) {
-			this.loadedRooms.put(room.getData().getId(), room);
+		if (!this.loadedRooms.containsKey(room.getData().getID())) {
+			this.loadedRooms.put(room.getData().getID(), room);
 		}
 	}
 	
@@ -47,7 +47,7 @@ public class RoomManager {
 			Collections.sort(rooms,new Comparator<Room>() {
 			    @Override
 			    public int compare(Room a, Room b) {
-			        return a.getOrderId() - b.getOrderId();
+			        return a.getOrderID() - b.getOrderID();
 			    }
 			});
 			
@@ -79,18 +79,18 @@ public class RoomManager {
 		}
 	}
 	
-	public List<Room> getPlayerRooms(int userId) {
+	public List<Room> getPlayerRooms(int userID) {
 		try {
-			return this.loadedRooms.values().stream().filter(room -> room.getData().getOwnerId() == userId && room.getData().isHidden() == false).collect(Collectors.toList());
+			return this.loadedRooms.values().stream().filter(room -> room.getData().getOwnerID() == userID && room.getData().isHidden() == false).collect(Collectors.toList());
 		} catch (Exception e) {
 			return null;
 		}
 	}
 
-	public Room getRoomById(int roomId) {
+	public Room getRoomByID(int roomID) {
 
-		if (this.loadedRooms.containsKey(roomId)) {
-			return this.loadedRooms.get(roomId);
+		if (this.loadedRooms.containsKey(roomID)) {
+			return this.loadedRooms.get(roomID);
 		}
 		
 		return null;

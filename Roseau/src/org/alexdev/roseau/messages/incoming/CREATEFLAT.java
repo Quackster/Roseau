@@ -12,13 +12,6 @@ public class CREATEFLAT implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 
-		// Kick off public room user
-		Player publicRoomPlayer = Roseau.getGame().getPlayerManager().getIdenticalPlayer(player.getDetails().getId(), player.getNetwork().getConnectionId());
-
-		if (publicRoomPlayer != null) {
-			//publicRoomPlayer.getNetwork().close();
-		}
-
 		String floor = reader.getArgument(1, "/");
 		String roomName = reader.getArgument(2, "/");
 		String roomModel = reader.getArgument(3, "/");

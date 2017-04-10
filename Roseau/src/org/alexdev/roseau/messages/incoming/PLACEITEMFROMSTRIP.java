@@ -11,9 +11,9 @@ public class PLACEITEMFROMSTRIP implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 		
-		int itemId = Integer.valueOf(reader.getArgument(0));
+		int itemID = Integer.valueOf(reader.getArgument(0));
 		
-		Item item = player.getInventory().getItem(itemId);
+		Item item = player.getInventory().getItem(itemID);
 		
 		if (item == null) {
 			return;
@@ -25,7 +25,7 @@ public class PLACEITEMFROMSTRIP implements MessageEvent {
 			return;
 		}
 		
-		if (!room.hasRights(player.getDetails().getId(), false)) {
+		if (!room.hasRights(player.getDetails().getID(), false)) {
 			return;
 		}
 
@@ -33,7 +33,7 @@ public class PLACEITEMFROMSTRIP implements MessageEvent {
 			return;
 		}
 		
-		//String wallPosition = reader.getMessageBody().replace(itemId + " ", "");
+		//String wallPosition = reader.getMessageBody().replace(itemID + " ", "");
 		
 		//item.setWallPosition(wallPosition);
 		//item.save();

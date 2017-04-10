@@ -35,7 +35,7 @@ import org.alexdev.roseau.server.messages.SerializableObject;
 
 public class Room implements Runnable, SerializableObject {
 
-	private int orderId = -1;
+	private int orderID = -1;
 	private boolean disposed;
 
 	private RoomData roomData;
@@ -200,10 +200,10 @@ public class Room implements Runnable, SerializableObject {
 				player.send(new FLATPROPERTY("floor", this.roomData.getFloor()));
 			}
 
-			if (this.roomData.getOwnerId() == player.getDetails().getId()) {	
+			if (this.roomData.getOwnerID() == player.getDetails().getID()) {	
 				player.send(new YOUAREOWNER());
 				roomEntity.setStatus("flatctrl", " useradmin");
-			} else if (this.hasRights(player.getDetails().getId(), false)) {
+			} else if (this.hasRights(player.getDetails().getID(), false)) {
 				player.send(new YOUARECONTROLLER());
 			}
 		}
@@ -258,13 +258,13 @@ public class Room implements Runnable, SerializableObject {
 		this.dispose();
 	}
 
-	public boolean hasRights(int userId, boolean ownerCheckOnly) {
+	public boolean hasRights(int userID, boolean ownerCheckOnly) {
 
-		if (this.roomData.getOwnerId() == userId) {
+		if (this.roomData.getOwnerID() == userID) {
 			return true;
 		} else {
 			if (!ownerCheckOnly) {
-				return this.rights.contains(userId);
+				return this.rights.contains(userID);
 			}
 		}
 
@@ -280,15 +280,9 @@ public class Room implements Runnable, SerializableObject {
 
 		this.passiveObjects = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName());
 
-		if (this.roomData.getRoomType() == RoomType.PUBLIC) {
-
-			for (Item item : this.passiveObjects.values()) {
-				item.setRoomId(this.getData().getId());
-			}
-
-		} else {
-			this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getId());
-			this.items = Roseau.getDataAccess().getItem().getRoomItems(this.roomData.getId());
+		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
+			this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getID());
+			this.items = Roseau.getDataAccess().getItem().getRoomItems(this.roomData.getID());
 		}
 
 		this.roomMapping.regenerateCollisionMaps();
@@ -301,7 +295,7 @@ public class Room implements Runnable, SerializableObject {
 			if (forceDisposal) {
 				this.clearData();
 				this.entities = null;
-				Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getId());
+				Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getID());
 
 			} else {
 
@@ -315,14 +309,14 @@ public class Room implements Runnable, SerializableObject {
 
 				this.clearData();
 
-				if (Roseau.getGame().getPlayerManager().getById(this.roomData.getOwnerId()) == null 
+				if (Roseau.getGame().getPlayerManager().getByID(this.roomData.getOwnerID()) == null 
 						&& this.roomData.getRoomType() == RoomType.PRIVATE) { 
 
 
 					this.entities = null;
 					this.disposed = true;
 
-					Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getId());
+					Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getID());
 					this.roomData = null;
 				}
 			}
@@ -479,7 +473,7 @@ public class Room implements Runnable, SerializableObject {
 
 	@Override
 	public void serialise(Response response) {
-		response.appendNewArgument(String.valueOf(this.roomData.getId()));
+		response.appendNewArgument(String.valueOf(this.roomData.getID()));
 		response.appendPartArgument(this.roomData.getName());
 		response.appendPartArgument(this.roomData.getOwnerName());
 		response.appendPartArgument(this.roomData.getState().toString());
@@ -506,12 +500,12 @@ public class Room implements Runnable, SerializableObject {
 		return passiveObjects;
 	}
 
-	public int getOrderId() {
-		return orderId;
+	public int getOrderID() {
+		return orderID;
 	}
 
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
+	public void setOrderID(int orderID) {
+		this.orderID = orderID;
 	}
 
 

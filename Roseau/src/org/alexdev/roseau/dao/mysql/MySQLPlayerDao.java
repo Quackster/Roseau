@@ -52,9 +52,9 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 	}
 	
 	@Override
-	public PlayerDetails getDetails(int userId) {
+	public PlayerDetails getDetails(int userID) {
 
-		Player player = Roseau.getGame().getPlayerManager().getById(userId);
+		Player player = Roseau.getGame().getPlayerManager().getByID(userID);
 		PlayerDetails details = new PlayerDetails(player);
 		
 		if (player != null) {
@@ -70,7 +70,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 				sqlConnection = this.dao.getStorage().getConnection();
 				
 				preparedStatement = this.dao.getStorage().prepare("SELECT id, username, rank, sso_ticket, mission, figure, pool_figure, email, credits, sex, country, badge, birthday FROM users WHERE id = ? LIMIT 1", sqlConnection);
-				preparedStatement.setInt(1, userId);
+				preparedStatement.setInt(1, userID);
 				
 				resultSet = preparedStatement.executeQuery();
 
@@ -123,7 +123,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 	}
 
 	@Override
-	public int getId(String username) {
+	public int getID(String username) {
 
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
@@ -209,7 +209,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			preparedStatement.setString(5, details.getPoolFigure());
 			preparedStatement.setString(6, details.getSex());
 			preparedStatement.setString(7, details.getEmail());
-			preparedStatement.setInt(8, details.getId());
+			preparedStatement.setInt(8, details.getID());
 			
 			preparedStatement.executeUpdate();
 

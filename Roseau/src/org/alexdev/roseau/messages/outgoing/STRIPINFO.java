@@ -1,9 +1,6 @@
 package org.alexdev.roseau.messages.outgoing;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
@@ -24,7 +21,7 @@ public class STRIPINFO implements OutgoingMessageComposer {
 
 		for (Item item : items) {
 			response.appendNewArgument("roseau");
-			response.appendArgument(String.valueOf(item.getId()), ';');
+			response.appendArgument(String.valueOf(item.getID()), ';');
 			response.appendArgument("0", ';');
 
 			if (item.getDefinition().getBehaviour().isSTUFF()) {

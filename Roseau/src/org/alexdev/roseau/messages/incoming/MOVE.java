@@ -35,7 +35,7 @@ public class MOVE implements MessageEvent {
 		/*Item item = player.getRoomUser().getRoom().getMapping().getHighestItem(x, y);
 
 		if (item != null) {
-			Log.println(item.getDefinition().getSprite() + " - " + item.getDefinitionId());
+			Log.println(item.getDefinition().getSprite() + " - " + item.getDefinitionID());
 		}*/
 
 		if (!player.getRoomUser().getRoom().getMapping().isValidTile(player, x, y)) {

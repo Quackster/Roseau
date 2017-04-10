@@ -15,13 +15,13 @@ public class SETFLATINFO implements MessageEvent {
 password=wef
 allsuperuser=0*/
 		
-		Room room = Roseau.getGame().getRoomManager().getRoomById(Integer.valueOf(reader.getArgument(1, "/")));
+		Room room = Roseau.getGame().getRoomManager().getRoomByID(Integer.valueOf(reader.getArgument(1, "/")));
 		
-		if (!room.hasRights(player.getDetails().getId(), true)) {
+		if (!room.hasRights(player.getDetails().getID(), true)) {
 			return;
 		}
 		
-		String message = reader.getMessageBody().replace("/" + room.getData().getId() + "/", "");
+		String message = reader.getMessageBody().replace("/" + room.getData().getID() + "/", "");
 		
 		String description = message.split(Character.toString((char)13))[0].substring(12); // remove "description=" prefix
 		String password = message.split(Character.toString((char)13))[1].substring(9); // remove "password=" prefix

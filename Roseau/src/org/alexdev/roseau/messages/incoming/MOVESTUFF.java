@@ -11,7 +11,7 @@ public class MOVESTUFF implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 
-		int itemId = Integer.valueOf(reader.getArgument(0));
+		int itemID = Integer.valueOf(reader.getArgument(0));
 		int x = Integer.valueOf(reader.getArgument(1));
 		int y = Integer.valueOf(reader.getArgument(2));
 
@@ -21,11 +21,11 @@ public class MOVESTUFF implements MessageEvent {
 			return;
 		}
 
-		if (!room.hasRights(player.getDetails().getId(), false)) {
+		if (!room.hasRights(player.getDetails().getID(), false)) {
 			return;
 		}
 
-		Item item = room.getItem(itemId);
+		Item item = room.getItem(itemID);
 
 		if (item == null) {
 			return;

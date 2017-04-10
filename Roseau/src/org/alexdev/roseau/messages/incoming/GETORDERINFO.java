@@ -13,9 +13,9 @@ public class GETORDERINFO implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 
-		String callId = reader.getArgument(1);
+		String callID = reader.getArgument(1);
 
-		CatalogueItem item = Roseau.getGame().getCatalogueManager().getItemByCall(callId);
+		CatalogueItem item = Roseau.getGame().getCatalogueManager().getItemByCall(callID);
 
 		if (item == null) {
 			return;
@@ -29,11 +29,11 @@ public class GETORDERINFO implements MessageEvent {
 
 		String extraData = "";
 
-		if (callId.equals("L") || callId.equals("T") || callId.equals("juliste")) {
+		if (callID.equals("L") || callID.equals("T") || callID.equals("juliste")) {
 			extraData += " " + reader.getArgument(2);
 		}
 
-		player.send(new ORDERINFO(item.getCallId() + extraData, item.getCredits()));
+		player.send(new ORDERINFO(item.getCallID() + extraData, item.getCredits()));
 	}
 
 }

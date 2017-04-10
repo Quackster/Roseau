@@ -5,19 +5,19 @@ import org.alexdev.roseau.server.messages.Response;
 
 public class DOORFLAT implements OutgoingMessageComposer {
 	
-	private int itemId;
-	private int roomId;
+	private int itemID;
+	private int roomID;
 
-	public DOORFLAT(int itemId, int roomId) {
-		this.itemId = itemId;
-		this.roomId = roomId;
+	public DOORFLAT(int itemID, int roomID) {
+		this.itemID = itemID;
+		this.roomID = roomID;
 	}
 
 	@Override
 	public void write(Response response) {
 
 		response.init("DOORFLAT");
-		response.appendNewArgument(String.valueOf(this.itemId));
-		response.appendNewArgument(String.valueOf(this.roomId));
+		response.appendNewArgument(String.valueOf(this.itemID));
+		response.appendNewArgument(String.valueOf(this.roomID));
 	}
 }

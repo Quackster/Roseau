@@ -11,7 +11,7 @@ public class RoomData {
 
 	private int id;
 	private RoomType roomType;
-	private int ownerId;
+	private int ownerID;
 	private String ownerName;
 	private String name;
 	private RoomState state;
@@ -33,13 +33,13 @@ public class RoomData {
 		this.room = room;
 	}
 	
-	public void fill(int id, boolean hidden, RoomType type, int ownerId, String ownerName, String name, int state, String password, int usersNow, int usersMax, String description, String model, String clazz, String wall,String floor) {
+	public void fill(int id, boolean hidden, RoomType type, int ownerID, String ownerName, String name, int state, String password, int usersNow, int usersMax, String description, String model, String clazz, String wall,String floor) {
 
 		
 		this.id = id;
 		this.hidden = hidden;
 		this.roomType = type;
-		this.ownerId = ownerId;
+		this.ownerID = ownerID;
 		this.ownerName = ownerName;
 		this.name = name;
 		this.state = RoomState.getState(state);
@@ -126,12 +126,12 @@ public class RoomData {
 		return -1;
 	}
 
-	public int getId() {
+	public int getID() {
 		return id;
 	}
 
-	public int getOwnerId() {
-		return ownerId;
+	public int getOwnerID() {
+		return ownerID;
 	}
 
 	public String getOwnerName() {
@@ -155,8 +155,8 @@ public class RoomData {
 		return roomType;
 	}
 
-	public void setOwnerId(int ownerId) {
-		this.ownerId = ownerId;
+	public void setOwnerID(int ownerID) {
+		this.ownerID = ownerID;
 	}
 
 	public void setOwnerName(String ownerName) {

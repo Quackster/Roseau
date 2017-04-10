@@ -12,10 +12,10 @@ public class CatalogueManager {
 		this.items = Roseau.getDataAccess().getCatalogue().getBuyableItems();
 	}
 
-	public CatalogueItem getItemByCall(String callId) {
+	public CatalogueItem getItemByCall(String callID) {
 	
-		if (this.items.containsKey(callId)) {
-			return this.items.get(callId);
+		if (this.items.containsKey(callID)) {
+			return this.items.get(callID);
 		}
 		
 		return null;

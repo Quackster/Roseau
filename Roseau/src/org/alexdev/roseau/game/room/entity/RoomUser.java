@@ -19,9 +19,9 @@ import com.google.common.collect.Lists;
 
 public class RoomUser {
 
-	private int virtualId;
-	private int lastChatId;
-	private int danceId;
+	private int virtualID;
+	private int lastChatID;
+	private int danceID;
 
 	private Position position;
 	private Position goal;
@@ -230,9 +230,9 @@ public class RoomUser {
 		this.needsUpdate = false;
 		this.isWalking = false;
 
-		this.lastChatId = 0;
-		this.virtualId = -1;
-		this.danceId = 0;
+		this.lastChatID = 0;
+		this.virtualID = -1;
+		this.danceID = 0;
 
 	}
 
@@ -308,30 +308,30 @@ public class RoomUser {
 	}
 
 	public boolean isDancing() {
-		return this.danceId != 0;
+		return this.danceID != 0;
 	}
-	public int getVirtualId() {
-		return virtualId;
-	}
-
-	public void setVirtualId(int virtualId) {
-		this.virtualId = virtualId;
+	public int getVirtualID() {
+		return virtualID;
 	}
 
-	public int getLastChatId() {
-		return lastChatId;
+	public void setVirtualID(int virtualID) {
+		this.virtualID = virtualID;
 	}
 
-	public void setLastChatId(int lastChatId) {
-		this.lastChatId = lastChatId;
+	public int getLastChatID() {
+		return lastChatID;
 	}
 
-	public int getDanceId() {
-		return danceId;
+	public void setLastChatID(int lastChatID) {
+		this.lastChatID = lastChatID;
 	}
 
-	public void setDanceId(int danceId) {
-		this.danceId = danceId;
+	public int getDanceID() {
+		return danceID;
+	}
+
+	public void setDanceID(int danceID) {
+		this.danceID = danceID;
 	}
 
 	public int getRotation() {
@@ -385,8 +385,8 @@ public class RoomUser {
 		return room;
 	}
 
-	public int getRoomId() {
-		return (room == null ? 0 : room.getData().getId());
+	public int getRoomID() {
+		return (room == null ? 0 : room.getData().getID());
 	}
 
 	public void setRoom(Room room) {

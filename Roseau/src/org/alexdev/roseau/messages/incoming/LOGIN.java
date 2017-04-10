@@ -20,7 +20,7 @@ public class LOGIN implements MessageEvent {
 
 		if (authenticated) {
 			
-			Player otherPlayer = Roseau.getGame().getPlayerManager().getPlayerByIdPort(player.getDetails().getId(), player.getNetwork().getServerPort(), player.getNetwork().getConnectionId());
+			Player otherPlayer = Roseau.getGame().getPlayerManager().getPlayerByIDPort(player.getDetails().getID(), player.getNetwork().getServerPort(), player.getNetwork().getConnectionId());
 			
 			if (otherPlayer != null) {
 				player.send(new SYSTEMBROADCAST("This user is already logged into the server."));
@@ -42,12 +42,12 @@ public class LOGIN implements MessageEvent {
 					// 
 					// pree simple m8
 					//
-					int publicRoomId = player.getNetwork().getServerPort() - Roseau.getServerPort();
+					int publicRoomID = player.getNetwork().getServerPort() - Roseau.getServerPort();
 					
-					room = Roseau.getDataAccess().getRoom().getRoom(publicRoomId, true);
+					room = Roseau.getDataAccess().getRoom().getRoom(publicRoomID, true);
 					
 					if (room == null) {
-						Log.println("Grabbed new room from database: " + publicRoomId);
+						Log.println("Grabbed new room from database: " + publicRoomID);
 						return;
 					}
 				}

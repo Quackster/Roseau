@@ -14,11 +14,11 @@ public class PURCHASE implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 		
-		String callId = reader.getArgument(0).replace("/", "");
+		String callID = reader.getArgument(0).replace("/", "");
 		
 		/*Room room = player.getPrivateRoomPlayer().getRoomUser().getRoom();
 					
-		if (callId.equals("floor")) {
+		if (callID.equals("floor")) {
 			
 			String decoration = reader.getArgument(1);
 			
@@ -29,7 +29,7 @@ public class PURCHASE implements MessageEvent {
 			return;
 		} 
 		
-		if (callId.equals("wallpaper")) {
+		if (callID.equals("wallpaper")) {
 			
 			String decoration = reader.getArgument(1);
 			
@@ -40,7 +40,7 @@ public class PURCHASE implements MessageEvent {
 			return;
 		}*/	
 		
-		CatalogueItem product = Roseau.getGame().getCatalogueManager().getItemByCall(callId);
+		CatalogueItem product = Roseau.getGame().getCatalogueManager().getItemByCall(callID);
 		
 		if (product == null) {
 			return;
@@ -50,9 +50,9 @@ public class PURCHASE implements MessageEvent {
 		
 		if (oldCredits >= product.getCredits()) {
 			
-			Item item = Roseau.getDataAccess().getInventory().newItem(product.getDefinition().getId(), player.getDetails().getId(), "");
+			Item item = Roseau.getDataAccess().getInventory().newItem(product.getDefinition().getID(), player.getDetails().getID(), "");
 			
-			if (item.getDefinition().getBehaviour().isDecoration() || callId.equals("juliste")) {
+			if (item.getDefinition().getBehaviour().isDecoration() || callID.equals("juliste")) {
 				item.setCustomData(reader.getArgument(1));
 				item.save();
 			}

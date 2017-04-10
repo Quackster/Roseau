@@ -80,11 +80,11 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 				int id = resultSet.getInt("id");
 
-				Room room = Roseau.getGame().getRoomManager().getRoomById(id);
+				Room room = Roseau.getGame().getRoomManager().getRoomByID(id);
 
 				if (room == null) {
 					room = this.fill(resultSet);
-					room.setOrderId(resultSet.getInt("order_id"));
+					room.setOrderID(resultSet.getInt("order_id"));
 				}
 
 				rooms.add(room);
@@ -117,14 +117,14 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE owner_id = " + details.getId(), sqlConnection);
+			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE owner_id = " + details.getID(), sqlConnection);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
 
 				int id = resultSet.getInt("id");
 
-				Room room = Roseau.getGame().getRoomManager().getRoomById(id);
+				Room room = Roseau.getGame().getRoomManager().getRoomByID(id);
 
 				if (room == null) {
 					room = this.fill(resultSet);
@@ -149,12 +149,12 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 	}
 
 	@Override
-	public Room getRoom(int roomId) {
-		return getRoom(roomId, false);
+	public Room getRoom(int roomID) {
+		return getRoom(roomID, false);
 	}
 
 	@Override
-	public Room getRoom(int roomId, boolean storeInMemory) {
+	public Room getRoom(int roomID, boolean storeInMemory) {
 
 		Room room = null;
 		Connection sqlConnection = null;
@@ -164,14 +164,14 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE id = " + roomId, sqlConnection);
+			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE id = " + roomID, sqlConnection);
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
 
 				int id = resultSet.getInt("id");
 
-				room = Roseau.getGame().getRoomManager().getRoomById(id);
+				room = Roseau.getGame().getRoomManager().getRoomByID(id);
 
 				if (room == null) {
 					room = this.fill(resultSet);
@@ -195,7 +195,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 
 	@Override
-	public List<Integer> getRoomRights(int roomId) {
+	public List<Integer> getRoomRights(int roomID) {
 
 		List<Integer> rooms = Lists.newArrayList();
 
@@ -206,7 +206,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM room_rights WHERE room_id = " + roomId, sqlConnection);
+			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM room_rights WHERE room_id = " + roomID, sqlConnection);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -227,7 +227,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 	@Override
 	public void deleteRoom(Room room) {
-		this.dao.getStorage().execute("DELETE FROM rooms WHERE id = " + room.getData().getId());
+		this.dao.getStorage().execute("DELETE FROM rooms WHERE id = " + room.getData().getID());
 	}
 
 	@Override
@@ -244,7 +244,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			preparedStatement = dao.getStorage().prepare("INSERT INTO rooms (name, description, owner_id, model, state) VALUES (?, ?, ?, ?, ?)", sqlConnection);
 			preparedStatement.setString(1, name);
 			preparedStatement.setString(2, description);
-			preparedStatement.setInt(3, player.getDetails().getId());
+			preparedStatement.setInt(3, player.getDetails().getID());
 			preparedStatement.setString(4, model);
 			preparedStatement.setInt(5, state);
 			preparedStatement.executeUpdate();
@@ -288,7 +288,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			preparedStatement.setString(4, data.getPassword());
 			preparedStatement.setString(5, data.getWall());
 			preparedStatement.setString(6, data.getFloor());
-			preparedStatement.setInt(7, data.getId());
+			preparedStatement.setInt(7, data.getID());
 			
 			preparedStatement.executeUpdate();
 
@@ -320,7 +320,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 		Room instance = new Room();
 
-		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getId(), details == null ? "" : details.getUsername(), row.getString("name"), 
+		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getID(), details == null ? "" : details.getUsername(), row.getString("name"), 
 				row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"),
 				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"));
 
