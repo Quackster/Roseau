@@ -3,6 +3,7 @@ package org.alexdev.roseau.messages;
 import java.util.HashMap;
 
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.messages.incoming.ADDSTRIPITEM;
 import org.alexdev.roseau.messages.incoming.APPROVENAME;
 import org.alexdev.roseau.messages.incoming.CLOSE_UIMAKOPPI;
 import org.alexdev.roseau.messages.incoming.CREATEFLAT;
@@ -122,6 +123,7 @@ public class MessageHandler {
 		this.messages.put("PLACEITEMFROMSTRIP", new PLACEITEMFROMSTRIP());
 		this.messages.put("MOVESTUFF", new MOVESTUFF());
 		this.messages.put("FLATPROPERTYBYITEM", new FLATPROPERTYBYITEM());
+		this.messages.put("ADDSTRIPITEM", new ADDSTRIPITEM());
 	}
 	
 	

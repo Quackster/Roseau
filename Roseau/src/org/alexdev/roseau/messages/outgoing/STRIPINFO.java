@@ -1,6 +1,8 @@
 package org.alexdev.roseau.messages.outgoing;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
@@ -17,8 +19,10 @@ public class STRIPINFO implements OutgoingMessageComposer {
 	@Override
 	public void write(Response response) {
 		response.init("STRIPINFO");
+		
+		int slotID = 0;
 
-		for (Item item : this.items) {
+		for (Item item : items) {
 			response.appendNewArgument("roseau");
 			response.appendArgument(String.valueOf(item.getId()), ';');
 			response.appendArgument("0", ';');
@@ -28,24 +32,26 @@ public class STRIPINFO implements OutgoingMessageComposer {
 			} else if (item.getDefinition().getBehaviour().isITEM()) {
 				response.appendArgument("I", ';');
 			}
-			
-			response.appendArgument(String.valueOf(item.getId()), ';');
+
+			response.appendArgument(String.valueOf(slotID), ';');
 			response.appendArgument(item.getDefinition().getSprite(), ';');
 			response.appendArgument(item.getDefinition().getName(), ';');
-			
+
 			if (item.getDefinition().getBehaviour().isSTUFF()) {
-				
+
 				response.appendArgument(item.getCustomData(), ';');
 				response.appendArgument(String.valueOf(item.getDefinition().getLength()), ';');
 				response.appendArgument(String.valueOf(item.getDefinition().getWidth()), ';');
 				response.appendArgument(item.getDefinition().getColor(), ';');
-				
+
 			} else if (item.getDefinition().getBehaviour().isITEM()) {
 				response.appendArgument(item.getCustomData(), ';');
 				response.appendArgument(item.getCustomData(), ';');
 			}
-			
+
 			response.appendArgument("", '/');
+
+			slotID++;
 		}
 	}
 

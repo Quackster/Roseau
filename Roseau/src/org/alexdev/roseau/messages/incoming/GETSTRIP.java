@@ -10,7 +10,9 @@ public class GETSTRIP implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 	
-		player.send(new STRIPINFO(player.getInventory().getItems()));
+		player.getInventory().refresh(reader.getMessageBody());
+		
+		//player.send(new STRIPINFO(player.getInventory().getItems()));
 	}
 
 }

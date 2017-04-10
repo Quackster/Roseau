@@ -7,6 +7,7 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_ADD;
+import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_REMOVE;
 
 public class RoomMapping {
 
@@ -55,7 +56,6 @@ public class RoomMapping {
 			this.checkHighestItem(item, item.getX(), item.getY());
 
 			RoomTile roomTile = this.getTile(item.getX(), item.getY());
-
 			roomTile.getItems().add(item);
 			roomTile.setHeight(roomTile.getHeight() + stacked_height);
 
@@ -66,7 +66,6 @@ public class RoomMapping {
 				RoomTile affectedRoomTile = this.getTile(tile.getX(), tile.getY());
 
 				if (affectedRoomTile != null) {
-
 					affectedRoomTile.getItems().add(item);
 					affectedRoomTile.setHeight(affectedRoomTile.getHeight() + stacked_height);
 				}
@@ -146,6 +145,16 @@ public class RoomMapping {
 	}
 
 
+	public void removeItem(Item item) {
+		
+		item.setRoomId(0);
+		item.save();
+		
+		this.room.send(new ACTIVEOBJECT_REMOVE(item.getId()));
+		this.room.getItems().remove(item.getId());
+		
+	}
+	
 	private void handleItemAdjustment(Item item, boolean rotation_only) {
 
 		if (rotation_only) {
@@ -188,5 +197,6 @@ public class RoomMapping {
 
 		return this.tiles[x][y].getHighestItem();
 	}
+
 
 }

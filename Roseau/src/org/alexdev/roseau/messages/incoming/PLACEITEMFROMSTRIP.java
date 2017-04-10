@@ -41,7 +41,6 @@ public class PLACEITEMFROMSTRIP implements MessageEvent {
 		room.getMapping().addItem(item, true);
 		
 		player.getInventory().removeItem(item);
-		//player.getInventory().refresh();
 	}
 
 }
