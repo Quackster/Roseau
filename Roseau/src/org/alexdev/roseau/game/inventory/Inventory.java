@@ -8,7 +8,6 @@ import java.util.Optional;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.STRIPINFO;
 
 public class Inventory {
@@ -135,11 +134,4 @@ public class Inventory {
 		return items;
 	}
 
-	public int getCursor() {
-		return cursor;
-	}
-
-	public void setCursor(int cursor) {
-		this.cursor = cursor;
-	}
 }

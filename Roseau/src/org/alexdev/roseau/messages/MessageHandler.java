@@ -28,6 +28,7 @@ import org.alexdev.roseau.messages.incoming.PLACEITEMFROMSTRIP;
 import org.alexdev.roseau.messages.incoming.PLACESTUFFFROMSTRIP;
 import org.alexdev.roseau.messages.incoming.PURCHASE;
 import org.alexdev.roseau.messages.incoming.REGISTER;
+import org.alexdev.roseau.messages.incoming.REMOVEITEM;
 import org.alexdev.roseau.messages.incoming.SEARCHBUSYFLATS;
 import org.alexdev.roseau.messages.incoming.SEARCHFLATFORUSER;
 import org.alexdev.roseau.messages.incoming.SETFLATINFO;
@@ -124,6 +125,7 @@ public class MessageHandler {
 		this.messages.put("MOVESTUFF", new MOVESTUFF());
 		this.messages.put("FLATPROPERTYBYITEM", new FLATPROPERTYBYITEM());
 		this.messages.put("ADDSTRIPITEM", new ADDSTRIPITEM());
+		this.messages.put("REMOVEITEM", new REMOVEITEM());
 	}
 	
 	

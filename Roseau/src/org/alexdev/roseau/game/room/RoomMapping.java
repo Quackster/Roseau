@@ -61,22 +61,23 @@ public class RoomMapping {
 
 			for (Position tile : item.getAffectedTiles()) {
 
-				this.checkHighestItem(item, tile.getX(), tile.getY());
+				if (this.checkHighestItem(item, tile.getX(), tile.getY())) {
 
-				RoomTile affectedRoomTile = this.getTile(tile.getX(), tile.getY());
+					RoomTile affectedRoomTile = this.getTile(tile.getX(), tile.getY());
 
-				if (affectedRoomTile != null) {
-					affectedRoomTile.getItems().add(item);
-					affectedRoomTile.setHeight(affectedRoomTile.getHeight() + stacked_height);
+					if (affectedRoomTile != null) {
+						affectedRoomTile.getItems().add(item);
+						affectedRoomTile.setHeight(affectedRoomTile.getHeight() + stacked_height);
+					}
 				}
 			}
 		}
 	}
 
-	private void checkHighestItem(Item item, int x, int y) {
+	private boolean checkHighestItem(Item item, int x, int y) {
 
 		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
-			return;
+			return false;
 		}
 
 		Item highest_item = this.tiles[x][y].getHighestItem();
@@ -89,6 +90,8 @@ public class RoomMapping {
 				this.tiles[x][y].setHighestItem(item);
 			}
 		}
+
+		return true;
 	}
 
 	public boolean isValidTile(Entity entity, int x, int y) {
@@ -146,15 +149,15 @@ public class RoomMapping {
 
 
 	public void removeItem(Item item) {
-		
+
 		item.setRoomID(0);
 		item.save();
-		
+
 		this.room.send(new ACTIVEOBJECT_REMOVE(item.getPacketID()));
 		this.room.getItems().remove(item.getID());
-		
+
 	}
-	
+
 	private void handleItemAdjustment(Item item, boolean rotation_only) {
 
 		if (rotation_only) {
