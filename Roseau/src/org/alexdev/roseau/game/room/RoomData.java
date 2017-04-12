@@ -145,8 +145,19 @@ public class RoomData {
 	}
 
 	public int getUsersNow() {
-		this.usersNow = this.room.getPlayers().size();
-		return usersNow;
+		
+		int finalAmount = this.room.getPlayers().size();
+		
+		if (this.room.getMapping().getRoomWalkwayIDs().size() > 0) {
+			
+			for (int roomID : this.room.getMapping().getRoomWalkwayIDs()) {
+				Room room = Roseau.getGame().getRoomManager().getRoomByID(roomID);
+				finalAmount += room.getPlayers().size();
+			}
+		}
+		
+		this.usersNow = finalAmount;
+		return finalAmount;
 	}
 
 	public RoomType getRoomType() {

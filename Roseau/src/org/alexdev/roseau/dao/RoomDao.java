@@ -21,6 +21,6 @@ public interface RoomDao {
 	public RoomModel getModel(String model);
 	public void deleteRoom(Room room);
 	public Room createRoom(Player player, String name, String description, String model, int state);
-	public void setRoomConnections(Room room);
+	public List<Integer> setRoomConnections(Room room);
 	
 }

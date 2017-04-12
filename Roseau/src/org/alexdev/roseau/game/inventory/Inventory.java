@@ -10,6 +10,9 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.outgoing.STRIPINFO;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
 public class Inventory {
 
 	private Player player;
@@ -24,7 +27,9 @@ public class Inventory {
 	public Inventory(Player player) {
 
 		this.player = player;
-		this.paginatedItems = new HashMap<Integer, List<Item>>();
+		this.paginatedItems = Maps.newHashMap();
+		this.items = Lists.newArrayList();
+		
 		this.cursor = 0;
 	}
 
@@ -33,6 +38,7 @@ public class Inventory {
 		this.dispose();
 
 		this.items = Roseau.getDataAccess().getInventory().getInventoryItems(this.player.getDetails().getID());
+		
 		this.refreshPagination();
 	}
 

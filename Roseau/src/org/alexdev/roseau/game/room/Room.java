@@ -237,6 +237,24 @@ public class Room implements Runnable, SerializableObject {
 		player.send(player.getRoomUser().getStatusComposer());
 
 		this.entities.add(player);
+		
+		if (this.roomData.getModelName().equals("bar_b")) {
+			
+			//http://i.imgur.com/XQZ3b1y.png
+			
+			// 1-6
+			//this.send(new SHOWPROGRAM(new String[] {"lamp", "setlamp", "2"}));
+			
+			
+			this.send(new SHOWPROGRAM(new String[] {"df1", "setfloora", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
+			this.send(new SHOWPROGRAM(new String[] {"df1", "setfloorb", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
+			
+			this.send(new SHOWPROGRAM(new String[] {"df2", "setfloora", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
+			this.send(new SHOWPROGRAM(new String[] {"df2", "setfloorb", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
+			
+			this.send(new SHOWPROGRAM(new String[] {"df3", "setfloora", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
+			this.send(new SHOWPROGRAM(new String[] {"df3", "setfloorb", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
+		}
 	}
 
 	public void send(OutgoingMessageComposer response, boolean checkRights) {
@@ -498,7 +516,7 @@ public class Room implements Runnable, SerializableObject {
 		response.appendPartArgument("floor1");
 		response.appendPartArgument(Roseau.getServerIP());
 		response.appendPartArgument(Roseau.getServerIP());
-		response.appendPartArgument(String.valueOf(Roseau.getServerPort() - 1));
+		response.appendPartArgument(String.valueOf(Roseau.getPrivateServerPort()));
 		response.appendPartArgument(String.valueOf(this.roomData.getUsersNow()));
 		response.appendPartArgument("null");
 		response.appendPartArgument(this.roomData.getDescription());

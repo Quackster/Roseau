@@ -1,5 +1,6 @@
 package org.alexdev.roseau.game.room;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.alexdev.roseau.Roseau;
@@ -10,12 +11,15 @@ import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_ADD;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_REMOVE;
 
+import com.google.common.collect.Lists;
+
 public class RoomMapping {
 
 	private Room room;
 
 	private RoomTile[][] tiles;
 	private RoomConnection[][] connections = null;
+	private List<Integer>  roomConnections;
 
 	private int mapSizeX;
 
@@ -23,6 +27,7 @@ public class RoomMapping {
 
 	public RoomMapping(Room room) {
 		this.room = room;
+		this.roomConnections = Lists.newArrayList();
 	}
 
 	public void regenerateCollisionMaps() {
@@ -34,7 +39,7 @@ public class RoomMapping {
 			this.connections = new RoomConnection[mapSizeX][mapSizeY];
 
 			if (this.room.getData().getRoomType() == RoomType.PUBLIC) {
-				Roseau.getDataAccess().getRoom().setRoomConnections(this.room);
+				this.roomConnections = Roseau.getDataAccess().getRoom().setRoomConnections(this.room);
 			}
 		}
 
@@ -57,33 +62,38 @@ public class RoomMapping {
 
 		for (Item item : items.values()) {
 
-			if (item == null) {
-				continue;
-			}
+			try {
+				if (item == null) {
+					continue;
+				}
 
-			double stacked_height = 0;
+				double stacked_height = 0;
 
-			if (item.getDefinition().getBehaviour().isCanStackOnTop()) {
-				stacked_height = item.getDefinition().getHeight();
-			}
+				if (item.getDefinition().getBehaviour().isCanStackOnTop()) {
+					stacked_height = item.getDefinition().getHeight();
+				}
 
-			this.checkHighestItem(item, item.getX(), item.getY());
+				this.checkHighestItem(item, item.getX(), item.getY());
 
-			RoomTile roomTile = this.getTile(item.getX(), item.getY());
-			roomTile.getItems().add(item);
-			roomTile.setHeight(roomTile.getHeight() + stacked_height);
+				RoomTile roomTile = this.getTile(item.getX(), item.getY());
+				roomTile.getItems().add(item);
+				roomTile.setHeight(roomTile.getHeight() + stacked_height);
 
-			for (Position tile : item.getAffectedTiles()) {
+				for (Position tile : item.getAffectedTiles()) {
 
-				if (this.checkHighestItem(item, tile.getX(), tile.getY())) {
+					if (this.checkHighestItem(item, tile.getX(), tile.getY())) {
 
-					RoomTile affectedRoomTile = this.getTile(tile.getX(), tile.getY());
+						RoomTile affectedRoomTile = this.getTile(tile.getX(), tile.getY());
 
-					if (affectedRoomTile != null) {
-						affectedRoomTile.getItems().add(item);
-						affectedRoomTile.setHeight(affectedRoomTile.getHeight() + stacked_height);
+						if (affectedRoomTile != null) {
+							affectedRoomTile.getItems().add(item);
+							affectedRoomTile.setHeight(affectedRoomTile.getHeight() + stacked_height);
+						}
 					}
 				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+			//e.printStackTrace();
 			}
 		}
 	}
@@ -227,6 +237,14 @@ public class RoomMapping {
 		}
 
 		return this.connections[x][y];
+	}
+
+	public List<Integer> getRoomWalkwayIDs() {
+		return roomConnections;
+	}
+
+	public void setRoomConnections(List<Integer> roomConnections) {
+		this.roomConnections = roomConnections;
 	}
 
 }

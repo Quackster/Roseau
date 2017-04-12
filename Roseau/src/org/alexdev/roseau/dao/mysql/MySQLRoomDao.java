@@ -108,8 +108,10 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 	}
 
 	@Override
-	public void setRoomConnections(Room room) {
+	public List<Integer> setRoomConnections(Room room) {
 
+		List<Integer> connections = Lists.newArrayList();
+		
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -124,6 +126,10 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			while (resultSet.next()) {
 
 				int toRoomID = resultSet.getInt("to_id");
+				
+				if (!connections.contains(toRoomID)) {
+					connections.add(toRoomID);
+				}
 
 				for (String coordinate : resultSet.getString("coordinates").split(" ")) {
 					
@@ -148,6 +154,8 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			Storage.closeSilently(preparedStatement);
 			Storage.closeSilently(sqlConnection);
 		}
+		
+		return connections;
 	}
 
 	@Override

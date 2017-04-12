@@ -219,9 +219,9 @@ public class Roseau {
 	public static int getServerPort() {
 		return serverPort;
 	}
-
-	public static void setServerPort(int serverPort) {
-		Roseau.serverPort = serverPort;
+	
+	public static int getPrivateServerPort() {
+		return serverPort -1;
 	}
 
 	public static Configuration getSocketConfiguration() {
