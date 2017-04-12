@@ -4,7 +4,9 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.catalogue.CatalogueItem;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
+import org.alexdev.roseau.messages.outgoing.PURCHASEOK;
 import org.alexdev.roseau.messages.outgoing.PURCHASE_ADDSTRIPITEM;
 import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
 import org.alexdev.roseau.server.messages.ClientMessage;
@@ -57,17 +59,23 @@ public class PURCHASE implements MessageEvent {
 				item.save();
 			}
 			
-			player.send(new SYSTEMBROADCAST("Buying successful!"));
+			//player.send(new SYSTEMBROADCAST("Buying successful!"));
 			
 			// Update the player connected to the private room
 			//   (because PURCHASE is handled by the connection on the main game server, but we need to update the connection
 			//    inside the hotel room)
 			//
 			
-			Player privateRoomPlayer = player.getPrivateRoomPlayer();
-			privateRoomPlayer.getInventory().getItems().add(item);
+			/*for (Player p : Roseau.getGame().getPlayerManager().getPlayers().values()) {
+				
+				Log.println(p.getDetails().getID() + " -- " + p.getNetwork().getServerPort());
+			}*/
+			
+			Player p = player.getPrivateRoomPlayer();
+			p.getInventory().getItems().add(item);
 			
 			player.send(new PURCHASE_ADDSTRIPITEM());
+			player.send(new PURCHASEOK());
 			
 		} else {
 			player.send(new SYSTEMBROADCAST("You don't have enough credits to purchase this item!"));

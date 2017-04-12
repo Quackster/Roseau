@@ -43,9 +43,10 @@ public class Player implements Entity {
 					.getPlayers()
 					.values().stream()
 					.filter(s -> s.getDetails().getID() == this.details.getID() && 
-					s.getNetwork().getServerPort() == (Roseau.getServerPort() - 1)).findFirst().get();
+					s.getNetwork().getServerPort() == (Roseau.getPrivateServerPort())).findFirst().get();
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

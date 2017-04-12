@@ -200,6 +200,7 @@ public class Room implements Runnable, SerializableObject {
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
 
+			player.getInventory().load();
 			player.send(new ROOM_READY(this.roomData.getDescription()));
 
 			int wallData = Integer.parseInt(this.roomData.getWall());
