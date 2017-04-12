@@ -23,4 +23,7 @@ public abstract class IPlayerNetwork {
 		return serverPort;
 	}
 
+	public void setServerPort(int serverPort) {
+		this.serverPort = serverPort;
+	}
 }

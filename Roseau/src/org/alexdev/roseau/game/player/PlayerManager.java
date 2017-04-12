@@ -30,7 +30,7 @@ public class PlayerManager {
 		}
 	}
 	
-	public Player getIDenticalPlayer(int userID, int connectionID) {
+	public Player getIdenticalPlayer(int userID, int connectionID) {
 		
 		try {
 			return this.players.values().stream().filter(s -> s.getDetails().getID() == userID && s.getNetwork().getConnectionId() != connectionID).findFirst().get();

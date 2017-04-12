@@ -28,9 +28,10 @@ public class Item implements SerializableObject {
 	private String wallPosition;
 	
 	private ItemDefinition definition;
+	private int definitionID;
 	private Room room;
 	
-	public Item(int ID, int roomID, int ownerID, String x, int y, double z, int rotation, int definition, String itemData, String customData) {
+	public Item(int ID, int roomID, int ownerID, String x, int y, double z, int rotation, int definitionID, String itemData, String customData) {
 
 		this.ID = ID;
 		this.roomID = roomID;
@@ -38,18 +39,23 @@ public class Item implements SerializableObject {
 		this.y = y;
 		this.z = z;
 		this.rotation = rotation;
+		this.definitionID = definitionID;
 		
 		this.itemData = itemData;
 		this.customData = customData;
 		
-		this.room = Roseau.getGame().getRoomManager().getRoomByID(roomID);
-		this.definition = Roseau.getGame().getItemManager().getDefinition(definition);
+		this.reload();
 		
 		if (this.getDefinition().getBehaviour().isOnWall()) {
 			this.wallPosition = x;
 		} else {
 			this.x = Integer.valueOf(x);
 		}
+	}
+
+	private void reload() {
+		this.room = Roseau.getGame().getRoomManager().getRoomByID(roomID);
+		this.definition = Roseau.getGame().getItemManager().getDefinition(this.definitionID);
 	}
 
 	@Override
@@ -179,10 +185,20 @@ public class Item implements SerializableObject {
 	}
 	
 	public void showProgram(String data) {
+		
+		if (this.room == null) {
+			this.reload();
+		}
+		
 		this.room.send(new SHOWPROGRAM(this.itemData, data));
 	}
 	
 	public void updateStatus() {
+		
+		if (this.room == null) {
+			this.reload();
+		}
+		
 		this.room.send(new ACTIVEOBJECT_UPDATE(this));
 	}
 

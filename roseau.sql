@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2017 at 08:33 PM
+-- Generation Time: Apr 12, 2017 at 07:12 AM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -210,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `item_definitions` (
   `name` varchar(100) COLLATE latin1_general_ci NOT NULL DEFAULT 'Unknown name',
   `description` varchar(150) COLLATE latin1_general_ci NOT NULL DEFAULT 'Unknown description',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=2625 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=2634 ;
 
 --
 -- Dumping data for table `item_definitions`
@@ -1196,7 +1196,16 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (2620, 'cafe_fence2', '', 1, 1, 0.01, '', 'PF', 'Unknown name', 'Unknown description'),
 (2621, 'cafe_fence3', '', 1, 1, 0.01, '', 'PF', 'Unknown name', 'Unknown description'),
 (2622, 'cafe_fence4', '', 1, 1, 0.01, '', 'PF', 'Unknown name', 'Unknown description'),
-(2623, 'cafe_barchair', '', 1, 1, 1, '', 'PFC', 'Unknown name', 'Unknown description');
+(2623, 'cafe_barchair', '', 1, 1, 1, '', 'PFC', 'Unknown name', 'Unknown description'),
+(2625, 'splashkiosk', '', 3, 3, 1, '', 'PF', 'Unknown name', 'Unknown description'),
+(2626, 'gl_sofaa', '', 1, 1, 1, '', 'PFC', 'Unknown name', 'Unknown description'),
+(2627, 'gl_sofab', '', 1, 1, 1, '', 'PFC', 'Unknown name', 'Unknown description'),
+(2628, 'gl_sofac', '', 1, 1, 1, '', 'PFC', 'Unknown name', 'Unknown description'),
+(2629, 'gl_table', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
+(2630, 'gl_tablea', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
+(2631, 'gl_chair', '', 1, 1, 1, '', 'PFC', 'Unknown name', 'Unknown description'),
+(2632, 'gl_sofatable', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
+(2633, 'gl_yukka', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description');
 
 -- --------------------------------------------------------
 
@@ -1283,7 +1292,7 @@ INSERT INTO `rooms` (`id`, `name`, `order_id`, `room_type`, `enabled`, `hidden`,
 (13, 'Habbo Lido', 5, 1, 1, 0, '2017-03-30 18:46:42', -1, NULL, '', 0, 0, 40, 'lido', 'pool_a', '0', '0'),
 (14, 'The Dirty Duck Pub', 10, 1, 1, 0, '2017-03-30 20:36:00', -1, NULL, '', 0, 0, 40, 'pub', 'pub_a', '0', '0'),
 (16, 'Hotel Kitchen', 11, 1, 1, 0, '2017-03-30 20:58:19', -1, NULL, '', 0, 0, 25, 'kitchen', 'cr_kitchen', '0', '0'),
-(17, 'Cafe Ole', 12, 1, 1, 0, '2017-03-30 20:58:19', -1, NULL, '', 0, 0, 40, 'cafe', 'taivas_cafe', '0', '0'),
+(17, 'Cafe Ole', 13, 1, 1, 0, '2017-03-30 20:58:19', -1, NULL, '', 0, 0, 40, 'cafe', 'taivas_cafe', '0', '0'),
 (19, 'Habburger''s', 9, 1, 1, 0, '2017-03-30 21:04:13', -1, NULL, '', 0, 0, 40, 'habburger', 'habburger', '0', '0'),
 (21, 'Habbo Lido II', 6, 1, 1, 0, '2017-03-30 21:14:46', -1, NULL, '', 0, 0, 30, 'lido', 'pool_b', '0', '0'),
 (22, 'Club Massiva', 7, 1, 1, 0, '2017-03-31 03:10:05', -1, NULL, '', 0, 0, 40, 'club', 'bar_a', '0', '0'),
@@ -1292,7 +1301,7 @@ INSERT INTO `rooms` (`id`, `name`, `order_id`, `room_type`, `enabled`, `hidden`,
 (26, 'Median Lobby', 1, 1, 1, 0, '2017-03-31 03:28:12', -1, NULL, '', 0, 0, 40, 'lobby', 'floorlobby_b', '0', '0'),
 (27, 'Skylight Lobby', 2, 1, 1, 0, '2017-03-31 03:28:12', -1, NULL, '', 0, 0, 40, 'lobby', 'floorlobby_c', '0', '0'),
 (29, 'Club Massiva (downstairs)', 4, 1, 0, 1, '2017-03-31 04:40:51', -1, NULL, '', 0, 0, 40, 'club', 'bar_b', '0', '0'),
-(30, 'Cunning Fox Gamehall', 13, 1, 1, 0, '2017-04-03 10:39:23', -1, NULL, '', 0, 0, 40, 'lobby', 'hallC', '0', '0'),
+(30, 'Cunning Fox Gamehall', 12, 1, 1, 0, '2017-04-03 10:39:23', -1, NULL, '', 0, 0, 40, 'lobby', 'entryhall', '0', '0'),
 (42, 'Alex''s Room', -1, 0, 1, 0, '2017-04-07 02:14:38', 5, 'You know, just another average room lmao...', '', 0, 0, 25, 'floor1', 'model_e', '101', '203'),
 (43, 'item placement shit', -1, 0, 1, 0, '2017-04-09 11:40:14', 5, 'who cares about room descriptions amirite guiz', 'wef', 0, 0, 25, 'floor1', 'model_a', '0', '0');
 
@@ -1341,7 +1350,7 @@ INSERT INTO `room_models` (`id`, `door_x`, `door_y`, `door_z`, `door_dir`, `heig
 ('hallA', 0, 0, 1, 2, '11xxxxxxxxxxxxxxx 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111', 0),
 ('hallB', 0, 0, 1, 2, '11xxxxxxxxxxxxxxx 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111', 0),
 ('hallD', 3, 5, 0, 2, 'xxxxx4xxxxxxxxxxxx xxxx4444444xxxxxxx xxxx4444444xxxxxxx xxx444444444444444 xxx444444444444444 xxx444444444444444 xxx444444444444444 xxx444444444444444 xxx444444444444444 xxx444444444444444 654444444444444444 654444444444444444 654444444444444444 654444444444444444 xxx444444444444444 xxx444444444444444 xxx444444444444444 xxx444444444444444 xxx444444444444444 xxxx44444444444444 xxxx33444444444444 xxxx22444444444444 xxxx2222222222xx44 xxxx2222222222xx44 xxxxx222222222xxxx xxxxxx22222222xxxx xxxxxx22222222xxxx xxxxxx22222222xxxx xxxxxx22222222xxxx xxxxxx22222222xxxx xxxxxx22222222xxxx', 0),
-('entryhall', 0, 0, 0, 2, '11xxxxxxxxxxxxxxx 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111 11111111111111111', 0);
+('entryhall', 2, 2, 1, 2, 'xx11xxxx11xxxx11xxxx x1111111111111111111 11111111111111111111 11111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 x1111111111111111111 xxxxxxxxxxxxxxxxx11x', 0);
 
 -- --------------------------------------------------------
 
@@ -1361,7 +1370,7 @@ CREATE TABLE IF NOT EXISTS `room_public_items` (
   `data` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `uni` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=911 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=955 ;
 
 --
 -- Dumping data for table `room_public_items`
@@ -2273,7 +2282,47 @@ INSERT INTO `room_public_items` (`id`, `definitionid`, `model`, `x`, `y`, `z`, `
 (907, 2623, 'taivas_cafe', 0, 12, 1, 0, NULL, NULL),
 (908, 2623, 'taivas_cafe', 1, 12, 1, 0, NULL, NULL),
 (909, 2623, 'taivas_cafe', 2, 12, 1, 0, NULL, NULL),
-(910, 2623, 'taivas_cafe', 1, 16, 1, 6, NULL, NULL);
+(910, 2623, 'taivas_cafe', 1, 16, 1, 6, NULL, NULL),
+(911, 2625, 'entryhall', 11, 11, 1, 0, NULL, NULL),
+(912, 2632, 'entryhall', 7, 16, 1, 0, NULL, NULL),
+(913, 2632, 'entryhall', 5, 1, 1, 4, NULL, NULL),
+(914, 2632, 'entryhall', 16, 1, 1, 4, NULL, NULL),
+(915, 2632, 'entryhall', 14, 14, 1, 4, NULL, NULL),
+(916, 2632, 'entryhall', 1, 19, 1, 0, NULL, NULL),
+(917, 2633, 'entryhall', 15, 6, 1, 0, NULL, NULL),
+(918, 2633, 'entryhall', 7, 7, 1, 0, NULL, NULL),
+(919, 2631, 'entryhall', 6, 1, 1, 4, NULL, NULL),
+(920, 2631, 'entryhall', 4, 1, 1, 4, NULL, NULL),
+(921, 2631, 'entryhall', 17, 1, 1, 4, NULL, NULL),
+(922, 2631, 'entryhall', 18, 1, 1, 4, NULL, NULL),
+(923, 2631, 'entryhall', 14, 11, 1, 2, NULL, NULL),
+(924, 2631, 'entryhall', 14, 12, 1, 2, NULL, NULL),
+(925, 2631, 'entryhall', 14, 13, 1, 2, NULL, NULL),
+(926, 2631, 'entryhall', 13, 14, 1, 4, NULL, NULL),
+(927, 2631, 'entryhall', 12, 14, 1, 4, NULL, NULL),
+(928, 2631, 'entryhall', 11, 14, 1, 4, NULL, NULL),
+(929, 2626, 'entryhall', 1, 16, 1, 2, NULL, NULL),
+(930, 2627, 'entryhall', 1, 17, 1, 2, NULL, NULL),
+(931, 2628, 'entryhall', 1, 18, 1, 2, NULL, NULL),
+(935, 2627, 'entryhall', 1, 11, 1, 2, NULL, NULL),
+(934, 2626, 'entryhall', 1, 10, 1, 2, NULL, NULL),
+(936, 2628, 'entryhall', 1, 12, 1, 2, NULL, NULL),
+(937, 2626, 'entryhall', 7, 13, 1, 2, NULL, NULL),
+(938, 2627, 'entryhall', 7, 14, 1, 2, NULL, NULL),
+(939, 2628, 'entryhall', 7, 15, 1, 2, NULL, NULL),
+(940, 2626, 'entryhall', 7, 8, 1, 2, NULL, NULL),
+(941, 2627, 'entryhall', 7, 9, 1, 2, NULL, NULL),
+(942, 2628, 'entryhall', 7, 10, 1, 2, NULL, NULL),
+(943, 2626, 'entryhall', 8, 7, 1, 4, NULL, NULL),
+(944, 2627, 'entryhall', 9, 7, 1, 4, NULL, NULL),
+(945, 2628, 'entryhall', 10, 7, 1, 4, NULL, NULL),
+(946, 2626, 'entryhall', 13, 7, 1, 4, NULL, NULL),
+(947, 2627, 'entryhall', 14, 7, 1, 4, NULL, NULL),
+(948, 2628, 'entryhall', 15, 7, 1, 4, NULL, NULL),
+(949, 2629, 'entryhall', 7, 12, 1, 6, NULL, NULL),
+(950, 2630, 'entryhall', 7, 11, 1, 6, NULL, NULL),
+(951, 2630, 'entryhall', 11, 7, 1, 0, NULL, NULL),
+(953, 2629, 'entryhall', 12, 7, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2320,7 +2369,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `figure`, `pool_figure`, `credits`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
 (2, 'test', '123', 1, 44324323, 1490046606, 'ereewr@wwwwaaac.com', 'H&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;rp&auml;t', 'sd=001/0&hr=015/200,210,230&hd=002/226,219,185&ey=003/0&fc=001/226,219,185&bd=001/226,219,185&lh=001/226,219,185&rh=001/226,219,185&ch=009/255,255,255&ls=002/255,255,255&rs=002/255,255,255&lg=004/255,255,255&sh=003/255,255,255', 'ch=s01/255,146,90', 0, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/255,237,179&ls=001/255,237,179&rs=001/255,237,179&lg=006/215,193,135&sh=003/121,94,83', 'ch=s02/250,56,49', 5000, 'Male', 'UK', '', '01.01.1997', 1);
+(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/217,113,69&ls=002/217,113,69&rs=002/217,113,69&lg=001/102,102,102&sh=003/121,94,83', 'ch=s02/250,56,49', 5000, 'Male', 'UK', '', '01.01.1997', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

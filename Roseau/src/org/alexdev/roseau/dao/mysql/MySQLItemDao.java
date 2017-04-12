@@ -63,7 +63,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 	}
 
 	@Override
-	public ConcurrentHashMap<Integer, Item> getPublicRoomItems(String model) {
+	public ConcurrentHashMap<Integer, Item> getPublicRoomItems(String model, int roomID) {
 		
 		ConcurrentHashMap<Integer, Item> items = new ConcurrentHashMap<Integer, Item>();
 		
@@ -84,7 +84,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 			
 			while (resultSet.next()) {
 				items.put(resultSet.getInt("id"), new Item(resultSet.getInt("id"),
-						-1,
+						roomID,
 						-1,
 						resultSet.getString("x"),
 						resultSet.getInt("y"),

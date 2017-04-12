@@ -161,6 +161,10 @@ public class Room implements Runnable, SerializableObject {
 	public void loadRoom(Player player) {
 
 		RoomUser roomEntity = player.getRoomUser();
+		
+		if (player.getRoomUser().getRoom() != null) {
+			player.getRoomUser().getRoom().leaveRoom(player, false);
+		}
 
 		roomEntity.setRoom(this);
 		roomEntity.getStatuses().clear();
@@ -170,8 +174,6 @@ public class Room implements Runnable, SerializableObject {
 			roomEntity.getPosition().setY(this.roomData.getModel().getDoorY());
 			roomEntity.getPosition().setZ(this.roomData.getModel().getDoorZ());
 			roomEntity.setRotation(this.roomData.getModel().getDoorRot(), false);
-
-
 		}
 
 		if (this.roomData.getModel() == null) {
@@ -224,6 +226,23 @@ public class Room implements Runnable, SerializableObject {
 		player.send(player.getRoomUser().getStatusComposer());
 
 		this.entities.add(player);
+		
+		if (this.roomData.getID() == 13) {
+			
+			int newID = 21;
+		
+			/*
+			 *  Override new server port even if this player isn't actually 
+			 *  connected to this server
+			 *  
+			 *  This happens when they walk through walkways to enter other rooms 8-)
+			 */
+			player.getNetwork().setServerPort(newID + Roseau.getServerPort());
+			
+			Room room = Roseau.getGame().getRoomManager().getRoomByID(newID);
+			room.loadRoom(player);
+			
+		}
 	}
 
 	public void send(OutgoingMessageComposer response, boolean checkRights) {
@@ -278,7 +297,7 @@ public class Room implements Runnable, SerializableObject {
 			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
 		}
 
-		this.passiveObjects = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName());
+		this.passiveObjects = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName(), this.roomData.getID());
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
 			this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getID());
