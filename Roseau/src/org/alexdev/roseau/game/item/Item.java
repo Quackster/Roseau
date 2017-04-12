@@ -190,7 +190,7 @@ public class Item implements SerializableObject {
 			this.reload();
 		}
 		
-		this.room.send(new SHOWPROGRAM(this.itemData, data));
+		this.room.send(new SHOWPROGRAM(new String[] { this.itemData, data }));
 	}
 	
 	public void updateStatus() {

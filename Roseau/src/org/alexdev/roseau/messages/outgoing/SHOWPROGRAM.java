@@ -5,19 +5,23 @@ import org.alexdev.roseau.server.messages.Response;
 
 public class SHOWPROGRAM implements OutgoingMessageComposer {
 
-	private String itemData;
-	private String data;
+	private String[] parameters;
 
-	public SHOWPROGRAM(String itemData, String data) {
-		this.itemData = itemData;
-		this.data = data;
+	public SHOWPROGRAM(String[] parameters) {
+		this.parameters = parameters;
 	}
 
 	@Override
 	public void write(Response response) {
 		response.init("SHOWPROGRAM");
-		response.appendNewArgument(this.itemData);
-		response.appendArgument(this.data);
+		response.appendNewArgument(parameters[0]);
+
+		if (parameters.length > 1) {
+			for (int i = 1; i < parameters.length; i++) {	
+				String parameter = parameters[i];
+				response.appendArgument(parameter);
+			}
+		}
 	}
 
 }

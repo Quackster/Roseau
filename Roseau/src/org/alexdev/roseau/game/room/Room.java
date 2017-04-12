@@ -27,6 +27,7 @@ import org.alexdev.roseau.messages.outgoing.ITEMS;
 import org.alexdev.roseau.messages.outgoing.LOGOUT;
 import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.ROOM_READY;
+import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
 import org.alexdev.roseau.messages.outgoing.YOUARECONTROLLER;
