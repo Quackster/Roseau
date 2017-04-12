@@ -2,6 +2,7 @@ package org.alexdev.roseau.game.room;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
@@ -33,6 +34,9 @@ import org.alexdev.roseau.messages.outgoing.YOUAREOWNER;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
 public class Room implements Runnable, SerializableObject {
 
 	private int orderID = -1;
@@ -41,17 +45,19 @@ public class Room implements Runnable, SerializableObject {
 	private RoomData roomData;
 	private RoomMapping roomMapping;
 
-	private List<Entity> entities = new ArrayList<Entity>();
+	private List<Entity> entities;
 
 	private ConcurrentHashMap<Integer, Item> passiveObjects;
 	private ConcurrentHashMap<Integer, Item> items;
+	
 	private ScheduledFuture<?> tickTask = null;
 	private List<Integer> rights;
 
 	public Room() {
 		this.roomData = new RoomData(this);
 		this.roomMapping = new RoomMapping(this);
-		this.entities = new ArrayList<Entity>();
+		
+		this.entities = Lists.newArrayList();
 	}
 
 	@Override
@@ -159,6 +165,10 @@ public class Room implements Runnable, SerializableObject {
 
 
 	public void loadRoom(Player player) {
+		this.loadRoom(player, this.roomData.getModel().getDoorPosition(), this.roomData.getModel().getDoorRot());
+	}
+	
+	public void loadRoom(Player player, Position door, int rotation) {
 
 		RoomUser roomEntity = player.getRoomUser();
 		
@@ -170,10 +180,10 @@ public class Room implements Runnable, SerializableObject {
 		roomEntity.getStatuses().clear();
 
 		if (this.roomData.getModel() != null) {
-			roomEntity.getPosition().setX(this.roomData.getModel().getDoorX());
-			roomEntity.getPosition().setY(this.roomData.getModel().getDoorY());
-			roomEntity.getPosition().setZ(this.roomData.getModel().getDoorZ());
-			roomEntity.setRotation(this.roomData.getModel().getDoorRot(), false);
+			roomEntity.getPosition().setX(door.getX());
+			roomEntity.getPosition().setY(door.getY());
+			roomEntity.getPosition().setZ(door.getZ());
+			roomEntity.setRotation(rotation, false);
 		}
 
 		if (this.roomData.getModel() == null) {
@@ -226,23 +236,6 @@ public class Room implements Runnable, SerializableObject {
 		player.send(player.getRoomUser().getStatusComposer());
 
 		this.entities.add(player);
-		
-		if (this.roomData.getID() == 13) {
-			
-			int newID = 21;
-		
-			/*
-			 *  Override new server port even if this player isn't actually 
-			 *  connected to this server
-			 *  
-			 *  This happens when they walk through walkways to enter other rooms 8-)
-			 */
-			player.getNetwork().setServerPort(newID + Roseau.getServerPort());
-			
-			Room room = Roseau.getGame().getRoomManager().getRoomByID(newID);
-			room.loadRoom(player);
-			
-		}
 	}
 
 	public void send(OutgoingMessageComposer response, boolean checkRights) {
@@ -303,7 +296,7 @@ public class Room implements Runnable, SerializableObject {
 			this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getID());
 			this.items = Roseau.getDataAccess().getItem().getRoomItems(this.roomData.getID());
 		}
-
+		
 		this.roomMapping.regenerateCollisionMaps();
 	}
 
@@ -440,6 +433,8 @@ public class Room implements Runnable, SerializableObject {
 			}
 		}
 
+		if (!this.roomData.getModel().hasDisabledHeightCheck()) {
+		
 		if (heightCurrent > heightNeighour) {
 			if ((heightCurrent - heightNeighour) >= 3.0) {
 				return false;
@@ -450,6 +445,8 @@ public class Room implements Runnable, SerializableObject {
 			if ((heightNeighour - heightCurrent) >= 1.2) {
 				return false;
 			}
+		}
+		
 		}
 
 		if (!current.sameAs(this.roomData.getModel().getDoorPosition())) {
@@ -526,6 +523,4 @@ public class Room implements Runnable, SerializableObject {
 	public void setOrderID(int orderID) {
 		this.orderID = orderID;
 	}
-
-
 }

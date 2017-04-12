@@ -7,11 +7,14 @@ import org.alexdev.roseau.game.item.Item;
 
 public class RoomTile {
 
-	private Room room;
+	
 	private double height = 0;
-	private List<Item> items;
-	private Item highestItem = null;
 	private boolean overrideLock = false;
+	
+	private List<Item> items;
+	
+	private Room room;
+	private Item highestItem = null;
 	
 	public RoomTile(Room room) {
 		this.room = room;

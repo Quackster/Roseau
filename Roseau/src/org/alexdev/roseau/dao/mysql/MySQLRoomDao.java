@@ -13,7 +13,9 @@ import org.alexdev.roseau.dao.util.IProcessStorage;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.game.room.Room;
+import org.alexdev.roseau.game.room.RoomConnection;
 import org.alexdev.roseau.game.room.RoomData;
+import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
@@ -43,7 +45,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 			while (resultSet.next()) {
 				roomModels.put(resultSet.getString("id"), new RoomModel(resultSet.getString("id"), resultSet.getString("heightmap"), resultSet.getInt("door_x"), resultSet.getInt("door_y"), 
-						resultSet.getInt("door_z"), resultSet.getInt("door_dir"), resultSet.getByte("has_pool") == 1));
+						resultSet.getInt("door_z"), resultSet.getInt("door_dir"), resultSet.getByte("has_pool") == 1, resultSet.getByte("disable_height_check") == 1));
 			}
 
 		} catch (Exception e) {
@@ -103,6 +105,49 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		}
 
 		return rooms;
+	}
+
+	@Override
+	public void setRoomConnections(Room room) {
+
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			sqlConnection = this.dao.getStorage().getConnection();
+			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM room_public_connections WHERE room_id = ?", sqlConnection);
+			preparedStatement.setInt(1, room.getData().getID());
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+
+				int toRoomID = resultSet.getInt("to_id");
+
+				for (String coordinate : resultSet.getString("coordinates").split(" ")) {
+					
+					Position pos = new Position(coordinate);
+					
+					Position doorPosition = null;
+					int doorRotation = -1;
+					
+					if (resultSet.getInt("door_x") > -1) {
+						doorPosition = new Position(resultSet.getInt("door_x"), resultSet.getInt("door_y"), resultSet.getInt("door_z"));
+						doorRotation = resultSet.getInt("door_rotation");
+					}
+					
+					room.getMapping().getConnections()[pos.getX()][pos.getY()] = new RoomConnection(room.getData().getID(), toRoomID, doorPosition, doorRotation);
+				}
+			}
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(resultSet);
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
 	}
 
 	@Override
@@ -265,13 +310,13 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 		return null;
 	}
-	
+
 	@Override
 	public void updateRoom(Room room) {
 
 		RoomData data = room.getData();
 
-		
+
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -281,7 +326,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			sqlConnection = this.dao.getStorage().getConnection();
 
 			preparedStatement = dao.getStorage().prepare("UPDATE rooms SET name = ?, description = ?, state = ?, password = ?, wallpaper = ?, floor = ? WHERE id = ?", sqlConnection);
-			
+
 			preparedStatement.setString(1, data.getName());
 			preparedStatement.setString(2, data.getDescription());
 			preparedStatement.setInt(3, data.getState().getStateCode());
@@ -289,7 +334,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			preparedStatement.setString(5, data.getWall());
 			preparedStatement.setString(6, data.getFloor());
 			preparedStatement.setInt(7, data.getID());
-			
+
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -301,7 +346,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		}
 
 	}
-	
+
 	@Override
 	public RoomModel getModel(String model) {
 		return roomModels.get(model);

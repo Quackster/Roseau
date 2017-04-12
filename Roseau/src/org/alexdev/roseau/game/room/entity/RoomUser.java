@@ -4,11 +4,15 @@ import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.alexdev.roseau.game.room.Room;
+import org.alexdev.roseau.game.room.RoomConnection;
 import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.game.room.model.Rotation;
+import org.alexdev.roseau.game.room.settings.RoomType;
+import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.OPEN_UIMAKOPPI;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
+import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.ItemDefinition;
@@ -102,34 +106,69 @@ public class RoomUser {
 
 		this.isWalking = false;
 		this.needsUpdate = true;
-		
+
+
+		if (this.entity instanceof Player) {
+
+			Player player = (Player)this.entity;
+
+			if (this.room.getData().getRoomType() == RoomType.PUBLIC) {
+
+				RoomConnection connectionRoom = this.room.getMapping().getRoomConnection(this.position.getX(), this.position.getY());
+
+				if (connectionRoom != null) {
+
+					/*
+					 *  Override new server port even if this player isn't actually 
+					 *  connected to this server
+					 *  
+					 *  This happens when they walk through walkways to enter other rooms 8-)
+					 */
+
+					Room room = Roseau.getGame().getRoomManager().getRoomByID(connectionRoom.getToID());
+
+					if (room != null) {
+						player.getNetwork().setServerPort(room.getData().getServerPort());
+						
+						if (connectionRoom.getDoorPosition() != null) {
+							room.loadRoom(player, connectionRoom.getDoorPosition(), connectionRoom.getDoorRotation());
+						} else {
+							room.loadRoom(player);
+						}
+						
+						return;
+					} else {
+						Log.println("Tried to connect player to room ID: " + connectionRoom.getToID() + " but no room could be found.");
+					}
+				}
+			}
+		}
+
 		Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
 
 		if (item == null) {
 			return;	
 		}
-		
+
 		ItemDefinition definition = item.getDefinition();
 
 		if (definition == null) {
 			return;
 		}
 
+		if (definition.getSprite().equals("poolBooth")) {
+
+			item.showProgram("close");
+			item.lockTiles(); // users cant walk on this tile
+
+			((Player) this.entity).send(new OPEN_UIMAKOPPI());
+			((Player) this.entity).getRoomUser().toggleWalkAbility();
+		}
+
 		if (definition.getBehaviour().isCanSitOnTop()) {
 			this.setRotation(item.getRotation(), false);
 			this.removeStatus("dance");
 			this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()));
-		}
-
-		if (this.entity instanceof Player) {
-			if (definition.getSprite().equals("poolBooth")) {
-
-				item.showProgram("close");
-				item.lockTiles(); // users cant walk on this tile
-
-				((Player) this.entity).send(new OPEN_UIMAKOPPI());
-				((Player) this.entity).getRoomUser().toggleWalkAbility();
-			}
 		}
 
 	}

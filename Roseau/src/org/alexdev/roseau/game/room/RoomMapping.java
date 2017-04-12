@@ -2,6 +2,7 @@ package org.alexdev.roseau.game.room;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.room.model.Position;
@@ -12,19 +13,32 @@ import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_REMOVE;
 public class RoomMapping {
 
 	private Room room;
+
 	private RoomTile[][] tiles;
+	private RoomConnection[][] connections = null;
+
+	private int mapSizeX;
+
+	private int mapSizeY;
 
 	public RoomMapping(Room room) {
 		this.room = room;
-
 	}
 
 	public void regenerateCollisionMaps() {
+		
+		this.mapSizeX = this.room.getData().getModel().getMapSizeX();
+		this.mapSizeY = this.room.getData().getModel().getMapSizeY();
 
-		int mapSizeX = this.room.getData().getModel().getMapSizeX();
-		int mapSizeY = this.room.getData().getModel().getMapSizeY();
+		if (this.connections == null) {
+			this.connections = new RoomConnection[mapSizeX][mapSizeY];
 
-		this.tiles = new RoomTile[mapSizeX][mapSizeY];
+			if (this.room.getData().getRoomType() == RoomType.PUBLIC) {
+				Roseau.getDataAccess().getRoom().setRoomConnections(this.room);
+			}
+		}
+
+		this.tiles = new RoomTile[this.mapSizeX][this.mapSizeY];
 
 		for (int y = 0; y < mapSizeY; y++) {
 			for (int x = 0; x < mapSizeX; x++) {
@@ -201,5 +215,18 @@ public class RoomMapping {
 		return this.tiles[x][y].getHighestItem();
 	}
 
+	public RoomConnection[][] getConnections() {
+		return connections;
+	}
+
+
+	public RoomConnection getRoomConnection(int x, int y) {
+
+		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
+			return null;
+		}
+
+		return this.connections[x][y];
+	}
 
 }
