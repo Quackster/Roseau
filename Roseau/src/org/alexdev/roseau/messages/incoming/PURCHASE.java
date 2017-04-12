@@ -72,7 +72,7 @@ public class PURCHASE implements MessageEvent {
 			}*/
 			
 			Player p = player.getPrivateRoomPlayer();
-			p.getInventory().getItems().add(item);
+			p.getInventory().addItem(item);
 			
 			player.send(new PURCHASE_ADDSTRIPITEM());
 			player.send(new PURCHASEOK());
