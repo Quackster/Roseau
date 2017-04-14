@@ -16,50 +16,26 @@ public class ClubMassivaDiscoEvent extends RoomEvent {
 	@Override
 	public void tick() {
 
-		if (this.currentLampID == -1) {
-			this.currentLampID = this.getNewLampID();
-		}
-
 		if (this.canTick(10)) { // 30 seconds 
-			room.send(new SHOWPROGRAM(new String[] {"lamp", "setlamp", String.valueOf(this.currentLampID)}));
+			
 			this.currentLampID = this.getNewLampID();
-		}
-
-		if (this.canTick(10)) { // 5 seconds 
+			room.send(new SHOWPROGRAM(new String[] {"lamp", "setlamp", String.valueOf(this.currentLampID)}));
+			
 			String discoID = String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1);
-
-			boolean otherPaletes = Roseau.getUtilities().getRandom().nextBoolean();
-
 			room.send(new SHOWPROGRAM(new String[] {"df1", "setfloora", discoID }));
+			room.send(new SHOWPROGRAM(new String[] {"df2", "setfloora", discoID }));
+			room.send(new SHOWPROGRAM(new String[] {"df3", "setfloora", discoID }));
+			
+			boolean otherPaletes = Roseau.getUtilities().getRandom().nextBoolean();
 
 			if (otherPaletes) {
 				room.send(new SHOWPROGRAM(new String[] {"df1", "setfloorb", discoID }));
-			}
-
-			room.send(new SHOWPROGRAM(new String[] {"df2", "setfloora", discoID }));
-
-			if (otherPaletes) {
 				room.send(new SHOWPROGRAM(new String[] {"df2", "setfloorb", discoID }));
-			}
-
-			room.send(new SHOWPROGRAM(new String[] {"df3", "setfloora", discoID }));
-
-			if (otherPaletes) {
 				room.send(new SHOWPROGRAM(new String[] {"df3", "setfloorb", discoID }));
 			}
 		}
-
-		/*room.send(new SHOWPROGRAM(new String[] {"df1", "setfloora", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
-		room.send(new SHOWPROGRAM(new String[] {"df1", "setfloorb", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
-
-		room.send(new SHOWPROGRAM(new String[] {"df2", "setfloora", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
-		room.send(new SHOWPROGRAM(new String[] {"df2", "setfloorb", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
-
-		room.send(new SHOWPROGRAM(new String[] {"df3", "setfloora", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
-		room.send(new SHOWPROGRAM(new String[] {"df3", "setfloorb", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));*/
-
+		
 		this.increaseTicked();
-
 	}
 
 	private int getNewLampID() {
@@ -72,6 +48,5 @@ public class ClubMassivaDiscoEvent extends RoomEvent {
 		
 		return lampID;
 	}
-	
 
 }
