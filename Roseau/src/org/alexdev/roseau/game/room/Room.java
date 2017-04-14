@@ -2,7 +2,6 @@ package org.alexdev.roseau.game.room;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
@@ -31,7 +30,6 @@ import org.alexdev.roseau.messages.outgoing.ITEMS;
 import org.alexdev.roseau.messages.outgoing.LOGOUT;
 import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.ROOM_READY;
-import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
 import org.alexdev.roseau.messages.outgoing.YOUARECONTROLLER;
@@ -40,7 +38,6 @@ import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 public class Room implements Runnable, SerializableObject {
 

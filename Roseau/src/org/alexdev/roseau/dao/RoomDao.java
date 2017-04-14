@@ -1,13 +1,11 @@
 package org.alexdev.roseau.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.game.room.Room;
-import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.model.RoomModel;
 
 public interface RoomDao {

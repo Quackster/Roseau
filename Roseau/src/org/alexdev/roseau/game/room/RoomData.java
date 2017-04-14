@@ -16,7 +16,6 @@ public class RoomData {
 	private String name;
 	private RoomState state;
 	private String password;
-	private int usersNow;
 	private int usersMax;
 	private String description;
 	private String model;
@@ -43,7 +42,6 @@ public class RoomData {
 		this.name = name;
 		this.state = RoomState.getState(state);
 		this.password = password;
-		this.usersNow = usersNow;
 		this.usersMax = usersMax;
 		this.description = description;
 		this.model = model;
@@ -156,7 +154,6 @@ public class RoomData {
 			}
 		}
 		
-		this.usersNow = finalAmount;
 		return finalAmount;
 	}
 
