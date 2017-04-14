@@ -173,7 +173,50 @@ public class RoomUser {
 
 	}
 
+	public void walkTo(int x, int y) {
+		
+		/*double height = player.getRoomUser().getRoom().getData().getModel().getHeight(x, y);
+		
+		Log.println("height: " + height);*/
 
+		if (this.room == null) {
+			return;
+		}
+		
+		if (!this.canWalk) {
+			return;
+		}
+		
+		Item item = this.room.getMapping().getHighestItem(x, y);
+
+		if (item != null) {
+			Log.println(item.getDefinition().getSprite() + " - " + item.getDefinition().getID());
+		}
+
+		if (!this.room.getMapping().isValidTile(this.entity, x, y)) {
+			return;
+		}
+
+		if (this.position.sameAs(new Position(x, y))) {
+			return;
+		}
+
+		this.goal.setX(x);
+		this.goal.setY(y);
+
+		LinkedList<Position> path = Pathfinder.makePath(this.entity);
+
+		if (path == null) {
+			return;
+		}
+
+		if (path.size() == 0) {
+			return;
+		}
+
+		this.path = path;
+		this.isWalking = true;
+	}
 
 	/*public void chat(String talkMessage, String header, boolean spamCheck) {
 
@@ -462,5 +505,7 @@ public class RoomUser {
 	public boolean canWalk() {
 		return this.canWalk;
 	}
+
+
 
 }

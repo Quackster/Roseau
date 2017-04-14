@@ -19,8 +19,6 @@ public class Player implements Entity {
 	private IPlayerNetwork network;
 	private RoomUser roomEntity;
 	private Inventory inventory;
-	
-	private Player createdFlat = null;
 	private Room lastCreatedRoom;
 
 	public Player(IPlayerNetwork network) {
@@ -73,6 +71,7 @@ public class Player implements Entity {
 	public void kickAllConnections() {
 		
 		try {
+			
 			List<Player> players = Roseau.getGame().getPlayerManager().getPlayers().values().stream().filter(s -> s.getDetails().getID() == this.details.getID()).collect(Collectors.toList());
 			
 			for (Player player : players) {
@@ -98,15 +97,6 @@ public class Player implements Entity {
 
 	public IPlayerNetwork getNetwork() {
 		return network;
-	}
-
-
-	public Player getCreatedFlat() {
-		return createdFlat;
-	}
-
-	public void setCreatedFlat(Player player) {
-		this.createdFlat = player;
 	}
 
 	public List<Room> getRooms() {

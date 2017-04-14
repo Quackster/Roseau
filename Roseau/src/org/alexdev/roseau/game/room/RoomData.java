@@ -53,7 +53,7 @@ public class RoomData {
 		
 		
 		try {
-			if (type == RoomType.PUBLIC) {
+			if (type == RoomType.PUBLIC && !this.hidden) {
 				
 				this.serverHandler = Class.forName(Roseau.getSocketConfiguration().get("extension.socket.entry"))
 						.asSubclass(IServerHandler.class)

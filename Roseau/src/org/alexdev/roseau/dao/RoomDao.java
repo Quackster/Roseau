@@ -3,6 +3,7 @@ package org.alexdev.roseau.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.game.room.Room;
@@ -22,5 +23,6 @@ public interface RoomDao {
 	public void deleteRoom(Room room);
 	public Room createRoom(Player player, String name, String description, String model, int state);
 	public List<Integer> setRoomConnections(Room room);
+	public List<Bot> getBots(Room room, int roomID);
 	
 }

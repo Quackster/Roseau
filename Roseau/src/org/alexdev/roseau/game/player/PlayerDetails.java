@@ -28,6 +28,13 @@ public class PlayerDetails implements SerializableObject {
 		this.authenticated = false;
 		this.entity = session;
 	}
+
+	public void fill(int id, String username, String mission, String figure, String sex) {
+		this.id = id;
+		this.username = username;
+		this.mission = mission;
+		this.figure = figure;
+	}
 	
 	public void fill(int id, String username, String mission, String figure, String poolFigure, String email, int rank, int credits, String sex, String country, String badge, String birthday) {
 		this.id = id;

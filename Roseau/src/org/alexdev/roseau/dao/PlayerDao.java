@@ -1,7 +1,11 @@
 package org.alexdev.roseau.dao;
 
+import java.util.List;
+
+import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
+import org.alexdev.roseau.game.room.Room;
 
 public interface PlayerDao {
 

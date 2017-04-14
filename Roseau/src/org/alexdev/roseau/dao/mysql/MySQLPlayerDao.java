@@ -4,13 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.util.IProcessStorage;
+import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
+import org.alexdev.roseau.game.room.Room;
+import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.log.Log;
+
+import com.google.common.collect.Lists;
 
 public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> implements PlayerDao {
 
@@ -222,4 +228,5 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 		}
 
 	}
+	
 }

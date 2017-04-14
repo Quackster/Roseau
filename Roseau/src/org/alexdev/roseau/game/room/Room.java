@@ -12,9 +12,13 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
+import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.game.room.entity.RoomUserStatus;
+import org.alexdev.roseau.game.room.events.BotMoveRoomEvent;
+import org.alexdev.roseau.game.room.events.ClubMassivaDiscoEvent;
+import org.alexdev.roseau.game.room.events.RoomEvent;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.game.room.settings.RoomType;
@@ -50,15 +54,174 @@ public class Room implements Runnable, SerializableObject {
 
 	private ConcurrentHashMap<Integer, Item> passiveObjects;
 	private ConcurrentHashMap<Integer, Item> items;
+
+	private List<Bot> bots;
+	private ArrayList<RoomEvent> events;
 	
 	private ScheduledFuture<?> tickTask = null;
 	private List<Integer> rights;
 
+
 	public Room() {
 		this.roomData = new RoomData(this);
 		this.roomMapping = new RoomMapping(this);
-		
 		this.entities = Lists.newArrayList();
+		this.events = Lists.newArrayList();
+	}
+
+	public void init() {
+		this.disposed = false;
+
+		if (this.tickTask == null) {
+			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
+		}
+
+		this.passiveObjects = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName(), this.roomData.getID());
+
+		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
+			this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getID());
+			this.items = Roseau.getDataAccess().getItem().getRoomItems(this.roomData.getID());
+		}
+
+		this.bots = Roseau.getDataAccess().getRoom().getBots(this, this.roomData.getID());
+		
+		if (this.bots.size() > 0) {
+			this.entities.addAll(this.bots);
+			
+			this.events.add(new BotMoveRoomEvent(this));
+		}
+		
+
+		if (this.roomData.getModelName().equals("bar_b")) {
+			this.events.add(new ClubMassivaDiscoEvent(this));
+		}
+		
+		this.roomMapping.regenerateCollisionMaps();
+	}
+
+	public void loadRoom(Player player) {
+
+		if (this.roomData.getModel() != null) {
+			this.loadRoom(player, this.roomData.getModel().getDoorPosition(), this.roomData.getModel().getDoorRot());
+		} else {
+			Log.println("Could not load door data for room model '" + this.roomData.getModelName() + "'");
+		}
+	}
+
+	public void loadRoom(Player player, Position door, int rotation) {
+
+		RoomUser roomEntity = player.getRoomUser();
+
+		if (player.getRoomUser().getRoom() != null) {
+			player.getRoomUser().getRoom().leaveRoom(player, false);
+		}
+
+		roomEntity.setRoom(this);
+		roomEntity.getStatuses().clear();
+
+		if (this.roomData.getModel() != null) {
+			roomEntity.getPosition().setX(door.getX());
+			roomEntity.getPosition().setY(door.getY());
+			roomEntity.getPosition().setZ(door.getZ());
+			roomEntity.setRotation(rotation, false);
+		}
+
+		if (this.roomData.getModel() == null) {
+			Log.println("Could not load heightmap for room model '" + this.roomData.getModelName() + "'");
+		}	
+
+		if (this.entities.size() > 0) {
+			this.send(player.getRoomUser().getUsersComposer());
+			player.getRoomUser().sendStatusComposer();
+		} else {
+			this.init();
+		}
+
+		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
+
+			player.getInventory().load();
+			player.send(new ROOM_READY(this.roomData.getDescription()));
+
+			int wallData = Integer.parseInt(this.roomData.getWall());
+			int floorData = Integer.parseInt(this.roomData.getFloor());
+
+			if (wallData > 0) {
+				player.send(new FLATPROPERTY("wallpaper", this.roomData.getWall()));
+			}	
+
+			if (floorData > 0) {
+				player.send(new FLATPROPERTY("floor", this.roomData.getFloor()));
+			}
+
+			if (this.roomData.getOwnerID() == player.getDetails().getID()) {	
+				player.send(new YOUAREOWNER());
+				roomEntity.setStatus("flatctrl", " useradmin");
+			} else if (this.hasRights(player.getDetails().getID(), false)) {
+				player.send(new YOUARECONTROLLER());
+			}
+		}
+
+		if (this.roomData.getModel() != null) {
+			player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
+		}
+
+		player.send(new OBJECTS_WORLD(this.roomData.getModelName(), this.passiveObjects));
+		player.send(new ACTIVE_OBJECTS(this));
+		player.send(new ITEMS(this));
+
+
+		player.send(new USERS(this.entities));
+		player.send(new STATUS(this.entities));
+
+		player.send(player.getRoomUser().getUsersComposer());
+		player.send(player.getRoomUser().getStatusComposer());
+
+		this.entities.add(player);
+	}
+
+	public void send(OutgoingMessageComposer response, boolean checkRights) {
+
+		if (this.disposed) {
+			return;
+		}
+
+		for (Player player : this.getPlayers()) {
+			player.send(response);
+		}
+	}
+
+
+	public void leaveRoom(Player player, boolean hotelView) {
+
+		if (hotelView) {
+
+		}
+
+		if (this.entities != null) {
+			this.entities.remove(player);
+		}
+
+		player.getInventory().dispose();
+
+		RoomUser roomUser = player.getRoomUser();
+		roomUser.dispose();
+
+		this.send(new LOGOUT(player.getDetails().getUsername()));
+
+		this.dispose();
+	}
+
+	public boolean hasRights(int userID, boolean ownerCheckOnly) {
+
+		if (this.roomData.getOwnerID() == userID) {
+			return true;
+		} else {
+			if (!ownerCheckOnly) {
+				return this.rights.contains(userID);
+			}
+		}
+
+		return false;
 	}
 
 	@Override
@@ -67,6 +230,10 @@ public class Room implements Runnable, SerializableObject {
 		try {
 			if (this.disposed || this.entities.size() == 0) {
 				return;
+			}
+			
+			for (RoomEvent event : this.events) {
+				event.tick();
 			}
 
 			List<Entity> update_entities = new ArrayList<Entity>();
@@ -164,162 +331,6 @@ public class Room implements Runnable, SerializableObject {
 		}
 	}
 
-
-	public void loadRoom(Player player) {
-		this.loadRoom(player, this.roomData.getModel().getDoorPosition(), this.roomData.getModel().getDoorRot());
-	}
-	
-	public void loadRoom(Player player, Position door, int rotation) {
-
-		RoomUser roomEntity = player.getRoomUser();
-		
-		if (player.getRoomUser().getRoom() != null) {
-			player.getRoomUser().getRoom().leaveRoom(player, false);
-		}
-
-		roomEntity.setRoom(this);
-		roomEntity.getStatuses().clear();
-
-		if (this.roomData.getModel() != null) {
-			roomEntity.getPosition().setX(door.getX());
-			roomEntity.getPosition().setY(door.getY());
-			roomEntity.getPosition().setZ(door.getZ());
-			roomEntity.setRotation(rotation, false);
-		}
-
-		if (this.roomData.getModel() == null) {
-			Log.println("Could not load heightmap for room model '" + this.roomData.getModelName() + "'");
-		}	
-
-		if (this.entities.size() > 0) {
-			this.send(player.getRoomUser().getUsersComposer());
-			player.getRoomUser().sendStatusComposer();
-		} else {
-			this.init();
-		}
-
-		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
-
-			player.getInventory().load();
-			player.send(new ROOM_READY(this.roomData.getDescription()));
-
-			int wallData = Integer.parseInt(this.roomData.getWall());
-			int floorData = Integer.parseInt(this.roomData.getFloor());
-
-			if (wallData > 0) {
-				player.send(new FLATPROPERTY("wallpaper", this.roomData.getWall()));
-			}	
-
-			if (floorData > 0) {
-				player.send(new FLATPROPERTY("floor", this.roomData.getFloor()));
-			}
-
-			if (this.roomData.getOwnerID() == player.getDetails().getID()) {	
-				player.send(new YOUAREOWNER());
-				roomEntity.setStatus("flatctrl", " useradmin");
-			} else if (this.hasRights(player.getDetails().getID(), false)) {
-				player.send(new YOUARECONTROLLER());
-			}
-		}
-
-		if (this.roomData.getModel() != null) {
-			player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
-		}
-
-		player.send(new OBJECTS_WORLD(this.roomData.getModelName(), this.passiveObjects));
-		player.send(new ACTIVE_OBJECTS(this));
-		player.send(new ITEMS(this));
-
-
-		player.send(new USERS(this.entities));
-		player.send(new STATUS(this.entities));
-
-		player.send(player.getRoomUser().getUsersComposer());
-		player.send(player.getRoomUser().getStatusComposer());
-
-		this.entities.add(player);
-		
-		if (this.roomData.getModelName().equals("bar_b")) {
-			
-			//http://i.imgur.com/XQZ3b1y.png
-			
-			// 1-6
-			//this.send(new SHOWPROGRAM(new String[] {"lamp", "setlamp", "2"}));
-			
-			
-			this.send(new SHOWPROGRAM(new String[] {"df1", "setfloora", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
-			this.send(new SHOWPROGRAM(new String[] {"df1", "setfloorb", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
-			
-			this.send(new SHOWPROGRAM(new String[] {"df2", "setfloora", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
-			this.send(new SHOWPROGRAM(new String[] {"df2", "setfloorb", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
-			
-			this.send(new SHOWPROGRAM(new String[] {"df3", "setfloora", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
-			this.send(new SHOWPROGRAM(new String[] {"df3", "setfloorb", String.valueOf(Roseau.getUtilities().getRandom().nextInt(14) + 1)}));
-		}
-	}
-
-	public void send(OutgoingMessageComposer response, boolean checkRights) {
-
-		if (this.disposed) {
-			return;
-		}
-
-		for (Player player : this.getPlayers()) {
-			player.send(response);
-		}
-	}
-
-
-	public void leaveRoom(Player player, boolean hotelView) {
-
-		if (hotelView) {
-
-		}
-
-		if (this.entities != null) {
-			this.entities.remove(player);
-		}
-
-		player.getInventory().dispose();
-
-		RoomUser roomUser = player.getRoomUser();
-		roomUser.dispose();
-
-		this.send(new LOGOUT(player.getDetails().getUsername()));
-
-		this.dispose();
-	}
-
-	public boolean hasRights(int userID, boolean ownerCheckOnly) {
-
-		if (this.roomData.getOwnerID() == userID) {
-			return true;
-		} else {
-			if (!ownerCheckOnly) {
-				return this.rights.contains(userID);
-			}
-		}
-
-		return false;
-	}
-
-	public void init() {
-		this.disposed = false;
-
-		if (this.tickTask == null) {
-			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
-		}
-
-		this.passiveObjects = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName(), this.roomData.getID());
-
-		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
-			this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getID());
-			this.items = Roseau.getDataAccess().getItem().getRoomItems(this.roomData.getID());
-		}
-		
-		this.roomMapping.regenerateCollisionMaps();
-	}
-
 	public void dispose(boolean forceDisposal) {
 
 		try {
@@ -363,7 +374,15 @@ public class Room implements Runnable, SerializableObject {
 
 		if (this.entities != null) {
 			this.entities.clear();
-		}		
+		}
+		
+		if (this.bots != null) {
+			this.bots.clear();
+		}
+		
+		if (this.events != null) {
+			this.events.clear();
+		}
 
 		if (this.tickTask != null) {
 			this.tickTask.cancel(true);
@@ -416,6 +435,14 @@ public class Room implements Runnable, SerializableObject {
 		return roomData;
 	}
 
+	public boolean isDisposed() {
+		return disposed;
+	}
+
+	public void setDisposed(boolean disposed) {
+		this.disposed = disposed;
+	}
+
 	public void save() {
 		Roseau.getDataAccess().getRoom().updateRoom(this);
 	}
@@ -454,19 +481,19 @@ public class Room implements Runnable, SerializableObject {
 		}
 
 		if (!this.roomData.getModel().hasDisabledHeightCheck()) {
-		
-		if (heightCurrent > heightNeighour) {
-			if ((heightCurrent - heightNeighour) >= 3.0) {
-				return false;
-			}
-		}
 
-		if (heightNeighour > heightCurrent) {
-			if ((heightNeighour - heightCurrent) >= 1.2) {
-				return false;
+			if (heightCurrent > heightNeighour) {
+				if ((heightCurrent - heightNeighour) >= 3.0) {
+					return false;
+				}
 			}
-		}
-		
+
+			if (heightNeighour > heightCurrent) {
+				if ((heightNeighour - heightCurrent) >= 1.2) {
+					return false;
+				}
+			}
+
 		}
 
 		if (!current.sameAs(this.roomData.getModel().getDoorPosition())) {
@@ -542,5 +569,9 @@ public class Room implements Runnable, SerializableObject {
 
 	public void setOrderID(int orderID) {
 		this.orderID = orderID;
+	}
+
+	public List<Bot> getBots() {
+		return bots;
 	}
 }

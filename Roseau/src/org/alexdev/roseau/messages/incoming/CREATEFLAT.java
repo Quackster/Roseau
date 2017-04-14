@@ -16,7 +16,7 @@ public class CREATEFLAT implements MessageEvent {
 		String roomName = reader.getArgument(2, "/");
 		String roomModel = reader.getArgument(3, "/");
 		String roomState = reader.getArgument(4, "/");
-		
+
 		if (!floor.equals("first floor")) {
 			player.kickAllConnections();
 			return;
@@ -38,10 +38,16 @@ public class CREATEFLAT implements MessageEvent {
 				!roomModel.equals("model_d") && 
 				!roomModel.equals("model_e") && 
 				!roomModel.equals("model_f")) {
-			
+
 			// Possibru scripter? HAX! KICK THEM!!!
 			player.kickAllConnections();
 			return;
+		}
+
+		Player publicRoomPlayer = Roseau.getGame().getPlayerManager().getIdenticalPlayer(player.getDetails().getID(), player.getNetwork().getConnectionId());
+
+		if (publicRoomPlayer != null) {
+			publicRoomPlayer.getNetwork().close();
 		}
 
 		Room room = Roseau.getDataAccess().getRoom().createRoom(player, roomName, "", roomModel, state);

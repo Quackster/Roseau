@@ -10,6 +10,7 @@ import java.util.Map;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.dao.RoomDao;
 import org.alexdev.roseau.dao.util.IProcessStorage;
+import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.game.room.Room;
@@ -355,6 +356,47 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 	}
 
+	@Override
+	public List<Bot> getBots(Room room, int roomID) {
+		
+		List<Bot> bots = Lists.newArrayList();
+		
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			sqlConnection = this.dao.getStorage().getConnection();
+			
+			preparedStatement = this.dao.getStorage().prepare("SELECT id, name,figure,motto,start_x,start_y,start_z,start_rotation,walk_to,messages FROM room_bots WHERE room_id = ?", sqlConnection);
+			preparedStatement.setInt(1, roomID);
+			
+			resultSet = preparedStatement.executeQuery();
+	
+			while (resultSet.next()) {
+				
+				Bot bot = new Bot(new Position(resultSet.getInt("start_x"), resultSet.getInt("start_y"), resultSet.getInt("start_z")), resultSet.getInt("start_rotation"));
+				bot.getDetails().fill(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("motto"), resultSet.getString("figure"), "Male");
+				
+				bot.getRoomUser().setPosition(bot.getStartPosition());
+				bot.getRoomUser().setRotation(bot.getStartRotation(), false);
+				bot.getRoomUser().setRoom(room);
+				
+				bots.add(bot);
+			}
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(resultSet);
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
+		
+		return bots;
+	}
+	
 	@Override
 	public RoomModel getModel(String model) {
 		return roomModels.get(model);
