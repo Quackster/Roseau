@@ -493,13 +493,13 @@ public class Room implements Runnable, SerializableObject {
 
 		}
 
-		if (!current.sameAs(this.roomData.getModel().getDoorPosition())) {
+		if (!current.isMatch(this.roomData.getModel().getDoorPosition())) {
 
 			if (!this.roomMapping.isValidTile(player, current.getX(), current.getY())) {
 				return false;
 			}
 
-			if (!current.sameAs(player.getRoomUser().getPosition())) {
+			if (!current.isMatch(player.getRoomUser().getPosition())) {
 				if (currentItem != null) {
 					if (!isFinalMove) {
 						return currentItem.getDefinition().getBehaviour().isCanStandOnTop();

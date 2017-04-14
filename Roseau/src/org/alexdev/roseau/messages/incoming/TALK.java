@@ -2,8 +2,6 @@ package org.alexdev.roseau.messages.incoming;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
-import org.alexdev.roseau.game.room.model.Position;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.CHAT_MESSAGE;
 import org.alexdev.roseau.server.messages.ClientMessage;
@@ -61,21 +59,9 @@ public class TALK implements MessageEvent {
 
 			player.getRoomUser().getRoom().send(new CHAT_MESSAGE(reader.getHeader(), player.getDetails().getUsername(), reader.getMessageBody()));
 
-			if (reader.getHeader().equals("CHAT")) {
-
-				for (Player roomPlayer : player.getRoomUser().getRoom().getPlayers()) {
-					if (roomPlayer == player) {
-						continue;
-					}
-
-					Position currentPoint = player.getRoomUser().getPosition();
-					Position playerPoint = roomPlayer.getRoomUser().getPosition();
-
-					Log.println("Chat distance: " + currentPoint.getDistance(playerPoint));
-
-					if (currentPoint.getDistance(playerPoint) <= 30) {
-						roomPlayer.getRoomUser().lookTowards(playerPoint);
-					}
+			if (reader.getHeader().equals("CHAT") || reader.getHeader().equals("SHOUT")) {
+				for (Player roomPlayer : player.getRoomUser().getRoom().getMapping().getNearbyPlayers(player, 30)) {
+					roomPlayer.getRoomUser().lookTowards(player.getRoomUser().getPosition());
 				}
 			}
 		}

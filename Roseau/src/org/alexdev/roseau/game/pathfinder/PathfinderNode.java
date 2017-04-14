@@ -57,11 +57,11 @@ public class PathfinderNode implements Comparable<PathfinderNode> {
 
     @Override
     public boolean equals(Object obj) {
-        return (obj instanceof PathfinderNode) && ((PathfinderNode) obj).getPosition().equals(this.position);
+        return (obj instanceof PathfinderNode) && ((PathfinderNode) obj).getPosition().isMatch(this.position);
     }
 
     public boolean equals(PathfinderNode node) {
-        return node.getPosition().equals(this.position);
+        return node.getPosition().isMatch(this.position);
     }
 
     @Override

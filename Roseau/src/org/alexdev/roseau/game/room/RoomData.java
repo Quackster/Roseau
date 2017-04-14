@@ -32,8 +32,6 @@ public class RoomData {
 	}
 	
 	public void fill(int id, boolean hidden, RoomType type, int ownerID, String ownerName, String name, int state, String password, int usersNow, int usersMax, String description, String model, String clazz, String wall,String floor) {
-
-		
 		this.id = id;
 		this.hidden = hidden;
 		this.roomType = type;

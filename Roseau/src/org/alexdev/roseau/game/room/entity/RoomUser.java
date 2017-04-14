@@ -173,6 +173,10 @@ public class RoomUser {
 
 	}
 
+	public void walkTo(Position position) {
+		this.walkTo(position.getX(), position.getY());
+	}
+	
 	public void walkTo(int x, int y) {
 		
 		/*double height = player.getRoomUser().getRoom().getData().getModel().getHeight(x, y);
@@ -197,7 +201,7 @@ public class RoomUser {
 			return;
 		}
 
-		if (this.position.sameAs(new Position(x, y))) {
+		if (this.position.isMatch(new Position(x, y))) {
 			return;
 		}
 

@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
+import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_ADD;
@@ -140,6 +141,31 @@ public class RoomMapping {
 		// This is returned when there's no items found, it will
 		// just check the default model if the tile is valid
 		return tile_valid;
+	}
+	
+	public List<Player> getNearbyPlayers(Entity entity, int distance) {
+		return this.getNearbyPlayers(entity, entity.getRoomUser().getPosition(), distance);
+	}
+	
+	public List<Player> getNearbyPlayers(Entity entity, Position start, int distance) {
+		
+		List<Player> players = Lists.newArrayList();
+		
+		for (Player roomPlayer : room.getPlayers()) {
+			
+			if (roomPlayer == entity) {
+				continue;
+			}
+			
+			Position currentPoint = start;
+			Position playerPoint = roomPlayer.getRoomUser().getPosition();
+
+			if (currentPoint.getDistance(playerPoint) <= distance) {
+				players.add(roomPlayer);
+			}
+		}
+		
+		return players;
 	}
 
 	public void addItem(Item item, boolean wall_item) {

@@ -8,15 +8,15 @@ public class Position {
 
 	public Position() {
 		this(0, 0, 0);
-	
+
 	}
-	
+
 	public Position(String position) {
 		String[] coords = position.split(",", 2);
 		this.X = Short.parseShort(coords[0]);
 		this.Y = Short.parseShort(coords[1]);
 	}
-	
+
 	public Position(int x, int y) {
 		this.X = x;
 		this.Y = y;
@@ -68,15 +68,13 @@ public class Position {
 
 		return (dx * dx) + (dy * dy);
 	}
-	
-	public int getDistance(Position point) {
-return (int)Math.hypot(this.getX() - point.getX(), this.getY() - point.getY());
-	}
-	
-	
-	
 
-	public boolean sameAs(Position point) {	
+	public int getDistance(Position point) {
+		return (int)Math.hypot(this.getX() - point.getX(), this.getY() - point.getY());
+	}
+
+	
+	public boolean isMatch(Position point) {	
 		return (this.X == point.getX() && this.Y == point.getY());
 	}
 
