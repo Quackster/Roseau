@@ -256,7 +256,7 @@ public class RoomUser {
 			return;
 		}
 
-		int diff = this.getPosition().getHeadRotation() - Rotation.calculateHumanDirection(this.position.getX(), this.position.getY(), look.getX(), look.getY());
+		int diff = this.getPosition().getBodyRotation() - Rotation.calculateHumanDirection(this.position.getX(), this.position.getY(), look.getX(), look.getY());
 
 
 		if ((this.getPosition().getBodyRotation() % 2) == 0)
