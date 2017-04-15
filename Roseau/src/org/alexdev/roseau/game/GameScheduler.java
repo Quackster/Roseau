@@ -17,11 +17,11 @@ public class GameScheduler implements Runnable {
 		}
 		
 		// every 5 seconds
-		if ((this.tickRate % TimeUnit.MINUTES.toSeconds(10)) == 0) {
+		if ((this.tickRate % TimeUnit.MINUTES.toSeconds(Roseau.getUtilities().getConfiguration().get("Scheduler", "credits.every.x.mins", Integer.class))) == 0) {
 			
 			for (Player player : Roseau.getGame().getPlayerManager().getMainServerPlayers()) {
 				
-				player.getDetails().setCredits(player.getDetails().getCredits() + 25);
+				player.getDetails().setCredits(player.getDetails().getCredits() + Roseau.getUtilities().getConfiguration().get("Scheduler", "credits.every.x.amount", Integer.class));
 				player.getDetails().sendCredits();
 				player.getDetails().save();
 			}

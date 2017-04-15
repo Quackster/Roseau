@@ -23,7 +23,7 @@ public class Roseau {
 	private static Game game;
 	private static Dao dao;
 	private static boolean isDebug;
-	
+
 	private static String serverIP;
 	private static int serverPort;
 	private static Configuration socketConfiguration;
@@ -42,10 +42,10 @@ public class Roseau {
 			createConfig();
 			Log.startup();
 			loadDependencies();
-			
+
 			serverIP = utilities.getConfiguration().get("Server", "server.ip", String.class);
 			serverPort = utilities.getConfiguration().get("Server", "server.port", int.class);	
-			
+
 			if (utilities.getConfiguration().get("Database", "type", String.class).equalsIgnoreCase("mysql")) {
 				dao = new MySQLDao();
 			}
@@ -59,16 +59,16 @@ public class Roseau {
 
 
 		} catch (Exception e) {
-			
+
 		}
 	}
 
 	private static void loadDependencies() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 
 		List<File> libs = new ArrayList<File>();
-		
+
 		Log.println("Loading dependencies");
-		
+
 		if (!isDebug) { // if not debug mode, then we include libraries
 			Configuration libraryConfig = new Configuration(new File("lib" + File.separator + "libraries.properties"));
 			String[] libraries = libraryConfig.get("libraries").split(",");
@@ -79,7 +79,7 @@ public class Roseau {
 				libs.add(libFile);
 			}
 		}
-		
+
 		socketConfiguration = new Configuration(new File("extensions" + File.separator + "roseau_socket_extension.conf"));
 		libs.add(new File(socketConfiguration.get("extension.socket.jar")));
 
@@ -87,9 +87,9 @@ public class Roseau {
 		try {
 			for (final File lib : libs) { 
 				if (lib.exists()) { 
-					
+
 					Log.println("Loading: " + lib.getName());
-					
+
 					JarUtils.extractFromJar(lib.getName(), lib.getAbsolutePath()); 
 				} 
 			} 
@@ -102,11 +102,11 @@ public class Roseau {
 
 				JarUtils.addClassPath(JarUtils.getJarUrl(lib)); 
 			}
-			
+
 			Log.println();
 
 			server = Class.forName(socketConfiguration.get("extension.socket.entry")).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
-			
+
 			if (server == null) {
 				Log.println("Server null");
 			}
@@ -126,7 +126,7 @@ public class Roseau {
 			writer.flush();
 			writer.close();
 		}
-		
+
 		file = new File("habbohotel.properties");
 
 		if (!file.isFile()) { 
@@ -165,26 +165,30 @@ public class Roseau {
 		writer.println("[Register]");
 		writer.println("user.name.chars=1234567890qwertyuiopasdfghjklzxcvbnm-=?!@:.,");
 		writer.println();
+		writer.println("[Scheduler]");
+		writer.println("credits.every.x.mins=10");
+		writer.println("credits.every.x.amount=25");
+		writer.println();
 
 	}
 
-	
+
 	private static void startServer() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
 
 		String serverIP = utilities.getConfiguration().get("Server", "server.ip", String.class);
 		int serverPort = utilities.getConfiguration().get("Server", "server.port", int.class);
-		
+
 
 		Log.println("Settting up server");
 
 		server.setIp(serverIP);
 		server.setPort(serverPort);
-		
+
 		privateRoomServer = Class.forName(socketConfiguration.get("extension.socket.entry")).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
 		privateRoomServer.setIp(serverIP);
 		privateRoomServer.setPort(serverPort - 1);
 		privateRoomServer.listenSocket();
-		
+
 		if (server.listenSocket()) {
 			Log.println("Server is listening on " + serverIP + ":" + serverPort);
 		} else {
@@ -219,7 +223,7 @@ public class Roseau {
 	public static int getServerPort() {
 		return serverPort;
 	}
-	
+
 	public static int getPrivateServerPort() {
 		return serverPort -1;
 	}
