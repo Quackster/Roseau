@@ -8,6 +8,7 @@ import org.alexdev.roseau.messages.incoming.APPROVENAME;
 import org.alexdev.roseau.messages.incoming.CLOSE_UIMAKOPPI;
 import org.alexdev.roseau.messages.incoming.CREATEFLAT;
 import org.alexdev.roseau.messages.incoming.DANCE;
+import org.alexdev.roseau.messages.incoming.DELETEFLAT;
 import org.alexdev.roseau.messages.incoming.FINDUSER;
 import org.alexdev.roseau.messages.incoming.FLATPROPERTYBYITEM;
 import org.alexdev.roseau.messages.incoming.GETCREDITS;
@@ -93,6 +94,7 @@ public class MessageHandler {
 		this.messages.put("SETFLATINFO", new SETFLATINFO());
 		this.messages.put("GETFLATINFO", new GETFLATINFO());
 		this.messages.put("UPDATEFLAT", new UPDATEFLAT());
+		this.messages.put("DELETEFLAT", new DELETEFLAT());
 	}
 	
 	private void registerRoomPackets() {

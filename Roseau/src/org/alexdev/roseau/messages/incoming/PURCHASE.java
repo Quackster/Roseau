@@ -58,7 +58,7 @@ public class PURCHASE implements MessageEvent {
 				item.save();
 			}
 			
-			//player.send(new SYSTEMBROADCAST("Buying successful!"));
+			player.send(new SYSTEMBROADCAST("Buying successful!"));
 			
 			// Update the player connected to the private room
 			//   (because PURCHASE is handled by the connection on the main game server, but we need to update the connection
@@ -74,7 +74,7 @@ public class PURCHASE implements MessageEvent {
 			p.getInventory().addItem(item);
 			
 			player.send(new PURCHASE_ADDSTRIPITEM());
-			player.send(new PURCHASEOK());
+			//player.send(new PURCHASEOK());
 			
 			player.getDetails().setCredits(player.getDetails().getCredits() - product.getCredits());
 			player.getDetails().sendCredits();

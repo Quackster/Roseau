@@ -15,7 +15,7 @@ public class FLATINFO implements OutgoingMessageComposer {
 	@Override
 	public void write(Response response) {
 		response.init("SETFLATINFO");
-		response.append("/");
+		response.appendNewArgument("/");
 		response.append(String.valueOf(this.room.getData().getID()));
 		response.append("/");
 	}

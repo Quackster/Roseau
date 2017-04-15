@@ -55,7 +55,7 @@ public class Room implements Runnable, SerializableObject {
 
 	private List<Bot> bots;
 	private ArrayList<RoomEvent> events;
-	
+
 	private ScheduledFuture<?> tickTask = null;
 	private List<Integer> rights;
 
@@ -82,22 +82,22 @@ public class Room implements Runnable, SerializableObject {
 		}
 
 		this.bots = Roseau.getDataAccess().getRoom().getBots(this, this.roomData.getID());
-		
+
 		if (this.bots.size() > 0) {
 			this.entities.addAll(this.bots);
-			
+
 			this.events.add(new BotMoveRoomEvent(this));
 		}
-		
+
 
 		if (this.roomData.getModelName().equals("bar_b")) {
 			this.events.add(new ClubMassivaDiscoEvent(this));
 		}
-		
+
 		if (this.roomData.getModelName().equals("pool_b")) {
 			this.events.add(new LidoRoomEvent(this));
 		}
-		
+
 		this.roomMapping.regenerateCollisionMaps();
 	}
 
@@ -196,7 +196,9 @@ public class Room implements Runnable, SerializableObject {
 	public void leaveRoom(Player player, boolean hotelView) {
 
 		if (hotelView) {
-
+			if (player.getPrivateRoomPlayer() != null) { 
+				player.getPrivateRoomPlayer().getNetwork().close();
+			}
 		}
 
 		if (this.entities != null) {
@@ -233,7 +235,7 @@ public class Room implements Runnable, SerializableObject {
 			if (this.disposed || this.entities.size() == 0) {
 				return;
 			}
-			
+
 			for (RoomEvent event : this.events) {
 				event.tick();
 			}
@@ -338,6 +340,11 @@ public class Room implements Runnable, SerializableObject {
 		try {
 
 			if (forceDisposal) {
+
+				for (Player player : this.getPlayers()) {
+					this.leaveRoom(player, true);
+				}
+
 				this.clearData();
 				this.entities = null;
 				Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getID());
@@ -377,11 +384,11 @@ public class Room implements Runnable, SerializableObject {
 		if (this.entities != null) {
 			this.entities.clear();
 		}
-		
+
 		if (this.bots != null) {
 			this.bots.clear();
 		}
-		
+
 		if (this.events != null) {
 			this.events.clear();
 		}
