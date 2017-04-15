@@ -2,7 +2,10 @@ package org.alexdev.roseau.game;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
+import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.game.catalogue.CatalogueManager;
 import org.alexdev.roseau.game.item.ItemManager;
@@ -17,6 +20,7 @@ public class Game {
 	private ItemManager itemManager;
 	private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(8);
 	private CatalogueManager catalogueManager;
+	private ScheduledFuture<?> gameScheduler = null;
 	
 	public Game(Dao dao) throws Exception {
 		this.playerManager = new PlayerManager();
@@ -31,6 +35,9 @@ public class Game {
 			this.roomManager.load();
 			this.itemManager.load();
 			this.catalogueManager.load();
+			
+			this.gameScheduler = Roseau.getGame().getScheduler().scheduleAtFixedRate(new GameScheduler(), 0, 1, TimeUnit.SECONDS);
+			
 		} catch (Exception e) {
 			Log.exception(e);
 		}
@@ -54,5 +61,13 @@ public class Game {
 
 	public CatalogueManager getCatalogueManager() {
 		return catalogueManager;
+	}
+
+	public ScheduledFuture<?> getGameScheduler() {
+		return gameScheduler;
+	}
+
+	public void setGameScheduler(ScheduledFuture<?> gameScheduler) {
+		this.gameScheduler = gameScheduler;
 	}
 }

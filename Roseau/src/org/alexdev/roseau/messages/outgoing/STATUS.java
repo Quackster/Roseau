@@ -37,8 +37,8 @@ public class STATUS implements OutgoingMessageComposer {
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getX()));
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getY()), ',');
 			response.appendArgument(String.valueOf((int)entity.getRoomUser().getPosition().getZ()), ',');			
-			response.appendArgument(String.valueOf(entity.getRoomUser().getHeadRotation()), ',');
-			response.appendArgument(String.valueOf(entity.getRoomUser().getRotation()), ',');
+			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getHeadRotation()), ',');
+			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getBodyRotation()), ',');
 			
 			String status = "/";
 

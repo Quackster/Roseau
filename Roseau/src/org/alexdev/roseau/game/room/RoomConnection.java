@@ -8,14 +8,12 @@ public class RoomConnection
 	private int toID;
 	
 	private Position door;
-	private int doorRotation;
 	
-	public RoomConnection(int roomID, int toID, Position door, int doorRotation) {
+	public RoomConnection(int roomID, int toID, Position door) {
 		super();
 		this.roomID = roomID;
 		this.toID = toID;
 		this.door = door;
-		this.doorRotation = doorRotation;
 	}
 
 	public int getRoomID() {
@@ -36,10 +34,6 @@ public class RoomConnection
 
 	public Position getDoorPosition() {
 		return door;
-	}
-
-	public int getDoorRotation() {
-		return doorRotation;
 	}
 
 }

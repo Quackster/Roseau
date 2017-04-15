@@ -1,8 +1,14 @@
 package org.alexdev.roseau.game.player;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 import org.alexdev.roseau.Roseau;
+import org.alexdev.roseau.game.room.Room;
+import org.alexdev.roseau.game.room.settings.RoomType;
 
 public class PlayerManager {
 
@@ -134,6 +140,20 @@ public class PlayerManager {
 		
 		// Bad for whatever reason!
 		return false;
+	}
+	
+	public List<Player> getMainServerPlayers() {
+		try {
+			List<Player> players =  this.players.values().stream().filter(player -> 
+			player.getNetwork().getServerPort() == Roseau.getServerPort() &&
+			player.getDetails().isAuthenticated())
+			.collect(Collectors.toList());
+			
+			return players;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	public ConcurrentHashMap<Integer, Player> getPlayers() {

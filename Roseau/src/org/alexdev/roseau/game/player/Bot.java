@@ -11,14 +11,12 @@ public class Bot implements Entity {
 	private RoomUser roomEntity;
 	
 	private Position startPosition;
-	private int startRotation;
 
-	public Bot(Position startPosition, int startRotation) {
+	public Bot(Position startPosition) {
 		this.details = new PlayerDetails(this);
 		this.roomEntity = new RoomUser(this);
 		
 		this.startPosition = startPosition;
-		this.startRotation = startRotation;
 	}
 	
 	public PlayerDetails getDetails() {
@@ -37,9 +35,5 @@ public class Bot implements Entity {
 
 	public Position getStartPosition() {
 		return startPosition;
-	}
-	
-	public int getStartRotation() {
-		return startRotation;
 	}
 }

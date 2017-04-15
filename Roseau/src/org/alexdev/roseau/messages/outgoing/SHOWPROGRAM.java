@@ -14,10 +14,8 @@ public class SHOWPROGRAM implements OutgoingMessageComposer {
 	@Override
 	public void write(Response response) {
 		response.init("SHOWPROGRAM");
-		response.appendNewArgument(parameters[0]);
-
 		if (parameters.length > 1) {
-			for (int i = 1; i < parameters.length; i++) {	
+			for (int i = 0; i < parameters.length; i++) {	
 				String parameter = parameters[i];
 				response.appendArgument(parameter);
 			}

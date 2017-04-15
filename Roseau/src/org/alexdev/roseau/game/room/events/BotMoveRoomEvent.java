@@ -32,18 +32,12 @@ public class BotMoveRoomEvent extends RoomEvent {
 		positions.add(new int[] { 1, 7} );
 		positions.add(new int[] { 0, 10} );
 
-		/*
-			for (Bot bot : this.room.getBots()) {
-
-				int[] position = positions.get(Roseau.getUtilities().getRandom().nextInt(positions.size() - 1));
-				bot.getRoomUser().walkTo(position[0], position[1]);
-			}*/
-
+		
 		for (Bot bot : this.room.getBots()) {
 
 			RoomUser roomUser = bot.getRoomUser();
 
-			List<Player> nearbyPlayers = this.room.getMapping().getNearbyPlayers(bot, bot.getStartPosition(), 5);
+			List<Player> nearbyPlayers = this.room.getMapping().getNearbyPlayers(bot, bot.getStartPosition(), 3);
 
 			if (nearbyPlayers.size() > 0) {
 
@@ -55,8 +49,8 @@ public class BotMoveRoomEvent extends RoomEvent {
 					}
 				} else {
 					if (!roomUser.isWalking()) {
-						if (roomUser.getRotation() != bot.getStartRotation()) {
-							roomUser.setRotation(bot.getStartRotation(), false);
+						if (roomUser.getPosition().getBodyRotation() != bot.getStartPosition().getBodyRotation()) {
+							roomUser.getPosition().setRotation(bot.getStartPosition().getBodyRotation(), false);
 							roomUser.setNeedUpdate(true);
 						}
 					}

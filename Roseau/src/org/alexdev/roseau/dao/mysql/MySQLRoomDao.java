@@ -144,7 +144,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 						doorRotation = resultSet.getInt("door_rotation");
 					}
 					
-					room.getMapping().getConnections()[pos.getX()][pos.getY()] = new RoomConnection(room.getData().getID(), toRoomID, doorPosition, doorRotation);
+					room.getMapping().getConnections()[pos.getX()][pos.getY()] = new RoomConnection(room.getData().getID(), toRoomID, doorPosition);
 				}
 			}
 
@@ -376,13 +376,13 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 	
 			while (resultSet.next()) {
 				
-				Bot bot = new Bot(new Position(resultSet.getInt("start_x"), resultSet.getInt("start_y"), resultSet.getInt("start_z")), resultSet.getInt("start_rotation"));
+				Bot bot = new Bot(new Position(resultSet.getInt("start_x"), resultSet.getInt("start_y"), resultSet.getInt("start_z"), resultSet.getInt("start_rotation")));
 				bot.getDetails().fill(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("motto"), resultSet.getString("figure"), "Male");
 				
 				bot.getRoomUser().getPosition().setX(bot.getStartPosition().getX());
 				bot.getRoomUser().getPosition().setY(bot.getStartPosition().getY());
+				bot.getRoomUser().getPosition().setRotation(bot.getStartPosition().getBodyRotation(), false);
 				
-				bot.getRoomUser().setRotation(bot.getStartRotation(), false);
 				bot.getRoomUser().setRoom(room);
 				
 				bots.add(bot);

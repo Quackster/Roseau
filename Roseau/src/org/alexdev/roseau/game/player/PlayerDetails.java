@@ -2,6 +2,7 @@ package org.alexdev.roseau.game.player;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.Entity;
+import org.alexdev.roseau.messages.outgoing.WALLETBALANCE;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
@@ -20,10 +21,10 @@ public class PlayerDetails implements SerializableObject {
 	private String birthday;
 	private String poolFigure;
 	private String password;
-	
+
 	private boolean authenticated;
 	private Entity entity;
-	
+
 	public PlayerDetails(Entity session) {
 		this.authenticated = false;
 		this.entity = session;
@@ -35,7 +36,7 @@ public class PlayerDetails implements SerializableObject {
 		this.mission = mission;
 		this.figure = figure;
 	}
-	
+
 	public void fill(int id, String username, String mission, String figure, String poolFigure, String email, int rank, int credits, String sex, String country, String badge, String birthday) {
 		this.id = id;
 		this.username = username;
@@ -50,30 +51,30 @@ public class PlayerDetails implements SerializableObject {
 		this.birthday = birthday;
 		this.poolFigure = poolFigure;
 	}
-	
+
 	@Override
 	public void serialise(Response response) {
-        response.appendKVArgument("name", this.username);
-        response.appendKVArgument("figure", this.figure); 
-        response.appendKVArgument("email", this.email);
-        response.appendKVArgument("birthday", this.birthday);
-        response.appendKVArgument("phonenumber", "+44");
-        response.appendKVArgument("customData", this.mission);
-        response.appendKVArgument("has_read_agreement", "1");
-        response.appendKVArgument("sex", this.sex);
-        response.appendKVArgument("country", this.country);
-        response.appendKVArgument("has_special_rights", "0");
-        response.appendKVArgument("badge_type", this.badge);
+		response.appendKVArgument("name", this.username);
+		response.appendKVArgument("figure", this.figure); 
+		response.appendKVArgument("email", this.email);
+		response.appendKVArgument("birthday", this.birthday);
+		response.appendKVArgument("phonenumber", "+44");
+		response.appendKVArgument("customData", this.mission);
+		response.appendKVArgument("has_read_agreement", "1");
+		response.appendKVArgument("sex", this.sex);
+		response.appendKVArgument("country", this.country);
+		response.appendKVArgument("has_special_rights", "0");
+		response.appendKVArgument("badge_type", this.badge);
 	}
-	
+
 	public void save() {
 		Roseau.getDataAccess().getPlayer().updatePlayer(this);
 	}
-	
+
 	public boolean hasFuse(String fuse) {
 		return false;
 	}
-	
+
 	public int getID() {
 		return id;
 	}
@@ -122,10 +123,17 @@ public class PlayerDetails implements SerializableObject {
 		return rank;
 	}
 
-	public void setCredits(int newTotal, boolean sendUpdate) {
+	public void setCredits(int newTotal) {
 		this.credits = newTotal;
 	}
-	
+
+	public void sendCredits() {
+
+		if (this.entity instanceof Player) {
+			((Player)this.entity).send(new WALLETBALANCE(this.credits));
+		}
+	}
+
 	public int getCredits() {
 		return credits;
 	}

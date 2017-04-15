@@ -17,6 +17,7 @@ import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.game.room.entity.RoomUserStatus;
 import org.alexdev.roseau.game.room.events.BotMoveRoomEvent;
 import org.alexdev.roseau.game.room.events.ClubMassivaDiscoEvent;
+import org.alexdev.roseau.game.room.events.LidoRoomEvent;
 import org.alexdev.roseau.game.room.events.RoomEvent;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.model.Rotation;
@@ -93,6 +94,10 @@ public class Room implements Runnable, SerializableObject {
 			this.events.add(new ClubMassivaDiscoEvent(this));
 		}
 		
+		if (this.roomData.getModelName().equals("pool_b")) {
+			this.events.add(new LidoRoomEvent(this));
+		}
+		
 		this.roomMapping.regenerateCollisionMaps();
 	}
 
@@ -120,7 +125,7 @@ public class Room implements Runnable, SerializableObject {
 			roomEntity.getPosition().setX(door.getX());
 			roomEntity.getPosition().setY(door.getY());
 			roomEntity.getPosition().setZ(door.getZ());
-			roomEntity.setRotation(rotation, false);
+			roomEntity.getPosition().setRotation(rotation, false);
 		}
 
 		if (this.roomData.getModel() == null) {
@@ -300,7 +305,7 @@ public class Room implements Runnable, SerializableObject {
 				int rotation = Rotation.calculateHumanMoveDirection(roomEntity.getPosition().getX(), roomEntity.getPosition().getY(), next.getX(), next.getY());
 				double height = this.roomData.getModel().getHeight(next.getX(), next.getY());
 
-				roomEntity.setRotation(rotation, false);
+				roomEntity.getPosition().setRotation(rotation, false);
 
 				roomEntity.setStatus("mv", " " + next.getX() + "," + next.getY() + "," + (int)height);
 				roomEntity.setNeedUpdate(true);

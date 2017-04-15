@@ -30,10 +30,7 @@ public class RoomUser {
 	private Position position;
 	private Position goal;
 	private Position next = null;
-
-	private int bodyRotation;
-	private int headRotation;
-
+	
 	private ConcurrentHashMap<String, RoomUserStatus> statuses;
 	private LinkedList<Position> path;
 
@@ -107,31 +104,22 @@ public class RoomUser {
 		this.isWalking = false;
 		this.needsUpdate = true;
 
-
 		if (this.entity instanceof Player) {
 
 			Player player = (Player)this.entity;
-
+			
 			if (this.room.getData().getRoomType() == RoomType.PUBLIC) {
 
 				RoomConnection connectionRoom = this.room.getMapping().getRoomConnection(this.position.getX(), this.position.getY());
-
+				
 				if (connectionRoom != null) {
-
-					/*
-					 *  Override new server port even if this player isn't actually 
-					 *  connected to this server
-					 *  
-					 *  This happens when they walk through walkways to enter other rooms 8-)
-					 */
-
 					Room room = Roseau.getGame().getRoomManager().getRoomByID(connectionRoom.getToID());
-
+					
 					if (room != null) {
 						player.getNetwork().setServerPort(room.getData().getServerPort());
 						
 						if (connectionRoom.getDoorPosition() != null) {
-							room.loadRoom(player, connectionRoom.getDoorPosition(), connectionRoom.getDoorRotation());
+							room.loadRoom(player, connectionRoom.getDoorPosition(), connectionRoom.getDoorPosition().getBodyRotation());
 						} else {
 							room.loadRoom(player);
 						}
@@ -166,7 +154,7 @@ public class RoomUser {
 		}
 
 		if (definition.getBehaviour().isCanSitOnTop()) {
-			this.setRotation(item.getRotation(), false);
+			this.getPosition().setRotation(item.getRotation(), false);
 			this.removeStatus("dance");
 			this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()));
 		}
@@ -268,22 +256,22 @@ public class RoomUser {
 			return;
 		}
 
-		int diff = this.bodyRotation - Rotation.calculateHumanDirection(this.position.getX(), this.position.getY(), look.getX(), look.getY());
+		int diff = this.getPosition().getHeadRotation() - Rotation.calculateHumanDirection(this.position.getX(), this.position.getY(), look.getX(), look.getY());
 
 
-		if ((this.bodyRotation % 2) == 0)
+		if ((this.getPosition().getBodyRotation() % 2) == 0)
 		{
 			if (diff > 0)
 			{
-				this.headRotation = (this.bodyRotation - 1);
+				this.position.setHeadRotation(this.getPosition().getBodyRotation() - 1);
 			}
 			else if (diff < 0)
 			{
-				this.headRotation = (this.bodyRotation + 1);
+				this.position.setHeadRotation(this.getPosition().getBodyRotation() + 1);
 			}
 			else
 			{
-				this.headRotation = this.bodyRotation;
+				this.position.setHeadRotation(this.getPosition().getBodyRotation());
 			}
 		}
 
@@ -418,27 +406,6 @@ public class RoomUser {
 
 	public void setDanceID(int danceID) {
 		this.danceID = danceID;
-	}
-
-	public int getRotation() {
-		return bodyRotation;
-	}
-
-	public void setRotation(int rotation) {
-		this.bodyRotation = rotation;
-	}
-
-	public int getHeadRotation() {
-		return headRotation;
-	}
-
-	public void setRotation(int rotation, boolean headOnly) {
-
-		this.headRotation = rotation;
-
-		if (!headOnly) {
-			this.bodyRotation = rotation;
-		}
 	}
 
 	public ConcurrentHashMap<String, RoomUserStatus> getStatuses() {

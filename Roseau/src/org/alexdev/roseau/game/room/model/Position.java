@@ -5,6 +5,8 @@ public class Position {
 	private int X;
 	private int Y;
 	private double Z;
+	private int bodyRotation;
+	private int headRotation;
 
 	public Position() {
 		this(0, 0, 0);
@@ -27,6 +29,14 @@ public class Position {
 		this.X = x;
 		this.Y = y;
 		this.Z = i;
+	}
+	
+	public Position(int x, int y, double i, int rotation) {
+		this.X = x;
+		this.Y = y;
+		this.Z = i;
+		this.bodyRotation = rotation;
+		this.headRotation = rotation;
 	}
 
 	public int getX() {
@@ -77,6 +87,32 @@ public class Position {
 	public boolean isMatch(Position point) {	
 		return (this.X == point.getX() && this.Y == point.getY());
 	}
+
+	public int getBodyRotation() {
+		return bodyRotation;
+	}
+
+	public void setBodyRotation(int rotation) {
+		this.bodyRotation = rotation;
+	}
+
+	public int getHeadRotation() {
+		return headRotation;
+	}
+
+	public void setHeadRotation(int headRotation) {
+		this.headRotation = headRotation;
+	}
+	
+	public void setRotation(int rotation, boolean headOnly) {
+
+		this.headRotation = rotation;
+
+		if (!headOnly) {
+			this.bodyRotation = rotation;
+		}
+	}
+
 
 	@Override
 	public String toString() {
