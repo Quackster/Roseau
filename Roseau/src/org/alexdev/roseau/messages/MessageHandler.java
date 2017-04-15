@@ -21,6 +21,7 @@ import org.alexdev.roseau.messages.incoming.GOTOFLAT;
 import org.alexdev.roseau.messages.incoming.INFORETRIEVE;
 import org.alexdev.roseau.messages.incoming.INITUNITLISTENER;
 import org.alexdev.roseau.messages.incoming.LOGIN;
+import org.alexdev.roseau.messages.incoming.LOOKTO;
 import org.alexdev.roseau.messages.incoming.MESSENGER_INIT;
 import org.alexdev.roseau.messages.incoming.MESSENGER_SENDMSG;
 import org.alexdev.roseau.messages.incoming.MOVE;
@@ -110,6 +111,7 @@ public class MessageHandler {
 		this.messages.put("TRYFLAT", new TRYFLAT());
 		this.messages.put("GOTOFLAT", new GOTOFLAT());
 		this.messages.put("CLOSE_UIMAKOPPI", new CLOSE_UIMAKOPPI());
+		this.messages.put("LOOKTO", new LOOKTO());
 		
 	}
 	

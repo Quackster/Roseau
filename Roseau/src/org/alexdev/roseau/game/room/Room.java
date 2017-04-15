@@ -22,6 +22,8 @@ import org.alexdev.roseau.game.room.events.LidoRoomEvent;
 import org.alexdev.roseau.game.room.events.RoomEvent;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.model.Rotation;
+import org.alexdev.roseau.game.room.schedulers.RoomEventScheduler;
+import org.alexdev.roseau.game.room.schedulers.RoomWalkScheduler;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
@@ -42,13 +44,16 @@ import org.alexdev.roseau.server.messages.SerializableObject;
 
 import com.google.common.collect.Lists;
 
-public class Room implements Runnable, SerializableObject {
+public class Room implements SerializableObject {
 
 	private int orderID = -1;
 	private boolean disposed;
 
 	private RoomData roomData;
 	private RoomMapping roomMapping;
+	
+	private RoomEventScheduler roomEventScheduler;
+	private RoomWalkScheduler roomWalkScheduler;
 
 	private List<Entity> entities;
 
@@ -59,6 +64,8 @@ public class Room implements Runnable, SerializableObject {
 	private ArrayList<RoomEvent> events;
 
 	private ScheduledFuture<?> tickTask = null;
+	private ScheduledFuture<?> eventTask = null;
+	
 	private List<Integer> rights;
 	
 	private IServerHandler serverHandler = null;
@@ -67,6 +74,10 @@ public class Room implements Runnable, SerializableObject {
 	public Room() {
 		this.roomData = new RoomData(this);
 		this.roomMapping = new RoomMapping(this);
+		
+		this.roomEventScheduler = new RoomEventScheduler(this);
+		this.roomWalkScheduler = new RoomWalkScheduler(this);
+		
 		this.entities = Lists.newArrayList();
 		this.events = Lists.newArrayList();
 	}
@@ -99,28 +110,41 @@ public class Room implements Runnable, SerializableObject {
 		this.disposed = false;
 
 		if (this.tickTask == null) {
-			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this, 0, 500, TimeUnit.MILLISECONDS);
+			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this.roomWalkScheduler, 0, 500, TimeUnit.MILLISECONDS);
 		}
 
 		this.passiveObjects = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName(), this.roomData.getID());
 		this.bots = Roseau.getDataAccess().getRoom().getBots(this, this.roomData.getID());
 
+		this.roomMapping.regenerateCollisionMaps();
+		
 		if (this.bots.size() > 0) {
 			this.entities.addAll(this.bots);
-
-			this.events.add(new BotMoveRoomEvent(this));
+			this.registerNewEvent(new BotMoveRoomEvent(this));
 		}
-
 
 		if (this.roomData.getModelName().equals("bar_b")) {
-			this.events.add(new ClubMassivaDiscoEvent(this));
+			this.registerNewEvent(new ClubMassivaDiscoEvent(this));
 		}
+	}
 
-		if (this.roomData.getModelName().equals("pool_b")) {
-			this.events.add(new LidoRoomEvent(this));
+	private void registerNewEvent(RoomEvent event) {
+		
+		if (this.eventTask == null) {
+			this.eventTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this.roomEventScheduler/*new Runnable() {
+
+				@Override
+				public void run() {
+					for (RoomEvent event : room.getEvents()) {
+						event.tick();
+					}
+				}
+			}*/, 0, 500, TimeUnit.MILLISECONDS);
+		
 		}
-
-		this.roomMapping.regenerateCollisionMaps();
+		
+		this.events.add(event);
+		
 	}
 
 	public void loadRoom(Player player) {
@@ -250,113 +274,6 @@ public class Room implements Runnable, SerializableObject {
 		return false;
 	}
 
-	@Override
-	public void run() {
-
-		try {
-			if (this.disposed || this.entities.size() == 0) {
-				return;
-			}
-
-			for (RoomEvent event : this.events) {
-				event.tick();
-			}
-
-			List<Entity> update_entities = new ArrayList<Entity>();
-			List<Entity> entities = this.getEntities();
-
-			for (int i = 0; i < entities.size(); i++) {
-
-				Entity entity = entities.get(i);
-
-				if (entity != null) {
-					if (entity.getRoomUser() != null) {
-
-						this.processEntity(entity);
-
-						RoomUser roomEntity = entity.getRoomUser();
-
-						if (roomEntity.playerNeedsUpdate()) {
-							update_entities.add(entity);
-						}
-					}
-				}
-			}
-
-			if (update_entities.size() > 0) {
-				this.send(new STATUS(update_entities));
-
-				for (Entity entity : update_entities) {
-
-					if (entity.getRoomUser().isWalking()) {
-						if (entity.getRoomUser().getNext() != null) {
-
-							Position next = entity.getRoomUser().getNext();
-
-							entity.getRoomUser().getPosition().setZ(this.roomData.getModel().getHeight(next.getX(), next.getY()));
-							entity.getRoomUser().getPosition().setX(next.getX());
-							entity.getRoomUser().getPosition().setY(next.getY());
-						}
-					}
-
-					entity.getRoomUser().walkItemTrigger();
-
-					if (entity.getRoomUser().playerNeedsUpdate()) {
-						entity.getRoomUser().setNeedUpdate(false);
-					}
-				}
-			}
-
-		} catch (Exception e) {
-
-
-		}
-	}
-
-	private void processEntity(Entity entity) {
-
-		RoomUser roomEntity = entity.getRoomUser();
-
-		if (roomEntity.isWalking()) {
-
-			if (roomEntity.getPath().size() > 0) {
-
-				Position next = roomEntity.getPath().pop();
-
-				roomEntity.removeStatus("lay");
-				roomEntity.removeStatus("sit");
-
-				int rotation = Rotation.calculateHumanMoveDirection(roomEntity.getPosition().getX(), roomEntity.getPosition().getY(), next.getX(), next.getY());
-				double height = this.roomData.getModel().getHeight(next.getX(), next.getY());
-
-				roomEntity.getPosition().setRotation(rotation, false);
-
-				roomEntity.setStatus("mv", " " + next.getX() + "," + next.getY() + "," + (int)height);
-				roomEntity.setNeedUpdate(true);
-				roomEntity.setNext(next);
-
-			}
-			else {
-				roomEntity.setNext(null);
-				roomEntity.setNeedUpdate(true);
-			}
-		}
-
-		for (Entry<String, RoomUserStatus> set : entity.getRoomUser().getStatuses().entrySet()) {
-
-			RoomUserStatus statusEntry = set.getValue();
-
-			if (!statusEntry.isInfinite()) {
-				statusEntry.tick();
-
-				if (statusEntry.getDuration() == 0) {
-					entity.getRoomUser().removeStatus(statusEntry.getKey());
-					entity.getRoomUser().setNeedUpdate(true);
-				}
-			}
-		}
-	}
-
 	public void dispose(boolean forceDisposal) {
 
 		try {
@@ -419,6 +336,11 @@ public class Room implements Runnable, SerializableObject {
 			this.tickTask.cancel(true);
 			this.tickTask = null;
 		}
+		
+		if (this.eventTask != null) {
+			this.eventTask.cancel(true);
+			this.eventTask = null;
+		}
 	}
 
 
@@ -460,6 +382,10 @@ public class Room implements Runnable, SerializableObject {
 
 	public List<Entity> getEntities() {
 		return entities;
+	}
+
+	public ArrayList<RoomEvent> getEvents() {
+		return events;
 	}
 
 	public RoomData getData() {

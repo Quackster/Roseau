@@ -43,6 +43,7 @@ public class BotMoveRoomEvent extends RoomEvent {
 
 				if (!roomUser.getPosition().isMatch(bot.getStartPosition())) {
 					if (!roomUser.isWalking()) {
+						
 						if (this.canTick(10)) { // 5 seconds
 							roomUser.walkTo(bot.getStartPosition());
 						}
