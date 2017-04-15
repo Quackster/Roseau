@@ -24,7 +24,6 @@ public class RoomData {
 	private String floor;
 
 	private Room room;
-	private IServerHandler serverHandler = null;
 	private boolean hidden;
 	
 	public RoomData(Room room) {
@@ -46,26 +45,7 @@ public class RoomData {
 		this.clazz = clazz;
 		this.wall = wall;
 		this.floor = floor;
-		
-		
-		try {
-			if (type == RoomType.PUBLIC && !this.hidden) {
-				
-				this.serverHandler = Class.forName(Roseau.getSocketConfiguration().get("extension.socket.entry"))
-						.asSubclass(IServerHandler.class)
-						.getDeclaredConstructor(String.class)
-						.newInstance(String.valueOf(id));
-			
-				Log.println("[ROOM] [" + this.name + "] Starting public room server on port: " + this.getServerPort());
-				
-		
-				this.serverHandler.setIp(Roseau.getServerIP());
-				this.serverHandler.setPort(this.getServerPort());
-				this.serverHandler.listenSocket();
-			}
-		} catch (Exception e) {
-			Log.exception(e);
-		}
+
 	}
 	
 	public String getName() {
@@ -185,10 +165,6 @@ public class RoomData {
 
 	public int getServerPort() {
 		return (this.id + Roseau.getServerPort());
-	}
-
-	public IServerHandler getServerHandler() {
-		return serverHandler;
 	}
 
 	public boolean isHidden() {

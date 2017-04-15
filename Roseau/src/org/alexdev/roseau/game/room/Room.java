@@ -1,5 +1,6 @@
 package org.alexdev.roseau.game.room;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -35,6 +36,7 @@ import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
 import org.alexdev.roseau.messages.outgoing.YOUARECONTROLLER;
 import org.alexdev.roseau.messages.outgoing.YOUAREOWNER;
+import org.alexdev.roseau.server.IServerHandler;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
@@ -58,6 +60,8 @@ public class Room implements Runnable, SerializableObject {
 
 	private ScheduledFuture<?> tickTask = null;
 	private List<Integer> rights;
+	
+	private IServerHandler serverHandler = null;
 
 
 	public Room() {
@@ -67,7 +71,31 @@ public class Room implements Runnable, SerializableObject {
 		this.events = Lists.newArrayList();
 	}
 
-	public void init() {
+	public void load() throws Exception {
+		
+		if (this.roomData.getRoomType() == RoomType.PUBLIC && !this.roomData.isHidden()) {
+			
+			this.serverHandler = Class.forName(Roseau.getSocketConfiguration().get("extension.socket.entry"))
+					.asSubclass(IServerHandler.class)
+					.getDeclaredConstructor(String.class)
+					.newInstance(String.valueOf(this.roomData.getID()));
+		
+			Log.println("[ROOM] [" + this.roomData.getName() + "] Starting public room server on port: " + this.roomData.getServerPort());
+			
+	
+			this.serverHandler.setIp(Roseau.getServerIP());
+			this.serverHandler.setPort(this.roomData.getServerPort());
+			this.serverHandler.listenSocket();
+		}
+		
+		
+		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
+			this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getID());
+			this.items = Roseau.getDataAccess().getItem().getRoomItems(this.roomData.getID());
+		}
+	}
+	
+	public void firstPlayerEntry() {
 		this.disposed = false;
 
 		if (this.tickTask == null) {
@@ -75,12 +103,6 @@ public class Room implements Runnable, SerializableObject {
 		}
 
 		this.passiveObjects = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName(), this.roomData.getID());
-
-		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
-			this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getID());
-			this.items = Roseau.getDataAccess().getItem().getRoomItems(this.roomData.getID());
-		}
-
 		this.bots = Roseau.getDataAccess().getRoom().getBots(this, this.roomData.getID());
 
 		if (this.bots.size() > 0) {
@@ -136,7 +158,7 @@ public class Room implements Runnable, SerializableObject {
 			this.send(player.getRoomUser().getUsersComposer());
 			player.getRoomUser().sendStatusComposer();
 		} else {
-			this.init();
+			this.firstPlayerEntry();
 		}
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {

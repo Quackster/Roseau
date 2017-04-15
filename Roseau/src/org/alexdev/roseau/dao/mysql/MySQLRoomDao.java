@@ -405,7 +405,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 	}
 
 	@Override
-	public Room fill(ResultSet row) throws SQLException {
+	public Room fill(ResultSet row) throws Exception {
 
 		RoomType type = RoomType.getType(row.getInt("room_type"));
 
@@ -420,7 +420,9 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getID(), details == null ? "" : details.getUsername(), row.getString("name"), 
 				row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"),
 				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"));
-
+		
+		instance.load();
+		
 		return instance;
 	}
 
