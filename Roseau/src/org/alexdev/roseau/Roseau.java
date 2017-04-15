@@ -158,7 +158,6 @@ public class Roseau {
 		writer.println("log.connections=true");
 		writer.println("log.packets=true");
 		writer.println();
-
 	}
 
 	private static void writeHabboHotelConfiguration(PrintWriter writer) {
@@ -169,9 +168,7 @@ public class Roseau {
 		writer.println("credits.every.x.mins=10");
 		writer.println("credits.every.x.amount=25");
 		writer.println();
-
 	}
-
 
 	private static void startServer() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
 

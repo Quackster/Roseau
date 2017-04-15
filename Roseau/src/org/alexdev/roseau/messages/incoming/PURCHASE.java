@@ -76,6 +76,10 @@ public class PURCHASE implements MessageEvent {
 			player.send(new PURCHASE_ADDSTRIPITEM());
 			player.send(new PURCHASEOK());
 			
+			player.getDetails().setCredits(player.getDetails().getCredits() - product.getCredits());
+			player.getDetails().sendCredits();
+			player.getDetails().save();
+			
 		} else {
 			player.send(new SYSTEMBROADCAST("You don't have enough credits to purchase this item!"));
 		}

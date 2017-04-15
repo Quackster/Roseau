@@ -124,7 +124,10 @@ public class PlayerDetails implements SerializableObject {
 	}
 
 	public void setCredits(int newTotal) {
-		this.credits = newTotal;
+
+		if (this.credits + newTotal <= Integer.MAX_VALUE) {
+			this.credits = newTotal;
+		}
 	}
 
 	public void sendCredits() {
