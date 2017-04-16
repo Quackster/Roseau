@@ -109,6 +109,7 @@ public class Room implements SerializableObject {
 	public void firstPlayerEntry() {
 		this.disposed = false;
 
+		
 		if (this.tickTask == null) {
 			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this.roomWalkScheduler, 0, 500, TimeUnit.MILLISECONDS);
 		}
@@ -118,14 +119,15 @@ public class Room implements SerializableObject {
 
 		this.roomMapping.regenerateCollisionMaps();
 		
+		if (this.roomData.getModelName().equals("bar_b")) {
+			this.registerNewEvent(new ClubMassivaDiscoEvent(this));
+		}
+		
 		if (this.bots.size() > 0) {
 			this.entities.addAll(this.bots);
 			this.registerNewEvent(new BotMoveRoomEvent(this));
 		}
 
-		if (this.roomData.getModelName().equals("bar_b")) {
-			this.registerNewEvent(new ClubMassivaDiscoEvent(this));
-		}
 	}
 
 	private void registerNewEvent(RoomEvent event) {

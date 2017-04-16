@@ -376,7 +376,24 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 	
 			while (resultSet.next()) {
 				
-				Bot bot = new Bot(new Position(resultSet.getInt("start_x"), resultSet.getInt("start_y"), resultSet.getInt("start_z"), resultSet.getInt("start_rotation")));
+				List<int[]> positions = Lists.newArrayList();
+				
+				for (String coordinate : resultSet.getString("walk_to").split(" ")) {
+					
+					int x = Integer.valueOf(coordinate.split(",")[0]);
+					int y = Integer.valueOf(coordinate.split(",")[1]);
+					
+					positions.add(new int[] { x, y} );
+				}
+				
+				Bot bot = new Bot(
+						new Position(
+								resultSet.getInt("start_x"), 
+								resultSet.getInt("start_y"),
+								resultSet.getInt("start_z"), 
+								resultSet.getInt("start_rotation")),
+						positions);
+				
 				bot.getDetails().fill(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("motto"), resultSet.getString("figure"), "Male");
 				
 				bot.getRoomUser().getPosition().setX(bot.getStartPosition().getX());

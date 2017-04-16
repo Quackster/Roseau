@@ -49,6 +49,24 @@ public class Player implements Entity {
 		}
 	}
 	
+	public Player getPublicRoomPlayer() {
+		
+		try {
+			return Roseau.getGame()
+					.getPlayerManager()
+					.getPlayers()
+					.values().stream()
+					.filter(s -> s.getDetails().getID() == this.details.getID() && 
+					s.getNetwork().getServerPort() != (Roseau.getPrivateServerPort()) &&
+					s.getNetwork().getServerPort() != Roseau.getServerPort()).findFirst().get();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
 	public void dispose() {
 
 		if (this.roomEntity != null) {

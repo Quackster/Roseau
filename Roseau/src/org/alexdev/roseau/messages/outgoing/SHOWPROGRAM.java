@@ -14,12 +14,14 @@ public class SHOWPROGRAM implements OutgoingMessageComposer {
 	@Override
 	public void write(Response response) {
 		response.init("SHOWPROGRAM");
-		if (parameters.length > 1) {
-			for (int i = 0; i < parameters.length; i++) {	
-				String parameter = parameters[i];
-				response.appendArgument(parameter);
-			}
+			response.appendNewArgument(parameters[0]);
+
+			if (parameters.length > 1) {
+				for (int i = 1; i < parameters.length; i++) {	
+					String parameter = parameters[i];
+					response.appendArgument(parameter);
+
+				}
 		}
 	}
-
 }

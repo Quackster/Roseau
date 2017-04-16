@@ -23,15 +23,6 @@ public class BotMoveRoomEvent extends RoomEvent {
 		if (this.room.getBots().size() < 1) {
 			return;
 		}
-
-
-		List<int[]> positions = Lists.newArrayList();
-		positions.add(new int[] { 0, 12} );
-		positions.add(new int[] { 0, 7} );
-		positions.add(new int[] { 1, 11} );
-		positions.add(new int[] { 1, 7} );
-		positions.add(new int[] { 0, 10} );
-
 		
 		for (Bot bot : this.room.getBots()) {
 
@@ -60,7 +51,7 @@ public class BotMoveRoomEvent extends RoomEvent {
 
 				if (this.canTick(10)) { // 5 seconds
 
-					int[] position = positions.get(Roseau.getUtilities().getRandom().nextInt(positions.size() - 1));
+					int[] position = bot.getPositions().get(Roseau.getUtilities().getRandom().nextInt(bot.getPositions().size() - 1));
 					bot.getRoomUser().walkTo(position[0], position[1]);
 				}
 			}
