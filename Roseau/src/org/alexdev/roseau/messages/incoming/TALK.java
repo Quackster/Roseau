@@ -1,9 +1,10 @@
 package org.alexdev.roseau.messages.incoming;
 
 import org.alexdev.roseau.Roseau;
+import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.MessageEvent;
-import org.alexdev.roseau.messages.outgoing.CHAT_MESSAGE;
+import org.alexdev.roseau.messages.outgoing.CHAT;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class TALK implements MessageEvent {
@@ -39,7 +40,7 @@ public class TALK implements MessageEvent {
 
 				talkMessage = message;
 
-				CHAT_MESSAGE response = new CHAT_MESSAGE("WHISPER", player.getDetails().getUsername(), message);
+				CHAT response = new CHAT("WHISPER", player.getDetails().getUsername(), message);
 				player.send(response);
 
 				if (whispered != null) {
@@ -49,7 +50,7 @@ public class TALK implements MessageEvent {
 				}
 			} else {
 				talkMessage =  reader.getMessageBody();
-				CHAT_MESSAGE response = new CHAT_MESSAGE("WHISPER", player.getDetails().getUsername(), reader.getMessageBody());
+				CHAT response = new CHAT("WHISPER", player.getDetails().getUsername(), reader.getMessageBody());
 				player.send(response);
 			}
 		} else {
@@ -57,10 +58,10 @@ public class TALK implements MessageEvent {
 			// Handle chat and shout
 			talkMessage = reader.getMessageBody();
 
-			player.getRoomUser().getRoom().send(new CHAT_MESSAGE(reader.getHeader(), player.getDetails().getUsername(), reader.getMessageBody()));
+			player.getRoomUser().chat(reader.getHeader(), reader.getMessageBody());
 
 			if (reader.getHeader().equals("CHAT") || reader.getHeader().equals("SHOUT")) {
-				for (Player roomPlayer : player.getRoomUser().getRoom().getMapping().getNearbyPlayers(player, 30)) {
+				for (Player roomPlayer : player.getRoomUser().getRoom().getMapping().getNearbyPlayers(player, player.getRoomUser().getPosition(), 30)) {
 					roomPlayer.getRoomUser().lookTowards(player.getRoomUser().getPosition());
 				}
 			}
@@ -80,11 +81,26 @@ public class TALK implements MessageEvent {
 			}
 			
 			player.getRoomUser().setStatus("talk", "", false, talkDuration, true);
-
+			
+			for (Bot bot : player.getRoomUser().getRoom().getMapping().getNearbyBots(player, player.getRoomUser().getPosition(), 5)) {
+				
+				String trigger = bot.containsTrigger(talkMessage);
+				
+				if (trigger != null) {
+					bot.getRoomUser().chat(bot.getResponse(player.getDetails().getUsername(), trigger), 2);
+					player.getRoomUser().setStatus("carryd", " " + trigger, false, 120, true);
+				} else {
+					
+					if ((talkMessage.toLowerCase().contains("hello") || talkMessage.toLowerCase().contains("hi")) && talkMessage.toLowerCase().contains(bot.getDetails().getUsername().toLowerCase())) {
+						bot.getRoomUser().chat("Hello " + player.getDetails().getUsername() + "!", 2);
+					}
+					
+					if ((talkMessage.toLowerCase().contains("hello") || talkMessage.toLowerCase().contains("hi")) && !talkMessage.toLowerCase().contains(bot.getDetails().getUsername().toLowerCase())) {
+						bot.getRoomUser().chat("Hello there!", 2);
+					} 
+				}
+			}
 		}
-
-		//player.getRoomUser().chat(talkMessage, reader.getHeader(), true);
-
 	}
 
 }

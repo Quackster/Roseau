@@ -1,4 +1,4 @@
-package org.alexdev.roseau.game.room.events;
+package org.alexdev.roseau.game.room.schedulers.events;
 
 import java.util.List;
 
@@ -7,9 +7,7 @@ import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomUser;
-import org.alexdev.roseau.log.Log;
-
-import com.google.common.collect.Lists;
+import org.alexdev.roseau.game.room.schedulers.RoomEvent;
 
 public class BotMoveRoomEvent extends RoomEvent {
 
@@ -23,7 +21,7 @@ public class BotMoveRoomEvent extends RoomEvent {
 		if (this.room.getBots().size() < 1) {
 			return;
 		}
-		
+
 		for (Bot bot : this.room.getBots()) {
 
 			RoomUser roomUser = bot.getRoomUser();
@@ -34,7 +32,7 @@ public class BotMoveRoomEvent extends RoomEvent {
 
 				if (!roomUser.getPosition().isMatch(bot.getStartPosition())) {
 					if (!roomUser.isWalking()) {
-						
+
 						if (this.canTick(10)) { // 5 seconds
 							roomUser.walkTo(bot.getStartPosition());
 						}
@@ -51,8 +49,10 @@ public class BotMoveRoomEvent extends RoomEvent {
 
 				if (this.canTick(10)) { // 5 seconds
 
-					int[] position = bot.getPositions().get(Roseau.getUtilities().getRandom().nextInt(bot.getPositions().size() - 1));
-					bot.getRoomUser().walkTo(position[0], position[1]);
+					if (bot.getPositions().size() > 0) {
+						int[] position = bot.getPositions().get(Roseau.getUtilities().getRandom().nextInt(bot.getPositions().size() - 1));
+						bot.getRoomUser().walkTo(position[0], position[1]);
+					}
 				}
 			}
 		}

@@ -1,9 +1,7 @@
 package org.alexdev.roseau.game.room;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -15,15 +13,13 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomUser;
-import org.alexdev.roseau.game.room.entity.RoomUserStatus;
-import org.alexdev.roseau.game.room.events.BotMoveRoomEvent;
-import org.alexdev.roseau.game.room.events.ClubMassivaDiscoEvent;
-import org.alexdev.roseau.game.room.events.LidoRoomEvent;
-import org.alexdev.roseau.game.room.events.RoomEvent;
 import org.alexdev.roseau.game.room.model.Position;
-import org.alexdev.roseau.game.room.model.Rotation;
+import org.alexdev.roseau.game.room.schedulers.RoomEvent;
 import org.alexdev.roseau.game.room.schedulers.RoomEventScheduler;
 import org.alexdev.roseau.game.room.schedulers.RoomWalkScheduler;
+import org.alexdev.roseau.game.room.schedulers.events.BotMoveRoomEvent;
+import org.alexdev.roseau.game.room.schedulers.events.ClubMassivaDiscoEvent;
+import org.alexdev.roseau.game.room.schedulers.events.UserStatusEvent;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
@@ -128,21 +124,13 @@ public class Room implements SerializableObject {
 			this.registerNewEvent(new BotMoveRoomEvent(this));
 		}
 
+		this.registerNewEvent(new UserStatusEvent(this));
 	}
 
 	private void registerNewEvent(RoomEvent event) {
 		
 		if (this.eventTask == null) {
-			this.eventTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this.roomEventScheduler/*new Runnable() {
-
-				@Override
-				public void run() {
-					for (RoomEvent event : room.getEvents()) {
-						event.tick();
-					}
-				}
-			}*/, 0, 500, TimeUnit.MILLISECONDS);
-		
+			this.eventTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this.roomEventScheduler, 0, 500, TimeUnit.MILLISECONDS);
 		}
 		
 		this.events.add(event);
@@ -205,7 +193,7 @@ public class Room implements SerializableObject {
 
 			if (this.roomData.getOwnerID() == player.getDetails().getID()) {	
 				player.send(new YOUAREOWNER());
-				roomEntity.setStatus("flatctrl", " useradmin");
+				roomEntity.setStatus("flatctrl", " useradmin", true, -1);
 			} else if (this.hasRights(player.getDetails().getID(), false)) {
 				player.send(new YOUARECONTROLLER());
 			}

@@ -98,7 +98,7 @@ public class RoomWalkScheduler implements Runnable {
 
 				roomEntity.getPosition().setRotation(rotation, false);
 
-				roomEntity.setStatus("mv", " " + next.getX() + "," + next.getY() + "," + (int)height);
+				roomEntity.setStatus("mv", " " + next.getX() + "," + next.getY() + "," + (int)height, true, -1);
 				roomEntity.setNeedUpdate(true);
 				roomEntity.setNext(next);
 
@@ -106,20 +106,6 @@ public class RoomWalkScheduler implements Runnable {
 			else {
 				roomEntity.setNext(null);
 				roomEntity.setNeedUpdate(true);
-			}
-		}
-
-		for (Entry<String, RoomUserStatus> set : entity.getRoomUser().getStatuses().entrySet()) {
-
-			RoomUserStatus statusEntry = set.getValue();
-
-			if (!statusEntry.isInfinite()) {
-				statusEntry.tick();
-
-				if (statusEntry.getDuration() == 0) {
-					entity.getRoomUser().removeStatus(statusEntry.getKey());
-					entity.getRoomUser().setNeedUpdate(true);
-				}
 			}
 		}
 	}

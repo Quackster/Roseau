@@ -13,11 +13,15 @@ public class RoomUserStatus {
 		this.infinite = infinite;
 
 		if (!this.infinite) {
-			this.duration = duration * 1000;
+			this.duration = duration;
 		}
 		else {
 			this.duration = -1;
 		}
+	}
+	
+	public String getStatus() {
+		return this.key;
 	}
 
 	public String getKey() {
@@ -37,7 +41,7 @@ public class RoomUserStatus {
 	}
 
 	public void tick() {
-		this.duration = this.duration - 500;
-		
+		this.duration = this.duration - 1;
+
 	}
 }

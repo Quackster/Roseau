@@ -1,14 +1,10 @@
 package org.alexdev.roseau.game.player;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import org.alexdev.roseau.Roseau;
-import org.alexdev.roseau.game.room.Room;
-import org.alexdev.roseau.game.room.settings.RoomType;
 
 public class PlayerManager {
 

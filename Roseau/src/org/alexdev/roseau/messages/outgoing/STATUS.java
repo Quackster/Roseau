@@ -46,7 +46,7 @@ public class STATUS implements OutgoingMessageComposer {
 				
 				RoomUserStatus statusEntry = set.getValue();
 				
-				status += statusEntry.getKey();
+				status += statusEntry.getStatus();
 				status += statusEntry.getValue();
 				status += "/";
 			}

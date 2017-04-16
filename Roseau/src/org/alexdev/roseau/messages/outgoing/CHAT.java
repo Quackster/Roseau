@@ -3,13 +3,13 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class CHAT_MESSAGE implements OutgoingMessageComposer {
+public class CHAT implements OutgoingMessageComposer {
 
 	private String header;
 	private String talkMessage;
 	private String username;
 
-	public CHAT_MESSAGE(String header,  String username, String talkMessage) {
+	public CHAT(String header, String username, String talkMessage) {
 		this.header = header;
 		this.username = username;
 		this.talkMessage = talkMessage;

@@ -13,7 +13,7 @@ public class DANCE implements MessageEvent {
 			return;
 		}
 		
-		player.getRoomUser().setStatus("dance", "");
+		player.getRoomUser().setStatus("dance", "", true, -1);
 		player.getRoomUser().setNeedUpdate(true);
 	}
 

@@ -112,7 +112,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 	public List<Integer> setRoomConnections(Room room) {
 
 		List<Integer> connections = Lists.newArrayList();
-		
+
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -127,23 +127,21 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			while (resultSet.next()) {
 
 				int toRoomID = resultSet.getInt("to_id");
-				
+
 				if (!connections.contains(toRoomID)) {
 					connections.add(toRoomID);
 				}
 
 				for (String coordinate : resultSet.getString("coordinates").split(" ")) {
-					
+
 					Position pos = new Position(coordinate);
-					
+
 					Position doorPosition = null;
-					int doorRotation = -1;
-					
+
 					if (resultSet.getInt("door_x") > -1) {
 						doorPosition = new Position(resultSet.getInt("door_x"), resultSet.getInt("door_y"), resultSet.getInt("door_z"));
-						doorRotation = resultSet.getInt("door_rotation");
 					}
-					
+
 					room.getMapping().getConnections()[pos.getX()][pos.getY()] = new RoomConnection(room.getData().getID(), toRoomID, doorPosition);
 				}
 			}
@@ -155,7 +153,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			Storage.closeSilently(preparedStatement);
 			Storage.closeSilently(sqlConnection);
 		}
-		
+
 		return connections;
 	}
 
@@ -358,9 +356,9 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 	@Override
 	public List<Bot> getBots(Room room, int roomID) {
-		
+
 		List<Bot> bots = Lists.newArrayList();
-		
+
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -368,40 +366,63 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
-			
-			preparedStatement = this.dao.getStorage().prepare("SELECT id, name,figure,motto,start_x,start_y,start_z,start_rotation,walk_to,messages FROM room_bots WHERE room_id = ?", sqlConnection);
+
+			preparedStatement = this.dao.getStorage().prepare("SELECT id, name,figure,motto,start_x,start_y,start_z,start_rotation,walk_to,messages,triggers,responses FROM room_bots WHERE room_id = ?", sqlConnection);
 			preparedStatement.setInt(1, roomID);
-			
+
 			resultSet = preparedStatement.executeQuery();
-	
+
 			while (resultSet.next()) {
-				
+
 				List<int[]> positions = Lists.newArrayList();
-				
+				List<String> responses = Lists.newArrayList();
+				List<String> triggers = Lists.newArrayList();
+
 				for (String coordinate : resultSet.getString("walk_to").split(" ")) {
-					
 					int x = Integer.valueOf(coordinate.split(",")[0]);
 					int y = Integer.valueOf(coordinate.split(",")[1]);
-					
 					positions.add(new int[] { x, y} );
 				}
+
+				String dbResponses = resultSet.getString("responses");
+
+				if (dbResponses.contains("|")) {
+					for (String response : dbResponses.split("|")) {
+						responses.add(response);
+					}
+				} else {
+					responses.add(dbResponses);
+				}
 				
+				String dbTriggers = resultSet.getString("triggers");
+
+				if (dbTriggers.contains(",")) {
+					for (String trigger : dbTriggers.split(",")) {
+						triggers.add(trigger);
+					}
+				} else {
+					triggers.add(dbTriggers);
+				}
+
 				Bot bot = new Bot(
 						new Position(
 								resultSet.getInt("start_x"), 
 								resultSet.getInt("start_y"),
 								resultSet.getInt("start_z"), 
 								resultSet.getInt("start_rotation")),
-						positions);
-				
+						positions,
+						responses,
+						triggers);
+
 				bot.getDetails().fill(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("motto"), resultSet.getString("figure"), "Male");
-				
+
 				bot.getRoomUser().getPosition().setX(bot.getStartPosition().getX());
 				bot.getRoomUser().getPosition().setY(bot.getStartPosition().getY());
+				bot.getRoomUser().getPosition().setZ(bot.getStartPosition().getZ());
 				bot.getRoomUser().getPosition().setRotation(bot.getStartPosition().getBodyRotation(), false);
-				
+
 				bot.getRoomUser().setRoom(room);
-				
+
 				bots.add(bot);
 			}
 
@@ -412,10 +433,10 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			Storage.closeSilently(preparedStatement);
 			Storage.closeSilently(sqlConnection);
 		}
-		
+
 		return bots;
 	}
-	
+
 	@Override
 	public RoomModel getModel(String model) {
 		return roomModels.get(model);
@@ -437,9 +458,9 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getID(), details == null ? "" : details.getUsername(), row.getString("name"), 
 				row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"),
 				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"));
-		
+
 		instance.load();
-		
+
 		return instance;
 	}
 

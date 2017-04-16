@@ -1,4 +1,4 @@
-package org.alexdev.roseau.game.room.events;
+package org.alexdev.roseau.game.room.schedulers;
 
 import org.alexdev.roseau.game.room.Room;
 

@@ -25,25 +25,25 @@ public class RoomModel
 {
 	public final static int OPEN = 0;
 	public final static int CLOSED = 1;
-	
+
 	private String name;
 	private String heightmap;
 	private String[][] squareChar;
-	
+
 	private int doorX;
 	private int doorY;
 	private int doorZ;
 	private int doorRot;
 	private int mapSizeX;
 	private int mapSizeY;
-	
+
 	private int[][] squares;
 	private double[][] squareHeight;
 	private boolean hasPool;
 	private boolean disabledHeightCheck;
 
 	public RoomModel(String name, String heightmap, int doorX, int doorY, int doorZ, int doorRot, boolean hasPool, boolean heightCheck) {
-		
+
 		try {
 			this.name = name;
 			this.heightmap = heightmap.replace(Character.toString((char)13), "").replace(Character.toString((char)10), "").replace(" ", Character.toString((char)13));
@@ -63,35 +63,48 @@ public class RoomModel
 			this.disabledHeightCheck = heightCheck;
 
 			for (int y = 0; y < mapSizeY; y++) {
-				
+
 				if (y > 0) {
 					temporary[y] = temporary[y];
 				}
 
 				for (int x = 0; x < mapSizeX; x++) {
-					
+
 					//Log.println(temporary[y].substring(x,  x +1));
-					
+
 					String square = temporary[y].substring(x,x + 1).trim().toLowerCase();
 
 					if (square.toLowerCase().equals("x"))	{
 						squares[x][y] = CLOSED;
-						
+
 					} else if(isNumeric(square)) {
-						
+
 						squares[x][y] = OPEN;
 						squareHeight[x][y] = Double.parseDouble(square);
 					}
-					
-					
+
+
 					if (this.doorX == x && this.doorY == y) {
 						squares[x][y] = OPEN;
 						squareHeight[x][y] = Double.parseDouble(this.doorZ + "");
 					}
-					
+
 					squareChar[x][y] = square;
 
+					// This should edited into the heightmap itself but I cba
+					if (this.name.equals("pub_a")) {
+						if (x == 9 && y == 9) {
+							squares[x][y] = CLOSED;
+						}
+						
+						if (x == 11 && y == 1) {
+							squares[x][y] = CLOSED;
+						}
+					}
+
 				}
+
+
 			}
 		} catch (Exception e) {
 			Log.println("Error parsing room model: " + this.name);
@@ -99,18 +112,18 @@ public class RoomModel
 		}
 
 	}
-	
+
 	public double getHeight(Position point) {
 		return squareHeight[point.getX()][point.getY()];
 	}
-	
-	
+
+
 	public String getHeightMap() {
 		return heightmap;
 	}
 
 	private boolean isNumeric(String input) {
-		
+
 		try {
 			Integer.parseInt(input);
 			return true;
@@ -118,50 +131,50 @@ public class RoomModel
 			return false;
 		}
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public int getDoorX() {
 		return doorX;
 	}
-	
+
 	public int getDoorY() {
 		return doorY;
 	}
-	
+
 	public int getDoorZ() {
 		return doorZ;
 	}
-	
+
 	public int getDoorRot() {
 		return doorRot;
 	}
-	
+
 	public int getMapSizeX() {
 		return mapSizeX;
 	}
-	
+
 	public int getMapSizeY() {
 		return mapSizeY;
 	}
-	
+
 	public double getHeight(int x, int y) {
-		
+
 		if (this.invalidXYCoords(x, y)) {
 			return 0;
 		}
-		
+
 		return squareHeight[x][y];
 	}
-	
+
 	public boolean isBlocked(int x, int y) {
-		
+
 		if (this.invalidXYCoords(x, y)) {
 			return true;
 		}
-		
+
 		return squares[x][y] == RoomModel.CLOSED;
 	}
 
@@ -169,19 +182,19 @@ public class RoomModel
 		if (x >= this.mapSizeX) {
 			return true;
 		}
-		
+
 		if (y >= this.mapSizeY) {
 			return true;
 		}
-		
+
 		if (x < 0) {
 			return true;
 		}
-		
+
 		if (y < 0) {
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -196,7 +209,7 @@ public class RoomModel
 	public boolean hasPool() {
 		return hasPool;
 	}
-	
+
 	public boolean hasDisabledHeightCheck() {
 		return disabledHeightCheck;
 	}

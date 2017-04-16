@@ -9,6 +9,7 @@ import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
+import org.alexdev.roseau.messages.outgoing.CHAT;
 import org.alexdev.roseau.messages.outgoing.OPEN_UIMAKOPPI;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
@@ -18,6 +19,7 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.ItemDefinition;
 import org.alexdev.roseau.game.pathfinder.Pathfinder;
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.game.room.model.Position;
 import com.google.common.collect.Lists;
 
@@ -26,6 +28,7 @@ public class RoomUser {
 	private int virtualID;
 	private int lastChatID;
 	private int danceID;
+	private int timeUntilNextDrink;
 
 	private Position position;
 	private Position goal;
@@ -56,7 +59,7 @@ public class RoomUser {
 				ItemDefinition definition = item.getDefinition();
 
 				if (definition.getSprite().equals("poolEnter")) {
-					this.setStatus("swim", "");
+					this.setStatus("swim", "", true, -1);
 					this.poolInteractor(item, "enter");
 					return;
 
@@ -156,7 +159,7 @@ public class RoomUser {
 		if (definition.getBehaviour().isCanSitOnTop()) {
 			this.getPosition().setRotation(item.getRotation(), false);
 			this.removeStatus("dance");
-			this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()));
+			this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()), true, -1);
 		}
 
 	}
@@ -210,46 +213,31 @@ public class RoomUser {
 		this.isWalking = true;
 	}
 
-	/*public void chat(String talkMessage, String header, boolean spamCheck) {
+	public void chat(String talkMessage) {
+		this.room.send(new CHAT("CHAT", this.entity.getDetails().getUsername(), talkMessage));
+	}
+	
+	public void chat(String header, String talkMessage) {
+		this.room.send(new CHAT(header, this.entity.getDetails().getUsername(), talkMessage));
+	}
 
-		boolean isStaff = false;
-		Player player = null;
 
-		if (this.entity instanceof Player) {
-
-			player = (Player)this.entity;
-			isStaff = player.getDetails().hasFuse("moderator");
-		}
-
-		if (spamCheck) {
-			if (Roseau.getUtilities().getTimestamp() < this.chatFloodTimer && this.chatCount >= GameSettings.MAX_CHAT_BEFORE_FLOOD) {
-
-				if (!isStaff) {
-					if (player != null) {
-
-					}
-					return;
-				}
-			}
-		}
-
-		this.room.send(new CHAT_MESSAGE(this, talkMessage, header));
-
-		if (spamCheck) {
-			if (!player.getDetails().hasFuse("moderator")) {
-
-				if (Roseau.getUtilities().getTimestamp() > this.chatFloodTimer && this.chatCount >= GameSettings.MAX_CHAT_BEFORE_FLOOD) {
-					this.chatCount = 0;
-				} else {
-					this.chatCount = this.chatCount + 1;
-				}
-
-				this.chatFloodTimer = (Roseau.getUtilities().getTimestamp() + GameSettings.CHAT_FLOOD_SECONDS);
-
-			}
-		}
-	}*/
-
+	public void chat(final String response, final int delay) {
+		
+		final Room room = this.room;
+		final PlayerDetails details = this.entity.getDetails();
+		
+		new java.util.Timer().schedule( 
+		        new java.util.TimerTask() {
+		            @Override
+		            public void run() {
+		            	room.send(new CHAT("CHAT", details.getUsername(), response));
+		            }
+		        }, 
+		        delay * 1000
+		);
+	}
+	
 	public void lookTowards(Position look) {
 
 		if (this.isWalking) {
@@ -307,6 +295,7 @@ public class RoomUser {
 		this.lastChatID = 0;
 		this.virtualID = -1;
 		this.danceID = 0;
+		this.timeUntilNextDrink = -1;
 
 	}
 
@@ -314,29 +303,21 @@ public class RoomUser {
 		this.statuses.remove(key);
 	}
 
-	public void setStatus(String key, String value) {
-		this.setStatus(key, value, false);
+	public void setStatus(String key, String value, boolean infinite, int duration, boolean sendUpdate) {
+		this.setStatus(key, value, infinite, duration);
+		
+		if (sendUpdate) {
+			this.needsUpdate = true;
+		}
 	}
-
-	public void setStatus(String key, String value, boolean needs_update) {
-		this.setStatus(key, value, true, -1, needs_update);
-	}
-
-	public void setStatus(String key, String value, boolean infinite, int duration) {
-		this.setStatus(key, value, infinite, duration, false);
-	}
-
-	public void setStatus(String key, String value, boolean infinite, int duration, boolean needs_update) {
+	
+	public void setStatus(String key, String value, boolean infinite, long duration) {
 
 		if (this.containsStatus(key)) {
 			this.removeStatus(key);
 		}
 
 		this.statuses.put(key, new RoomUserStatus(key, value, infinite, duration));
-
-		if (needs_update) {
-			this.needsUpdate = true;
-		}
 	}
 
 	public void forceStopWalking() {
@@ -475,6 +456,14 @@ public class RoomUser {
 
 	public boolean canWalk() {
 		return this.canWalk;
+	}
+
+	public int getTimeUntilNextDrink() {
+		return timeUntilNextDrink;
+	}
+
+	public void setTimeUntilNextDrink(int timeUntilNextDrink) {
+		this.timeUntilNextDrink = timeUntilNextDrink;
 	}
 
 

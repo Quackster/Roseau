@@ -1,8 +1,6 @@
 package org.alexdev.roseau.game.room.schedulers;
 
 import org.alexdev.roseau.game.room.Room;
-import org.alexdev.roseau.game.room.events.RoomEvent;
-import org.alexdev.roseau.log.Log;
 
 public class RoomEventScheduler implements Runnable {
 

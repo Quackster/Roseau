@@ -1,7 +1,8 @@
-package org.alexdev.roseau.game.room.events;
+package org.alexdev.roseau.game.room.schedulers.events;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.room.Room;
+import org.alexdev.roseau.game.room.schedulers.RoomEvent;
 import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 
 public class ClubMassivaDiscoEvent extends RoomEvent {

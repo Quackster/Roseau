@@ -5,7 +5,6 @@ import org.alexdev.roseau.game.catalogue.CatalogueItem;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.MessageEvent;
-import org.alexdev.roseau.messages.outgoing.PURCHASEOK;
 import org.alexdev.roseau.messages.outgoing.PURCHASE_ADDSTRIPITEM;
 import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
 import org.alexdev.roseau.server.messages.ClientMessage;

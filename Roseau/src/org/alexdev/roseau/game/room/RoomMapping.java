@@ -5,7 +5,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.Entity;
+import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.item.Item;
+import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.settings.RoomType;
@@ -133,7 +135,7 @@ public class RoomMapping {
 
 		Item item = tile.getHighestItem();
 		boolean tile_valid = (this.room.getData().getModel().isBlocked(x, y) == false);
-
+		
 		if (item != null) {
 			tile_valid = item.canWalk(entity);
 		}
@@ -141,10 +143,6 @@ public class RoomMapping {
 		// This is returned when there's no items found, it will
 		// just check the default model if the tile is valid
 		return tile_valid;
-	}
-	
-	public List<Player> getNearbyPlayers(Entity entity, int distance) {
-		return this.getNearbyPlayers(entity, entity.getRoomUser().getPosition(), distance);
 	}
 	
 	public List<Player> getNearbyPlayers(Entity entity, Position start, int distance) {
@@ -162,6 +160,27 @@ public class RoomMapping {
 
 			if (currentPoint.getDistance(playerPoint) <= distance) {
 				players.add(roomPlayer);
+			}
+		}
+		
+		return players;
+	}
+	
+	public List<Bot> getNearbyBots(Entity entity, Position start, int distance) {
+		
+		List<Bot> players = Lists.newArrayList();
+		
+		for (Entity roomPlayer : room.getEntities(EntityType.BOT)) {
+			
+			if (roomPlayer == entity) {
+				continue;
+			}
+			
+			Position currentPoint = start;
+			Position playerPoint = roomPlayer.getRoomUser().getPosition();
+
+			if (currentPoint.getDistance(playerPoint) <= distance) {
+				players.add((Bot)roomPlayer);
 			}
 		}
 		
