@@ -13,6 +13,7 @@ import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_ADD;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_REMOVE;
+import org.alexdev.roseau.messages.outgoing.STUFFDATAUPDATE;
 
 import com.google.common.collect.Lists;
 
@@ -34,7 +35,7 @@ public class RoomMapping {
 	}
 
 	public void regenerateCollisionMaps() {
-		
+
 		this.mapSizeX = this.room.getData().getModel().getMapSizeX();
 		this.mapSizeY = this.room.getData().getModel().getMapSizeY();
 
@@ -96,7 +97,7 @@ public class RoomMapping {
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-			//e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 	}
@@ -135,7 +136,7 @@ public class RoomMapping {
 
 		Item item = tile.getHighestItem();
 		boolean tile_valid = (this.room.getData().getModel().isBlocked(x, y) == false);
-		
+
 		if (item != null) {
 			tile_valid = item.canWalk(entity);
 		}
@@ -144,17 +145,17 @@ public class RoomMapping {
 		// just check the default model if the tile is valid
 		return tile_valid;
 	}
-	
+
 	public List<Player> getNearbyPlayers(Entity entity, Position start, int distance) {
-		
+
 		List<Player> players = Lists.newArrayList();
-		
+
 		for (Player roomPlayer : room.getPlayers()) {
-			
+
 			if (roomPlayer == entity) {
 				continue;
 			}
-			
+
 			Position currentPoint = start;
 			Position playerPoint = roomPlayer.getRoomUser().getPosition();
 
@@ -162,20 +163,20 @@ public class RoomMapping {
 				players.add(roomPlayer);
 			}
 		}
-		
+
 		return players;
 	}
-	
+
 	public List<Bot> getNearbyBots(Entity entity, Position start, int distance) {
-		
+
 		List<Bot> players = Lists.newArrayList();
-		
+
 		for (Entity roomPlayer : room.getEntities(EntityType.BOT)) {
-			
+
 			if (roomPlayer == entity) {
 				continue;
 			}
-			
+
 			Position currentPoint = start;
 			Position playerPoint = roomPlayer.getRoomUser().getPosition();
 
@@ -183,7 +184,7 @@ public class RoomMapping {
 				players.add((Bot)roomPlayer);
 			}
 		}
-		
+
 		return players;
 	}
 
@@ -201,6 +202,10 @@ public class RoomMapping {
 			}
 		}
 
+		if (item.getDefinition().getDataClass().equals("DIR")) {
+			item.setCustomData(String.valueOf(item.getRotation()));
+		}
+
 		this.room.send(new ACTIVEOBJECT_ADD(item));
 		item.save();
 	}
@@ -210,6 +215,14 @@ public class RoomMapping {
 		if (item.getDefinition().getBehaviour().isOnFloor()) {
 			this.handleItemAdjustment(item, rotation_only);
 			this.regenerateCollisionMaps();
+		}
+
+		if (item.getDefinition().getDataClass().equals("DIR")) {
+
+			int rotation = Roseau.getUtilities().getRandom().nextInt(7);
+
+			item.setRotation(rotation);
+			item.setCustomData(String.valueOf(rotation));
 		}
 
 		item.updateStatus();	    
@@ -225,6 +238,43 @@ public class RoomMapping {
 		this.room.send(new ACTIVEOBJECT_REMOVE(item.getPacketID()));
 		this.room.getItems().remove(item.getID());
 
+	}
+
+	public void updateItem(Player player, Item item, String dataClass, String customData) {
+
+		if (item == null) {
+			return;
+
+		}
+
+		if (item.getDefinition().getDataClass().equals("NULL")) {
+			return;
+		}
+
+		if (item.getDefinition().getDataClass().equals("DIR")) {
+			return;
+		}
+
+		if (item.getDefinition().getBehaviour().getRequiresRightsForInteraction()) {
+			if (this.room.hasRights(player.getDetails().getID(), false)) {
+				return;
+			}
+		}
+
+		if (item.getDefinition().getDataClass().equals("DOOROPEN") && !customData.equals("TRUE")) {
+			customData = "FALSE";
+		} else if ((item.getDefinition().getDataClass().equals("SWITCHON") || item.getDefinition().getDataClass().equals("FIREON")) && !customData.equals("ON")) {
+			customData = "OFF";
+		} else if (item.getDefinition().getDataClass().equals("STATUS") && !customData.equals("O")) { 
+			customData = "C";
+		}
+		
+		this.room.send(new STUFFDATAUPDATE(item, customData));
+		
+		if (!item.getDefinition().getDataClass().equals("DOOROPEN")) {
+			item.setCustomData(customData);
+			item.save();
+		}
 	}
 
 	private void handleItemAdjustment(Item item, boolean rotation_only) {

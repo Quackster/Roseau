@@ -89,7 +89,8 @@ public class Item implements SerializableObject {
 				response.appendArgument(definition.getName(), '/');
 				response.appendArgument(definition.getDescription(), '/');
 
-				if (this.customData != null) {
+				if (this.customData != null && this.definition.getDataClass() != null) {
+					response.appendArgument(this.definition.getDataClass(), '/');
 					response.appendArgument(this.customData, '/');
 				}
 

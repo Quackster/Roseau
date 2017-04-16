@@ -303,7 +303,12 @@ public class RoomUser {
 		this.statuses.remove(key);
 	}
 
-	public void setStatus(String key, String value, boolean infinite, int duration, boolean sendUpdate) {
+	public void setStatus(String key, String value, boolean infinite, long duration, boolean sendUpdate) {
+		
+		if (key.equals("carryd")) {
+			this.timeUntilNextDrink = 12;
+		}
+		
 		this.setStatus(key, value, infinite, duration);
 		
 		if (sendUpdate) {

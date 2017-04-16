@@ -5,6 +5,8 @@ import java.util.HashMap;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.incoming.ADDSTRIPITEM;
 import org.alexdev.roseau.messages.incoming.APPROVENAME;
+import org.alexdev.roseau.messages.incoming.CARRYDRINK;
+import org.alexdev.roseau.messages.incoming.CARRYITEM;
 import org.alexdev.roseau.messages.incoming.CLOSE_UIMAKOPPI;
 import org.alexdev.roseau.messages.incoming.CREATEFLAT;
 import org.alexdev.roseau.messages.incoming.DANCE;
@@ -34,6 +36,7 @@ import org.alexdev.roseau.messages.incoming.REMOVEITEM;
 import org.alexdev.roseau.messages.incoming.SEARCHBUSYFLATS;
 import org.alexdev.roseau.messages.incoming.SEARCHFLATFORUSER;
 import org.alexdev.roseau.messages.incoming.SETFLATINFO;
+import org.alexdev.roseau.messages.incoming.SETSTUFFDATA;
 import org.alexdev.roseau.messages.incoming.STATUSOK;
 import org.alexdev.roseau.messages.incoming.STOP;
 import org.alexdev.roseau.messages.incoming.TALK;
@@ -130,6 +133,9 @@ public class MessageHandler {
 		this.messages.put("FLATPROPERTYBYITEM", new FLATPROPERTYBYITEM());
 		this.messages.put("ADDSTRIPITEM", new ADDSTRIPITEM());
 		this.messages.put("REMOVEITEM", new REMOVEITEM());
+		this.messages.put("SETSTUFFDATA", new SETSTUFFDATA());
+		this.messages.put("CarryItem", new CARRYITEM());
+		this.messages.put("CarryDrink", new CARRYDRINK());
 	}
 	
 	

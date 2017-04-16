@@ -68,10 +68,7 @@ public class UserStatusEvent extends RoomEvent {
 							entity.getRoomUser().setStatus("drink", "", false, -1);
 							entity.getRoomUser().sendStatusComposer();
 							entity.getRoomUser().removeStatus("drink");
-							entity.getRoomUser().setStatus("carryd", value, false, remainingDuration);
-							
-							roomUser.setTimeUntilNextDrink(12);
-							entity.getRoomUser().setNeedUpdate(true);
+							entity.getRoomUser().setStatus("carryd", value, false, remainingDuration, true);
 						}
 					}
 				}
