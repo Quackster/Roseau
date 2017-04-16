@@ -102,6 +102,16 @@ public class RoomModel
 						}
 					}
 
+					if (this.name.equals("pool_a")) {
+						if (x == 6 && y == 31) {
+							squares[x][y] = CLOSED;
+						}
+						
+						if (x == 6 && y == 32) {
+							squares[x][y] = CLOSED;
+						}
+					}
+
 				}
 
 

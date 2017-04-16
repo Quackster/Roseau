@@ -378,10 +378,12 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 				List<String> responses = Lists.newArrayList();
 				List<String> triggers = Lists.newArrayList();
 
-				for (String coordinate : resultSet.getString("walk_to").split(" ")) {
-					int x = Integer.valueOf(coordinate.split(",")[0]);
-					int y = Integer.valueOf(coordinate.split(",")[1]);
-					positions.add(new int[] { x, y} );
+				if (resultSet.getString("walk_to").length() > 0) {
+					for (String coordinate : resultSet.getString("walk_to").split(" ")) {
+						int x = Integer.valueOf(coordinate.split(",")[0]);
+						int y = Integer.valueOf(coordinate.split(",")[1]);
+						positions.add(new int[] { x, y} );
+					}
 				}
 
 				String dbResponses = resultSet.getString("responses");
@@ -393,7 +395,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 				} else {
 					responses.add(dbResponses);
 				}
-				
+
 				String dbTriggers = resultSet.getString("triggers");
 
 				if (dbTriggers.contains(",")) {
