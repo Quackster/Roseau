@@ -25,6 +25,8 @@ import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
+import org.alexdev.roseau.messages.outgoing.DOOR_IN;
+import org.alexdev.roseau.messages.outgoing.DOOR_OUT;
 import org.alexdev.roseau.messages.outgoing.FLATPROPERTY;
 import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.ITEMS;
@@ -228,6 +230,8 @@ public class Room implements SerializableObject {
 			
 			if (item != null) {
 				if (item.getDefinition().getBehaviour().isTeleporter()) {
+					
+					//this.send(new DOOR_IN(item, player.getDetails().getUsername()));
 					
 					TimerTask task = new TimerTask() {
 			            @Override

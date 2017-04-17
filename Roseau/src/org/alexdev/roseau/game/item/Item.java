@@ -46,7 +46,7 @@ public class Item implements SerializableObject {
 			this.wallPosition = x;
 		} else {
 			//this.x = Integer.valueOf(x);
-			this.position = new Position(Integer.valueOf(x), y);
+			this.position = new Position(Integer.valueOf(x), y, z);
 			this.position.setBodyRotation(rotation);
 		}
 

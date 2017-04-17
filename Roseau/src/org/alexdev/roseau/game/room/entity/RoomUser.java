@@ -11,6 +11,8 @@ import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.CHAT;
+import org.alexdev.roseau.messages.outgoing.DOOR_IN;
+import org.alexdev.roseau.messages.outgoing.DOOR_OUT;
 import org.alexdev.roseau.messages.outgoing.OPEN_UIMAKOPPI;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
@@ -178,6 +180,8 @@ public class RoomUser {
 			final Room previousRoom = this.room;
 			final Room room = Roseau.getDataAccess().getRoom().getRoom(targetTeleporter.getRoomID(), true);
 			
+			//this.room.send(new DOOR_OUT(item, player.getDetails().getUsername()));
+			
 			if (room != null) {
 			
 				TimerTask task = new TimerTask() {
@@ -192,7 +196,7 @@ public class RoomUser {
 		            }
 				};
 				
-				Roseau.getGame().getTimer().schedule(task, 1000);
+				Roseau.getGame().getTimer().schedule(task, 1500);
 			}
 		}
 
