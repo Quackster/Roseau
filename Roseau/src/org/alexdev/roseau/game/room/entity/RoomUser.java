@@ -129,7 +129,7 @@ public class RoomUser {
 						player.getNetwork().setServerPort(room.getData().getServerPort());
 						
 						if (connectionRoom.getDoorPosition() != null) {
-							room.loadRoom(player, connectionRoom.getDoorPosition(), connectionRoom.getDoorPosition().getBodyRotation());
+							room.loadRoom(player, connectionRoom.getDoorPosition(), connectionRoom.getDoorPosition().getRotation());
 						} else {
 							room.loadRoom(player);
 						}
@@ -164,7 +164,7 @@ public class RoomUser {
 		}
 
 		if (definition.getBehaviour().isCanSitOnTop()) {
-			this.getPosition().setRotation(item.getRotation(), false);
+			this.getPosition().setRotation(item.getPosition().getRotation(), false);
 			this.removeStatus("dance");
 			this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()), true, -1);
 		}
@@ -178,7 +178,7 @@ public class RoomUser {
 			}
 			
 			Room room = Roseau.getDataAccess().getRoom().getRoom(targetTeleporter.getRoomID(), true);
-			room.loadRoom(((Player) this.entity));
+			room.loadRoom((Player) this.entity, targetTeleporter.getPosition(), targetTeleporter.getPosition().getRotation());
 		}
 
 	}
@@ -263,17 +263,17 @@ public class RoomUser {
 			return;
 		}
 
-		int diff = this.getPosition().getBodyRotation() - Rotation.calculateHumanDirection(this.position.getX(), this.position.getY(), look.getX(), look.getY());
+		int diff = this.getPosition().getRotation() - Rotation.calculateHumanDirection(this.position.getX(), this.position.getY(), look.getX(), look.getY());
 
 
-		if ((this.getPosition().getBodyRotation() % 2) == 0) {
+		if ((this.getPosition().getRotation() % 2) == 0) {
 			
 			if (diff > 0) {
-				this.position.setHeadRotation(this.getPosition().getBodyRotation() - 1);
+				this.position.setHeadRotation(this.getPosition().getRotation() - 1);
 			} else if (diff < 0) {
-				this.position.setHeadRotation(this.getPosition().getBodyRotation() + 1);
+				this.position.setHeadRotation(this.getPosition().getRotation() + 1);
 			} else {
-				this.position.setHeadRotation(this.getPosition().getBodyRotation());
+				this.position.setHeadRotation(this.getPosition().getRotation());
 			}
 		}
 

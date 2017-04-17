@@ -185,11 +185,11 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 			if (item.getDefinition().getBehaviour().isOnWall()) {
 				preparedStatement.setString(2, item.getWallPosition());	
 			} else {
-			preparedStatement.setInt(2, item.getX());
+				preparedStatement.setInt(2, item.getPosition().getX());
 			}
-			preparedStatement.setInt(3, item.getY());
-			preparedStatement.setDouble(4, item.getZ());
-			preparedStatement.setInt(5, item.getRotation());
+			preparedStatement.setInt(3, item.getPosition().getY());
+			preparedStatement.setDouble(4, item.getPosition().getZ());
+			preparedStatement.setInt(5, item.getPosition().getRotation());
 			preparedStatement.setInt(6, item.getRoomID());
 			preparedStatement.setLong(7, item.getID());
 			preparedStatement.executeUpdate();

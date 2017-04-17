@@ -30,7 +30,7 @@ public class Position {
 		this.Y = y;
 		this.Z = i;
 	}
-	
+
 	public Position(int x, int y, double i, int rotation) {
 		this.X = x;
 		this.Y = y;
@@ -83,12 +83,12 @@ public class Position {
 		return (int)Math.hypot(this.getX() - point.getX(), this.getY() - point.getY());
 	}
 
-	
+
 	public boolean isMatch(Position point) {	
 		return (this.X == point.getX() && this.Y == point.getY());
 	}
 
-	public int getBodyRotation() {
+	public int getRotation() {
 		return bodyRotation;
 	}
 
@@ -103,7 +103,7 @@ public class Position {
 	public void setHeadRotation(int headRotation) {
 		this.headRotation = headRotation;
 	}
-	
+
 	public void setRotation(int rotation, boolean headOnly) {
 
 		this.headRotation = rotation;
@@ -111,6 +111,22 @@ public class Position {
 		if (!headOnly) {
 			this.bodyRotation = rotation;
 		}
+	}
+
+	public Position getSquareInFront() {
+		Position square = new Position(this.X, this.Y);
+
+		if (this.bodyRotation == 0) {
+			square.Y--;
+		} else if (this.bodyRotation == 2) {
+			square.X++;
+		} else if (this.bodyRotation == 4) {
+			square.Y++;
+		} else if (this.bodyRotation == 6) {
+			square.X--;
+		}
+
+		return square;
 	}
 
 

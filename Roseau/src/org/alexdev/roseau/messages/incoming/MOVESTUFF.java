@@ -31,16 +31,16 @@ public class MOVESTUFF implements MessageEvent {
 			return;
 		}
 
-		item.setX(x);
-		item.setY(y);
+		item.getPosition().setX(x);
+		item.getPosition().setY(y);
 
 		boolean rotation_only = false;
 
 		if (reader.getArgumentAmount() > 3) {
 			int rotation = Integer.valueOf(reader.getArgument(3));
 
-			if (rotation != item.getRotation()) {
-				item.setRotation(rotation);
+			if (rotation != item.getPosition().getRotation()) {
+				item.setItemRotation(rotation);
 				rotation_only = true;
 			}
 		}

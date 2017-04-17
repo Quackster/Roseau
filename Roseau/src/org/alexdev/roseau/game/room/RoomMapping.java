@@ -77,9 +77,9 @@ public class RoomMapping {
 					stacked_height = item.getDefinition().getHeight();
 				}
 
-				this.checkHighestItem(item, item.getX(), item.getY());
+				this.checkHighestItem(item, item.getPosition().getX(), item.getPosition().getY());
 
-				RoomTile roomTile = this.getTile(item.getX(), item.getY());
+				RoomTile roomTile = this.getTile(item.getPosition().getX(), item.getPosition().getY());
 				roomTile.getItems().add(item);
 				roomTile.setHeight(roomTile.getHeight() + stacked_height);
 
@@ -114,7 +114,7 @@ public class RoomMapping {
 			this.tiles[x][y].setHighestItem(item);
 		}
 		else {
-			if (item.getZ() > highest_item.getZ()) {
+			if (item.getPosition().getZ() > highest_item.getPosition().getZ()) {
 				this.tiles[x][y].setHighestItem(item);
 			}
 		}
@@ -203,7 +203,7 @@ public class RoomMapping {
 		}
 
 		if (item.getDefinition().getDataClass().equals("DIR")) {
-			item.setCustomData(String.valueOf(item.getRotation()));
+			item.setCustomData(String.valueOf(item.getPosition().getRotation()));
 		}
 
 		this.room.send(new ACTIVEOBJECT_ADD(item));
@@ -221,7 +221,7 @@ public class RoomMapping {
 
 			int rotation = Roseau.getUtilities().getRandom().nextInt(7);
 
-			item.setRotation(rotation);
+			item.setItemRotation(rotation);
 			item.setCustomData(String.valueOf(rotation));
 		}
 
@@ -282,15 +282,15 @@ public class RoomMapping {
 	private void handleItemAdjustment(Item item, boolean rotation_only) {
 
 		if (rotation_only) {
-			for (Item items : this.getTile(item.getX(), item.getY()).getItems()) {
-				if (items != item && items.getZ() >= item.getZ()) {
-					items.setRotation(item.getRotation());
+			for (Item items : this.getTile(item.getPosition().getX(), item.getPosition().getY()).getItems()) {
+				if (items != item && items.getPosition().getZ() >= item.getPosition().getZ()) {
+					items.setItemRotation(item.getPosition().getRotation());
 					items.updateStatus();
 				}
 			}
 		}
 		else {
-			item.setZ(this.getStackHeight(item.getX(), item.getY()));
+			item.getPosition().setZ(this.getStackHeight(item.getPosition().getX(), item.getPosition().getY()));
 		}
 
 	}

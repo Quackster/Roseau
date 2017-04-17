@@ -19,10 +19,7 @@ public class Item implements SerializableObject {
 	private int roomID;
 	private int targetTeleporterID;
 	
-	private int x;
-	private int y;
-	private double z;
-	private int rotation;
+	private Position position;
 	
 	private String itemData;
 	private String customData;
@@ -37,9 +34,6 @@ public class Item implements SerializableObject {
 		this.ID = ID;
 		this.roomID = roomID;
 		
-		this.y = y;
-		this.z = z;
-		this.rotation = rotation;
 		this.definitionID = definitionID;
 		
 		this.itemData = itemData;	
@@ -50,7 +44,9 @@ public class Item implements SerializableObject {
 		if (this.getDefinition().getBehaviour().isOnWall()) {
 			this.wallPosition = x;
 		} else {
-			this.x = Integer.valueOf(x);
+			//this.x = Integer.valueOf(x);
+			this.position = new Position(Integer.valueOf(x), y);
+			this.position.setRotation(rotation, false);
 		}
 		
 		this.setTeleporterID();
@@ -80,22 +76,22 @@ public class Item implements SerializableObject {
 
 			response.appendNewArgument(Integer.toString(this.ID));
 			response.appendArgument(definition.getSprite());
-			response.appendArgument(Integer.toString(this.x));
-			response.appendArgument(Integer.toString(this.y));
-			response.appendArgument(Integer.toString((int)this.z));
-			response.appendArgument(Integer.toString(this.rotation));
+			response.appendArgument(Integer.toString(this.position.getX()));
+			response.appendArgument(Integer.toString(this.position.getY()));
+			response.appendArgument(Integer.toString((int)this.position.getZ()));
+			response.appendArgument(Integer.toString(this.position.getRotation()));
 		} else {
 
 
 			if (definition.getBehaviour().isOnFloor()) {
 				response.appendNewArgument(this.getPacketID());
 				response.appendArgument(definition.getSprite(), ',');
-				response.appendArgument(Integer.toString(this.x));
-				response.appendArgument(Integer.toString(this.y));
+				response.appendArgument(Integer.toString(this.position.getX()));
+				response.appendArgument(Integer.toString(this.position.getY()));
 				response.appendArgument(Integer.toString(definition.getLength()));
 				response.appendArgument(Integer.toString(definition.getWidth()));
-				response.appendArgument(Integer.toString(this.rotation));
-				response.appendArgument(Integer.toString((int)this.z));
+				response.appendArgument(Integer.toString(this.position.getRotation()));
+				response.appendArgument(Integer.toString((int)this.position.getZ()));
 				response.appendArgument(definition.getColor());
 				response.appendArgument(definition.getName(), '/');
 				response.appendArgument(definition.getDescription(), '/');
@@ -128,9 +124,9 @@ public class Item implements SerializableObject {
 		return AffectedTile.getAffectedTilesAt(
 				definition.getLength(), 
 				definition.getWidth(), 
-				this.x, 
-				this.y,
-				this.rotation);
+				this.position.getX(), 
+				this.position.getY(),
+				this.position.getRotation());
 	}
 
 	public boolean canWalk(Entity player) {
@@ -173,33 +169,37 @@ public class Item implements SerializableObject {
 	}
 
 	public RoomTile getTileInstance() {
-		return this.getRoom().getMapping().getTile(this.x, this.y);
+		return this.getRoom().getMapping().getTile(this.position.getX(), this.position.getY());
 	}
 
 	public void lockTiles() {
-		this.getRoom().getMapping().getTile(this.x, this.y).setOverrideLock(true);
+		this.getRoom().getMapping().getTile(this.position.getX(), this.position.getY()).setOverrideLock(true);
 
-		if (this.customData != null) {
-			for (String coordinate : this.customData.split(" ")) {
-				int x = Integer.valueOf(coordinate.split(",")[0]);
-				int y = Integer.valueOf(coordinate.split(",")[1]);
+		try {
+			if (this.customData != null) {
+				for (String coordinate : this.customData.split(" ")) {
+					int x = Integer.valueOf(coordinate.split(",")[0]);
+					int y = Integer.valueOf(coordinate.split(",")[1]);
 
-				this.getRoom().getMapping().getTile(x, y).setOverrideLock(true);
+					this.getRoom().getMapping().getTile(x, y).setOverrideLock(true);
+				}
 			}
-		}
+		} catch (NumberFormatException e) {	}
 	}
 
 	public void unlockTiles() {
-		this.getRoom().getMapping().getTile(this.x, this.y).setOverrideLock(false);
+		this.getRoom().getMapping().getTile(this.position.getX(), this.position.getY()).setOverrideLock(false);
 
-		if (this.customData != null) {
-			for (String coordinate : this.customData.split(" ")) {
-				int x = Integer.valueOf(coordinate.split(",")[0]);
-				int y = Integer.valueOf(coordinate.split(",")[1]);
+		try {
+			if (this.customData != null) {
+				for (String coordinate : this.customData.split(" ")) {
+					int x = Integer.valueOf(coordinate.split(",")[0]);
+					int y = Integer.valueOf(coordinate.split(",")[1]);
 
-				this.getRoom().getMapping().getTile(x, y).setOverrideLock(false);
+					this.getRoom().getMapping().getTile(x, y).setOverrideLock(false);
+				}
 			}
-		}
+		} catch (NumberFormatException e) {	}
 	}
 	
 	public void showProgram(String data) {
@@ -246,39 +246,11 @@ public class Item implements SerializableObject {
 		return this.ID;
 	}
 
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
 	public ItemDefinition getDefinition() {
 		return this.definition;
 	}
-
-	public double getZ() {
-		return z;
-	}
-
-	public void setZ(double d) {
-		this.z = d;
-	}
-
-	public int getRotation() {
-		return rotation;
-	}
-
-	public void setRotation(int rotation) {
+	
+	public void setItemRotation(int rotation) {
 		
 		if (rotation == 1) {
 			rotation = 0;
@@ -296,7 +268,7 @@ public class Item implements SerializableObject {
 			rotation = 6;
 		}
 		
-		this.rotation = rotation;
+		this.position.setRotation(rotation, false);
 	}
 	
 	public Room getRoom() {
@@ -343,6 +315,10 @@ public class Item implements SerializableObject {
 
 	public void setTargetTeleporterID(int targetTeleporterID) {
 		this.targetTeleporterID = targetTeleporterID;
+	}
+
+	public Position getPosition() {
+		return this.position;
 	}
 
 }

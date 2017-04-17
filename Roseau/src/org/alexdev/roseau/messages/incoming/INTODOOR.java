@@ -33,12 +33,12 @@ public class INTODOOR implements MessageEvent {
 
 		Position pos = player.getRoomUser().getPosition();
 
-		if (((item.getRotation() == 0 || item.getRotation() == 2) && ((pos.getX() == item.getX() + 1) && 
-			(pos.getY() == item.getY()))) || 
-			(item.getRotation() == 4 && ((pos.getX() == item.getX()) && (pos.getY() == item.getY() + 1))))
+		if (((item.getPosition().getRotation() == 0 || item.getPosition().getRotation() == 2) && ((pos.getX() == item.getPosition().getX() + 1) && 
+			(pos.getY() == item.getPosition().getY()))) || 
+			(item.getPosition().getRotation() == 4 && ((pos.getX() == item.getPosition().getX()) && (pos.getY() == item.getPosition().getY() + 1))))
 		{
 			Log.println("tru");
-			player.getRoomUser().walkTo(item.getX(), item.getY());
+			player.getRoomUser().walkTo(item.getPosition().getX(), item.getPosition().getY());
 		} else {
 			Log.println("fals");
 		}

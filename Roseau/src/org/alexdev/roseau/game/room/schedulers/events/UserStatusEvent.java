@@ -27,7 +27,7 @@ public class UserStatusEvent extends RoomEvent {
 					roomUser.setLookResetTime(roomUser.getLookResetTime() - 1);
 				} else {
 					if (roomUser.getLookResetTime() == 0) {
-						roomUser.getPosition().setHeadRotation(roomUser.getPosition().getBodyRotation());
+						roomUser.getPosition().setHeadRotation(roomUser.getPosition().getRotation());
 						roomUser.setLookResetTime(-1);
 						roomUser.setNeedUpdate(true);
 					}

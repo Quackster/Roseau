@@ -32,7 +32,7 @@ public class LOOKTO implements MessageEvent {
 				x, 
 				y);
 
-		if (rotation != player.getRoomUser().getPosition().getBodyRotation()) {
+		if (rotation != player.getRoomUser().getPosition().getRotation()) {
 
 			if (player.getRoomUser().containsStatus("sit")) {
 				player.getRoomUser().getPosition().setRotation(rotation, true);

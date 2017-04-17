@@ -186,10 +186,14 @@ public class Room implements SerializableObject {
 
 			if (wallData > 0) {
 				player.send(new FLATPROPERTY("wallpaper", this.roomData.getWall()));
-			}	
+			} else {
+				player.send(new FLATPROPERTY("wallpaper", "201"));
+			}
 
 			if (floorData > 0) {
 				player.send(new FLATPROPERTY("floor", this.roomData.getFloor()));
+			} else {
+				player.send(new FLATPROPERTY("floor", "0"));
 			}
 
 			if (this.roomData.getOwnerID() == player.getDetails().getID()) {	
@@ -216,6 +220,20 @@ public class Room implements SerializableObject {
 		player.send(player.getRoomUser().getStatusComposer());
 
 		this.entities.add(player);
+		
+		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
+			Item item = this.roomMapping.getHighestItem(door.getX(), door.getY());
+			
+			if (item != null) {
+				if (item.getDefinition().getBehaviour().isTeleporter()) {
+					
+					item.setCustomData("TRUE");
+					item.updateStatus();
+					
+					
+				}
+			}
+		}
 	}
 
 	public void send(OutgoingMessageComposer response, boolean checkRights) {
