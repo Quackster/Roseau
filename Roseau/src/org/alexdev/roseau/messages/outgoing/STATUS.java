@@ -28,7 +28,6 @@ public class STATUS implements OutgoingMessageComposer {
 		for (Entity entity : this.entities) {
 			response.appendNewArgument(entity.getDetails().getUsername());
 
-			
 			if (entity.getRoomUser().isWalking()) {
 				if (entity.getRoomUser().getNext() == null) {
 					entity.getRoomUser().stopWalking();

@@ -10,26 +10,37 @@ public class LOOKTO implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-		
+
 		int x = Integer.valueOf(reader.getArgument(0));
 		int y = Integer.valueOf(reader.getArgument(1));
-		
-		
-		if (player.getRoomUser().containsStatus("sit") ||
-			player.getRoomUser().containsStatus("lay")) {
+
+		if (player.getRoomUser().containsStatus("lay")) {
 			return;
 		}
-		
+
 		if (player.getRoomUser().getPosition().isMatch(new Position(x, y))) {
 			return;
 		}
-		
-		player.getRoomUser().getPosition().setRotation(Rotation.calculateHumanDirection(
+
+		if (player.getRoomUser().isWalking()) {
+			return;
+		}
+
+		int rotation = Rotation.calculateHumanDirection(
 				player.getRoomUser().getPosition().getX(), 
 				player.getRoomUser().getPosition().getY(), 
 				x, 
-				y), false);
-		
+				y);
+
+		if (rotation != player.getRoomUser().getPosition().getBodyRotation()) {
+
+			if (player.getRoomUser().containsStatus("sit")) {
+				player.getRoomUser().getPosition().setRotation(rotation, true);
+			} else {
+				player.getRoomUser().getPosition().setRotation(rotation, false);
+			}
+
+		}
 		player.getRoomUser().setNeedUpdate(true);
 
 	}
