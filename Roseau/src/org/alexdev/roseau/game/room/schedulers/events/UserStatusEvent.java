@@ -7,7 +7,6 @@ import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.game.room.entity.RoomUserStatus;
 import org.alexdev.roseau.game.room.schedulers.RoomEvent;
-import org.alexdev.roseau.log.Log;
 
 public class UserStatusEvent extends RoomEvent {
 
@@ -24,20 +23,30 @@ public class UserStatusEvent extends RoomEvent {
 
 				RoomUser roomUser = entity.getRoomUser();
 
+				if (roomUser.getLookResetTime() > 0) {
+					roomUser.setLookResetTime(roomUser.getLookResetTime() - 1);
+				} else {
+					if (roomUser.getLookResetTime() == 0) {
+						roomUser.getPosition().setHeadRotation(roomUser.getPosition().getBodyRotation());
+						roomUser.setLookResetTime(-1);
+						roomUser.setNeedUpdate(true);
+					}
+				}
+
 				for (Entry<String, RoomUserStatus> set : entity.getRoomUser().getStatuses().entrySet()) {
 
 					RoomUserStatus statusEntry = set.getValue();
 
 					if (!statusEntry.isInfinite()) {
 						statusEntry.tick();
-						
+
 						if (statusEntry.getDuration() == 0) {
 							entity.getRoomUser().removeStatus(statusEntry.getKey());
-							
+
 							if (statusEntry.getKey().equals("carryd")) {
 								roomUser.setTimeUntilNextDrink(-1);
 							}
-							
+
 							entity.getRoomUser().setNeedUpdate(true);
 							continue;
 						}
@@ -48,15 +57,15 @@ public class UserStatusEvent extends RoomEvent {
 						if (roomUser.isWalking()) {
 							return;
 						}
-						
+
 						if (roomUser.containsStatus("dance")) {
 							return;
 						}
-						
+
 						if (roomUser.containsStatus("lay")) {
 							return;
 						}
-						
+
 						if (roomUser.getTimeUntilNextDrink() > 0) {
 							roomUser.setTimeUntilNextDrink(roomUser.getTimeUntilNextDrink() - 1);
 						} else {

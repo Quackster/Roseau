@@ -63,6 +63,7 @@ public class TALK implements MessageEvent {
 			if (reader.getHeader().equals("CHAT") || reader.getHeader().equals("SHOUT")) {
 				for (Player roomPlayer : player.getRoomUser().getRoom().getMapping().getNearbyPlayers(player, player.getRoomUser().getPosition(), 30)) {
 					roomPlayer.getRoomUser().lookTowards(player.getRoomUser().getPosition());
+					roomPlayer.getRoomUser().setLookResetTime(5);
 				}
 			}
 		}

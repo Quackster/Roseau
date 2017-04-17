@@ -2,12 +2,9 @@ package org.alexdev.roseau.game.room.schedulers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
-
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomUser;
-import org.alexdev.roseau.game.room.entity.RoomUserStatus;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.messages.outgoing.STATUS;
@@ -85,6 +82,8 @@ public class RoomWalkScheduler implements Runnable {
 		RoomUser roomEntity = entity.getRoomUser();
 
 		if (roomEntity.isWalking()) {
+			
+			roomEntity.setLookResetTime(-1);
 
 			if (roomEntity.getPath().size() > 0) {
 

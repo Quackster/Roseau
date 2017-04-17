@@ -168,6 +168,12 @@ public class Roseau {
 		writer.println("credits.every.x.mins=10");
 		writer.println("credits.every.x.amount=25");
 		writer.println();
+		writer.println("[Bot]");
+		writer.println("bot.response.delay=1500");
+		writer.println();
+		writer.println("[Player]");
+		writer.println("carry.drink.time=180");
+		writer.println("carry.drink.interval=12");
 	}
 
 	private static void startServer() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {

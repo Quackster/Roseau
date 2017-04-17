@@ -1,7 +1,7 @@
 package org.alexdev.roseau.game.room.entity;
 
 import java.util.LinkedList;
-import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.alexdev.roseau.game.room.Room;
@@ -45,6 +45,7 @@ public class RoomUser {
 	private boolean canWalk = true;
 
 	private Entity entity;
+	private int lookResetTime;
 
 	public RoomUser(Entity entity) {
 		this.dispose();
@@ -226,18 +227,16 @@ public class RoomUser {
 	public void chat(final String response, final int delay) {
 		
 		final Room room = this.room;
-		final RoomUser roomUser = this;
 		final PlayerDetails details = this.entity.getDetails();
 		
-		Roseau.getGame().getTimer().schedule( 
-	        new java.util.TimerTask() {
-	            @Override
-	            public void run() {
-	            	room.send(new CHAT("CHAT", details.getUsername(), response));
-	            }
-	        }, 
-	        delay * 1000
-		);
+		TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+            	room.send(new CHAT("CHAT", details.getUsername(), response));
+            }
+		};
+		
+		Roseau.getGame().getTimer().schedule(task, Roseau.getUtilities().getHabboConfig().get("Bot", "bot.response.delay", Integer.class));
 		
 	}
 	
@@ -303,7 +302,7 @@ public class RoomUser {
 	public void setStatus(String key, String value, boolean infinite, long duration, boolean sendUpdate) {
 		
 		if (key.equals("carryd")) {
-			this.timeUntilNextDrink = 12;
+			this.timeUntilNextDrink = Roseau.getUtilities().getHabboConfig().get("Player", "carry.drink.interval", Integer.class);
 		}
 		
 		this.setStatus(key, value, infinite, duration);
@@ -466,6 +465,14 @@ public class RoomUser {
 
 	public void setTimeUntilNextDrink(int timeUntilNextDrink) {
 		this.timeUntilNextDrink = timeUntilNextDrink;
+	}
+
+	public int getLookResetTime() {
+		return lookResetTime;
+	}
+
+	public void setLookResetTime(int lookResetTime) {
+		this.lookResetTime = lookResetTime;
 	}
 
 
