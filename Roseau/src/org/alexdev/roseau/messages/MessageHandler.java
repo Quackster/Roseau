@@ -22,6 +22,7 @@ import org.alexdev.roseau.messages.incoming.GOAWAY;
 import org.alexdev.roseau.messages.incoming.GOTOFLAT;
 import org.alexdev.roseau.messages.incoming.INFORETRIEVE;
 import org.alexdev.roseau.messages.incoming.INITUNITLISTENER;
+import org.alexdev.roseau.messages.incoming.INTODOOR;
 import org.alexdev.roseau.messages.incoming.LOGIN;
 import org.alexdev.roseau.messages.incoming.LOOKTO;
 import org.alexdev.roseau.messages.incoming.MESSENGER_INIT;
@@ -136,6 +137,7 @@ public class MessageHandler {
 		this.messages.put("SETSTUFFDATA", new SETSTUFFDATA());
 		this.messages.put("CarryItem", new CARRYITEM());
 		this.messages.put("CarryDrink", new CARRYDRINK());
+		this.messages.put("IntoDoor", new INTODOOR());
 	}
 	
 	

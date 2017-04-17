@@ -17,6 +17,7 @@ public class Item implements SerializableObject {
 
 	private int ID;
 	private int roomID;
+	private int targetTeleporterID;
 	
 	private int x;
 	private int y;
@@ -41,7 +42,7 @@ public class Item implements SerializableObject {
 		this.rotation = rotation;
 		this.definitionID = definitionID;
 		
-		this.itemData = itemData;
+		this.itemData = itemData;	
 		this.customData = customData;
 		
 		this.reload();
@@ -51,11 +52,21 @@ public class Item implements SerializableObject {
 		} else {
 			this.x = Integer.valueOf(x);
 		}
+		
+		this.setTeleporterID();
 	}
 
 	private void reload() {
 		this.room = Roseau.getGame().getRoomManager().getRoomByID(roomID);
 		this.definition = Roseau.getGame().getItemManager().getDefinition(this.definitionID);
+	}
+	
+	private void setTeleporterID() {
+		if (this.definition.getBehaviour().isTeleporter()) {
+			try {
+				this.targetTeleporterID = Integer.valueOf(this.customData);
+			} catch (NumberFormatException e) {  }
+		}
 	}
 
 	@Override
@@ -138,6 +149,12 @@ public class Item implements SerializableObject {
 
 		if (definition.getBehaviour().isCanStandOnTop()) {
 			tile_valid = true;
+		}
+		
+		if (definition.getBehaviour().isTeleporter()) {
+			if (definition.getDataClass().equals("DOOROPEN") && this.customData.equals("TRUE")) {
+				tile_valid = true;
+			}
 		}
 
 		if (definition.getSprite().equals("poolBooth")) {
@@ -301,6 +318,7 @@ public class Item implements SerializableObject {
 
 	public void setCustomData(String customData) {
 		this.customData = customData;
+		this.setTeleporterID();
 	}
 
 	public String getWallPosition() {
@@ -317,6 +335,14 @@ public class Item implements SerializableObject {
 
 	public void setRoomID(int roomID) {
 		this.roomID = roomID;
+	}
+
+	public int getTargetTeleporterID() {
+		return targetTeleporterID;
+	}
+
+	public void setTargetTeleporterID(int targetTeleporterID) {
+		this.targetTeleporterID = targetTeleporterID;
 	}
 
 }

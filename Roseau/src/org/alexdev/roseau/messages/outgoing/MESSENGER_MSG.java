@@ -17,7 +17,7 @@ public class MESSENGER_MSG implements OutgoingMessageComposer {
 		response.init("MESSENGER_MSG");
 		response.appendNewArgument(String.valueOf("655641"));
 		response.appendNewArgument(String.valueOf("2"));
-        response.appendNewArgument("");
+        response.appendNewArgument("[]");
         response.appendNewArgument("04/03/1980 10:10:10");
         response.appendNewArgument("hiii");
         response.appendNewArgument(from.getDetails().getFigure());

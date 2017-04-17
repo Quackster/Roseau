@@ -57,6 +57,22 @@ public class PURCHASE implements MessageEvent {
 				item.save();
 			}
 			
+			Player p = player.getPrivateRoomPlayer();
+			
+			if (item.getDefinition().getBehaviour().isTeleporter()) {
+				
+				Item firstTeleporter = item;
+				Item secondTeleporter = Roseau.getDataAccess().getInventory().newItem(product.getDefinition().getID(), player.getDetails().getID(), "");
+				
+				firstTeleporter.setCustomData(String.valueOf(secondTeleporter.getID()));
+				secondTeleporter.setCustomData(String.valueOf(firstTeleporter.getID()));
+				
+				firstTeleporter.save();
+				secondTeleporter.save();
+				
+				p.getInventory().addItem(secondTeleporter);
+			}
+			
 			player.send(new SYSTEMBROADCAST("Buying successful!"));
 			
 			// Update the player connected to the private room
@@ -69,7 +85,6 @@ public class PURCHASE implements MessageEvent {
 				Log.println(p.getDetails().getID() + " -- " + p.getNetwork().getServerPort());
 			}*/
 			
-			Player p = player.getPrivateRoomPlayer();
 			p.getInventory().addItem(item);
 			
 			player.send(new PURCHASE_ADDSTRIPITEM());

@@ -136,6 +136,36 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 
 		return items;
 	}
+	
+	@Override
+	public Item getItem(int itemID) {
+
+		Item item = null;
+
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			sqlConnection = this.dao.getStorage().getConnection();
+			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM items WHERE id = " + itemID, sqlConnection);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				item = this.fill(resultSet);
+			}
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(resultSet);
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
+
+		return item;
+	}
 
 
 	@Override

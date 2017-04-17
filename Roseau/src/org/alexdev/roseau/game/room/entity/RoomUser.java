@@ -168,6 +168,18 @@ public class RoomUser {
 			this.removeStatus("dance");
 			this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()), true, -1);
 		}
+		
+		if (definition.getBehaviour().isTeleporter()) {
+			
+			Item targetTeleporter = Roseau.getDataAccess().getItem().getItem(item.getTargetTeleporterID());
+			
+			if (this.room != null) {
+				this.room.leaveRoom((Player) this.entity, false);
+			}
+			
+			Room room = Roseau.getDataAccess().getRoom().getRoom(targetTeleporter.getRoomID(), true);
+			room.loadRoom(((Player) this.entity));
+		}
 
 	}
 

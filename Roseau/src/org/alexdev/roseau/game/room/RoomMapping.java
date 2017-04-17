@@ -268,11 +268,13 @@ public class RoomMapping {
 		} else if (item.getDefinition().getDataClass().equals("STATUS") && !customData.equals("O")) { 
 			customData = "C";
 		}
-		
+
 		this.room.send(new STUFFDATAUPDATE(item, customData));
+		item.setCustomData(customData);
 		
 		if (!item.getDefinition().getDataClass().equals("DOOROPEN")) {
-			item.setCustomData(customData);
+
+
 			item.save();
 		}
 	}

@@ -17,7 +17,7 @@ public class MESSENGER_INIT implements MessageEvent {
 		player.send(new BUDDYLIST());
 		player.send(new BUDDYADDREQUESTS());
 		player.send(new MESSENGERREADY());
-		//player.send(new MESSENGER_MSG(player));
+		player.send(new MESSENGER_MSG(player));
 	
 		
 	}

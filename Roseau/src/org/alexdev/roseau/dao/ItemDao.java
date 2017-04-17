@@ -13,5 +13,6 @@ public interface ItemDao {
 	ConcurrentHashMap<Integer, Item> getRoomItems(int roomID);
 	void saveItem(Item item);
 	void deleteItem(long id);
+	Item getItem(int itemID);
 
 }
