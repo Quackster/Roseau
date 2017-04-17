@@ -163,6 +163,7 @@ public class Roseau {
 	private static void writeHabboHotelConfiguration(PrintWriter writer) {
 		writer.println("[Register]");
 		writer.println("user.name.chars=1234567890qwertyuiopasdfghjklzxcvbnm-=?!@:.,");
+		writer.println("user.default.credits=100");
 		writer.println();
 		writer.println("[Scheduler]");
 		writer.println("credits.every.x.mins=10");

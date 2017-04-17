@@ -1,0 +1,898 @@
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/17/2017 22:52:33
+-----------------------------------------
+
+[04/17/2017 22:52:33] [ROSEAU] >> Roseau - Java Server
+[04/17/2017 22:52:33] [ROSEAU] >> Loading server...
+[04/17/2017 22:52:33] [ROSEAU] 
+[04/17/2017 22:52:33] [ROSEAU] >> Loading dependencies
+[04/17/2017 22:52:33] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: bonecp-0.7.1.RELEASE.jar
+[04/17/2017 22:52:33] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: guava-11.0.2.jar
+[04/17/2017 22:52:33] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: mysql-connector-java-5.1.6-bin.jar
+[04/17/2017 22:52:33] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: netty-3.10.5.Final.jar
+[04/17/2017 22:52:33] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: slf4j-api-1.7.2.jar
+[04/17/2017 22:52:33] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: slf4j-simple-1.7.2.jar
+[04/17/2017 22:52:33] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: ini4j-0.5.5-SNAPSHOT.jar
+[04/17/2017 22:52:33] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: Roseau_socket_netty.jar
+[04/17/2017 22:52:33] [ROSEAU] 
+[04/17/2017 22:52:33] [ROSEAU] >> Connecting to MySQL server
+[04/17/2017 22:52:33] [ROSEAU] >> Connection to MySQL was a success
+[04/17/2017 22:52:33] [ROSEAU] 
+[04/17/2017 22:52:33] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:103
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:117
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:118
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:116
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> [ROOM] [Club Slinky Helsinki] Starting public room server on port: 126
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:126
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:104
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:113
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:115
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:110
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:105
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> [ROOM] [Cunning Fox Gamehall] Starting public room server on port: 121
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:121
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:108
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:107
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] 
+[04/17/2017 22:52:33] [ROSEAU] >> Settting up server
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:90
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:196)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:57)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:198)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:57)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:33] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:33] [ROSEAU] >> Server could not listen on 91:91, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/17/2017 22:52:42
+-----------------------------------------
+
+[04/17/2017 22:52:42] [ROSEAU] >> Roseau - Java Server
+[04/17/2017 22:52:42] [ROSEAU] >> Loading server...
+[04/17/2017 22:52:42] [ROSEAU] 
+[04/17/2017 22:52:42] [ROSEAU] >> Loading dependencies
+[04/17/2017 22:52:42] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: bonecp-0.7.1.RELEASE.jar
+[04/17/2017 22:52:42] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: guava-11.0.2.jar
+[04/17/2017 22:52:42] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: mysql-connector-java-5.1.6-bin.jar
+[04/17/2017 22:52:42] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: netty-3.10.5.Final.jar
+[04/17/2017 22:52:42] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: slf4j-api-1.7.2.jar
+[04/17/2017 22:52:42] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: slf4j-simple-1.7.2.jar
+[04/17/2017 22:52:42] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: ini4j-0.5.5-SNAPSHOT.jar
+[04/17/2017 22:52:42] [ROSEAU] >> [ERROR] There was a critical error loading My plugin! Could not find lib: Roseau_socket_netty.jar
+[04/17/2017 22:52:42] [ROSEAU] 
+[04/17/2017 22:52:42] [ROSEAU] >> Connecting to MySQL server
+[04/17/2017 22:52:42] [ROSEAU] >> Connection to MySQL was a success
+[04/17/2017 22:52:42] [ROSEAU] 
+[04/17/2017 22:52:42] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:103
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:117
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:118
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:116
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> [ROOM] [Club Slinky Helsinki] Starting public room server on port: 126
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:126
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:104
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:113
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:115
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:110
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:105
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> [ROOM] [Cunning Fox Gamehall] Starting public room server on port: 121
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:121
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:108
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:107
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.game.room.Room.load(Room.java:95)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.fill(MySQLRoomDao.java:453)
+	at org.alexdev.roseau.dao.mysql.MySQLRoomDao.getPublicRooms(MySQLRoomDao.java:83)
+	at org.alexdev.roseau.game.room.RoomManager.load(RoomManager.java:23)
+	at org.alexdev.roseau.game.Game.load(Game.java:39)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:55)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] 
+[04/17/2017 22:52:42] [ROSEAU] >> Settting up server
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:90
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:196)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:57)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Error has occured!
+org.jboss.netty.channel.ChannelException: Failed to bind to: /127.0.0.1:91
+	at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:272)
+	at org.alexdev.roseau.server.netty.NettyServer.listenSocket(NettyServer.java:42)
+	at org.alexdev.roseau.Roseau.startServer(Roseau.java:198)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:57)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss$RegisterTask.run(NioServerBoss.java:193)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.processTaskQueue(AbstractNioSelector.java:391)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:315)
+	at org.jboss.netty.channel.socket.nio.NioServerBoss.run(NioServerBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+[04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
+[04/17/2017 22:52:42] [ROSEAU] >> Server could not listen on 91:91, please double check everything is correct in icarus.properties

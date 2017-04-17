@@ -61,24 +61,30 @@ public class TALK implements MessageEvent {
 			talkMessage = reader.getMessageBody();
 
 			List<Player> players = null;
-			
+
 			if (reader.getHeader().equals("SHOUT")) {
-				players = player.getRoomUser().getRoom().getMapping().getNearbyPlayers(player, player.getRoomUser().getPosition(), Roseau.getUtilities().getHabboConfig().get("Player", "talking.lookat.distance", Integer.class));
-			}
-			
-			if (reader.getHeader().equals("CHAT")) {
 				players = player.getRoomUser().getRoom().getPlayers();
 			}
-			
-			CHAT chat = new CHAT(reader.getHeader(), player.getDetails().getUsername(), reader.getMessageBody());
-			
+
+			if (reader.getHeader().equals("CHAT")) {
+				players = player.getRoomUser().getRoom().getMapping().getNearbyPlayers(player, player.getRoomUser().getPosition(), Roseau.getUtilities().getHabboConfig().get("Player", "talking.lookat.distance", Integer.class));
+			}
+
+			CHAT chat = new CHAT(reader.getHeader(), player.getDetails().getUsername(), talkMessage);
+
 			for (Player roomPlayer : players) {
-				roomPlayer.getRoomUser().lookTowards(player.getRoomUser().getPosition());
-				roomPlayer.getRoomUser().setLookResetTime(Roseau.getUtilities().getHabboConfig().get("Player", "talking.lookat.reset", Integer.class));
+				
+				if (roomPlayer != player) {
+					roomPlayer.getRoomUser().lookTowards(player.getRoomUser().getPosition());
+					roomPlayer.getRoomUser().setLookResetTime(Roseau.getUtilities().getHabboConfig().get("Player", "talking.lookat.reset", Integer.class));
+				}
+				
 				roomPlayer.send(chat);
 			}
-			
-			player.send(chat);
+
+			if (reader.getHeader().equals("CHAT")) {
+				player.send(chat);
+			}
 		}
 
 		if (reader.getHeader().equals("CHAT") || reader.getHeader().equals("SHOUT")) {

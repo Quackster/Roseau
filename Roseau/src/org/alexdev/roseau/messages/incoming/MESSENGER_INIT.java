@@ -5,6 +5,7 @@ import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.BUDDYADDREQUESTS;
 import org.alexdev.roseau.messages.outgoing.BUDDYLIST;
 import org.alexdev.roseau.messages.outgoing.MESSENGERREADY;
+import org.alexdev.roseau.messages.outgoing.MESSENGER_MSG;
 import org.alexdev.roseau.messages.outgoing.MYPERSISTENTMSG;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
@@ -16,6 +17,7 @@ public class MESSENGER_INIT implements MessageEvent {
 		player.send(new BUDDYLIST());
 		player.send(new BUDDYADDREQUESTS());
 		player.send(new MESSENGERREADY());
+		//player.send(new MESSENGER_MSG(player));
 	
 		
 	}
