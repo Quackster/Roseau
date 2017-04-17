@@ -250,22 +250,16 @@ public class RoomUser {
 		int diff = this.getPosition().getBodyRotation() - Rotation.calculateHumanDirection(this.position.getX(), this.position.getY(), look.getX(), look.getY());
 
 
-		if ((this.getPosition().getBodyRotation() % 2) == 0)
-		{
-			if (diff > 0)
-			{
+		if ((this.getPosition().getBodyRotation() % 2) == 0) {
+			
+			if (diff > 0) {
 				this.position.setHeadRotation(this.getPosition().getBodyRotation() - 1);
-			}
-			else if (diff < 0)
-			{
+			} else if (diff < 0) {
 				this.position.setHeadRotation(this.getPosition().getBodyRotation() + 1);
-			}
-			else
-			{
+			} else {
 				this.position.setHeadRotation(this.getPosition().getBodyRotation());
 			}
 		}
-
 
 		this.needsUpdate = true;
 	}
