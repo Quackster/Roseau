@@ -120,11 +120,19 @@ public class Position {
 		return square;
 	}
 
+	public void set(Position position) {
+		this.X = position.getX();
+		this.Y = position.getY();
+		this.Z = position.getZ();
+		this.bodyRotation = position.getRotation();
+		this.headRotation = position.getRotation();
+	}
 
 	@Override
 	public String toString() {
 
 		return "[" + this.X + ", " + this.Y + "]";
 	}
+
 
 }

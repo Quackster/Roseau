@@ -15,15 +15,15 @@ public class INTODOOR implements MessageEvent {
 
 		int itemID = Integer.valueOf(reader.getMessageBody());
 
-		Item item = player.getInventory().getItem(itemID);
-
-		if (item == null) {
-			return;
-		}
-
 		Room room = player.getRoomUser().getRoom();
 
 		if (room == null) {
+			return;
+		}
+		
+		Item item = room.getItem(itemID);
+
+		if (item == null) {
 			return;
 		}
 

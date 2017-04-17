@@ -229,23 +229,7 @@ public class Room implements SerializableObject {
 			final Item item = this.roomMapping.getHighestItem(door.getX(), door.getY());
 			
 			if (item != null) {
-				if (item.getDefinition().getBehaviour().isTeleporter()) {
-					
-					//this.send(new DOOR_IN(item, player.getDetails().getUsername()));
-					
-					TimerTask task = new TimerTask() {
-			            @Override
-			            public void run() {
-			            	
-							item.setCustomData("TRUE");
-							item.updateStatus();
-							
-							player.getRoomUser().walkTo(item.getPosition().getSquareInFront());
-			            }
-					};
-					
-					Roseau.getGame().getTimer().schedule(task, 1000);
-				}
+				item.leaveTeleporter(player);
 			}
 		}
 	}

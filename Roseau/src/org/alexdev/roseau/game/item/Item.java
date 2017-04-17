@@ -1,15 +1,18 @@
 package org.alexdev.roseau.game.item;
 
 import java.util.List;
+import java.util.TimerTask;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.pathfinder.AffectedTile;
+import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.RoomTile;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_UPDATE;
+import org.alexdev.roseau.messages.outgoing.DOOR_IN;
 import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
@@ -97,11 +100,11 @@ public class Item implements SerializableObject {
 				response.appendArgument(definition.getName(), '/');
 				response.appendArgument(definition.getDescription(), '/');
 
-		    	/*if (this.targetTeleporterID > 0) {
+				/*if (this.targetTeleporterID > 0) {
 		    		response.appendArgument("extr=", '/');
 		    		response.appendArgument(Integer.toString(this.targetTeleporterID), '/');
 		    	}*/
-				
+
 				if (this.customData != null && this.definition.getDataClass() != null) {
 					response.appendArgument(this.definition.getDataClass(), '/');
 					response.appendArgument(this.customData, '/');
@@ -271,6 +274,11 @@ public class Item implements SerializableObject {
 	}
 
 	public Room getRoom() {
+		
+		if (this.room == null) {
+			this.reload();
+		}
+		
 		return this.room;
 	}
 
@@ -318,6 +326,34 @@ public class Item implements SerializableObject {
 
 	public Position getPosition() {
 		return this.position;
+	}
+
+	public void leaveTeleporter(final Player player) {
+
+		if (!this.definition.getBehaviour().isTeleporter()) {
+			return;
+		}
+		
+		this.reload();
+
+		if (this.room == null) {
+			return;
+		}
+
+		final Item item = this;
+
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+
+				item.setCustomData("TRUE");
+				item.updateStatus();
+
+				player.getRoomUser().walkTo(item.getPosition().getSquareInFront());
+			}
+		};
+
+		Roseau.getGame().getTimer().schedule(task, 1000);
 	}
 
 }

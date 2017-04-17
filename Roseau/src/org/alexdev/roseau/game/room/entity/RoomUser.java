@@ -36,7 +36,7 @@ public class RoomUser {
 	private Position position;
 	private Position goal;
 	private Position next = null;
-	
+
 	private ConcurrentHashMap<String, RoomUserStatus> statuses;
 	private LinkedList<Position> path;
 
@@ -114,28 +114,28 @@ public class RoomUser {
 		if (this.entity instanceof Player) {
 
 			Player player = (Player)this.entity;
-			
+
 			if (this.room.getData().getRoomType() == RoomType.PUBLIC) {
 
 				RoomConnection connectionRoom = this.room.getMapping().getRoomConnection(this.position.getX(), this.position.getY());
-				
+
 				if (connectionRoom != null) {
 					Room room = Roseau.getGame().getRoomManager().getRoomByID(connectionRoom.getToID());
-					
+
 					if (room != null) {
-						
+
 						if (this.room != null) {
 							this.room.leaveRoom(player, false);
 						}
-						
+
 						player.getNetwork().setServerPort(room.getData().getServerPort());
-						
+
 						if (connectionRoom.getDoorPosition() != null) {
 							room.loadRoom(player, connectionRoom.getDoorPosition(), connectionRoom.getDoorPosition().getRotation());
 						} else {
 							room.loadRoom(player);
 						}
-						
+
 						return;
 					} else {
 						Log.println("Tried to connect player to room ID: " + connectionRoom.getToID() + " but no room could be found.");
@@ -171,32 +171,43 @@ public class RoomUser {
 			this.removeStatus("dance");
 			this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()), true, -1);
 		}
-		
+
 		if (definition.getBehaviour().isTeleporter() && this.entity instanceof Player) {
+
+			Item teleporter = this.room.getItem(item.getTargetTeleporterID());
+			
+			if (teleporter == null) {
+				teleporter = Roseau.getDataAccess().getItem().getItem(item.getTargetTeleporterID());
+			}
 			
 			final Player player = (Player) this.entity;
-			final Item targetTeleporter = Roseau.getDataAccess().getItem().getItem(item.getTargetTeleporterID());
-			
+			final Item targetTeleporter = teleporter;
 			final Room previousRoom = this.room;
 			final Room room = Roseau.getDataAccess().getRoom().getRoom(targetTeleporter.getRoomID(), true);
-			
-			//this.room.send(new DOOR_OUT(item, player.getDetails().getUsername()));
-			
+
 			if (room != null) {
-			
+
 				TimerTask task = new TimerTask() {
-		            @Override
-		            public void run() {
-		            	
-		    			if (previousRoom != null) {
-		    				previousRoom.leaveRoom(player, false);
-		    			}
-		            	
-		    			room.loadRoom(player, targetTeleporter.getPosition(), targetTeleporter.getPosition().getRotation());
-		            }
+					@Override
+					public void run() {
+
+						if (item.getRoomID() != targetTeleporter.getRoomID()) {
+
+							if (previousRoom != null) {
+								previousRoom.leaveRoom(player, false);
+							}
+							
+							room.loadRoom(player, targetTeleporter.getPosition(), targetTeleporter.getPosition().getRotation());
+							
+						} else {
+							player.getRoomUser().getPosition().set(targetTeleporter.getPosition());
+							player.getRoomUser().sendStatusComposer();
+							room.getItem(item.getTargetTeleporterID()).leaveTeleporter(player);
+						}
+					}
 				};
-				
-				Roseau.getGame().getTimer().schedule(task, 1500);
+
+				Roseau.getGame().getTimer().schedule(task, 500);
 			}
 		}
 
@@ -205,21 +216,21 @@ public class RoomUser {
 	public void walkTo(Position position) {
 		this.walkTo(position.getX(), position.getY());
 	}
-	
+
 	public void walkTo(int x, int y) {
-		
+
 		/*double height = player.getRoomUser().getRoom().getData().getModel().getHeight(x, y);
-		
+
 		Log.println("height: " + height);*/
 
 		if (this.room == null) {
 			return;
 		}
-		
+
 		if (!this.canWalk) {
 			return;
 		}
-		
+
 		Item item = this.room.getMapping().getHighestItem(x, y);
 
 		if (item != null) {
@@ -254,28 +265,28 @@ public class RoomUser {
 	public void chat(String talkMessage) {
 		this.room.send(new CHAT("CHAT", this.entity.getDetails().getUsername(), talkMessage));
 	}
-	
+
 	public void chat(String header, String talkMessage) {
 		this.room.send(new CHAT(header, this.entity.getDetails().getUsername(), talkMessage));
 	}
 
 
 	public void chat(final String response, final int delay) {
-		
+
 		final Room room = this.room;
 		final PlayerDetails details = this.entity.getDetails();
-		
+
 		TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-            	room.send(new CHAT("CHAT", details.getUsername(), response));
-            }
+			@Override
+			public void run() {
+				room.send(new CHAT("CHAT", details.getUsername(), response));
+			}
 		};
-		
+
 		Roseau.getGame().getTimer().schedule(task, Roseau.getUtilities().getHabboConfig().get("Bot", "bot.response.delay", Integer.class));
-		
+
 	}
-	
+
 	public void lookTowards(Position look) {
 
 		if (this.isWalking) {
@@ -286,7 +297,7 @@ public class RoomUser {
 
 
 		if ((this.getPosition().getRotation() % 2) == 0) {
-			
+
 			if (diff > 0) {
 				this.position.setHeadRotation(this.getPosition().getRotation() - 1);
 			} else if (diff < 0) {
@@ -336,18 +347,18 @@ public class RoomUser {
 	}
 
 	public void setStatus(String key, String value, boolean infinite, long duration, boolean sendUpdate) {
-		
+
 		if (key.equals("carryd")) {
 			this.timeUntilNextDrink = Roseau.getUtilities().getHabboConfig().get("Player", "carry.drink.interval", Integer.class);
 		}
-		
+
 		this.setStatus(key, value, infinite, duration);
-		
+
 		if (sendUpdate) {
 			this.needsUpdate = true;
 		}
 	}
-	
+
 	public void setStatus(String key, String value, boolean infinite, long duration) {
 
 		if (this.containsStatus(key)) {
