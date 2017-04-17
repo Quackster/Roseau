@@ -18,7 +18,7 @@ public class Item implements SerializableObject {
 
 	private int ID;
 	private int roomID;
-	private int targetTeleporterID;
+	private int targetTeleporterID = 0;
 
 	private Position position;
 
@@ -97,6 +97,11 @@ public class Item implements SerializableObject {
 				response.appendArgument(definition.getName(), '/');
 				response.appendArgument(definition.getDescription(), '/');
 
+		    	/*if (this.targetTeleporterID > 0) {
+		    		response.appendArgument("extr=", '/');
+		    		response.appendArgument(Integer.toString(this.targetTeleporterID), '/');
+		    	}*/
+				
 				if (this.customData != null && this.definition.getDataClass() != null) {
 					response.appendArgument(this.definition.getDataClass(), '/');
 					response.appendArgument(this.customData, '/');

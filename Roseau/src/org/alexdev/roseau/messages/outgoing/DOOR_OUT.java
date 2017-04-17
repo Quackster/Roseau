@@ -17,7 +17,7 @@ public class DOOR_OUT  implements OutgoingMessageComposer {
 	@Override
 	public void write(Response response) {
 		response.init("DOOR_OUT");
-		response.appendArgument(Integer.toString(item.getID()));
+		response.appendArgument(item.getPacketID());
 		response.appendPartArgument(this.player);
 		response.appendPartArgument(this.item.getDefinition().getSprite());
 	}
