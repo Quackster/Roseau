@@ -68,7 +68,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 
 				sqlConnection = this.dao.getStorage().getConnection();
 				
-				preparedStatement = this.dao.getStorage().prepare("SELECT id, username, rank, sso_ticket, mission, figure, pool_figure, email, credits, sex, country, badge, birthday FROM users WHERE id = ? LIMIT 1", sqlConnection);
+				preparedStatement = this.dao.getStorage().prepare("SELECT id, username, rank, mission, figure, pool_figure, email, credits, sex, country, badge, birthday FROM users WHERE id = ? LIMIT 1", sqlConnection);
 				preparedStatement.setInt(1, userID);
 				
 				resultSet = preparedStatement.executeQuery();

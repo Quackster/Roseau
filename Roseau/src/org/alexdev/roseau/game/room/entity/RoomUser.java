@@ -121,6 +121,11 @@ public class RoomUser {
 					Room room = Roseau.getGame().getRoomManager().getRoomByID(connectionRoom.getToID());
 					
 					if (room != null) {
+						
+						if (this.room != null) {
+							this.room.leaveRoom(player, false);
+						}
+						
 						player.getNetwork().setServerPort(room.getData().getServerPort());
 						
 						if (connectionRoom.getDoorPosition() != null) {

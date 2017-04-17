@@ -150,13 +150,14 @@ public class Room implements SerializableObject {
 
 		RoomUser roomEntity = player.getRoomUser();
 
-		if (player.getRoomUser().getRoom() != null) {
-			player.getRoomUser().getRoom().leaveRoom(player, false);
-		}
-
 		roomEntity.setRoom(this);
 		roomEntity.getStatuses().clear();
 
+		if (this.roomData == null) {
+			Log.println("null wot");
+			
+		}
+		
 		if (this.roomData.getModel() != null) {
 			roomEntity.getPosition().setX(door.getX());
 			roomEntity.getPosition().setY(door.getY());

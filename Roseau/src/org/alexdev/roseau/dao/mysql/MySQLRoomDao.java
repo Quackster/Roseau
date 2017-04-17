@@ -58,12 +58,6 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		}
 	}
 
-
-	@Override
-	public List<Room> getPlayerRooms(PlayerDetails details) {
-		return getPlayerRooms(details, false);
-	}
-
 	@Override
 	public List<Room> getPublicRooms(boolean storeInMemory) {
 
@@ -198,11 +192,6 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		}
 
 		return rooms;
-	}
-
-	@Override
-	public Room getRoom(int roomID) {
-		return getRoom(roomID, false);
 	}
 
 	@Override
