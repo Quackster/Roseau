@@ -11,13 +11,9 @@ public class GameScheduler implements Runnable {
 	
 	@Override
 	public void run() {
-	
-		if (!(Roseau.getGame().getPlayerManager().getPlayers().size() > 0)) {
-			return;
-		}
 		
 		// every 5 seconds
-		if ((this.tickRate % TimeUnit.MINUTES.toSeconds(Roseau.getUtilities().getConfiguration().get("Scheduler", "credits.every.x.mins", Integer.class))) == 0) {
+		if ((this.tickRate % Roseau.getUtilities().getConfiguration().get("Scheduler", "credits.every.x.mins", Integer.class)) == 0) {
 			
 			for (Player player : Roseau.getGame().getPlayerManager().getMainServerPlayers()) {
 				
