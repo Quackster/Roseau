@@ -1,6 +1,7 @@
 package org.alexdev.roseau.game.room.entity;
 
 import java.util.LinkedList;
+import java.util.Timer;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.alexdev.roseau.game.room.Room;
@@ -225,17 +226,19 @@ public class RoomUser {
 	public void chat(final String response, final int delay) {
 		
 		final Room room = this.room;
+		final RoomUser roomUser = this;
 		final PlayerDetails details = this.entity.getDetails();
 		
-		new java.util.Timer().schedule( 
-		        new java.util.TimerTask() {
-		            @Override
-		            public void run() {
-		            	room.send(new CHAT("CHAT", details.getUsername(), response));
-		            }
-		        }, 
-		        delay * 1000
+		Roseau.getGame().getTimer().schedule( 
+	        new java.util.TimerTask() {
+	            @Override
+	            public void run() {
+	            	room.send(new CHAT("CHAT", details.getUsername(), response));
+	            }
+	        }, 
+	        delay * 1000
 		);
+		
 	}
 	
 	public void lookTowards(Position look) {
