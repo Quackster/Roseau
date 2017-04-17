@@ -104,15 +104,6 @@ public class Position {
 		this.headRotation = headRotation;
 	}
 
-	public void setRotation(int rotation, boolean headOnly) {
-
-		this.headRotation = rotation;
-
-		if (!headOnly) {
-			this.bodyRotation = rotation;
-		}
-	}
-
 	public Position getSquareInFront() {
 		Position square = new Position(this.X, this.Y);
 

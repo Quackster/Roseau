@@ -164,21 +164,36 @@ public class RoomUser {
 		}
 
 		if (definition.getBehaviour().isCanSitOnTop()) {
-			this.getPosition().setRotation(item.getPosition().getRotation(), false);
+			this.getPosition().setBodyRotation(item.getPosition().getRotation());
+			this.getPosition().setHeadRotation(item.getPosition().getRotation());
 			this.removeStatus("dance");
 			this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()), true, -1);
 		}
 		
-		if (definition.getBehaviour().isTeleporter()) {
+		if (definition.getBehaviour().isTeleporter() && this.entity instanceof Player) {
 			
-			Item targetTeleporter = Roseau.getDataAccess().getItem().getItem(item.getTargetTeleporterID());
+			final Player player = (Player) this.entity;
+			final Item targetTeleporter = Roseau.getDataAccess().getItem().getItem(item.getTargetTeleporterID());
 			
-			if (this.room != null) {
-				this.room.leaveRoom((Player) this.entity, false);
+			final Room previousRoom = this.room;
+			final Room room = Roseau.getDataAccess().getRoom().getRoom(targetTeleporter.getRoomID(), true);
+			
+			if (room != null) {
+			
+				TimerTask task = new TimerTask() {
+		            @Override
+		            public void run() {
+		            	
+		    			if (previousRoom != null) {
+		    				previousRoom.leaveRoom(player, false);
+		    			}
+		            	
+		    			room.loadRoom(player, targetTeleporter.getPosition(), targetTeleporter.getPosition().getRotation());
+		            }
+				};
+				
+				Roseau.getGame().getTimer().schedule(task, 1000);
 			}
-			
-			Room room = Roseau.getDataAccess().getRoom().getRoom(targetTeleporter.getRoomID(), true);
-			room.loadRoom((Player) this.entity, targetTeleporter.getPosition(), targetTeleporter.getPosition().getRotation());
 		}
 
 	}

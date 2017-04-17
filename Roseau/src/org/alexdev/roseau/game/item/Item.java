@@ -8,6 +8,7 @@ import org.alexdev.roseau.game.pathfinder.AffectedTile;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.RoomTile;
 import org.alexdev.roseau.game.room.model.Position;
+import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_UPDATE;
 import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.server.messages.Response;
@@ -18,37 +19,37 @@ public class Item implements SerializableObject {
 	private int ID;
 	private int roomID;
 	private int targetTeleporterID;
-	
+
 	private Position position;
-	
+
 	private String itemData;
 	private String customData;
 	private String wallPosition;
-	
+
 	private ItemDefinition definition;
 	private int definitionID;
 	private Room room;
-	
+
 	public Item(int ID, int roomID, int ownerID, String x, int y, double z, int rotation, int definitionID, String itemData, String customData) {
 
 		this.ID = ID;
 		this.roomID = roomID;
-		
+
 		this.definitionID = definitionID;
-		
+
 		this.itemData = itemData;	
 		this.customData = customData;
-		
+
 		this.reload();
-		
+
 		if (this.getDefinition().getBehaviour().isOnWall()) {
 			this.wallPosition = x;
 		} else {
 			//this.x = Integer.valueOf(x);
 			this.position = new Position(Integer.valueOf(x), y);
-			this.position.setRotation(rotation, false);
+			this.position.setBodyRotation(rotation);
 		}
-		
+
 		this.setTeleporterID();
 	}
 
@@ -56,7 +57,7 @@ public class Item implements SerializableObject {
 		this.room = Roseau.getGame().getRoomManager().getRoomByID(roomID);
 		this.definition = Roseau.getGame().getItemManager().getDefinition(this.definitionID);
 	}
-	
+
 	private void setTeleporterID() {
 		if (this.definition.getBehaviour().isTeleporter()) {
 			try {
@@ -67,7 +68,7 @@ public class Item implements SerializableObject {
 
 	@Override
 	public void serialise(Response response) {
-		
+
 		if (definition.getBehaviour().isInvisible()) {
 			return;
 		}
@@ -146,10 +147,15 @@ public class Item implements SerializableObject {
 		if (definition.getBehaviour().isCanStandOnTop()) {
 			tile_valid = true;
 		}
-		
+
 		if (definition.getBehaviour().isTeleporter()) {
-			if (definition.getDataClass().equals("DOOROPEN") && this.customData.equals("TRUE")) {
-				tile_valid = true;
+			if (definition.getDataClass().equals("DOOROPEN")) {
+
+				if (this.customData.equals("TRUE")) {
+					tile_valid = true;
+				} else {
+					Log.println("invalid XD");
+				}
 			}
 		}
 
@@ -201,22 +207,22 @@ public class Item implements SerializableObject {
 			}
 		} catch (NumberFormatException e) {	}
 	}
-	
+
 	public void showProgram(String data) {
-		
+
 		if (this.room == null) {
 			this.reload();
 		}
-		
+
 		this.room.send(new SHOWPROGRAM(new String[] { this.itemData, data }));
 	}
-	
+
 	public void updateStatus() {
-		
+
 		if (this.room == null) {
 			this.reload();
 		}
-		
+
 		this.room.send(new ACTIVEOBJECT_UPDATE(this));
 	}
 
@@ -227,9 +233,9 @@ public class Item implements SerializableObject {
 	public void delete() {
 		Roseau.getDataAccess().getItem().deleteItem(this.ID);
 	}
-	
+
 	public String getPacketID() {
-		
+
 		String zstring = "00000000000";
 
 		for (int j = 0; j < String.valueOf(this.ID).length(); j++) {
@@ -237,9 +243,9 @@ public class Item implements SerializableObject {
 				zstring += "00";
 			}
 		}
-		
+
 		return (zstring + this.ID);
-		
+
 	}
 
 	public int getID() {
@@ -249,28 +255,16 @@ public class Item implements SerializableObject {
 	public ItemDefinition getDefinition() {
 		return this.definition;
 	}
-	
+
 	public void setItemRotation(int rotation) {
-		
-		if (rotation == 1) {
+
+		if (rotation != 0 && rotation != 2 && rotation != 4 && rotation != 6) {
 			rotation = 0;
 		}
-		
-		if (rotation == 3) {
-			rotation = 2;
-		}
-		
-		if (rotation == 5) {
-			rotation = 4;
-		}
-		
-		if (rotation == 7) {
-			rotation = 6;
-		}
-		
-		this.position.setRotation(rotation, false);
+
+		this.position.setBodyRotation(rotation);
 	}
-	
+
 	public Room getRoom() {
 		return this.room;
 	}

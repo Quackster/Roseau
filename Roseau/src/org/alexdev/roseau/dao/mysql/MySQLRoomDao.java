@@ -410,7 +410,9 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 				bot.getRoomUser().getPosition().setX(bot.getStartPosition().getX());
 				bot.getRoomUser().getPosition().setY(bot.getStartPosition().getY());
 				bot.getRoomUser().getPosition().setZ(bot.getStartPosition().getZ());
-				bot.getRoomUser().getPosition().setRotation(bot.getStartPosition().getRotation(), false);
+				
+				bot.getRoomUser().getPosition().setHeadRotation(bot.getStartPosition().getRotation());
+				bot.getRoomUser().getPosition().setBodyRotation(bot.getStartPosition().getRotation());
 
 				bot.getRoomUser().setRoom(room);
 

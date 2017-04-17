@@ -2,6 +2,7 @@ package org.alexdev.roseau.game.room;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -146,7 +147,7 @@ public class Room implements SerializableObject {
 		}
 	}
 
-	public void loadRoom(Player player, Position door, int rotation) {
+	public void loadRoom(final Player player, Position door, int rotation) {
 
 		RoomUser roomEntity = player.getRoomUser();
 
@@ -162,7 +163,8 @@ public class Room implements SerializableObject {
 			roomEntity.getPosition().setX(door.getX());
 			roomEntity.getPosition().setY(door.getY());
 			roomEntity.getPosition().setZ(door.getZ());
-			roomEntity.getPosition().setRotation(rotation, false);
+			roomEntity.getPosition().setHeadRotation(rotation);
+			roomEntity.getPosition().setBodyRotation(rotation);
 		}
 
 		if (this.roomData.getModel() == null) {
@@ -222,15 +224,23 @@ public class Room implements SerializableObject {
 		this.entities.add(player);
 		
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
-			Item item = this.roomMapping.getHighestItem(door.getX(), door.getY());
+			final Item item = this.roomMapping.getHighestItem(door.getX(), door.getY());
 			
 			if (item != null) {
 				if (item.getDefinition().getBehaviour().isTeleporter()) {
 					
-					item.setCustomData("TRUE");
-					item.updateStatus();
+					TimerTask task = new TimerTask() {
+			            @Override
+			            public void run() {
+			            	
+							item.setCustomData("TRUE");
+							item.updateStatus();
+							
+							player.getRoomUser().walkTo(item.getPosition().getSquareInFront());
+			            }
+					};
 					
-					
+					Roseau.getGame().getTimer().schedule(task, 1000);
 				}
 			}
 		}
