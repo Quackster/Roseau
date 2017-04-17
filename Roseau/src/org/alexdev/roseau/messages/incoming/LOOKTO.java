@@ -1,6 +1,7 @@
 package org.alexdev.roseau.messages.incoming;
 
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
@@ -16,6 +17,10 @@ public class LOOKTO implements MessageEvent {
 		
 		if (player.getRoomUser().containsStatus("sit") ||
 			player.getRoomUser().containsStatus("lay")) {
+			return;
+		}
+		
+		if (player.getRoomUser().getPosition().isMatch(new Position(x, y))) {
 			return;
 		}
 		
