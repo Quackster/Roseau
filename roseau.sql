@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2017 at 02:04 PM
+-- Generation Time: Apr 17, 2017 at 09:17 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `rotation` float NOT NULL DEFAULT '0',
   `extra_data` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=81 ;
 
 --
 -- Dumping data for table `items`
@@ -170,25 +170,25 @@ INSERT INTO `items` (`id`, `user_id`, `item_id`, `room_id`, `x`, `y`, `z`, `rota
 (19, 5, 1007, 37, '4', '9', '0.0', 0, ''),
 (20, 5, 1143, 37, '2', '7', '0.0', 0, ''),
 (21, 5, 1013, 37, '2', '8', '0.0', 2, ''),
-(22, 5, 1176, 37, '6', '7', '0.0', 0, ''),
+(22, 5, 1176, 37, '6', '7', '0.0', 6, 'OFF'),
 (23, 5, 1172, 37, '4', '3', '0.0', 4, ''),
 (24, 5, 1142, 37, '7', '3', '0.0', 0, ''),
 (25, 5, 1142, 37, '11', '3', '0.0', 0, ''),
 (26, 5, 1044, 37, '2', '5', '0.0', 2, ''),
 (27, 5, 1178, 37, '2', '10', '0.0', 2, ''),
-(29, 5, 1155, 37, '8', '3', '0.0', 2, ''),
+(29, 5, 1155, 37, '8', '3', '0.0', 2, 'ON'),
 (30, 5, 1017, 0, '9', '8', '0.0', 0, ''),
 (31, 5, 1043, 0, '6', '8', '0.0', 0, ''),
 (32, 5, 1105, 37, '5', '9', '1.0', 0, ''),
 (33, 5, 1106, 37, '6', '3', '0.0', 0, ''),
 (41, 5, 1152, 0, '4', '2', '0.0', 0, ''),
-(42, 5, 1043, 0, '8', '1', '0.0', 0, ''),
+(42, 5, 1043, 0, '9', '7', '0.0', 0, ''),
 (57, 5, 1014, 0, '10', '4', '0.0', 0, ''),
 (61, 5, 2544, 0, '8', '7', '0.0', 0, ''),
 (64, 5, 1005, 0, '3', '8', '0.0', 0, ''),
-(65, 5, 1030, 0, '10', '1', '0.0', 0, ''),
+(65, 5, 1030, 0, '10', '4', '0.0', 0, ''),
 (66, 5, 1013, 0, '1', '7', '0.0', 4, ''),
-(67, 5, 1003, 0, '5', '1', '0.0', 0, ''),
+(67, 5, 1003, 0, '8', '7', '0.0', 0, ''),
 (68, 5, 1007, 0, '1', '9', '0.0', 0, ''),
 (69, 5, 2410, 0, '9', '7', '0.0', 0, '');
 
@@ -1281,7 +1281,7 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `wallpaper` varchar(5) NOT NULL DEFAULT '0',
   `floor` varchar(5) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `rooms`
@@ -1308,7 +1308,8 @@ INSERT INTO `rooms` (`id`, `name`, `order_id`, `room_type`, `enabled`, `hidden`,
 (34, 'Cunning Fox Gamehall - Poker', -1, 1, 1, 1, '2017-04-12 13:49:55', -1, NULL, '', 0, 0, 40, 'gamehall', 'hallD', '0', '0'),
 (35, 'Club Slinky Helsinki', 4, 1, 1, 0, '2017-04-12 15:42:08', -1, NULL, '', 0, 0, 40, 'disco', 'malja_bar_a', '0', '0'),
 (36, 'Club Slinky Helsinki - Part B', -1, 1, 1, 1, '2017-04-13 06:09:42', -1, NULL, '', 0, 0, 40, 'disco', 'malja_bar_b', '0', '0'),
-(37, 'Alex''s Room', -1, 0, 1, 0, '2017-04-07 02:14:38', 5, 'You know, just another average room lmao...', '', 0, 0, 25, 'floor1', 'model_e', '101', '203');
+(37, 'Alex''s Room', -1, 0, 1, 0, '2017-04-07 02:14:38', 5, 'You know, just another average room lmao...', '', 0, 0, 25, 'floor1', 'model_e', '101', '203'),
+(39, 'test', -1, 0, 1, 0, '2017-04-17 17:42:39', 5, '', 'wef', 0, 0, 25, 'floor1', 'model_a', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -1332,7 +1333,7 @@ CREATE TABLE IF NOT EXISTS `room_bots` (
   `responses` longtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `room_bots`
@@ -1341,7 +1342,8 @@ CREATE TABLE IF NOT EXISTS `room_bots` (
 INSERT INTO `room_bots` (`id`, `room_id`, `name`, `figure`, `motto`, `start_x`, `start_y`, `start_z`, `start_rotation`, `walk_to`, `messages`, `triggers`, `responses`) VALUES
 (1, 19, 'Phillip', 'sd=001/0&hr=010/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/217,113,69&ls=002/217,113,69&rs=002/217,113,69&lg=001/102,102,102&sh=003/47,45,38', 'Serving the Habbos', 1, 10, 0, 2, '0,12 0,7 1,11 1,7 0,10', '', 'chips,burger,food,drink,fries', 'Here is your %item%, %username%!'),
 (2, 17, 'Maria', 'sd=001/0&hr=011/003,033,43&hd=002/255,204,153&ey=002/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=016/59,122,192&ls=002/59,122,192&rs=002/59,122,192&lg=001/51,51,51&sh=002/121,94,83', 'Serving coffee since 2001', 4, 8, 1, 2, '3,10 4,10 4,8 4,5 3,6 2,7 3,8', '', 'coffee,drink', 'Here is your coffee, %username%!'),
-(3, 14, 'Dave', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=003/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=006/51,51,51&sh=003/000,000,000', 'I hate my job', 10, 5, 2, 2, '9,8 9,5 10,8 9,2 10,6 10,2 9,4', '', 'beer,glass,drink', 'One %item% coming right up');
+(3, 14, 'Dave', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=003/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=006/51,51,51&sh=003/000,000,000', 'I hate my job', 10, 5, 2, 2, '9,8 9,5 10,8 9,2 10,6 10,2 9,4', '', 'beer,glass,drink', 'One %item% coming right up'),
+(4, 13, 'Zoe', 'sd=001/0&hr=006/202,90,51&hd=002/255,204,153&ey=002/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=006/55,139,232&ls=002/55,139,232&rs=002/55,139,232&lg=002/152,62,79&sh=002/175,220,223', 'Pool has aids', 6, 29, 7, 2, '6,29 6,30', '', 'drink,food,eat', 'Here''s your %item%, enjoy it!');
 
 -- --------------------------------------------------------
 
@@ -2448,7 +2450,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `figure`, `pool_figure`, `credits`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
 (2, 'test', '123', 1, 44324323, 1490046606, 'ereewr@wwwwaaac.com', 'H&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;rp&auml;t', 'sd=001/0&hr=008/248,229,218&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/51,102,51&ls=002/51,102,51&rs=002/51,102,51&lg=006/149,120,78&sh=003/121,94,83', 'ch=s01/255,146,90', 0, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=015/160,140,100&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/51,51,51&sh=003/0,0,0', 'ch=s02/71,98,61', 4995, 'Male', 'UK', '', '01.01.1997', 1);
+(5, 'Alex', '123', 1, 1489384512, 1490799539, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=008/215,188,169&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/255,237,179&ls=002/255,237,179&rs=002/255,237,179&lg=006/51,51,51&sh=003/123,88,24', 'ch=s02/53,51,44', 4974, 'Male', 'UK', '', '01.01.1997', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

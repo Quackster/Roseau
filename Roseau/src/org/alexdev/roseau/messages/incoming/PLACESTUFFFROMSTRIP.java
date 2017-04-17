@@ -34,7 +34,7 @@ public class PLACESTUFFFROMSTRIP implements MessageEvent {
 		
 		item.getPosition().setX(x);
 		item.getPosition().setY(y);
-		item.setItemRotation(0);
+		item.setItemRotation(2);
 		
 		room.getMapping().addItem(item, false);
 		
