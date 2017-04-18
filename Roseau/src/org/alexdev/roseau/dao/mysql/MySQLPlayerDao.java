@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.util.IProcessStorage;
+import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.log.Log;
@@ -36,7 +37,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			preparedStatement.setString(3, email);
 			preparedStatement.setString(4, mission);
 			preparedStatement.setString(5, figure);
-			preparedStatement.setInt(6, Roseau.getUtilities().getHabboConfig().get("Register", "user.default.credits", int.class));
+			preparedStatement.setInt(6, GameVariables.USER_DEFAULT_CREDITS);
 			preparedStatement.setString(7, sex);
 			preparedStatement.setString(8, birthday);
 			preparedStatement.execute();

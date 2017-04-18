@@ -36,6 +36,9 @@ public class Game {
 	public void load() {
 		
 		try {
+			
+			GameVariables.setVariables();
+			
 			this.roomManager.load();
 			this.itemManager.load();
 			this.catalogueManager.load();

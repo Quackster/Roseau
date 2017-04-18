@@ -3,6 +3,7 @@ package org.alexdev.roseau.messages.incoming;
 import java.util.List;
 
 import org.alexdev.roseau.Roseau;
+import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.MessageEvent;
@@ -67,7 +68,7 @@ public class TALK implements MessageEvent {
 			}
 
 			if (reader.getHeader().equals("CHAT")) {
-				players = player.getRoomUser().getRoom().getMapping().getNearbyPlayers(player, player.getRoomUser().getPosition(), Roseau.getUtilities().getHabboConfig().get("Player", "talking.lookat.distance", Integer.class));
+				players = player.getRoomUser().getRoom().getMapping().getNearbyPlayers(player, player.getRoomUser().getPosition(), GameVariables.TALK_DISTANCE);
 			}
 
 			CHAT chat = new CHAT(reader.getHeader(), player.getDetails().getUsername(), talkMessage);
@@ -76,7 +77,7 @@ public class TALK implements MessageEvent {
 				
 				if (roomPlayer != player) {
 					roomPlayer.getRoomUser().lookTowards(player.getRoomUser().getPosition());
-					roomPlayer.getRoomUser().setLookResetTime(Roseau.getUtilities().getHabboConfig().get("Player", "talking.lookat.reset", Integer.class));
+					roomPlayer.getRoomUser().setLookResetTime(GameVariables.TALK_LOOKAT_RESET);
 				}
 				
 				roomPlayer.send(chat);

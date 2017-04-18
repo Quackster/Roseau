@@ -11,12 +11,11 @@ import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.CHAT;
-import org.alexdev.roseau.messages.outgoing.DOOR_IN;
-import org.alexdev.roseau.messages.outgoing.DOOR_OUT;
 import org.alexdev.roseau.messages.outgoing.OPEN_UIMAKOPPI;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
 import org.alexdev.roseau.Roseau;
+import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.ItemDefinition;
@@ -292,7 +291,7 @@ public class RoomUser {
 			}
 		};
 
-		Roseau.getGame().getTimer().schedule(task, Roseau.getUtilities().getHabboConfig().get("Bot", "bot.response.delay", Integer.class));
+		Roseau.getGame().getTimer().schedule(task, GameVariables.BOT_RESPONSE_DELAY);
 
 	}
 
@@ -358,7 +357,7 @@ public class RoomUser {
 	public void setStatus(String key, String value, boolean infinite, long duration, boolean sendUpdate) {
 
 		if (key.equals("carryd")) {
-			this.timeUntilNextDrink = Roseau.getUtilities().getHabboConfig().get("Player", "carry.drink.interval", Integer.class);
+			this.timeUntilNextDrink = GameVariables.CARRY_DRINK_INTERVAL;
 		}
 
 		this.setStatus(key, value, infinite, duration);

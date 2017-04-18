@@ -1,9 +1,9 @@
 package org.alexdev.roseau.game;
 
-import java.util.concurrent.TimeUnit;
-
+import java.util.List;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.log.Log;
 
 public class GameScheduler implements Runnable {
 
@@ -12,15 +12,26 @@ public class GameScheduler implements Runnable {
 	@Override
 	public void run() {
 		
-		// every 5 seconds
-		if ((this.tickRate % Roseau.getUtilities().getConfiguration().get("Scheduler", "credits.every.x.mins", Integer.class)) == 0) {
+		try {
+			Log.println("credits: " + GameVariables.CREDITS_EVERY_SEC);
 			
-			for (Player player : Roseau.getGame().getPlayerManager().getMainServerPlayers()) {
+			List<Player> players = Roseau.getGame().getPlayerManager().getMainServerPlayers();
+			
+			// every 5 seconds
+			if ((this.tickRate % GameVariables.CREDITS_EVERY_SEC) == 0) {
 				
-				player.getDetails().setCredits(player.getDetails().getCredits() + Roseau.getUtilities().getConfiguration().get("Scheduler", "credits.every.x.amount", Integer.class));
-				player.getDetails().sendCredits();
-				player.getDetails().save();
+				for (int i = 0; i < players.size(); i++) {
+					
+					Player player = players.get(i);
+					
+					player.getDetails().setCredits(player.getDetails().getCredits() + GameVariables.CREDITS_EVERY_AMOUNT);
+					player.getDetails().sendCredits();
+					player.getDetails().save();
+				}
 			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		this.tickRate++;

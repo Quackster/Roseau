@@ -5,6 +5,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import org.alexdev.roseau.Roseau;
+import org.alexdev.roseau.game.GameVariables;
+
+import com.google.common.collect.Lists;
 
 public class PlayerManager {
 
@@ -106,7 +109,7 @@ public class PlayerManager {
 					if (name.indexOf("M0D-") != 0)
 					{
 						// Check for characters
-						String allowed = Roseau.getUtilities().getHabboConfig().get("Register", "user.name.chars", String.class);
+						String allowed = GameVariables.USERNAME_CHARS;
 						
 						if (allowed.equals("*")) {
 							
@@ -148,7 +151,7 @@ public class PlayerManager {
 			return players;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return Lists.newArrayList();
 		}
 	}
 	

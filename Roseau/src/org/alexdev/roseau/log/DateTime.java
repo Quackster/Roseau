@@ -1,6 +1,5 @@
 package org.alexdev.roseau.log;
 
-import java.security.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
