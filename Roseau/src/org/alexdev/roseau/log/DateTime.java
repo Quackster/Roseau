@@ -1,5 +1,6 @@
 package org.alexdev.roseau.log;
 
+import java.security.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,6 +15,12 @@ public class DateTime {
 	
 	public static Date date() {
         return GregorianCalendar.getInstance().getTime();
+    }
+	
+	public static Date date(long time) {
+		GregorianCalendar cal = new GregorianCalendar();
+		cal.setTimeInMillis(time);
+		return cal.getTime();
     }
 	
 	public static Calendar calendar() {
@@ -84,6 +91,10 @@ public class DateTime {
     
     public static String toCleanString(Date d) {
         return (new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")).format(d);
+    }
+    
+    public static String toString(long timestamp) {
+    	return new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(date(timestamp));
     }
 
     public static Date fromString(String d) {

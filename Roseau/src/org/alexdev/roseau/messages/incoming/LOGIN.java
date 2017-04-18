@@ -23,9 +23,7 @@ public class LOGIN implements MessageEvent {
 			Player otherPlayer = Roseau.getGame().getPlayerManager().getPlayerByIDPort(player.getDetails().getID(), player.getNetwork().getServerPort(), player.getNetwork().getConnectionId());
 			
 			if (otherPlayer != null) {
-				player.send(new SYSTEMBROADCAST("This user is already logged into the server."));
-				player.getNetwork().close();
-				return;
+				otherPlayer.getNetwork().close();
 			}
 			
 			player.getDetails().setAuthenticated(true);

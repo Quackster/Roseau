@@ -10,7 +10,6 @@ public class MESSENGER_SENDMSG implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 		
-		player.send(new MESSENGER_MSG(player));
 	}
 
 }

@@ -73,7 +73,7 @@ public class PURCHASE implements MessageEvent {
 				p.getInventory().addItem(secondTeleporter);
 			}
 			
-			player.send(new SYSTEMBROADCAST("Buying successful!"));
+			//player.send(new SYSTEMBROADCAST("Buying successful!"));
 			
 			// Update the player connected to the private room
 			//   (because PURCHASE is handled by the connection on the main game server, but we need to update the connection
