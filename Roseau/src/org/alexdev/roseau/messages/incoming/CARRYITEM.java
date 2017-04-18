@@ -16,7 +16,7 @@ public class CARRYITEM implements MessageEvent {
 
 		RoomUser roomUser = player.getRoomUser();
 		roomUser.removeStatus("dance");
-		roomUser.setStatus("carryd", " " + item, false, GameVariables.CARRY_DRINK_INTERVAL, true);
+		roomUser.setStatus("carryd", " " + item, false, GameVariables.CARRY_DRINK_TIME, true);
 	}
 
 }

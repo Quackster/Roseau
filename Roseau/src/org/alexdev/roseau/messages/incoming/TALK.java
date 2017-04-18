@@ -113,7 +113,7 @@ public class TALK implements MessageEvent {
 
 				if (trigger != null) {
 					bot.getRoomUser().chat(bot.getResponse(player.getDetails().getUsername(), trigger), 2);
-					player.getRoomUser().setStatus("carryd", " " + trigger, false, 120, true);
+					player.getRoomUser().setStatus("carryd", " " + trigger, false, GameVariables.CARRY_DRINK_TIME, true);
 				} else {
 
 					if ((talkMessage.toLowerCase().contains("hello") || talkMessage.toLowerCase().contains("hi")) && talkMessage.toLowerCase().contains(bot.getDetails().getUsername().toLowerCase())) {
