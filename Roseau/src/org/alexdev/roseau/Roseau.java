@@ -166,7 +166,7 @@ public class Roseau {
 		writer.println("user.default.credits=100");
 		writer.println();
 		writer.println("[Scheduler]");
-		writer.println("credits.every.x.secs=10");
+		writer.println("credits.every.x.secs=600");
 		writer.println("credits.every.x.amount=25");
 		writer.println();
 		writer.println("[Bot]");
