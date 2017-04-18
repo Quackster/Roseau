@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.game.catalogue.CatalogueManager;
+import org.alexdev.roseau.game.commands.CommandManager;
 import org.alexdev.roseau.game.item.ItemManager;
 import org.alexdev.roseau.game.player.PlayerManager;
 import org.alexdev.roseau.game.room.RoomManager;
@@ -20,6 +21,7 @@ public class Game {
 	private RoomManager roomManager;
 	private ItemManager itemManager;
 	private CatalogueManager catalogueManager;
+	private CommandManager commandManager;
 	private ScheduledFuture<?> gameScheduler = null;
 	
 	private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(8);
@@ -30,6 +32,7 @@ public class Game {
 		this.roomManager = new RoomManager();
 		this.itemManager = new ItemManager();
 		this.catalogueManager = new CatalogueManager();
+		this.commandManager = new CommandManager();
 		this.timer = new Timer();
 	}
 	
@@ -42,6 +45,7 @@ public class Game {
 			this.roomManager.load();
 			this.itemManager.load();
 			this.catalogueManager.load();
+			this.commandManager.load();
 			
 			this.gameScheduler = Roseau.getGame().getScheduler().scheduleAtFixedRate(new GameScheduler(), 0, 1, TimeUnit.SECONDS);
 			
@@ -72,6 +76,10 @@ public class Game {
 
 	public ScheduledFuture<?> getGameScheduler() {
 		return gameScheduler;
+	}
+
+	public CommandManager getCommandManager() {
+		return commandManager;
 	}
 
 	public Timer getTimer() {

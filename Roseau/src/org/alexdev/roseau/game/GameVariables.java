@@ -6,7 +6,6 @@ public class GameVariables {
 
 	public static int CREDITS_EVERY_SEC;
 	public static int CREDITS_EVERY_AMOUNT;
-	
 	public static String USERNAME_CHARS;
 	public static int BOT_RESPONSE_DELAY;
 	public static int CARRY_DRINK_INTERVAL;

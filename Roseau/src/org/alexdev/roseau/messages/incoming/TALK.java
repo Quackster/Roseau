@@ -60,6 +60,11 @@ public class TALK implements MessageEvent {
 
 			// Handle chat and shout
 			talkMessage = reader.getMessageBody();
+			
+			if (Roseau.getGame().getCommandManager().hasCommand(talkMessage)) {
+				Roseau.getGame().getCommandManager().invokeCommand(player, talkMessage);
+				return;
+			}
 
 			List<Player> players = null;
 
