@@ -24,7 +24,7 @@ public class DELETEFLAT implements MessageEvent {
 		
 		room.dispose(true);
 		
-		Roseau.getDataAccess().getRoom().deleteRoom(room);
+		Roseau.getDao().getRoom().deleteRoom(room);
 	}
 
 }

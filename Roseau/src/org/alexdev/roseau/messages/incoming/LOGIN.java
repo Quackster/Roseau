@@ -22,7 +22,7 @@ public class LOGIN implements MessageEvent {
 		String username = reader.getArgument(0);
 		String password = reader.getArgument(1);
 		
-		boolean authenticated = Roseau.getDataAccess().getPlayer().login(player, username, password);
+		boolean authenticated = Roseau.getDao().getPlayer().login(player, username, password);
 
 		if (authenticated) {
 			
@@ -48,7 +48,7 @@ public class LOGIN implements MessageEvent {
 					//
 					int publicRoomID = player.getNetwork().getServerPort() - Roseau.getServerPort();
 					
-					room = Roseau.getDataAccess().getRoom().getRoom(publicRoomID, true);
+					room = Roseau.getDao().getRoom().getRoom(publicRoomID, true);
 					
 					if (room == null) {
 						Log.println("Grabbed new room from database: " + publicRoomID);

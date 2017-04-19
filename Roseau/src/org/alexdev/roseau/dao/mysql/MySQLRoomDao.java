@@ -443,15 +443,19 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		PlayerDetails details = null;
 
 		if (type == RoomType.PRIVATE) {
-			details = Roseau.getDataAccess().getPlayer().getDetails(row.getInt("owner_id"));
+			details = Roseau.getDao().getPlayer().getDetails(row.getInt("owner_id"));
 		}
 
 		Room instance = new Room();
-
+		
 		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getID(), details == null ? "" : details.getUsername(), row.getString("name"), 
 				row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"),
 				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"));
-
+		
+		if (details != null) {
+		instance.getData().setOwnerName(details.getUsername());
+		}
+		
 		instance.load();
 
 		return instance;

@@ -101,6 +101,11 @@ public class MessageHandler {
 		this.messages.put("GETFLATINFO", new GETFLATINFO());
 		this.messages.put("UPDATEFLAT", new UPDATEFLAT());
 		this.messages.put("DELETEFLAT", new DELETEFLAT());
+		this.messages.put("TRYFLAT", new TRYFLAT());
+		this.messages.put("GOTOFLAT", new GOTOFLAT());
+		this.messages.put("CLOSE_UIMAKOPPI", new CLOSE_UIMAKOPPI());
+		this.messages.put("LOOKTO", new LOOKTO());
+		
 	}
 	
 	private void registerRoomPackets() {
@@ -113,11 +118,6 @@ public class MessageHandler {
 		this.messages.put("WHISPER", new TALK());
 		this.messages.put("GOAWAY", new GOAWAY());
 		this.messages.put("CREATEFLAT", new CREATEFLAT());
-		this.messages.put("TRYFLAT", new TRYFLAT());
-		this.messages.put("GOTOFLAT", new GOTOFLAT());
-		this.messages.put("CLOSE_UIMAKOPPI", new CLOSE_UIMAKOPPI());
-		this.messages.put("LOOKTO", new LOOKTO());
-		
 	}
 	
 	private void registerMessengerPackets() {

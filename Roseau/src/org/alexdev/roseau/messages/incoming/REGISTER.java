@@ -78,12 +78,12 @@ country=*/
 			return;
 		}
 			
-		if (Roseau.getDataAccess().getPlayer().isNameTaken(name)) {
+		if (Roseau.getDao().getPlayer().isNameTaken(name)) {
 			Log.println("Name taken: " + name);
 			return;
 		}
 		
-		Roseau.getDataAccess().getPlayer().createPlayer(name, password, email, mission, figure, -1, sex, birthday);
+		Roseau.getDao().getPlayer().createPlayer(name, password, email, mission, figure, -1, sex, birthday);
 	}
 
 }

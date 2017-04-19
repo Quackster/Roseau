@@ -29,7 +29,7 @@ public class TRYFLAT implements MessageEvent {
 		Room room = Roseau.getGame().getRoomManager().getRoomByID(id);
 
 		if (room == null) {
-			room = Roseau.getDataAccess().getRoom().getRoom(id, true);
+			room = Roseau.getDao().getRoom().getRoom(id, true);
 			
 			if (room == null) {
 				

@@ -97,8 +97,8 @@ public class Room implements SerializableObject {
 
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
-			this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getID());
-			this.items = Roseau.getDataAccess().getItem().getRoomItems(this.roomData.getID());
+			this.rights = Roseau.getDao().getRoom().getRoomRights(this.roomData.getID());
+			this.items = Roseau.getDao().getItem().getRoomItems(this.roomData.getID());
 		}
 	}
 
@@ -110,8 +110,8 @@ public class Room implements SerializableObject {
 			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this.roomWalkScheduler, 0, 500, TimeUnit.MILLISECONDS);
 		}
 
-		this.passiveObjects = Roseau.getDataAccess().getItem().getPublicRoomItems(this.roomData.getModelName(), this.roomData.getID());
-		this.bots = Roseau.getDataAccess().getRoom().getBots(this, this.roomData.getID());
+		this.passiveObjects = Roseau.getDao().getItem().getPublicRoomItems(this.roomData.getModelName(), this.roomData.getID());
+		this.bots = Roseau.getDao().getRoom().getBots(this, this.roomData.getID());
 
 		this.roomMapping.regenerateCollisionMaps();
 
@@ -409,7 +409,7 @@ public class Room implements SerializableObject {
 	}
 
 	public void save() {
-		Roseau.getDataAccess().getRoom().updateRoom(this);
+		Roseau.getDao().getRoom().updateRoom(this);
 	}
 
 	public void dispose() {

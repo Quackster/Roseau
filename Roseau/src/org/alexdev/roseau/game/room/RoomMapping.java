@@ -13,6 +13,8 @@ import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_ADD;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_REMOVE;
+import org.alexdev.roseau.messages.outgoing.ADDWALLITEM;
+import org.alexdev.roseau.messages.outgoing.REMOVEWALLITEM;
 import org.alexdev.roseau.messages.outgoing.STUFFDATAUPDATE;
 
 import com.google.common.collect.Lists;
@@ -43,7 +45,7 @@ public class RoomMapping {
 			this.connections = new RoomConnection[mapSizeX][mapSizeY];
 
 			if (this.room.getData().getRoomType() == RoomType.PUBLIC) {
-				this.roomConnections = Roseau.getDataAccess().getRoom().setRoomConnections(this.room);
+				this.roomConnections = Roseau.getDao().getRoom().setRoomConnections(this.room);
 			}
 		}
 
@@ -206,7 +208,17 @@ public class RoomMapping {
 			item.setCustomData(String.valueOf(item.getPosition().getRotation()));
 		}
 
-		this.room.send(new ACTIVEOBJECT_ADD(item));
+
+		if (item.getDefinition().getBehaviour().isOnFloor()) {
+			this.room.send(new ACTIVEOBJECT_ADD(item));
+		}
+
+		if (item.getDefinition().getBehaviour().isOnWall()) {
+			this.room.send(new ADDWALLITEM(item));
+		}
+
+
+		//this.room.send(new ACTIVEOBJECT_ADD(item));
 		item.save();
 	}
 
@@ -235,7 +247,14 @@ public class RoomMapping {
 		item.setRoomID(0);
 		item.save();
 
-		this.room.send(new ACTIVEOBJECT_REMOVE(item.getPacketID()));
+		if (item.getDefinition().getBehaviour().isOnFloor()) {
+			this.room.send(new ACTIVEOBJECT_REMOVE(item.getPacketID()));
+		}
+
+		if (item.getDefinition().getBehaviour().isOnWall()) {
+			this.room.send(new REMOVEWALLITEM(item.getPacketID()));
+		}
+
 		this.room.getItems().remove(item.getID());
 
 	}
@@ -271,7 +290,7 @@ public class RoomMapping {
 
 		this.room.send(new STUFFDATAUPDATE(item, customData));
 		item.setCustomData(customData);
-		
+
 		if (!item.getDefinition().getDataClass().equals("DOOROPEN")) {
 
 

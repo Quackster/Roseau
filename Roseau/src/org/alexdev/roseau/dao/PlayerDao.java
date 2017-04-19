@@ -11,6 +11,7 @@ public interface PlayerDao {
 	public int getID(String username);
 	public boolean isNameTaken(String name);
 	void updatePlayer(PlayerDetails details);
+	void updateLastLogin(PlayerDetails details);
 	
 
 }

@@ -68,7 +68,7 @@ public class PlayerDetails implements SerializableObject {
 	}
 
 	public void save() {
-		Roseau.getDataAccess().getPlayer().updatePlayer(this);
+		Roseau.getDao().getPlayer().updatePlayer(this);
 	}
 
 	public boolean hasFuse(String fuse) {

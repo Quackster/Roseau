@@ -50,7 +50,7 @@ public class CREATEFLAT implements MessageEvent {
 			publicRoomPlayer.getNetwork().close();
 		}
 
-		Room room = Roseau.getDataAccess().getRoom().createRoom(player, roomName, "", roomModel, state);
+		Room room = Roseau.getDao().getRoom().createRoom(player, roomName, "", roomModel, state);
 		player.setLastCreatedRoom(room);
 
 		player.send(new FLATCREATED(room));

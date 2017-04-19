@@ -18,7 +18,7 @@ public class ItemManager {
 	}
 	
 	private void loadDefinitions() {
-		this.definitions = Roseau.getDataAccess().getItem().getDefinitions();
+		this.definitions = Roseau.getDao().getItem().getDefinitions();
 	}
 
 	public ItemDefinition getDefinition(int definitionID) {

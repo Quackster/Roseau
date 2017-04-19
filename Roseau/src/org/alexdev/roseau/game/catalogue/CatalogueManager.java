@@ -9,7 +9,7 @@ public class CatalogueManager {
 	private Map<String, CatalogueItem> items;
 	
 	public void load() {
-		this.items = Roseau.getDataAccess().getCatalogue().getBuyableItems();
+		this.items = Roseau.getDao().getCatalogue().getBuyableItems();
 	}
 
 	public CatalogueItem getItemByCall(String callID) {

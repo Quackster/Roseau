@@ -13,6 +13,7 @@ import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_UPDATE;
 import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
+import org.alexdev.roseau.messages.outgoing.UPDATEWALLITEM;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
@@ -115,13 +116,13 @@ public class Item implements SerializableObject {
 
 		if (definition.getBehaviour().isOnWall()) {
 			response.appendNewArgument(Integer.toString(this.ID));
-			response.appendTabArgument(definition.getSprite());
-			response.appendTabArgument(" ");
-			response.appendTabArgument(this.wallPosition);
+			response.appendArgument(definition.getSprite(), ';');
+			response.appendArgument("Alex", ';');
+			response.appendArgument(this.wallPosition, ';');
 
 			if (this.customData != null) {
 				if (this.customData.length() > 0) {
-					response.appendTabArgument(this.customData);
+					response.appendNewArgument(this.customData);
 
 				}
 			}
@@ -235,15 +236,19 @@ public class Item implements SerializableObject {
 			this.reload();
 		}
 
-		this.room.send(new ACTIVEOBJECT_UPDATE(this));
+		if (this.definition.getBehaviour().isOnFloor()) {
+			this.room.send(new ACTIVEOBJECT_UPDATE(this)); 
+		} else {
+			this.room.send(new UPDATEWALLITEM(this)); 
+		}
 	}
 
 	public void save() {
-		Roseau.getDataAccess().getItem().saveItem(this);
+		Roseau.getDao().getItem().saveItem(this);
 	}
 
 	public void delete() {
-		Roseau.getDataAccess().getItem().deleteItem(this.ID);
+		Roseau.getDao().getItem().deleteItem(this.ID);
 	}
 
 	public String getPacketID() {

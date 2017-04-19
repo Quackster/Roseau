@@ -50,7 +50,7 @@ public class PURCHASE implements MessageEvent {
 		
 		if (oldCredits >= product.getCredits()) {
 			
-			Item item = Roseau.getDataAccess().getInventory().newItem(product.getDefinition().getID(), player.getDetails().getID(), "");
+			Item item = Roseau.getDao().getInventory().newItem(product.getDefinition().getID(), player.getDetails().getID(), "");
 			
 			if (item.getDefinition().getBehaviour().isDecoration() || callID.equals("juliste")) {
 				item.setCustomData(reader.getArgument(1));
@@ -62,7 +62,7 @@ public class PURCHASE implements MessageEvent {
 			if (item.getDefinition().getBehaviour().isTeleporter()) {
 				
 				Item firstTeleporter = item;
-				Item secondTeleporter = Roseau.getDataAccess().getInventory().newItem(product.getDefinition().getID(), player.getDetails().getID(), "");
+				Item secondTeleporter = Roseau.getDao().getInventory().newItem(product.getDefinition().getID(), player.getDetails().getID(), "");
 				
 				firstTeleporter.setCustomData(String.valueOf(secondTeleporter.getID()));
 				secondTeleporter.setCustomData(String.valueOf(firstTeleporter.getID()));

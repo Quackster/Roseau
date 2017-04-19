@@ -150,7 +150,7 @@ public class RoomData {
 	}
 
 	public RoomModel getModel() {
-		return Roseau.getDataAccess().getRoom().getModel(this.model);
+		return Roseau.getDao().getRoom().getModel(this.model);
 	}
 
 	public String getCCT() {
@@ -174,7 +174,7 @@ public class RoomData {
 	}
 
 	public void save() {
-		Roseau.getDataAccess().getRoom().updateRoom(this.room);
+		Roseau.getDao().getRoom().updateRoom(this.room);
 	}
 
 }

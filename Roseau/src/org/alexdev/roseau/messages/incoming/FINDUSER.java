@@ -14,7 +14,7 @@ public class FINDUSER implements MessageEvent {
 		String name = args[0];
 	
 		if (name.length() > 0) {
-			if (Roseau.getDataAccess().getPlayer().isNameTaken(name)) {
+			if (Roseau.getDao().getPlayer().isNameTaken(name)) {
 				player.send(new MEMBERINFO());
 			}		
 		}

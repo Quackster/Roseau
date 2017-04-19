@@ -17,6 +17,7 @@ public class ITEMS implements OutgoingMessageComposer {
 	@Override
 	public void write(Response response) {
 		response.init("ITEMS");
+		
 
 		if (this.room != null) {
 
@@ -24,6 +25,8 @@ public class ITEMS implements OutgoingMessageComposer {
 				return;
 			}
 
+			//response.append(Character.toString((char)13));
+			
 			for (Item item : this.room.getItems().values()) {
 				if (item.getDefinition().getBehaviour().isOnWall()) {
 					response.appendObject(item);

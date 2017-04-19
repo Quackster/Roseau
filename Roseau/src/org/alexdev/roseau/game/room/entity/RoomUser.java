@@ -186,13 +186,13 @@ public class RoomUser {
 			Item teleporter = this.room.getItem(item.getTargetTeleporterID());
 			
 			if (teleporter == null) {
-				teleporter = Roseau.getDataAccess().getItem().getItem(item.getTargetTeleporterID());
+				teleporter = Roseau.getDao().getItem().getItem(item.getTargetTeleporterID());
 			}
 			
 			final Player player = (Player) this.entity;
 			final Item targetTeleporter = teleporter;
 			final Room previousRoom = this.room;
-			final Room room = Roseau.getDataAccess().getRoom().getRoom(targetTeleporter.getRoomID(), true);
+			final Room room = Roseau.getDao().getRoom().getRoom(targetTeleporter.getRoomID(), true);
 			
 			if (room != null) {
 				

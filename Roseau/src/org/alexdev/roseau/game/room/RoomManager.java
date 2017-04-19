@@ -20,7 +20,7 @@ public class RoomManager {
 	}
 	
 	public void load() {
-		Roseau.getDataAccess().getRoom().getPublicRooms(true);
+		Roseau.getDao().getRoom().getPublicRooms(true);
 	}
 
 	public void add(Room room) {

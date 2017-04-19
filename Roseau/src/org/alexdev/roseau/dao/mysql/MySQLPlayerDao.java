@@ -32,7 +32,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 
 			sqlConnection = this.dao.getStorage().getConnection();
 
-			preparedStatement = this.dao.getStorage().prepare("INSERT INTO users (username, password, email, mission, figure, credits, sex, birthday) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", sqlConnection);
+			preparedStatement = this.dao.getStorage().prepare("INSERT INTO users (username, password, email, mission, figure, credits, sex, birthday, join_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", sqlConnection);
 			preparedStatement.setString(1, username);
 			preparedStatement.setString(2, BCrypt.hashpw(password, BCrypt.gensalt()));
 			preparedStatement.setString(3, email);
@@ -41,6 +41,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			preparedStatement.setInt(6, GameVariables.USER_DEFAULT_CREDITS);
 			preparedStatement.setString(7, sex);
 			preparedStatement.setString(8, birthday);
+			preparedStatement.setLong(9, Roseau.getUtilities().getTimestamp());
 			preparedStatement.execute();
 
 		} catch (Exception e) {
@@ -212,6 +213,33 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			preparedStatement.setString(6, details.getSex());
 			preparedStatement.setString(7, details.getEmail());
 			preparedStatement.setInt(8, details.getID());
+
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(resultSet);
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
+
+	}
+	
+	@Override
+	public void updateLastLogin(PlayerDetails details) {
+
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			sqlConnection = this.dao.getStorage().getConnection();
+
+			preparedStatement = dao.getStorage().prepare("UPDATE users SET last_online = ? WHERE id = ?", sqlConnection);
+			preparedStatement.setLong(1, Roseau.getUtilities().getTimestamp());
+			preparedStatement.setInt(2, details.getID());
 
 			preparedStatement.executeUpdate();
 

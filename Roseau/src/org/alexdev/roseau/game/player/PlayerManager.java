@@ -68,7 +68,7 @@ public class PlayerManager {
 		Player player = this.getByID(userID);
 		
 		if (player == null) {
-			return Roseau.getDataAccess().getPlayer().getDetails(userID);
+			return Roseau.getDao().getPlayer().getDetails(userID);
 		}
 		
 		return player.getDetails();

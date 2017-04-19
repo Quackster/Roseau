@@ -215,7 +215,7 @@ public class Roseau {
 		return game;
 	}
 
-	public static Dao getDataAccess() {
+	public static Dao getDao() {
 		return dao;
 	}
 

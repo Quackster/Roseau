@@ -39,7 +39,7 @@ public class Inventory {
 		
 		//Log.println("Inventory.java::load()");
 
-		this.items = Roseau.getDataAccess().getInventory().getInventoryItems(this.player.getDetails().getID());
+		this.items = Roseau.getDao().getInventory().getInventoryItems(this.player.getDetails().getID());
 		
 		this.refreshPagination();
 	}

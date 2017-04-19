@@ -30,7 +30,7 @@ public class Player implements Entity {
 	}
 	
 	public void login() {
-		
+		Roseau.getDao().getPlayer().updateLastLogin(this.details);
 	}
 	
 	public Player getPrivateRoomPlayer() {
@@ -118,7 +118,7 @@ public class Player implements Entity {
 	}
 
 	public List<Room> getRooms() {
-		return Roseau.getDataAccess().getRoom().getPlayerRooms(this.details, true);
+		return Roseau.getDao().getRoom().getPlayerRooms(this.details, true);
 	}
 	
 	@Override
