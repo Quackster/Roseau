@@ -14,7 +14,6 @@ import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.RoomDao;
 import org.alexdev.roseau.game.catalogue.CatalogueItem;
 import org.alexdev.roseau.log.Log;
-import org.alexdev.roseau.util.BCrypt;
 
 import com.google.common.collect.Maps;
 

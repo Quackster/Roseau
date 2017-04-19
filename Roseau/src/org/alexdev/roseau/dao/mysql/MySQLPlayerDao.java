@@ -11,7 +11,7 @@ import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.log.Log;
-import org.alexdev.roseau.util.BCrypt;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> implements PlayerDao {
 
