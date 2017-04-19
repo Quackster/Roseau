@@ -1,10 +1,5 @@
 package org.alexdev.roseau.dao.mysql;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.Map;
-
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.dao.CatalogueDao;
 import org.alexdev.roseau.dao.Dao;
@@ -12,10 +7,7 @@ import org.alexdev.roseau.dao.InventoryDao;
 import org.alexdev.roseau.dao.ItemDao;
 import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.RoomDao;
-import org.alexdev.roseau.game.catalogue.CatalogueItem;
 import org.alexdev.roseau.log.Log;
-
-import com.google.common.collect.Maps;
 
 public class MySQLDao implements Dao {
 
