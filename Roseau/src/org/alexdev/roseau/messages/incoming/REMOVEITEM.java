@@ -11,7 +11,7 @@ public class REMOVEITEM implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 
-		int itemID = Integer.valueOf(reader.getArgument(2));
+		int itemID = Integer.valueOf(reader.getArgument(1, "/"));
 		
 		Room room = player.getRoomUser().getRoom();
 		
