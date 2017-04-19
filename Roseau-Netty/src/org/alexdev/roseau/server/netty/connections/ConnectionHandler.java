@@ -68,7 +68,15 @@ public class ConnectionHandler extends SimpleChannelHandler {
 					
 					// Don't log password out of respect to the user
 					Log.println("[" + player.getNetwork().getConnectionId() + "] Received: " + request.getHeader() + " " + request.getArgument(0));
-				} else {
+					
+				} else if (request.getHeader().equals("UPDATE")) {
+					
+					// Don't log password out of respect to the user
+					Log.println("[" + player.getNetwork().getConnectionId() + "] Received: " + request.getHeader());
+					
+					
+				}	else {
+				
 					Log.println("[" + player.getNetwork().getConnectionId() + "] Received: " + request.getHeader() + " " + request.getMessageBody());
 				}
 			}

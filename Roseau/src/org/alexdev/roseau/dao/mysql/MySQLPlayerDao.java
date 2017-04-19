@@ -204,7 +204,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			sqlConnection = this.dao.getStorage().getConnection();
 
 			preparedStatement = dao.getStorage().prepare("UPDATE users SET password = ?, figure = ?, credits = ?, mission = ?, pool_figure = ?, sex = ?, email = ? WHERE id = ?", sqlConnection);
-			preparedStatement.setString(1, details.getPassword());
+			preparedStatement.setString(1, BCrypt.hashpw(details.getPassword(), BCrypt.gensalt()));
 			preparedStatement.setString(2, details.getFigure());
 			preparedStatement.setInt(3, details.getCredits());
 			preparedStatement.setString(4, details.getMission());
