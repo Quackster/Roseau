@@ -64,10 +64,10 @@ public class ConnectionHandler extends SimpleChannelHandler {
 
 			if (Roseau.getUtilities().getConfiguration().get("Logging", "log.packets", Boolean.class)) {
 				
-				if (request.getHeader().equals("LOGIN") || request.getHeader().equals("INFORETREIVE"))  {
+				if ((request.getHeader().equals("LOGIN") || request.getHeader().equals("INFORETRIEVE")) && request.getArgumentAmount() > 1)  {
 					
 					// Don't log password out of respect to the user
-					Log.println("[" + player.getNetwork().getConnectionId() + "] Received: " + request.getHeader());
+					Log.println("[" + player.getNetwork().getConnectionId() + "] Received: " + request.getHeader() + " " + request.getArgument(0));
 				} else {
 					Log.println("[" + player.getNetwork().getConnectionId() + "] Received: " + request.getHeader() + " " + request.getMessageBody());
 				}
