@@ -161,7 +161,7 @@ public class RoomUser {
 			item.lockTiles(); // users cant walk on this tile
 
 			((Player) this.entity).send(new OPEN_UIMAKOPPI());
-			((Player) this.entity).getRoomUser().toggleWalkAbility();
+			((Player) this.entity).getRoomUser().setCanWalk(false);
 		}
 
 		if (definition.getBehaviour().isCanSitOnTop()) {
@@ -177,6 +177,7 @@ public class RoomUser {
 			this.getPosition().setHeadRotation(item.getPosition().getRotation());
 			this.removeStatus("dance");
 			this.removeStatus("sit");
+			this.removeStatus("carryd");
 			this.setStatus("lay", " " + Double.toString(definition.getHeight() + 1.5) + " null", true, -1);
 		}
 
@@ -192,8 +193,10 @@ public class RoomUser {
 			final Item targetTeleporter = teleporter;
 			final Room previousRoom = this.room;
 			final Room room = Roseau.getDataAccess().getRoom().getRoom(targetTeleporter.getRoomID(), true);
-
+			
 			if (room != null) {
+				
+				this.setCanWalk(false);
 
 				TimerTask task = new TimerTask() {
 					@Override
@@ -506,8 +509,8 @@ public class RoomUser {
 		this.next = next;
 	}
 
-	public void toggleWalkAbility() {
-		this.canWalk = !this.canWalk;
+	public void setCanWalk(boolean flag) {
+		this.canWalk = flag;
 	}
 
 	public boolean canWalk() {

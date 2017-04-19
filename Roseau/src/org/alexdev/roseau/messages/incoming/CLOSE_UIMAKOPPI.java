@@ -34,7 +34,7 @@ public class CLOSE_UIMAKOPPI implements MessageEvent {
 				item.showProgram("open");
 				item.unlockTiles(); // users can now walk on this tile
 				
-				player.getRoomUser().toggleWalkAbility();
+				player.getRoomUser().setCanWalk(true);
 				
 			}
 		}

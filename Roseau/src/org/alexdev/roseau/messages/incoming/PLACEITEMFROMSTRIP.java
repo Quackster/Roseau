@@ -34,11 +34,12 @@ public class PLACEITEMFROMSTRIP implements MessageEvent {
 		}
 		
 		String wallPosition = reader.getMessageBody().replace(itemID + " ", "");
+		//wallPosition.replace("/" + item.getID(), "");
 		
 		item.setWallPosition(wallPosition);
 		item.save();
 		
-		item.delete(); // delete the item because they dont display anyways
+		//item.delete(); // delete the item because they dont display anyways
 		
 		// dont bother adding the item the room
 		room.getMapping().addItem(item, true);

@@ -47,7 +47,7 @@ public class Room implements SerializableObject {
 
 	private RoomData roomData;
 	private RoomMapping roomMapping;
-	
+
 	private RoomEventScheduler roomEventScheduler;
 	private RoomWalkScheduler roomWalkScheduler;
 
@@ -61,51 +61,51 @@ public class Room implements SerializableObject {
 
 	private ScheduledFuture<?> tickTask = null;
 	private ScheduledFuture<?> eventTask = null;
-	
+
 	private List<Integer> rights;
-	
+
 	private IServerHandler serverHandler = null;
 
 
 	public Room() {
 		this.roomData = new RoomData(this);
 		this.roomMapping = new RoomMapping(this);
-		
+
 		this.roomEventScheduler = new RoomEventScheduler(this);
 		this.roomWalkScheduler = new RoomWalkScheduler(this);
-		
+
 		this.entities = Lists.newArrayList();
 		this.events = Lists.newArrayList();
 	}
 
 	public void load() throws Exception {
-		
+
 		if (this.roomData.getRoomType() == RoomType.PUBLIC && !this.roomData.isHidden()) {
-			
+
 			this.serverHandler = Class.forName(Roseau.getSocketConfiguration().get("extension.socket.entry"))
 					.asSubclass(IServerHandler.class)
 					.getDeclaredConstructor(String.class)
 					.newInstance(String.valueOf(this.roomData.getID()));
-		
+
 			Log.println("[ROOM] [" + this.roomData.getName() + "] Starting public room server on port: " + this.roomData.getServerPort());
-			
-	
+
+
 			this.serverHandler.setIp(Roseau.getServerIP());
 			this.serverHandler.setPort(this.roomData.getServerPort());
 			this.serverHandler.listenSocket();
 		}
-		
-		
+
+
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
 			this.rights = Roseau.getDataAccess().getRoom().getRoomRights(this.roomData.getID());
 			this.items = Roseau.getDataAccess().getItem().getRoomItems(this.roomData.getID());
 		}
 	}
-	
+
 	public void firstPlayerEntry() {
 		this.disposed = false;
 
-		
+
 		if (this.tickTask == null) {
 			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this.roomWalkScheduler, 0, 500, TimeUnit.MILLISECONDS);
 		}
@@ -114,11 +114,11 @@ public class Room implements SerializableObject {
 		this.bots = Roseau.getDataAccess().getRoom().getBots(this, this.roomData.getID());
 
 		this.roomMapping.regenerateCollisionMaps();
-		
+
 		if (this.roomData.getModelName().equals("bar_b")) {
 			this.registerNewEvent(new ClubMassivaDiscoEvent(this));
 		}
-		
+
 		if (this.bots.size() > 0) {
 			this.entities.addAll(this.bots);
 			this.registerNewEvent(new BotMoveRoomEvent(this));
@@ -128,13 +128,13 @@ public class Room implements SerializableObject {
 	}
 
 	private void registerNewEvent(RoomEvent event) {
-		
+
 		if (this.eventTask == null) {
 			this.eventTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this.roomEventScheduler, 0, 500, TimeUnit.MILLISECONDS);
 		}
-		
+
 		this.events.add(event);
-		
+
 	}
 
 	public void loadRoom(Player player) {
@@ -155,9 +155,9 @@ public class Room implements SerializableObject {
 
 		if (this.roomData == null) {
 			Log.println("null wot");
-			
+
 		}
-		
+
 		if (this.roomData.getModel() != null) {
 			roomEntity.getPosition().setX(door.getX());
 			roomEntity.getPosition().setY(door.getY());
@@ -221,12 +221,16 @@ public class Room implements SerializableObject {
 		player.send(player.getRoomUser().getStatusComposer());
 
 		this.entities.add(player);
-		
+
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
 			final Item item = this.roomMapping.getHighestItem(door.getX(), door.getY());
-			
+
 			if (item != null) {
-				item.leaveTeleporter(player);
+				if (item.getDefinition().getBehaviour().isTeleporter()) {
+					roomEntity.setCanWalk(false);
+					item.leaveTeleporter(player);
+					return;
+				}
 			}
 		}
 	}
@@ -340,7 +344,7 @@ public class Room implements SerializableObject {
 			this.tickTask.cancel(true);
 			this.tickTask = null;
 		}
-		
+
 		if (this.eventTask != null) {
 			this.eventTask.cancel(true);
 			this.eventTask = null;

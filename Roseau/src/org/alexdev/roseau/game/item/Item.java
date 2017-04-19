@@ -46,6 +46,7 @@ public class Item implements SerializableObject {
 
 		if (this.getDefinition().getBehaviour().isOnWall()) {
 			this.wallPosition = x;
+			this.position = new Position(-1, -1);
 		} else {
 			//this.x = Integer.valueOf(x);
 			this.position = new Position(Integer.valueOf(x), y, z);
@@ -83,45 +84,49 @@ public class Item implements SerializableObject {
 			response.appendArgument(Integer.toString(this.position.getY()));
 			response.appendArgument(Integer.toString((int)this.position.getZ()));
 			response.appendArgument(Integer.toString(this.position.getRotation()));
-		} else {
+			return;
+		}
 
+		if (definition.getBehaviour().isOnFloor()) {
+			response.appendNewArgument(this.getPacketID());
+			response.appendArgument(definition.getSprite(), ',');
+			response.appendArgument(Integer.toString(this.position.getX()));
+			response.appendArgument(Integer.toString(this.position.getY()));
+			response.appendArgument(Integer.toString(definition.getLength()));
+			response.appendArgument(Integer.toString(definition.getWidth()));
+			response.appendArgument(Integer.toString(this.position.getRotation()));
+			response.appendArgument(Integer.toString((int)this.position.getZ()));
+			response.appendArgument(definition.getColor());
+			response.appendArgument(definition.getName(), '/');
+			response.appendArgument(definition.getDescription(), '/');
 
-			if (definition.getBehaviour().isOnFloor()) {
-				response.appendNewArgument(this.getPacketID());
-				response.appendArgument(definition.getSprite(), ',');
-				response.appendArgument(Integer.toString(this.position.getX()));
-				response.appendArgument(Integer.toString(this.position.getY()));
-				response.appendArgument(Integer.toString(definition.getLength()));
-				response.appendArgument(Integer.toString(definition.getWidth()));
-				response.appendArgument(Integer.toString(this.position.getRotation()));
-				response.appendArgument(Integer.toString((int)this.position.getZ()));
-				response.appendArgument(definition.getColor());
-				response.appendArgument(definition.getName(), '/');
-				response.appendArgument(definition.getDescription(), '/');
+			if (this.targetTeleporterID > 0) {
+				response.appendArgument("extr=", '/');
+				response.appendArgument(Integer.toString(this.targetTeleporterID), '/');
+			}
 
-				/*if (this.targetTeleporterID > 0) {
-		    		response.appendArgument("extr=", '/');
-		    		response.appendArgument(Integer.toString(this.targetTeleporterID), '/');
-		    	}*/
+			if (this.customData != null && this.definition.getDataClass() != null) {
+				response.appendArgument(this.definition.getDataClass(), '/');
+				response.appendArgument(this.customData, '/');
+			}
 
-				if (this.customData != null && this.definition.getDataClass() != null) {
-					response.appendArgument(this.definition.getDataClass(), '/');
-					response.appendArgument(this.customData, '/');
-				}
+			return;
+		} 
 
-			} else if (definition.getBehaviour().isOnWall()) {
-				response.appendNewArgument(Integer.toString(this.ID));
-				response.appendTabArgument(definition.getSprite());
-				response.appendTabArgument(" ");
-				response.appendTabArgument(this.wallPosition);
+		if (definition.getBehaviour().isOnWall()) {
+			response.appendNewArgument(Integer.toString(this.ID));
+			response.appendTabArgument(definition.getSprite());
+			response.appendTabArgument(" ");
+			response.appendTabArgument(this.wallPosition);
 
-				if (this.customData != null) {
+			if (this.customData != null) {
+				if (this.customData.length() > 0) {
 					response.appendTabArgument(this.customData);
 
-				} else {
-					response.appendTabArgument("");
 				}
 			}
+
+			return;
 		}
 	}
 
@@ -273,11 +278,11 @@ public class Item implements SerializableObject {
 	}
 
 	public Room getRoom() {
-		
+
 		if (this.room == null) {
 			this.reload();
 		}
-		
+
 		return this.room;
 	}
 
@@ -332,7 +337,7 @@ public class Item implements SerializableObject {
 		if (!this.definition.getBehaviour().isTeleporter()) {
 			return;
 		}
-		
+
 		this.reload();
 
 		if (this.room == null) {
@@ -348,6 +353,7 @@ public class Item implements SerializableObject {
 				item.setCustomData("TRUE");
 				item.updateStatus();
 
+				player.getRoomUser().setCanWalk(true);
 				player.getRoomUser().walkTo(item.getPosition().getSquareInFront());
 			}
 		};
