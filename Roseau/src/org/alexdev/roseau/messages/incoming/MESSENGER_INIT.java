@@ -13,6 +13,11 @@ public class MESSENGER_INIT implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
+		
+		if (!player.getDetails().isAuthenticated()) {
+			return;
+		}
+		
 		player.send(new MYPERSISTENTMSG("message placeholder"));
 		player.send(new BUDDYLIST());
 		//player.send(new BUDDYADDREQUESTS());

@@ -17,7 +17,7 @@ public class GameScheduler implements Runnable {
 			List<Player> players = Roseau.getGame().getPlayerManager().getMainServerPlayers();
 			
 
-			if ((this.tickRate % GameVariables.CREDITS_EVERY_SEC) == 0) {
+			if ((this.tickRate % GameVariables.CREDITS_EVERY_SECS) == 0) {
 				
 				for (int i = 0; i < players.size(); i++) {
 					

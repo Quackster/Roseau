@@ -11,6 +11,7 @@ import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.log.Log;
+import org.alexdev.roseau.util.BCrypt;
 
 public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> implements PlayerDao {
 
@@ -22,7 +23,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 
 	@Override
 	public void createPlayer(String username, String password, String email, String mission, String figure, int credits, String sex, String birthday) {
-		
+
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -30,10 +31,10 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
-			
+
 			preparedStatement = this.dao.getStorage().prepare("INSERT INTO users (username, password, email, mission, figure, credits, sex, birthday) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", sqlConnection);
 			preparedStatement.setString(1, username);
-			preparedStatement.setString(2, password);
+			preparedStatement.setString(2, BCrypt.hashpw(password, BCrypt.gensalt()));
 			preparedStatement.setString(3, email);
 			preparedStatement.setString(4, mission);
 			preparedStatement.setString(5, figure);
@@ -50,13 +51,13 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			Storage.closeSilently(sqlConnection);
 		}
 	}
-	
+
 	@Override
 	public PlayerDetails getDetails(int userID) {
 
 		Player player = Roseau.getGame().getPlayerManager().getByID(userID);
 		PlayerDetails details = new PlayerDetails(player);
-		
+
 		if (player != null) {
 			details = player.getDetails();
 		} else {
@@ -68,10 +69,10 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			try {
 
 				sqlConnection = this.dao.getStorage().getConnection();
-				
+
 				preparedStatement = this.dao.getStorage().prepare("SELECT id, username, rank, mission, figure, pool_figure, email, credits, sex, country, badge, birthday FROM users WHERE id = ? LIMIT 1", sqlConnection);
 				preparedStatement.setInt(1, userID);
-				
+
 				resultSet = preparedStatement.executeQuery();
 
 				if (resultSet.next()) {
@@ -92,7 +93,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 
 	@Override
 	public boolean login(Player player, String username, String password) {
-		
+
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -100,15 +101,16 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT id, username, rank, mission, figure, pool_figure, email, credits, sex, country, badge, birthday FROM users WHERE username = ? AND password = ? LIMIT 1", sqlConnection);
+			preparedStatement = this.dao.getStorage().prepare("SELECT id, username, password, rank, mission, figure, pool_figure, email, credits, sex, country, badge, birthday FROM users WHERE username = ? LIMIT 1", sqlConnection);
 			preparedStatement.setString(1, username);
-			preparedStatement.setString(2, password);
 
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
-				this.fill(player.getDetails(), resultSet);
-				return true;
+				if (BCrypt.checkpw(password, resultSet.getString("password"))) {
+					this.fill(player.getDetails(), resultSet);
+					return true;
+				}
 			}
 
 		} catch (Exception e) {
@@ -134,9 +136,9 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			sqlConnection = this.dao.getStorage().getConnection();
 			preparedStatement = this.dao.getStorage().prepare("SELECT id FROM users WHERE username = ? LIMIT 1", sqlConnection);
 			preparedStatement.setString(1, username);
-			
+
 			resultSet = preparedStatement.executeQuery();
-			
+
 			if (resultSet.next()) {
 				return resultSet.getInt("id");
 			}
@@ -154,25 +156,25 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 	@Override
 	public PlayerDetails fill(PlayerDetails details, ResultSet row) throws SQLException {
 		details.fill(row.getInt("id"), row.getString("username"), row.getString("mission"), row.getString("figure"), row.getString("pool_figure"), 
-					 row.getString("email"), row.getInt("rank"), row.getInt("credits"), row.getString("sex"), row.getString("country"), 
-					 row.getString("badge"), row.getString("birthday"));
+				row.getString("email"), row.getInt("rank"), row.getInt("credits"), row.getString("sex"), row.getString("country"), 
+				row.getString("badge"), row.getString("birthday"));
 		return details;
 	}
 
 	@Override
 	public boolean isNameTaken(String name) {
 		boolean nameTaken = false;
-		
+
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		
+
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
 			preparedStatement = this.dao.getStorage().prepare("SELECT id FROM users WHERE username = ? LIMIT 1", sqlConnection);
 			preparedStatement.setString(1, name);
-			
+
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
@@ -186,10 +188,10 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			Storage.closeSilently(preparedStatement);
 			Storage.closeSilently(sqlConnection);
 		}
-		
+
 		return nameTaken;
 	}
-	
+
 	@Override
 	public void updatePlayer(PlayerDetails details) {
 
@@ -210,7 +212,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			preparedStatement.setString(6, details.getSex());
 			preparedStatement.setString(7, details.getEmail());
 			preparedStatement.setInt(8, details.getID());
-			
+
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -222,5 +224,5 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 		}
 
 	}
-	
+
 }

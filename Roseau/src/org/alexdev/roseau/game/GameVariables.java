@@ -4,7 +4,7 @@ import org.alexdev.roseau.Roseau;
 
 public class GameVariables {
 
-	public static int CREDITS_EVERY_SEC;
+	public static int CREDITS_EVERY_SECS;
 	public static int CREDITS_EVERY_AMOUNT;
 	public static String USERNAME_CHARS;
 	public static int BOT_RESPONSE_DELAY;
@@ -16,7 +16,7 @@ public class GameVariables {
 	
 	
 	public static void setVariables() {
-		CREDITS_EVERY_SEC = Roseau.getUtilities().getHabboConfig().get("Scheduler", "credits.every.x.secs", Integer.class);
+		CREDITS_EVERY_SECS = Roseau.getUtilities().getHabboConfig().get("Scheduler", "credits.every.x.secs", Integer.class);
 		CREDITS_EVERY_AMOUNT = Roseau.getUtilities().getHabboConfig().get("Scheduler", "credits.every.x.amount", Integer.class);
 		USERNAME_CHARS = Roseau.getUtilities().getHabboConfig().get("Register", "user.name.chars", String.class);
 		BOT_RESPONSE_DELAY = Roseau.getUtilities().getHabboConfig().get("Bot", "bot.response.delay", Integer.class);
