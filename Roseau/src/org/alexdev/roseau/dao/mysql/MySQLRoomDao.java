@@ -193,6 +193,8 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 		return rooms;
 	}
+	
+	
 
 	@Override
 	public Room getRoom(int roomID, boolean storeInMemory) {

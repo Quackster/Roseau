@@ -9,4 +9,5 @@ public interface Dao {
 	public ItemDao getItem();
 	public CatalogueDao getCatalogue();
 	public InventoryDao getInventory();
+	public NavigatorDao getNavigator();
 }

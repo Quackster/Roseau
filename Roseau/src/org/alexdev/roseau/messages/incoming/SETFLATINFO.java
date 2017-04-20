@@ -25,6 +25,7 @@ allsuperuser=0*/
 		
 		String description = message.split(Character.toString((char)13))[0].substring(12); // remove "description=" prefix
 		String password = message.split(Character.toString((char)13))[1].substring(9); // remove "password=" prefix
+		
 
 		room.getData().setDescription(description);
 		room.getData().setPassword(password);

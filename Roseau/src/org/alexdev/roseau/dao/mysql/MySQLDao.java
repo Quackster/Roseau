@@ -5,6 +5,7 @@ import org.alexdev.roseau.dao.CatalogueDao;
 import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.dao.InventoryDao;
 import org.alexdev.roseau.dao.ItemDao;
+import org.alexdev.roseau.dao.NavigatorDao;
 import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.RoomDao;
 import org.alexdev.roseau.log.Log;
@@ -19,6 +20,7 @@ public class MySQLDao implements Dao {
 	private ItemDao item;
 	private CatalogueDao catalogue;
 	private InventoryDao inventory;
+	private NavigatorDao navigator;
 
 	public MySQLDao() {
 
@@ -28,6 +30,7 @@ public class MySQLDao implements Dao {
 		this.item = new MySQLItemDao(this);
 		this.catalogue = new MySQLCatalogueDao(this);
 		this.inventory = new MySQLInventoryDao(this);
+		this.navigator = new MySQLNavigatorDao(this);
 	}
 
 	@Override
@@ -47,36 +50,6 @@ public class MySQLDao implements Dao {
 		} else {
 			Log.println("Connection to MySQL was a success");
 		}
-
-		//Connection sqlConnection = null;
-		//PreparedStatement preparedStatement = null;
-		//ResultSet resultSet = null;
-
-		/*try {
-
-			sqlConnection = this.storage.getConnection();
-			preparedStatement = this.storage.prepare("SELECT * FROM users", sqlConnection);
-			resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-				
-				Log.println(resultSet.getString("username") + ", " + BCrypt.hashpw(resultSet.getString("password"), BCrypt.gensalt()));
-
-			}
-			
-			//String hashed = BCrypt.hashpw("123", BCrypt.gensalt(12));
-			
-			//String hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));
-			
-			Log.println("123: " + BCrypt.checkpw("123", "$2a$12$EcU6j0uxhyfoqMfRyEZ67ubiX8l7CbZNnDu1wvoMk7UA5RunmYEU."));
-
-		} catch (Exception e) {
-			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
-		}*/
 		
 		Log.println();
 		
@@ -115,5 +88,10 @@ public class MySQLDao implements Dao {
 	@Override
 	public InventoryDao getInventory() {
 		return inventory;
+	}
+
+	@Override
+	public NavigatorDao getNavigator() {
+		return navigator;
 	}
 }

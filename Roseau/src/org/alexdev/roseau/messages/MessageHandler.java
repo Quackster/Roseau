@@ -36,6 +36,7 @@ import org.alexdev.roseau.messages.incoming.REGISTER;
 import org.alexdev.roseau.messages.incoming.REMOVEITEM;
 import org.alexdev.roseau.messages.incoming.REMOVESTUFF;
 import org.alexdev.roseau.messages.incoming.SEARCHBUSYFLATS;
+import org.alexdev.roseau.messages.incoming.SEARCHFLAT;
 import org.alexdev.roseau.messages.incoming.SEARCHFLATFORUSER;
 import org.alexdev.roseau.messages.incoming.SETFLATINFO;
 import org.alexdev.roseau.messages.incoming.SETSTUFFDATA;
@@ -105,6 +106,7 @@ public class MessageHandler {
 		this.messages.put("GOTOFLAT", new GOTOFLAT());
 		this.messages.put("CLOSE_UIMAKOPPI", new CLOSE_UIMAKOPPI());
 		this.messages.put("LOOKTO", new LOOKTO());
+		this.messages.put("SEARCHFLAT", new SEARCHFLAT());
 		
 	}
 	
