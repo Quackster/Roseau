@@ -10,13 +10,20 @@ public class FINDUSER implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
+		
+		try {
 		String[] args = reader.getMessageBody().split("\t", 2);
 		String name = args[0];
 	
-		if (name.length() > 0) {
-			if (Roseau.getDao().getPlayer().isNameTaken(name)) {
-				player.send(new MEMBERINFO());
-			}		
+		
+			if (name.length() > 0) {
+				if (Roseau.getDao().getPlayer().isNameTaken(name)) {
+					player.send(new MEMBERINFO());
+				}		
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
 		}
 	}
 
