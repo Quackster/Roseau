@@ -28,10 +28,15 @@ public class PLACESTUFFFROMSTRIP implements MessageEvent {
 			return;
 		}
 		
-		if (!room.hasRights(player.getDetails().getID(), false)) {
+		if (!room.hasRights(player.getDetails().getID(), false) && !room.getData().hasAllSuperUser()) {
+			return;
+		}
+
+		if (!item.getDefinition().getBehaviour().isOnFloor()) {
 			return;
 		}
 		
+		item.setOwnerID(room.getData().getOwnerID());
 		item.getPosition().setX(x);
 		item.getPosition().setY(y);
 		item.setItemRotation(2);

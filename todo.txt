@@ -1,11 +1,10 @@
 TODO LIST:
 
-- Finishing adding bots to public rooms
+- Finishing adding bots to public rooms (Club Massiva and Club Slinky Helsinki)
 - Diving in Habbo Lido II
-- Add some missing items into the catalogue
+- Queing up to dive
+- Add some missing items into the catalogue (deals, rugs, doormats)
 - Moderation tools (commands, call for help, etc).
-- Seeing if I can get wall items to load
-- MESSENGER_MSG packet structure
 - Giving/revoking user rights
-- Item interactions
-- Teleporters
+- Updating users when an item gets rotated/moved
+- 

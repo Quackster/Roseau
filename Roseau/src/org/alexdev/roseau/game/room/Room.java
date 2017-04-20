@@ -196,13 +196,8 @@ public class Room implements SerializableObject {
 			} else {
 				player.send(new FLATPROPERTY("floor", "0"));
 			}
-
-			if (this.roomData.getOwnerID() == player.getDetails().getID()) {	
-				player.send(new YOUAREOWNER());
-				roomEntity.setStatus("flatctrl", " useradmin", true, -1);
-			} else if (this.hasRights(player.getDetails().getID(), false)) {
-				player.send(new YOUARECONTROLLER());
-			}
+			
+			this.refreshFlatPrivileges(player);
 		}
 
 		if (this.roomData.getModel() != null) {
@@ -240,6 +235,18 @@ public class Room implements SerializableObject {
 				}
 			}
 		}
+	}
+
+	public void refreshFlatPrivileges(Player player) {
+		
+		if (this.roomData.getOwnerID() == player.getDetails().getID()) {	
+			player.send(new YOUAREOWNER());
+			player.getRoomUser().setStatus("flatctrl", " useradmin", true, -1);
+		} else if (this.hasRights(player.getDetails().getID(), false) || this.roomData.hasAllSuperUser()) {
+			player.send(new YOUARECONTROLLER());
+			player.getRoomUser().setStatus("flatctrl", "", true, -1);
+		}
+		
 	}
 
 	public void send(OutgoingMessageComposer response, boolean checkRights) {

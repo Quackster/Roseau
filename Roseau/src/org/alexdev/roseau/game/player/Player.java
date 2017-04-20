@@ -20,6 +20,7 @@ public class Player implements Entity {
 	private RoomUser roomEntity;
 	private Inventory inventory;
 	private Room lastCreatedRoom;
+	private boolean sendHotelAlert;
 
 	public Player(IPlayerNetwork network) {
 		this.network = network;
@@ -27,6 +28,7 @@ public class Player implements Entity {
 		this.roomEntity = new RoomUser(this);
 		this.inventory = new Inventory(this);
 		this.lastCreatedRoom = null;
+		this.sendHotelAlert = true;
 	}
 	
 	public void login() {
@@ -141,6 +143,14 @@ public class Player implements Entity {
 
 	public Inventory getInventory() {
 		return inventory;
+	}
+
+	public boolean canSendHotelAlert() {
+		return sendHotelAlert;
+	}
+
+	public void setSendHotelAlert(boolean sendHotelAlert) {
+		this.sendHotelAlert = sendHotelAlert;
 	}
 
 

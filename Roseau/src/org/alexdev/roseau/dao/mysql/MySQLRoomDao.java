@@ -323,7 +323,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 			sqlConnection = this.dao.getStorage().getConnection();
 
-			preparedStatement = dao.getStorage().prepare("UPDATE rooms SET name = ?, description = ?, state = ?, password = ?, wallpaper = ?, floor = ? WHERE id = ?", sqlConnection);
+			preparedStatement = dao.getStorage().prepare("UPDATE rooms SET name = ?, description = ?, state = ?, password = ?, wallpaper = ?, floor = ?, allsuperuser = ? WHERE id = ?", sqlConnection);
 
 			preparedStatement.setString(1, data.getName());
 			preparedStatement.setString(2, data.getDescription());
@@ -331,7 +331,8 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			preparedStatement.setString(4, data.getPassword());
 			preparedStatement.setString(5, data.getWall());
 			preparedStatement.setString(6, data.getFloor());
-			preparedStatement.setInt(7, data.getID());
+			preparedStatement.setInt(7, data.hasAllSuperUser() ? 1 : 0);
+			preparedStatement.setInt(8, data.getID());
 
 			preparedStatement.executeUpdate();
 
@@ -452,7 +453,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		
 		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getID(), details == null ? "" : details.getUsername(), row.getString("name"), 
 				row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"),
-				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"));
+				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"), row.getInt("allsuperuser") == 1);
 		
 		if (details != null) {
 		instance.getData().setOwnerName(details.getUsername());

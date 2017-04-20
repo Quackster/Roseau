@@ -25,10 +25,18 @@ allsuperuser=0*/
 		
 		String description = message.split(Character.toString((char)13))[0].substring(12); // remove "description=" prefix
 		String password = message.split(Character.toString((char)13))[1].substring(9); // remove "password=" prefix
-		
+		boolean allsuperuser = message.split(Character.toString((char)13))[2].substring(13).equals("1");
 
 		room.getData().setDescription(description);
 		room.getData().setPassword(password);
+		room.getData().setAllSuperUser(allsuperuser);
+		
+		for (Player user : room.getPlayers()) {
+			user.getRoomUser().removeStatus("flatctrl");
+			room.refreshFlatPrivileges(user);
+			user.getRoomUser().setNeedUpdate(true);
+		}
+		
 		room.getData().save();
 	}
 }

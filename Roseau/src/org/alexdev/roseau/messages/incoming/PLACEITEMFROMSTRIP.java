@@ -25,7 +25,7 @@ public class PLACEITEMFROMSTRIP implements MessageEvent {
 			return;
 		}
 		
-		if (!room.hasRights(player.getDetails().getID(), false)) {
+		if (!room.hasRights(player.getDetails().getID(), false) && !room.getData().hasAllSuperUser()) {
 			return;
 		}
 
@@ -37,6 +37,7 @@ public class PLACEITEMFROMSTRIP implements MessageEvent {
 		//wallPosition.replace("/" + item.getID(), "");
 		
 		item.setWallPosition(wallPosition);
+		item.setOwnerID(room.getData().getOwnerID());
 		item.save();
 		
 		//item.delete(); // delete the item because they dont display anyways

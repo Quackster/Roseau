@@ -32,11 +32,13 @@ public class Item implements SerializableObject {
 	private ItemDefinition definition;
 	private int definitionID;
 	private Room room;
+	private int ownerID;
 
 	public Item(int ID, int roomID, int ownerID, String x, int y, double z, int rotation, int definitionID, String itemData, String customData) {
 
 		this.ID = ID;
 		this.roomID = roomID;
+		this.ownerID = ownerID;
 
 		this.definitionID = definitionID;
 
@@ -362,6 +364,14 @@ public class Item implements SerializableObject {
 		};
 
 		Roseau.getGame().getTimer().schedule(task, 1000);
+	}
+
+	public int getOwnerID() {
+		return ownerID;
+	}
+
+	public void setOwnerID(int ownerID) {
+		this.ownerID = ownerID;
 	}
 
 }
