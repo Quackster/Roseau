@@ -19,6 +19,8 @@
 
 package org.alexdev.roseau.server.netty.codec;
 
+import java.nio.charset.StandardCharsets;
+
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.server.IServerHandler;
 import org.alexdev.roseau.server.netty.readers.NettyRequest;
@@ -52,9 +54,9 @@ public class NetworkDecoder extends FrameDecoder {
 			}
 			
 			byte[] message_length = buffer.readBytes(4).array();
-			byte[] message = buffer.readBytes(Integer.parseInt(new String(message_length).replaceAll("[^0-9]",""))).array();
+			byte[] message = buffer.readBytes(Integer.parseInt(new String(message_length, StandardCharsets.ISO_8859_1).replaceAll("[^0-9]",""))).array();
 			
-			String content = new String(message);
+			String content = new String(message, StandardCharsets.ISO_8859_1);
 			
 			String request = null;
 			String header = null;

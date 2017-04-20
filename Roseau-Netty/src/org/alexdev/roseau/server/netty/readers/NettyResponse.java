@@ -8,13 +8,13 @@ import org.alexdev.roseau.server.messages.SerializableObject;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBufferOutputStream;
 import org.jboss.netty.buffer.ChannelBuffers;
+import org.jboss.netty.util.CharsetUtil;
 
 public class NettyResponse implements Response {
 
 	private String header;
 	private boolean finalised;
-	private ChannelBufferOutputStream bodystream;
-	private ChannelBuffer body = null;
+	private StringBuilder buffer;
 
 	public NettyResponse() { }
 
@@ -22,26 +22,16 @@ public class NettyResponse implements Response {
 	public void init(String header) {
 
 		this.finalised = false;
-		this.body = ChannelBuffers.dynamicBuffer();
-		this.bodystream = new ChannelBufferOutputStream(body);
 		this.header = header;
+		this.buffer = new StringBuilder();
 
-		try {
-			this.bodystream.write('#');
-			this.append(header);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.buffer.append('#');
+		this.append(header);
 	}
 
 	@Override
 	public void append(String s) {
-		try {
-			this.bodystream.write(s.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.buffer.append(s);
 	}
 
 	@Override
@@ -66,36 +56,24 @@ public class NettyResponse implements Response {
 
 	@Override
 	public void appendKVArgument(String key, String value) {
-		try {
-			this.bodystream.write((char)13);
-			this.bodystream.write(key.getBytes());
-			this.bodystream.write('=');
-			this.bodystream.write(value.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			this.buffer.append((char)13);
+			this.buffer.append(key);
+			this.buffer.append('=');
+			this.buffer.append(value);
 	}
 
 	@Override
 	public void appendKV2Argument(String key, String value) {
-		try {
-			this.bodystream.write((char)13);
-			this.bodystream.write(key.getBytes());
-			this.bodystream.write(':');
-			this.bodystream.write(value.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
+			this.buffer.append((char)13);
+			this.buffer.append(key);
+			this.buffer.append(':');
+			this.buffer.append(value);
 	}
 
 	@Override
 	public void appendArgument(String arg, char delimiter) {
-		try {
-			this.bodystream.write(delimiter);
-			this.bodystream.write(arg.getBytes());	
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			this.buffer.append(delimiter);
+			this.buffer.append(arg);	
 	}
 
 
@@ -106,7 +84,7 @@ public class NettyResponse implements Response {
 
 	@Override
 	public String getBodyString() {
-		String str = new String(this.get().toString(Charset.defaultCharset()));
+		String str = this.get();
 		for (int i = 0; i < 14; i++) { 
 			str = str.replace(Character.toString((char)i), "[" + i + "]");
 		}
@@ -115,19 +93,15 @@ public class NettyResponse implements Response {
 
 	@Override
 	//# @type \r data\r##
-	public ChannelBuffer get() {
+	public String get() {
 
 		if (!this.finalised) {
-			try {
-				this.bodystream.write('#');
-				this.bodystream.write('#');
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+				this.buffer.append('#');
+				this.buffer.append('#');
 			this.finalised = true;
 		}
-
-		return this.body;
+		
+		return this.buffer.toString();
 	}
 
 	public String getHeader() {

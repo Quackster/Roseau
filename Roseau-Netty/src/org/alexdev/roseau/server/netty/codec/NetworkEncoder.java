@@ -20,6 +20,7 @@
 package org.alexdev.roseau.server.netty.codec;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
@@ -36,10 +37,12 @@ public class NetworkEncoder extends SimpleChannelHandler {
 	@Override
 	public void writeRequested(ChannelHandlerContext ctx, MessageEvent e) {
 		
+		Charset charset = Charset.forName("ISO-8859-1");
+		
 		try {
 			
 			if (e.getMessage() instanceof String) {
-				Channels.write(ctx, e.getFuture(), ChannelBuffers.copiedBuffer((String) e.getMessage(), Charset.forName("UTF-8")));
+				Channels.write(ctx, e.getFuture(), ChannelBuffers.copiedBuffer((String) e.getMessage(), charset));
 				return;
 			}
 			
@@ -49,11 +52,14 @@ public class NetworkEncoder extends SimpleChannelHandler {
 				NettyResponse response = new NettyResponse();
 				
 				msg.write(response);
-				response.get();
 				
-				Log.println("SENT: " + response.getBodyString());
+				Log.println("SENT: " + response.getBodyString() );
 				
-				Channels.write(ctx, e.getFuture(), (ChannelBuffer)response.get());
+				//ChannelBuffer buffer = (ChannelBuffer)response.get();
+				//Channels.write(ctx, e.getFuture(), (ChannelBuffer)e.getMessage());
+				
+				Channels.write(ctx, e.getFuture(), ChannelBuffers.copiedBuffer(response.get(), charset));
+				
 				return;
 			}
 		}
