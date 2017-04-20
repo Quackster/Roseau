@@ -211,7 +211,12 @@ public class Room implements SerializableObject {
 
 		player.send(new OBJECTS_WORLD(this.roomData.getModelName(), this.passiveObjects));
 		player.send(new ACTIVE_OBJECTS(this));
-		player.send(new ITEMS(this));
+
+		for (Item item : this.items.values()) {
+			if (item.getDefinition().getBehaviour().isOnWall()) {
+				player.send(new ITEMS(item));
+			}
+		}
 
 
 		player.send(new USERS(this.entities));

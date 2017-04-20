@@ -166,8 +166,6 @@ public class Item implements SerializableObject {
 
 				if (this.customData.equals("TRUE")) {
 					tile_valid = true;
-				} else {
-					Log.println("invalid XD");
 				}
 			}
 		}
