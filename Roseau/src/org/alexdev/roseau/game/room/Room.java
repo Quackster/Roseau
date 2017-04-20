@@ -196,7 +196,7 @@ public class Room implements SerializableObject {
 			} else {
 				player.send(new FLATPROPERTY("floor", "0"));
 			}
-			
+
 			this.refreshFlatPrivileges(player);
 		}
 
@@ -208,12 +208,7 @@ public class Room implements SerializableObject {
 		player.send(new ACTIVE_OBJECTS(this));
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
-
-			for (Item item : this.items.values()) {
-				if (item.getDefinition().getBehaviour().isOnWall()) {
-					player.send(new ITEMS(item));
-				}
-			}
+			player.send(new ITEMS(this));
 		}
 
 		player.send(new USERS(this.entities));
@@ -238,7 +233,7 @@ public class Room implements SerializableObject {
 	}
 
 	public void refreshFlatPrivileges(Player player) {
-		
+
 		if (this.roomData.getOwnerID() == player.getDetails().getID()) {	
 			player.send(new YOUAREOWNER());
 			player.getRoomUser().setStatus("flatctrl", " useradmin", true, -1);
@@ -246,7 +241,7 @@ public class Room implements SerializableObject {
 			player.send(new YOUARECONTROLLER());
 			player.getRoomUser().setStatus("flatctrl", "", true, -1);
 		}
-		
+
 	}
 
 	public void send(OutgoingMessageComposer response, boolean checkRights) {
@@ -500,6 +495,19 @@ public class Room implements SerializableObject {
 
 
 	public ConcurrentHashMap<Integer, Item> getItems() {
+		return items;
+	}
+
+	public List<Item> getWallItems() {
+
+		List<Item> items = Lists.newArrayList();
+		
+		for (Item item : this.items.values()) {
+			if (item.getDefinition().getBehaviour().isOnWall()) {
+				items.add(item);
+			}
+		}
+		
 		return items;
 	}
 

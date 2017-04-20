@@ -117,17 +117,18 @@ public class Item implements SerializableObject {
 		} 
 
 		if (definition.getBehaviour().isOnWall()) {
-			response.appendNewArgument(Integer.toString(this.ID));
+			response.append(Integer.toString(this.ID));
 			response.appendArgument(definition.getSprite(), ';');
 			response.appendArgument("Alex", ';');
 			response.appendArgument(this.wallPosition, ';');
 
-			if (this.customData != null) {
-				if (this.customData.length() > 0) {
+			//if (this.customData != null) {
+				 //if (this.customData.length() > 0) {
+			Log.println("customdata: " + this.customData);
 					response.appendNewArgument(this.customData);
 
-				}
-			}
+				//}
+			//}
 
 			return;
 		}

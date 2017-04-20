@@ -896,3 +896,24 @@ Caused by: java.net.BindException: Address already in use: bind
 
 [04/17/2017 22:52:42] [ROSEAU] >> ---------------------------------------------
 [04/17/2017 22:52:42] [ROSEAU] >> Server could not listen on 91:91, please double check everything is correct in icarus.properties
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/21/2017 00:37:46
+-----------------------------------------
+
+[04/21/2017 00:37:46] [ROSEAU] >> Roseau - Java Server
+[04/21/2017 00:37:46] [ROSEAU] >> Loading server...
+[04/21/2017 00:37:46] [ROSEAU] 
+[04/21/2017 00:37:46] [ROSEAU] >> Loading dependencies
+[04/21/2017 00:37:46] [ROSEAU] >> ---------------------------------------------
+[04/21/2017 00:37:46] [ROSEAU] >> Error has occured!
+java.io.FileNotFoundException: C:\Users\Alex\Documents\GitHub\Roseau\Roseau-bin\lib\libraries.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at org.alexdev.roseau.util.Configuration.<init>(Configuration.java:20)
+	at org.alexdev.roseau.Roseau.loadDependencies(Roseau.java:73)
+	at org.alexdev.roseau.Roseau.main(Roseau.java:44)
+
+[04/21/2017 00:37:46] [ROSEAU] >> ---------------------------------------------
