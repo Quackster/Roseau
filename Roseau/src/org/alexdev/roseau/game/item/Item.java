@@ -17,6 +17,8 @@ import org.alexdev.roseau.messages.outgoing.UPDATEWALLITEM;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
+import com.google.common.collect.Lists;
+
 public class Item implements SerializableObject {
 
 	private int ID;
@@ -29,9 +31,7 @@ public class Item implements SerializableObject {
 	private String customData;
 	private String wallPosition;
 
-	private ItemDefinition definition;
 	private int definitionID;
-	private Room room;
 	private int ownerID;
 
 	public Item(int ID, int roomID, int ownerID, String x, int y, double z, int rotation, int definitionID, String itemData, String customData) {
@@ -45,8 +45,6 @@ public class Item implements SerializableObject {
 		this.itemData = itemData;	
 		this.customData = customData;
 
-		this.reload();
-
 		if (this.getDefinition().getBehaviour().isOnWall()) {
 			this.wallPosition = x;
 			this.position = new Position(-1, -1);
@@ -59,13 +57,8 @@ public class Item implements SerializableObject {
 		this.setTeleporterID();
 	}
 
-	private void reload() {
-		this.room = Roseau.getGame().getRoomManager().getRoomByID(roomID);
-		this.definition = Roseau.getGame().getItemManager().getDefinition(this.definitionID);
-	}
-
 	private void setTeleporterID() {
-		if (this.definition.getBehaviour().isTeleporter()) {
+		if (this.getDefinition().getBehaviour().isTeleporter()) {
 			try {
 				this.targetTeleporterID = Integer.valueOf(this.customData);
 			} catch (NumberFormatException e) {  }
@@ -75,14 +68,14 @@ public class Item implements SerializableObject {
 	@Override
 	public void serialise(Response response) {
 
-		if (definition.getBehaviour().isInvisible()) {
+		if (this.getDefinition().getBehaviour().isInvisible()) {
 			return;
 		}
 
-		if (definition.getBehaviour().isPassiveObject()) {
+		if (this.getDefinition().getBehaviour().isPassiveObject()) {
 
 			response.appendNewArgument(Integer.toString(this.ID));
-			response.appendArgument(definition.getSprite());
+			response.appendArgument(this.getDefinition().getSprite());
 			response.appendArgument(Integer.toString(this.position.getX()));
 			response.appendArgument(Integer.toString(this.position.getY()));
 			response.appendArgument(Integer.toString((int)this.position.getZ()));
@@ -90,44 +83,44 @@ public class Item implements SerializableObject {
 			return;
 		}
 
-		if (definition.getBehaviour().isOnFloor()) {
+		if (this.getDefinition().getBehaviour().isOnFloor()) {
 			response.appendNewArgument(this.getPacketID());
-			response.appendArgument(definition.getSprite(), ',');
+			response.appendArgument(this.getDefinition().getSprite(), ',');
 			response.appendArgument(Integer.toString(this.position.getX()));
 			response.appendArgument(Integer.toString(this.position.getY()));
-			response.appendArgument(Integer.toString(definition.getLength()));
-			response.appendArgument(Integer.toString(definition.getWidth()));
+			response.appendArgument(Integer.toString(this.getDefinition().getLength()));
+			response.appendArgument(Integer.toString(this.getDefinition().getWidth()));
 			response.appendArgument(Integer.toString(this.position.getRotation()));
 			response.appendArgument(Integer.toString((int)this.position.getZ()));
-			response.appendArgument(definition.getColor());
-			response.appendArgument(definition.getName(), '/');
-			response.appendArgument(definition.getDescription(), '/');
+			response.appendArgument(this.getDefinition().getColor());
+			response.appendArgument(this.getDefinition().getName(), '/');
+			response.appendArgument(this.getDefinition().getDescription(), '/');
 
 			if (this.targetTeleporterID > 0) {
 				response.appendArgument("extr=", '/');
 				response.appendArgument(Integer.toString(this.targetTeleporterID), '/');
 			}
 
-			if (this.customData != null && this.definition.getDataClass() != null) {
-				response.appendArgument(this.definition.getDataClass(), '/');
+			if (this.customData != null && this.getDefinition().getDataClass() != null) {
+				response.appendArgument(this.getDefinition().getDataClass(), '/');
 				response.appendArgument(this.customData, '/');
 			}
 
 			return;
 		} 
 
-		if (definition.getBehaviour().isOnWall()) {
+		if (this.getDefinition().getBehaviour().isOnWall()) {
 			response.append(Integer.toString(this.ID));
-			response.appendArgument(definition.getSprite(), ';');
+			response.appendArgument(this.getDefinition().getSprite(), ';');
 			response.appendArgument("Alex", ';');
 			response.appendArgument(this.wallPosition, ';');
 
 			//if (this.customData != null) {
-				 //if (this.customData.length() > 0) {
+			//if (this.customData.length() > 0) {
 			Log.println("customdata: " + this.customData);
-					response.appendNewArgument(this.customData);
+			response.appendNewArgument(this.customData);
 
-				//}
+			//}
 			//}
 
 			return;
@@ -136,11 +129,9 @@ public class Item implements SerializableObject {
 
 	public List<Position> getAffectedTiles() {
 
-		ItemDefinition definition = this.getDefinition();
-
 		return AffectedTile.getAffectedTilesAt(
-				definition.getLength(), 
-				definition.getWidth(), 
+				this.getDefinition().getLength(), 
+				this.getDefinition().getWidth(), 
 				this.position.getX(), 
 				this.position.getY(),
 				this.position.getRotation());
@@ -148,24 +139,22 @@ public class Item implements SerializableObject {
 
 	public boolean canWalk(Entity player) {
 
-		ItemDefinition definition = this.getDefinition();
-
 		boolean tile_valid = false;
 
-		if (definition.getBehaviour().isCanSitOnTop()) {
+		if (this.getDefinition().getBehaviour().isCanSitOnTop()) {
 			tile_valid = true;
 		}
 
-		if (definition.getBehaviour().isCanLayOnTop()) {
+		if (this.getDefinition().getBehaviour().isCanLayOnTop()) {
 			tile_valid = true;
 		}
 
-		if (definition.getBehaviour().isCanStandOnTop()) {
+		if (this.getDefinition().getBehaviour().isCanStandOnTop()) {
 			tile_valid = true;
 		}
 
-		if (definition.getBehaviour().isTeleporter()) {
-			if (definition.getDataClass().equals("DOOROPEN")) {
+		if (this.getDefinition().getBehaviour().isTeleporter()) {
+			if (this.getDefinition().getDataClass().equals("DOOROPEN")) {
 
 				if (this.customData.equals("TRUE")) {
 					tile_valid = true;
@@ -173,15 +162,15 @@ public class Item implements SerializableObject {
 			}
 		}
 
-		if (definition.getSprite().equals("poolBooth")) {
+		if (this.getDefinition().getSprite().equals("poolBooth")) {
 			tile_valid = true;
 		}
 
-		if (definition.getSprite().equals("poolEnter")) {
+		if (this.getDefinition().getSprite().equals("poolEnter")) {
 			tile_valid = player.getDetails().getPoolFigure().length() > 0;
 		}
 
-		if (definition.getSprite().equals("poolExit")) {
+		if (this.getDefinition().getSprite().equals("poolExit")) {
 			tile_valid = player.getDetails().getPoolFigure().length() > 0;
 		}
 
@@ -222,25 +211,80 @@ public class Item implements SerializableObject {
 		} catch (NumberFormatException e) {	}
 	}
 
-	public void showProgram(String data) {
+	public void updateEntities() {
 
-		if (this.room == null) {
-			this.reload();
+		List<Entity> affected_players = Lists.newArrayList();;
+
+		Room room = this.getRoom();
+
+		if (room == null) {
+			return;
 		}
 
-		this.room.send(new SHOWPROGRAM(new String[] { this.itemData, data }));
+		for (Entity entity : this.getRoom().getEntities()) {
+
+			if (entity.getRoomUser().getCurrentItem() != null) {
+				if (entity.getRoomUser().getCurrentItem().getID() == this.ID) {
+
+					if (!hasEntityCollision(entity.getRoomUser().getPosition().getX(), entity.getRoomUser().getPosition().getY())) {
+						Log.println("ITEM DEBUG 1");
+						entity.getRoomUser().setCurrentItem(null);
+					}
+
+					affected_players.add(entity);
+				}
+			}
+
+			// Moved item inside a player
+			else if (hasEntityCollision(entity.getRoomUser().getPosition().getX(), entity.getRoomUser().getPosition().getY())) {
+				Log.println("ITEM DEBUG 2");
+
+				entity.getRoomUser().setCurrentItem(this);
+				affected_players.add(entity);
+			}
+		}
+
+		for (Entity entity : affected_players) {
+			entity.getRoomUser().currentItemTrigger();
+		}
+	}
+
+	private boolean hasEntityCollision(int x, int y) {
+
+		if (this.position.getX() == x && this.position.getY() == y) {
+			return true;
+		}
+		else {
+			for (Position tile : this.getAffectedTiles()) {
+				if (tile.getX() == x && tile.getY() == y) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+
+	}
+
+	public void showProgram(String data) {
+
+		if (this.getRoom() == null) {
+			return;
+		}
+
+		this.getRoom().send(new SHOWPROGRAM(new String[] { this.itemData, data }));
 	}
 
 	public void updateStatus() {
 
-		if (this.room == null) {
-			this.reload();
+		if (this.getRoom() == null) {
+			return;
 		}
 
-		if (this.definition.getBehaviour().isOnFloor()) {
-			this.room.send(new ACTIVEOBJECT_UPDATE(this)); 
+		if (this.getDefinition().getBehaviour().isOnFloor()) {
+			this.getRoom().send(new ACTIVEOBJECT_UPDATE(this)); 
 		} else {
-			this.room.send(new UPDATEWALLITEM(this)); 
+			this.getRoom().send(new UPDATEWALLITEM(this)); 
 		}
 	}
 
@@ -271,7 +315,7 @@ public class Item implements SerializableObject {
 	}
 
 	public ItemDefinition getDefinition() {
-		return this.definition;
+		return Roseau.getGame().getItemManager().getDefinition(this.definitionID);
 	}
 
 	public void setItemRotation(int rotation) {
@@ -285,13 +329,8 @@ public class Item implements SerializableObject {
 
 	public Room getRoom() {
 
-		if (this.room == null) {
-			this.reload();
-		}
-
-		return this.room;
+		return Roseau.getGame().getRoomManager().getRoomByID(roomID);
 	}
-
 
 	public String getItemData() {
 		return itemData;
@@ -340,13 +379,11 @@ public class Item implements SerializableObject {
 
 	public void leaveTeleporter(final Player player) {
 
-		if (!this.definition.getBehaviour().isTeleporter()) {
+		if (!this.getDefinition().getBehaviour().isTeleporter()) {
 			return;
 		}
 
-		this.reload();
-
-		if (this.room == null) {
+		if (this.getRoom() == null) {
 			return;
 		}
 

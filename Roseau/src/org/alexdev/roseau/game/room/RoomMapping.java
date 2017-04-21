@@ -243,7 +243,7 @@ public class RoomMapping {
 
 
 	public void removeItem(Item item) {
-
+		
 		item.setRoomID(0);
 		item.save();
 
@@ -258,7 +258,24 @@ public class RoomMapping {
 		this.room.getItems().remove(item.getID());
 
 	}
+	
+	private void handleItemAdjustment(Item item, boolean rotation_only) {
 
+		if (rotation_only) {
+			for (Item items : this.getTile(item.getPosition().getX(), item.getPosition().getY()).getItems()) {
+				if (items != item && items.getPosition().getZ() >= item.getPosition().getZ()) {
+					items.setItemRotation(item.getPosition().getRotation());
+					items.updateStatus();
+				}
+			}
+		}
+		else {
+			item.getPosition().setZ(this.getStackHeight(item.getPosition().getX(), item.getPosition().getY()));
+		}
+
+		item.updateEntities();
+	}
+	
 	public void updateItem(Player player, Item item, String dataClass, String customData) {
 
 		if (item == null) {
@@ -292,27 +309,10 @@ public class RoomMapping {
 		item.setCustomData(customData);
 
 		if (!item.getDefinition().getDataClass().equals("DOOROPEN")) {
-
-
 			item.save();
 		}
 	}
 
-	private void handleItemAdjustment(Item item, boolean rotation_only) {
-
-		if (rotation_only) {
-			for (Item items : this.getTile(item.getPosition().getX(), item.getPosition().getY()).getItems()) {
-				if (items != item && items.getPosition().getZ() >= item.getPosition().getZ()) {
-					items.setItemRotation(item.getPosition().getRotation());
-					items.updateStatus();
-				}
-			}
-		}
-		else {
-			item.getPosition().setZ(this.getStackHeight(item.getPosition().getX(), item.getPosition().getY()));
-		}
-
-	}
 
 	private double getStackHeight(int x, int y) {
 

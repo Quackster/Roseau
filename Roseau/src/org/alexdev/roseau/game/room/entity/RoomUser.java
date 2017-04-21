@@ -47,6 +47,7 @@ public class RoomUser {
 
 	private Entity entity;
 	private int lookResetTime;
+	private Item current_item;
 
 	public RoomUser(Entity entity) {
 		this.dispose();
@@ -108,7 +109,6 @@ public class RoomUser {
 		this.removeStatus("mv");
 
 		this.isWalking = false;
-		this.needsUpdate = true;
 
 		if (this.entity instanceof Player) {
 
@@ -145,83 +145,114 @@ public class RoomUser {
 
 		Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
 
-		if (item == null) {
-			return;	
+		boolean no_current_item = false;
+		
+		if (item != null) {
+			if (item.getDefinition().getBehaviour().isCanSitOnTop() || item.getDefinition().getBehaviour().isCanLayOnTop() || item.getDefinition().getBehaviour().isTeleporter()) {
+				this.current_item = item;
+				this.currentItemTrigger();
+
+			}
+			else {
+				no_current_item = true;
+			}
+		}
+		else {
+			no_current_item = true;
 		}
 
-		ItemDefinition definition = item.getDefinition();
-
-		if (definition == null) {
-			return;
+		if (no_current_item) {
+			this.current_item = null;
 		}
 
-		if (definition.getSprite().equals("poolBooth")) {
+	}
 
-			item.showProgram("close");
-			item.lockTiles(); // users cant walk on this tile
-
-			((Player) this.entity).send(new OPEN_UIMAKOPPI());
-			((Player) this.entity).getRoomUser().setCanWalk(false);
-		}
-
-		if (definition.getBehaviour().isCanSitOnTop()) {
-			this.getPosition().setBodyRotation(item.getPosition().getRotation());
-			this.getPosition().setHeadRotation(item.getPosition().getRotation());
-			this.removeStatus("dance");
+	public void currentItemTrigger() {
+		
+		if (this.current_item == null) {
+			this.removeStatus("sit");
 			this.removeStatus("lay");
-			this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()), true, -1);
+		} else {
+			
+			Item item = this.current_item;
+			ItemDefinition definition = this.current_item.getDefinition();
+			
+			if (definition == null) {
+				return;
+			}
+
+			if (definition.getSprite().equals("poolBooth")) {
+
+				item.showProgram("close");
+				item.lockTiles(); // users cant walk on this tile
+
+				((Player) this.entity).send(new OPEN_UIMAKOPPI());
+				((Player) this.entity).getRoomUser().setCanWalk(false);
+			}
+
+			if (definition.getBehaviour().isCanSitOnTop()) {
+				this.getPosition().setBodyRotation(item.getPosition().getRotation());
+				this.getPosition().setHeadRotation(item.getPosition().getRotation());
+				this.removeStatus("dance");
+				this.removeStatus("lay");
+				this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()), true, -1);
+			}
+
+			if (definition.getBehaviour().isCanLayOnTop()) {
+				this.getPosition().setBodyRotation(item.getPosition().getRotation());
+				this.getPosition().setHeadRotation(item.getPosition().getRotation());
+				this.removeStatus("dance");
+				this.removeStatus("sit");
+				this.removeStatus("carryd");
+				this.setStatus("lay", " " + Double.toString(definition.getHeight() + 1.5) + " null", true, -1);
+			}
+
+			if (definition.getBehaviour().isTeleporter() && this.entity instanceof Player) {
+
+				Item teleporter = this.room.getItem(item.getTargetTeleporterID());
+
+				if (teleporter == null) {
+					teleporter = Roseau.getDao().getItem().getItem(item.getTargetTeleporterID());
+				}
+
+				final Player player = (Player) this.entity;
+				final Item targetTeleporter = teleporter;
+				final Room previousRoom = this.room;
+				final Room room = Roseau.getDao().getRoom().getRoom(targetTeleporter.getRoomID(), true);
+
+				if (room != null) {
+
+					this.setCanWalk(false);
+
+					TimerTask task = new TimerTask() {
+						@Override
+						public void run() {
+
+							if (item.getRoomID() != targetTeleporter.getRoomID()) {
+
+								if (previousRoom != null) {
+									previousRoom.leaveRoom(player, false);
+								}
+
+								room.loadRoom(player, targetTeleporter.getPosition(), targetTeleporter.getPosition().getRotation());
+
+							} else {
+								player.getRoomUser().getPosition().set(targetTeleporter.getPosition());
+								player.getRoomUser().sendStatusComposer();
+								room.getItem(item.getTargetTeleporterID()).leaveTeleporter(player);
+							}
+						}
+					};
+
+					Roseau.getGame().getTimer().schedule(task, 500);
+
+					return;
+				}
+			}
 		}
 		
-		if (definition.getBehaviour().isCanLayOnTop()) {
-			this.getPosition().setBodyRotation(item.getPosition().getRotation());
-			this.getPosition().setHeadRotation(item.getPosition().getRotation());
-			this.removeStatus("dance");
-			this.removeStatus("sit");
-			this.removeStatus("carryd");
-			this.setStatus("lay", " " + Double.toString(definition.getHeight() + 1.5) + " null", true, -1);
-		}
-
-		if (definition.getBehaviour().isTeleporter() && this.entity instanceof Player) {
-
-			Item teleporter = this.room.getItem(item.getTargetTeleporterID());
-			
-			if (teleporter == null) {
-				teleporter = Roseau.getDao().getItem().getItem(item.getTargetTeleporterID());
-			}
-			
-			final Player player = (Player) this.entity;
-			final Item targetTeleporter = teleporter;
-			final Room previousRoom = this.room;
-			final Room room = Roseau.getDao().getRoom().getRoom(targetTeleporter.getRoomID(), true);
-			
-			if (room != null) {
-				
-				this.setCanWalk(false);
-
-				TimerTask task = new TimerTask() {
-					@Override
-					public void run() {
-
-						if (item.getRoomID() != targetTeleporter.getRoomID()) {
-
-							if (previousRoom != null) {
-								previousRoom.leaveRoom(player, false);
-							}
-							
-							room.loadRoom(player, targetTeleporter.getPosition(), targetTeleporter.getPosition().getRotation());
-							
-						} else {
-							player.getRoomUser().getPosition().set(targetTeleporter.getPosition());
-							player.getRoomUser().sendStatusComposer();
-							room.getItem(item.getTargetTeleporterID()).leaveTeleporter(player);
-						}
-					}
-				};
-
-				Roseau.getGame().getTimer().schedule(task, 500);
-			}
-		}
-
+		this.needsUpdate = true;
+		
 	}
 
 	public void walkTo(Position position) {
@@ -342,6 +373,8 @@ public class RoomUser {
 
 		this.position = new Position(0, 0, 0);
 		this.goal = new Position(0, 0, 0);
+		
+		this.current_item = null;
 
 		this.needsUpdate = false;
 		this.isWalking = false;
@@ -533,6 +566,13 @@ public class RoomUser {
 		this.lookResetTime = lookResetTime;
 	}
 
+	public Item getCurrentItem() {
+		return current_item;
+	}
+
+	public void setCurrentItem(Item currentitem) {
+		this.current_item = currentitem;
+	}
 
 
 }

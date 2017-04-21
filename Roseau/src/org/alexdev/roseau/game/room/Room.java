@@ -37,7 +37,6 @@ import org.alexdev.roseau.messages.outgoing.YOUARECONTROLLER;
 import org.alexdev.roseau.messages.outgoing.YOUAREOWNER;
 import org.alexdev.roseau.server.IServerHandler;
 import org.alexdev.roseau.server.messages.Response;
-import org.alexdev.roseau.server.messages.SerializableObject;
 
 import com.google.common.collect.Lists;
 

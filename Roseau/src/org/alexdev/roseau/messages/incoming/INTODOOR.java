@@ -4,7 +4,6 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.Position;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
@@ -37,10 +36,7 @@ public class INTODOOR implements MessageEvent {
 			(pos.getY() == item.getPosition().getY()))) || 
 			(item.getPosition().getRotation() == 4 && ((pos.getX() == item.getPosition().getX()) && (pos.getY() == item.getPosition().getY() + 1))))
 		{
-			Log.println("tru");
 			player.getRoomUser().walkTo(item.getPosition().getX(), item.getPosition().getY());
-		} else {
-			Log.println("fals");
 		}
 	}
 
