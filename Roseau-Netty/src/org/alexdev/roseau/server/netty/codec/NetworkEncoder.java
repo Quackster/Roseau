@@ -20,12 +20,11 @@
 package org.alexdev.roseau.server.netty.codec;
 
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.netty.readers.NettyResponse;
-import org.jboss.netty.buffer.ChannelBuffer;
+
 import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.Channels;

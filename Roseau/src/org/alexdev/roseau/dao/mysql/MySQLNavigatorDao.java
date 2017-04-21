@@ -6,10 +6,8 @@ import java.sql.ResultSet;
 import java.util.List;
 
 import org.alexdev.roseau.Roseau;
-import org.alexdev.roseau.dao.ItemDao;
 import org.alexdev.roseau.dao.NavigatorDao;
 import org.alexdev.roseau.dao.util.IProcessStorage;
-import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.settings.RoomType;

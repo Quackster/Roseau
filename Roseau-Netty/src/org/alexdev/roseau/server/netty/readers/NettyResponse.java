@@ -1,14 +1,7 @@
 package org.alexdev.roseau.server.netty.readers;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBufferOutputStream;
-import org.jboss.netty.buffer.ChannelBuffers;
-import org.jboss.netty.util.CharsetUtil;
 
 public class NettyResponse implements Response {
 
