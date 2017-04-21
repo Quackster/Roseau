@@ -21,6 +21,7 @@ package org.alexdev.roseau.server.netty.codec;
 
 import java.nio.charset.Charset;
 
+import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.netty.readers.NettyResponse;
@@ -32,33 +33,35 @@ import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
 
 public class NetworkEncoder extends SimpleChannelHandler {
-	
+
 	@Override
 	public void writeRequested(ChannelHandlerContext ctx, MessageEvent e) {
-		
+
 		Charset charset = Charset.forName("ISO-8859-1");
-		
+
 		try {
-			
+
 			if (e.getMessage() instanceof String) {
 				Channels.write(ctx, e.getFuture(), ChannelBuffers.copiedBuffer((String) e.getMessage(), charset));
 				return;
 			}
-			
+
 			if (e.getMessage() instanceof OutgoingMessageComposer) {
-				
+
 				OutgoingMessageComposer msg = (OutgoingMessageComposer) e.getMessage();
 				NettyResponse response = new NettyResponse();
-				
+
 				msg.write(response);
-				
-				Log.println("SENT: " + response.getBodyString() );
-				
+
+				if (Roseau.getUtilities().getConfiguration().get("Logging", "log.packets", Boolean.class)) {
+					Log.println("SENT: " + response.getBodyString());
+				}
+
 				//ChannelBuffer buffer = (ChannelBuffer)response.get();
 				//Channels.write(ctx, e.getFuture(), (ChannelBuffer)e.getMessage());
-				
+
 				Channels.write(ctx, e.getFuture(), ChannelBuffers.copiedBuffer(response.get(), charset));
-				
+
 				return;
 			}
 		}
