@@ -290,7 +290,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			preparedStatement.setInt(3, player.getDetails().getID());
 			preparedStatement.setString(4, model);
 			preparedStatement.setInt(5, state);
-			preparedStatement.setInt(7, showOwnerName ? 1 : 0);
+			preparedStatement.setInt(6, showOwnerName ? 1 : 0);
 			preparedStatement.executeUpdate();
 
 			ResultSet row = preparedStatement.getGeneratedKeys();
