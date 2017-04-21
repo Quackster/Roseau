@@ -21,6 +21,7 @@ public class RoomData {
 	private String wall;
 	private String floor;
 	private boolean allSuperUser;
+	private boolean showOwnerName;
 
 	private Room room;
 	private boolean hidden;
@@ -29,7 +30,7 @@ public class RoomData {
 		this.room = room;
 	}
 	
-	public void fill(int id, boolean hidden, RoomType type, int ownerID, String ownerName, String name, int state, String password, int usersNow, int usersMax, String description, String model, String clazz, String wall,String floor, boolean allSuperUser) {
+	public void fill(int id, boolean hidden, RoomType type, int ownerID, String ownerName, String name, int state, String password, int usersNow, int usersMax, String description, String model, String clazz, String wall,String floor, boolean allSuperUser, boolean showOwnerName) {
 		this.id = id;
 		this.hidden = hidden;
 		this.roomType = type;
@@ -45,6 +46,7 @@ public class RoomData {
 		this.wall = wall;
 		this.floor = floor;
 		this.allSuperUser = allSuperUser;
+		this.showOwnerName = showOwnerName;
 
 	}
 	
@@ -181,6 +183,14 @@ public class RoomData {
 
 	public void setAllSuperUser(boolean allSuperUser) {
 		this.allSuperUser = allSuperUser;
+	}
+
+	public boolean showOwnerName() {
+		return showOwnerName;
+	}
+
+	public void setShowOwnerName(boolean showOwnerName) {
+		this.showOwnerName = showOwnerName;
 	}
 
 	public void save() {

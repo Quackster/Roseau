@@ -274,7 +274,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 	}
 
 	@Override
-	public Room createRoom(Player player, String name, String description, String model, int state) {
+	public Room createRoom(Player player, String name, String description, String model, int state, boolean showOwnerName) {
 
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
@@ -284,12 +284,13 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 			sqlConnection = this.dao.getStorage().getConnection();
 
-			preparedStatement = dao.getStorage().prepare("INSERT INTO rooms (name, description, owner_id, model, state) VALUES (?, ?, ?, ?, ?)", sqlConnection);
+			preparedStatement = dao.getStorage().prepare("INSERT INTO rooms (name, description, owner_id, model, state, show_owner_name) VALUES (?, ?, ?, ?, ?, ?)", sqlConnection);
 			preparedStatement.setString(1, name);
 			preparedStatement.setString(2, description);
 			preparedStatement.setInt(3, player.getDetails().getID());
 			preparedStatement.setString(4, model);
 			preparedStatement.setInt(5, state);
+			preparedStatement.setInt(7, showOwnerName ? 1 : 0);
 			preparedStatement.executeUpdate();
 
 			ResultSet row = preparedStatement.getGeneratedKeys();
@@ -323,7 +324,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 			sqlConnection = this.dao.getStorage().getConnection();
 
-			preparedStatement = dao.getStorage().prepare("UPDATE rooms SET name = ?, description = ?, state = ?, password = ?, wallpaper = ?, floor = ?, allsuperuser = ? WHERE id = ?", sqlConnection);
+			preparedStatement = dao.getStorage().prepare("UPDATE rooms SET name = ?, description = ?, state = ?, password = ?, wallpaper = ?, floor = ?, allsuperuser = ?, show_owner_name = ? WHERE id = ?", sqlConnection);
 
 			preparedStatement.setString(1, data.getName());
 			preparedStatement.setString(2, data.getDescription());
@@ -332,7 +333,8 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			preparedStatement.setString(5, data.getWall());
 			preparedStatement.setString(6, data.getFloor());
 			preparedStatement.setInt(7, data.hasAllSuperUser() ? 1 : 0);
-			preparedStatement.setInt(8, data.getID());
+			preparedStatement.setInt(8, data.showOwnerName() ? 1 : 0);
+			preparedStatement.setInt(9, data.getID());
 
 			preparedStatement.executeUpdate();
 
@@ -453,7 +455,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		
 		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getID(), details == null ? "" : details.getUsername(), row.getString("name"), 
 				row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"),
-				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"), row.getInt("allsuperuser") == 1);
+				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"), row.getInt("allsuperuser") == 1, row.getInt("show_owner_name") == 1);
 		
 		if (details != null) {
 		instance.getData().setOwnerName(details.getUsername());

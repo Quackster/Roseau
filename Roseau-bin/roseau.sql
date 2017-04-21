@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2017 at 04:37 PM
+-- Generation Time: Apr 21, 2017 at 11:41 AM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `rotation` float NOT NULL DEFAULT '0',
   `extra_data` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=159 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=175 ;
 
 --
 -- Dumping data for table `items`
@@ -206,7 +206,7 @@ INSERT INTO `items` (`id`, `user_id`, `item_id`, `room_id`, `x`, `y`, `z`, `rota
 (101, 8, 2409, 0, '0', '-1', '0.0', 0, '1'),
 (102, 8, 2409, 0, '0', '-1', '0.0', 0, '1'),
 (103, 8, 2409, 0, '0', '-1', '0.0', 0, '1'),
-(104, 8, 2409, 47, 'leftwall -2.5000,-5.7778,2500', '-1', '0.0', 0, '1'),
+(104, 8, 2409, 47, 'leftwall -2.2188,-4.7778,2219/1', '-1', '0.0', 0, '1'),
 (105, 5, 2409, 40, 'leftwall -1.5625,-4.5000,1563', '-1', '0.0', 0, '6'),
 (106, 5, 2409, 40, 'frontwall -10.8438,-16.2778,10844', '-1', '0.0', 0, '10'),
 (107, 5, 2409, 43, 'frontwall -4.0625,-11.0000,4063', '-1', '0.0', 0, '17'),
@@ -218,8 +218,8 @@ INSERT INTO `items` (`id`, `user_id`, `item_id`, `room_id`, `x`, `y`, `z`, `rota
 (115, 19, 1013, 48, '5', '2', '0.0', 2, ''),
 (116, 19, 1021, 48, '7', '1', '0.0', 4, ''),
 (117, 19, 1007, 48, '6', '2', '0.0', 2, ''),
-(118, 19, 1178, 48, '10', '1', '0.0', 4, 'TRUE'),
-(119, 19, 1155, 48, '1', '7', '0.0', 0, 'ON'),
+(118, 19, 1178, 48, '11', '1', '0.0', 4, 'TRUE'),
+(119, 19, 1155, 48, '1', '7', '0.0', 0, 'OFF'),
 (120, 19, 1153, 48, '1', '10', '0.0', 2, ''),
 (121, 19, 2409, 48, 'leftwall 4.5625,1.5000,7001', '-1', '0.0', 0, '13'),
 (122, 19, 2409, 48, 'frontwall 1.0625,-1.1111,1063', '-1', '0.0', 0, '21'),
@@ -250,13 +250,21 @@ INSERT INTO `items` (`id`, `user_id`, `item_id`, `room_id`, `x`, `y`, `z`, `rota
 (149, 8, 1155, 47, '9', '1', '0.0', 2, 'ON'),
 (150, 8, 1147, 47, '8', '1', '0.0', 2, ''),
 (151, 8, 1013, 47, '10', '4', '0.0', 0, ''),
-(152, 8, 1012, 0, '0', '0', '0', 0, ''),
-(153, 8, 1012, 0, '0', '0', '0', 0, ''),
-(154, 8, 1012, 0, '0', '0', '0', 0, ''),
-(155, 8, 1012, 0, '0', '0', '0', 0, ''),
-(156, 8, 1007, 0, '0', '0', '0', 0, ''),
-(157, 8, 1021, 0, '0', '0', '0', 0, ''),
-(158, 8, 1021, 0, '0', '0', '0', 0, '');
+(152, 8, 1012, 47, '8', '6', '0.0', 4, ''),
+(153, 8, 1012, 47, '10', '7', '0.0', 6, ''),
+(154, 8, 1012, 47, '7', '8', '0.0', 2, ''),
+(155, 8, 1012, 47, '9', '9', '0.0', 0, ''),
+(156, 8, 1007, 47, '8', '7', '0.0', 0, ''),
+(157, 8, 1021, 47, '5', '4', '0.0', 2, ''),
+(158, 8, 1021, 47, '5', '3', '0.0', 2, ''),
+(159, 8, 1031, 47, '7', '1', '0.0', 2, ''),
+(160, 8, 1021, 47, '7', '2', '0.0', 0, ''),
+(161, 23, 1026, 0, '0', '0', '0', 0, ''),
+(170, 15, 1013, 46, '7', '1', '0.0', 4, ''),
+(171, 15, 1126, 0, '8', '10', '0.0', 2, 'ON'),
+(172, 15, 2409, 46, 'leftwall -2.3750,-4.0556,2375/16', '-1', '0.0', 0, '16'),
+(173, 15, 2409, 46, 'leftwall 3.7500,-3.8333,3750/17', '-1', '0.0', 0, '17'),
+(174, 19, 1003, 48, '9', '1', '0.0', 0, '');
 
 -- --------------------------------------------------------
 
@@ -1340,6 +1348,7 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `description` varchar(250) DEFAULT NULL,
   `password` varchar(25) NOT NULL DEFAULT '',
   `state` tinyint(1) NOT NULL DEFAULT '0',
+  `show_owner_name` tinyint(1) NOT NULL DEFAULT '1',
   `allsuperuser` tinyint(1) NOT NULL DEFAULT '0',
   `users_now` int(11) NOT NULL DEFAULT '0',
   `users_max` int(11) NOT NULL DEFAULT '25',
@@ -1348,47 +1357,48 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `wallpaper` varchar(5) NOT NULL DEFAULT '0',
   `floor` varchar(5) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
 
 --
 -- Dumping data for table `rooms`
 --
 
-INSERT INTO `rooms` (`id`, `name`, `order_id`, `room_type`, `enabled`, `hidden`, `date_created`, `owner_id`, `description`, `password`, `state`, `allsuperuser`, `users_now`, `users_max`, `cct`, `model`, `wallpaper`, `floor`) VALUES
-(12, 'Main Lobby', 0, 1, 1, 0, '2017-03-30 18:12:13', -1, NULL, '', 0, 0, 0, 40, 'lobby', 'lobby_a', '0', '0'),
-(13, 'Habbo Lido', 5, 1, 1, 0, '2017-03-30 18:46:42', -1, NULL, '', 0, 0, 0, 40, 'lido', 'pool_a', '0', '0'),
-(14, 'The Dirty Duck Pub', 10, 1, 1, 0, '2017-03-30 20:36:00', -1, NULL, '', 0, 0, 0, 40, 'pub', 'pub_a', '0', '0'),
-(16, 'Hotel Kitchen', 13, 1, 1, 0, '2017-03-30 20:58:19', -1, NULL, '', 0, 0, 0, 25, 'kitchen', 'cr_kitchen', '0', '0'),
-(17, 'Cafe Ole', 12, 1, 1, 0, '2017-03-30 20:58:19', -1, NULL, '', 0, 0, 0, 40, 'cafe', 'taivas_cafe', '0', '0'),
-(19, 'Habburger''s', 9, 1, 1, 0, '2017-03-30 21:04:13', -1, NULL, '', 0, 0, 0, 40, 'habburger', 'habburger', '0', '0'),
-(21, 'Habbo Lido II', 6, 1, 1, 1, '2017-03-30 21:14:46', -1, NULL, '', 0, 0, 0, 30, 'lido', 'pool_b', '0', '0'),
-(22, 'Club Massiva', 7, 1, 1, 0, '2017-03-31 03:10:05', -1, NULL, '', 0, 0, 0, 40, 'club', 'bar_a', '0', '0'),
-(24, 'Theatredrome', 8, 1, 1, 0, '2017-03-31 03:12:18', -1, NULL, '', 0, 0, 0, 25, 'theatredrome', 'theater', '0', '0'),
-(25, 'Basement Lobby', 3, 1, 1, 0, '2017-03-31 03:25:13', -1, NULL, '', 0, 0, 0, 35, 'lobby', 'floorlobby_a', '0', '0'),
-(26, 'Median Lobby', 1, 1, 1, 0, '2017-03-31 03:28:12', -1, NULL, '', 0, 0, 0, 40, 'lobby', 'floorlobby_b', '0', '0'),
-(27, 'Skylight Lobby', 2, 1, 1, 0, '2017-03-31 03:28:12', -1, NULL, '', 0, 0, 0, 40, 'lobby', 'floorlobby_c', '0', '0'),
-(29, 'Club Massiva (downstairs)', -1, 1, 1, 1, '2017-03-31 04:40:51', -1, NULL, '', 0, 0, 0, 40, 'club', 'bar_b', '0', '0'),
-(30, 'Cunning Fox Gamehall', 11, 1, 1, 0, '2017-04-03 10:39:23', -1, NULL, '', 0, 0, 0, 40, 'lobby', 'entryhall', '0', '0'),
-(31, 'Cunning Fox Gamehall - Chess', -1, 1, 1, 1, '2017-04-12 13:32:01', -1, NULL, '', 0, 0, 0, 25, 'gamehall', 'hallC', '0', '0'),
-(32, 'Cunning Fox Gamehall - Battleships', -1, 1, 1, 1, '2017-04-12 13:39:58', -1, NULL, '', 0, 0, 0, 25, 'gamehall', 'hallB', '0', '0'),
-(33, 'Cunning Fox Gamehall - Tic Tac Toe', -1, 1, 1, 1, '2017-04-12 13:39:58', -1, NULL, '', 0, 0, 0, 25, 'gamehall', 'hallA', '0', '0'),
-(34, 'Cunning Fox Gamehall - Poker', -1, 1, 1, 1, '2017-04-12 13:49:55', -1, NULL, '', 0, 0, 0, 40, 'gamehall', 'hallD', '0', '0'),
-(35, 'Club Slinky Helsinki', 4, 1, 1, 0, '2017-04-12 15:42:08', -1, NULL, '', 0, 0, 0, 40, 'disco', 'malja_bar_a', '0', '0'),
-(36, 'Club Slinky Helsinki - Part B', -1, 1, 1, 1, '2017-04-13 06:09:42', -1, NULL, '', 0, 0, 0, 40, 'disco', 'malja_bar_b', '0', '0'),
-(37, 'Alex''s Room', -1, 0, 1, 0, '2017-04-07 02:14:38', 5, 'You know, just another average room lmao...', '', 0, 0, 0, 25, 'floor1', 'model_e', '101', '203'),
-(38, 'asd', -1, 0, 1, 0, '2017-04-17 12:52:46', 10, '', 'wef', 0, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
-(39, 'asd', -1, 0, 1, 0, '2017-04-17 13:46:00', 11, '', '', 0, 0, 0, 25, 'floor1', 'model_b', '101', '201'),
-(40, 'Another room', -1, 0, 1, 0, '2017-04-17 21:59:49', 5, '', 'wef', 0, 0, 0, 25, 'floor1', 'model_a', '701', '601'),
-(41, 'testSpace', -1, 0, 1, 0, '2017-04-18 13:24:03', 9, '', 'wef', 0, 0, 0, 25, 'floor1', 'model_b', '0', '0'),
-(42, '; a=false; ()[]<>List<>', -1, 0, 1, 0, '2017-04-18 14:29:42', 12, '', '', 2, 0, 0, 25, 'floor1', 'model_f', '0', '0'),
-(43, 'teleporter room', -1, 0, 1, 0, '2017-04-18 14:47:08', 5, 'it''s a teleporter room, whadya expeck?', '', 0, 0, 0, 25, 'floor1', 'model_c', '0', '0'),
-(44, 'xx', -1, 0, 1, 0, '2017-04-18 14:48:36', 13, '', 'wef', 0, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
-(45, 'test', -1, 0, 1, 0, '2017-04-18 18:13:27', 14, 'test', 'wef', 0, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
-(46, 'MY ROOM', -1, 0, 1, 0, '2017-04-18 23:26:46', 15, 'Hello', 'wef', 0, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
-(47, 'Sijainti', -1, 0, 1, 0, '2017-04-19 17:14:28', 8, '', 'wef', 0, 0, 0, 25, 'floor1', 'model_b', '114', '410'),
-(48, 'My Room', -1, 0, 1, 0, '2017-04-20 06:37:40', 19, 'JasonDev''s Room', 'wef', 0, 0, 0, 25, 'floor1', 'model_b', '1006', '301'),
-(49, 'my room', -1, 0, 1, 0, '2017-04-20 08:37:48', 21, '', 'wef', 0, 0, 0, 25, 'floor1', 'model_e', '0', '0'),
-(50, 'Spaghetti', -1, 0, 1, 0, '2017-04-20 12:02:58', 22, 'Hello!', 'wef', 0, 0, 0, 25, 'floor1', 'model_c', '202', '404');
+INSERT INTO `rooms` (`id`, `name`, `order_id`, `room_type`, `enabled`, `hidden`, `date_created`, `owner_id`, `description`, `password`, `state`, `show_owner_name`, `allsuperuser`, `users_now`, `users_max`, `cct`, `model`, `wallpaper`, `floor`) VALUES
+(12, 'Main Lobby', 0, 1, 1, 0, '2017-03-30 18:12:13', -1, NULL, '', 0, 1, 0, 0, 40, 'lobby', 'lobby_a', '0', '0'),
+(13, 'Habbo Lido', 5, 1, 1, 0, '2017-03-30 18:46:42', -1, NULL, '', 0, 1, 0, 0, 40, 'lido', 'pool_a', '0', '0'),
+(14, 'The Dirty Duck Pub', 10, 1, 1, 0, '2017-03-30 20:36:00', -1, NULL, '', 0, 1, 0, 0, 40, 'pub', 'pub_a', '0', '0'),
+(16, 'Hotel Kitchen', 13, 1, 1, 0, '2017-03-30 20:58:19', -1, NULL, '', 0, 1, 0, 0, 25, 'kitchen', 'cr_kitchen', '0', '0'),
+(17, 'Cafe Ole', 12, 1, 1, 0, '2017-03-30 20:58:19', -1, NULL, '', 0, 1, 0, 0, 40, 'cafe', 'taivas_cafe', '0', '0'),
+(19, 'Habburger''s', 9, 1, 1, 0, '2017-03-30 21:04:13', -1, NULL, '', 0, 1, 0, 0, 40, 'habburger', 'habburger', '0', '0'),
+(21, 'Habbo Lido II', 6, 1, 1, 1, '2017-03-30 21:14:46', -1, NULL, '', 0, 1, 0, 0, 30, 'lido', 'pool_b', '0', '0'),
+(22, 'Club Massiva', 7, 1, 1, 0, '2017-03-31 03:10:05', -1, NULL, '', 0, 1, 0, 0, 40, 'club', 'bar_a', '0', '0'),
+(24, 'Theatredrome', 8, 1, 1, 0, '2017-03-31 03:12:18', -1, NULL, '', 0, 1, 0, 0, 25, 'theatredrome', 'theater', '0', '0'),
+(25, 'Basement Lobby', 3, 1, 1, 0, '2017-03-31 03:25:13', -1, NULL, '', 0, 1, 0, 0, 35, 'lobby', 'floorlobby_a', '0', '0'),
+(26, 'Median Lobby', 1, 1, 1, 0, '2017-03-31 03:28:12', -1, NULL, '', 0, 1, 0, 0, 40, 'lobby', 'floorlobby_b', '0', '0'),
+(27, 'Skylight Lobby', 2, 1, 1, 0, '2017-03-31 03:28:12', -1, NULL, '', 0, 1, 0, 0, 40, 'lobby', 'floorlobby_c', '0', '0'),
+(29, 'Club Massiva (downstairs)', -1, 1, 1, 1, '2017-03-31 04:40:51', -1, NULL, '', 0, 1, 0, 0, 40, 'club', 'bar_b', '0', '0'),
+(30, 'Cunning Fox Gamehall', 11, 1, 1, 0, '2017-04-03 10:39:23', -1, NULL, '', 0, 1, 0, 0, 40, 'lobby', 'entryhall', '0', '0'),
+(31, 'Cunning Fox Gamehall - Chess', -1, 1, 1, 1, '2017-04-12 13:32:01', -1, NULL, '', 0, 1, 0, 0, 25, 'gamehall', 'hallC', '0', '0'),
+(32, 'Cunning Fox Gamehall - Battleships', -1, 1, 1, 1, '2017-04-12 13:39:58', -1, NULL, '', 0, 1, 0, 0, 25, 'gamehall', 'hallB', '0', '0'),
+(33, 'Cunning Fox Gamehall - Tic Tac Toe', -1, 1, 1, 1, '2017-04-12 13:39:58', -1, NULL, '', 0, 1, 0, 0, 25, 'gamehall', 'hallA', '0', '0'),
+(34, 'Cunning Fox Gamehall - Poker', -1, 1, 1, 1, '2017-04-12 13:49:55', -1, NULL, '', 0, 1, 0, 0, 40, 'gamehall', 'hallD', '0', '0'),
+(35, 'Club Slinky Helsinki', 4, 1, 1, 0, '2017-04-12 15:42:08', -1, NULL, '', 0, 1, 0, 0, 40, 'disco', 'malja_bar_a', '0', '0'),
+(36, 'Club Slinky Helsinki - Part B', -1, 1, 1, 1, '2017-04-13 06:09:42', -1, NULL, '', 0, 1, 0, 0, 40, 'disco', 'malja_bar_b', '0', '0'),
+(37, 'Alex''s main room', -1, 0, 1, 0, '2017-04-07 02:14:38', 5, '', '', 0, 1, 0, 0, 25, 'floor1', 'model_e', '101', '203'),
+(38, 'asd', -1, 0, 1, 0, '2017-04-17 12:52:46', 10, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
+(39, 'asd', -1, 0, 1, 0, '2017-04-17 13:46:00', 11, '', '', 0, 1, 0, 0, 25, 'floor1', 'model_b', '101', '201'),
+(40, 'Alex''s Room', -1, 0, 1, 0, '2017-04-17 21:59:49', 5, 'efeff', '', 0, 1, 0, 0, 25, 'floor1', 'model_a', '701', '601'),
+(41, 'testSpace', -1, 0, 1, 0, '2017-04-18 13:24:03', 9, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_b', '0', '0'),
+(42, '; a=false; ()[]<>List<>', -1, 0, 1, 0, '2017-04-18 14:29:42', 12, '', '', 2, 1, 0, 0, 25, 'floor1', 'model_f', '0', '0'),
+(43, 'teleporter room', -1, 0, 1, 0, '2017-04-18 14:47:08', 5, 'it''s a teleporter room, whadya expeck?', '', 0, 1, 0, 0, 25, 'floor1', 'model_c', '0', '0'),
+(44, 'xx', -1, 0, 1, 0, '2017-04-18 14:48:36', 13, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
+(45, 'test', -1, 0, 1, 0, '2017-04-18 18:13:27', 14, 'test', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
+(46, 'MY ROOM', -1, 0, 1, 0, '2017-04-18 23:26:46', 15, 'Hello', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '501', '103'),
+(47, 'Sijainti', -1, 0, 1, 0, '2017-04-19 17:14:28', 8, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_b', '114', '410'),
+(48, 'My Room', -1, 0, 1, 0, '2017-04-20 06:37:40', 19, 'JasonDev''s Room', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_b', '1006', '301'),
+(49, 'my room', -1, 0, 1, 0, '2017-04-20 08:37:48', 21, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_e', '0', '0'),
+(50, 'Spaghetti', -1, 0, 1, 0, '2017-04-20 12:02:58', 22, 'Hello!', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_c', '202', '404'),
+(51, 'My Bathroom', -1, 0, 1, 0, '2017-04-21 02:45:13', 19, 'JasonDev''s Bathroom', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -2521,7 +2531,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `birthday` varchar(30) NOT NULL DEFAULT '01/01/1970',
   `has_logged_in` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `users`
@@ -2529,24 +2539,25 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `figure`, `pool_figure`, `credits`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
 (2, 'test', '$2a$10$VLwINmZRJMWAHQvia7.4GOwwFG8KTbM6dMXbhnhMsfNKjXaysWDC6', 1, 44324323, 1490046606, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', 'ch=s01/51,120,201', 0, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '$2a$10$mg2Tg3EZGey1MgN1pgZx4uwWewacXiqxDjdpuR2nn0Ehkr08lqcNi', 1, 1489384512, 1492698834, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=008/253,218,207&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/69,98,131&ls=001/69,98,131&rs=001/69,98,131&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/53,51,44', 5730, 'Male', 'UK', '', '01.01.1997', 1),
+(5, 'Alex', '$2a$10$5pV7UDYKtedEp0Tk.BiCRu/6oleHcadZg5ElNguAVQhEUMsh1AlC6', 1, 1489384512, 1492767580, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=008/253,218,207&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/69,98,131&ls=001/69,98,131&rs=001/69,98,131&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/53,51,44', 5840, 'Male', 'UK', '', '01.01.1997', 1),
 (6, 'Dark', '$2a$10$3VoNh8uaT6ZxeG1nsp1PhuTK8HKml5U6svLyjFN/4GBqWJ6DAUWgS', 1, NULL, NULL, 'scott@hypermine.com', 'cool kid', 'sd=001/0&hr=023/103,78,59&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/101,106,64&ls=001/101,106,64&rs=001/101,106,64&lg=006/119,159,187&sh=002/124,143,125', 'ch=s02/42,199,210', 0, 'Male', 'UK', '', '01.01.1990', 0),
 (7, 'Dominic', '$2a$10$e0Y4w4SPnb7vjl5Jf4eUIOBL6nuYVBlzk99CoYFqbyXX2eLR1grAm', 1, NULL, NULL, 'dsmithpw@gmail.com', 'Copies fade so fast...', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 0, 'Male', 'UK', '', '26.02.1997', 0),
-(8, 'Asc', '$2a$10$qI.MZfMW9lp1dZ6KXt.2jugUFFJA5DMZJX0f0ip0WGpu/JMsVaRCW', 1, 1492627423, 1492697316, 'spam@here.nty', 'H&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;pp&auml;ij&auml;&auml;!', 'sd=001/0&hr=015/200,210,230&hd=002/226,219,185&ey=003/0&fc=001/226,219,185&bd=001/226,219,185&lh=001/226,219,185&rh=001/226,219,185&ch=009/255,255,255&ls=002/255,255,255&rs=002/255,255,255&lg=004/255,255,255&sh=003/255,255,255', '', 1259, 'Male', 'UK', '', '11.11.1911', 0),
+(8, 'Asc', '$2a$10$o19IwoCR79Kr7Z3d5PDI6eplN2VEsEZZEh8iU0xhfLKavn1j6kyVC', 1, 1492627423, 1492712242, 'spam@here.nty', 'H&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;pp&auml;ij&auml;&auml;!', 'sd=001/0&hr=015/200,210,230&hd=002/226,219,185&ey=003/0&fc=001/226,219,185&bd=001/226,219,185&lh=001/226,219,185&rh=001/226,219,185&ch=009/255,255,255&ls=002/255,255,255&rs=002/255,255,255&lg=004/255,255,255&sh=003/255,255,255', '', 1316, 'Male', 'UK', '', '11.11.1911', 0),
 (9, 'Ascii', '$2a$10$cs4KnN0aET3QXi0P4zwkDOYtTKyUwhBnSJtAH05lszoMpHXlPbQYe', 1, NULL, NULL, 'spam@here.nty', 'null', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 990, 'Male', 'UK', '', '11.11.1911', 0),
 (10, 'pugsAreOkay', '$2a$10$HDrSPqhVqrMqyIJYLcGJKuGvqc71eujYVsipdw71NXxjQmtAAjiEq', 1, NULL, NULL, 'a@a.com', '', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 0, 'Male', 'UK', '', '01.01.1980', 0),
 (11, 'TacoTuesday', '$2a$10$gUcCFOA3qo6rxCIKfAe86.gRPQyDBxebMcLQs58YuhU8dGYWptrre', 1, NULL, NULL, 'a@a.com', '', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', 'ch=s02/42,199,210', 186, 'Male', 'UK', '', '01.01.1980', 0),
 (12, 'mentle', '$2a$10$MI7dLGmSTc8rsER0Dm/0ceFdkrjOiFkbpkMmpfUwBJdmrN68NwW1.', 1, NULL, NULL, 'mentle@rz.com', 'i''m the one who opens if you knock', 'sd=001/0&hr=008/238,231,224&hd=002/248,229,218&ey=005/0&fc=001/248,229,218&bd=001/248,229,218&lh=001/248,229,218&rh=001/248,229,218&ch=005/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=006/255,255,255&sh=001/255,255,255', '', 0, 'Male', 'UK', '', '11.02.1995', 0),
 (13, 'rere', '$2a$10$yJCFKjCGBQl460k0SCDePe/jAisQ2P68HzNOFxmMcXzttSbH2yMQq', 1, NULL, NULL, 'lol@nah.com', 'f', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 0, 'Male', 'UK', '', '01.07.1991', 0),
 (14, 'vista4life', '$2a$10$dbxh8BFffHhe9Tuhf73gHO5fJi2LCoT3SJK4.npqK.BF3FvCvXgUK', 1, NULL, NULL, 'obama@hotty.cm', 'obamaftw', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 0, 'Male', 'UK', '', '01-01-1991', 0),
-(15, 'Alito', '$2a$10$rtmHramJLnVP1sR2/P4FaOKwQCd2CQ/nuISmztl9tmPFXVFDTzyTq', 1, NULL, NULL, 'alitohabbo@hotmail.com', 'Shockwave lover', 'sd=001/0&hr=013/200,210,230&hd=002/255,204,153&ey=005/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=003/106,64,92&ls=002/106,64,92&rs=002/106,64,92&lg=001/215,193,135&sh=001/209,223,175', '', 47, 'Male', 'UK', '', '02.04.1993', 0),
+(15, 'Alito', '$2a$10$KuXQYRw36dD9U0wyMgM/8eD1OsR1SUNsNB125za3dk/6xoS5W5Gj6', 1, NULL, 1492736800, 'alitohabbo@hotmail.com', 'Shockwave lover', 'sd=001/0&hr=013/200,210,230&hd=002/255,204,153&ey=005/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=003/106,64,92&ls=002/106,64,92&rs=002/106,64,92&lg=001/215,193,135&sh=001/209,223,175', 'ch=s02/255,255,255', 45, 'Male', 'UK', '', '02.04.1993', 0),
 (16, 'NAH', '$2a$10$bxLXptoISd7gsiM74.PYm.qVglKpjvZt/kHFe3s.QfKD.aIwjFoN.', 1, NULL, NULL, 'j@j.com', '', 'sd=001/0&hr=021/200,210,230&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 0, 'Male', 'UK', '', '01.01.1991', 0),
 (17, 'NuuttiD3w', '$2a$10$DWxGYChEjnxFOH9JCU7AJu47APUlaWkTVaMOgp7S2WPcNRsPW4ypS', 1, NULL, NULL, 'nuutti03.ns@gmail.com', 'idk m8', 'sd=001/0&hr=002/225,204,120&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/76,136,43&ls=001/76,136,43&rs=001/76,136,43&lg=001/119,159,187&sh=004/255,255,255', '', 0, 'Male', 'UK', '', '03.05.2003', 0),
 (18, 'AnotherUser', '$2a$10$.kjP76h0WOt4ogLWKo5.v.ghFs5uqDGESCT9/sSXELNPezJhbk32u', 1, 1492664949, 1492664950, 'e2e@cc.com', 'xddddd', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 0, 'Male', 'UK', '', '04.04.1997', 0),
-(19, 'JasonDev', '$2a$10$FeiJ4AemLPRJMpPGAQ6EXeIEDqywePHGZ9fRlxYUvV1oTCEcFyNUu', 1, 1492668493, 1492694127, 'jason.devvy@gmail.ocm', 'Is to play alex''s creations', 'sd=001/0&hr=024/255,234,173&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/51,102,51&ls=001/51,102,51&rs=001/51,102,51&lg=004/102,102,102&sh=002/192,180,199', 'ch=s02/255,255,255', 432, 'Male', 'UK', '', '30.07.1995', 0),
+(19, 'JasonDev', '$2a$10$nBM2grWFbTHlnY7ysN4AP.17pTmAfiwL/4ZMHqOP4w741b1yCSqeK', 1, 1492668493, 1492742729, 'jason.devvy@gmail.ocm', 'Is to play alex''s creations', 'sd=001/0&hr=024/255,234,173&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/51,102,51&ls=001/51,102,51&rs=001/51,102,51&lg=004/102,102,102&sh=002/192,180,199', 'ch=s02/255,255,255', 1009, 'Male', 'UK', '', '30.07.1995', 0),
 (20, 'Book', '$2a$10$rw3Nlk7vh8gModpUCi38H.pqsLIx64LnA7Qy85oIDG.5COwOFsaQq', 1, 1492669289, 1492669850, 'br@andon.pw', 'br', 'sd=001/0&hr=021/50,50,53&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/255,255,255&ls=002/255,255,255&rs=002/255,255,255&lg=001/119,159,187&sh=001/121,94,83', '', 225, 'Male', 'UK', '', '15.02.1998', 0),
 (21, 'DevJoke', '$2a$10$ZiOcyMKnY77zapEk6Wv1sOqP9tPUgOZ5n2d0Lqu3tf4Ec/GSrKqKa', 1, 1492677244, 1492677422, 'kevin.schilling1999@gmail.com', 'I''m from Germany!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 225, 'Male', 'UK', '', '21.07.1999', 0),
-(22, 'Platinum', '$2a$10$NYvyzSa0mbFfC4HkLwuL6Ob1KYS7ksEPHmRCHp0xH0F/i18IFQCVe', 1, 1492686873, 1492691719, 'zoheb.malik@hotmail.co.uk', 'Hello!', 'sd=001/0&hr=010/120,109,90&hd=002/215,188,169&ey=001/0&fc=001/215,188,169&bd=001/215,188,169&lh=001/215,188,169&rh=001/215,188,169&ch=001/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=001/51,51,51&sh=002/255,255,255', '', 390, 'Male', 'UK', '', '13.01.1999', 0);
+(22, 'Platinum', '$2a$10$NYvyzSa0mbFfC4HkLwuL6Ob1KYS7ksEPHmRCHp0xH0F/i18IFQCVe', 1, 1492686873, 1492691719, 'zoheb.malik@hotmail.co.uk', 'Hello!', 'sd=001/0&hr=010/120,109,90&hd=002/215,188,169&ey=001/0&fc=001/215,188,169&bd=001/215,188,169&lh=001/215,188,169&rh=001/215,188,169&ch=001/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=001/51,51,51&sh=002/255,255,255', '', 390, 'Male', 'UK', '', '13.01.1999', 0),
+(23, 'Lolislol', '$2a$10$pUKxVe8CIO1zZGXJHBs73.b8xaa/ayvW.hp80FTXHeBY1Rw/G2ONK', 1, 1492704693, 1492706342, 'donttellya@live.nl', 'Lolislol - Who else?', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=003/184,231,55&ls=002/184,231,55&rs=002/184,231,55&lg=006/54,94,138&sh=003/121,94,83', 'ch=s02/255,255,255', 217, 'Male', 'UK', '', '23-05-1994', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

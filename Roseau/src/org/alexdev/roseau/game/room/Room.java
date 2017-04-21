@@ -10,6 +10,7 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
+import org.alexdev.roseau.game.navigator.NavigatorRequest;
 import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomUser;
@@ -40,7 +41,7 @@ import org.alexdev.roseau.server.messages.SerializableObject;
 
 import com.google.common.collect.Lists;
 
-public class Room implements SerializableObject {
+public class Room {
 
 	private int orderID = -1;
 	private boolean disposed;
@@ -501,13 +502,13 @@ public class Room implements SerializableObject {
 	public List<Item> getWallItems() {
 
 		List<Item> items = Lists.newArrayList();
-		
+
 		for (Item item : this.items.values()) {
 			if (item.getDefinition().getBehaviour().isOnWall()) {
 				items.add(item);
 			}
 		}
-		
+
 		return items;
 	}
 
@@ -520,12 +521,20 @@ public class Room implements SerializableObject {
 		this.roomMapping = roomMapping;
 	}
 
-
-	@Override
-	public void serialise(Response response) {
+	public void serialise(Response response, NavigatorRequest request) {
 		response.appendNewArgument(String.valueOf(this.roomData.getID()));
 		response.appendPartArgument(this.roomData.getName());
-		response.appendPartArgument(this.roomData.getOwnerName());
+
+		if (request != NavigatorRequest.PRIVATE_ROOMS) {
+			if (this.roomData.showOwnerName()) {
+				response.appendPartArgument(this.roomData.getOwnerName());
+			} else {
+				response.appendPartArgument("-");
+			}
+		} else {
+			response.appendPartArgument(this.roomData.getOwnerName());
+		}
+
 		response.appendPartArgument(this.roomData.getState().toString());
 		response.appendPartArgument("");//this.roomData.getPassword()); // password...
 		response.appendPartArgument("floor1");

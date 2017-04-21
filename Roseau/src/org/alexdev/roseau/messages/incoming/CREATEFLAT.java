@@ -16,11 +16,17 @@ public class CREATEFLAT implements MessageEvent {
 		String roomName = reader.getArgument(2, "/");
 		String roomModel = reader.getArgument(3, "/");
 		String roomState = reader.getArgument(4, "/");
+		boolean showOwnerName = reader.getArgument(5, "/").equals("1");
 
 		if (!floor.equals("first floor")) {
 			player.kickAllConnections();
 			return;
 		}
+		
+		if (!(roomName.length() > 2)) {
+			return;
+		}
+		
 
 		int state = 0;
 
@@ -50,7 +56,7 @@ public class CREATEFLAT implements MessageEvent {
 			publicRoomPlayer.getNetwork().close();
 		}
 
-		Room room = Roseau.getDao().getRoom().createRoom(player, roomName, "", roomModel, state);
+		Room room = Roseau.getDao().getRoom().createRoom(player, roomName, "", roomModel, state, showOwnerName);
 		player.setLastCreatedRoom(room);
 
 		player.send(new FLATCREATED(room));

@@ -17,7 +17,7 @@ public interface RoomDao {
 	public void updateRoom(Room room);
 	public RoomModel getModel(String model);
 	public void deleteRoom(Room room);
-	public Room createRoom(Player player, String name, String description, String model, int state);
+	public Room createRoom(Player player, String name, String description, String model, int state, boolean showOwnerName);
 	public List<Integer> setRoomConnections(Room room);
 	public List<Bot> getBots(Room room, int roomID);
 	
