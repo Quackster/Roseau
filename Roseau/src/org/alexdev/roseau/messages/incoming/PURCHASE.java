@@ -85,12 +85,19 @@ public class PURCHASE implements MessageEvent {
 				for (CatalogueItem item : deal.getItems()) {
 					Item newItem = Roseau.getDao().getInventory().newItem(item.getDefinition().getID(), player.getDetails().getID(), "");
 
+					if (newItem == null) {
+						continue;
+					}
+					
 					if (item.getExtraData() != null) {
 						newItem.setCustomData(item.getExtraData());
+						newItem.save();
 					}
 
 					p.getInventory().addItem(newItem);
 				}
+				
+				p.getInventory().load();
 
 				player.send(new PURCHASE_ADDSTRIPITEM());
 

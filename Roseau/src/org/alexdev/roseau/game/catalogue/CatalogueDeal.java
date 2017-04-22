@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.item.Item;
+import org.alexdev.roseau.log.Log;
 
 import com.google.common.collect.Lists;
 
@@ -26,15 +27,17 @@ public class CatalogueDeal {
 		
 		List<CatalogueItem> items = Lists.newArrayList();
 		
-		for (String callID : this.items) {
+		for (String id : this.items) {
 			
 			CatalogueItem item = null;
 			
-			if (callID.contains("|")) {
-				item = Roseau.getGame().getCatalogueManager().getItemByCall(callID.split("|")[0]);	
-				item.setExtraData(callID.split("|")[1]);	
+			if (id.contains("|")) {
+				item = Roseau.getGame().getCatalogueManager().getItemByCall(id.split("\\|")[0]);
+				item.setExtraData(id.split("\\|")[1]);
+				
+				
 			} else {
-				item = Roseau.getGame().getCatalogueManager().getItemByCall(callID);
+				item = Roseau.getGame().getCatalogueManager().getItemByCall(id);
 			}
 		
 			items.add(item);

@@ -15,6 +15,7 @@ public class ADDWALLITEM implements OutgoingMessageComposer {
 	@Override
 	public void write(Response response) {
 		response.init("ADDITEM");
+		response.append(Character.toString((char)13));
 		response.appendObject(this.item);
 	}
 

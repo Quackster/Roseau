@@ -15,6 +15,7 @@ public class UPDATEWALLITEM implements OutgoingMessageComposer {
 	@Override
 	public void write(Response response) {
 		response.init("UPDATEITEM");
+		response.append(Character.toString((char)13));
 		response.appendObject(this.item);
 	}
 
