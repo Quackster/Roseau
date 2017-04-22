@@ -1,20 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
+-- version 3.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 22, 2017 at 10:21 AM
--- Server version: 10.1.22-MariaDB-1~xenial
--- PHP Version: 7.0.15-0ubuntu0.16.04.4
+-- Host: 127.0.0.1
+-- Generation Time: Apr 22, 2017 at 10:41 AM
+-- Server version: 5.5.25a
+-- PHP Version: 5.4.4
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `roseau`
@@ -26,13 +26,15 @@ SET time_zone = "+00:00";
 -- Table structure for table `catalogue`
 --
 
-CREATE TABLE `catalogue` (
-  `id` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `catalogue` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `definition_id` int(11) NOT NULL,
   `call_id` varchar(20) NOT NULL DEFAULT '',
   `credits` bigint(20) NOT NULL DEFAULT '0',
-  `category` char(3) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `category` char(3) NOT NULL DEFAULT '',
+  UNIQUE KEY `call_id` (`call_id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=114 ;
 
 --
 -- Dumping data for table `catalogue`
@@ -137,7 +139,19 @@ INSERT INTO `catalogue` (`id`, `definition_id`, `call_id`, `credits`, `category`
 (98, 1149, 'BM9', 2, ''),
 (99, 1148, 'BM8', 2, ''),
 (100, 1052, 'BM2', 2, ''),
-(101, 1103, 'BM1', 2, '');
+(101, 1103, 'BM1', 2, ''),
+(102, 2601, 'PL2', 2, ''),
+(103, 2602, 'PL3', 2, ''),
+(104, 2603, 'PL4', 2, ''),
+(105, 2611, 'PL5', 2, ''),
+(106, 1018, 'BV7', 1, ''),
+(107, 1075, 'BV1', 1, ''),
+(108, 1053, 'BV2', 1, ''),
+(109, 2411, 'BV3', 1, ''),
+(110, 2412, 'BV5', 1, ''),
+(111, 2413, 'BV6', 1, ''),
+(112, 2414, 'BV4', 1, ''),
+(113, 1045, 'MUR', 4, '');
 
 -- --------------------------------------------------------
 
@@ -145,12 +159,13 @@ INSERT INTO `catalogue` (`id`, `definition_id`, `call_id`, `credits`, `category`
 -- Table structure for table `catalogue_deals`
 --
 
-CREATE TABLE `catalogue_deals` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `catalogue_deals` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `call_id` varchar(100) NOT NULL,
   `products` varchar(100) NOT NULL,
-  `cost` int(11) NOT NULL DEFAULT '5'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `cost` int(11) NOT NULL DEFAULT '5',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `catalogue_deals`
@@ -170,8 +185,8 @@ INSERT INTO `catalogue_deals` (`id`, `call_id`, `products`, `cost`) VALUES
 -- Table structure for table `items`
 --
 
-CREATE TABLE `items` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL DEFAULT '0',
@@ -179,8 +194,9 @@ CREATE TABLE `items` (
   `y` varchar(5) NOT NULL DEFAULT '0',
   `z` varchar(5) NOT NULL DEFAULT '0',
   `rotation` float NOT NULL DEFAULT '0',
-  `extra_data` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `extra_data` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=214 ;
 
 --
 -- Dumping data for table `items`
@@ -307,8 +323,8 @@ INSERT INTO `items` (`id`, `user_id`, `item_id`, `room_id`, `x`, `y`, `z`, `rota
 -- Table structure for table `item_definitions`
 --
 
-CREATE TABLE `item_definitions` (
-  `id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `item_definitions` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `sprite` varchar(100) COLLATE latin1_general_ci NOT NULL,
   `color` varchar(100) CHARACTER SET latin1 NOT NULL,
   `length` tinyint(2) NOT NULL,
@@ -317,8 +333,9 @@ CREATE TABLE `item_definitions` (
   `dataclass` varchar(50) CHARACTER SET latin1 NOT NULL,
   `behaviour` varchar(25) CHARACTER SET latin1 NOT NULL,
   `name` varchar(100) COLLATE latin1_general_ci NOT NULL DEFAULT 'Unknown name',
-  `description` varchar(150) COLLATE latin1_general_ci NOT NULL DEFAULT 'Unknown description'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+  `description` varchar(150) COLLATE latin1_general_ci NOT NULL DEFAULT 'Unknown description',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=2634 ;
 
 --
 -- Dumping data for table `item_definitions`
@@ -426,7 +443,7 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1112, 'bottle', '0,0,0', 1, 1, 0.1, 'DIR', 'SFTL', 'Empty Spinning Bottle', 'For interesting games!'),
 (1113, 'bardesk_polyfon', '*ffffff,*ffffff,*ABD0D2,*ABD0D2', 2, 1, 1, 'NULL', 'SFH', 'Bar-desk', 'Perfect for work or play'),
 (1114, 'bardeskcorner_polyfon', '*ffffff,*ABD0D2', 1, 1, 1, 'NULL', 'SFH', 'Corner Cabinet-Desk', 'Tuck it away'),
-(1116, 'bar_armas', '0,0,0', 1, 1, 1, 'DOOROPEN', 'SFT', 'Barrel Minibar', 'It\'s a barrel of laughs and a great talking point'),
+(1116, 'bar_armas', '0,0,0', 1, 1, 1, 'DOOROPEN', 'SFT', 'Barrel Minibar', 'It''s a barrel of laughs and a great talking point'),
 (1119, 'carpet_soft', '0,0,0', 2, 4, 0.01, 'NULL', 'SFKH', 'Soft Wool Rug', 'Soft Wool Rug'),
 (1127, 'wood_tv', '0,0,0', 1, 2, 2, 'FIREON', 'SF', 'Large TV', 'HNN weatherman Kiazie'),
 (1128, 'carpet_polar*1', '*ffbbcf,*ffbbcf,*ffddef', 2, 3, 0.01, 'NULL', 'SFKH', 'Pink Faux-Fur Bear Rug', 'Cute'),
@@ -454,10 +471,10 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1161, 'toilet_red', '0,0,0', 1, 1, 1.1, 'SWITCHON', 'SFC', 'Loo Seat', 'Loo Seat'),
 (1162, 'toilet_yell', '0,0,0', 1, 1, 1.1, 'SWITCHON', 'SFC', 'Loo Seat', 'Loo Seat'),
 (1163, 'tile_red', '0,0,0', 4, 4, 0.01, 'NULL', 'SFKH', 'Floor Tiles', 'In a choice of colours'),
-(1168, 'present_gen3', '0,0,0', 1, 1, 1, 'CUSTOM_VARIABLE', 'SFH', 'Gift', 'What\'s inside?'),
-(1169, 'present_gen4', '0,0,0', 1, 1, 1, 'CUSTOM_VARIABLE', 'SFH', 'Gift', 'What\'s inside?'),
-(1170, 'present_gen5', '0,0,0', 1, 1, 1, 'CUSTOM_VARIABLE', 'SFH', 'Gift', 'What\'s inside?'),
-(1171, 'present_gen6', '0,0,0', 1, 1, 1, 'CUSTOM_VARIABLE', 'SFH', 'Gift', 'What\'s inside?'),
+(1168, 'present_gen3', '0,0,0', 1, 1, 1, 'CUSTOM_VARIABLE', 'SFH', 'Gift', 'What''s inside?'),
+(1169, 'present_gen4', '0,0,0', 1, 1, 1, 'CUSTOM_VARIABLE', 'SFH', 'Gift', 'What''s inside?'),
+(1170, 'present_gen5', '0,0,0', 1, 1, 1, 'CUSTOM_VARIABLE', 'SFH', 'Gift', 'What''s inside?'),
+(1171, 'present_gen6', '0,0,0', 1, 1, 1, 'CUSTOM_VARIABLE', 'SFH', 'Gift', 'What''s inside?'),
 (1173, 'shelves_basic', '0,0,0', 2, 1, 2, 'NULL', 'SF', 'Pura Shelves', 'Pura series 404 shelves'),
 (1175, 'soft_sofa_norja', '*ffffff,*F7EBBC,*ffffff,*F7EBBC,*F7EBBC,*F7EBBC', 2, 1, 1, 'NULL', 'SFC', 'iced sofa', 'A soft iced sofa'),
 (1176, 'lamp_basic', '0,0,0', 1, 1, 2, 'SWITCHON', 'SFM', 'Pura Lamp', 'Switch on the atmosphere with this sophisticated light'),
@@ -470,13 +487,13 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1187, 'menorah', '0,0,0', 1, 1, 1, 'FIREON', 'SF', 'Menorah', 'Light up your room'),
 (1188, 'pudding', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Christmas Pudding', 'Will you get the lucky sixpence?'),
 (1189, 'ham', '0,0,0', 1, 1, 0.1, 'NULL', 'SF', 'Joint of Ham', 'Tuck in'),
-(1190, 'turkey', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Roast Turkey', 'Where\'s the cranberry sauce?'),
+(1190, 'turkey', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Roast Turkey', 'Where''s the cranberry sauce?'),
 (1192, 'house', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Gingerbread House', 'Good enough to eat'),
 (1193, 'triplecandle', '0,0,0', 1, 1, 0.5, 'SWITCHON', 'SFM', 'Electric Candles', 'No need to worry about wax drips'),
 (1194, 'tree3', '0,0,0', 1, 1, 2, 'SWITCHON', 'SFM', 'Christmas Tree 1', 'Any presents under it yet?'),
 (1195, 'tree4', '0,0,0', 1, 1, 2, 'SWITCHON', 'SFM', 'Christmas Tree 2', 'Any presents under it yet?'),
 (1196, 'tree5', '0,0,0', 1, 1, 2, 'SWITCHON', 'SFM', 'Christmas Tree 3', 'Any presents under it yet?'),
-(1197, 'ham2', '0,0,0', 1, 1, 0.1, 'NULL', 'SF', 'Eaten Ham', 'Looks like you\'re too late!'),
+(1197, 'ham2', '0,0,0', 1, 1, 0.1, 'NULL', 'SF', 'Eaten Ham', 'Looks like you''re too late!'),
 (1198, 'wcandleset', '0,0,0', 1, 1, 0.2, 'SWITCHON', 'SFM', 'White Candle Plate', 'Simple but stylish'),
 (1199, 'rcandleset', '0,0,0', 1, 1, 0.2, 'SWITCHON', 'SFM', 'Red Candle Plate', 'Simple but stylish'),
 (1200, 'statue', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Cupid Statue', 'Watch out for those arrows!'),
@@ -488,7 +505,7 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1210, 'bunny', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Squidgy Bunny', 'Yours to cuddle up to'),
 (1211, 'basket', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Basket Of Eggs', 'Eggs-actly what you want for Easter'),
 (1212, 'birdie', '0,0,0', 1, 1, 1, 'SWITCHON', 'SF', 'Pop-up Egg', 'Cheep (!) and cheerful'),
-(1213, 'edice', '0,0,0', 1, 1, 1, 'VALUE', 'SFTL', 'Holo-dice', 'What\'s your lucky number?'),
+(1213, 'edice', '0,0,0', 1, 1, 1, 'VALUE', 'SFTL', 'Holo-dice', 'What''s your lucky number?'),
 (1214, 'club_sofa', '0,0,0', 2, 1, 1, 'NULL', 'SFC', 'Club sofa', 'Club sofa'),
 (1215, 'prize1', '0,0,0', 1, 1, 0.5, 'NULL', 'SF', 'Gold Trophy', 'Gorgeously glittery'),
 (1216, 'prize2', '0,0,0', 1, 1, 0.5, 'NULL', 'SF', 'Silver Trophy', 'Nice and shiny'),
@@ -497,7 +514,7 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1219, 'divider_arm1', '0,0,0', 1, 1, 1.3, 'NULL', 'SFH', 'Corner plinth', 'Good solid wood'),
 (1220, 'divider_arm2', '0,0,0', 2, 1, 1.3, 'NULL', 'SFH', 'Room divider', 'I wooden go there'),
 (1221, 'divider_arm3', '0,0,0', 1, 1, 1, 'STATUS', 'SFGDQ', 'Gate (lockable)', 'Knock, knock...'),
-(1222, 'divider_nor1', '*ffffff,*F7EBBC', 1, 1, 1, 'NULL', 'SF', 'Ice Corner', 'Looks squishy, but isn\'t'),
+(1222, 'divider_nor1', '*ffffff,*F7EBBC', 1, 1, 1, 'NULL', 'SF', 'Ice Corner', 'Looks squishy, but isn''t'),
 (1223, 'divider_silo1', '*ffffff,*ABD0D2', 1, 1, 1, 'NULL', 'SFH', 'Corner Shelf', 'Neat and natty'),
 (1224, 'divider_nor2', '*ffffff,*ffffff,*F7EBBC,*F7EBBC', 2, 1, 1, 'NULL', 'SF', 'Ice Bar-Desk', 'Strong, yet soft looking'),
 (1226, 'divider_nor3', '*ffffff,*ffffff,*F7EBBC,*F7EBBC', 1, 1, 1, 'STATUS', 'SFGDQ', 'Door (Lockable)', 'Do go through...'),
@@ -522,7 +539,7 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1252, 'hcamme', '0,0,0', 1, 2, 0.9, 'SWITCHON', 'SFCM', 'Tubmaster', 'Time for a soak'),
 (1253, 'rare_elephant_statue', '*ffffff,*ffcf1c', 1, 1, 1, 'NULL', 'SFH', 'Golden Elephant', 'Say hello to Nelly'),
 (1254, 'rare_fountain', '*ffffff,*ffffff,*ff6666', 1, 1, 1, 'FIREON', 'SFMH', 'Bird Bath (red)', 'For our feathered friends'),
-(1255, 'rare_stand', '0,0,0', 1, 1, 1.9, 'NULL', 'SFC', 'Speaker\'s Corner', 'Stand and Deliver!'),
+(1255, 'rare_stand', '0,0,0', 1, 1, 1.9, 'NULL', 'SFC', 'Speaker''s Corner', 'Stand and Deliver!'),
 (1257, 'rare_hammock', '0,0,0', 1, 3, 1.5, 'NULL', 'SFB', 'Hammock', 'Eco bed'),
 (1258, 'rare_elephant_statue*1', '*ffffff,*bfbfbf', 1, 1, 1, 'NULL', 'SFH', 'Silver Elephant', 'Say hello to Nelly'),
 (1259, 'rare_elephant_statue*2', '*ffffff,*d46b00', 1, 1, 1, 'NULL', 'SFH', 'Bronze Elephant', 'Say hello to Nelly'),
@@ -608,21 +625,21 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1373, 'pillow*0', '*ffffff,*ffffff,*ffffff,*ffffff', 1, 1, 1, 'NULL', 'SFC', 'White Lace Pillow', 'Minimalist comfort!'),
 (1374, 'pillow*1', '*FF8888,*FF8888,*ffffff,*ffffff', 1, 1, 1, 'NULL', 'SFC', 'Pink Fluffy Pillow', 'Puffy, soft and huge'),
 (1375, 'pillow*2', '*F00000,*F00000,*ffffff,*ffffff', 1, 1, 1, 'NULL', 'SFC', 'Red Silk Pillow', 'Puffy, soft and huge'),
-(1376, 'pillow*7', '*E532CA,*E532CA,*ffffff,*ffffff', 1, 1, 1, 'NULL', 'SFC', 'Purple Velvet Pillow', 'Bonnie\'s pillow of choice!'),
+(1376, 'pillow*7', '*E532CA,*E532CA,*ffffff,*ffffff', 1, 1, 1, 'NULL', 'SFC', 'Purple Velvet Pillow', 'Bonnie''s pillow of choice!'),
 (1377, 'pillow*9', '*B9FF4B,*B9FF4B,*ffffff,*ffffff', 1, 1, 1, 'NULL', 'SFC', 'Green Wooly Pillow', 'Puffy, soft and VERY fluffy!'),
 (1378, 'pillow*4', '*FFBD18,*FFBD18,*ffffff,*ffffff', 1, 1, 1, 'NULL', 'SFC', 'Gold Feather Pillow', 'Puffy, soft and huge'),
 (1379, 'pillow*6', '*5DAAC9,*5DAAC9,*ffffff,*ffffff', 1, 1, 1, 'NULL', 'SFC', 'Blue Cotton Pillow', 'Puffy, soft and huge'),
 (1380, 'pillow*3', '*63C9A0,*63C9A0,*ffffff,*ffffff', 1, 1, 1, 'NULL', 'SFC', 'Turquoise Satin Pillow', 'Puffy, soft and huge'),
-(1381, 'marquee*1', '*ffffff,*ffffff,*ffffff,*FF798F', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Pink marquee', 'It\'s both door and a shade!'),
+(1381, 'marquee*1', '*ffffff,*ffffff,*ffffff,*FF798F', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Pink marquee', 'It''s both door and a shade!'),
 (1382, 'marquee*2', '*ffffff,*ffffff,*ffffff,*C60000', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Red Dragon Marquee', 'Dragons out and Davids in!'),
-(1383, 'marquee*7', '*ffffff,*ffffff,*ffffff,*D600E2', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Purple Marquee', 'It\'s both door and a shade!'),
-(1384, 'marquee*a', '*ffffff,*ffffff,*ffffff,*ffffff', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'White Marquee', 'It\'s both door and a shade!'),
-(1385, 'marquee*8', '*ffffff,*ffffff,*ffffff,*004AA0', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Ultramarine Marquee', 'It\'s both door and a shade!'),
-(1386, 'marquee*9', '*ffffff,*ffffff,*ffffff,*8FD94A', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Green Marquee', 'It\'s both door and a shade!'),
-(1387, 'marquee*5', '*ffffff,*ffffff,*ffffff,*707070', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Graphite Marquee', 'It\'s both door and a shade!'),
-(1388, 'marquee*4', '*ffffff,*ffffff,*ffffff,*F8CD00', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Yellow Marquee', 'It\'s both door and a shade!'),
-(1389, 'marquee*6', '*ffffff,*ffffff,*ffffff,*719EFD', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Blue Marquee', 'It\'s both door and a shade!'),
-(1390, 'marquee*3', '*ffffff,*ffffff,*ffffff,*68DADA', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Aqua Marquee', 'It\'s both door and a shade!'),
+(1383, 'marquee*7', '*ffffff,*ffffff,*ffffff,*D600E2', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Purple Marquee', 'It''s both door and a shade!'),
+(1384, 'marquee*a', '*ffffff,*ffffff,*ffffff,*ffffff', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'White Marquee', 'It''s both door and a shade!'),
+(1385, 'marquee*8', '*ffffff,*ffffff,*ffffff,*004AA0', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Ultramarine Marquee', 'It''s both door and a shade!'),
+(1386, 'marquee*9', '*ffffff,*ffffff,*ffffff,*8FD94A', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Green Marquee', 'It''s both door and a shade!'),
+(1387, 'marquee*5', '*ffffff,*ffffff,*ffffff,*707070', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Graphite Marquee', 'It''s both door and a shade!'),
+(1388, 'marquee*4', '*ffffff,*ffffff,*ffffff,*F8CD00', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Yellow Marquee', 'It''s both door and a shade!'),
+(1389, 'marquee*6', '*ffffff,*ffffff,*ffffff,*719EFD', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Blue Marquee', 'It''s both door and a shade!'),
+(1390, 'marquee*3', '*ffffff,*ffffff,*ffffff,*68DADA', 1, 1, 0.7, 'STATUS', 'SFGDQ', 'Aqua Marquee', 'It''s both door and a shade!'),
 (1391, 'wooden_screen*1', '*ffffff,*ffffff,*FFA795,*FFA795,*ffffff,*ffffff', 1, 2, 1, 'NULL', 'SF', 'Pink Oriental screen', 'Add an exotic touch to your room'),
 (1392, 'wooden_screen*2', '*ffffff,*ffffff,*BD0000,*BD0000,*ffffff,*ffffff', 1, 2, 1, 'NULL', 'SF', 'RosewoodScreen', 'Add an exotic touch to your room'),
 (1393, 'wooden_screen*7', '*ffffff,*ffffff,*DA2591,*DA2591,*ffffff,*ffffff', 1, 2, 1, 'NULL', 'SF', 'Purple Oriental Screen', 'Add an exotic touch to your room'),
@@ -663,16 +680,16 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1428, 'rare_icecream*0', '*FFFFFF,*F43100,0,0,0', 1, 1, 1, 'DOOROPEN', 'SFT', 'Cherry Ice Cream Machine', 'Virtual cherry rocks!'),
 (1429, 'rare_icecream*4', '*FFFFFF,*FF9898,0,0,0', 1, 1, 1, 'DOOROPEN', 'SFT', 'Strawberry Ice Cream Machine', 'Virtual strawberry rocks!'),
 (1430, 'rare_icecream*5', '*FFFFFF,*E1CC00,0,0,0', 1, 1, 1, 'DOOROPEN', 'SFT', 'Vanilla Ice Cream Machine', 'Virtual vanilla rocks!'),
-(1431, 'rare_fan*7', '*97420C,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Brown Powered Fan', '...it\'s really hit the fan!'),
-(1432, 'rare_fan*6', '*FF8000,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Ochre Powered Fan', 'It\'ll blow you away!'),
-(1433, 'rare_fan*9', '*FF60B0,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Fucsia Powered Fan', 'It\'ll blow you away!'),
+(1431, 'rare_fan*7', '*97420C,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Brown Powered Fan', '...it''s really hit the fan!'),
+(1432, 'rare_fan*6', '*FF8000,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Ochre Powered Fan', 'It''ll blow you away!'),
+(1433, 'rare_fan*9', '*FF60B0,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Fucsia Powered Fan', 'It''ll blow you away!'),
 (1434, 'rare_fan*3', '*C05DFF,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Purple Dragon Skin Fan', 'Keeps the heat off St George!'),
-(1435, 'rare_fan*0', '*F43100,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Festive Fan', 'As red as Rudolph\'s nose'),
+(1435, 'rare_fan*0', '*F43100,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Festive Fan', 'As red as Rudolph''s nose'),
 (1436, 'rare_fan*4', '*FF9898,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'SUPERLOVE Fan', 'Fanning the fires of SUPERLOVE...'),
-(1437, 'rare_fan*5', '*E1CC00,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Yellow Powered Fan', 'It\'ll blow you away!'),
-(1438, 'rare_fan*1', '*3C75FF,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Blue Powered Fan', 'It\'ll blow you away!'),
+(1437, 'rare_fan*5', '*E1CC00,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Yellow Powered Fan', 'It''ll blow you away!'),
+(1438, 'rare_fan*1', '*3C75FF,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Blue Powered Fan', 'It''ll blow you away!'),
 (1439, 'rare_fan*8', '*00E5E2,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Habbo Wind Turbine', 'Stylish, Eco-Energy!'),
-(1440, 'rare_fan*2', '*55CD01,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Green Powered Fan', 'It\'ll blow you away!'),
+(1440, 'rare_fan*2', '*55CD01,0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Green Powered Fan', 'It''ll blow you away!'),
 (1451, 'ticket', '0,0,0', 1, 1, 0.01, 'NULL', 'SF', 'Small Ticket Bundle', 'A bundle of 5 gaming tickets'),
 (1453, 'cn_lamp', '0,0,0', 1, 1, 1, 'SWITCHON', 'SFM', 'Lantern', 'Light of the East'),
 (1454, 'cn_sofa', '0,0,0', 3, 1, 1, 'NULL', 'SFC', 'Chinese Sofa', 'Seating,Oriental style!'),
@@ -733,7 +750,7 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1513, 'chair_norja*8', '*ffffff,*ffffff,*FFD837,*FFD837', 1, 1, 1, 'NULL', 'SFC', 'Yellow Chair', 'Sleek and chic for each cheek'),
 (1514, 'chair_norja*9', '*ffffff,*ffffff,*E14218,*E14218', 1, 1, 1, 'NULL', 'SFC', 'Red Chair', 'Sleek and chic for each cheek'),
 (1515, 'divider_nor1*2', '*ffffff,*525252', 1, 1, 1, 'NULL', 'SF', 'Black Ice corner', 'Black Ice corner'),
-(1516, 'divider_nor1*3', '*ffffff,*ffffff', 1, 1, 1, 'NULL', 'SF', 'White Iced Corner', 'Looks squishy, but isn\'t!'),
+(1516, 'divider_nor1*3', '*ffffff,*ffffff', 1, 1, 1, 'NULL', 'SF', 'White Iced Corner', 'Looks squishy, but isn''t!'),
 (1517, 'divider_nor1*4', '*ffffff,*ABD0D2', 1, 1, 1, 'NULL', 'SF', 'Urban Iced Corner', 'The missing piece'),
 (1518, 'divider_nor1*5', '*ffffff,*EE7EA4', 1, 1, 1, 'NULL', 'SF', 'Pink Ice corner', 'Pink Ice corner'),
 (1519, 'divider_nor1*6', '*ffffff,*5EAAF8', 1, 1, 1, 'NULL', 'SF', 'Blue Ice corner', 'Blue Ice corner'),
@@ -879,7 +896,7 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1685, 'sleepingbag*10', '*f3dac2,*ffffff,*f3dac2,*ffffff,*f3dac2,*ffffff', 1, 3, 0.8, 'NULL', 'SFB', 'Khaki Sleeping Bag', 'Ultimate coziness'),
 (1686, 'sleepingbag*6', '*a78acf,*ffffff,*a78acf,*ffffff,*a78acf,*ffffff', 1, 3, 0.8, 'NULL', 'SFB', 'Purple Sleeping Bag', 'Ultimate coziness'),
 (1687, 'sleepingbag*8', '*ffcc5a,*ffffff,*ffcc5a,*ffffff,*ffcc5a,*ffffff', 1, 3, 0.8, 'NULL', 'SFB', 'Golden Sleeping Bag', 'Ultimate coziness for SnowStorm winners'),
-(1688, 'china_shelve', '0,0,0', 2, 1, 2, 'NULL', 'SF', 'Chinese Lacquer Bookshelf', 'To hold the mind\'s treasures'),
+(1688, 'china_shelve', '0,0,0', 2, 1, 2, 'NULL', 'SF', 'Chinese Lacquer Bookshelf', 'To hold the mind''s treasures'),
 (1689, 'traffic_light*5', '*ffffff,*ffffff,*ffffff', 1, 1, 1.5, 'NULL', 'SFT', 'White Traffic Light', 'Chill and wait your turn!'),
 (1690, 'divider_nor4*2', '*ffffff,*ffffff,*525252,*525252,*525252,*525252', 2, 1, 2, 'STATUS', 'SFGDQ', 'Black Iced Auto Shutter', 'Habbos, roll out!'),
 (1691, 'divider_nor4*3', '*ffffff,*ffffff,*ffffff,*ffffff,*ffffff,*ffffff', 2, 1, 2, 'STATUS', 'SFGDQ', 'White Iced Auto Shutter', 'Habbos, roll out!'),
@@ -957,19 +974,19 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1771, 'gothrailing', '0,0,0', 2, 1, 1, 'NULL', 'SFH', 'Gothic Railing', 'The dark side of Habbo'),
 (1774, 'hc_btlr', '0,0,0', 1, 1, 1, 'DOOROPEN', 'SFT', 'Electric Butler', 'Your personal caretaker'),
 (1775, 'hc_crtn', '0,0,0', 2, 1, 1, 'STATUS', 'SFGDQ', 'Antique Drapery', 'Topnotch privacy protection'),
-(1776, 'hc_djset', '0,0,0', 3, 1, 1.5, 'NULL', 'SF', 'The Grammophon', 'Very old skool scratch\'n\'spin'),
+(1776, 'hc_djset', '0,0,0', 3, 1, 1.5, 'NULL', 'SF', 'The Grammophon', 'Very old skool scratch''n''spin'),
 (1777, 'hc_frplc', '0,0,0', 1, 3, 3, 'SWITCHON', 'SFM', 'Heavy Duty Fireplace', 'Pixel-powered for maximum heating'),
 (1778, 'hc_lmpst', '0,0,0', 1, 1, 3, 'SWITCHON', 'SFM', 'Victorian Street Light', 'Somber and atmospheric'),
 (1779, 'hc_machine', '0,0,0', 1, 3, 3, 'SWITCHON', 'SFM', 'Weird Science Machine', 'By and for mad inventors'),
 (1781, 'hc_rntgn', '0,0,0', 2, 1, 2, 'NULL', 'SF', 'X-Ray Divider', 'Believe it or not!'),
 (1782, 'hc_trll', '0,0,0', 1, 2, 1.5, 'NULL', 'SF', 'Drinks Trolley', 'For swanky dinners only'),
-(1801, 'val_cauldron', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Valentine\'s Cauldron', 'Cast a loving spell!'),
+(1801, 'val_cauldron', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Valentine''s Cauldron', 'Cast a loving spell!'),
 (1818, 'rare_parasol', '*ffffff,*9eff1c,*ffffff,*ffffff,*ffffff', 1, 1, 1, 'SWITCHON', 'SFM', 'Parasol', 'Zon! Zon! Zon!'),
 (1819, 'plant_valentinerose*3', '*FFFFFF,*FFE61E,*FFFFFF,*FFFFFF', 1, 1, 1, 'NULL', 'SF', 'Yellow Valentine Rose', 'Relight your passions'),
 (1820, 'plant_valentinerose*5', '*FFFFFF,*C828FF,*FFFFFF,*FFFFFF', 1, 1, 1, 'NULL', 'SF', 'Purple Valentine Rose', 'For that special pixel'),
 (1821, 'plant_valentinerose*2', '*FFFFFF,*FFFFFF,*FFFFFF,*FFFFFF', 1, 1, 1, 'NULL', 'SF', 'White Valentine Rose', 'Your secret love'),
-(1822, 'plant_valentinerose*4', '*FFFFFF,*FF78C8,*FFFFFF,*FFFFFF', 1, 1, 1, 'NULL', 'SF', 'Pink Valentine\'s Rose', 'Be mine!'),
-(1823, 'plant_valentinerose*1', '*FFFFFF,*FF1E1E,*FFFFFF,*FFFFFF', 1, 1, 1, 'NULL', 'SF', 'Red Valentine\'s Rose', 'Secret admirer!'),
+(1822, 'plant_valentinerose*4', '*FFFFFF,*FF78C8,*FFFFFF,*FFFFFF', 1, 1, 1, 'NULL', 'SF', 'Pink Valentine''s Rose', 'Be mine!'),
+(1823, 'plant_valentinerose*1', '*FFFFFF,*FF1E1E,*FFFFFF,*FFFFFF', 1, 1, 1, 'NULL', 'SF', 'Red Valentine''s Rose', 'Secret admirer!'),
 (1825, 'plant_maze', '0,0,0', 2, 1, 1, 'NULL', 'SF', 'Maze Shrubbery', 'Build your maze!'),
 (1826, 'plant_bulrush', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Bulrush', 'Ideal for the riverside'),
 (1839, 'theatre_seat', '*FFFFFF,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'Deluxe Theatre Chair', 'For Lazy boys and girls!'),
@@ -980,14 +997,14 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1878, 'rclr_chair', '0,0,0', 1, 1, 1, 'NULL', 'SFC', 'Palm Chair', 'Watch out for coconuts'),
 (504, 'poolLift', '', 1, 1, 0.01, 'NULL', 'EM', 'Diving lift trigger', 'Unknown description'),
 (1947, 'chair_basic*1', '*FFFFFF,*ABD0D2,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'chair_basic', ''),
-(1948, 'chair_basic*2', '*FFFFFF,*FF99BC,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'Pink Pura Egg Chair', 'It\'s a cracking design!'),
-(1949, 'chair_basic*3', '*FFFFFF,*525252,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'Black Pura Egg Chair', 'It\'s a cracking design!'),
-(1950, 'chair_basic*4', '*FFFFFF,*FFFFFF,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'White Pura Egg Chair', 'It\'s a cracking design!'),
+(1948, 'chair_basic*2', '*FFFFFF,*FF99BC,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'Pink Pura Egg Chair', 'It''s a cracking design!'),
+(1949, 'chair_basic*3', '*FFFFFF,*525252,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'Black Pura Egg Chair', 'It''s a cracking design!'),
+(1950, 'chair_basic*4', '*FFFFFF,*FFFFFF,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'White Pura Egg Chair', 'It''s a cracking design!'),
 (1951, 'chair_basic*5', '*FFFFFF,*F7EBBC,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'chair_basic', ''),
-(1952, 'chair_basic*6', '*FFFFFF,*5EAAF8,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'Blue Pura Egg Chair', 'It\'s a cracking design!'),
-(1953, 'chair_basic*7', '*FFFFFF,*92D13D,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'Green Pura Egg Chair', 'It\'s a cracking design!'),
+(1952, 'chair_basic*6', '*FFFFFF,*5EAAF8,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'Blue Pura Egg Chair', 'It''s a cracking design!'),
+(1953, 'chair_basic*7', '*FFFFFF,*92D13D,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'Green Pura Egg Chair', 'It''s a cracking design!'),
 (1954, 'chair_basic*8', '*FFFFFF,*FFD837,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'chair_basic', ''),
-(1955, 'chair_basic*9', '*FFFFFF,*E14218,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'Red Pura Egg Chair', 'It\'s a cracking design!'),
+(1955, 'chair_basic*9', '*FFFFFF,*E14218,*FFFFFF', 1, 1, 1, 'NULL', 'SFC', 'Red Pura Egg Chair', 'It''s a cracking design!'),
 (1956, 'bed_budget*1', '*FFFFFF,*FFFFFF,*FFFFFF,*ABD0D2,*ABD0D2,*ABD0D2', 2, 3, 1, 'NULL', 'SFB', 'Aqua Pura Double Bed', 'King sized comfort!'),
 (1957, 'bed_budget*2', '*FFFFFF,*FFFFFF,*FFFFFF,*FF99BC,*FF99BC,*FF99BC', 2, 3, 1, 'NULL', 'SFB', 'Pink Pura Double Bed', 'Queen sized comfort!'),
 (1958, 'bed_budget*3', '*FFFFFF,*FFFFFF,*FFFFFF,*525252,*525252,*525252', 2, 3, 1, 'NULL', 'SFB', 'Black Pura Double Bed', 'King sized comfort!'),
@@ -1007,11 +1024,11 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1972, 'bed_budget_one*8', '*FFFFFF,*FFFFFF,*FFFFFF,*FFD837,*FFD837,*FFD837', 1, 3, 1, 'NULL', 'SFB', 'Yellow Pura Bed', 'Prince sized comfort!'),
 (1973, 'bed_budget_one*9', '*FFFFFF,*FFFFFF,*FFFFFF,*E14218,*E14218,*E14218', 1, 3, 1, 'NULL', 'SFB', 'Red Pura Bed', 'Prince sized comfort!'),
 (1237, 'bardeskcorner_polyfon*12', '*ffffff,*ffffff,*ffffff', 1, 1, 1, 'NULL', 'SFH', 'Corner Cabinet-Desk', 'Tuck it away'),
-(2029, 'grunge_radiator', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Radiator', 'Started cool but now it\'s hot!'),
+(2029, 'grunge_radiator', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Radiator', 'Started cool but now it''s hot!'),
 (2030, 'grunge_shelf', '0,0,0', 3, 1, 3, 'NULL', 'SF', 'Grunge Bookshelf', 'Scrap books and photo albums'),
 (2031, 'grunge_sign', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Road Sign', 'Bought legitimately from an M1 cafe.'),
 (2035, 'hal_cauldron', '0,0,0', 1, 1, 1, 'NULL', 'SF', 'Habboween Cauldron', 'Eye of Habbo and toe of Mod!'),
-(2036, 'hal_grave', '0,0,0', 1, 1, 0.01, 'SWITCHON', 'SFM', 'Haunted Grave', 'We\'re raising the dead!'),
+(2036, 'hal_grave', '0,0,0', 1, 1, 0.01, 'SWITCHON', 'SFM', 'Haunted Grave', 'We''re raising the dead!'),
 (2049, 'tree7', '0,0,0', 1, 1, 2, 'SWITCHON', 'SFM', 'Snowy Christmas Tree', 'Walking in a winter wonderland!'),
 (2055, 'plant_maze_snow', '0,0,0', 2, 1, 1, 'NULL', 'SF', 'Snowy Maze Bundle 2', '20 x Snowy Maze Shrubbery'),
 (2056, 'christmas_sleigh', '0,0,0', 2, 2, 1, 'NULL', 'SFC', 'Winter Sleigh', 'Ready for your Xmas cheer'),
@@ -1040,7 +1057,7 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1019, 'sofachair_polyfon', '*ffffff,*ffffff,*ABD0D2,*ABD0D2', 1, 1, 1, 'NULL', 'SFC', 'Armchair', 'Loft-style comfort'),
 (1021, 'sofachair_silo', '*ffffff,*ffffff,*ABD0D2,*ABD0D2', 1, 1, 1, 'NULL', 'SFC', 'Armchair', 'Large, but worth it'),
 (1031, 'table_silo_small', '*ffffff,*ABD0D2', 1, 1, 1, 'NULL', 'SFH', 'Occasional Table', 'For those random moments'),
-(1854, 'habbowood_chair', '0,0,0', 1, 1, 1, 'NULL', 'SFC', 'Director\'s Chair', 'Exclusively for Directors'),
+(1854, 'habbowood_chair', '0,0,0', 1, 1, 1, 'NULL', 'SFC', 'Director''s Chair', 'Exclusively for Directors'),
 (1726, 'glass_chair', '*ffffff,*ABD0D2,*ABD0D2,*ffffff', 1, 1, 1, 'NULL', 'SFC', 'Glass chair', 'Translucent beauty'),
 (1729, 'glass_table', '*ffffff,*ABD0D2,*ABD0D2,*ffffff', 2, 2, 1, 'NULL', 'SFH', 'Glass table', 'Translucent beauty'),
 (2027, 'grunge_chair', '0,0,0', 1, 1, 0.99, 'NULL', 'SFC', 'Grunge Chair', 'Alternative chair for alternative people'),
@@ -1057,7 +1074,7 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1159, 'duck', '0,0,0', 1, 1, 0.01, 'NULL', 'SF', 'Rubber Duck', 'Every bather needs one'),
 (1209, 'easterduck', '0,0,0', 1, 1, 0.01, 'NULL', 'SF', 'Wannabe bunny', 'Can you tell what it is yet?'),
 (1772, 'goth_table', '0,0,0', 1, 5, 1, 'NULL', 'SFH', 'Gothic table', 'The dark side of Habbo'),
-(1039, 'small_chair_armas', '0,0,0', 1, 1, 1, 'NULL', 'SFC', 'Stool', 'Rustic charm at it\'s best'),
+(1039, 'small_chair_armas', '0,0,0', 1, 1, 1, 'NULL', 'SFC', 'Stool', 'Rustic charm at it''s best'),
 (1135, 'smooth_table_polyfon', '0,0,0', 2, 2, 1, 'NULL', 'SFH', 'Large Dining Table', 'For larger gatherings'),
 (1174, 'soft_sofachair_norja', '*ffffff,*F7EBBC,*F7EBBC', 1, 1, 1, 'NULL', 'SFC', 'iced sofachair', 'Soft iced sofachair'),
 (1037, 'table_armas', '0,0,0', 2, 2, 1, 'NULL', 'SFH', 'Dining Table', 'For informal dining'),
@@ -1067,11 +1084,11 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1134, 'table_polyfon', '0,0,0', 2, 2, 1, 'NULL', 'SFH', 'Large Coffee Table', 'For larger gatherings'),
 (1016, 'table_polyfon_med', '0,0,0', 2, 2, 1, 'NULL', 'SFH', 'Large Coffee Table', 'For larger gatherings'),
 (1007, 'table_silo_med', '*ffffff,*ABD0D2', 2, 2, 1, 'NULL', 'SFH', 'Coffee Table', 'Wipe clean and unobtrusive'),
-(1202, 'valeduck', '0,0,0', 1, 1, 0.01, 'NULL', 'SF', 'Valentine\'s Duck', 'He\'s lovestruck'),
+(1202, 'valeduck', '0,0,0', 1, 1, 0.01, 'NULL', 'SF', 'Valentine''s Duck', 'He''s lovestruck'),
 (1191, 'xmasduck', '0,0,0', 1, 1, 0.01, 'NULL', 'SF', 'Christmas Rubber Duck', 'A right Christmas quacker!'),
 (1038, 'small_table_armas', '0,0,0', 1, 1, 1, 'NULL', 'SFH', 'Occasional Table', 'Practical and beautiful'),
-(1166, 'present_gen1', '0,0,0', 1, 1, 1, 'CUSTOM_VARIABLE', 'SFH', 'Gift', 'What\'s inside?'),
-(1167, 'present_gen2', '0,0,0', 1, 1, 1, 'CUSTOM_VARIABLE', 'SFH', 'Gift', 'What\'s inside?'),
+(1166, 'present_gen1', '0,0,0', 1, 1, 1, 'CUSTOM_VARIABLE', 'SFH', 'Gift', 'What''s inside?'),
+(1167, 'present_gen2', '0,0,0', 1, 1, 1, 'CUSTOM_VARIABLE', 'SFH', 'Gift', 'What''s inside?'),
 (1626, 'bardeskcorner_polyfon*5', '*ffffff,*FF9BBD', 1, 1, 1, 'NULL', 'SFH', 'Candy Corner', 'For sweet corners!'),
 (1627, 'bardeskcorner_polyfon*6', '*ffffff,*5EAAF8', 1, 1, 1, 'NULL', 'SFH', 'Blue Mode Bardesk Corner', 'Blue Mode Bardesk Corner'),
 (1628, 'bardeskcorner_polyfon*7', '*ffffff,*7CB135', 1, 1, 1, 'NULL', 'SFH', 'Green Mode Bardesk Corner', 'Green Mode Bardesk Corner'),
@@ -1089,8 +1106,8 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1110, 'bar_polyfon', '0,0,0', 1, 1, 1, 'DOOROPEN', 'SFT', 'Mini-Bar', 'You naughty Habbo!'),
 (1180, 'doorB', '0,0,0', 1, 1, 2, 'DOOROPEN', 'SFX', 'Wardrobe', 'Narnia this way!'),
 (1181, 'doorC', '0,0,0', 1, 1, 2, 'DOOROPEN', 'SFX', 'Portaloo', 'In a hurry?'),
-(1296, 'doorD', '0,0,0', 1, 1, 2, 'DOOROPEN', 'SFX', 'Imperial Teleport', 'Let\'s go over tzar!'),
-(1140, 'bed_budgetb_one', '*FFFFFF,*FFFFFF,*FFFFFF,*FFFFFF,*FFFFFF,*FFFFFF', 1, 3, 1, 'NULL', 'SFB', 'Plain Single Bed', 'All you need for a good night\'s kip'),
+(1296, 'doorD', '0,0,0', 1, 1, 2, 'DOOROPEN', 'SFX', 'Imperial Teleport', 'Let''s go over tzar!'),
+(1140, 'bed_budgetb_one', '*FFFFFF,*FFFFFF,*FFFFFF,*FFFFFF,*FFFFFF,*FFFFFF', 1, 3, 1, 'NULL', 'SFB', 'Plain Single Bed', 'All you need for a good night''s kip'),
 (1141, 'bed_budgetb', '*FFFFFF,*FFFFFF,*FFFFFF,*FFFFFF,*FFFFFF,*FFFFFF', 2, 3, 1, 'NULL', 'SFB', 'Plain Double Bed', 'Sweet dreams for two'),
 (1172, 'bar_basic', '0,0,0', 1, 1, 1, 'DOOROPEN', 'SFT', 'A Pura Minibar', 'A pura series 300 minibar'),
 (1780, 'hc_rllr', '0,0,0', 1, 1, 0.45, 'NULL', 'SFKRH', 'HC Rollers Set', 'Highest class transportation'),
@@ -1108,9 +1125,9 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1277, 'md_limukaappi', '0,0,0', 1, 1, 1.5, 'DOOROPEN', 'SFT', 'Mountain Dew machine', 'The epic soft drink!'),
 (1295, 'hockey_light', '0,0,0', 1, 1, 1, 'SWITCHON', 'SFT', 'Lert', 'Set it off.'),
 (1126, 'red_tv', '0,0,0', 1, 1, 1, 'FIREON', 'SF', 'Portable TV', 'Don?t miss those soaps'),
-(2050, 'tree6', '0,0,0', 1, 1, 2, 'NULL', 'SF', 'Flashy Christmas Tree', 'The future\'s bright!'),
+(2050, 'tree6', '0,0,0', 1, 1, 2, 'NULL', 'SF', 'Flashy Christmas Tree', 'The future''s bright!'),
 (1824, 'plant_mazegate', '0,0,0', 2, 1, 1, 'STATUS', 'SFGDQ', 'Maze Shrubbery Gate', 'Did we make it?'),
-(2054, 'plant_mazegate_snow', '0,0,0', 2, 1, 1, 'STATUS', 'SFGDQ', 'Snowy Maze Gate', 'There\'s snow way through!'),
+(2054, 'plant_mazegate_snow', '0,0,0', 2, 1, 1, 'STATUS', 'SFGDQ', 'Snowy Maze Gate', 'There''s snow way through!'),
 (1452, 'rare_snowrug', '0,0,0', 2, 2, 0.01, 'NULL', 'SFKH', 'Snow Rug', 'Chilled Elegance'),
 (1674, 'rare_moonrug', '0,0,0', 2, 2, 0.01, 'NULL', 'SFKH', 'Moon Patch', 'Desolation rocks!'),
 (2374, 'val_heart', '0,0,0', 0, 0, 0.01, 'SWITCHON', 'SFM', 'Unknown name', 'Unknown description'),
@@ -1119,7 +1136,7 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1115, 'floortile', '0,0,0', 1, 1, 0.01, 'NULL', 'SFKH', 'Floor Tile', 'In Variety of Colours'),
 (1164, 'tile_yell', '0,0,0', 4, 4, 0.01, 'NULL', 'SFKH', 'Floor Tiles', 'In a choice of colours'),
 (1208, 'hologram', '0,0,0', 1, 1, 0.2, 'SWITCHON', 'SFT', 'Holopod', 'As if by magic...'),
-(1230, 'redhologram', '0,0,0', 1, 1, 0.2, 'SWITCHON', 'SFT', 'Holo-girl', 'You\'re her only hope...'),
+(1230, 'redhologram', '0,0,0', 1, 1, 0.2, 'SWITCHON', 'SFT', 'Holo-girl', 'You''re her only hope...'),
 (2058, 'christmas_poop', '0,0,0', 1, 1, 0.1, 'SWITCHON', 'SFMH', 'Reindeer Droppings', 'Bob?s magical fertilizer'),
 (1043, 'carpet_standard', '0,0,0', 3, 5, 0.01, 'NULL', 'SFKH', 'Floor rug', 'Available in a variety of colours'),
 (1052, 'carpet_standard*1', '*ff1f08', 3, 5, 0.01, 'NULL', 'SFKH', 'Floor Rug', 'Available in a variety of colours'),
@@ -1321,11 +1338,12 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 -- Table structure for table `messenger_friendships`
 --
 
-CREATE TABLE `messenger_friendships` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `messenger_friendships` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `sender` int(11) NOT NULL,
-  `receiver` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `receiver` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `messenger_friendships`
@@ -1340,14 +1358,15 @@ INSERT INTO `messenger_friendships` (`id`, `sender`, `receiver`) VALUES
 -- Table structure for table `messenger_messages`
 --
 
-CREATE TABLE `messenger_messages` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `messenger_messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `to_id` int(11) NOT NULL,
   `from_id` int(11) NOT NULL,
   `time_sent` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `unread` tinyint(1) NOT NULL,
-  `message` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `message` varchar(300) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1355,11 +1374,12 @@ CREATE TABLE `messenger_messages` (
 -- Table structure for table `messenger_requests`
 --
 
-CREATE TABLE `messenger_requests` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `messenger_requests` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `from_id` int(11) NOT NULL,
-  `to_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `to_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1367,8 +1387,8 @@ CREATE TABLE `messenger_requests` (
 -- Table structure for table `rooms`
 --
 
-CREATE TABLE `rooms` (
-  `id` int(100) NOT NULL,
+CREATE TABLE IF NOT EXISTS `rooms` (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
   `name` varchar(75) NOT NULL,
   `order_id` int(11) NOT NULL DEFAULT '-1',
   `room_type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = private room, 1 = public',
@@ -1386,8 +1406,9 @@ CREATE TABLE `rooms` (
   `cct` varchar(50) NOT NULL DEFAULT 'floor1',
   `model` varchar(15) NOT NULL DEFAULT '',
   `wallpaper` varchar(5) NOT NULL DEFAULT '0',
-  `floor` varchar(5) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `floor` varchar(5) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
 
 --
 -- Dumping data for table `rooms`
@@ -1399,7 +1420,7 @@ INSERT INTO `rooms` (`id`, `name`, `order_id`, `room_type`, `enabled`, `hidden`,
 (14, 'The Dirty Duck Pub', 10, 1, 1, 0, '2017-03-30 20:36:00', -1, NULL, '', 0, 1, 0, 0, 40, 'pub', 'pub_a', '0', '0'),
 (16, 'Hotel Kitchen', 13, 1, 1, 0, '2017-03-30 20:58:19', -1, NULL, '', 0, 1, 0, 0, 25, 'kitchen', 'cr_kitchen', '0', '0'),
 (17, 'Cafe Ole', 12, 1, 1, 0, '2017-03-30 20:58:19', -1, NULL, '', 0, 1, 0, 0, 40, 'cafe', 'taivas_cafe', '0', '0'),
-(19, 'Habburger\'s', 9, 1, 1, 0, '2017-03-30 21:04:13', -1, NULL, '', 0, 1, 0, 0, 40, 'habburger', 'habburger', '0', '0'),
+(19, 'Habburger''s', 9, 1, 1, 0, '2017-03-30 21:04:13', -1, NULL, '', 0, 1, 0, 0, 40, 'habburger', 'habburger', '0', '0'),
 (21, 'Habbo Lido II', 6, 1, 1, 1, '2017-03-30 21:14:46', -1, NULL, '', 0, 1, 0, 0, 30, 'lido', 'pool_b', '0', '0'),
 (22, 'Club Massiva', 7, 1, 1, 0, '2017-03-31 03:10:05', -1, NULL, '', 0, 1, 0, 0, 40, 'club', 'bar_a', '0', '0'),
 (24, 'Theatredrome', 8, 1, 1, 0, '2017-03-31 03:12:18', -1, NULL, '', 0, 1, 0, 0, 25, 'theatredrome', 'theater', '0', '0'),
@@ -1417,21 +1438,21 @@ INSERT INTO `rooms` (`id`, `name`, `order_id`, `room_type`, `enabled`, `hidden`,
 (37, 'Hotel Lobby', -1, 0, 1, 0, '2017-04-07 02:14:38', 5, '', '', 0, 0, 0, 0, 25, 'floor1', 'model_e', '101', '203'),
 (38, 'asd', -1, 0, 1, 0, '2017-04-17 12:52:46', 10, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
 (39, 'asd', -1, 0, 1, 0, '2017-04-17 13:46:00', 11, '', '', 0, 1, 0, 0, 25, 'floor1', 'model_b', '101', '201'),
-(40, 'Alex\'s Bedroom', -1, 0, 1, 0, '2017-04-17 21:59:49', 5, '', '', 0, 1, 0, 0, 25, 'floor1', 'model_a', '701', '601'),
+(40, 'Alex''s Bedroom', -1, 0, 1, 0, '2017-04-17 21:59:49', 5, '', '', 0, 1, 0, 0, 25, 'floor1', 'model_a', '701', '601'),
 (41, 'testSpace', -1, 0, 1, 0, '2017-04-18 13:24:03', 9, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_b', '0', '0'),
 (42, '; a=false; ()[]<>List<>', -1, 0, 1, 0, '2017-04-18 14:29:42', 12, '', '', 2, 1, 0, 0, 25, 'floor1', 'model_f', '0', '0'),
-(43, 'teleporter room', -1, 0, 1, 0, '2017-04-18 14:47:08', 5, 'it\'s a teleporter room, whadya expeck?', '', 0, 1, 0, 0, 25, 'floor1', 'model_c', '0', '0'),
+(43, 'teleporter room', -1, 0, 1, 0, '2017-04-18 14:47:08', 5, 'it''s a teleporter room, whadya expeck?', '', 0, 1, 0, 0, 25, 'floor1', 'model_c', '0', '0'),
 (44, 'xx', -1, 0, 1, 0, '2017-04-18 14:48:36', 13, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
 (45, 'test', -1, 0, 1, 0, '2017-04-18 18:13:27', 14, 'test', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
 (46, 'MY ROOM', -1, 0, 1, 0, '2017-04-18 23:26:46', 15, 'Hello', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '501', '103'),
 (47, 'Sijainti', -1, 0, 1, 0, '2017-04-19 17:14:28', 8, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_b', '114', '410'),
-(48, 'My Room', -1, 0, 1, 0, '2017-04-20 06:37:40', 19, 'JasonDev\'s Room', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_b', '1006', '301'),
+(48, 'My Room', -1, 0, 1, 0, '2017-04-20 06:37:40', 19, 'JasonDev''s Room', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_b', '1006', '301'),
 (49, 'my room', -1, 0, 1, 0, '2017-04-20 08:37:48', 21, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_e', '0', '0'),
 (50, 'Spaghetti', -1, 0, 1, 0, '2017-04-20 12:02:58', 22, 'Hello!', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_c', '202', '404'),
-(51, 'My Bathroom', -1, 0, 1, 0, '2017-04-21 02:45:13', 19, 'JasonDev\'s Bathroom', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
+(51, 'My Bathroom', -1, 0, 1, 0, '2017-04-21 02:45:13', 19, 'JasonDev''s Bathroom', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
 (52, 'test', -1, 0, 1, 0, '2017-04-21 12:41:41', 5, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
 (53, 'naaaaaa', -1, 0, 1, 0, '2017-04-21 18:12:08', 26, 'a', 'wef', 0, 0, 0, 0, 25, 'floor1', 'model_a', '101', '101'),
-(54, 'Lol\'s Chill room', -1, 0, 1, 0, '2017-04-21 19:31:25', 23, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '810', '301'),
+(54, 'Lol''s Chill room', -1, 0, 1, 0, '2017-04-21 19:31:25', 23, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '810', '301'),
 (55, 'My Room', -1, 0, 1, 0, '2017-04-21 21:27:18', 27, 'Room for veterans', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '101', '101'),
 (56, 'Test', -1, 0, 1, 0, '2017-04-21 22:51:05', 28, 'Whoaaaa', 'wef', 1, 1, 0, 0, 25, 'floor1', 'model_a', '0', '0');
 
@@ -1441,8 +1462,8 @@ INSERT INTO `rooms` (`id`, `name`, `order_id`, `room_type`, `enabled`, `hidden`,
 -- Table structure for table `room_bots`
 --
 
-CREATE TABLE `room_bots` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `room_bots` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `room_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(50) NOT NULL,
   `figure` varchar(250) NOT NULL,
@@ -1454,8 +1475,10 @@ CREATE TABLE `room_bots` (
   `walk_to` varchar(100) NOT NULL,
   `messages` longtext NOT NULL,
   `triggers` varchar(200) NOT NULL,
-  `responses` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `responses` longtext NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `room_bots`
@@ -1465,7 +1488,7 @@ INSERT INTO `room_bots` (`id`, `room_id`, `name`, `figure`, `motto`, `start_x`, 
 (1, 19, 'Phillip', 'sd=001/0&hr=010/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/217,113,69&ls=002/217,113,69&rs=002/217,113,69&lg=001/102,102,102&sh=003/47,45,38', 'Serving the Habbos', 1, 10, 0, 2, '0,12 0,7 1,11 1,7 0,10', '', 'chips,burger,food,drink,fries', 'Here is your %item%, %username%!'),
 (2, 17, 'Maria', 'sd=001/0&hr=011/003,033,43&hd=002/255,204,153&ey=002/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=016/59,122,192&ls=002/59,122,192&rs=002/59,122,192&lg=001/51,51,51&sh=002/121,94,83', 'Serving coffee since 2001', 4, 8, 1, 2, '3,10 4,10 4,8 4,5 3,6 2,7 3,8', '', 'coffee,drink', 'Here is your coffee, %username%!'),
 (3, 14, 'Dave', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=003/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=006/51,51,51&sh=003/000,000,000', 'I hate my job', 10, 5, 2, 2, '9,8 9,5 10,8 9,2 10,6 10,2 9,4', '', 'beer,glass,drink', 'One %item% coming right up'),
-(4, 13, 'Zoe', 'sd=001/0&hr=006/202,90,51&hd=002/255,204,153&ey=002/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=006/55,139,232&ls=002/55,139,232&rs=002/55,139,232&lg=002/152,62,79&sh=002/175,220,223', 'Pool has aids', 6, 29, 7, 2, '6,29 6,30', '', 'drink,food,eat', 'Here\'s your %item%, enjoy it!');
+(4, 13, 'Zoe', 'sd=001/0&hr=006/202,90,51&hd=002/255,204,153&ey=002/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=006/55,139,232&ls=002/55,139,232&rs=002/55,139,232&lg=002/152,62,79&sh=002/175,220,223', 'Pool has aids', 6, 29, 7, 2, '6,29 6,30', '', 'drink,food,eat', 'Here''s your %item%, enjoy it!');
 
 -- --------------------------------------------------------
 
@@ -1473,7 +1496,7 @@ INSERT INTO `room_bots` (`id`, `room_id`, `name`, `figure`, `motto`, `start_x`, 
 -- Table structure for table `room_models`
 --
 
-CREATE TABLE `room_models` (
+CREATE TABLE IF NOT EXISTS `room_models` (
   `id` varchar(100) NOT NULL,
   `door_x` int(11) NOT NULL,
   `door_y` int(11) NOT NULL,
@@ -1481,7 +1504,8 @@ CREATE TABLE `room_models` (
   `door_dir` int(4) NOT NULL DEFAULT '2',
   `heightmap` text NOT NULL,
   `has_pool` tinyint(1) NOT NULL DEFAULT '0',
-  `disable_height_check` tinyint(1) NOT NULL DEFAULT '0'
+  `disable_height_check` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -1522,16 +1546,17 @@ INSERT INTO `room_models` (`id`, `door_x`, `door_y`, `door_z`, `door_dir`, `heig
 -- Table structure for table `room_public_connections`
 --
 
-CREATE TABLE `room_public_connections` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `room_public_connections` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `room_id` int(11) NOT NULL,
   `to_id` int(11) NOT NULL,
   `coordinates` varchar(100) NOT NULL DEFAULT '0,0',
   `door_x` int(11) NOT NULL DEFAULT '-1',
   `door_y` int(11) NOT NULL DEFAULT '-1',
   `door_z` int(11) NOT NULL DEFAULT '-1',
-  `door_rotation` int(11) NOT NULL DEFAULT '-1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `door_rotation` int(11) NOT NULL DEFAULT '-1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `room_public_connections`
@@ -1559,8 +1584,8 @@ INSERT INTO `room_public_connections` (`id`, `room_id`, `to_id`, `coordinates`, 
 -- Table structure for table `room_public_items`
 --
 
-CREATE TABLE `room_public_items` (
-  `id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `room_public_items` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `definitionid` int(10) NOT NULL,
   `model` varchar(100) NOT NULL,
   `x` smallint(3) NOT NULL,
@@ -1568,8 +1593,10 @@ CREATE TABLE `room_public_items` (
   `z` float NOT NULL,
   `rotation` tinyint(1) NOT NULL,
   `object` varchar(255) DEFAULT NULL,
-  `data` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `data` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `uni` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=955 ;
 
 --
 -- Dumping data for table `room_public_items`
@@ -2529,11 +2556,12 @@ INSERT INTO `room_public_items` (`id`, `definitionid`, `model`, `x`, `y`, `z`, `
 -- Table structure for table `room_rights`
 --
 
-CREATE TABLE `room_rights` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `room_rights` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `room_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `room_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -2541,8 +2569,8 @@ CREATE TABLE `room_rights` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(150) NOT NULL,
   `password` varchar(500) DEFAULT NULL,
   `rank` tinyint(1) NOT NULL DEFAULT '1',
@@ -2557,8 +2585,9 @@ CREATE TABLE `users` (
   `country` varchar(10) NOT NULL DEFAULT 'UK',
   `badge` varchar(10) NOT NULL DEFAULT '',
   `birthday` varchar(30) NOT NULL DEFAULT '01/01/1970',
-  `has_logged_in` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `has_logged_in` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
 
 --
 -- Dumping data for table `users`
@@ -2566,23 +2595,23 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `figure`, `pool_figure`, `credits`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
 (2, 'test', '$2a$10$VLwINmZRJMWAHQvia7.4GOwwFG8KTbM6dMXbhnhMsfNKjXaysWDC6', 1, 44324323, 1490046606, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', 'ch=s01/51,120,201', 0, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '$2a$10$4Kq20Dc6l3tbGGSqFByese.nfquj8FBvFK8m7rV.LaFFvaj9.yESW', 1, 1489384512, 1492849260, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=008/253,218,207&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/69,98,131&ls=001/69,98,131&rs=001/69,98,131&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/53,51,44', 5850, 'Male', 'UK', '', '01.01.1997', 1),
+(5, 'Alex', '$2a$10$od20MEt/kjgZ/3fBdUZw0.0XO/WcLQg2dKtnmBxMQ7S0ZyROSwc7O', 1, 1489384512, 1492850161, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=008/253,218,207&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/69,98,131&ls=001/69,98,131&rs=001/69,98,131&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/53,51,44', 5845, 'Male', 'UK', '', '01.01.1997', 1),
 (6, 'Dark', '$2a$10$3VoNh8uaT6ZxeG1nsp1PhuTK8HKml5U6svLyjFN/4GBqWJ6DAUWgS', 1, NULL, NULL, 'scott@hypermine.com', 'cool kid', 'sd=001/0&hr=023/103,78,59&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/101,106,64&ls=001/101,106,64&rs=001/101,106,64&lg=006/119,159,187&sh=002/124,143,125', 'ch=s02/42,199,210', 0, 'Male', 'UK', '', '01.01.1990', 0),
 (7, 'Dominic', '$2a$10$e0Y4w4SPnb7vjl5Jf4eUIOBL6nuYVBlzk99CoYFqbyXX2eLR1grAm', 1, NULL, NULL, 'dsmithpw@gmail.com', 'Copies fade so fast...', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 0, 'Male', 'UK', '', '26.02.1997', 0),
 (8, 'Asc', '$2a$10$9x1Dz9uN9BQm1oU5LcCF.O8CJvh2SRRxbD5d4gle.ML1t8zT/cugq', 1, 1492627423, 1492795947, 'spam@here.nty', 'H&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;pp&auml;ij&auml;&auml;!', 'sd=001/0&hr=015/200,210,230&hd=002/226,219,185&ey=003/0&fc=001/226,219,185&bd=001/226,219,185&lh=001/226,219,185&rh=001/226,219,185&ch=009/255,255,255&ls=002/255,255,255&rs=002/255,255,255&lg=004/255,255,255&sh=003/255,255,255', '', 1336, 'Male', 'UK', '', '11.11.1911', 0),
 (9, 'Ascii', '$2a$10$cs4KnN0aET3QXi0P4zwkDOYtTKyUwhBnSJtAH05lszoMpHXlPbQYe', 1, NULL, NULL, 'spam@here.nty', 'null', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 990, 'Male', 'UK', '', '11.11.1911', 0),
 (10, 'pugsAreOkay', '$2a$10$HDrSPqhVqrMqyIJYLcGJKuGvqc71eujYVsipdw71NXxjQmtAAjiEq', 1, NULL, NULL, 'a@a.com', '', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 0, 'Male', 'UK', '', '01.01.1980', 0),
 (11, 'TacoTuesday', '$2a$10$gUcCFOA3qo6rxCIKfAe86.gRPQyDBxebMcLQs58YuhU8dGYWptrre', 1, NULL, NULL, 'a@a.com', '', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', 'ch=s02/42,199,210', 186, 'Male', 'UK', '', '01.01.1980', 0),
-(12, 'mentle', '$2a$10$MI7dLGmSTc8rsER0Dm/0ceFdkrjOiFkbpkMmpfUwBJdmrN68NwW1.', 1, NULL, NULL, 'mentle@rz.com', 'i\'m the one who opens if you knock', 'sd=001/0&hr=008/238,231,224&hd=002/248,229,218&ey=005/0&fc=001/248,229,218&bd=001/248,229,218&lh=001/248,229,218&rh=001/248,229,218&ch=005/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=006/255,255,255&sh=001/255,255,255', '', 0, 'Male', 'UK', '', '11.02.1995', 0),
+(12, 'mentle', '$2a$10$MI7dLGmSTc8rsER0Dm/0ceFdkrjOiFkbpkMmpfUwBJdmrN68NwW1.', 1, NULL, NULL, 'mentle@rz.com', 'i''m the one who opens if you knock', 'sd=001/0&hr=008/238,231,224&hd=002/248,229,218&ey=005/0&fc=001/248,229,218&bd=001/248,229,218&lh=001/248,229,218&rh=001/248,229,218&ch=005/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=006/255,255,255&sh=001/255,255,255', '', 0, 'Male', 'UK', '', '11.02.1995', 0),
 (13, 'rere', '$2a$10$CYxeKcJdYA7adTooIhbh4Ot5snF7HnLTX0.LLFEr64rHRFrOzbQ8m', 1, NULL, 1492804089, 'lol@nah.com', 'f', 'sd=001/0&hr=015/50,50,53&hd=002/238,231,224&ey=001/0&fc=001/238,231,224&bd=001/238,231,224&lh=001/238,231,224&rh=001/238,231,224&ch=009/51,51,51&ls=002/51,51,51&rs=002/51,51,51&lg=006/51,51,51&sh=003/255,255,255', '', 0, 'Male', 'UK', '', '01.07.1991', 0),
 (14, 'vista4life', '$2a$10$dbxh8BFffHhe9Tuhf73gHO5fJi2LCoT3SJK4.npqK.BF3FvCvXgUK', 1, NULL, NULL, 'obama@hotty.cm', 'obamaftw', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 0, 'Male', 'UK', '', '01-01-1991', 0),
 (15, 'Alito', '$2a$10$RRkBQ/SiwlFzCvy5od2O6OyAoPJdLBMXMTYSeEvFzDysiVOL4WVze', 1, NULL, 1492820267, 'alitohabbo@hotmail.com', 'Shockwave lover', 'sd=001/0&hr=013/200,210,230&hd=002/255,204,153&ey=005/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=003/106,64,92&ls=002/106,64,92&rs=002/106,64,92&lg=001/215,193,135&sh=001/209,223,175', 'ch=s02/255,255,255', 55, 'Male', 'UK', '', '02.04.1993', 0),
 (16, 'NAH', '$2a$10$bxLXptoISd7gsiM74.PYm.qVglKpjvZt/kHFe3s.QfKD.aIwjFoN.', 1, NULL, NULL, 'j@j.com', '', 'sd=001/0&hr=021/200,210,230&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 0, 'Male', 'UK', '', '01.01.1991', 0),
 (17, 'NuuttiD3w', '$2a$10$DWxGYChEjnxFOH9JCU7AJu47APUlaWkTVaMOgp7S2WPcNRsPW4ypS', 1, NULL, NULL, 'nuutti03.ns@gmail.com', 'idk m8', 'sd=001/0&hr=002/225,204,120&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/76,136,43&ls=001/76,136,43&rs=001/76,136,43&lg=001/119,159,187&sh=004/255,255,255', '', 0, 'Male', 'UK', '', '03.05.2003', 0),
 (18, 'AnotherUser', '$2a$10$.kjP76h0WOt4ogLWKo5.v.ghFs5uqDGESCT9/sSXELNPezJhbk32u', 1, 1492664949, 1492664950, 'e2e@cc.com', 'xddddd', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 0, 'Male', 'UK', '', '04.04.1997', 0),
-(19, 'JasonDev', '$2a$10$nBM2grWFbTHlnY7ysN4AP.17pTmAfiwL/4ZMHqOP4w741b1yCSqeK', 1, 1492668493, 1492742729, 'jason.devvy@gmail.ocm', 'Is to play alex\'s creations', 'sd=001/0&hr=024/255,234,173&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/51,102,51&ls=001/51,102,51&rs=001/51,102,51&lg=004/102,102,102&sh=002/192,180,199', 'ch=s02/255,255,255', 1009, 'Male', 'UK', '', '30.07.1995', 0),
+(19, 'JasonDev', '$2a$10$nBM2grWFbTHlnY7ysN4AP.17pTmAfiwL/4ZMHqOP4w741b1yCSqeK', 1, 1492668493, 1492742729, 'jason.devvy@gmail.ocm', 'Is to play alex''s creations', 'sd=001/0&hr=024/255,234,173&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/51,102,51&ls=001/51,102,51&rs=001/51,102,51&lg=004/102,102,102&sh=002/192,180,199', 'ch=s02/255,255,255', 1009, 'Male', 'UK', '', '30.07.1995', 0),
 (20, 'Book', '$2a$10$rw3Nlk7vh8gModpUCi38H.pqsLIx64LnA7Qy85oIDG.5COwOFsaQq', 1, 1492669289, 1492669850, 'br@andon.pw', 'br', 'sd=001/0&hr=021/50,50,53&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/255,255,255&ls=002/255,255,255&rs=002/255,255,255&lg=001/119,159,187&sh=001/121,94,83', '', 225, 'Male', 'UK', '', '15.02.1998', 0),
-(21, 'DevJoke', '$2a$10$ZiOcyMKnY77zapEk6Wv1sOqP9tPUgOZ5n2d0Lqu3tf4Ec/GSrKqKa', 1, 1492677244, 1492677422, 'kevin.schilling1999@gmail.com', 'I\'m from Germany!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 225, 'Male', 'UK', '', '21.07.1999', 0),
+(21, 'DevJoke', '$2a$10$ZiOcyMKnY77zapEk6Wv1sOqP9tPUgOZ5n2d0Lqu3tf4Ec/GSrKqKa', 1, 1492677244, 1492677422, 'kevin.schilling1999@gmail.com', 'I''m from Germany!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 225, 'Male', 'UK', '', '21.07.1999', 0),
 (22, 'Platinum', '$2a$10$NYvyzSa0mbFfC4HkLwuL6Ob1KYS7ksEPHmRCHp0xH0F/i18IFQCVe', 1, 1492686873, 1492691719, 'zoheb.malik@hotmail.co.uk', 'Hello!', 'sd=001/0&hr=010/120,109,90&hd=002/215,188,169&ey=001/0&fc=001/215,188,169&bd=001/215,188,169&lh=001/215,188,169&rh=001/215,188,169&ch=001/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=001/51,51,51&sh=002/255,255,255', '', 390, 'Male', 'UK', '', '13.01.1999', 0),
 (23, 'Lolislol', '$2a$10$9j3FtzglhBX0OsTmepZanuuRKsty5hXwzsCppj0jWOmW37qQDxu6m', 1, 1492704693, 1492803096, 'donttellya@live.nl', 'Lolislol - Who else?', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=003/184,231,55&ls=002/184,231,55&rs=002/184,231,55&lg=006/54,94,138&sh=003/121,94,83', 'ch=s02/255,255,255', 188, 'Male', 'UK', '', '23-05-1994', 0),
 (24, 'Res', '$2a$10$wocL8ZwsDVpiEGHHnF9l3u/KCDnxBuOfuseX3fB86bfXFGqcpImQS', 1, 1492773609, 1492773691, 'nah@gmail.com', 'check out this project', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 'Male', 'UK', '', '26.03.1994', 0),
@@ -2592,166 +2621,6 @@ INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_on
 (28, 'Gonzalox', '$2a$10$H/b4a74fMIJ4zd3PVV4L4.zpr0jvTJ/3SLFuLCfWYWS84DnbQihj2', 1, 1492813835, 1492815651, 'gonzalox7@gmail.com', 'Hi', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 235, 'Male', 'UK', '', '10.01.1990', 0),
 (29, 'www', '$2a$10$DFHW/DdblpKeic8cKKVqluQTG4KiiWpxPmgypK5cETTE0oQN6gmlC', 1, 1492839540, 1492839581, 'k@k.com', 'just looking', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 'Male', 'UK', '', '07.08.1997', 0);
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `catalogue`
---
-ALTER TABLE `catalogue`
-  ADD UNIQUE KEY `call_id` (`call_id`),
-  ADD KEY `id` (`id`);
-
---
--- Indexes for table `catalogue_deals`
---
-ALTER TABLE `catalogue_deals`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `items`
---
-ALTER TABLE `items`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `item_definitions`
---
-ALTER TABLE `item_definitions`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `messenger_friendships`
---
-ALTER TABLE `messenger_friendships`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `messenger_messages`
---
-ALTER TABLE `messenger_messages`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `messenger_requests`
---
-ALTER TABLE `messenger_requests`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `rooms`
---
-ALTER TABLE `rooms`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `room_bots`
---
-ALTER TABLE `room_bots`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
-
---
--- Indexes for table `room_models`
---
-ALTER TABLE `room_models`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `room_public_connections`
---
-ALTER TABLE `room_public_connections`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `room_public_items`
---
-ALTER TABLE `room_public_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `uni` (`id`);
-
---
--- Indexes for table `room_rights`
---
-ALTER TABLE `room_rights`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `catalogue`
---
-ALTER TABLE `catalogue`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
---
--- AUTO_INCREMENT for table `catalogue_deals`
---
-ALTER TABLE `catalogue_deals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `items`
---
-ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
---
--- AUTO_INCREMENT for table `item_definitions`
---
-ALTER TABLE `item_definitions`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2634;
---
--- AUTO_INCREMENT for table `messenger_friendships`
---
-ALTER TABLE `messenger_friendships`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `messenger_messages`
---
-ALTER TABLE `messenger_messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `messenger_requests`
---
-ALTER TABLE `messenger_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `rooms`
---
-ALTER TABLE `rooms`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
---
--- AUTO_INCREMENT for table `room_bots`
---
-ALTER TABLE `room_bots`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `room_public_connections`
---
-ALTER TABLE `room_public_connections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT for table `room_public_items`
---
-ALTER TABLE `room_public_items`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=955;
---
--- AUTO_INCREMENT for table `room_rights`
---
-ALTER TABLE `room_rights`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
