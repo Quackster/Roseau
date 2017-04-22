@@ -17,14 +17,21 @@ public class PURCHASE implements MessageEvent {
 	public void handle(Player player, ClientMessage reader) {
 
 		if (!(Roseau.getUtilities().getUnixTimestamp() - player.getOrderInfoProtection() > 500)) {
-			Log.println("difference: " + (Roseau.getUtilities().getUnixTimestamp() - player.getOrderInfoProtection()));
 			return;
 		}
-		
-		String callID = reader.getArgument(0).replace("/", "");
+
+		String callID = reader.getMessageBody();
+		callID = callID.replace(" " + player.getDetails().getUsername(), "");
+		callID = callID.replace("/", "");
 
 		Player p = player.getPrivateRoomPlayer();
-		CatalogueItem product = Roseau.getGame().getCatalogueManager().getItemByCall(callID);
+		CatalogueItem product = null;
+
+		if (callID.contains("L") || callID.contains("T") || callID.contains("juliste")) {
+			product = Roseau.getGame().getCatalogueManager().getItemByCall(callID.split(" ")[0]);
+		} else {
+			product = Roseau.getGame().getCatalogueManager().getItemByCall(callID);
+		}
 
 		if (product != null) {
 
@@ -34,12 +41,10 @@ public class PURCHASE implements MessageEvent {
 
 				Item item = Roseau.getDao().getInventory().newItem(product.getDefinition().getID(), player.getDetails().getID(), "");
 
-				if (item.getDefinition().getBehaviour().isDecoration() || callID.equals("juliste")) {
-					item.setCustomData(reader.getArgument(1));
+				if (item.getDefinition().getBehaviour().isDecoration() || callID.contains("juliste")) {
+					item.setCustomData(callID.split(" ")[1]);
 					item.save();
 				}
-
-
 
 				if (item.getDefinition().getBehaviour().isTeleporter()) {
 
@@ -69,13 +74,7 @@ public class PURCHASE implements MessageEvent {
 			}
 		}
 
-		if (!reader.getMessageBody().contains("deal ")) {
-			return;
-		}
-		
-		Log.println("call ID: " + reader.getMessageBody().split(" ")[1]);
-		
-		CatalogueDeal deal = Roseau.getGame().getCatalogueManager().getDealByCall(reader.getMessageBody().split(" ")[1]);
+		CatalogueDeal deal = Roseau.getGame().getCatalogueManager().getDealByCall(callID);
 
 		if (deal != null) {
 
@@ -85,6 +84,11 @@ public class PURCHASE implements MessageEvent {
 
 				for (CatalogueItem item : deal.getItems()) {
 					Item newItem = Roseau.getDao().getInventory().newItem(item.getDefinition().getID(), player.getDetails().getID(), "");
+
+					if (item.getExtraData() != null) {
+						newItem.setCustomData(item.getExtraData());
+					}
+
 					p.getInventory().addItem(newItem);
 				}
 

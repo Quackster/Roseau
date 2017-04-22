@@ -34,7 +34,7 @@ public class PLACEITEMFROMSTRIP implements MessageEvent {
 		}
 		
 		String wallPosition = reader.getMessageBody().replace(itemID + " ", "");
-		//wallPosition.replace("/" + item.getID(), "");
+		wallPosition.replace("/" + item.getID(), "");
 		
 		item.setWallPosition(wallPosition);
 		item.setOwnerID(room.getData().getOwnerID());

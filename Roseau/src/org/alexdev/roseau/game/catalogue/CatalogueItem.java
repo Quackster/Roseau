@@ -8,11 +8,13 @@ public class CatalogueItem {
 	private int credits;
 	private int definitionID;
 	private String callID;
+	private String extraData;
 	
 	public CatalogueItem(String callID, int definitionID, int credits) {
 		this.callID = callID;
 		this.credits = credits;
 		this.definitionID = definitionID;
+		this.extraData = null;
 	}
 
 	public String getCallID() {
@@ -25,5 +27,13 @@ public class CatalogueItem {
 
 	public ItemDefinition getDefinition() {
 		return Roseau.getGame().getItemManager().getDefinition(this.definitionID);
+	}
+
+	public String getExtraData() {
+		return extraData;
+	}
+
+	public void setExtraData(String extraData) {
+		this.extraData = extraData;
 	}
 }

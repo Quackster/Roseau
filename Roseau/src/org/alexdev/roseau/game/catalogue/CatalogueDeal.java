@@ -3,6 +3,7 @@ package org.alexdev.roseau.game.catalogue;
 import java.util.List;
 
 import org.alexdev.roseau.Roseau;
+import org.alexdev.roseau.game.item.Item;
 
 import com.google.common.collect.Lists;
 
@@ -26,7 +27,17 @@ public class CatalogueDeal {
 		List<CatalogueItem> items = Lists.newArrayList();
 		
 		for (String callID : this.items) {
-			items.add(Roseau.getGame().getCatalogueManager().getItemByCall(callID));
+			
+			CatalogueItem item = null;
+			
+			if (callID.contains("|")) {
+				item = Roseau.getGame().getCatalogueManager().getItemByCall(callID.split("|")[0]);	
+				item.setExtraData(callID.split("|")[1]);	
+			} else {
+				item = Roseau.getGame().getCatalogueManager().getItemByCall(callID);
+			}
+		
+			items.add(item);
 		}
 		
 		return items;

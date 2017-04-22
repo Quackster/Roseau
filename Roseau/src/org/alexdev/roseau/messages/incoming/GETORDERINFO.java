@@ -5,6 +5,7 @@ import org.alexdev.roseau.game.catalogue.CatalogueDeal;
 import org.alexdev.roseau.game.catalogue.CatalogueItem;
 import org.alexdev.roseau.game.item.ItemDefinition;
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.ORDERINFO;
 import org.alexdev.roseau.server.messages.ClientMessage;
@@ -14,16 +15,22 @@ public class GETORDERINFO implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 
-		String callID = reader.getArgument(1);
-
-		CatalogueItem item = Roseau.getGame().getCatalogueManager().getItemByCall(callID);
-		CatalogueDeal deal = Roseau.getGame().getCatalogueManager().getDealByCall(callID);
+		String callID = reader.getMessageBody().substring(4).replace(" " + player.getDetails().getUsername(), "");
+		String catalogueID = callID;
+		
+		if (callID.contains("L") || callID.contains("T") || callID.contains("juliste")) {
+			catalogueID = callID.split(" ")[0];
+		}
+		
+		
+		CatalogueItem item = Roseau.getGame().getCatalogueManager().getItemByCall(catalogueID);
+		CatalogueDeal deal = Roseau.getGame().getCatalogueManager().getDealByCall(catalogueID);
 		
 		boolean validOrderInfo = false;
 
 		if (deal != null) {
 			
-			player.send(new ORDERINFO("deal " + deal.getCallID() + "", deal.getCost()));
+			player.send(new ORDERINFO(deal.getCallID(), deal.getCost()));
 			validOrderInfo = true;
 
 		} else if (item != null) {
@@ -36,8 +43,8 @@ public class GETORDERINFO implements MessageEvent {
 
 			String extraData = "";
 
-			if (callID.equals("L") || callID.equals("T") || callID.equals("juliste")) {
-				extraData += " " + reader.getArgument(2);
+			if (callID.contains("L") || callID.contains("T") || callID.contains("juliste")) {
+				extraData += " " + callID.split(" ")[1];
 			}
 
 			player.send(new ORDERINFO(item.getCallID() + extraData, item.getCredits()));
