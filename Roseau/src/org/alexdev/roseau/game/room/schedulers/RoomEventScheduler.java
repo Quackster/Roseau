@@ -1,6 +1,7 @@
 package org.alexdev.roseau.game.room.schedulers;
 
 import org.alexdev.roseau.game.room.Room;
+import org.alexdev.roseau.log.Log;
 
 public class RoomEventScheduler implements Runnable {
 
@@ -14,7 +15,11 @@ public class RoomEventScheduler implements Runnable {
 	public void run() {
 		
 		for (RoomEvent event : this.room.getEvents()) {
-			event.tick();
+			try {
+				event.tick();
+			} catch (Exception e) {
+				Log.exception(e);
+			}
 		}
 		
 		/*for (int i = 0; i < this.room.getEvents().size(); i++) {

@@ -20,6 +20,7 @@ import org.alexdev.roseau.game.room.schedulers.RoomEventScheduler;
 import org.alexdev.roseau.game.room.schedulers.RoomWalkScheduler;
 import org.alexdev.roseau.game.room.schedulers.events.BotMoveRoomEvent;
 import org.alexdev.roseau.game.room.schedulers.events.ClubMassivaDiscoEvent;
+import org.alexdev.roseau.game.room.schedulers.events.HabboLidoEvent;
 import org.alexdev.roseau.game.room.schedulers.events.UserStatusEvent;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
@@ -117,6 +118,10 @@ public class Room {
 
 		if (this.roomData.getModelName().equals("bar_b")) {
 			this.registerNewEvent(new ClubMassivaDiscoEvent(this));
+		}
+		
+		if (this.roomData.getModelName().equals("pool_b")) {
+			this.registerNewEvent(new HabboLidoEvent(this));
 		}
 
 		if (this.bots.size() > 0) {
@@ -383,6 +388,19 @@ public class Room {
 		}
 
 		return sessions;
+	}
+	
+
+	public Player getPlayerByID(int ID) {
+		
+		for (Player player : this.getPlayers()) {
+			if (player.getDetails().getID() == ID) {
+				return player;
+			}
+		}
+		
+		return null;
+
 	}
 
 	public List<Entity> getEntities(EntityType type) {
