@@ -75,9 +75,9 @@ public class RoomMapping {
 
 				double stacked_height = 0;
 
-				if (item.getDefinition().getBehaviour().isCanStackOnTop()) {
+				//if (item.getDefinition().getBehaviour().isCanStackOnTop()) {
 					stacked_height = item.getDefinition().getHeight();
-				}
+				//}
 
 				this.checkHighestItem(item, item.getPosition().getX(), item.getPosition().getY());
 

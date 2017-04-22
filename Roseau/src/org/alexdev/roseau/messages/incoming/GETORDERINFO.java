@@ -18,7 +18,7 @@ public class GETORDERINFO implements MessageEvent {
 		String callID = reader.getMessageBody().substring(4).replace(" " + player.getDetails().getUsername(), "");
 		String catalogueID = callID;
 		
-		if (callID.contains("L") || callID.contains("T") || callID.contains("juliste")) {
+		if (callID.contains("L ") || callID.contains("T ") || callID.contains("juliste ")) {
 			catalogueID = callID.split(" ")[0];
 		}
 		
@@ -43,7 +43,7 @@ public class GETORDERINFO implements MessageEvent {
 
 			String extraData = "";
 
-			if (callID.contains("L") || callID.contains("T") || callID.contains("juliste")) {
+			if (callID.contains("L ") || callID.contains("T ") || callID.contains("juliste ")) {
 				extraData += " " + callID.split(" ")[1];
 			}
 

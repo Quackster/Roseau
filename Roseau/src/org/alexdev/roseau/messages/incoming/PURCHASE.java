@@ -27,7 +27,7 @@ public class PURCHASE implements MessageEvent {
 		Player p = player.getPrivateRoomPlayer();
 		CatalogueItem product = null;
 
-		if (callID.contains("L") || callID.contains("T") || callID.contains("juliste")) {
+		if (callID.contains("L ") || callID.contains("T ") || callID.contains("juliste ")) {
 			product = Roseau.getGame().getCatalogueManager().getItemByCall(callID.split(" ")[0]);
 		} else {
 			product = Roseau.getGame().getCatalogueManager().getItemByCall(callID);
@@ -41,7 +41,7 @@ public class PURCHASE implements MessageEvent {
 
 				Item item = Roseau.getDao().getInventory().newItem(product.getDefinition().getID(), player.getDetails().getID(), "");
 
-				if (item.getDefinition().getBehaviour().isDecoration() || callID.contains("juliste")) {
+				if (item.getDefinition().getBehaviour().isDecoration() || callID.contains("juliste ")) {
 					item.setCustomData(callID.split(" ")[1]);
 					item.save();
 				}
