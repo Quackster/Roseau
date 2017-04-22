@@ -21,6 +21,10 @@ public class Player implements Entity {
 	private Inventory inventory;
 	private Room lastCreatedRoom;
 	private boolean sendHotelAlert;
+	
+	private long orderInfoProtection;
+	//private String callID;
+	//private String 
 
 	public Player(IPlayerNetwork network) {
 		this.network = network;
@@ -131,6 +135,14 @@ public class Player implements Entity {
 	@Override
 	public RoomUser getRoomUser() {
 		return this.roomEntity;
+	}
+
+	public long getOrderInfoProtection() {
+		return orderInfoProtection;
+	}
+
+	public void setOrderInfoProtection(long orderInfoProtection) {
+		this.orderInfoProtection = orderInfoProtection;
 	}
 
 	public Room getLastCreatedRoom() {

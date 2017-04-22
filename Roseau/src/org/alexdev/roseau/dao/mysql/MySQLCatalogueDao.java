@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.Map;
 
 import org.alexdev.roseau.dao.CatalogueDao;
+import org.alexdev.roseau.game.catalogue.CatalogueDeal;
 import org.alexdev.roseau.game.catalogue.CatalogueItem;
 import org.alexdev.roseau.log.Log;
 
@@ -46,6 +47,35 @@ public class MySQLCatalogueDao implements CatalogueDao {
 		}
 		
 		return buyableItems;
+	}
+	
+	@Override
+	public Map<String, CatalogueDeal> getItemDeals() {
+		Map<String, CatalogueDeal> deals = Maps.newHashMap();
+		
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			sqlConnection = this.dao.getStorage().getConnection();
+			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM catalogue_deals", sqlConnection);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				deals.put(resultSet.getString("call_id"), new CatalogueDeal(resultSet.getString("call_id"), resultSet.getString("products").split(","), resultSet.getInt("cost")));
+			}
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(resultSet);
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
+		
+		return deals;
 	}
 
 

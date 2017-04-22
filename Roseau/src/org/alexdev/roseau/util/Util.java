@@ -27,6 +27,10 @@ public class Util {
 		return System.currentTimeMillis() / 1000L; // return timestamp converted to seconds
 	}
 	
+	public long getUnixTimestamp() {
+		return System.currentTimeMillis(); // return timestamp converted to seconds
+	}
+	
 	public Wini getConfiguration() {
 		return configuration;
 	}
