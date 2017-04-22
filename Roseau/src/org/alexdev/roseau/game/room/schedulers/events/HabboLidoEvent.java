@@ -1,5 +1,7 @@
 package org.alexdev.roseau.game.room.schedulers.events;
 
+import java.util.List;
+
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
@@ -9,6 +11,7 @@ import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 public class HabboLidoEvent extends RoomEvent {
 
 	private int followingID = -1;
+	private int cameraType = -1;
 
 	public HabboLidoEvent(Room room) {
 		super(room);
@@ -30,11 +33,18 @@ public class HabboLidoEvent extends RoomEvent {
 			}
 
 			if (cameraEffect == 1) {
-				this.room.send(new SHOWPROGRAM(new String[] {"cam1", "setcamera", "1" }));	
+
+				if (this.cameraType != 1) {
+					this.cameraType = 1;
+					this.room.send(new SHOWPROGRAM(new String[] {"cam1", "setcamera", Integer.toString(this.cameraType) }));	
+				}
 			}
 
 			if (cameraEffect == 2) {
-				this.room.send(new SHOWPROGRAM(new String[] {"cam1", "setcamera", "2" }));	
+				if (this.cameraType != 2) {
+					this.cameraType = 2;
+					this.room.send(new SHOWPROGRAM(new String[] {"cam1", "setcamera", Integer.toString(this.cameraType) }));	
+				}
 			}
 		}
 
@@ -43,11 +53,19 @@ public class HabboLidoEvent extends RoomEvent {
 
 	private void findNewTarget() {
 
-		if (room.getPlayers().isEmpty()) {
+		List<Player> players = room.getPlayers();
+
+		if (players.isEmpty()) {
 			return;
 		}
 
-		Player player = room.getPlayers().get(Roseau.getUtilities().getRandom().nextInt(room.getPlayers().size()));
+		Player player = null;
+
+		if (players.size() == 1) {
+			player = players.get(0);
+		} else {
+			player = players.get(Roseau.getUtilities().getRandom().nextInt(players.size()));
+		}
 
 		if (this.followingID != player.getDetails().getID()) {
 			this.followingID = player.getDetails().getID();
