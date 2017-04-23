@@ -35,7 +35,7 @@ wordfilter_disable=*/
 		boolean showOwnerName = reader.getArgument(4, "/").equals("1");
 		
 		if (!(roomName.length() > 2)) {
-			return;
+			roomName = room.getData().getName();
 		}
 		
 		int state = 0;

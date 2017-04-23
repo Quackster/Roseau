@@ -27,6 +27,10 @@ allsuperuser=0*/
 		String password = message.split(Character.toString((char)13))[1].substring(9); // remove "password=" prefix
 		boolean allsuperuser = message.split(Character.toString((char)13))[2].substring(13).equals("1");
 
+		if (!(description.length() > 2)) {
+			description = room.getData().getDescription();
+		}
+		
 		room.getData().setDescription(description);
 		room.getData().setPassword(password);
 		room.getData().setAllSuperUser(allsuperuser);
