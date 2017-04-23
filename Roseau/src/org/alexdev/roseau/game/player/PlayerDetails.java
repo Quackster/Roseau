@@ -87,7 +87,7 @@ public class PlayerDetails implements SerializableObject {
 		this.authenticated = authenticated;
 	}
 
-	public String getUsername() {
+	public String getName() {
 		return username;
 	}
 

@@ -21,7 +21,7 @@ public class PURCHASE implements MessageEvent {
 		}
 
 		String callID = reader.getMessageBody();
-		callID = callID.replace(" " + player.getDetails().getUsername(), "");
+		callID = callID.replace(" " + player.getDetails().getName(), "");
 		callID = callID.replace("/", "");
 
 		Player p = player.getPrivateRoomPlayer();

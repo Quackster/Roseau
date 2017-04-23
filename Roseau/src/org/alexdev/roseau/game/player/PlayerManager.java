@@ -57,7 +57,7 @@ public class PlayerManager {
 	public Player getByName(String name) {
 		
 		try {
-			return this.players.values().stream().filter(s -> s.getDetails().getUsername().equals(name)).findFirst().get();
+			return this.players.values().stream().filter(s -> s.getDetails().getName().equals(name)).findFirst().get();
 		} catch (Exception e) {
 			return null;
 		}

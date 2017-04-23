@@ -69,7 +69,7 @@ public class HabboLidoEvent extends RoomEvent {
 
 		if (this.followingID != player.getDetails().getID()) {
 			this.followingID = player.getDetails().getID();
-			this.room.send(new SHOWPROGRAM(new String[] {"cam1", "targetcamera", player.getDetails().getUsername() }));
+			this.room.send(new SHOWPROGRAM(new String[] {"cam1", "targetcamera", player.getDetails().getName() }));
 		}
 	}
 

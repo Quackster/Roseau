@@ -193,8 +193,8 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 		return rooms;
 	}
-	
-	
+
+
 
 	@Override
 	public Room getRoom(int roomID, boolean storeInMemory) {
@@ -253,7 +253,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				rooms.add(resultSet.getInt("user_id"));
+				rooms.add(Integer.valueOf(resultSet.getInt("user_id")));
 			}
 
 		} catch (Exception e) {
@@ -266,6 +266,37 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 
 		return rooms;
+	}
+
+	@Override
+	public void saveRoomRights(int roomID, List<Integer> rights) {
+
+		this.dao.getStorage().execute("DELETE FROM room_rights WHERE room_id = '" + roomID + "'");
+
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		for (int userID : rights) {
+
+			try {
+
+				sqlConnection = this.dao.getStorage().getConnection();
+				preparedStatement = this.dao.getStorage().prepare("INSERT INTO room_rights (room_id, user_id) VALUES (?, ?)", sqlConnection);
+				preparedStatement.setInt(1, roomID);
+				preparedStatement.setInt(2, userID);
+				preparedStatement.execute();
+
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				Storage.closeSilently(resultSet);
+				Storage.closeSilently(preparedStatement);
+				Storage.closeSilently(sqlConnection);
+			}
+
+		}
+
 	}
 
 	@Override
@@ -415,7 +446,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 				bot.getRoomUser().getPosition().setX(bot.getStartPosition().getX());
 				bot.getRoomUser().getPosition().setY(bot.getStartPosition().getY());
 				bot.getRoomUser().getPosition().setZ(bot.getStartPosition().getZ());
-				
+
 				bot.getRoomUser().getPosition().setHeadRotation(bot.getStartPosition().getRotation());
 				bot.getRoomUser().getPosition().setBodyRotation(bot.getStartPosition().getRotation());
 
@@ -452,15 +483,15 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		}
 
 		Room instance = new Room();
-		
-		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getID(), details == null ? "" : details.getUsername(), row.getString("name"), 
+
+		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getID(), details == null ? "" : details.getName(), row.getString("name"), 
 				row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"),
 				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"), row.getInt("allsuperuser") == 1, row.getInt("show_owner_name") == 1);
-		
+
 		if (details != null) {
-		instance.getData().setOwnerName(details.getUsername());
+			instance.getData().setOwnerName(details.getName());
 		}
-		
+
 		instance.load();
 
 		return instance;

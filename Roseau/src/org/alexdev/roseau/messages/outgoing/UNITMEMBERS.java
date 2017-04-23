@@ -19,7 +19,7 @@ public class UNITMEMBERS implements OutgoingMessageComposer {
 		response.init("UNITMEMBERS");
 		
 		for (Entity entity : this.entities) {
-			response.appendNewArgument(entity.getDetails().getUsername());
+			response.appendNewArgument(entity.getDetails().getName());
 		}
 	}
 

@@ -14,7 +14,7 @@ public class PLACESTUFFFROMSTRIP implements MessageEvent {
 		int itemID = Integer.valueOf(reader.getArgument(0));
 		int x = Integer.valueOf(reader.getArgument(1));
 		int y = Integer.valueOf(reader.getArgument(2));
-		//int rotation = Integer.valueOf(reader.getArgument(3));
+		int rotation = 0;//Integer.valueOf(reader.getArgument(5));
 		
 		Item item = player.getInventory().getItem(itemID);
 		
@@ -36,10 +36,14 @@ public class PLACESTUFFFROMSTRIP implements MessageEvent {
 			return;
 		}
 		
+		if (item.getDefinition().getBehaviour().isTeleporter()) {
+			rotation = 4;
+		}
+		
 		item.setOwnerID(room.getData().getOwnerID());
 		item.getPosition().setX(x);
 		item.getPosition().setY(y);
-		item.setItemRotation(2);
+		item.setItemRotation(rotation);
 		
 		room.getMapping().addItem(item, false);
 		

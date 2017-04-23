@@ -20,5 +20,6 @@ public interface RoomDao {
 	public Room createRoom(Player player, String name, String description, String model, int state, boolean showOwnerName);
 	public List<Integer> setRoomConnections(Room room);
 	public List<Bot> getBots(Room room, int roomID);
+	void saveRoomRights(int roomID, List<Integer> rights);
 	
 }

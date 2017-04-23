@@ -35,6 +35,7 @@ import org.alexdev.roseau.messages.outgoing.ROOM_READY;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
 import org.alexdev.roseau.messages.outgoing.YOUARECONTROLLER;
+import org.alexdev.roseau.messages.outgoing.YOUARENOTCONTROLLER;
 import org.alexdev.roseau.messages.outgoing.YOUAREOWNER;
 import org.alexdev.roseau.server.IServerHandler;
 import org.alexdev.roseau.server.messages.Response;
@@ -202,7 +203,7 @@ public class Room {
 				player.send(new FLATPROPERTY("floor", "0"));
 			}
 
-			this.refreshFlatPrivileges(player);
+			this.refreshFlatPrivileges(player, true);
 		}
 
 		if (this.roomData.getModel() != null) {
@@ -236,17 +237,50 @@ public class Room {
 			}
 		}
 	}
+	
+	public void giveUserRights(Player player) {
+		
+		if (this.rights.contains(Integer.valueOf(player.getDetails().getID()))) {
+			return;
+		}
+		
+		this.rights.add(Integer.valueOf(player.getDetails().getID()));
+		this.refreshFlatPrivileges(player, false);
+		this.roomData.saveRights();
+	}
+	
+	public void removeUserRights(Player player) {
+		
+		if (!this.rights.contains(Integer.valueOf(player.getDetails().getID()))) {
+			return;
+		}
+		
+		this.rights.remove(Integer.valueOf(player.getDetails().getID()));
+		this.refreshFlatPrivileges(player, false);
+		this.roomData.saveRights();
+	}
 
-	public void refreshFlatPrivileges(Player player) {
+	public void refreshFlatPrivileges(Player player, boolean enterRoom) {
 
-		if (this.roomData.getOwnerID() == player.getDetails().getID()) {	
+		if (this.roomData.getOwnerID() == player.getDetails().getID()) {
+			
 			player.send(new YOUAREOWNER());
 			player.getRoomUser().setStatus("flatctrl", " useradmin", true, -1);
+			
 		} else if (this.hasRights(player.getDetails().getID(), false) || this.roomData.hasAllSuperUser()) {
+			
 			player.send(new YOUARECONTROLLER());
 			player.getRoomUser().setStatus("flatctrl", "", true, -1);
+			
+		} else {
+			
+			player.getRoomUser().removeStatus("flatctrl");
+			player.send(new YOUARENOTCONTROLLER());
 		}
 
+		if (!enterRoom) {
+			player.getRoomUser().setNeedUpdate(true);
+		}
 	}
 
 	public void send(OutgoingMessageComposer response, boolean checkRights) {
@@ -278,7 +312,7 @@ public class Room {
 		RoomUser roomUser = player.getRoomUser();
 		roomUser.dispose();
 
-		this.send(new LOGOUT(player.getDetails().getUsername()));
+		this.send(new LOGOUT(player.getDetails().getName()));
 
 		this.dispose();
 	}
@@ -395,6 +429,18 @@ public class Room {
 		
 		for (Player player : this.getPlayers()) {
 			if (player.getDetails().getID() == ID) {
+				return player;
+			}
+		}
+		
+		return null;
+
+	}
+	
+	public Player getPlayerByName(String name) {
+		
+		for (Player player : this.getPlayers()) {
+			if (player.getDetails().getName().equals(name)) {
 				return player;
 			}
 		}
@@ -586,5 +632,9 @@ public class Room {
 
 	public List<Bot> getBots() {
 		return bots;
+	}
+
+	public List<Integer> getRights() {
+		return rights;
 	}
 }

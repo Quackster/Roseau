@@ -319,11 +319,6 @@ public class Item implements SerializableObject {
 	}
 
 	public void setItemRotation(int rotation) {
-
-		if (rotation != 0 && rotation != 2 && rotation != 4 && rotation != 6) {
-			rotation = 0;
-		}
-
 		this.position.setBodyRotation(rotation);
 	}
 

@@ -27,7 +27,7 @@ public class USERS implements OutgoingMessageComposer {
 		for (Entity entity : this.entities) {
 			response.append(Character.toString((char)13));
 			response.appendArgument("");
-			response.appendArgument(entity.getDetails().getUsername());
+			response.appendArgument(entity.getDetails().getName());
 			response.appendArgument(entity.getDetails().getFigure());
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getX()));
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getY()));

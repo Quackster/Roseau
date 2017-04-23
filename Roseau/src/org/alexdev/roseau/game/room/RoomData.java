@@ -197,4 +197,9 @@ public class RoomData {
 		Roseau.getDao().getRoom().updateRoom(this.room);
 	}
 
+	public void saveRights() {
+		Roseau.getDao().getRoom().saveRoomRights(this.id, this.room.getRights());
+		
+	}
+
 }

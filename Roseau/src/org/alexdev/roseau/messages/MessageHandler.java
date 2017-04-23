@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.incoming.ADDSTRIPITEM;
 import org.alexdev.roseau.messages.incoming.APPROVENAME;
+import org.alexdev.roseau.messages.incoming.ASSIGNRIGHTS;
 import org.alexdev.roseau.messages.incoming.CARRYDRINK;
 import org.alexdev.roseau.messages.incoming.CARRYITEM;
 import org.alexdev.roseau.messages.incoming.CLOSE_UIMAKOPPI;
@@ -34,6 +35,7 @@ import org.alexdev.roseau.messages.incoming.PLACESTUFFFROMSTRIP;
 import org.alexdev.roseau.messages.incoming.PURCHASE;
 import org.alexdev.roseau.messages.incoming.REGISTER;
 import org.alexdev.roseau.messages.incoming.REMOVEITEM;
+import org.alexdev.roseau.messages.incoming.REMOVERIGHTS;
 import org.alexdev.roseau.messages.incoming.REMOVESTUFF;
 import org.alexdev.roseau.messages.incoming.SEARCHBUSYFLATS;
 import org.alexdev.roseau.messages.incoming.SEARCHFLAT;
@@ -120,6 +122,8 @@ public class MessageHandler {
 		this.messages.put("WHISPER", new TALK());
 		this.messages.put("GOAWAY", new GOAWAY());
 		this.messages.put("CREATEFLAT", new CREATEFLAT());
+		this.messages.put("ASSIGNRIGHTS", new ASSIGNRIGHTS());
+		this.messages.put("REMOVERIGHTS", new REMOVERIGHTS());
 	}
 	
 	private void registerMessengerPackets() {

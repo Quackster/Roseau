@@ -43,7 +43,7 @@ public class TALK implements MessageEvent {
 
 				talkMessage = message;
 
-				CHAT response = new CHAT("WHISPER", player.getDetails().getUsername(), message);
+				CHAT response = new CHAT("WHISPER", player.getDetails().getName(), message);
 				player.send(response);
 
 				if (whispered != null) {
@@ -53,7 +53,7 @@ public class TALK implements MessageEvent {
 				}
 			} else {
 				talkMessage =  reader.getMessageBody();
-				CHAT response = new CHAT("WHISPER", player.getDetails().getUsername(), reader.getMessageBody());
+				CHAT response = new CHAT("WHISPER", player.getDetails().getName(), reader.getMessageBody());
 				player.send(response);
 			}
 		} else {
@@ -76,7 +76,7 @@ public class TALK implements MessageEvent {
 				players = player.getRoomUser().getRoom().getMapping().getNearbyPlayers(player, player.getRoomUser().getPosition(), GameVariables.TALK_DISTANCE);
 			}
 
-			CHAT chat = new CHAT(reader.getHeader(), player.getDetails().getUsername(), talkMessage);
+			CHAT chat = new CHAT(reader.getHeader(), player.getDetails().getName(), talkMessage);
 
 			for (Player roomPlayer : players) {
 				
@@ -112,15 +112,15 @@ public class TALK implements MessageEvent {
 				String trigger = bot.containsTrigger(talkMessage);
 
 				if (trigger != null) {
-					bot.getRoomUser().chat(bot.getResponse(player.getDetails().getUsername(), trigger), 2);
+					bot.getRoomUser().chat(bot.getResponse(player.getDetails().getName(), trigger), 2);
 					player.getRoomUser().setStatus("carryd", " " + trigger, false, GameVariables.CARRY_DRINK_TIME, true);
 				} else {
 
-					if ((talkMessage.toLowerCase().contains("hello") || talkMessage.toLowerCase().contains("hi")) && talkMessage.toLowerCase().contains(bot.getDetails().getUsername().toLowerCase())) {
-						bot.getRoomUser().chat("Hello " + player.getDetails().getUsername() + "!", 2);
+					if ((talkMessage.toLowerCase().contains("hello") || talkMessage.toLowerCase().contains("hi")) && talkMessage.toLowerCase().contains(bot.getDetails().getName().toLowerCase())) {
+						bot.getRoomUser().chat("Hello " + player.getDetails().getName() + "!", 2);
 					}
 
-					if ((talkMessage.toLowerCase().contains("hello") || talkMessage.toLowerCase().contains("hi")) && !talkMessage.toLowerCase().contains(bot.getDetails().getUsername().toLowerCase())) {
+					if ((talkMessage.toLowerCase().contains("hello") || talkMessage.toLowerCase().contains("hi")) && !talkMessage.toLowerCase().contains(bot.getDetails().getName().toLowerCase())) {
 						bot.getRoomUser().chat("Hello there!", 2);
 					} 
 				}

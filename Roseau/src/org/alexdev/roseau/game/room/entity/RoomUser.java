@@ -305,11 +305,11 @@ public class RoomUser {
 	}
 
 	public void chat(String talkMessage) {
-		this.room.send(new CHAT("CHAT", this.entity.getDetails().getUsername(), talkMessage));
+		this.room.send(new CHAT("CHAT", this.entity.getDetails().getName(), talkMessage));
 	}
 
 	public void chat(String header, String talkMessage) {
-		this.room.send(new CHAT(header, this.entity.getDetails().getUsername(), talkMessage));
+		this.room.send(new CHAT(header, this.entity.getDetails().getName(), talkMessage));
 	}
 
 
@@ -321,7 +321,7 @@ public class RoomUser {
 		TimerTask task = new TimerTask() {
 			@Override
 			public void run() {
-				room.send(new CHAT("CHAT", details.getUsername(), response));
+				room.send(new CHAT("CHAT", details.getName(), response));
 			}
 		};
 

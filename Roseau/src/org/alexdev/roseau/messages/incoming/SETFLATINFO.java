@@ -33,8 +33,7 @@ allsuperuser=0*/
 		
 		for (Player user : room.getPlayers()) {
 			user.getRoomUser().removeStatus("flatctrl");
-			room.refreshFlatPrivileges(user);
-			user.getRoomUser().setNeedUpdate(true);
+			room.refreshFlatPrivileges(user, false);
 		}
 		
 		room.getData().save();

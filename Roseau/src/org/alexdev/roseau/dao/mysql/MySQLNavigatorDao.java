@@ -76,12 +76,12 @@ public class MySQLNavigatorDao extends IProcessStorage<Room, ResultSet> implemen
 
 		Room instance = new Room();
 		
-		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getID(), details == null ? "" : details.getUsername(), row.getString("name"), 
+		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getID(), details == null ? "" : details.getName(), row.getString("name"), 
 				row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"),
 				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"), false, row.getInt("show_owner_name") == 1);
 		
 		if (details != null) {
-		instance.getData().setOwnerName(details.getUsername());
+		instance.getData().setOwnerName(details.getName());
 		}
 		
 		instance.load();

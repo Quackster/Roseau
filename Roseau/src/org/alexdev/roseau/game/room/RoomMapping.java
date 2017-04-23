@@ -256,6 +256,7 @@ public class RoomMapping {
 		}
 
 		this.room.getItems().remove(item.getID());
+		this.regenerateCollisionMaps();
 
 	}
 	
