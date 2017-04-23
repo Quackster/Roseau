@@ -45,6 +45,13 @@ public class PURCHASE implements MessageEvent {
 					item.setCustomData(callID.split(" ")[1]);
 					item.save();
 				}
+				
+				
+				if (item.getDefinition().getBehaviour().isPostIt()) {
+					item.setCustomData("20");
+					item.save();
+				}
+				
 
 				if (item.getDefinition().getBehaviour().isTeleporter()) {
 

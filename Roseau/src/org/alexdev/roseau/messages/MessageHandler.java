@@ -3,6 +3,7 @@ package org.alexdev.roseau.messages;
 import java.util.HashMap;
 
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.messages.incoming.ADDITEM;
 import org.alexdev.roseau.messages.incoming.ADDSTRIPITEM;
 import org.alexdev.roseau.messages.incoming.APPROVENAME;
 import org.alexdev.roseau.messages.incoming.ASSIGNRIGHTS;
@@ -41,6 +42,7 @@ import org.alexdev.roseau.messages.incoming.SEARCHBUSYFLATS;
 import org.alexdev.roseau.messages.incoming.SEARCHFLAT;
 import org.alexdev.roseau.messages.incoming.SEARCHFLATFORUSER;
 import org.alexdev.roseau.messages.incoming.SETFLATINFO;
+import org.alexdev.roseau.messages.incoming.SETSTRIPITEMDATA;
 import org.alexdev.roseau.messages.incoming.SETSTUFFDATA;
 import org.alexdev.roseau.messages.incoming.STATUSOK;
 import org.alexdev.roseau.messages.incoming.STOP;
@@ -146,6 +148,8 @@ public class MessageHandler {
 		this.messages.put("CarryDrink", new CARRYDRINK());
 		this.messages.put("IntoDoor", new INTODOOR());
 		this.messages.put("REMOVESTUFF", new REMOVESTUFF());
+		this.messages.put("ADDITEM", new ADDITEM());
+		this.messages.put("SETSTRIPITEMDATA", new SETSTRIPITEMDATA());
 	}
 	
 	

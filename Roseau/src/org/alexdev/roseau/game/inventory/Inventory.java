@@ -129,6 +129,8 @@ public class Inventory {
 					this.refresh("new");
 				};
 			}
+		} else {
+			this.player.send(new STRIPINFO());
 		}
 	}
 
