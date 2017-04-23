@@ -298,15 +298,13 @@ public class Item implements SerializableObject {
 
 	public String getPacketID() {
 
-		String zstring = "00000000000";
-
-		for (int j = 0; j < String.valueOf(this.ID).length(); j++) {
-			for (int i = 0; i < String.valueOf(this.ID).length(); i++) {
-				zstring += "00";
-			}
-		}
-
-		return (zstring + this.ID);
+		int paddingLength = 11; // The magic number, this just works
+		int furnIDLength = String.valueOf(this.ID).length();
+		
+		// Add the length of the ID, twice
+		paddingLength = paddingLength + ((furnIDLength * 2) * 2);
+		
+		return String.format("%0" + paddingLength + "d", this.ID);
 
 	}
 
