@@ -323,7 +323,7 @@ public class Room {
 			return true;
 		} else {
 			if (!ownerCheckOnly) {
-				return this.rights.contains(userID);
+				return this.rights.contains(Integer.valueOf(userID));
 			}
 		}
 
