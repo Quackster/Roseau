@@ -48,6 +48,8 @@ public class RoomUser {
 	private Entity entity;
 	private int lookResetTime;
 	private Item current_item;
+	
+	private boolean kickWhenStop;
 
 	public RoomUser(Entity entity) {
 		this.dispose();
@@ -113,6 +115,12 @@ public class RoomUser {
 		if (this.entity instanceof Player) {
 
 			Player player = (Player)this.entity;
+			
+			if (this.kickWhenStop) {
+				player.dispose();
+				player.kick();
+				return;
+			}
 
 			if (this.room.getData().getRoomType() == RoomType.PUBLIC) {
 
@@ -255,22 +263,22 @@ public class RoomUser {
 		
 	}
 
-	public void walkTo(Position position) {
-		this.walkTo(position.getX(), position.getY());
+	public boolean walkTo(Position position) {
+		return this.walkTo(position.getX(), position.getY());
 	}
 
-	public void walkTo(int x, int y) {
+	public boolean walkTo(int x, int y) {
 
 		/*double height = player.getRoomUser().getRoom().getData().getModel().getHeight(x, y);
 
 		Log.println("height: " + height);*/
 
 		if (this.room == null) {
-			return;
+			return false;
 		}
 
 		if (!this.canWalk) {
-			return;
+			return false;
 		}
 
 		Item item = this.room.getMapping().getHighestItem(x, y);
@@ -280,11 +288,11 @@ public class RoomUser {
 		}
 
 		if (!this.room.getMapping().isValidTile(this.entity, x, y)) {
-			return;
+			return false;
 		}
 
 		if (this.position.isMatch(new Position(x, y))) {
-			return;
+			return false;
 		}
 
 		this.goal.setX(x);
@@ -293,15 +301,17 @@ public class RoomUser {
 		LinkedList<Position> path = Pathfinder.makePath(this.entity);
 
 		if (path == null) {
-			return;
+			return false;
 		}
 
 		if (path.size() == 0) {
-			return;
+			return false;
 		}
 
 		this.path = path;
 		this.isWalking = true;
+		
+		return true;
 	}
 
 	public void chat(String talkMessage) {
@@ -572,6 +582,14 @@ public class RoomUser {
 
 	public void setCurrentItem(Item currentitem) {
 		this.current_item = currentitem;
+	}
+
+	public boolean isKickWhenStop() {
+		return kickWhenStop;
+	}
+
+	public void setKickWhenStop(boolean kickWhenStop) {
+		this.kickWhenStop = kickWhenStop;
 	}
 
 

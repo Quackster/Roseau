@@ -18,6 +18,10 @@ public class LOOKTO implements MessageEvent {
 			return;
 		}
 
+		if (player.getRoomUser().containsStatus("sit")) {
+			return;
+		}
+
 		if (player.getRoomUser().getPosition().isMatch(new Position(x, y))) {
 			return;
 		}
@@ -34,15 +38,10 @@ public class LOOKTO implements MessageEvent {
 
 		if (rotation != player.getRoomUser().getPosition().getRotation()) {
 
-			if (player.getRoomUser().containsStatus("sit")) {
-				player.getRoomUser().getPosition().setHeadRotation(rotation);
-			} else {
-				player.getRoomUser().getPosition().setBodyRotation(rotation);
-				player.getRoomUser().getPosition().setHeadRotation(rotation);
-			}
-
+			player.getRoomUser().getPosition().setBodyRotation(rotation);
+			player.getRoomUser().getPosition().setHeadRotation(rotation);
+			player.getRoomUser().setNeedUpdate(true);
 		}
-		player.getRoomUser().setNeedUpdate(true);
 
 	}
 
