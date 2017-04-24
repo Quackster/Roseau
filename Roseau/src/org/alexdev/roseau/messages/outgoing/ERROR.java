@@ -13,7 +13,7 @@ public class ERROR implements OutgoingMessageComposer {
 
 	@Override
 	public void write(Response response) {
-		response.init("ERROR: ");
+		response.init("ERROR");
 		response.appendArgument(this.errorMessage);
 	}
 

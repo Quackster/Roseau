@@ -50,7 +50,7 @@ public class CREATEFLAT implements MessageEvent {
 			return;
 		}
 
-		Player publicRoomPlayer = Roseau.getGame().getPlayerManager().getIdenticalPlayer(player.getDetails().getID(), player.getNetwork().getConnectionId());
+		Player publicRoomPlayer = Roseau.getGame().getPlayerManager().getPlayerDifferentConnection(player.getDetails().getID(), player.getNetwork().getConnectionId());
 
 		if (publicRoomPlayer != null) {
 			publicRoomPlayer.getNetwork().close();

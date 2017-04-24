@@ -46,6 +46,17 @@ public class TRYFLAT implements MessageEvent {
 					return;
 				}
 			}
+			
+			if (room.getData().getState() == RoomState.DOORBELL) {
+				boolean received = room.ringDoorbell(player);
+				
+				if (!received) {
+					player.send(new ERROR("Incorrect flat password"));
+				}
+				
+				return;
+				
+			}
 		}
 		
 		player.getRoomUser().setRoom(room);

@@ -29,13 +29,22 @@ public class PlayerManager {
 	public Player getPrivateRoomPlayer(int userID) {
 		
 		try {
-			return this.players.values().stream().filter(s -> s.getDetails().getID() == userID).findFirst().get();
+			return this.players.values().stream().filter(s -> s.getDetails().getID() == userID && s.getNetwork().getServerPort() == Roseau.getPrivateServerPort()).findFirst().get();
 		} catch (Exception e) {
 			return null;
 		}
 	}
 	
-	public Player getIdenticalPlayer(int userID, int connectionID) {
+	public Player getPrivateRoomPlayer(String username) {
+		
+		try {
+			return this.players.values().stream().filter(s -> s.getDetails().getName().equals(username) && s.getNetwork().getServerPort() == Roseau.getPrivateServerPort()).findFirst().get();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public Player getPlayerDifferentConnection(int userID, int connectionID) {
 		
 		try {
 			return this.players.values().stream().filter(s -> s.getDetails().getID() == userID && s.getNetwork().getConnectionId() != connectionID).findFirst().get();
@@ -44,7 +53,7 @@ public class PlayerManager {
 		}
 	}
 	
-	public Player getPlayerByIDPort(int userID, int port, int connectionID) {
+	public Player getPlayerByPortDifferentConnection(int userID, int port, int connectionID) {
 		
 		try {
 			return this.players.values().stream().filter(s -> s.getDetails().getID() == userID && s.getNetwork().getServerPort() == port && s.getNetwork().getConnectionId() != connectionID).findFirst().get();

@@ -156,7 +156,7 @@ public class RoomUser {
 		boolean no_current_item = false;
 		
 		if (item != null) {
-			if (item.getDefinition().getBehaviour().isCanSitOnTop() || item.getDefinition().getBehaviour().isCanLayOnTop() || item.getDefinition().getBehaviour().isTeleporter()) {
+			if (item.getDefinition().getBehaviour().isCanSitOnTop() || item.getDefinition().getBehaviour().isCanLayOnTop() || item.getDefinition().getBehaviour().isTeleporter() || item.getDefinition().getSprite().equals("poolBooth")) {
 				this.current_item = item;
 				this.currentItemTrigger();
 
@@ -279,6 +279,10 @@ public class RoomUser {
 
 		if (!this.canWalk) {
 			return false;
+		}
+		
+		if (this.kickWhenStop) {
+			this.kickWhenStop = false;
 		}
 
 		Item item = this.room.getMapping().getHighestItem(x, y);

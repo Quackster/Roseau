@@ -57,6 +57,9 @@ public class STRIPINFO implements OutgoingMessageComposer {
 							response.appendArgument(item.getCustomData(), ';');
 							response.appendArgument(item.getCustomData(), ';');
 						}
+					}  else {
+						response.appendArgument(item.getCustomData(), ';');
+						response.appendArgument(item.getCustomData(), ';');
 					}
 				} else {
 					response.appendArgument(item.getCustomData(), ';');

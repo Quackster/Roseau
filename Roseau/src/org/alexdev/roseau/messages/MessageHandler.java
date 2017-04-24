@@ -25,6 +25,7 @@ import org.alexdev.roseau.messages.incoming.GOTOFLAT;
 import org.alexdev.roseau.messages.incoming.INFORETRIEVE;
 import org.alexdev.roseau.messages.incoming.INITUNITLISTENER;
 import org.alexdev.roseau.messages.incoming.INTODOOR;
+import org.alexdev.roseau.messages.incoming.LETUSERIN;
 import org.alexdev.roseau.messages.incoming.LOGIN;
 import org.alexdev.roseau.messages.incoming.LOOKTO;
 import org.alexdev.roseau.messages.incoming.MESSENGER_INIT;
@@ -150,6 +151,7 @@ public class MessageHandler {
 		this.messages.put("REMOVESTUFF", new REMOVESTUFF());
 		this.messages.put("ADDITEM", new ADDITEM());
 		this.messages.put("SETSTRIPITEMDATA", new SETSTRIPITEMDATA());
+		this.messages.put("LETUSERIN", new LETUSERIN());
 	}
 	
 	

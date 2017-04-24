@@ -22,7 +22,7 @@ public class GOAWAY implements MessageEvent {
 		if (!near.isMatch(room.getData().getModel().getDoorPosition())) {
 			if (player.getRoomUser().walkTo(room.getData().getModel().getDoorPosition())) {
 				player.getRoomUser().setKickWhenStop(true);
-				player.getRoomUser().setCanWalk(false);
+				//player.getRoomUser().setCanWalk(false);
 				return;
 			}
 		}

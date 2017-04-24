@@ -26,7 +26,7 @@ public class LOGIN implements MessageEvent {
 
 		if (authenticated) {
 			
-			Player otherPlayer = Roseau.getGame().getPlayerManager().getPlayerByIDPort(player.getDetails().getID(), player.getNetwork().getServerPort(), player.getNetwork().getConnectionId());
+			Player otherPlayer = Roseau.getGame().getPlayerManager().getPlayerByPortDifferentConnection(player.getDetails().getID(), player.getNetwork().getServerPort(), player.getNetwork().getConnectionId());
 			
 			if (otherPlayer != null) {
 				otherPlayer.getNetwork().close();

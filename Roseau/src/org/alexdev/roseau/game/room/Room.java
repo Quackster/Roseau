@@ -26,6 +26,7 @@ import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
+import org.alexdev.roseau.messages.outgoing.DOORBELL_RINGING;
 import org.alexdev.roseau.messages.outgoing.FLATPROPERTY;
 import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.ITEMS;
@@ -238,6 +239,18 @@ public class Room {
 		}
 	}
 	
+	public boolean ringDoorbell(Player player) {
+		
+		boolean received = false;
+		
+		for (Player rights : this.getPlayersWithRights()) {
+			rights.send(new DOORBELL_RINGING(player.getDetails().getName()));
+			received = true;
+		}
+		
+		return received;
+	}
+	
 	public void giveUserRights(Player player) {
 		
 		if (this.rights.contains(Integer.valueOf(player.getDetails().getID()))) {
@@ -414,11 +427,24 @@ public class Room {
 
 	public List<Player> getPlayers() {
 
-		List<Player> sessions = new ArrayList<Player>();
+		List<Player> sessions = Lists.newArrayList();
 
 		for (Entity entity : this.getEntities(EntityType.PLAYER)) {
 			Player player = (Player)entity;
 			sessions.add(player);
+		}
+
+		return sessions;
+	}
+	
+	public List<Player> getPlayersWithRights() {
+
+		List<Player> sessions = Lists.newArrayList();
+
+		for (Player player : this.getPlayers()) {
+			if (this.hasRights(player.getDetails().getID(), false)) {
+				sessions.add(player);
+			}
 		}
 
 		return sessions;
