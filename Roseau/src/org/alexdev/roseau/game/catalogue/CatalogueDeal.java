@@ -3,9 +3,6 @@ package org.alexdev.roseau.game.catalogue;
 import java.util.List;
 
 import org.alexdev.roseau.Roseau;
-import org.alexdev.roseau.game.item.Item;
-import org.alexdev.roseau.log.Log;
-
 import com.google.common.collect.Lists;
 
 public class CatalogueDeal {

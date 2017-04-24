@@ -3,6 +3,7 @@ package org.alexdev.roseau.game.room.entity;
 import java.util.LinkedList;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.RoomConnection;
@@ -252,7 +253,7 @@ public class RoomUser {
 						}
 					};
 
-					Roseau.getGame().getTimer().schedule(task, 500);
+					Roseau.getGame().getScheduler().schedule(task, 500, TimeUnit.MILLISECONDS);
 
 					return;
 				}
@@ -332,14 +333,14 @@ public class RoomUser {
 		final Room room = this.room;
 		final PlayerDetails details = this.entity.getDetails();
 
-		TimerTask task = new TimerTask() {
+		Runnable task = new Runnable() {
 			@Override
 			public void run() {
 				room.send(new CHAT("CHAT", details.getName(), response));
 			}
 		};
 
-		Roseau.getGame().getTimer().schedule(task, GameVariables.BOT_RESPONSE_DELAY);
+		Roseau.getGame().getScheduler().schedule(task, GameVariables.BOT_RESPONSE_DELAY, TimeUnit.MILLISECONDS);
 
 	}
 

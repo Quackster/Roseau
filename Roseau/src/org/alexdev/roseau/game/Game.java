@@ -1,6 +1,5 @@
 package org.alexdev.roseau.game;
 
-import java.util.Timer;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -25,7 +24,6 @@ public class Game {
 	private ScheduledFuture<?> gameScheduler = null;
 	
 	private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(8);
-	private Timer timer;
 	
 	public Game(Dao dao) throws Exception {
 		this.playerManager = new PlayerManager();
@@ -33,7 +31,6 @@ public class Game {
 		this.itemManager = new ItemManager();
 		this.catalogueManager = new CatalogueManager();
 		this.commandManager = new CommandManager();
-		this.timer = new Timer();
 	}
 	
 	public void load() {
@@ -82,7 +79,7 @@ public class Game {
 		return commandManager;
 	}
 
-	public Timer getTimer() {
+	/*public Timer getTimer() {
 		return timer;
-	}
+	}*/
 }

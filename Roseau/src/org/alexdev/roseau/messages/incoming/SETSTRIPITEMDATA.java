@@ -2,9 +2,7 @@ package org.alexdev.roseau.messages.incoming;
 
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
-import org.alexdev.roseau.messages.outgoing.PURCHASE_ADDSTRIPITEM;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class SETSTRIPITEMDATA implements MessageEvent {
@@ -32,10 +30,6 @@ public class SETSTRIPITEMDATA implements MessageEvent {
 			player.getInventory().refresh("last");
 			item.delete();
 		}
-		
-		Log.println("itemID: " + reader.getArgument(1, Character.toString((char)13)));
-		Log.println("amountLeft: " + reader.getArgument(2, Character.toString((char)13)));
-
 	}
 
 }

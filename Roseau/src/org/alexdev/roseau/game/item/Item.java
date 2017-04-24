@@ -1,7 +1,7 @@
 package org.alexdev.roseau.game.item;
 
 import java.util.List;
-import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.Entity;
@@ -382,7 +382,7 @@ public class Item implements SerializableObject {
 
 		final Item item = this;
 
-		TimerTask task = new TimerTask() {
+		Runnable task = new Runnable() {
 			@Override
 			public void run() {
 
@@ -394,7 +394,7 @@ public class Item implements SerializableObject {
 			}
 		};
 
-		Roseau.getGame().getTimer().schedule(task, 1000);
+		Roseau.getGame().getScheduler().schedule(task, 1000, TimeUnit.MILLISECONDS);
 	}
 
 	public int getOwnerID() {

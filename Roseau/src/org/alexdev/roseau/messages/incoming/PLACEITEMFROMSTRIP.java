@@ -3,7 +3,6 @@ package org.alexdev.roseau.messages.incoming;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
