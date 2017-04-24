@@ -5,16 +5,16 @@ import org.alexdev.roseau.server.messages.Response;
 
 public class REMOVEWALLITEM implements OutgoingMessageComposer {
 
-	private String id;
+	private int id;
 
-	public REMOVEWALLITEM(String id) {
-		this.id = id;
+	public REMOVEWALLITEM(int i) {
+		this.id = i;
 	}
 
 	@Override
 	public void write(Response response) {
 		response.init("REMOVEITEM");
-		response.appendNewArgument(this.id);
+		response.appendNewArgument(String.valueOf(this.id));
 	}
 
 }

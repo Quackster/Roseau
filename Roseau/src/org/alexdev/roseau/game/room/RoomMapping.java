@@ -248,11 +248,11 @@ public class RoomMapping {
 		item.save();
 
 		if (item.getDefinition().getBehaviour().isOnFloor()) {
-			this.room.send(new ACTIVEOBJECT_REMOVE(item.getPacketID()));
+			this.room.send(new ACTIVEOBJECT_REMOVE(item));
 		}
 
 		if (item.getDefinition().getBehaviour().isOnWall()) {
-			this.room.send(new REMOVEWALLITEM(item.getPacketID()));
+			this.room.send(new REMOVEWALLITEM(item.getID()));
 		}
 
 		this.room.getItems().remove(item.getID());

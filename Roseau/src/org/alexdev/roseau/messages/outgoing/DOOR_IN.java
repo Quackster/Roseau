@@ -17,9 +17,9 @@ public class DOOR_IN  implements OutgoingMessageComposer {
 	@Override
 	public void write(Response response) {
 		response.init("DOOR_IN");
-		response.appendArgument(item.getPacketID());
+		response.appendNewArgument(this.item.getPadding());
+		response.append(Integer.toString(this.item.getID()));
 		response.appendPartArgument(this.player);
-		response.appendPartArgument(this.item.getDefinition().getSprite());
 	}
 
 }

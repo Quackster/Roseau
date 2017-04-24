@@ -12,6 +12,8 @@ import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.CHAT;
+import org.alexdev.roseau.messages.outgoing.DOOR_IN;
+import org.alexdev.roseau.messages.outgoing.DOOR_OUT;
 import org.alexdev.roseau.messages.outgoing.OPEN_UIMAKOPPI;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
@@ -230,8 +232,9 @@ public class RoomUser {
 				if (room != null) {
 
 					this.setCanWalk(false);
+					player.send(new DOOR_OUT(item, player.getDetails().getName()));
 
-					TimerTask task = new TimerTask() {
+					Runnable task = new Runnable() {
 						@Override
 						public void run() {
 
@@ -251,7 +254,7 @@ public class RoomUser {
 						}
 					};
 
-					Roseau.getGame().getScheduler().schedule(task, 500, TimeUnit.MILLISECONDS);
+					Roseau.getGame().getScheduler().schedule(task, GameVariables.TELEPORTER_DELAY, TimeUnit.MILLISECONDS);
 
 					return;
 				}

@@ -17,7 +17,8 @@ public class STUFFDATAUPDATE implements OutgoingMessageComposer {
 	@Override
 	public void write(Response response) {
 		response.init("STUFFDATAUPDATE");
-		response.appendNewArgument(this.item.getPacketID());
+		response.appendNewArgument(this.item.getPadding());
+		response.append(Integer.toString(this.item.getID()));
 		response.appendPartArgument("");
 		response.appendPartArgument(this.item.getDefinition().getDataClass());
 		response.appendPartArgument(this.customData);

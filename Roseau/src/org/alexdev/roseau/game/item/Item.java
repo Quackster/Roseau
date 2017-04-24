@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.alexdev.roseau.Roseau;
+import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.pathfinder.AffectedTile;
 import org.alexdev.roseau.game.player.Player;
@@ -12,6 +13,8 @@ import org.alexdev.roseau.game.room.RoomTile;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_UPDATE;
+import org.alexdev.roseau.messages.outgoing.DOOR_IN;
+import org.alexdev.roseau.messages.outgoing.DOOR_OUT;
 import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.messages.outgoing.UPDATEWALLITEM;
 import org.alexdev.roseau.server.messages.Response;
@@ -84,7 +87,8 @@ public class Item implements SerializableObject {
 		}
 
 		if (this.getDefinition().getBehaviour().isOnFloor()) {
-			response.appendNewArgument(this.getPacketID());
+			response.appendNewArgument(this.getPadding());
+			response.append(Integer.toString(this.getID()));
 			response.appendArgument(this.getDefinition().getSprite(), ',');
 			response.appendArgument(Integer.toString(this.position.getX()));
 			response.appendArgument(Integer.toString(this.position.getY()));
@@ -288,15 +292,9 @@ public class Item implements SerializableObject {
 		Roseau.getDao().getItem().deleteItem(this.ID);
 	}
 
-	public String getPacketID() {
-
-		int paddingLength = 11; // The magic number, this just works
-		int furnIDLength = String.valueOf(this.ID).length();
-		
-		// Add the length of the ID, twice
-		paddingLength = paddingLength + ((furnIDLength * 2) * 2);
-		
-		return String.format("%0" + paddingLength + "d", this.ID);
+	public String getPadding() {
+		String sprite = this.getDefinition().getSprite();
+		return String.format("%0" + sprite.length() + "d", 0);
 
 	}
 
@@ -368,6 +366,8 @@ public class Item implements SerializableObject {
 			return;
 		}
 
+		this.getRoom().send(new DOOR_OUT(this, player.getDetails().getName()));
+		
 		final Item item = this;
 
 		Runnable task = new Runnable() {
@@ -382,7 +382,7 @@ public class Item implements SerializableObject {
 			}
 		};
 
-		Roseau.getGame().getScheduler().schedule(task, 1000, TimeUnit.MILLISECONDS);
+		Roseau.getGame().getScheduler().schedule(task, GameVariables.TELEPORTER_DELAY, TimeUnit.MILLISECONDS);
 	}
 
 	public int getOwnerID() {

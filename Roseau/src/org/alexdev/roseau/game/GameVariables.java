@@ -13,6 +13,7 @@ public class GameVariables {
 	public static int TALK_LOOKAT_RESET;
 	public static int TALK_DISTANCE;
 	public static int USER_DEFAULT_CREDITS;
+	public static long TELEPORTER_DELAY = 800;
 	
 	
 	public static void setVariables() {
