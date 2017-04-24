@@ -200,16 +200,14 @@ public class RoomUser {
 			}
 
 			if (definition.getBehaviour().isCanSitOnTop()) {
-				this.getPosition().setBodyRotation(item.getPosition().getRotation());
-				this.getPosition().setHeadRotation(item.getPosition().getRotation());
+				this.getPosition().setRotation(item.getPosition().getRotation());
 				this.removeStatus("dance");
 				this.removeStatus("lay");
 				this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()), true, -1);
 			}
 
 			if (definition.getBehaviour().isCanLayOnTop()) {
-				this.getPosition().setBodyRotation(item.getPosition().getRotation());
-				this.getPosition().setHeadRotation(item.getPosition().getRotation());
+				this.getPosition().setRotation(item.getPosition().getRotation());
 				this.removeStatus("dance");
 				this.removeStatus("sit");
 				this.removeStatus("carryd");

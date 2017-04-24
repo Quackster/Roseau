@@ -40,7 +40,7 @@ public class MOVESTUFF implements MessageEvent {
 			int rotation = Integer.valueOf(reader.getArgument(3));
 
 			if (rotation != item.getPosition().getRotation()) {
-				item.setItemRotation(rotation);
+				item.getPosition().setRotation(rotation);
 				rotation_only = true;
 			}
 		}

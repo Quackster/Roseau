@@ -233,7 +233,7 @@ public class RoomMapping {
 
 			int rotation = Roseau.getUtilities().getRandom().nextInt(7);
 
-			item.setItemRotation(rotation);
+			item.getPosition().setRotation(rotation);
 			item.setCustomData(String.valueOf(rotation));
 		}
 
@@ -265,7 +265,7 @@ public class RoomMapping {
 		if (rotation_only) {
 			for (Item items : this.getTile(item.getPosition().getX(), item.getPosition().getY()).getItems()) {
 				if (items != item && items.getPosition().getZ() >= item.getPosition().getZ()) {
-					items.setItemRotation(item.getPosition().getRotation());
+					items.getPosition().setRotation(item.getPosition().getRotation());
 					items.updateStatus();
 				}
 			}

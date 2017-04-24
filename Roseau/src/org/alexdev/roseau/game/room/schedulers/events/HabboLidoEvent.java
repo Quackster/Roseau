@@ -67,8 +67,8 @@ public class HabboLidoEvent extends RoomEvent {
 			player = players.get(Roseau.getUtilities().getRandom().nextInt(players.size()));
 		}
 
-		/*if (this.followingID != player.getDetails().getID()) {
-			this.followingID = player.getDetails().getID();*/
+		/*if (this.followingID != player.getDetails().getID()) {*/
+		this.followingID = player.getDetails().getID();
 		this.room.send(new SHOWPROGRAM(new String[] {"cam1", "targetcamera", player.getDetails().getName() }));
 		//}
 	}

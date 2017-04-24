@@ -40,8 +40,7 @@ public class BotMoveRoomEvent extends RoomEvent {
 				} else {
 					if (!roomUser.isWalking()) {
 						if (roomUser.getPosition().getRotation() != bot.getStartPosition().getRotation()) {
-							roomUser.getPosition().setBodyRotation(bot.getStartPosition().getRotation());
-							roomUser.getPosition().setHeadRotation(bot.getStartPosition().getRotation());
+							roomUser.getPosition().setRotation(bot.getStartPosition().getRotation());
 							roomUser.setNeedUpdate(true);
 						}
 					}

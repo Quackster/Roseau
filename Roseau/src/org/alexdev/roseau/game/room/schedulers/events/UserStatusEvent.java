@@ -37,21 +37,6 @@ public class UserStatusEvent extends RoomEvent {
 
 					RoomUserStatus statusEntry = set.getValue();
 
-					if (!statusEntry.isInfinite()) {
-						statusEntry.tick();
-
-						if (statusEntry.getDuration() == 0) {
-							entity.getRoomUser().removeStatus(statusEntry.getKey());
-
-							if (statusEntry.getKey().equals("carryd")) {
-								roomUser.setTimeUntilNextDrink(-1);
-							}
-
-							entity.getRoomUser().setNeedUpdate(true);
-							continue;
-						}
-					}
-
 					if (statusEntry.getKey().equals("carryd")) {
 
 						if (roomUser.isWalking()) {
@@ -78,6 +63,20 @@ public class UserStatusEvent extends RoomEvent {
 							entity.getRoomUser().sendStatusComposer();
 							entity.getRoomUser().removeStatus("drink");
 							entity.getRoomUser().setStatus("carryd", value, false, remainingDuration, true);
+						}
+					}
+					
+					if (!statusEntry.isInfinite()) {
+						statusEntry.tick();
+
+						if (statusEntry.getDuration() == 0) {
+							entity.getRoomUser().removeStatus(statusEntry.getKey());
+
+							if (statusEntry.getKey().equals("carryd")) {
+								roomUser.setTimeUntilNextDrink(-1);
+							}
+
+							roomUser.setNeedUpdate(true);
 						}
 					}
 				}

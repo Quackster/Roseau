@@ -91,6 +91,11 @@ public class Position {
 	public int getRotation() {
 		return bodyRotation;
 	}
+	
+	public void setRotation(int rotation) {
+		this.bodyRotation = rotation;
+		this.headRotation = rotation;
+	}
 
 	public void setBodyRotation(int rotation) {
 		this.bodyRotation = rotation;
@@ -133,6 +138,7 @@ public class Position {
 
 		return "[" + this.X + ", " + this.Y + "]";
 	}
+
 
 
 }

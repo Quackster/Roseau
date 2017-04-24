@@ -169,8 +169,7 @@ public class Room {
 			roomEntity.getPosition().setX(door.getX());
 			roomEntity.getPosition().setY(door.getY());
 			roomEntity.getPosition().setZ(door.getZ());
-			roomEntity.getPosition().setHeadRotation(rotation);
-			roomEntity.getPosition().setBodyRotation(rotation);
+			roomEntity.getPosition().setRotation(rotation);
 		}
 
 		if (this.roomData.getModel() == null) {

@@ -51,7 +51,7 @@ public class Item implements SerializableObject {
 		} else {
 			//this.x = Integer.valueOf(x);
 			this.position = new Position(Integer.valueOf(x), y, z);
-			this.position.setBodyRotation(rotation);
+			this.position.setRotation(rotation);
 		}
 
 		this.setTeleporterID();
@@ -114,15 +114,7 @@ public class Item implements SerializableObject {
 			response.appendArgument(this.getDefinition().getSprite(), ';');
 			response.appendArgument("Alex", ';');
 			response.appendArgument(this.wallPosition, ';');
-
-			//if (this.customData != null) {
-			//if (this.customData.length() > 0) {
-			Log.println("customdata: " + this.customData);
 			response.appendNewArgument(this.customData);
-
-			//}
-			//}
-
 			return;
 		}
 	}
@@ -314,10 +306,6 @@ public class Item implements SerializableObject {
 
 	public ItemDefinition getDefinition() {
 		return Roseau.getGame().getItemManager().getDefinition(this.definitionID);
-	}
-
-	public void setItemRotation(int rotation) {
-		this.position.setBodyRotation(rotation);
 	}
 
 	public Room getRoom() {

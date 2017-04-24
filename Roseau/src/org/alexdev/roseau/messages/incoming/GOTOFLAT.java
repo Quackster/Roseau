@@ -13,6 +13,7 @@ public class GOTOFLAT implements MessageEvent {
 		Room room = player.getRoomUser().getRoom();
 
 		if (room == null) {
+			player.getPrivateRoomPlayer().kick();
 			return;
 		}
 		
