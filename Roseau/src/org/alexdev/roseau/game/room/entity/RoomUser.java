@@ -47,7 +47,7 @@ public class RoomUser {
 	private Entity entity;
 	private int lookResetTime;
 	private Item current_item;
-	
+
 	private boolean kickWhenStop;
 
 	public RoomUser(Entity entity) {
@@ -114,7 +114,7 @@ public class RoomUser {
 		if (this.entity instanceof Player) {
 
 			Player player = (Player)this.entity;
-			
+
 			if (this.kickWhenStop) {
 				player.dispose();
 				player.kick();
@@ -153,7 +153,7 @@ public class RoomUser {
 		Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
 
 		boolean no_current_item = false;
-		
+
 		if (item != null) {
 			if (item.getDefinition().getBehaviour().isCanSitOnTop() || item.getDefinition().getBehaviour().isCanLayOnTop() || item.getDefinition().getBehaviour().isTeleporter() || item.getDefinition().getSprite().equals("poolBooth")) {
 				this.current_item = item;
@@ -175,15 +175,15 @@ public class RoomUser {
 	}
 
 	public void currentItemTrigger() {
-		
+
 		if (this.current_item == null) {
 			this.removeStatus("sit");
 			this.removeStatus("lay");
 		} else {
-			
+
 			Item item = this.current_item;
 			ItemDefinition definition = this.current_item.getDefinition();
-			
+
 			if (definition == null) {
 				return;
 			}
@@ -205,11 +205,28 @@ public class RoomUser {
 			}
 
 			if (definition.getBehaviour().isCanLayOnTop()) {
-				this.getPosition().setRotation(item.getPosition().getRotation());
-				this.removeStatus("dance");
-				this.removeStatus("sit");
-				this.removeStatus("carryd");
-				this.setStatus("lay", " " + Double.toString(definition.getHeight() + 1.5) + " null", true, -1);
+
+				if (item.isValidPillowTile(position)) {
+					this.getPosition().setRotation(item.getPosition().getRotation());
+					this.removeStatus("dance");
+					this.removeStatus("sit");
+					this.removeStatus("carryd");
+					this.setStatus("lay", " " + Double.toString(definition.getHeight() + 1.5) + " null", true, -1);
+				} else {
+					
+					for (Position tile : item.getValidPillowTiles()) {
+					
+						if (this.position.getX() != tile.getX()) {
+							this.position.setY(tile.getY());
+						}
+						
+						if (this.position.getY() != tile.getY()) {
+							this.position.setX(tile.getX());
+						}
+					}
+					
+					this.currentItemTrigger();
+				}
 			}
 
 			if (definition.getBehaviour().isTeleporter() && this.entity instanceof Player) {
@@ -256,9 +273,9 @@ public class RoomUser {
 				}
 			}
 		}
-		
+
 		this.needsUpdate = true;
-		
+
 	}
 
 	public boolean walkTo(Position position) {
@@ -278,7 +295,7 @@ public class RoomUser {
 		if (!this.canWalk) {
 			return false;
 		}
-		
+
 		if (this.kickWhenStop) {
 			this.kickWhenStop = false;
 		}
@@ -312,7 +329,7 @@ public class RoomUser {
 
 		this.path = path;
 		this.isWalking = true;
-		
+
 		return true;
 	}
 
@@ -385,7 +402,7 @@ public class RoomUser {
 
 		this.position = new Position(0, 0, 0);
 		this.goal = new Position(0, 0, 0);
-		
+
 		this.current_item = null;
 
 		this.needsUpdate = false;

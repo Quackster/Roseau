@@ -140,7 +140,7 @@ public class RoomMapping {
 		boolean tile_valid = (this.room.getData().getModel().isBlocked(x, y) == false);
 
 		if (item != null) {
-			tile_valid = item.canWalk(entity);
+			tile_valid = item.canWalk(entity, new Position(x, y));
 		}
 
 		// This is returned when there's no items found, it will

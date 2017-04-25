@@ -132,7 +132,7 @@ public class Item implements SerializableObject {
 				this.position.getRotation());
 	}
 
-	public boolean canWalk(Entity player) {
+	public boolean canWalk(Entity player, Position position) {
 
 		boolean tile_valid = false;
 
@@ -140,12 +140,12 @@ public class Item implements SerializableObject {
 			tile_valid = true;
 		}
 
-		if (this.getDefinition().getBehaviour().isCanLayOnTop()) {
+		if (this.getDefinition().getBehaviour().isCanStandOnTop()) {
 			tile_valid = true;
 		}
 
-		if (this.getDefinition().getBehaviour().isCanStandOnTop()) {
-			tile_valid = true;
+		if (this.getDefinition().getBehaviour().isCanLayOnTop()) {
+			tile_valid = true;//this.isValidPillowTile(position);
 		}
 
 		if (this.getDefinition().getBehaviour().isTeleporter()) {
@@ -170,6 +170,59 @@ public class Item implements SerializableObject {
 		}
 
 		return tile_valid; 
+	}
+
+	public boolean isValidPillowTile(Position position) {
+
+		if (this.getDefinition().getBehaviour().isCanLayOnTop()) {
+
+			if (this.position.getX() == position.getX() && this.position.getY() == position.getY()) {
+				return true;
+			} else {
+
+				int validPillowX = -1;
+				int validPillowY = -1;
+
+				if (this.position.getRotation() == 0) {
+					validPillowX = this.position.getX() + 1;
+					validPillowY = this.position.getY();
+				}
+
+				if (this.position.getRotation() == 2) {
+					validPillowX = this.position.getX();
+					validPillowY = this.position.getY() + 1;
+				}
+
+				if (validPillowX == position.getX() && validPillowY == position.getY()) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public List<Position> getValidPillowTiles() {
+
+		List<Position> tiles = Lists.newArrayList();
+		tiles.add(new Position(this.position.getX(), this.position.getY()));
+
+		int validPillowX = -1;
+		int validPillowY = -1;
+
+		if (this.position.getRotation() == 0) {
+			validPillowX = this.position.getX() + 1;
+			validPillowY = this.position.getY();
+		}
+
+		if (this.position.getRotation() == 2) {
+			validPillowX = this.position.getX();
+			validPillowY = this.position.getY() + 1;
+		}
+		
+		tiles.add(new Position(validPillowX, validPillowY));
+
+		return tiles;
 	}
 
 	public RoomTile getTileInstance() {
@@ -366,7 +419,7 @@ public class Item implements SerializableObject {
 		}
 
 		this.getRoom().send(new DOOR_OUT(this, player.getDetails().getName()));
-		
+
 		final Item item = this;
 
 		Runnable task = new Runnable() {

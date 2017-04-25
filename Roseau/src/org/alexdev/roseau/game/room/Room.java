@@ -572,7 +572,7 @@ public class Room {
 					}
 
 					if (isFinalMove) {
-						return currentItem.canWalk(player);
+						return currentItem.canWalk(player, current);
 
 					}
 				}
