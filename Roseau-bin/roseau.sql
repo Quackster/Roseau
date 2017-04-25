@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 25, 2017 at 02:03 PM
+-- Generation Time: Apr 25, 2017 at 02:07 PM
 -- Server version: 10.1.22-MariaDB-1~xenial
 -- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
@@ -1723,6 +1723,7 @@ CREATE TABLE `room_chatlogs` (
   `id` int(11) NOT NULL,
   `user` varchar(50) NOT NULL,
   `room_id` int(11) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
   `message_type` tinyint(1) NOT NULL,
   `message` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -351,19 +351,20 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 			sqlConnection = this.dao.getStorage().getConnection();
 
-			preparedStatement = dao.getStorage().prepare("INSERT INTO room_chatlogs (user, room_id, message_type, message) VALUES (?, ?, ?, ?)", sqlConnection);
+			preparedStatement = dao.getStorage().prepare("INSERT INTO room_chatlogs (user, room_id, timestamp, message_type, message) VALUES (?, ?, ?, ?, ?)", sqlConnection);
 			preparedStatement.setString(1, chatter.getDetails().getName());
 			preparedStatement.setInt(2, roomID);
+			preparedStatement.setLong(3, Roseau.getUtilities().getTimestamp());
 			
 			if (chatType.equals("CHAT")) {
-				preparedStatement.setInt(3, 0);
+				preparedStatement.setInt(4, 0);
 			} else if (chatType.equals("SHOUT")) {
-				preparedStatement.setInt(3, 1);
+				preparedStatement.setInt(4, 1);
 			} else {
-				preparedStatement.setInt(3, 2);
+				preparedStatement.setInt(4, 2);
 			}
 			
-			preparedStatement.setString(4, message);
+			preparedStatement.setString(5, message);
 			preparedStatement.execute();
 
 		} catch (SQLException e) {
