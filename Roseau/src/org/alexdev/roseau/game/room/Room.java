@@ -32,6 +32,7 @@ import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.ITEMS;
 import org.alexdev.roseau.messages.outgoing.LOGOUT;
 import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
+import org.alexdev.roseau.messages.outgoing.OPEN_GAMEBOARD;
 import org.alexdev.roseau.messages.outgoing.ROOM_READY;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
@@ -121,7 +122,7 @@ public class Room {
 		if (this.roomData.getModelName().equals("bar_b")) {
 			this.registerNewEvent(new ClubMassivaDiscoEvent(this));
 		}
-		
+
 		if (this.roomData.getModelName().equals("pool_b")) {
 			this.registerNewEvent(new HabboLidoEvent(this));
 		}
@@ -225,6 +226,7 @@ public class Room {
 
 		this.entities.add(player);
 
+
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
 			final Item item = this.roomMapping.getHighestItem(door.getX(), door.getY());
 
@@ -235,38 +237,47 @@ public class Room {
 					return;
 				}
 			}
+		} else {
+
+			if (this.roomData.getModelName().equals("hallB")) {
+				player.send(new OPEN_GAMEBOARD("BattleShip"));
+			}
+
+			if (this.roomData.getModelName().equals("hallD")) {
+				player.send(new OPEN_GAMEBOARD("Poker"));
+			}
 		}
 	}
-	
+
 	public boolean ringDoorbell(Player player) {
-		
+
 		boolean received = false;
-		
+
 		for (Player rights : this.getPlayersWithRights()) {
 			rights.send(new DOORBELL_RINGING(player.getDetails().getName()));
 			received = true;
 		}
-		
+
 		return received;
 	}
-	
+
 	public void giveUserRights(Player player) {
-		
+
 		if (this.rights.contains(Integer.valueOf(player.getDetails().getID()))) {
 			return;
 		}
-		
+
 		this.rights.add(Integer.valueOf(player.getDetails().getID()));
 		this.refreshFlatPrivileges(player, false);
 		this.roomData.saveRights();
 	}
-	
+
 	public void removeUserRights(Player player) {
-		
+
 		if (!this.rights.contains(Integer.valueOf(player.getDetails().getID()))) {
 			return;
 		}
-		
+
 		this.rights.remove(Integer.valueOf(player.getDetails().getID()));
 		this.refreshFlatPrivileges(player, false);
 		this.roomData.saveRights();
@@ -275,17 +286,17 @@ public class Room {
 	public void refreshFlatPrivileges(Player player, boolean enterRoom) {
 
 		if (this.roomData.getOwnerID() == player.getDetails().getID()) {
-			
+
 			player.send(new YOUAREOWNER());
 			player.getRoomUser().setStatus("flatctrl", " useradmin", true, -1);
-			
+
 		} else if (this.hasRights(player.getDetails().getID(), false) || this.roomData.hasAllSuperUser()) {
-			
+
 			player.send(new YOUARECONTROLLER());
 			player.getRoomUser().setStatus("flatctrl", "", true, -1);
-			
+
 		} else {
-			
+
 			player.getRoomUser().removeStatus("flatctrl");
 			player.send(new YOUARENOTCONTROLLER());
 		}
@@ -435,7 +446,7 @@ public class Room {
 
 		return sessions;
 	}
-	
+
 	public List<Player> getPlayersWithRights() {
 
 		List<Player> sessions = Lists.newArrayList();
@@ -448,28 +459,28 @@ public class Room {
 
 		return sessions;
 	}
-	
+
 
 	public Player getPlayerByID(int ID) {
-		
+
 		for (Player player : this.getPlayers()) {
 			if (player.getDetails().getID() == ID) {
 				return player;
 			}
 		}
-		
+
 		return null;
 
 	}
-	
+
 	public Player getPlayerByName(String name) {
-		
+
 		for (Player player : this.getPlayers()) {
 			if (player.getDetails().getName().equals(name)) {
 				return player;
 			}
 		}
-		
+
 		return null;
 
 	}
