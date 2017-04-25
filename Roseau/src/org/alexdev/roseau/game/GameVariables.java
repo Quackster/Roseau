@@ -14,6 +14,7 @@ public class GameVariables {
 	public static int TALK_DISTANCE;
 	public static int USER_DEFAULT_CREDITS;
 	public static long TELEPORTER_DELAY = 800;
+	public static int MAX_ITEMS_PER_PAGE = 5;
 	
 	
 	public static void setVariables() {

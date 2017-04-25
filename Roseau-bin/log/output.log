@@ -1042,3 +1042,126 @@ java.lang.NullPointerException
 	at org.alexdev.roseau.Roseau.main(Roseau.java:50)
 
 [04/24/2017 23:11:27] [ROSEAU] >> ---------------------------------------------
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/25/2017 21:41:46
+-----------------------------------------
+
+[04/25/2017 21:41:46] [ROSEAU] >> Roseau - Java Server
+[04/25/2017 21:41:46] [ROSEAU] >> Loading server...
+[04/25/2017 21:41:46] [ROSEAU] 
+[04/25/2017 21:41:46] [ROSEAU] >> Connecting to MySQL server
+[04/25/2017 21:41:46] [ROSEAU] >> Connection to MySQL was a success
+[04/25/2017 21:41:46] [ROSEAU] 
+[04/25/2017 21:41:47] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/25/2017 21:41:47] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/25/2017 21:41:47] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/25/2017 21:41:47] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/25/2017 21:41:47] [ROSEAU] >> [ROOM] [Club Slinky Helsinki] Starting public room server on port: 126
+[04/25/2017 21:41:47] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/25/2017 21:41:47] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/25/2017 21:41:47] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/25/2017 21:41:47] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/25/2017 21:41:47] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/25/2017 21:41:47] [ROSEAU] >> [ROOM] [Cunning Fox Gamehall] Starting public room server on port: 121
+[04/25/2017 21:41:47] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/25/2017 21:41:47] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/25/2017 21:41:47] [ROSEAU] 
+[04/25/2017 21:41:47] [ROSEAU] >> Settting up server
+[04/25/2017 21:41:47] [ROSEAU] >> Server is listening on 127.0.0.1:91
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/25/2017 21:45:46
+-----------------------------------------
+
+[04/25/2017 21:45:46] [ROSEAU] >> Roseau - Java Server
+[04/25/2017 21:45:46] [ROSEAU] >> Loading server...
+[04/25/2017 21:45:46] [ROSEAU] 
+[04/25/2017 21:45:46] [ROSEAU] >> Connecting to MySQL server
+[04/25/2017 21:45:46] [ROSEAU] >> Connection to MySQL was a success
+[04/25/2017 21:45:46] [ROSEAU] 
+[04/25/2017 21:45:46] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/25/2017 21:45:46] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/25/2017 21:45:46] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/25/2017 21:45:46] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/25/2017 21:45:46] [ROSEAU] >> [ROOM] [Club Slinky Helsinki] Starting public room server on port: 126
+[04/25/2017 21:45:46] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/25/2017 21:45:46] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/25/2017 21:45:46] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/25/2017 21:45:46] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/25/2017 21:45:46] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/25/2017 21:45:46] [ROSEAU] >> [ROOM] [Cunning Fox Gamehall] Starting public room server on port: 121
+[04/25/2017 21:45:46] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/25/2017 21:45:46] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/25/2017 21:45:46] [ROSEAU] 
+[04/25/2017 21:45:46] [ROSEAU] >> Settting up server
+[04/25/2017 21:45:46] [ROSEAU] >> Server is listening on 127.0.0.1:91
+
+-----------------------------------------
+-- SERVER BOOT TIME: 04/25/2017 22:03:35
+-----------------------------------------
+
+[04/25/2017 22:03:35] [ROSEAU] >> Roseau - Java Server
+[04/25/2017 22:03:35] [ROSEAU] >> Loading server...
+[04/25/2017 22:03:35] [ROSEAU] 
+[04/25/2017 22:03:35] [ROSEAU] >> Connecting to MySQL server
+[04/25/2017 22:03:35] [ROSEAU] >> Connection to MySQL was a success
+[04/25/2017 22:03:35] [ROSEAU] 
+[04/25/2017 22:03:35] [ROSEAU] >> [ROOM] [Main Lobby] Starting public room server on port: 103
+[04/25/2017 22:03:35] [ROSEAU] >> [ROOM] [Median Lobby] Starting public room server on port: 117
+[04/25/2017 22:03:35] [ROSEAU] >> [ROOM] [Skylight Lobby] Starting public room server on port: 118
+[04/25/2017 22:03:35] [ROSEAU] >> [ROOM] [Basement Lobby] Starting public room server on port: 116
+[04/25/2017 22:03:35] [ROSEAU] >> [ROOM] [Club Slinky Helsinki] Starting public room server on port: 126
+[04/25/2017 22:03:35] [ROSEAU] >> [ROOM] [Habbo Lido] Starting public room server on port: 104
+[04/25/2017 22:03:35] [ROSEAU] >> [ROOM] [Club Massiva] Starting public room server on port: 113
+[04/25/2017 22:03:35] [ROSEAU] >> [ROOM] [Theatredrome] Starting public room server on port: 115
+[04/25/2017 22:03:35] [ROSEAU] >> [ROOM] [Habburger's] Starting public room server on port: 110
+[04/25/2017 22:03:35] [ROSEAU] >> [ROOM] [The Dirty Duck Pub] Starting public room server on port: 105
+[04/25/2017 22:03:35] [ROSEAU] >> [ROOM] [Cunning Fox Gamehall] Starting public room server on port: 121
+[04/25/2017 22:03:35] [ROSEAU] >> [ROOM] [Cafe Ole] Starting public room server on port: 108
+[04/25/2017 22:03:35] [ROSEAU] >> [ROOM] [Hotel Kitchen] Starting public room server on port: 107
+[04/25/2017 22:03:35] [ROSEAU] 
+[04/25/2017 22:03:35] [ROSEAU] >> Settting up server
+[04/25/2017 22:03:35] [ROSEAU] >> Server is listening on 127.0.0.1:91
+[04/25/2017 22:03:42] [ROSEAU] >> SENT: #HELLO##
+[04/25/2017 22:03:42] [ROSEAU] >> [-1656382538] Connection from 127.0.0.1
+[04/25/2017 22:03:42] [ROSEAU] >> [-1656382538] Received: VERSIONCHECK client002
+[04/25/2017 22:03:42] [ROSEAU] >> SENT: #ENCRYPTION_OFF##
+[04/25/2017 22:03:42] [ROSEAU] >> SENT: #SECRET_KEY[13]31vw2swky25q9ko940i8x068ftxrmt0wa3vgj27qtrr3m35rn067o549fl##
+[04/25/2017 22:03:42] [ROSEAU] >> [-1656382538] Received: CLIENTIP MacromediaSecretIPAddressCookie: bd874ffb3f618e61f8
+[04/25/2017 22:03:42] [ROSEAU] >> [-1656382538] Received: KEYENCRYPTED 964
+[04/25/2017 22:03:42] [ROSEAU] >> [-1656382538] Received: LOGIN Alex
+[04/25/2017 22:03:42] [ROSEAU] >> SENT: #HEIGHTMAP[13]XXXXXXXXXXXXXXXXXXXXXXXXXXX[13]XXXXXXXXXXXXXXXXXXXXXXXXXXX[13]XXX0000000000000000XXXXXXX0[13]XXX000000000000000000XXXX00[13]X00000000000000000000000000[13]X00000000000000000000000000[13]XXX000000000000000000000000[13]XXXXXXX00000000000000000000[13]XXX111100000011111111111111[13]XXX111100000011111111111111[13]XXX111100000011111111111111[13]XXX111100000011111111111111[13]XXX111100000011111111111111[13]XXX111100000011111111111111[13]XXX1XX100000011111111111111[13]XXX1XX100000011111111111111[13]XXX111100000011111111111111[13]XXX111100000011111111111111[13]XXX111100000011111111111111[13]XXXXXXXX0000XXXXXXXXXXXXXXX[13]XXXXXXXX0000XXXXXXXXXXXXXXX[13]XXXXXXXX0000XXXXXXXXXXXXXXX##
+[04/25/2017 22:03:42] [ROSEAU] >> SENT: # OBJECTS WORLD 0 floorlobby_c[13]445 moneyplant 3 2 0 0[13]446 roommatic 5 2 0 4[13]447 roommatic 7 2 0 4[13]448 roommatic 9 2 0 4[13]449 roommatic 11 2 0 4[13]450 roommatic 13 2 0 4[13]451 watermatic 26 2 0 4[13]452 edgec1 14 8 1 6[13]453 edgec1 15 8 1 0[13]454 edgec1 16 8 1 0[13]455 edgec1 17 8 1 0[13]456 edgec1 18 8 1 0[13]457 edgec1 19 8 1 0[13]458 edgec1 20 8 1 0[13]459 edgec1 21 8 1 0[13]460 edgec1 22 8 1 0[13]461 edgec1 23 8 1 0[13]462 edgec1 24 8 1 0[13]463 edgec1 25 8 1 0[13]464 edgec1 26 8 1 2[13]465 chairg1 3 9 1 2[13]466 chairg1 5 9 1 6[13]467 moneyplant 15 9 1 0[13]468 chairg2b 16 9 1 4[13]469 chairg2c 17 9 1 4[13]470 chairg2 18 9 1 4[13]471 moneyplant 19 9 1 4[13]472 moneyplant 21 9 1 0[13]473 chairg2b 22 9 1 4[13]474 chairg2c 23 9 1 4[13]475 chairg2 24 9 1 4[13]476 moneyplant 25 9 1 4[13]477 chairg1 3 11 1 2[13]478 chairg1 5 11 1 6[13]479 newtable2 3 12 1 0[13]480 chairg1 16 14 1 4[13]481 chairg1 18 14 1 4[13]482 chairg1 22 14 1 4[13]483 chairg1 24 14 1 4[13]484 newtable2 17 15 1 0[13]485 newtable2 23 15 1 0[13]486 newtable2 3 16 1 0[13]487 chairg1 16 16 1 0[13]488 chairg1 18 16 1 0[13]489 chairg1 22 16 1 0[13]490 chairg1 24 16 1 0[13]491 chairg1 3 17 1 2[13]492 chairg1 5 17 1 6[13]493 edgec2 14 18 1 6[13]494 edgec2 15 18 1 0[13]495 edgec2 16 18 1 0[13]496 edgec2 17 18 1 0[13]497 edgec2 18 18 1 0[13]498 edgec2 19 18 1 0[13]499 edgec2 20 18 1 0[13]500 edgec2 21 18 1 0[13]501 edgec2 22 18 1 0[13]502 edgec2 23 18 1 0[13]503 edgec2 24 18 1 0[13]504 edgec2 25 18 1 0[13]505 edgec2 26 18 1 2##
+[04/25/2017 22:03:42] [ROSEAU] >> SENT: #ACTIVE_OBJECTS##
+[04/25/2017 22:03:42] [ROSEAU] >> SENT: #USERS##
+[04/25/2017 22:03:42] [ROSEAU] >> SENT: #STATUS ##
+[04/25/2017 22:03:42] [ROSEAU] >> SENT: #USERS[13]  Alex sd=001/0&hr=008/253,218,207&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/69,98,131&ls=001/69,98,131&rs=001/69,98,131&lg=006/149,120,78&sh=003/47,45,38 9 21 0.0 so i herd u liek duckz##
+[04/25/2017 22:03:42] [ROSEAU] >> SENT: #STATUS [13]Alex 9,21,0,0,0/##
+[04/25/2017 22:03:43] [ROSEAU] >> [-1656382538] Received: STATUSOK 
+[04/25/2017 22:03:43] [ROSEAU] >> SENT: #OK##
+[04/25/2017 22:03:43] [ROSEAU] >> [-1656382538] Received: STATUSOK 
+[04/25/2017 22:03:43] [ROSEAU] >> SENT: #OK##
+[04/25/2017 22:03:43] [ROSEAU] >> [-1656382538] Received: STATUSOK 
+[04/25/2017 22:03:43] [ROSEAU] >> SENT: #OK##
+[04/25/2017 22:03:43] [ROSEAU] >> [-1656382538] Received: STATUSOK 
+[04/25/2017 22:03:43] [ROSEAU] >> SENT: #OK##
+[04/25/2017 22:03:43] [ROSEAU] >> [-1656382538] Received: STATUSOK 
+[04/25/2017 22:03:43] [ROSEAU] >> SENT: #OK##
+[04/25/2017 22:03:43] [ROSEAU] >> [-1656382538] Received: STATUSOK 
+[04/25/2017 22:03:43] [ROSEAU] >> SENT: #OK##
+[04/25/2017 22:03:43] [ROSEAU] >> [-1656382538] Received: STATUSOK 
+[04/25/2017 22:03:43] [ROSEAU] >> SENT: #OK##
+[04/25/2017 22:03:44] [ROSEAU] >> [-1656382538] Received: Move 10 18
+[04/25/2017 22:03:44] [ROSEAU] >> SENT: #STATUS [13]Alex 9,21,0,0,0/mv 9,20,0/##
+[04/25/2017 22:03:44] [ROSEAU] >> [-1656382538] Received: Move 9 14
+[04/25/2017 22:03:44] [ROSEAU] >> SENT: #STATUS [13]Alex 9,20,0,0,0/mv 9,19,0/##
+[04/25/2017 22:03:45] [ROSEAU] >> SENT: #STATUS [13]Alex 9,19,0,0,0/mv 9,18,0/##
+[04/25/2017 22:03:45] [ROSEAU] >> [-1656382538] Received: Move 10 16
+[04/25/2017 22:03:45] [ROSEAU] >> SENT: #STATUS [13]Alex 9,18,0,0,0/mv 9,17,0/##
+[04/25/2017 22:03:46] [ROSEAU] >> SENT: #STATUS [13]Alex 9,17,0,1,1/mv 10,16,0/##
+[04/25/2017 22:03:46] [ROSEAU] >> SENT: #STATUS [13]Alex 10,16,0,1,1/##
+[04/25/2017 22:03:47] [ROSEAU] >> [-1656382538] Received: CHAT cd
+[04/25/2017 22:03:47] [ROSEAU] >> SENT: #CHAT[13]Alex cd##
+[04/25/2017 22:03:47] [ROSEAU] >> SENT: #STATUS [13]Alex 10,16,0,1,1/talk/##
+[04/25/2017 22:03:48] [ROSEAU] >> SENT: #STATUS [13]Alex 10,16,0,1,1/##

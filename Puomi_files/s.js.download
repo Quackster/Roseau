@@ -1,3 +1,0 @@
-function getClient() {
-controlWindow=window.open("https://puomi.tunk.org/p/14,73/","_blank","toolbar=0,width=760,height=580,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1");
-}

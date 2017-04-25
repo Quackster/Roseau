@@ -9,6 +9,6 @@
 	<classpathentry kind="lib" path="C:/Users/Alex/Documents/GitHub/Roseau/Roseau/lib/netty-3.10.5.Final.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Alex/Documents/GitHub/Roseau/Roseau/lib/slf4j-api-1.7.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Alex/Documents/GitHub/Roseau/Roseau/lib/slf4j-simple-1.7.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Alex/Documents/GitHub/Roseau/Roseau/extensions/Roseau_socket_netty.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alex/Documents/GitHub/Roseau/Roseau-Netty/compiled/Roseau_socket_netty.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

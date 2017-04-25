@@ -85,7 +85,7 @@ public class Room {
 
 		if (this.roomData.getRoomType() == RoomType.PUBLIC && !this.roomData.isHidden()) {
 
-			this.serverHandler = Class.forName(Roseau.getSocketConfiguration().get("extension.socket.entry"))
+			this.serverHandler = Class.forName("org.alexdev.roseau.server.netty.NettyServer")
 					.asSubclass(IServerHandler.class)
 					.getDeclaredConstructor(String.class)
 					.newInstance(String.valueOf(this.roomData.getID()));

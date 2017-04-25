@@ -340,6 +340,42 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 		return null;
 	}
+	@Override
+	public Room saveChatlog(Player chatter, int roomID, String chatType, String message) {
+
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			sqlConnection = this.dao.getStorage().getConnection();
+
+			preparedStatement = dao.getStorage().prepare("INSERT INTO room_chatlogs (user, room_id, message_type, message) VALUES (?, ?, ?, ?)", sqlConnection);
+			preparedStatement.setString(1, chatter.getDetails().getName());
+			preparedStatement.setInt(2, roomID);
+			
+			if (chatType.equals("CHAT")) {
+				preparedStatement.setInt(3, 0);
+			} else if (chatType.equals("SHOUT")) {
+				preparedStatement.setInt(3, 1);
+			} else {
+				preparedStatement.setInt(3, 2);
+			}
+			
+			preparedStatement.setString(4, message);
+			preparedStatement.execute();
+
+		} catch (SQLException e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(resultSet);
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
+
+		return null;
+	}
 
 	@Override
 	public void updateRoom(Room room) {

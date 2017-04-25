@@ -49,12 +49,15 @@ public class TALK implements MessageEvent {
 				if (whispered != null) {
 					if (whispered.getDetails().getID() != player.getDetails().getID()) {
 						whispered.send(response);
+						
+						Roseau.getDao().getRoom().saveChatlog(player, player.getRoomUser().getRoom().getData().getID(), reader.getHeader(), "(to: " + username + ") " + message);
 					}
 				}
 			} else {
 				talkMessage =  reader.getMessageBody();
 				CHAT response = new CHAT("WHISPER", player.getDetails().getName(), reader.getMessageBody());
 				player.send(response);
+			
 			}
 		} else {
 
@@ -125,6 +128,8 @@ public class TALK implements MessageEvent {
 					} 
 				}
 			}
+			
+			Roseau.getDao().getRoom().saveChatlog(player, player.getRoomUser().getRoom().getData().getID(), reader.getHeader(), talkMessage);
 		}
 	}
 

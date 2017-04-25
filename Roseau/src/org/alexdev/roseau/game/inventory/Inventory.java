@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.alexdev.roseau.Roseau;
+import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.outgoing.STRIPINFO;
@@ -21,8 +22,6 @@ public class Inventory {
 	private Map<Integer, List<Item>> paginatedItems;
 
 	private int cursor;
-	
-	public final static int MAX_ITEMS_PER_PAGE = 4;
 
 	public Inventory(Player player) {
 
@@ -53,7 +52,7 @@ public class Inventory {
 
 		for (Item item : this.items) {
 
-			if (counter > (MAX_ITEMS_PER_PAGE - 1)) {
+			if (counter > (GameVariables.MAX_ITEMS_PER_PAGE - 1)) {
 				pageID++;
 				counter = 0;
 			} else {

@@ -27,6 +27,32 @@ public class GameScheduler implements Runnable {
 					player.getDetails().save();
 				}
 			}
+			
+			/*if ((this.tickRate % 60) == 0) {
+				
+				for (int i = 0; i < Roseau.getGame().getRoomManager().getLoadedRooms().values().size(); i++) {
+					
+					Room room = Roseau.getGame().getRoomManager().getLoadedRooms().;
+					
+					if (room.getData().getRoomType() == RoomType.PUBLIC) {
+						continue;
+					}
+					
+					if (room.getData() == null) {
+						room.dispose(true);
+						continue;
+					}
+					
+					Player player = Roseau.getGame().getPlayerManager().getByID(room.getData().getID());
+					
+					if (player == null) {
+						room.dispose(true);
+						continue;
+					}
+				}
+			}*/
+			
+			
 		} catch (Exception e) {
 			Log.exception(e);
 		}

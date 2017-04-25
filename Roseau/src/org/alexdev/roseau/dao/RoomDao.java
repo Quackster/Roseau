@@ -21,5 +21,6 @@ public interface RoomDao {
 	public List<Integer> setRoomConnections(Room room);
 	public List<Bot> getBots(Room room, int roomID);
 	void saveRoomRights(int roomID, List<Integer> rights);
+	public Room saveChatlog(Player chatter, int roomID, String chatType, String message);
 	
 }

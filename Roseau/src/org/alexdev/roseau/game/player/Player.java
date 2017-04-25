@@ -21,10 +21,8 @@ public class Player implements Entity {
 	private Inventory inventory;
 	private Room lastCreatedRoom;
 	private boolean sendHotelAlert;
-	
+
 	private long orderInfoProtection;
-	//private String callID;
-	//private String 
 
 	public Player(IPlayerNetwork network) {
 		this.network = network;
@@ -34,13 +32,13 @@ public class Player implements Entity {
 		this.lastCreatedRoom = null;
 		this.sendHotelAlert = true;
 	}
-	
+
 	public void login() {
 		Roseau.getDao().getPlayer().updateLastLogin(this.details);
 	}
-	
+
 	public Player getPrivateRoomPlayer() {
-		
+
 		try {
 			return Roseau.getGame()
 					.getPlayerManager()
@@ -48,15 +46,15 @@ public class Player implements Entity {
 					.values().stream()
 					.filter(s -> s.getDetails().getID() == this.details.getID() && 
 					s.getNetwork().getServerPort() == (Roseau.getPrivateServerPort())).findFirst().get();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	public Player getPublicRoomPlayer() {
-		
+
 		try {
 			return Roseau.getGame()
 					.getPlayerManager()
@@ -65,48 +63,54 @@ public class Player implements Entity {
 					.filter(s -> s.getDetails().getID() == this.details.getID() && 
 					s.getNetwork().getServerPort() != (Roseau.getPrivateServerPort()) &&
 					s.getNetwork().getServerPort() != Roseau.getServerPort()).findFirst().get();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
-	
+
+
 	public void dispose() {
 
-		if (this.roomEntity != null) {
-			if (this.roomEntity.getRoom() != null) {
-				this.roomEntity.getRoom().leaveRoom(this, false);
+		if (this.details.isAuthenticated()) {
+			if (this.roomEntity != null) {
+				if (this.roomEntity.getRoom() != null) {
+					this.roomEntity.getRoom().leaveRoom(this, false);
+				}
+			}
+
+			for (Room room : this.getRooms()) {
+				room.dispose();
 			}
 		}
 		
 		this.inventory.dispose();
 	}
-	
+
 	public void send(OutgoingMessageComposer response) {
 		this.network.send(response);
 	}
-	
+
 	public void kick() {
 		this.network.close();
 	}
-	
+
 	public void kickAllConnections() {
-		
+
 		try {
-			
+
 			List<Player> players = Roseau.getGame().getPlayerManager().getPlayers().values().stream().filter(s -> s.getDetails().getID() == this.details.getID()).collect(Collectors.toList());
-			
+
 			for (Player player : players) {
 				player.kick();
 			}
-			
+
 		} catch (Exception e) {
 			return;
 		}
 	}
-		
+
 	public void setMachineID(String machineID) {
 		this.machineID = machineID;
 	}
@@ -126,12 +130,12 @@ public class Player implements Entity {
 	public List<Room> getRooms() {
 		return Roseau.getDao().getRoom().getPlayerRooms(this.details, true);
 	}
-	
+
 	@Override
 	public EntityType getType() {
 		return EntityType.PLAYER;
 	}
-	
+
 	@Override
 	public RoomUser getRoomUser() {
 		return this.roomEntity;

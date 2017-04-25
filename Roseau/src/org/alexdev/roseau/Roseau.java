@@ -4,16 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.dao.mysql.MySQLDao;
 import org.alexdev.roseau.game.Game;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.server.IServerHandler;
 import org.alexdev.roseau.util.Configuration;
-import org.alexdev.roseau.util.JarUtils;
 import org.alexdev.roseau.util.Util;
 
 public class Roseau {
@@ -22,7 +18,6 @@ public class Roseau {
 	private static Util utilities;
 	private static Game game;
 	private static Dao dao;
-	private static boolean isDebug;
 
 	private static String serverIP;
 	private static int serverPort;
@@ -32,17 +27,11 @@ public class Roseau {
 	public static void main(String[] args) {
 
 		try {
-
-			for (String arg : args) {
-				if (arg.equalsIgnoreCase("-debug")) {
-					isDebug = true;
-				}
-			}
-
+			
 			createConfig();
 			Log.startup();
-			loadDependencies();
-
+			
+			server = Class.forName(Roseau.getServerClassPath()).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
 			serverIP = utilities.getConfiguration().get("Server", "server.ip", String.class);
 			serverPort = utilities.getConfiguration().get("Server", "server.port", int.class);	
 
@@ -59,63 +48,10 @@ public class Roseau {
 
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 	}
-
-	private static void loadDependencies() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-
-		List<File> libs = new ArrayList<File>();
-
-		Log.println("Loading dependencies");
-
-		if (!isDebug) { // if not debug mode, then we include libraries
-			Configuration libraryConfig = new Configuration(new File("lib" + File.separator + "libraries.properties"));
-			String[] libraries = libraryConfig.get("libraries").split(",");
-
-			for (String library : libraries) {
-
-				File libFile = new File("lib" + File.separator + libraryConfig.get("library." + library));
-				libs.add(libFile);
-			}
-		}
-
-		socketConfiguration = new Configuration(new File("extensions" + File.separator + "roseau_socket_extension.conf"));
-		libs.add(new File(socketConfiguration.get("extension.socket.jar")));
-
-
-		try {
-			for (final File lib : libs) { 
-				if (lib.exists()) { 
-
-					Log.println("Loading: " + lib.getName());
-
-					JarUtils.extractFromJar(lib.getName(), lib.getAbsolutePath()); 
-				} 
-			} 
-
-			for (final File lib : libs) { 
-				if (!lib.exists()) { 
-					Log.println("[ERROR] There was a critical error loading My plugin! Could not find lib: " + lib.getName());
-					continue;
-				}
-
-				JarUtils.addClassPath(JarUtils.getJarUrl(lib)); 
-			}
-
-			Log.println();
-
-			server = Class.forName(socketConfiguration.get("extension.socket.entry")).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
-
-			if (server == null) {
-				Log.println("Server null");
-			}
-
-		} catch (final Exception e) { 
-			Log.exception(e);
-		}
-	}
-
+	
 	private static void createConfig() throws IOException {
 		File file = new File("roseau.properties");
 
@@ -138,6 +74,29 @@ public class Roseau {
 		}
 
 		utilities = new Util();
+	}
+	
+	private static void startServer() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
+
+		String serverIP = utilities.getConfiguration().get("Server", "server.ip", String.class);
+		int serverPort = utilities.getConfiguration().get("Server", "server.port", int.class);
+
+
+		Log.println("Settting up server");
+
+		server.setIp(serverIP);
+		server.setPort(serverPort);
+
+		privateRoomServer = Class.forName(Roseau.getServerClassPath()).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
+		privateRoomServer.setIp(serverIP);
+		privateRoomServer.setPort(serverPort - 1);
+		privateRoomServer.listenSocket();
+
+		if (server.listenSocket()) {
+			Log.println("Server is listening on " + serverIP + ":" + serverPort);
+		} else {
+			Log.println("Server could not listen on " + serverPort + ":" + serverPort + ", please double check everything is correct in icarus.properties");
+		}
 	}
 
 	private static void writeMainConfiguration(PrintWriter writer) {
@@ -180,29 +139,11 @@ public class Roseau {
 		writer.println("talking.lookat.reset=6");
 	}
 
-	private static void startServer() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
-
-		String serverIP = utilities.getConfiguration().get("Server", "server.ip", String.class);
-		int serverPort = utilities.getConfiguration().get("Server", "server.port", int.class);
-
-
-		Log.println("Settting up server");
-
-		server.setIp(serverIP);
-		server.setPort(serverPort);
-
-		privateRoomServer = Class.forName(socketConfiguration.get("extension.socket.entry")).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
-		privateRoomServer.setIp(serverIP);
-		privateRoomServer.setPort(serverPort - 1);
-		privateRoomServer.listenSocket();
-
-		if (server.listenSocket()) {
-			Log.println("Server is listening on " + serverIP + ":" + serverPort);
-		} else {
-			Log.println("Server could not listen on " + serverPort + ":" + serverPort + ", please double check everything is correct in icarus.properties");
-		}
+	private static String getServerClassPath() {
+		return "org.alexdev.roseau.server.netty.NettyServer";
 	}
 
+	
 	public static IServerHandler getServer() {
 		return server;
 	}

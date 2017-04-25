@@ -13,7 +13,6 @@ import org.alexdev.roseau.game.room.RoomTile;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_UPDATE;
-import org.alexdev.roseau.messages.outgoing.DOOR_IN;
 import org.alexdev.roseau.messages.outgoing.DOOR_OUT;
 import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.messages.outgoing.UPDATEWALLITEM;

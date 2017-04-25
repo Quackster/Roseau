@@ -54,7 +54,15 @@ public class NetworkDecoder extends FrameDecoder {
 			}
 			
 			byte[] message_length = buffer.readBytes(4).array();
-			byte[] message = buffer.readBytes(Integer.parseInt(new String(message_length, StandardCharsets.ISO_8859_1).replaceAll("[^0-9]",""))).array();
+			int length = 0;
+			
+			try {
+				length = Integer.parseInt(new String(message_length).trim());
+			} catch (NumberFormatException nfe) {
+				return null;
+			}
+			
+			byte[] message = buffer.readBytes(length).array();
 			
 			String content = new String(message, StandardCharsets.ISO_8859_1);
 			

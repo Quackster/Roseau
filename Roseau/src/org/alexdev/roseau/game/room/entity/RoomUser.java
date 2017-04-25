@@ -1,7 +1,6 @@
 package org.alexdev.roseau.game.room.entity;
 
 import java.util.LinkedList;
-import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +11,6 @@ import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.CHAT;
-import org.alexdev.roseau.messages.outgoing.DOOR_IN;
 import org.alexdev.roseau.messages.outgoing.DOOR_OUT;
 import org.alexdev.roseau.messages.outgoing.OPEN_UIMAKOPPI;
 import org.alexdev.roseau.messages.outgoing.STATUS;
@@ -30,8 +28,6 @@ import com.google.common.collect.Lists;
 
 public class RoomUser {
 
-	private int virtualID;
-	private int lastChatID;
 	private int danceID;
 	private int timeUntilNextDrink;
 
@@ -232,7 +228,7 @@ public class RoomUser {
 				if (room != null) {
 
 					this.setCanWalk(false);
-					player.send(new DOOR_OUT(item, player.getDetails().getName()));
+					this.room.send(new DOOR_OUT(item, player.getDetails().getName()));
 
 					Runnable task = new Runnable() {
 						@Override
@@ -395,8 +391,6 @@ public class RoomUser {
 		this.needsUpdate = false;
 		this.isWalking = false;
 
-		this.lastChatID = 0;
-		this.virtualID = -1;
 		this.danceID = 0;
 		this.timeUntilNextDrink = -1;
 
@@ -472,21 +466,6 @@ public class RoomUser {
 
 	public boolean isDancing() {
 		return this.danceID != 0;
-	}
-	public int getVirtualID() {
-		return virtualID;
-	}
-
-	public void setVirtualID(int virtualID) {
-		this.virtualID = virtualID;
-	}
-
-	public int getLastChatID() {
-		return lastChatID;
-	}
-
-	public void setLastChatID(int lastChatID) {
-		this.lastChatID = lastChatID;
 	}
 
 	public int getDanceID() {
