@@ -376,6 +376,11 @@ public class Item implements SerializableObject {
 	}
 
 	public void setCustomData(String customData) {
+		
+		if (customData.length() > 400) {
+			customData = customData.substring(0, 400); 
+		}
+		
 		this.customData = customData;
 		this.setTeleporterID();
 	}

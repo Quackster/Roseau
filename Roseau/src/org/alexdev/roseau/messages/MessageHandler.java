@@ -43,6 +43,7 @@ import org.alexdev.roseau.messages.incoming.SEARCHBUSYFLATS;
 import org.alexdev.roseau.messages.incoming.SEARCHFLAT;
 import org.alexdev.roseau.messages.incoming.SEARCHFLATFORUSER;
 import org.alexdev.roseau.messages.incoming.SETFLATINFO;
+import org.alexdev.roseau.messages.incoming.SETITEMDATA;
 import org.alexdev.roseau.messages.incoming.SETSTRIPITEMDATA;
 import org.alexdev.roseau.messages.incoming.SETSTUFFDATA;
 import org.alexdev.roseau.messages.incoming.STATUSOK;
@@ -152,6 +153,7 @@ public class MessageHandler {
 		this.messages.put("ADDITEM", new ADDITEM());
 		this.messages.put("SETSTRIPITEMDATA", new SETSTRIPITEMDATA());
 		this.messages.put("LETUSERIN", new LETUSERIN());
+		this.messages.put("SETITEMDATA", new SETITEMDATA());
 	}
 	
 	

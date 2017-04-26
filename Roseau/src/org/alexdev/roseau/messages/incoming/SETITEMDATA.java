@@ -7,35 +7,37 @@ import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
-public class ADDSTRIPITEM implements MessageEvent {
+public class SETITEMDATA implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-
-		int itemID = Integer.valueOf(reader.getArgument(2));
+		
+		int itemID = Integer.valueOf(reader.getArgument(1, "/"));
+		String stickyData = reader.getMessageBody().replace("/" + itemID + "/", "");
 
 		Room room = player.getRoomUser().getRoom();
-
-		if (!room.hasRights(player.getDetails().getID(), true)) {
+		
+		if (room == null) {
 			return;
 		}
-
+		
+		if (!room.hasRights(player.getDetails().getID(), false)) {
+			return;
+		}
+		
 		Item item = room.getItem(itemID);
-
+		
 		if (item == null) {
 			return;
 		}
-
-		if (item.getDefinition().getBehaviour().isOnFloor()) {
-			item.getPosition().setX(-1);
-			item.getPosition().setY(-1);
-			item.updateEntities();
+		
+		if (!stickyData.startsWith(item.getCustomData())) {
+			Log.println("Scripting, maybe? ITEM ID " + itemID);
+			return;
 		}
-
-		room.getMapping().removeItem(item);
-
-		player.getInventory().addItem(item);
-		player.getInventory().refresh("last");
+		
+		item.setCustomData(stickyData);
+		item.save();
 	}
 
 }

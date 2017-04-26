@@ -193,6 +193,7 @@ public class RoomMapping {
 	public void addItem(Item item, boolean wall_item) {
 
 		item.setRoomID(this.room.getData().getID());
+		item.setCustomData("");
 		//item->extra_data = "";
 
 		this.room.getItems().put(item.getID(), item);
@@ -224,6 +225,8 @@ public class RoomMapping {
 
 	public void updateItemPosition(Item item, boolean rotation_only) {
 
+		item.setCustomData("");
+		
 		if (item.getDefinition().getBehaviour().isOnFloor()) {
 			this.handleItemAdjustment(item, rotation_only);
 			this.regenerateCollisionMaps();
@@ -245,6 +248,7 @@ public class RoomMapping {
 	public void removeItem(Item item) {
 		
 		item.setRoomID(0);
+		item.setCustomData("");
 		item.save();
 
 		if (item.getDefinition().getBehaviour().isOnFloor()) {
