@@ -21,7 +21,7 @@ public class SETITEMDATA implements MessageEvent {
 			return;
 		}
 		
-		if (!room.hasRights(player.getDetails().getID(), false)) {
+		if (!room.hasRights(player, false)) {
 			return;
 		}
 		

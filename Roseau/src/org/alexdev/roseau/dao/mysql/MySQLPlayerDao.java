@@ -4,14 +4,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.util.IProcessStorage;
 import org.alexdev.roseau.game.GameVariables;
+import org.alexdev.roseau.game.item.ItemDefinition;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.log.Log;
 import org.mindrot.jbcrypt.BCrypt;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> implements PlayerDao {
 
@@ -225,7 +233,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 		}
 
 	}
-	
+
 	@Override
 	public void updateLastLogin(PlayerDetails details) {
 
@@ -250,6 +258,45 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			Storage.closeSilently(preparedStatement);
 			Storage.closeSilently(sqlConnection);
 		}
+
+	}
+
+	@Override
+	public Map<Integer, List<String>> getPermissions() {
+
+		Map<Integer, List<String>> permissions = Maps.newHashMap();
+
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			sqlConnection = this.dao.getStorage().getConnection();
+			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM users_permissions", sqlConnection);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				
+				int rank = resultSet.getInt("rank");
+				String permission = resultSet.getString("permission");
+				
+				if (!permissions.containsKey(rank)) {
+					permissions.put(rank, Lists.newArrayList());
+				}
+				
+				permissions.get(rank).add(permission);
+			}
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(resultSet);
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
+
+		return permissions;
 
 	}
 

@@ -25,16 +25,16 @@ public class Position {
 		this.Z = 0;
 	}
 
-	public Position(int x, int y, double i) {
+	public Position(int x, int y, double z) {
 		this.X = x;
 		this.Y = y;
-		this.Z = i;
+		this.Z = z;
 	}
 
-	public Position(int x, int y, double i, int rotation) {
+	public Position(int x, int y, double z, int rotation) {
 		this.X = x;
 		this.Y = y;
-		this.Z = i;
+		this.Z = z;
 		this.bodyRotation = rotation;
 		this.headRotation = rotation;
 	}

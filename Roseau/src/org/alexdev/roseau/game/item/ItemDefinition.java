@@ -1,5 +1,7 @@
 package org.alexdev.roseau.game.item;
 
+import org.alexdev.roseau.log.Log;
+
 public class ItemDefinition {
 
 	private int id;
@@ -21,6 +23,7 @@ public class ItemDefinition {
 		this.length = length;
 		this.width = width;
 		this.height = height;
+		
 		this.stringBehaviour = behaviour;
 		this.name = name;
 		this.description = description;

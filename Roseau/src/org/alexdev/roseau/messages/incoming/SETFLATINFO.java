@@ -17,7 +17,7 @@ allsuperuser=0*/
 		
 		Room room = Roseau.getGame().getRoomManager().getRoomByID(Integer.valueOf(reader.getArgument(1, "/")));
 		
-		if (!room.hasRights(player.getDetails().getID(), true)) {
+		if (!room.hasRights(player, true)) {
 			return;
 		}
 		

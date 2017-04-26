@@ -260,6 +260,23 @@ public class Room {
 
 		return received;
 	}
+	
+	public boolean hasRights(Player user, boolean ownerCheckOnly) {
+
+		if (user.hasPermission("room_all_rights")) {
+			return true;
+		}
+		
+		if (this.roomData.getOwnerID() == user.getDetails().getID()) {
+			return true;
+		} else {
+			if (!ownerCheckOnly) {
+				return this.rights.contains(Integer.valueOf(user.getDetails().getID()));
+			}
+		}
+
+		return false;
+	}
 
 	public void giveUserRights(Player player) {
 
@@ -290,7 +307,7 @@ public class Room {
 			player.send(new YOUAREOWNER());
 			player.getRoomUser().setStatus("flatctrl", " useradmin", true, -1);
 
-		} else if (this.hasRights(player.getDetails().getID(), false) || this.roomData.hasAllSuperUser()) {
+		} else if (this.hasRights(player, false) || this.roomData.hasAllSuperUser()) {
 
 			player.send(new YOUARECONTROLLER());
 			player.getRoomUser().setStatus("flatctrl", "", true, -1);
@@ -338,19 +355,6 @@ public class Room {
 		this.send(new LOGOUT(player.getDetails().getName()));
 
 		this.dispose();
-	}
-
-	public boolean hasRights(int userID, boolean ownerCheckOnly) {
-
-		if (this.roomData.getOwnerID() == userID) {
-			return true;
-		} else {
-			if (!ownerCheckOnly) {
-				return this.rights.contains(Integer.valueOf(userID));
-			}
-		}
-
-		return false;
 	}
 
 	public void dispose(boolean forceDisposal) {
@@ -452,7 +456,7 @@ public class Room {
 		List<Player> sessions = Lists.newArrayList();
 
 		for (Player player : this.getPlayers()) {
-			if (this.hasRights(player.getDetails().getID(), false)) {
+			if (this.hasRights(player, false)) {
 				sessions.add(player);
 			}
 		}

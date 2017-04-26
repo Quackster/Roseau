@@ -16,7 +16,7 @@ public class ADDSTRIPITEM implements MessageEvent {
 
 		Room room = player.getRoomUser().getRoom();
 
-		if (!room.hasRights(player.getDetails().getID(), true)) {
+		if (!room.hasRights(player, true)) {
 			return;
 		}
 

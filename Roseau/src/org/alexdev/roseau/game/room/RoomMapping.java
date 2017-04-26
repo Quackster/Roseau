@@ -11,6 +11,7 @@ import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.settings.RoomType;
+import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_ADD;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_REMOVE;
 import org.alexdev.roseau.messages.outgoing.ADDWALLITEM;
@@ -73,12 +74,7 @@ public class RoomMapping {
 					continue;
 				}
 
-				double stacked_height = 0;
-
-				//if (item.getDefinition().getBehaviour().isCanStackOnTop()) {
-					stacked_height = item.getDefinition().getHeight();
-				//}
-
+				double stacked_height = item.getDefinition().getHeight();
 				this.checkHighestItem(item, item.getPosition().getX(), item.getPosition().getY());
 
 				RoomTile roomTile = this.getTile(item.getPosition().getX(), item.getPosition().getY());
@@ -297,7 +293,7 @@ public class RoomMapping {
 		}
 
 		if (item.getDefinition().getBehaviour().getRequiresRightsForInteraction()) {
-			if (this.room.hasRights(player.getDetails().getID(), false)) {
+			if (this.room.hasRights(player, false)) {
 				return;
 			}
 		}

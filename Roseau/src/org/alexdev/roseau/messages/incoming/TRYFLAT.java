@@ -39,7 +39,7 @@ public class TRYFLAT implements MessageEvent {
 			}
 		}
 		
-		if (!room.hasRights(player.getDetails().getID(), false)) {
+		if (!room.hasRights(player, false)) {
 			if (room.getData().getState() == RoomState.PASSWORD) {
 				if (!password.equals(room.getData().getPassword())) {
 					player.send(new ERROR("Incorrect flat password"));

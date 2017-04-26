@@ -43,7 +43,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 						resultSet.getString("color"), 
 						resultSet.getInt("length"),
 						resultSet.getInt("width"),
-						resultSet.getInt("height"),
+						resultSet.getDouble("height"),
 						resultSet.getString("behaviour"),
 						resultSet.getString("name"),
 						resultSet.getString("description"),

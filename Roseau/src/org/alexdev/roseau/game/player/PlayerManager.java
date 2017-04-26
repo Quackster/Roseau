@@ -1,6 +1,8 @@
 package org.alexdev.roseau.game.player;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -12,9 +14,11 @@ import com.google.common.collect.Lists;
 public class PlayerManager {
 
 	private ConcurrentHashMap<Integer, Player> players;
+	private Map<Integer, List<String>> permissions;
 	
 	public PlayerManager() {
 		this.players = new ConcurrentHashMap<Integer, Player>();
+		this.permissions = Roseau.getDao().getPlayer().getPermissions();
 	}
 
 	public Player getByID(int userID) {
@@ -162,6 +166,27 @@ public class PlayerManager {
 			e.printStackTrace();
 			return Lists.newArrayList();
 		}
+	}
+	
+	public boolean hasPermission(int rank, String permission) {
+		
+		List<String> gatheredPermissions = Lists.newArrayList();
+
+		for (Entry<Integer, List<String>> kvp : this.permissions.entrySet()) {
+			
+			if (kvp.getKey() >= rank) {
+				
+				for (String fuse : kvp.getValue()) {
+					gatheredPermissions.add(fuse);
+				}
+			}
+		}
+
+		return gatheredPermissions.contains(permission);
+	}
+	
+	public Map<Integer, List<String>> getPermissions() {
+		return permissions;
 	}
 	
 	public ConcurrentHashMap<Integer, Player> getPlayers() {

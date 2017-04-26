@@ -21,7 +21,7 @@ public class MOVESTUFF implements MessageEvent {
 			return;
 		}
 
-		if (!room.hasRights(player.getDetails().getID(), false) && !room.getData().hasAllSuperUser()) {
+		if (!room.hasRights(player, false) && !room.getData().hasAllSuperUser()) {
 			return;
 		}
 

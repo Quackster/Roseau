@@ -17,7 +17,7 @@ public class ADDITEM implements MessageEvent {
 19*/
 		Room room = player.getRoomUser().getRoom();
 
-		if (!room.hasRights(player.getDetails().getID(), false)) {
+		if (!room.hasRights(player, false)) {
 			return;
 		}
 		

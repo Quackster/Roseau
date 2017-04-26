@@ -25,7 +25,7 @@ wordfilter_disable=*/
 			return;
 		}
 		
-		if (!room.hasRights(player.getDetails().getID(), true)) {
+		if (!room.hasRights(player, true)) {
 			return;
 		}
 		

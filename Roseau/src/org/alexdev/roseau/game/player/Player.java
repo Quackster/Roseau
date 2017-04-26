@@ -36,6 +36,10 @@ public class Player implements Entity {
 	public void login() {
 		Roseau.getDao().getPlayer().updateLastLogin(this.details);
 	}
+	
+	public boolean hasPermission(String permission) {
+		return Roseau.getGame().getPlayerManager().hasPermission(this.details.getRank(), permission);
+	}
 
 	public Player getPrivateRoomPlayer() {
 
