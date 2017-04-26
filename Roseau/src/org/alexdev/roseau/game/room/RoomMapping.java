@@ -188,7 +188,7 @@ public class RoomMapping {
 	public void addItem(Item item, boolean wall_item) {
 
 		item.setRoomID(this.room.getData().getID());
-		item.setCustomData("");
+		//item.setCustomData("");
 		//item->extra_data = "";
 
 		this.room.getItems().put(item.getID(), item);
