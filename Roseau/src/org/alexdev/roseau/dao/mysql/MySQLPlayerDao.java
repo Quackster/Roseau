@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +11,6 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.util.IProcessStorage;
 import org.alexdev.roseau.game.GameVariables;
-import org.alexdev.roseau.game.item.ItemDefinition;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.log.Log;

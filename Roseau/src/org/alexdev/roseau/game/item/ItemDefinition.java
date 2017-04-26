@@ -1,7 +1,5 @@
 package org.alexdev.roseau.game.item;
 
-import org.alexdev.roseau.log.Log;
-
 public class ItemDefinition {
 
 	private int id;

@@ -222,9 +222,6 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 	
 	@Override
 	public Item fill(ResultSet row) throws Exception {
-		
-		//public Item(int id, int roomID, int ownerID, int x, int y, double z, int rotation, int definition, String itemData, String customData, String extraData) {
-		
 		Item item = new Item(row.getInt("id"), row.getInt("room_id"), row.getInt("user_id"), row.getString("x"), row.getInt("y"), row.getDouble("z"), row.getInt("rotation"), row.getInt("item_id"), "", row.getString("extra_data"));
 		return item;
 	}

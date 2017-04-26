@@ -11,7 +11,6 @@ import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.settings.RoomType;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_ADD;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_REMOVE;
 import org.alexdev.roseau.messages.outgoing.ADDWALLITEM;

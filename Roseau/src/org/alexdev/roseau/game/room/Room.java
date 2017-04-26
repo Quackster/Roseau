@@ -239,13 +239,17 @@ public class Room {
 			}
 		} else {
 
-			if (this.roomData.getModelName().equals("hallB")) {
+			/*if (this.roomData.getModelName().equals("hallB")) {
 				player.send(new OPEN_GAMEBOARD("BattleShip"));
 			}
 
 			if (this.roomData.getModelName().equals("hallD")) {
 				player.send(new OPEN_GAMEBOARD("Poker"));
 			}
+			
+			if (this.roomData.getModelName().equals("hallC")) {
+				player.send(new OPEN_GAMEBOARD("TicTacToe"));
+			}*/
 		}
 	}
 
@@ -302,7 +306,7 @@ public class Room {
 
 	public void refreshFlatPrivileges(Player player, boolean enterRoom) {
 
-		if (this.roomData.getOwnerID() == player.getDetails().getID()) {
+		if (this.roomData.getOwnerID() == player.getDetails().getID() || player.hasPermission("room_all_rights")) {
 
 			player.send(new YOUAREOWNER());
 			player.getRoomUser().setStatus("flatctrl", " useradmin", true, -1);

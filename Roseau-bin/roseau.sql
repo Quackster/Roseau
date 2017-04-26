@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2017 at 10:02 AM
+-- Generation Time: Apr 26, 2017 at 04:11 PM
 -- Server version: 10.1.22-MariaDB-1~xenial
 -- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
@@ -1287,7 +1287,7 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (1004, 'table_polyfon_small', '0,0,0', 2, 2, 1, 'NULL', 'SFH', 'Small Coffee Table', 'For serving a stylish latte'),
 (1681, 'safe_silo', '*ffffff,*ABD0D2,*ABD0D2,*ffffff', 1, 1, 1, 'DOOROPEN', 'SF', 'Safe Minibar', 'Totally shatter-proof!'),
 (2360, 'post.it', '', 0, 0, 0.01, 'NULL', 'IWGJ', 'Unknown name', 'Unknown description'),
-(2361, 'post.it.vd', '', 0, 0, 0.01, 'NULL', 'IWGJ', 'Unknown name', 'Unknown description'),
+(2634, 'gamehall_chair_wood', '', 1, 1, 1, '', 'PFC', 'Unknown name', 'Unknown description'),
 (2362, 'photo', '', 0, 0, 0.01, 'NULL', 'IWN', 'Photo', 'Photo from Habbo'),
 (2363, 'Chess', '0,0,0', 0, 0, 0.01, 'NULL', 'SFP', 'Unknown name', 'Unknown description'),
 (2371, 'hc_wall_lamp', '0,0,0', 0, 0, 0.01, 'SWITCHON', 'SFM', 'Unknown name', 'Unknown description'),
@@ -1572,7 +1572,12 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (2630, 'gl_tablea', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
 (2631, 'gl_chair', '', 1, 1, 1, '', 'PFC', 'Unknown name', 'Unknown description'),
 (2632, 'gl_sofatable', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
-(2633, 'gl_yukka', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description');
+(2633, 'gl_yukka', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
+(2635, 'table_xoxa', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
+(2636, 'table_xoxb', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
+(2637, 'table_battleships', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
+(2638, 'cardtablea', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
+(2639, 'cardtableb', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description');
 
 -- --------------------------------------------------------
 
@@ -2807,7 +2812,100 @@ INSERT INTO `room_public_items` (`id`, `definitionid`, `model`, `x`, `y`, `z`, `
 (949, 2629, 'entryhall', 7, 12, 1, 6, NULL, NULL),
 (950, 2630, 'entryhall', 7, 11, 1, 6, NULL, NULL),
 (951, 2630, 'entryhall', 11, 7, 1, 0, NULL, NULL),
-(953, 2629, 'entryhall', 12, 7, 1, 0, NULL, NULL);
+(953, 2629, 'entryhall', 12, 7, 1, 0, NULL, NULL),
+(955, 2634, 'hallA', 15, 4, 1, 6, '', ''),
+(956, 2634, 'hallA', 15, 5, 1, 6, '', ''),
+(957, 2634, 'hallA', 15, 9, 1, 6, '', ''),
+(958, 2634, 'hallA', 15, 10, 1, 6, '', ''),
+(959, 2634, 'hallA', 15, 14, 1, 6, '', ''),
+(960, 2634, 'hallA', 15, 15, 1, 6, '', ''),
+(961, 2634, 'hallA', 10, 4, 1, 6, '', ''),
+(962, 2634, 'hallA', 10, 5, 1, 6, '', ''),
+(963, 2634, 'hallA', 10, 9, 1, 6, '', ''),
+(964, 2634, 'hallA', 10, 10, 1, 6, '', ''),
+(965, 2634, 'hallA', 10, 14, 1, 6, '', ''),
+(966, 2634, 'hallA', 10, 15, 1, 6, '', ''),
+(967, 2634, 'hallA', 5, 4, 1, 6, '', ''),
+(968, 2634, 'hallA', 5, 5, 1, 6, '', ''),
+(969, 2634, 'hallA', 5, 9, 1, 6, '', ''),
+(970, 2634, 'hallA', 5, 10, 1, 6, '', ''),
+(971, 2634, 'hallA', 5, 14, 1, 6, '', ''),
+(972, 2634, 'hallA', 5, 15, 1, 6, '', ''),
+(973, 2635, 'hallA', 14, 5, 1, 6, '', ''),
+(974, 2635, 'hallA', 14, 10, 1, 6, '', ''),
+(975, 2635, 'hallA', 14, 15, 1, 6, '', ''),
+(976, 2635, 'hallA', 9, 5, 1, 6, '', ''),
+(977, 2635, 'hallA', 9, 10, 1, 6, '', ''),
+(978, 2635, 'hallA', 9, 15, 1, 6, '', ''),
+(979, 2635, 'hallA', 4, 5, 1, 6, '', ''),
+(980, 2635, 'hallA', 4, 10, 1, 6, '', ''),
+(981, 2635, 'hallA', 4, 15, 1, 6, '', ''),
+(982, 2636, 'hallA', 14, 14, 1, 6, '', ''),
+(983, 2636, 'hallA', 14, 9, 1, 6, '', ''),
+(984, 2636, 'hallA', 14, 4, 1, 6, '', ''),
+(985, 2636, 'hallA', 9, 14, 1, 6, '', ''),
+(986, 2636, 'hallA', 9, 9, 1, 6, '', ''),
+(987, 2636, 'hallA', 9, 4, 1, 6, '', ''),
+(988, 2636, 'hallA', 4, 14, 1, 6, '', ''),
+(989, 2636, 'hallA', 4, 9, 1, 6, '', ''),
+(990, 2636, 'hallA', 4, 4, 1, 6, '', ''),
+(991, 2615, 'hallB', 2, 4, 1, 4, '', ''),
+(992, 2615, 'hallB', 2, 10, 1, 4, '', ''),
+(993, 2615, 'hallB', 2, 16, 1, 4, '', ''),
+(994, 2615, 'hallB', 2, 6, 1, 0, '', ''),
+(995, 2615, 'hallB', 2, 12, 1, 0, '', ''),
+(996, 2615, 'hallB', 2, 18, 1, 0, '', ''),
+(997, 2615, 'hallB', 6, 3, 1, 2, '', ''),
+(998, 2615, 'hallB', 8, 3, 1, 6, '', ''),
+(999, 2615, 'hallB', 13, 3, 1, 2, '', ''),
+(1000, 2615, 'hallB', 15, 3, 1, 6, '', ''),
+(1001, 2637, 'hallB', 2, 5, 1, 0, '', ''),
+(1002, 2637, 'hallB', 2, 11, 1, 0, '', ''),
+(1003, 2637, 'hallB', 2, 17, 1, 0, '', ''),
+(1004, 2637, 'hallB', 7, 3, 1, 2, '', ''),
+(1005, 2637, 'hallB', 14, 3, 1, 2, '', ''),
+(1006, 2639, 'hallD', 2, 15, 1, 0, '', ''),
+(1007, 2639, 'hallD', 2, 15, 1, 0, '', ''),
+(1008, 2639, 'hallD', 8, 3, 1, 0, '', ''),
+(1009, 2639, 'hallD', 14, 3, 1, 0, '', ''),
+(1010, 2638, 'hallD', 2, 9, 1, 0, '', ''),
+(1011, 2638, 'hallD', 8, 9, 1, 0, '', ''),
+(1012, 2638, 'hallD', 14, 9, 1, 0, '', ''),
+(1013, 2638, 'hallD', 8, 15, 1, 0, '', ''),
+(1014, 2638, 'hallD', 14, 15, 1, 0, '', ''),
+(1015, 2615, 'hallD', 8, 4, 1, 0, '', ''),
+(1016, 2615, 'hallD', 14, 4, 1, 0, '', ''),
+(1017, 2615, 'hallD', 2, 10, 1, 0, '', ''),
+(1018, 2615, 'hallD', 8, 10, 1, 0, '', ''),
+(1019, 2615, 'hallD', 14, 10, 1, 0, '', ''),
+(1020, 2615, 'hallD', 2, 16, 1, 0, '', ''),
+(1047, 2615, 'hallD', 8, 16, 1, 0, '', ''),
+(1022, 2615, 'hallD', 14, 16, 1, 0, '', ''),
+(1023, 2615, 'hallD', 7, 3, 1, 2, '', ''),
+(1024, 2615, 'hallD', 13, 3, 1, 2, '', ''),
+(1025, 2615, 'hallD', 1, 9, 1, 2, '', ''),
+(1026, 2615, 'hallD', 7, 9, 1, 2, '', ''),
+(1027, 2615, 'hallD', 13, 9, 1, 2, '', ''),
+(1028, 2615, 'hallD', 1, 15, 1, 2, '', ''),
+(1029, 2615, 'hallD', 7, 15, 1, 2, '', ''),
+(1030, 2615, 'hallD', 13, 15, 1, 2, '', ''),
+(1031, 2615, 'hallD', 8, 2, 1, 4, '', ''),
+(1032, 2615, 'hallD', 14, 2, 1, 4, '', ''),
+(1033, 2615, 'hallD', 2, 8, 1, 4, '', ''),
+(1034, 2615, 'hallD', 8, 8, 1, 4, '', ''),
+(1035, 2615, 'hallD', 14, 8, 1, 4, '', ''),
+(1036, 2615, 'hallD', 2, 14, 1, 4, '', ''),
+(1037, 2615, 'hallD', 8, 14, 1, 4, '', ''),
+(1038, 2615, 'hallD', 14, 14, 1, 4, '', ''),
+(1039, 2615, 'hallD', 9, 3, 1, 6, '', ''),
+(1040, 2615, 'hallD', 15, 3, 1, 6, '', ''),
+(1041, 2615, 'hallD', 3, 9, 1, 6, '', ''),
+(1042, 2615, 'hallD', 9, 9, 1, 6, '', ''),
+(1043, 2615, 'hallD', 15, 9, 1, 6, '', ''),
+(1044, 2615, 'hallD', 3, 15, 1, 6, '', ''),
+(1045, 2615, 'hallD', 9, 15, 1, 6, '', '');
+INSERT INTO `room_public_items` (`id`, `definitionid`, `model`, `x`, `y`, `z`, `rotation`, `object`, `data`) VALUES
+(1046, 2615, 'hallD', 15, 15, 1, 6, '', '');
 
 -- --------------------------------------------------------
 
@@ -2861,7 +2959,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `figure`, `pool_figure`, `credits`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
 (2, 'test', '$2a$10$tflTFPysv6cxMSQ7BYa1ZemOmbh4bc.vH.NoMOAQOaELrBEfh7THe', 1, 44324323, 1493138151, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', 'ch=s01/51,120,201', 200, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '$2a$10$TqND09kQIr2Q7WSiYzR5JeouSgyR30Y1bOjEPIcp4tkNMYrCwtrQe', 1, 1489384512, 1493186909, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/42,199,210', 315, 'Male', 'UK', '', '01.01.1997', 1),
+(5, 'Alex', '$2a$10$1ySblHi3VN4RermV4prFxOxIpFxNcfI8JGJoOHLLLUtGIl0/lw6Z2', 3, 1489384512, 1493195454, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/42,199,210', 385, 'Male', 'UK', '', '01.01.1997', 1),
 (6, 'Dark', '$2a$10$3VoNh8uaT6ZxeG1nsp1PhuTK8HKml5U6svLyjFN/4GBqWJ6DAUWgS', 1, NULL, NULL, 'scott@hypermine.com', 'cool kid', 'sd=001/0&hr=023/103,78,59&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/101,106,64&ls=001/101,106,64&rs=001/101,106,64&lg=006/119,159,187&sh=002/124,143,125', 'ch=s02/42,199,210', 200, 'Male', 'UK', '', '01.01.1990', 0),
 (7, 'Dominic', '$2a$10$e0Y4w4SPnb7vjl5Jf4eUIOBL6nuYVBlzk99CoYFqbyXX2eLR1grAm', 1, NULL, NULL, 'dsmithpw@gmail.com', 'Copies fade so fast...', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 'Male', 'UK', '', '26.02.1997', 0),
 (8, 'Asc', '$2a$10$WthtAe3LHJlfBtBLoj2S9O/1cdCiPl5uQ1sRMDcO7k7KIxPEvitg.', 1, 1492627423, 1493142460, 'spam@here.nty', 'H&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;pp&auml;ij&auml;&auml;!', 'sd=001/0&hr=000/255,255,255&hd=002/0,125,0&ey=000/0&fc=001/0,125,0&bd=001/0,125,0&lh=001/0,125,0&rh=001/0,125,0&ch=009/25,25,25&ls=001/25,25,25&rs=001/25,25,25&lg=004/25,25,25&sh=003/25,25,25', '', 200, 'Male', 'UK', '', '11.11.1911', 0),
@@ -2871,7 +2969,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_on
 (12, 'mentle', '$2a$10$MI7dLGmSTc8rsER0Dm/0ceFdkrjOiFkbpkMmpfUwBJdmrN68NwW1.', 1, NULL, NULL, 'mentle@rz.com', 'i\'m the one who opens if you knock', 'sd=001/0&hr=008/238,231,224&hd=002/248,229,218&ey=005/0&fc=001/248,229,218&bd=001/248,229,218&lh=001/248,229,218&rh=001/248,229,218&ch=005/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=006/255,255,255&sh=001/255,255,255', '', 200, 'Male', 'UK', '', '11.02.1995', 0),
 (13, 'rere', '$2a$10$CYxeKcJdYA7adTooIhbh4Ot5snF7HnLTX0.LLFEr64rHRFrOzbQ8m', 1, NULL, 1492804089, 'lol@nah.com', 'f', 'sd=001/0&hr=015/50,50,53&hd=002/238,231,224&ey=001/0&fc=001/238,231,224&bd=001/238,231,224&lh=001/238,231,224&rh=001/238,231,224&ch=009/51,51,51&ls=002/51,51,51&rs=002/51,51,51&lg=006/51,51,51&sh=003/255,255,255', '', 200, 'Male', 'UK', '', '01.07.1991', 0),
 (14, 'vista4life', '$2a$10$dbxh8BFffHhe9Tuhf73gHO5fJi2LCoT3SJK4.npqK.BF3FvCvXgUK', 1, NULL, NULL, 'obama@hotty.cm', 'obamaftw', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 'Male', 'UK', '', '01-01-1991', 0),
-(15, 'Alito', '$2a$10$bDudwrDsWcB.yWGoBvjozOdr0R29IB286H9o7PLwE88/ndt9FE7be', 1, NULL, 1493159252, 'alitohabbo@hotmail.com', 'Shockwave lover', 'sd=001/0&hr=013/200,210,230&hd=002/255,204,153&ey=005/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=003/106,64,92&ls=002/106,64,92&rs=002/106,64,92&lg=001/215,193,135&sh=001/209,223,175', 'ch=s02/255,255,255', 200, 'Male', 'UK', '', '02.04.1993', 0),
+(15, 'Alito', '$2a$10$bDudwrDsWcB.yWGoBvjozOdr0R29IB286H9o7PLwE88/ndt9FE7be', 1, NULL, 1493211234, 'alitohabbo@hotmail.com', 'Shockwave lover', 'sd=001/0&hr=013/200,210,230&hd=002/255,204,153&ey=005/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=003/106,64,92&ls=002/106,64,92&rs=002/106,64,92&lg=001/215,193,135&sh=001/209,223,175', 'ch=s02/255,255,255', 200, 'Male', 'UK', '', '02.04.1993', 0),
 (16, 'NAH', '$2a$10$bxLXptoISd7gsiM74.PYm.qVglKpjvZt/kHFe3s.QfKD.aIwjFoN.', 1, NULL, NULL, 'j@j.com', '', 'sd=001/0&hr=021/200,210,230&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 'Male', 'UK', '', '01.01.1991', 0),
 (17, 'NuuttiD3w', '$2a$10$DWxGYChEjnxFOH9JCU7AJu47APUlaWkTVaMOgp7S2WPcNRsPW4ypS', 1, NULL, NULL, 'nuutti03.ns@gmail.com', 'idk m8', 'sd=001/0&hr=002/225,204,120&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/76,136,43&ls=001/76,136,43&rs=001/76,136,43&lg=001/119,159,187&sh=004/255,255,255', '', 200, 'Male', 'UK', '', '03.05.2003', 0),
 (18, 'AnotherUser', '$2a$10$.kjP76h0WOt4ogLWKo5.v.ghFs5uqDGESCT9/sSXELNPezJhbk32u', 1, 1492664949, 1492664950, 'e2e@cc.com', 'xddddd', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 'Male', 'UK', '', '04.04.1997', 0),
@@ -3048,7 +3146,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `item_definitions`
 --
 ALTER TABLE `item_definitions`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2634;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2640;
 --
 -- AUTO_INCREMENT for table `messenger_friendships`
 --
@@ -3088,7 +3186,7 @@ ALTER TABLE `room_public_connections`
 -- AUTO_INCREMENT for table `room_public_items`
 --
 ALTER TABLE `room_public_items`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=955;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1048;
 --
 -- AUTO_INCREMENT for table `room_rights`
 --
@@ -3103,7 +3201,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_permissions`
 --
 ALTER TABLE `users_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

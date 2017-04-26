@@ -3,7 +3,6 @@ package org.alexdev.roseau.messages.incoming;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
@@ -29,6 +28,7 @@ public class ADDSTRIPITEM implements MessageEvent {
 		if (item.getDefinition().getBehaviour().isOnFloor()) {
 			item.getPosition().setX(-1);
 			item.getPosition().setY(-1);
+			item.setOwnerID(player.getDetails().getID());
 			item.updateEntities();
 		}
 

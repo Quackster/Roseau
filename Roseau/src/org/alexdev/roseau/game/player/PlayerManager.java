@@ -174,7 +174,7 @@ public class PlayerManager {
 
 		for (Entry<Integer, List<String>> kvp : this.permissions.entrySet()) {
 			
-			if (kvp.getKey() >= rank) {
+			if (rank >= kvp.getKey()) {
 				
 				for (String fuse : kvp.getValue()) {
 					gatheredPermissions.add(fuse);
