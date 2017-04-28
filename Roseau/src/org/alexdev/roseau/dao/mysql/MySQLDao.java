@@ -5,6 +5,7 @@ import org.alexdev.roseau.dao.CatalogueDao;
 import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.dao.InventoryDao;
 import org.alexdev.roseau.dao.ItemDao;
+import org.alexdev.roseau.dao.MessengerDao;
 import org.alexdev.roseau.dao.NavigatorDao;
 import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.RoomDao;
@@ -21,6 +22,7 @@ public class MySQLDao implements Dao {
 	private CatalogueDao catalogue;
 	private InventoryDao inventory;
 	private NavigatorDao navigator;
+	private MessengerDao messenger;
 
 	public MySQLDao() {
 
@@ -31,6 +33,7 @@ public class MySQLDao implements Dao {
 		this.catalogue = new MySQLCatalogueDao(this);
 		this.inventory = new MySQLInventoryDao(this);
 		this.navigator = new MySQLNavigatorDao(this);
+		this.messenger = new MySQLMessengerDao(this);
 	}
 
 	@Override
@@ -93,5 +96,10 @@ public class MySQLDao implements Dao {
 	@Override
 	public NavigatorDao getNavigator() {
 		return navigator;
+	}
+
+	@Override
+	public MessengerDao getMessenger() {
+		return messenger;
 	}
 }

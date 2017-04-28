@@ -30,6 +30,15 @@ public class PlayerManager {
 		}
 	}
 	
+	public Player getByIDMainServer(int userID) {
+		
+		try {
+			return this.players.values().stream().filter(s -> s.getDetails().getID() == userID && s.getNetwork().getServerPort() == Roseau.getServerPort()).findFirst().get();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	public Player getPrivateRoomPlayer(int userID) {
 		
 		try {
@@ -70,7 +79,7 @@ public class PlayerManager {
 	public Player getByName(String name) {
 		
 		try {
-			return this.players.values().stream().filter(s -> s.getDetails().getName().equals(name)).findFirst().get();
+			return this.players.values().stream().filter(s -> s.getDetails().getName().toLowerCase().equals(name.toLowerCase())).findFirst().get();
 		} catch (Exception e) {
 			return null;
 		}

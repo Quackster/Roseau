@@ -10,4 +10,5 @@ public interface Dao {
 	public CatalogueDao getCatalogue();
 	public InventoryDao getInventory();
 	public NavigatorDao getNavigator();
+	public MessengerDao getMessenger();
 }

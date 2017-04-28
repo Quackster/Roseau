@@ -19,6 +19,7 @@ import org.alexdev.roseau.game.room.RoomData;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.game.room.settings.RoomType;
+import org.alexdev.roseau.log.DateTime;
 import org.alexdev.roseau.log.Log;
 
 import com.google.common.collect.Lists;
@@ -354,7 +355,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			preparedStatement = dao.getStorage().prepare("INSERT INTO room_chatlogs (user, room_id, timestamp, message_type, message) VALUES (?, ?, ?, ?, ?)", sqlConnection);
 			preparedStatement.setString(1, chatter.getDetails().getName());
 			preparedStatement.setInt(2, roomID);
-			preparedStatement.setLong(3, Roseau.getUtilities().getTimestamp());
+			preparedStatement.setLong(3, DateTime.getTime());
 			
 			if (chatType.equals("CHAT")) {
 				preparedStatement.setInt(4, 0);

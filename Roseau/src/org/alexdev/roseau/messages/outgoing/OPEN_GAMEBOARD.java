@@ -14,7 +14,7 @@ public class OPEN_GAMEBOARD implements OutgoingMessageComposer {
 	@Override
 	public void write(Response response) {
 		response.init("OPEN_GAMEBOARD");
-		response.appendNewArgument("gameId");
+		response.appendNewArgument("0");
 		response.appendArgument(this.gameID, ';');
 	}
 

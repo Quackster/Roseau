@@ -17,7 +17,7 @@ public class Log {
 
 		output("", false);
 		output("-----------------------------------------", false);
-		output("-- SERVER BOOT TIME: " + DateTime.now(), false);
+		output("-- SERVER BOOT TIME: " + DateTime.formatDateTime(), false);
 		output("-----------------------------------------", false);
 		output("", false);
 
@@ -27,7 +27,7 @@ public class Log {
 	}
 
 	private static String generateDataFormat() {
-		return "[" + DateTime.now() + "]";//DateTime.now();
+		return "[" + DateTime.formatDateTime() + "]";//DateTime.now();
 	}
 
 	public static void println() {
@@ -67,7 +67,7 @@ public class Log {
 
 		if (Roseau.getUtilities().getConfiguration().get("Logging", "log.errors", boolean.class)) {
 			writeToFile("log/error.log", "---------------------------------------------");
-			writeToFile("log/error.log", " " + DateTime.now() + " - Error has occured!");
+			writeToFile("log/error.log", " " +DateTime.formatDateTime() + " - Error has occured!");
 			writeToFile("log/error.log", exceptionAsString);
 		}
 	}

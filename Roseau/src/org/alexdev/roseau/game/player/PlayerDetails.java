@@ -24,6 +24,7 @@ public class PlayerDetails implements SerializableObject {
 
 	private boolean authenticated;
 	private Entity entity;
+	private long lastonline;
 
 	public PlayerDetails(Entity session) {
 		this.authenticated = false;
@@ -37,7 +38,7 @@ public class PlayerDetails implements SerializableObject {
 		this.figure = figure;
 	}
 
-	public void fill(int id, String username, String mission, String figure, String poolFigure, String email, int rank, int credits, String sex, String country, String badge, String birthday) {
+	public void fill(int id, String username, String mission, String figure, String poolFigure, String email, int rank, int credits, String sex, String country, String badge, String birthday, long lastonline) {
 		this.id = id;
 		this.username = username;
 		this.mission = mission;
@@ -50,6 +51,7 @@ public class PlayerDetails implements SerializableObject {
 		this.badge = badge;
 		this.birthday = birthday;
 		this.poolFigure = poolFigure;
+		this.lastonline = lastonline;
 	}
 
 	@Override
@@ -183,5 +185,9 @@ public class PlayerDetails implements SerializableObject {
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public long getLastOnline() {
+		return this.lastonline;
 	}
 }

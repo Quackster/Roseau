@@ -16,6 +16,7 @@ public interface PlayerDao {
 	void updatePlayer(PlayerDetails details);
 	void updateLastLogin(PlayerDetails details);
 	public Map<Integer, List<String>> getPermissions();
+	public PlayerDetails getDetails(String username);
 	
 
 }

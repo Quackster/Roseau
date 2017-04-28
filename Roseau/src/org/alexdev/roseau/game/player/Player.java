@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.inventory.Inventory;
+import org.alexdev.roseau.game.messenger.Messenger;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomUser;
@@ -20,6 +21,8 @@ public class Player implements Entity {
 	private RoomUser roomEntity;
 	private Inventory inventory;
 	private Room lastCreatedRoom;
+	private Messenger messenger;
+
 	private boolean sendHotelAlert;
 
 	private long orderInfoProtection;
@@ -29,14 +32,20 @@ public class Player implements Entity {
 		this.details = new PlayerDetails(this);
 		this.roomEntity = new RoomUser(this);
 		this.inventory = new Inventory(this);
+		this.messenger = new Messenger(this);
 		this.lastCreatedRoom = null;
 		this.sendHotelAlert = true;
 	}
 
 	public void login() {
+
 		Roseau.getDao().getPlayer().updateLastLogin(this.details);
+
+		if (this.network.getServerPort() == Roseau.getServerPort()) {
+			//this.messenger.load();
+		}
 	}
-	
+
 	public boolean hasPermission(String permission) {
 		return Roseau.getGame().getPlayerManager().hasPermission(this.details.getRank(), permission);
 	}
@@ -52,7 +61,6 @@ public class Player implements Entity {
 					s.getNetwork().getServerPort() == (Roseau.getPrivateServerPort())).findFirst().get();
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}
@@ -69,7 +77,6 @@ public class Player implements Entity {
 					s.getNetwork().getServerPort() != Roseau.getServerPort()).findFirst().get();
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}
@@ -88,7 +95,8 @@ public class Player implements Entity {
 				room.dispose();
 			}
 		}
-		
+
+		this.messenger.dispose();
 		this.inventory.dispose();
 	}
 
@@ -171,6 +179,10 @@ public class Player implements Entity {
 
 	public void setSendHotelAlert(boolean sendHotelAlert) {
 		this.sendHotelAlert = sendHotelAlert;
+	}
+
+	public Messenger getMessenger() {
+		return this.messenger;
 	}
 
 

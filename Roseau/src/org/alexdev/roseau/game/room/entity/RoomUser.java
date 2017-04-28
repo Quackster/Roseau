@@ -12,6 +12,7 @@ import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.CHAT;
 import org.alexdev.roseau.messages.outgoing.DOOR_OUT;
+import org.alexdev.roseau.messages.outgoing.OPEN_GAMEBOARD;
 import org.alexdev.roseau.messages.outgoing.OPEN_UIMAKOPPI;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
@@ -202,6 +203,18 @@ public class RoomUser {
 				this.removeStatus("dance");
 				this.removeStatus("lay");
 				this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()), true, -1);
+				
+				if (this.room.getData().getModelName().equals("hallA")) {
+					((Player) this.entity).send(new OPEN_GAMEBOARD("TicTacToe"));
+				}
+				
+				if (this.room.getData().getModelName().equals("hallB")) {
+					((Player) this.entity).send(new OPEN_GAMEBOARD("BattleShip"));
+				}
+				
+				if (this.room.getData().getModelName().equals("hallD")) {
+					((Player) this.entity).send(new OPEN_GAMEBOARD("Poker"));
+				}
 			}
 
 			if (definition.getBehaviour().isCanLayOnTop()) {

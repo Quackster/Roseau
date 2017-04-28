@@ -5,6 +5,7 @@ import org.alexdev.roseau.game.catalogue.CatalogueDeal;
 import org.alexdev.roseau.game.catalogue.CatalogueItem;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.log.DateTime;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.PURCHASE_ADDSTRIPITEM;
 import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
@@ -15,7 +16,7 @@ public class PURCHASE implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 
-		if (!(Roseau.getUtilities().getUnixTimestamp() - player.getOrderInfoProtection() > 500)) {
+		if (!(DateTime.getTime() - player.getOrderInfoProtection() > 500)) {
 			return;
 		}
 

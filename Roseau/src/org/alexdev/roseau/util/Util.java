@@ -23,14 +23,6 @@ public class Util {
 	    return param == null || param.trim().length() == 0;
 	}
 	
-	public long getTimestamp() {
-		return System.currentTimeMillis() / 1000L; // return timestamp converted to seconds
-	}
-	
-	public long getUnixTimestamp() {
-		return System.currentTimeMillis(); // return timestamp converted to seconds
-	}
-	
 	public Wini getConfiguration() {
 		return configuration;
 	}

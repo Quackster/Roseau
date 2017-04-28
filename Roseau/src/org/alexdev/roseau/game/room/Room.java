@@ -32,7 +32,6 @@ import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.ITEMS;
 import org.alexdev.roseau.messages.outgoing.LOGOUT;
 import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
-import org.alexdev.roseau.messages.outgoing.OPEN_GAMEBOARD;
 import org.alexdev.roseau.messages.outgoing.ROOM_READY;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
@@ -245,11 +244,11 @@ public class Room {
 
 			if (this.roomData.getModelName().equals("hallD")) {
 				player.send(new OPEN_GAMEBOARD("Poker"));
-			}
-			
-			if (this.roomData.getModelName().equals("hallC")) {
-				player.send(new OPEN_GAMEBOARD("TicTacToe"));
 			}*/
+			
+			if (this.roomData.getModelName().equals("hallA")) {
+				//player.send(new OPEN_GAMEBOARD("TicTacToe"));
+			}
 		}
 	}
 

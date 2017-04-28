@@ -28,7 +28,11 @@ import org.alexdev.roseau.messages.incoming.INTODOOR;
 import org.alexdev.roseau.messages.incoming.LETUSERIN;
 import org.alexdev.roseau.messages.incoming.LOGIN;
 import org.alexdev.roseau.messages.incoming.LOOKTO;
+import org.alexdev.roseau.messages.incoming.MESSENGER_ACCEPTBUDDY;
+import org.alexdev.roseau.messages.incoming.MESSENGER_DECLINEBUDDY;
 import org.alexdev.roseau.messages.incoming.MESSENGER_INIT;
+import org.alexdev.roseau.messages.incoming.MESSENGER_REMOVEBUDDY;
+import org.alexdev.roseau.messages.incoming.MESSENGER_REQUESTBUDDY;
 import org.alexdev.roseau.messages.incoming.MESSENGER_SENDMSG;
 import org.alexdev.roseau.messages.incoming.MOVE;
 import org.alexdev.roseau.messages.incoming.MOVESTUFF;
@@ -133,6 +137,10 @@ public class MessageHandler {
 	private void registerMessengerPackets() {
 		this.messages.put("MESSENGERINIT", new MESSENGER_INIT());
 		this.messages.put("MESSENGER_SENDMSG", new MESSENGER_SENDMSG());
+		this.messages.put("MESSENGER_REQUESTBUDDY", new MESSENGER_REQUESTBUDDY());
+		this.messages.put("MESSENGER_ACCEPTBUDDY", new MESSENGER_ACCEPTBUDDY());
+		this.messages.put("MESSENGER_DECLINEBUDDY", new MESSENGER_DECLINEBUDDY());
+		this.messages.put("MESSENGER_REMOVEBUDDY", new MESSENGER_REMOVEBUDDY());
 	}
 
 	private void registerItemPackets() {

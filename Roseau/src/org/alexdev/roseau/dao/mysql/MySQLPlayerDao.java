@@ -13,6 +13,7 @@ import org.alexdev.roseau.dao.util.IProcessStorage;
 import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
+import org.alexdev.roseau.log.DateTime;
 import org.alexdev.roseau.log.Log;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -22,6 +23,7 @@ import com.google.common.collect.Maps;
 public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> implements PlayerDao {
 
 	private MySQLDao dao;
+	private String fields = "id, username, rank, mission, figure, pool_figure, email, credits, sex, country, badge, birthday, last_online";
 
 	public MySQLPlayerDao(MySQLDao dao) {
 		this.dao = dao;
@@ -47,7 +49,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			preparedStatement.setInt(6, GameVariables.USER_DEFAULT_CREDITS);
 			preparedStatement.setString(7, sex);
 			preparedStatement.setString(8, birthday);
-			preparedStatement.setLong(9, Roseau.getUtilities().getTimestamp());
+			preparedStatement.setLong(9, DateTime.getTime());
 			preparedStatement.execute();
 
 		} catch (Exception e) {
@@ -77,8 +79,47 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 
 				sqlConnection = this.dao.getStorage().getConnection();
 
-				preparedStatement = this.dao.getStorage().prepare("SELECT id, username, rank, mission, figure, pool_figure, email, credits, sex, country, badge, birthday FROM users WHERE id = ? LIMIT 1", sqlConnection);
+				preparedStatement = this.dao.getStorage().prepare("SELECT " + fields + " FROM users WHERE id = ? LIMIT 1", sqlConnection);
 				preparedStatement.setInt(1, userID);
+
+				resultSet = preparedStatement.executeQuery();
+
+				if (resultSet.next()) {
+					this.fill(details, resultSet);
+				}
+
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				Storage.closeSilently(resultSet);
+				Storage.closeSilently(preparedStatement);
+				Storage.closeSilently(sqlConnection);
+			}
+		}
+
+		return details;
+	}
+	
+	@Override
+	public PlayerDetails getDetails(String username) {
+
+		Player player = Roseau.getGame().getPlayerManager().getByName(username);
+		PlayerDetails details = new PlayerDetails(player);
+
+		if (player != null) {
+			details = player.getDetails();
+		} else {
+
+			Connection sqlConnection = null;
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
+
+			try {
+
+				sqlConnection = this.dao.getStorage().getConnection();
+
+				preparedStatement = this.dao.getStorage().prepare("SELECT " + fields  + " FROM users WHERE username = ? LIMIT 1", sqlConnection);
+				preparedStatement.setString(1, username);
 
 				resultSet = preparedStatement.executeQuery();
 
@@ -108,7 +149,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT id, username, password, rank, mission, figure, pool_figure, email, credits, sex, country, badge, birthday FROM users WHERE username = ? LIMIT 1", sqlConnection);
+			preparedStatement = this.dao.getStorage().prepare("SELECT id, username, password, rank, mission, figure, pool_figure, email, credits, sex, country, badge, birthday, last_online FROM users WHERE username = ? LIMIT 1", sqlConnection);
 			preparedStatement.setString(1, username);
 
 			resultSet = preparedStatement.executeQuery();
@@ -158,14 +199,6 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 		}
 
 		return -1;	
-	}
-
-	@Override
-	public PlayerDetails fill(PlayerDetails details, ResultSet row) throws SQLException {
-		details.fill(row.getInt("id"), row.getString("username"), row.getString("mission"), row.getString("figure"), row.getString("pool_figure"), 
-				row.getString("email"), row.getInt("rank"), row.getInt("credits"), row.getString("sex"), row.getString("country"), 
-				row.getString("badge"), row.getString("birthday"));
-		return details;
 	}
 
 	@Override
@@ -244,7 +277,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			sqlConnection = this.dao.getStorage().getConnection();
 
 			preparedStatement = dao.getStorage().prepare("UPDATE users SET last_online = ? WHERE id = ?", sqlConnection);
-			preparedStatement.setLong(1, Roseau.getUtilities().getTimestamp());
+			preparedStatement.setLong(1, DateTime.getTime());
 			preparedStatement.setInt(2, details.getID());
 
 			preparedStatement.executeUpdate();
@@ -295,7 +328,13 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 		}
 
 		return permissions;
-
 	}
 
+	@Override
+	public PlayerDetails fill(PlayerDetails details, ResultSet row) throws SQLException {
+		details.fill(row.getInt("id"), row.getString("username"), row.getString("mission"), row.getString("figure"), row.getString("pool_figure"), 
+				row.getString("email"), row.getInt("rank"), row.getInt("credits"), row.getString("sex"), row.getString("country"), 
+				row.getString("badge"), row.getString("birthday"), row.getLong("last_online"));
+		return details;
+	}
 }
