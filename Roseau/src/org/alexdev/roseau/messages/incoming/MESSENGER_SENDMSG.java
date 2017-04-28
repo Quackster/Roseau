@@ -1,5 +1,6 @@
 package org.alexdev.roseau.messages.incoming;
 
+import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.messenger.MessengerUser;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.log.DateTime;
@@ -39,8 +40,10 @@ public class MESSENGER_SENDMSG implements MessageEvent {
 				continue;
 			}
 			
+			int messageID = Roseau.getDao().getMessenger().newMessage(player.getDetails().getID(), friendID, message);
+			
 			if (user.isOnline()) {
-				user.getPlayer().send(new MESSENGER_MSG(player.getDetails().getID(), DateTime.getTime(), message, player.getDetails().getFigure()));
+				user.getPlayer().send(new MESSENGER_MSG(messageID, player.getDetails().getID(), DateTime.getTime(), message, player.getDetails().getFigure()));
 			}
 		}
 	}

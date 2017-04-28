@@ -311,6 +311,8 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		
+		Room room = null;
 
 		try {
 
@@ -328,7 +330,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			ResultSet row = preparedStatement.getGeneratedKeys();
 
 			if (row != null && row.next()) {
-				return this.getRoom(row.getInt(1), true);
+				room = this.getRoom(row.getInt(1), true);
 			}
 
 		} catch (SQLException e) {
@@ -339,7 +341,7 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 			Storage.closeSilently(sqlConnection);
 		}
 
-		return null;
+		return room;
 	}
 	@Override
 	public Room saveChatlog(Player chatter, int roomID, String chatType, String message) {

@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.alexdev.roseau.dao.MessengerDao;
+import org.alexdev.roseau.game.messenger.MessengerMessage;
 import org.alexdev.roseau.game.messenger.MessengerUser;
+import org.alexdev.roseau.log.DateTime;
 import org.alexdev.roseau.log.Log;
 
 import com.google.common.collect.Lists;
@@ -182,6 +184,77 @@ public class MySQLMessengerDao implements MessengerDao {
 
 		return false;
 	}
+	
+	@Override
+	public int newMessage(int fromID, int toID, String message) {
+
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		
+		int messageID = 0;
+
+		try {
+
+			sqlConnection = this.dao.getStorage().getConnection();
+			preparedStatement = dao.getStorage().prepare("INSERT INTO messenger_messages (from_id, to_id, time_sent, message) VALUES (?, ?, ?, ?)", sqlConnection);
+			preparedStatement.setInt(1, fromID);
+			preparedStatement.setInt(2, toID);
+			preparedStatement.setLong(3, DateTime.getTime());
+			preparedStatement.setString(4, message);
+			preparedStatement.executeUpdate();
+			
+			ResultSet row = preparedStatement.getGeneratedKeys();
+
+			if (row != null && row.next()) {
+				messageID = row.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
+
+		return messageID;
+	}
+	
+	@Override
+	public List<MessengerMessage> getUnreadMessages(int userId) {
+
+		List<MessengerMessage> messages = Lists.newArrayList();
+
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			sqlConnection = this.dao.getStorage().getConnection();
+			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM messenger_messages WHERE to_id = " + userId + " AND unread = 1", sqlConnection);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				messages.add(new MessengerMessage(resultSet.getInt("id"), resultSet.getInt("to_id"), resultSet.getInt("from_id"), resultSet.getLong("time_sent"), resultSet.getString("message")));
+				
+			}
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(resultSet);
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
+
+		return messages;
+	}
+	
+	@Override
+	public boolean markMessageRead(int messageID) {
+		return this.dao.getStorage().execute("UPDATE messenger_messages SET unread = 0 WHERE id = " + messageID);
+	}
+
 
 	public MySQLDao getDao() {
 		return dao;
