@@ -25,7 +25,7 @@ public class MESSENGER_INIT implements MessageEvent {
 		}
 
 		
-		player.send(new MYPERSISTENTMSG("message placeholder"));
+		player.send(new MYPERSISTENTMSG(player.getDetails().getPersonalGreeting()));
 	
 		player.getMessenger().load();
 		player.getMessenger().sendStatus();

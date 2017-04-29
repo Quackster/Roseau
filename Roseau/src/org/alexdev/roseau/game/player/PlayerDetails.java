@@ -21,6 +21,7 @@ public class PlayerDetails implements SerializableObject {
 	private String birthday;
 	private String poolFigure;
 	private String password;
+	private String personalGreeting;
 
 	private boolean authenticated;
 	private Entity entity;
@@ -38,7 +39,7 @@ public class PlayerDetails implements SerializableObject {
 		this.figure = figure;
 	}
 
-	public void fill(int id, String username, String mission, String figure, String poolFigure, String email, int rank, int credits, String sex, String country, String badge, String birthday, long lastonline) {
+	public void fill(int id, String username, String mission, String figure, String poolFigure, String email, int rank, int credits, String sex, String country, String badge, String birthday, long lastonline, String personalGreeting) {
 		this.id = id;
 		this.username = username;
 		this.mission = mission;
@@ -52,6 +53,7 @@ public class PlayerDetails implements SerializableObject {
 		this.birthday = birthday;
 		this.poolFigure = poolFigure;
 		this.lastonline = lastonline;
+		this.personalGreeting = personalGreeting;
 	}
 
 	@Override
@@ -189,5 +191,13 @@ public class PlayerDetails implements SerializableObject {
 
 	public long getLastOnline() {
 		return this.lastonline;
+	}
+
+	public String getPersonalGreeting() {
+		return personalGreeting;
+	}
+
+	public void setPersonalGreeting(String personalGreeting) {
+		this.personalGreeting = personalGreeting;
 	}
 }

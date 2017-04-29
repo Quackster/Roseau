@@ -3,7 +3,6 @@ package org.alexdev.roseau;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.InvocationTargetException;
 import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.dao.mysql.MySQLDao;
 import org.alexdev.roseau.game.Game;
@@ -30,7 +29,6 @@ public class Roseau {
 			createConfig();
 			Log.startup();
 			
-			server = Class.forName(Roseau.getServerClassPath()).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
 			serverIP = Util.getConfiguration().get("Server", "server.ip", String.class);
 			serverPort = Util.getConfiguration().get("Server", "server.port", int.class);	
 
@@ -42,7 +40,24 @@ public class Roseau {
 				game = new Game(dao);
 				game.load();
 				Log.println();
-				startServer();
+				
+				server = Class.forName(Roseau.getServerClassPath()).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
+				
+				Log.println("Settting up server");
+
+				server.setIp(serverIP);
+				server.setPort(serverPort);
+
+				privateRoomServer = Class.forName(Roseau.getServerClassPath()).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
+				privateRoomServer.setIp(serverIP);
+				privateRoomServer.setPort(serverPort - 1);
+				privateRoomServer.listenSocket();
+
+				if (server.listenSocket()) {
+					Log.println("Server is listening on " + serverIP + ":" + serverPort);
+				} else {
+					Log.println("Server could not listen on " + serverPort + ":" + serverPort + ", please double check everything is correct in icarus.properties");
+				}
 			}
 
 
@@ -75,28 +90,6 @@ public class Roseau {
 		Util.load();
 	}
 	
-	private static void startServer() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
-
-		String serverIP = Util.getConfiguration().get("Server", "server.ip", String.class);
-		int serverPort = Util.getConfiguration().get("Server", "server.port", int.class);
-
-
-		Log.println("Settting up server");
-
-		server.setIp(serverIP);
-		server.setPort(serverPort);
-
-		privateRoomServer = Class.forName(Roseau.getServerClassPath()).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
-		privateRoomServer.setIp(serverIP);
-		privateRoomServer.setPort(serverPort - 1);
-		privateRoomServer.listenSocket();
-
-		if (server.listenSocket()) {
-			Log.println("Server is listening on " + serverIP + ":" + serverPort);
-		} else {
-			Log.println("Server could not listen on " + serverPort + ":" + serverPort + ", please double check everything is correct in icarus.properties");
-		}
-	}
 
 	private static void writeMainConfiguration(PrintWriter writer) {
 		writer.println("[Server]");

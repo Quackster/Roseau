@@ -6,6 +6,7 @@ import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.HELLO;
 import org.alexdev.roseau.server.IServerHandler;
 import org.alexdev.roseau.server.netty.readers.NettyRequest;
+import org.alexdev.roseau.util.Util;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.ChannelStateEvent;
 import org.jboss.netty.channel.ExceptionEvent;
@@ -29,7 +30,7 @@ public class ConnectionHandler extends SimpleChannelHandler {
 		
 		Player player = (Player) ctx.getChannel().getAttachment();
 		
-		if (Roseau.getUtilities().getConfiguration().get("Logging", "log.connections", Boolean.class)) {
+		if (Util.getConfiguration().get("Logging", "log.connections", Boolean.class)) {
 			Log.println("[" + player.getNetwork().getConnectionId() + "] Connection from " + ctx.getChannel().getRemoteAddress().toString().replace("/", "").split(":")[0]);
 		}
 
@@ -42,7 +43,7 @@ public class ConnectionHandler extends SimpleChannelHandler {
 		
 		Player player = (Player) ctx.getChannel().getAttachment();
 		
-		if (Roseau.getUtilities().getConfiguration().get("Logging", "log.connections", Boolean.class)) {
+		if (Util.getConfiguration().get("Logging", "log.connections", Boolean.class)) {
 			Log.println("[" + player.getNetwork().getConnectionId() + "] Disconnection from " + ctx.getChannel().getRemoteAddress().toString().replace("/", "").split(":")[0]);
 		}
 		
@@ -62,7 +63,7 @@ public class ConnectionHandler extends SimpleChannelHandler {
 				return;
 			}
 
-			if (Roseau.getUtilities().getConfiguration().get("Logging", "log.packets", Boolean.class)) {
+			if (Util.getConfiguration().get("Logging", "log.packets", Boolean.class)) {
 				
 				if ((request.getHeader().equals("LOGIN") || request.getHeader().equals("INFORETRIEVE")) && request.getArgumentAmount() > 1)  {
 					

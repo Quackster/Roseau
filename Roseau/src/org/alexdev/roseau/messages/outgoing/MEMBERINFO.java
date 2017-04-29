@@ -22,7 +22,7 @@ public class MEMBERINFO implements OutgoingMessageComposer {
 		response.init("MEMBERINFO");
 		response.appendArgument("");
 		response.appendNewArgument(details.getName());
-		response.appendNewArgument(details.getMission());
+		response.appendNewArgument(details.getPersonalGreeting());
 
 		Player player = Roseau.getGame().getPlayerManager().getByName(this.details.getName());
 

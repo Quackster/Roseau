@@ -23,7 +23,7 @@ import com.google.common.collect.Maps;
 public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> implements PlayerDao {
 
 	private MySQLDao dao;
-	private String fields = "id, username, rank, mission, figure, pool_figure, email, credits, sex, country, badge, birthday, last_online";
+	private String fields = "id, username, password, rank, mission, figure, pool_figure, email, credits, sex, country, badge, birthday, last_online, personal_greeting";
 
 	public MySQLPlayerDao(MySQLDao dao) {
 		this.dao = dao;
@@ -40,7 +40,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 
 			sqlConnection = this.dao.getStorage().getConnection();
 
-			preparedStatement = this.dao.getStorage().prepare("INSERT INTO users (username, password, email, mission, figure, credits, sex, birthday, join_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", sqlConnection);
+			preparedStatement = this.dao.getStorage().prepare("INSERT INTO users (username, password, email, mission, figure, credits, sex, birthday, join_date, last_online, personal_greeting) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", sqlConnection);
 			preparedStatement.setString(1, username);
 			preparedStatement.setString(2, BCrypt.hashpw(password, BCrypt.gensalt()));
 			preparedStatement.setString(3, email);
@@ -50,6 +50,8 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			preparedStatement.setString(7, sex);
 			preparedStatement.setString(8, birthday);
 			preparedStatement.setLong(9, DateTime.getTime());
+			preparedStatement.setLong(10, DateTime.getTime());
+			preparedStatement.setString(11, GameVariables.MESSENGER_GREETING);
 			preparedStatement.execute();
 
 		} catch (Exception e) {
@@ -149,7 +151,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 		try {
 
 			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT id, username, password, rank, mission, figure, pool_figure, email, credits, sex, country, badge, birthday, last_online FROM users WHERE username = ? LIMIT 1", sqlConnection);
+			preparedStatement = this.dao.getStorage().prepare("SELECT " + fields + " FROM users WHERE username = ? LIMIT 1", sqlConnection);
 			preparedStatement.setString(1, username);
 
 			resultSet = preparedStatement.executeQuery();
@@ -243,7 +245,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 
 			sqlConnection = this.dao.getStorage().getConnection();
 
-			preparedStatement = dao.getStorage().prepare("UPDATE users SET password = ?, figure = ?, credits = ?, mission = ?, pool_figure = ?, sex = ?, email = ? WHERE id = ?", sqlConnection);
+			preparedStatement = dao.getStorage().prepare("UPDATE users SET password = ?, figure = ?, credits = ?, mission = ?, pool_figure = ?, sex = ?, email = ?, personal_greeting = ? WHERE id = ?", sqlConnection);
 			preparedStatement.setString(1, BCrypt.hashpw(details.getPassword(), BCrypt.gensalt()));
 			preparedStatement.setString(2, details.getFigure());
 			preparedStatement.setInt(3, details.getCredits());
@@ -251,7 +253,8 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			preparedStatement.setString(5, details.getPoolFigure());
 			preparedStatement.setString(6, details.getSex());
 			preparedStatement.setString(7, details.getEmail());
-			preparedStatement.setInt(8, details.getID());
+			preparedStatement.setString(8, details.getPersonalGreeting());
+			preparedStatement.setInt(9, details.getID());
 
 			preparedStatement.executeUpdate();
 
@@ -334,7 +337,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 	public PlayerDetails fill(PlayerDetails details, ResultSet row) throws SQLException {
 		details.fill(row.getInt("id"), row.getString("username"), row.getString("mission"), row.getString("figure"), row.getString("pool_figure"), 
 				row.getString("email"), row.getInt("rank"), row.getInt("credits"), row.getString("sex"), row.getString("country"), 
-				row.getString("badge"), row.getString("birthday"), row.getLong("last_online"));
+				row.getString("badge"), row.getString("birthday"), row.getLong("last_online"), row.getString("personal_greeting"));
 		return details;
 	}
 }

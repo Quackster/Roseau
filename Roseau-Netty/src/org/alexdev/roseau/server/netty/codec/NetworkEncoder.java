@@ -21,11 +21,10 @@ package org.alexdev.roseau.server.netty.codec;
 
 import java.nio.charset.Charset;
 
-import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.netty.readers.NettyResponse;
-
+import org.alexdev.roseau.util.Util;
 import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.Channels;
@@ -53,7 +52,7 @@ public class NetworkEncoder extends SimpleChannelHandler {
 
 				msg.write(response);
 
-				if (Roseau.getUtilities().getConfiguration().get("Logging", "log.packets", Boolean.class)) {
+				if (Util.getConfiguration().get("Logging", "log.packets", Boolean.class)) {
 					Log.println("SENT: " + response.getBodyString());
 				}
 

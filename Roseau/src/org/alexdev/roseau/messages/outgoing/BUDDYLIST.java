@@ -83,7 +83,7 @@ public class BUDDYLIST implements OutgoingMessageComposer {
 			}
 
 			response.appendTabArgument(location);
-			response.appendNewArgument(user.getDetails().getMission()); // messenger motto
+			response.appendNewArgument(user.getDetails().getPersonalGreeting()); // messenger motto
 			response.appendTabArgument(DateTime.formatDateTime(user.getDetails().getLastOnline())); // last online
 		}
 	}
