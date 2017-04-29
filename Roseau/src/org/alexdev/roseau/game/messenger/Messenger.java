@@ -1,10 +1,14 @@
 package org.alexdev.roseau.game.messenger;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.game.room.Room;
+import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.BUDDYADDREQUESTS;
 import org.alexdev.roseau.messages.outgoing.BUDDYLIST;
@@ -30,13 +34,13 @@ public class Messenger {
 	public boolean hasRequest(int id) {
 		return this.getRequest(id) != null;
 	}
-	
+
 	public boolean isFriend(int id) {
 		return this.getFriend(id) != null;
 	}
-	
+
 	public MessengerUser getFriend(int id) {
-		
+
 		Optional<MessengerUser> friend = this.friends.stream().filter(f -> f.getDetails().getID() == id).findFirst();
 
 		if (friend.isPresent()) {
@@ -45,7 +49,7 @@ public class Messenger {
 			return null;
 		}
 	}
-	
+
 	public MessengerUser getRequest(int id) {
 
 		Optional<MessengerUser> request = this.requests.stream().filter(f -> f.getDetails().getID() == id).findFirst();
@@ -61,32 +65,34 @@ public class Messenger {
 		MessengerUser user = this.getFriend(id);
 		this.friends.remove(user);
 	}
-	
+
 
 	public void sendRequests() {
-		
+
 		if (!(this.requests.size() > 0)) {
 			return;
 		}
-		
+
 		this.player.send(new BUDDYADDREQUESTS(this.requests));
 	}
-	
+
 
 	public void sendFriends() {
 		this.sendFriends(-1);
 	}
-	
+
 	public void sendFriends(int offlineID) {
-		
-		if (!(this.friends.size() > 0)) {
-			//return;
-		}
-		
-		Log.println("(" + this.player.getDetails().getName() + "): sending friends");
+
+		Collections.sort(this.friends, new Comparator<MessengerUser>() {
+			@Override
+			public int compare(MessengerUser a, MessengerUser b) {
+				return Boolean.compare(a.isOnline(), b.isOnline());
+			}
+		});
+
 		this.player.send(new BUDDYLIST(this.friends, offlineID));
 	}
-	
+
 	public void sendStatus() {
 
 		//AbstractResponse message = new MessengerUpdateMessageComposer(new MessengerUser(this.player.getDetails().getId()), forceOffline);
@@ -100,7 +106,7 @@ public class Messenger {
 			}
 		}
 	}
-	
+
 	public void sendStatus(int offlineUserID) {
 
 		//AbstractResponse message = new MessengerUpdateMessageComposer(new MessengerUser(this.player.getDetails().getId()), forceOffline);
@@ -114,11 +120,11 @@ public class Messenger {
 			}
 		}
 	}
-	
+
 	public void dispose() {
 
 		this.sendStatus(this.player.getDetails().getID());
-		
+
 		if (this.friends != null) {
 			this.friends.clear();
 			this.friends = null;
@@ -146,5 +152,46 @@ public class Messenger {
 
 	public void setInitalised(boolean initalised) {
 		this.initalised = initalised;
+	}
+
+	public String getLocation() {
+
+		String location = "";
+		boolean hotelView = true;
+		Room room = null;
+
+		if (player.getPrivateRoomPlayer() != null) {
+
+			room = player.getPrivateRoomPlayer().getRoomUser().getRoom();
+
+			if (room != null) {
+				hotelView = false;
+			}
+		} 
+
+		if (player.getPublicRoomPlayer() != null) {
+
+			room = player.getPublicRoomPlayer().getRoomUser().getRoom();
+
+			if (room != null) {
+				hotelView = false;
+			}
+		}
+
+		if (!hotelView) {
+
+			if (room.getData().getRoomType() == RoomType.PRIVATE) {
+				location = "In a user flat";
+			} 
+
+			if (room.getData().getRoomType() == RoomType.PUBLIC) {
+				location = room.getData().getName();
+			}
+
+		} else {
+			location = "On Hotel View";
+		}
+
+		return location;
 	}
 }
