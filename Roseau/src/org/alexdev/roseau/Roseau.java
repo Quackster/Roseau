@@ -15,7 +15,6 @@ import org.alexdev.roseau.util.Util;
 public class Roseau {
 
 	private static IServerHandler server;
-	private static Util utilities;
 	private static Game game;
 	private static Dao dao;
 
@@ -32,10 +31,10 @@ public class Roseau {
 			Log.startup();
 			
 			server = Class.forName(Roseau.getServerClassPath()).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
-			serverIP = utilities.getConfiguration().get("Server", "server.ip", String.class);
-			serverPort = utilities.getConfiguration().get("Server", "server.port", int.class);	
+			serverIP = Util.getConfiguration().get("Server", "server.ip", String.class);
+			serverPort = Util.getConfiguration().get("Server", "server.port", int.class);	
 
-			if (utilities.getConfiguration().get("Database", "type", String.class).equalsIgnoreCase("mysql")) {
+			if (Util.getConfiguration().get("Database", "type", String.class).equalsIgnoreCase("mysql")) {
 				dao = new MySQLDao();
 			}
 
@@ -73,13 +72,13 @@ public class Roseau {
 			writer.close();
 		}
 
-		utilities = new Util();
+		Util.load();
 	}
 	
 	private static void startServer() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
 
-		String serverIP = utilities.getConfiguration().get("Server", "server.ip", String.class);
-		int serverPort = utilities.getConfiguration().get("Server", "server.port", int.class);
+		String serverIP = Util.getConfiguration().get("Server", "server.ip", String.class);
+		int serverPort = Util.getConfiguration().get("Server", "server.port", int.class);
 
 
 		Log.println("Settting up server");
@@ -146,10 +145,6 @@ public class Roseau {
 	
 	public static IServerHandler getServer() {
 		return server;
-	}
-
-	public static Util getUtilities() {
-		return utilities;
 	}
 
 	public static Game getGame() {

@@ -20,7 +20,7 @@ public class CHAT implements OutgoingMessageComposer {
 
 		response.init(this.header);
 		response.appendNewArgument(this.username);
-		response.appendArgument(this.talkMessage);
+		response.appendArgument(this.talkMessage.replace("#", ""));
 	}
 
 }

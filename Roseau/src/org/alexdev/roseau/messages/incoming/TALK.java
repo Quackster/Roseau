@@ -9,6 +9,7 @@ import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.CHAT;
 import org.alexdev.roseau.server.messages.ClientMessage;
+import org.alexdev.roseau.util.Util;
 
 public class TALK implements MessageEvent {
 
@@ -23,7 +24,7 @@ public class TALK implements MessageEvent {
 			return;
 		}
 
-		String talkMessage = reader.getMessageBody();
+		String talkMessage = Util.filterInput(reader.getMessageBody());
 
 		if (!reader.getHeader().equals("CHAT") && !reader.getHeader().equals("SHOUT")  && !reader.getHeader().equals("WHISPER")) {
 			return;
@@ -54,16 +55,13 @@ public class TALK implements MessageEvent {
 					}
 				}
 			} else {
-				talkMessage =  reader.getMessageBody();
-				CHAT response = new CHAT("WHISPER", player.getDetails().getName(), reader.getMessageBody());
+				CHAT response = new CHAT("WHISPER", player.getDetails().getName(), talkMessage);
 				player.send(response);
 			
 			}
 		} else {
 
-			// Handle chat and shout
-			talkMessage = reader.getMessageBody();
-			
+
 			if (Roseau.getGame().getCommandManager().hasCommand(talkMessage)) {
 				Roseau.getGame().getCommandManager().invokeCommand(player, talkMessage);
 				return;

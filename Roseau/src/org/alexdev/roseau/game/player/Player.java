@@ -49,6 +49,22 @@ public class Player implements Entity {
 	public boolean hasPermission(String permission) {
 		return Roseau.getGame().getPlayerManager().hasPermission(this.details.getRank(), permission);
 	}
+	
+	public Player getMainServerPlayer() {
+		
+		try {
+			return Roseau.getGame()
+					.getPlayerManager()
+					.getPlayers()
+					.values().stream()
+					.filter(s -> s.getDetails().getID() == this.details.getID() && 
+					s.getNetwork().getServerPort() == (Roseau.getServerPort())).findFirst().get();
+
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 
 	public Player getPrivateRoomPlayer() {
 
@@ -84,20 +100,24 @@ public class Player implements Entity {
 
 	public void dispose() {
 
-		if (this.details.isAuthenticated()) {
+		if (this.network.getServerPort() == Roseau.getServerPort()) {
+
+			for (Room room : this.getRooms()) {
+				room.dispose();
+			}
+
+			this.messenger.dispose();
+			this.inventory.dispose();
+			
+		} else {
+
 			if (this.roomEntity != null) {
 				if (this.roomEntity.getRoom() != null) {
 					this.roomEntity.getRoom().leaveRoom(this, false);
 				}
 			}
 
-			for (Room room : this.getRooms()) {
-				room.dispose();
-			}
 		}
-
-		this.messenger.dispose();
-		this.inventory.dispose();
 	}
 
 	public void send(OutgoingMessageComposer response) {

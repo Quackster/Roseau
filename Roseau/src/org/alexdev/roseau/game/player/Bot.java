@@ -4,11 +4,11 @@ import org.alexdev.roseau.game.entity.EntityType;
 
 import java.util.List;
 
-import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.log.Log;
+import org.alexdev.roseau.util.Util;
 
 public class Bot implements Entity {
 
@@ -50,7 +50,7 @@ public class Bot implements Entity {
 	public String getResponse(String username, String item) {
 		
 		if (this.responses.size() > 0) {
-			String response = this.responses.get(Roseau.getUtilities().getRandom().nextInt(this.responses.size()));
+			String response = this.responses.get(Util.getRandom().nextInt(this.responses.size()));
 			
 			String newResponse = response;
 			newResponse = newResponse.replace("%username%", username);

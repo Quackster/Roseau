@@ -2,12 +2,12 @@ package org.alexdev.roseau.game.room.schedulers.events;
 
 import java.util.List;
 
-import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.game.room.schedulers.RoomEvent;
+import org.alexdev.roseau.util.Util;
 
 public class BotMoveRoomEvent extends RoomEvent {
 
@@ -50,7 +50,7 @@ public class BotMoveRoomEvent extends RoomEvent {
 				if (this.canTick(10)) { // 5 seconds
 
 					if (bot.getPositions().size() > 0) {
-						int[] position = bot.getPositions().get(Roseau.getUtilities().getRandom().nextInt(bot.getPositions().size() - 1));
+						int[] position = bot.getPositions().get(Util.getRandom().nextInt(bot.getPositions().size() - 1));
 						bot.getRoomUser().walkTo(position[0], position[1]);
 					}
 				}

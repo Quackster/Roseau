@@ -224,6 +224,8 @@ public class Room {
 		player.send(player.getRoomUser().getStatusComposer());
 
 		this.entities.add(player);
+		
+		player.getMainServerPlayer().getMessenger().sendStatus();
 
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
@@ -356,8 +358,9 @@ public class Room {
 		roomUser.dispose();
 
 		this.send(new LOGOUT(player.getDetails().getName()));
-
 		this.dispose();
+		
+		player.getMainServerPlayer().getMessenger().sendStatus();
 	}
 
 	public void dispose(boolean forceDisposal) {

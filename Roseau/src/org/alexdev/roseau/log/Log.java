@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import org.alexdev.roseau.Roseau;
+import org.alexdev.roseau.util.Util;
 
 public class Log {
 
@@ -48,7 +48,7 @@ public class Log {
 			System.out.println(string);
 		}
 
-		if (Roseau.getUtilities().getConfiguration().get("Logging", "log.output", boolean.class)) {
+		if (Util.getConfiguration().get("Logging", "log.output", boolean.class)) {
 			writeToFile("log/output.log", string);
 		}
 
@@ -65,7 +65,7 @@ public class Log {
 		e.printStackTrace();
 		println("---------------------------------------------");
 
-		if (Roseau.getUtilities().getConfiguration().get("Logging", "log.errors", boolean.class)) {
+		if (Util.getConfiguration().get("Logging", "log.errors", boolean.class)) {
 			writeToFile("log/error.log", "---------------------------------------------");
 			writeToFile("log/error.log", " " +DateTime.formatDateTime() + " - Error has occured!");
 			writeToFile("log/error.log", exceptionAsString);

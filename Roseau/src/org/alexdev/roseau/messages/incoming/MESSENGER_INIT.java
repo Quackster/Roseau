@@ -43,7 +43,7 @@ public class MESSENGER_INIT implements MessageEvent {
 		player.getMessenger().setInitalised(true);
 
 		/*if (player.canSendHotelAlert()) {
-			player.send(new MESSENGER_MSG(player, Roseau.getUtilities().getTimestamp(), "Welcome to FUSE Hotel\n\nThis is one of the most complete V1 servers right now.\n\nAdministrator and staff is Alex.\n\nYou get 10 credits every 10 minutes."));
+			player.send(new MESSENGER_MSG(player, Util.getTimestamp(), "Welcome to FUSE Hotel\n\nThis is one of the most complete V1 servers right now.\n\nAdministrator and staff is Alex.\n\nYou get 10 credits every 10 minutes."));
 			player.setSendHotelAlert(false);
 		}*/
 	}

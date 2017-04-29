@@ -30,7 +30,7 @@ public class MESSENGER_SENDMSG implements MessageEvent {
 			}
 		}
 		
-		String message = data[1];
+		String message = data[1].replace((char)13, (char)10);
 		
 		for (int friendID : receiverIDs) {
 			

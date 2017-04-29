@@ -1,6 +1,5 @@
 package org.alexdev.roseau.dao.mysql;
 
-import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.dao.CatalogueDao;
 import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.dao.InventoryDao;
@@ -10,6 +9,7 @@ import org.alexdev.roseau.dao.NavigatorDao;
 import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.RoomDao;
 import org.alexdev.roseau.log.Log;
+import org.alexdev.roseau.util.Util;
 
 public class MySQLDao implements Dao {
 
@@ -41,10 +41,10 @@ public class MySQLDao implements Dao {
 
 		Log.println("Connecting to MySQL server");
 		
-		storage = new Storage(Roseau.getUtilities().getConfiguration().get("Database", "mysql.hostname", String.class), 
-				Roseau.getUtilities().getConfiguration().get("Database", "mysql.username", String.class), 
-				Roseau.getUtilities().getConfiguration().get("Database", "mysql.password", String.class), 
-				Roseau.getUtilities().getConfiguration().get("Database", "mysql.database", String.class)); 
+		storage = new Storage(Util.getConfiguration().get("Database", "mysql.hostname", String.class), 
+				Util.getConfiguration().get("Database", "mysql.username", String.class), 
+				Util.getConfiguration().get("Database", "mysql.password", String.class), 
+				Util.getConfiguration().get("Database", "mysql.database", String.class)); 
 
 		isConnected = storage.isConnected();
 

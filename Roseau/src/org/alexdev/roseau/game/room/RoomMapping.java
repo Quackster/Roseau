@@ -16,6 +16,7 @@ import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_REMOVE;
 import org.alexdev.roseau.messages.outgoing.ADDWALLITEM;
 import org.alexdev.roseau.messages.outgoing.REMOVEWALLITEM;
 import org.alexdev.roseau.messages.outgoing.STUFFDATAUPDATE;
+import org.alexdev.roseau.util.Util;
 
 import com.google.common.collect.Lists;
 
@@ -229,7 +230,7 @@ public class RoomMapping {
 
 		if (item.getDefinition().getDataClass().equals("DIR")) {
 
-			int rotation = Roseau.getUtilities().getRandom().nextInt(7);
+			int rotation = Util.getRandom().nextInt(7);
 
 			item.getPosition().setRotation(rotation);
 			item.setCustomData(String.valueOf(rotation));

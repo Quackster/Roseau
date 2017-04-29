@@ -6,6 +6,7 @@ import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.FLATCREATED;
 import org.alexdev.roseau.server.messages.ClientMessage;
+import org.alexdev.roseau.util.Util;
 
 public class CREATEFLAT implements MessageEvent {
 
@@ -13,7 +14,7 @@ public class CREATEFLAT implements MessageEvent {
 	public void handle(Player player, ClientMessage reader) {
 
 		String floor = reader.getArgument(1, "/");
-		String roomName = reader.getArgument(2, "/");
+		String roomName = Util.filterInput(reader.getArgument(2, "/"));
 		String roomModel = reader.getArgument(3, "/");
 		String roomState = reader.getArgument(4, "/");
 		boolean showOwnerName = reader.getArgument(5, "/").equals("1");

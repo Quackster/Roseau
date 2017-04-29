@@ -5,6 +5,7 @@ import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
+import org.alexdev.roseau.util.Util;
 
 public class UPDATEFLAT implements MessageEvent {
 
@@ -30,7 +31,7 @@ wordfilter_disable=*/
 		}
 		
 		
-		String roomName = reader.getArgument(2, "/");
+		String roomName = Util.filterInput(reader.getArgument(2, "/"));
 		String roomState = reader.getArgument(3, "/");
 		boolean showOwnerName = reader.getArgument(4, "/").equals("1");
 		

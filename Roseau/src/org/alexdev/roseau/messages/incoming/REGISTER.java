@@ -5,6 +5,7 @@ import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
+import org.alexdev.roseau.util.Util;
 
 public class REGISTER implements MessageEvent {
 
@@ -27,7 +28,7 @@ country=*/
 		String email = reader.getArgument(2, Character.toString((char)13)).split("=")[1];
 		String figure = reader.getArgument(3, Character.toString((char)13)).substring(7); // remove "figure="
 		String birthday = reader.getArgument(5, Character.toString((char)13)).split("=")[1];
-		String mission = reader.getArgument(7, Character.toString((char)13)).substring(11);// remove "customData=" in case they put a = in their motto
+		String mission = Util.filterInput(reader.getArgument(7, Character.toString((char)13)).substring(11));// remove "customData=" in case they put a = in their motto
 		String sex = reader.getArgument(9, Character.toString((char)13)).split("=")[1];
 		
 		if (name.length() < 3) {
@@ -50,19 +51,12 @@ country=*/
 			return;
 		}
 		
-		if (password.length() > 50) {
-			password = email.substring(0, 50);
-			return;
-		}
-		
 		if (email.length() > 256) {
 			email = email.substring(0, 256);
-			return;
 		}
 		
 		if (mission.length() > 100) {
 			mission = mission.substring(0, 100);
-			return;
 		}
 		
 		if (sex.length() < 4) {

@@ -2,11 +2,11 @@ package org.alexdev.roseau.game.room.schedulers.events;
 
 import java.util.List;
 
-import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.schedulers.RoomEvent;
 import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
+import org.alexdev.roseau.util.Util;
 
 public class HabboLidoEvent extends RoomEvent {
 
@@ -26,7 +26,7 @@ public class HabboLidoEvent extends RoomEvent {
 
 		if (this.canTick(9)) {
 
-			int cameraEffect = Roseau.getUtilities().getRandom().nextInt(3);
+			int cameraEffect = Util.getRandom().nextInt(3);
 
 			if (cameraEffect == 0) {
 				this.findNewTarget();
@@ -64,7 +64,7 @@ public class HabboLidoEvent extends RoomEvent {
 		if (players.size() == 1) {
 			player = players.get(0);
 		} else {
-			player = players.get(Roseau.getUtilities().getRandom().nextInt(players.size()));
+			player = players.get(Util.getRandom().nextInt(players.size()));
 		}
 
 		/*if (this.followingID != player.getDetails().getID()) {*/
