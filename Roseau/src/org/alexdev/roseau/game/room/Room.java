@@ -34,6 +34,7 @@ import org.alexdev.roseau.messages.outgoing.LOGOUT;
 import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
 import org.alexdev.roseau.messages.outgoing.ROOM_READY;
 import org.alexdev.roseau.messages.outgoing.STATUS;
+import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
 import org.alexdev.roseau.messages.outgoing.USERS;
 import org.alexdev.roseau.messages.outgoing.YOUARECONTROLLER;
 import org.alexdev.roseau.messages.outgoing.YOUARENOTCONTROLLER;
@@ -225,8 +226,13 @@ public class Room {
 
 		this.entities.add(player);
 		
-		player.getMainServerPlayer().getMessenger().sendStatus();
-
+		if (player.getMainServerPlayer() != null) {
+			player.getMainServerPlayer().getMessenger().sendStatus();
+		} else {
+			player.send(new SYSTEMBROADCAST("Please reload client completely before entering rooms."));
+			player.kick();
+			return;
+		}
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
 			final Item item = this.roomMapping.getHighestItem(door.getX(), door.getY());
