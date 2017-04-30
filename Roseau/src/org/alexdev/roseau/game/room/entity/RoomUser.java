@@ -214,6 +214,7 @@ public class RoomUser {
 				((Player) this.entity).getRoomUser().setCanWalk(false);
 				
 				this.entity.getDetails().setTickets(this.entity.getDetails().getTickets() - 1);
+				this.entity.getDetails().sendTickets();
 				this.entity.getDetails().save();
 			}
 
