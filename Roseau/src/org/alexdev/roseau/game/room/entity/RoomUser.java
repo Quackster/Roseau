@@ -50,6 +50,8 @@ public class RoomUser {
 	private int lookResetTime;
 	private Item current_item;
 
+	private int afkTimer;
+
 	private boolean kickWhenStop;
 
 	public RoomUser(Entity entity) {
@@ -177,9 +179,9 @@ public class RoomUser {
 	}
 
 	public void currentItemTrigger() {
-		
+
 		Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
-		
+
 		if (item == null) {
 			this.current_item = null;
 		}
@@ -204,15 +206,15 @@ public class RoomUser {
 				((Player) this.entity).send(new OPEN_UIMAKOPPI());
 				((Player) this.entity).getRoomUser().setCanWalk(false);
 			}
-			
+
 			if (definition.getSprite().equals("poolLift")) {
 
 				item.showProgram("close");
 				item.lockTiles(); // users cant walk on this tile
-				
+
 				((Player) this.entity).send(new JUMPINGPLACE_OK());
 				((Player) this.entity).getRoomUser().setCanWalk(false);
-				
+
 				this.entity.getDetails().setTickets(this.entity.getDetails().getTickets() - 1);
 				this.entity.getDetails().sendTickets();
 				this.entity.getDetails().save();
@@ -223,15 +225,15 @@ public class RoomUser {
 				this.removeStatus("dance");
 				this.removeStatus("lay");
 				this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()), true, -1);
-				
+
 				if (this.room.getData().getModelName().equals("hallA")) {
 					((Player) this.entity).send(new OPEN_GAMEBOARD("TicTacToe"));
 				}
-				
+
 				if (this.room.getData().getModelName().equals("hallB")) {
 					((Player) this.entity).send(new OPEN_GAMEBOARD("BattleShip"));
 				}
-				
+
 				if (this.room.getData().getModelName().equals("hallD")) {
 					((Player) this.entity).send(new OPEN_GAMEBOARD("Poker"));
 				}
@@ -246,18 +248,18 @@ public class RoomUser {
 					this.removeStatus("carryd");
 					this.setStatus("lay", " " + Double.toString(definition.getHeight() + 1.5) + " null", true, -1);
 				} else {
-					
+
 					for (Position tile : item.getValidPillowTiles()) {
-					
+
 						if (this.position.getX() != tile.getX()) {
 							this.position.setY(tile.getY());
 						}
-						
+
 						if (this.position.getY() != tile.getY()) {
 							this.position.setX(tile.getX());
 						}
 					}
-					
+
 					this.currentItemTrigger();
 				}
 			}
@@ -281,7 +283,7 @@ public class RoomUser {
 					this.room.send(new DOOR_OUT(item, player.getDetails().getName()));
 
 					final Item currentTeleporter = this.current_item;
-					
+
 					Runnable task = new Runnable() {
 						@Override
 						public void run() {
@@ -316,7 +318,6 @@ public class RoomUser {
 
 	public boolean walkTo(int x, int y) {
 
-
 		if (this.room == null) {
 			return false;
 		}
@@ -329,11 +330,14 @@ public class RoomUser {
 			this.kickWhenStop = false;
 		}
 
-		Item item = this.room.getMapping().getHighestItem(x, y);
-
-		if (item != null) {
-			Log.println(item.getDefinition().getSprite() + " - " + item.getDefinition().getID() + " - " + item.getCustomData());
+		if (GameVariables.DEBUG_ENABLE) {
+			Item item = this.room.getMapping().getHighestItem(x, y);
+			if (item != null) {
+				Log.println(item.getDefinition().getSprite() + " - " + item.getDefinition().getID() + " - " + item.getCustomData());
+			}
 		}
+		
+		this.resetAfkTimer();
 
 		if (!this.room.getMapping().isValidTile(this.entity, x, y)) {
 			return false;
@@ -621,6 +625,18 @@ public class RoomUser {
 
 	public void setKickWhenStop(boolean kickWhenStop) {
 		this.kickWhenStop = kickWhenStop;
+	}
+
+	public int getAfkTimer() {
+		return afkTimer;
+	}
+
+	public void setAfkTimer(int aFKtime) {
+		afkTimer = aFKtime;
+	}
+
+	public void resetAfkTimer() {
+		afkTimer = GameVariables.AFK_ROOM_KICK;
 	}
 
 

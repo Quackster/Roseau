@@ -3,6 +3,7 @@ package org.alexdev.roseau.game;
 import java.util.List;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.log.Log;
 
 public class GameScheduler implements Runnable {
@@ -22,9 +23,38 @@ public class GameScheduler implements Runnable {
 				for (int i = 0; i < players.size(); i++) {
 					
 					Player player = players.get(i);
+					
 					player.getDetails().setCredits(player.getDetails().getCredits() + GameVariables.CREDITS_EVERY_AMOUNT);
 					player.getDetails().sendCredits();
 					player.getDetails().save();
+				}
+			}
+			
+			for (int i = 0; i < players.size(); i++) {
+				
+				Player player = players.get(i);
+				
+				Player roomHandlePlayer = null;
+				
+				if (player.getPrivateRoomPlayer() != null) {
+					roomHandlePlayer = player.getPrivateRoomPlayer();
+				}
+				
+				if (player.getPublicRoomPlayer() != null) {
+					roomHandlePlayer = player.getPublicRoomPlayer();
+				}
+				
+				if (roomHandlePlayer != null) {
+					
+					RoomUser roomUser = roomHandlePlayer.getRoomUser();
+					
+					if (roomUser.getAfkTimer() > 0) {
+						roomUser.setAfkTimer(roomUser.getAfkTimer() - 1);
+					} else {
+						if (roomUser.getAfkTimer() == 0) {
+							roomHandlePlayer.kick();
+						}
+					}
 				}
 			}
 			

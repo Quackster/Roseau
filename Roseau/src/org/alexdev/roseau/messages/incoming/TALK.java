@@ -16,6 +16,8 @@ public class TALK implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 
+		player.getRoomUser().resetAfkTimer();
+		
 		if (player.getRoomUser().getRoom() == null) {
 			return;
 		}

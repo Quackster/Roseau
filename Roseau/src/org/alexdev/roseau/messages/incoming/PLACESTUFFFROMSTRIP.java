@@ -17,6 +17,7 @@ public class PLACESTUFFFROMSTRIP implements MessageEvent {
 		int rotation = 0;//Integer.valueOf(reader.getArgument(5));
 		
 		Item item = player.getInventory().getItem(itemID);
+		player.getRoomUser().resetAfkTimer();
 		
 		if (item == null) {
 			return;

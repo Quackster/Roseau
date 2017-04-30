@@ -14,6 +14,7 @@ public class PLACEITEMFROMSTRIP implements MessageEvent {
 		int itemID = Integer.valueOf(reader.getArgument(0));
 		
 		Item item = player.getInventory().getItem(itemID);
+		player.getRoomUser().resetAfkTimer();
 		
 		if (item == null) {
 			return;

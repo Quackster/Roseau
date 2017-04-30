@@ -14,6 +14,8 @@ public class LOOKTO implements MessageEvent {
 		int x = Integer.valueOf(reader.getArgument(0));
 		int y = Integer.valueOf(reader.getArgument(1));
 
+		player.getRoomUser().resetAfkTimer();
+		
 		if (player.getRoomUser().containsStatus("lay")) {
 			return;
 		}

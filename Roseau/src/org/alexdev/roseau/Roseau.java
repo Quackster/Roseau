@@ -118,7 +118,7 @@ public class Roseau {
 		writer.println();
 		writer.println("[Scheduler]");
 		writer.println("credits.every.x.secs=600");
-		writer.println("credits.every.x.amount=25");
+		writer.println("credits.every.x.amount=10");
 		writer.println();
 		writer.println("[Bot]");
 		writer.println("bot.response.delay=1500");
@@ -129,6 +129,8 @@ public class Roseau {
 		writer.println();
 		writer.println("talking.lookat.distance=30");
 		writer.println("talking.lookat.reset=6");
+		writer.println();
+		writer.println("afk.room.kick=1800");
 		writer.println();
 		writer.println("[Debug]");
 		writer.println("debug.enable=true");

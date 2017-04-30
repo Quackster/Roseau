@@ -14,6 +14,7 @@ public class REMOVEITEM implements MessageEvent {
 		int itemID = Integer.valueOf(reader.getArgument(1, "/"));
 		
 		Room room = player.getRoomUser().getRoom();
+		player.getRoomUser().resetAfkTimer();
 		
 		if (!room.hasRights(player, true)) {
 			return;

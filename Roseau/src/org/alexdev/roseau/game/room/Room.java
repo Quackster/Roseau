@@ -238,6 +238,8 @@ public class Room {
 			}
 		}
 
+		roomEntity.resetAfkTimer();
+		
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
 			final Item item = this.roomMapping.getHighestItem(door.getX(), door.getY());
 
@@ -377,7 +379,10 @@ public class Room {
 		this.dispose();
 
 		player.getInventory().dispose();
-		player.getMainServerPlayer().getMessenger().sendStatus();
+		
+		if (player.getMainServerPlayer() != null) {
+			player.getMainServerPlayer().getMessenger().sendStatus();
+		}
 	}
 
 	public void dispose(boolean forceDisposal) {
