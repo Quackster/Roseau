@@ -20,33 +20,35 @@ public class HabboLidoEvent extends RoomEvent {
 	@Override
 	public void tick() {
 
-		if (this.room.getPlayerByID(this.followingID) == null) {
-			this.findNewTarget();
-		}
-
-		if (this.canTick(9)) {
-
-			int cameraEffect = Util.getRandom().nextInt(3);
-
-			if (cameraEffect == 0) {
+		try {
+			if (this.room.getPlayerByID(this.followingID) == null) {
 				this.findNewTarget();
 			}
 
-			if (cameraEffect == 1) {
+			if (this.canTick(9)) {
 
-				if (this.cameraType != 1) {
-					this.cameraType = 1;
-					this.room.send(new SHOWPROGRAM(new String[] {"cam1", "setcamera", Integer.toString(this.cameraType) }));	
+				int cameraEffect = Util.getRandom().nextInt(3);
+
+				if (cameraEffect == 0) {
+					this.findNewTarget();
+				}
+
+				if (cameraEffect == 1) {
+
+					if (this.cameraType != 1) {
+						this.cameraType = 1;
+						this.room.send(new SHOWPROGRAM(new String[] {"cam1", "setcamera", Integer.toString(this.cameraType) }));	
+					}
+				}
+
+				if (cameraEffect == 2) {
+					if (this.cameraType != 2) {
+						this.cameraType = 2;
+						this.room.send(new SHOWPROGRAM(new String[] {"cam1", "setcamera", Integer.toString(this.cameraType) }));	
+					}
 				}
 			}
-
-			if (cameraEffect == 2) {
-				if (this.cameraType != 2) {
-					this.cameraType = 2;
-					this.room.send(new SHOWPROGRAM(new String[] {"cam1", "setcamera", Integer.toString(this.cameraType) }));	
-				}
-			}
-		}
+		} catch (Exception e) { }
 
 		this.increaseTicked();
 	}

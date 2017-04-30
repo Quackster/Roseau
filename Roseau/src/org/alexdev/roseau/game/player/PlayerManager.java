@@ -39,6 +39,23 @@ public class PlayerManager {
 		}
 	}
 	
+	public void syncPlayerTickets(int userID, int tickets) {
+		
+		try {
+			
+			List<Player> players =  this.players.values().stream().filter(player -> 
+				player.getDetails().getID() == tickets)
+				.collect(Collectors.toList());
+			
+			for (Player player : players) {
+				player.getDetails().setTickets(tickets);
+			}
+			
+			
+		} catch (Exception e) {	}
+		
+	}
+	
 	public Player getPrivateRoomPlayer(int userID) {
 		
 		try {

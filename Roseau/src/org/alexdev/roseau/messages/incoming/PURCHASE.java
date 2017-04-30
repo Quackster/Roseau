@@ -57,7 +57,10 @@ public class PURCHASE implements MessageEvent {
 					details.setTickets(details.getTickets() + 10);
 					details.save();
 				} else {
-					targetPlayer.getDetails().setTickets(targetPlayer.getDetails().getTickets() + 10);
+					
+					int newTickets = targetPlayer.getDetails().getTickets() + 10;
+					
+					targetPlayer.getDetails().setTickets(newTickets);
 					targetPlayer.getDetails().sendTickets();
 					targetPlayer.getDetails().save();
 
@@ -66,6 +69,12 @@ public class PURCHASE implements MessageEvent {
 					} else {
 						player.sendAlert("You have bought 10 game tickets!");
 					}
+					
+					if (targetPlayer.getPublicRoomPlayer() != null) {
+						targetPlayer.getPublicRoomPlayer().getDetails().setTickets(newTickets);
+					}
+					
+					//Roseau.getGame().getPlayerManager().syncPlayerTickets(targetPlayer.getDetails().getID(), newTickets);
 				}
 
 				player.getDetails().setCredits(player.getDetails().getCredits() - 5);
