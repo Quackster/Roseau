@@ -17,7 +17,7 @@ import org.alexdev.roseau.messages.outgoing.STATUS;
 public class RoomWalkScheduler implements Runnable {
 
 	private Room room;
-	
+
 	public RoomWalkScheduler(Room room) {
 		this.room = room;
 	}
@@ -87,35 +87,32 @@ public class RoomWalkScheduler implements Runnable {
 		RoomUser roomEntity = entity.getRoomUser();
 
 		if (roomEntity.isWalking()) {
-			
+
 			roomEntity.setLookResetTime(-1);
 
 			if (roomEntity.getPath().size() > 0) {
 
 				Position next = roomEntity.getPath().pop();
-				
+
 				boolean tileValid = true;
-				
-				Item item = this.room.getMapping().getHighestItem(next.getX(), next.getY());
-				
+
+				/*Item item = this.room.getMapping().getHighestItem(next.getX(), next.getY());
+
 				if (item != null) {
 					if (item.getDefinition().getSprite().equals("poolLift")) {
-	
+
 						if (!(entity.getDetails().getTickets() > 0)) {
-	
 							if (entity.getType() == EntityType.PLAYER) {
 								((Player)entity).send(new PH_NOTICKETS());
 							}
-							
-							tileValid = false;
 						}
- 					}
-				}
-				
+					}
+				}*/
+
 				if (!this.room.getMapping().isValidTile(entity, next.getX(), next.getY())) {
 					tileValid = false;
 				}
-				
+
 				if (!tileValid) {
 					roomEntity.stopWalking();
 					roomEntity.setNext(null);

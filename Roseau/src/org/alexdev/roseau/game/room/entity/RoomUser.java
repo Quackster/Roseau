@@ -15,11 +15,13 @@ import org.alexdev.roseau.messages.outgoing.DOOR_OUT;
 import org.alexdev.roseau.messages.outgoing.JUMPINGPLACE_OK;
 import org.alexdev.roseau.messages.outgoing.OPEN_GAMEBOARD;
 import org.alexdev.roseau.messages.outgoing.OPEN_UIMAKOPPI;
+import org.alexdev.roseau.messages.outgoing.PH_NOTICKETS;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.USERS;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.entity.Entity;
+import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.ItemDefinition;
 import org.alexdev.roseau.game.pathfinder.Pathfinder;
@@ -159,7 +161,12 @@ public class RoomUser {
 		boolean no_current_item = false;
 
 		if (item != null) {
-			if (item.getDefinition().getBehaviour().isCanSitOnTop() || item.getDefinition().getBehaviour().isCanLayOnTop() || item.getDefinition().getBehaviour().isTeleporter() || item.getDefinition().getSprite().equals("poolBooth") || item.getDefinition().getSprite().equals("poolLift")) {
+			if (item.getDefinition().getBehaviour().isCanSitOnTop() || 
+				item.getDefinition().getBehaviour().isCanLayOnTop() || 
+				item.getDefinition().getBehaviour().isTeleporter() || 
+				item.getDefinition().getSprite().equals("poolBooth") ||
+				item.getDefinition().getSprite().equals("poolQueue") ||
+				item.getDefinition().getSprite().equals("poolLift")) {
 				this.current_item = item;
 				this.currentItemTrigger();
 
@@ -207,6 +214,13 @@ public class RoomUser {
 				((Player) this.entity).getRoomUser().setCanWalk(false);
 			}
 
+			
+			if (definition.getSprite().equals("poolQueue")) {
+				Position next = new Position(item.getCustomData());
+				((Player) this.entity).getRoomUser().walkTo(next.getX(), next.getY());
+			}
+
+			
 			if (definition.getSprite().equals("poolLift")) {
 
 				item.showProgram("close");
@@ -342,6 +356,21 @@ public class RoomUser {
 		if (!this.room.getMapping().isValidTile(this.entity, x, y)) {
 			return false;
 		}
+		
+		Item item = this.room.getMapping().getHighestItem(x, y);
+		if (item != null) {
+			if (item.getDefinition().getSprite().equals("poolLift") || item.getDefinition().getSprite().equals("poolQueue")) {
+				
+				if (!(entity.getDetails().getTickets() > 0)) {
+					if (entity.getType() == EntityType.PLAYER) {
+						((Player)entity).send(new PH_NOTICKETS());
+					}
+					return false;
+				}
+			}
+		}
+		
+		
 
 		if (this.position.isMatch(new Position(x, y))) {
 			return false;

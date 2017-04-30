@@ -141,6 +141,15 @@ public class RoomMapping {
 
 		// This is returned when there's no items found, it will
 		// just check the default model if the tile is valid
+
+		Player avoid = this.getPlayer(x, y);
+
+		if (avoid != null) {
+			if (entity != avoid) {
+				tile_valid = false;
+			}
+		}
+
 		return tile_valid;
 	}
 
@@ -222,7 +231,7 @@ public class RoomMapping {
 	public void updateItemPosition(Item item, boolean rotation_only) {
 
 		item.setCustomData("");
-		
+
 		if (item.getDefinition().getBehaviour().isOnFloor()) {
 			this.handleItemAdjustment(item, rotation_only);
 			this.regenerateCollisionMaps();
@@ -242,7 +251,7 @@ public class RoomMapping {
 
 
 	public void removeItem(Item item) {
-		
+
 		item.setRoomID(0);
 		item.setCustomData("");
 		item.save();
@@ -259,7 +268,7 @@ public class RoomMapping {
 		this.regenerateCollisionMaps();
 
 	}
-	
+
 	private void handleItemAdjustment(Item item, boolean rotation_only) {
 
 		if (rotation_only) {
@@ -276,7 +285,7 @@ public class RoomMapping {
 
 		item.updateEntities();
 	}
-	
+
 	public void updateItem(Player player, Item item, String dataClass, String customData) {
 
 		if (item == null) {
@@ -341,6 +350,25 @@ public class RoomMapping {
 
 		return this.tiles[x][y].getHighestItem();
 	}
+
+	public Player getPlayer(int x, int y) {
+
+		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
+			return null;
+		}
+
+		for (Player player : this.room.getPlayers()) {
+
+			if (player.getRoomUser().getPosition().getX() == x &&
+					player.getRoomUser().getPosition().getY() == y) {
+
+				return player;
+			}
+		}
+
+		return null;
+	}
+
 
 	public RoomConnection[][] getConnections() {
 		return connections;

@@ -2,8 +2,11 @@ package org.alexdev.roseau.game.room.schedulers.events;
 
 import java.util.List;
 
+import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
+import org.alexdev.roseau.game.room.entity.RoomUser;
+import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.schedulers.RoomEvent;
 import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.util.Util;
@@ -48,6 +51,24 @@ public class HabboLidoEvent extends RoomEvent {
 					}
 				}
 			}
+			
+			for (Player player : this.room.getPlayers()) {
+
+				RoomUser roomUser = player.getRoomUser();
+						
+				Item item = this.room.getMapping().getHighestItem(roomUser.getPosition().getX(), roomUser.getPosition().getY());
+
+				if (item != null) {
+					if (item.getDefinition().getSprite().equals("poolQueue")) {
+						if (!roomUser.isWalking()) {
+							
+							Position next = new Position(item.getCustomData());
+							roomUser.walkTo(next.getX(), next.getY());
+						}
+					}
+				}
+			}
+			
 		} catch (Exception e) { }
 
 		this.increaseTicked();

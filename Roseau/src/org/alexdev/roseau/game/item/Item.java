@@ -161,6 +161,11 @@ public class Item implements SerializableObject {
 		if (this.getDefinition().getSprite().equals("poolBooth")) {
 			tile_valid = true;
 		}
+
+		if (this.getDefinition().getSprite().equals("poolQueue")) {
+			tile_valid = true;
+		}
+		
 		
 		if (this.getDefinition().getSprite().equals("poolLift")) {
 			tile_valid = player.getDetails().getPoolFigure().length() > 0;

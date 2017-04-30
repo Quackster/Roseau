@@ -33,6 +33,7 @@ import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.ITEMS;
 import org.alexdev.roseau.messages.outgoing.LOGOUT;
 import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
+import org.alexdev.roseau.messages.outgoing.PH_NOTICKETS;
 import org.alexdev.roseau.messages.outgoing.ROOM_READY;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
@@ -239,7 +240,7 @@ public class Room {
 		}
 
 		roomEntity.resetAfkTimer();
-		
+
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
 			final Item item = this.roomMapping.getHighestItem(door.getX(), door.getY());
 
@@ -372,14 +373,14 @@ public class Room {
 				item.unlockTiles();
 			}
 		}
-		
+
 		roomUser.dispose();
 
 		this.send(new LOGOUT(player.getDetails().getName()));
 		this.dispose();
 
 		player.getInventory().dispose();
-		
+
 		if (player.getMainServerPlayer() != null) {
 			player.getMainServerPlayer().getMessenger().sendStatus();
 		}
@@ -557,7 +558,7 @@ public class Room {
 		this.dispose(false);
 	}
 
-	public boolean isValidStep(Entity player, Position current, Position neighbour, boolean isFinalMove) {
+	public boolean isValidStep(Entity entity, Position current, Position neighbour, boolean isFinalMove) {
 
 		if (this.roomData.getModel().invalidXYCoords(current.getX(), current.getY())) {
 			return false;
@@ -579,10 +580,37 @@ public class Room {
 		double heightNeighour = this.roomData.getModel().getHeight(neighbour);
 
 		Item currentItem = this.roomMapping.getHighestItem(current.getX(), current.getY());
+		Item nextItem = this.roomMapping.getHighestItem(neighbour.getX(), neighbour.getY());
 
 		if (currentItem != null) {
 			if (currentItem.getDefinition().getSprite().equals("poolEnter") || currentItem.getDefinition().getSprite().equals("poolExit")) {
-				return player.getDetails().getPoolFigure().length() > 0;
+				return entity.getDetails().getPoolFigure().length() > 0;
+			}
+
+			if (nextItem != null) {
+				if (nextItem.getDefinition().getSprite().equals("poolQueue")) {
+					if (currentItem.getDefinition().getSprite().equals("poolQueue")) {
+						return true;
+					}
+				}
+			}
+
+		} else {
+
+			if (nextItem != null) {
+				if (nextItem.getDefinition().getSprite().equals("poolQueue")) {
+
+					if (nextItem.getPosition().getX() == 21 && nextItem.getPosition().getY() == 9) {
+						
+						if (!(entity.getDetails().getTickets() > 0)) {
+							return false;
+						}
+						
+						return true;
+					} else {
+						return false;
+					}
+				}
 			}
 		}
 
@@ -604,18 +632,18 @@ public class Room {
 
 		if (!current.isMatch(this.roomData.getModel().getDoorPosition())) {
 
-			if (!this.roomMapping.isValidTile(player, current.getX(), current.getY())) {
+			if (!this.roomMapping.isValidTile(entity, current.getX(), current.getY())) {
 				return false;
 			}
 
-			if (!current.isMatch(player.getRoomUser().getPosition())) {
+			if (!current.isMatch(entity.getRoomUser().getPosition())) {
 				if (currentItem != null) {
 					if (!isFinalMove) {
 						return currentItem.getDefinition().getBehaviour().isCanStandOnTop();
 					}
 
 					if (isFinalMove) {
-						return currentItem.canWalk(player, current);
+						return currentItem.canWalk(entity, current);
 
 					}
 				}
