@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 30, 2017 at 11:38 AM
+-- Generation Time: Apr 30, 2017 at 03:47 PM
 -- Server version: 10.1.22-MariaDB-1~xenial
 -- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
@@ -1692,13 +1692,15 @@ INSERT INTO `messenger_messages` (`id`, `to_id`, `from_id`, `time_sent`, `unread
 (32, 5, 19, 1493474122331, 0, 'lol sorry was stucked with star wars again'),
 (33, 19, 5, 1493474138826, 0, 'ok.... well couldya not ignore me plz'),
 (34, 5, 19, 1493475293949, 0, 'lemme restart teh vps too lag :('),
-(35, 19, 5, 1493475305458, 1, 'kek'),
+(35, 19, 5, 1493475305458, 0, 'kek'),
 (36, 15, 5, 1493476858104, 0, 'come back? :('),
 (37, 15, 5, 1493478767089, 0, 'The console was added yesterday :)'),
 (38, 5, 15, 1493478803380, 0, ':D\n'),
 (39, 5, 15, 1493478822049, 0, 'flood again :p'),
-(40, 5, 15, 1493480330883, 1, ':p'),
-(41, 32, 13, 1493488691275, 0, 'hey');
+(40, 5, 15, 1493480330883, 0, ':p'),
+(41, 32, 13, 1493488691275, 0, 'hey'),
+(42, 19, 5, 1493550210587, 0, 'im back bish xoxoxo'),
+(43, 5, 19, 1493559781037, 1, 'Weba where are you??');
 
 -- --------------------------------------------------------
 
@@ -1797,7 +1799,8 @@ INSERT INTO `rooms` (`id`, `name`, `order_id`, `room_type`, `enabled`, `hidden`,
 (67, 'TEST OMG', -1, 0, 1, 0, '2017-04-24 08:31:16', 41, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_f', '1001', '301'),
 (68, 'test room', -1, 0, 1, 0, '2017-04-24 09:08:41', 42, 'desc', 'wef', 0, 0, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
 (69, 'Room 2', -1, 0, 1, 0, '2017-04-24 22:24:16', 15, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_a', '403', '203'),
-(70, 'My Room', -1, 0, 1, 0, '2017-04-27 18:10:54', 47, '', '', 0, 0, 0, 0, 25, 'floor1', 'model_a', '0', '0');
+(70, 'My Room', -1, 0, 1, 0, '2017-04-27 18:10:54', 47, '', '', 0, 0, 0, 0, 25, 'floor1', 'model_a', '0', '0'),
+(71, 'PÅ LOFTET SIDDER NISSE', -1, 0, 1, 0, '2017-04-30 10:40:03', 7, '', 'wef', 0, 1, 0, 0, 25, 'floor1', 'model_b', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -2580,7 +2583,142 @@ INSERT INTO `room_chatlogs` (`id`, `user`, `room_id`, `timestamp`, `message_type
 (727, 'Alito', 40, 1493508558159, 0, 'ñ_ñ'),
 (728, 'Alito', 40, 1493508573398, 0, ':furni'),
 (729, 'Alito', 40, 1493508578358, 0, ':commands'),
-(730, 'Alito', 40, 1493508597258, 0, ':helpmeimcrazyya');
+(730, 'Alito', 40, 1493508597258, 0, ':helpmeimcrazyya'),
+(731, 'JasonDev', 13, 1493547490171, 0, 'dont tell me it\'s working mate'),
+(732, 'JasonDev', 13, 1493547491069, 0, ':D'),
+(733, 'Alex', 13, 1493547498740, 0, 'leggo'),
+(734, 'JasonDev', 13, 1493547503861, 0, 'yeeha'),
+(735, 'JasonDev', 21, 1493547513463, 0, 'wee woo'),
+(736, 'JasonDev', 21, 1493547514642, 0, 'weeo woo'),
+(737, 'JasonDev', 21, 1493547600892, 0, ':D'),
+(738, 'Alex', 21, 1493547603779, 0, ':D'),
+(739, 'JasonDev', 21, 1493547606045, 0, 'you go try :D'),
+(740, 'JasonDev', 21, 1493547607682, 0, 'thanks man'),
+(741, 'Alex', 21, 1493547608023, 0, 'let me try'),
+(742, 'JasonDev', 21, 1493547611218, 0, 'I really love this'),
+(743, 'JasonDev', 21, 1493547635921, 0, 'woah'),
+(744, 'JasonDev', 21, 1493547640227, 0, 'lol'),
+(745, 'Alex', 21, 1493547641043, 0, 'XD'),
+(746, 'Alex', 21, 1493547662118, 0, 'did u see the replay? :D'),
+(747, 'JasonDev', 21, 1493547662680, 0, 'this is just so |'),
+(748, 'JasonDev', 21, 1493547672901, 0, 'nope the live one'),
+(749, 'Alex', 21, 1493547673705, 0, 'lol'),
+(750, 'JasonDev', 21, 1493547675801, 0, 'xD'),
+(751, 'Alex', 21, 1493547676947, 0, 'imma try again'),
+(752, 'JasonDev', 21, 1493547709221, 0, 'lool'),
+(753, 'Alex', 21, 1493547710027, 0, 'did u vote?'),
+(754, 'Alex', 21, 1493547711202, 0, ':('),
+(755, 'Alex', 21, 1493547720290, 0, 'xD'),
+(756, 'JasonDev', 21, 1493547723686, 0, 'XD'),
+(757, 'JasonDev', 21, 1493547766990, 0, 'It does'),
+(758, 'JasonDev', 21, 1493547769611, 0, 'auto'),
+(759, 'JasonDev', 21, 1493547775663, 0, 'walking out of the pool'),
+(760, 'Alex', 21, 1493547778241, 0, 'yes'),
+(761, 'Alex', 21, 1493547785081, 0, 'that\'s like proper habbo'),
+(762, 'Alex', 21, 1493547787130, 0, 'back in the day'),
+(763, 'JasonDev', 21, 1493547790900, 0, 'am getting addicted'),
+(764, 'JasonDev', 21, 1493547792680, 0, 'XD'),
+(765, 'Alex', 21, 1493547797841, 0, 'XD'),
+(766, 'Dominic', 21, 1493547819540, 0, 'heyyy alex'),
+(767, 'Alex', 21, 1493547820521, 0, 'whos this ucnt'),
+(768, 'Alex', 21, 1493547824960, 0, 'hey :D'),
+(769, 'Dominic', 21, 1493547827840, 0, 'bug off'),
+(770, 'Dominic', 21, 1493547831678, 0, 'do we have unlimited tickets?'),
+(771, 'Alex', 21, 1493547837908, 0, 'u needa buy em'),
+(772, 'Alex', 21, 1493547841864, 0, 'do u have credits?'),
+(773, 'Alex', 21, 1493547844521, 0, 'ill buy them for you'),
+(774, 'Dominic', 21, 1493547852687, 0, 'i got tickets now'),
+(775, 'Alex', 21, 1493547856808, 0, 'oh'),
+(776, 'Alex', 21, 1493547858401, 0, 'lol'),
+(777, 'Dominic', 21, 1493547892679, 0, 'im hot as fuck in that video'),
+(778, 'Alex', 21, 1493547902952, 0, 'yer babe ur body is soo gud'),
+(779, 'Dominic', 21, 1493547908921, 0, 'Oh, how I\'ve missed this'),
+(780, 'Dominic', 21, 1493547910603, 0, 'i know babe'),
+(781, 'Alex', 21, 1493547949904, 0, 'LOL thanks xD'),
+(782, 'Dominic', 21, 1493547953766, 0, '|||'),
+(783, 'Alex', 21, 1493547957680, 0, '?'),
+(784, 'Dominic', 21, 1493547968571, 0, 'How much else are you missing?'),
+(785, 'Dominic', 21, 1493547970835, 0, 'What about SS?'),
+(786, 'Alex', 21, 1493547978519, 0, 'doesnt exist in this version'),
+(787, 'Dominic', 21, 1493547981617, 0, 'Ah'),
+(788, 'Alex', 21, 1493547984023, 0, 'same with wobble squabble'),
+(789, 'Alex', 21, 1493547987784, 0, '*squobble'),
+(790, 'Dominic', 21, 1493547990740, 0, 'fuck this version then'),
+(791, 'Alex', 21, 1493547994415, 0, 'wow :('),
+(792, 'Alex', 21, 1493547998328, 0, 'it\'s from 2001'),
+(793, 'Dominic', 21, 1493547999808, 0, 'not your emnulator'),
+(794, 'Dominic', 21, 1493548006072, 0, 'your emulator is gud'),
+(795, 'Alex', 21, 1493548009624, 0, 'the earliest habbo u can play xddd'),
+(796, 'Dominic', 21, 1493548016871, 0, 'Besides MD'),
+(797, 'Alex', 21, 1493548023280, 0, '...not habbo'),
+(798, 'Dominic', 21, 1493548026771, 0, 'Oh yeah'),
+(799, 'Dominic', 21, 1493548028078, 0, 'true'),
+(800, 'Alex', 21, 1493548035735, 0, 'same protocol, same protocol'),
+(801, 'Alex', 21, 1493548038447, 0, 'different game'),
+(802, 'Alex', 21, 1493548046366, 0, 'same creators*'),
+(803, 'Dominic', 21, 1493548048118, 0, 'same shit, different name'),
+(804, 'Alex', 21, 1493548059008, 0, 'I meant to say: same protocol, same creators'),
+(805, 'Dominic', 21, 1493548062600, 0, 'ehehehe'),
+(806, 'Alex', 21, 1493548068439, 0, 'anyways'),
+(807, 'Alex', 21, 1493548072876, 0, 'lol'),
+(808, 'Dominic', 21, 1493548111079, 0, '10/10'),
+(809, 'Alex', 21, 1493548120486, 0, 'bro i coded the voting for a reason'),
+(810, 'Alex', 21, 1493548122890, 0, 'xD'),
+(811, 'Alex', 21, 1493548124750, 0, 'jk lol'),
+(812, 'Dominic', 21, 1493548129100, 0, 'was too lazy'),
+(813, 'Dominic', 21, 1493548155471, 0, 'bruh'),
+(814, 'Dominic', 21, 1493548158736, 0, 'ppl nowadays right'),
+(815, 'Dominic', 21, 1493548171775, 0, 'they\'re making fastfood datas static'),
+(816, 'Alex', 21, 1493548180079, 0, 'hmm?'),
+(817, 'Dominic', 21, 1493548191668, 0, 'like drop speed, parachute speed'),
+(818, 'Dominic', 21, 1493548192412, 0, 'etc'),
+(819, 'Alex', 21, 1493548197148, 0, 'ah'),
+(820, 'Dominic', 21, 1493548200808, 0, 'static data'),
+(821, 'Alex', 21, 1493548203294, 0, 'shouldn\'t that shit be randomised? o_o'),
+(822, 'Dominic', 21, 1493548206303, 0, 'ye'),
+(823, 'Dominic', 21, 1493548211337, 0, 'it should rather be'),
+(824, 'Alex', 21, 1493548211862, 0, 'lol'),
+(825, 'JasonDev', 21, 1493548213845, 0, 'why credits'),
+(826, 'JasonDev', 21, 1493548214580, 0, 'are '),
+(827, 'JasonDev', 21, 1493548219451, 0, 'resetted?'),
+(828, 'Alex', 21, 1493548225815, 0, 'uhm'),
+(829, 'Dominic', 21, 1493548226040, 0, 'calculated from the height of the falling item'),
+(830, 'Alex', 21, 1493548236080, 0, 'how credits do u have jason/'),
+(831, 'Dominic', 21, 1493548245160, 0, 'i gotz 200'),
+(832, 'Alex', 21, 1493548265118, 0, 'lol'),
+(833, 'Alex', 21, 1493548266933, 0, 'btw dom'),
+(834, 'Alex', 21, 1493548275846, 0, 'coding diving was suprisingly easier than i expected'),
+(835, 'Dominic', 21, 1493548276748, 0, 'ye'),
+(836, 'Alex', 21, 1493548281381, 0, 'i just need to code that queue '),
+(837, 'Dominic', 21, 1493548281824, 0, 't\'was?'),
+(838, 'Alex', 21, 1493548286622, 0, 'which see you see on the ground'),
+(839, 'Alex', 21, 1493548299305, 0, 'hehe'),
+(840, 'Alex', 21, 1493548306191, 0, 'i love how the doors close/open'),
+(841, 'Alex', 21, 1493548308167, 0, 'so cute'),
+(842, 'Dominic', 21, 1493548316424, 0, 'can you rephrase?'),
+(843, 'Dominic', 21, 1493548324835, 0, '"which see you see on the ground"'),
+(844, 'Alex', 21, 1493548337269, 0, 'See the arrows? It\'s a queue, it should auto walk yourself'),
+(845, 'Alex', 21, 1493548340806, 0, 'I need to code that'),
+(846, 'JasonDev', 21, 1493548349497, 0, 'yeah alex'),
+(847, 'JasonDev', 21, 1493548351960, 0, 'give me that'),
+(848, 'Alex', 21, 1493548352253, 0, 'Also 2/10 Jason did you even try?!?!'),
+(849, 'JasonDev', 21, 1493548355074, 0, 'chat bubble |'),
+(850, 'JasonDev', 21, 1493548356510, 0, 'lol'),
+(851, 'JasonDev', 21, 1493548365173, 0, 'awww'),
+(852, 'Alex', 21, 1493548370830, 0, 'lol'),
+(853, 'JasonDev', 21, 1493548374360, 0, 'how to get red chat bubble?'),
+(854, 'JasonDev', 21, 1493548379451, 0, 'weeeeee'),
+(855, 'Alex', 21, 1493548387789, 0, 'you need red swimmers'),
+(856, 'Dominic', 21, 1493548395457, 0, 'cheers babe'),
+(857, 'Alex', 21, 1493548400454, 0, '?'),
+(858, 'Alex', 21, 1493548418997, 0, 'The pool queue should be easy to code tbh'),
+(859, 'Dominic', 21, 1493548431472, 0, 'yeah'),
+(860, 'Alex', 21, 1493548438085, 0, 'afk dinner'),
+(861, 'Dominic', 21, 1493548444496, 0, 'wouldn\'t it just be recognizing XYZ?'),
+(862, 'JasonDev', 21, 1493548446664, 0, 'vote |'),
+(863, 'Dominic', 21, 1493548651433, 0, 'im gay'),
+(864, 'JasonDev', 21, 1493548946721, 0, ':SIt'),
+(865, 'JasonDev', 71, 1493559810067, 0, 'welcome to fuse lol');
 
 -- --------------------------------------------------------
 
@@ -3786,9 +3924,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `personal_greeting`, `figure`, `pool_figure`, `credits`, `tickets`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
 (2, 'test', '$2a$10$tflTFPysv6cxMSQ7BYa1ZemOmbh4bc.vH.NoMOAQOaELrBEfh7THe', 1, 44324323, 1493472369828, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'I\'m a Roseau member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', 'ch=s01/51,120,201', 200, 0, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '$2a$10$nE93sjUO76iV49F/wmQ3eO94i.SysW.RpLhg/db.08i0do53IFIb.', 3, 1489384512, 1493478543431, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'The best duck in town', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/51,120,201', 712, 0, 'Male', 'UK', '', '01.01.1997', 1),
+(5, 'Alex', '$2a$10$mE0JhM56S/WVHyvPzC36MO8JNA/vH0tybU/4JSV8k4K6a0hllVFNO', 3, 1489384512, 1493547056118, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'The best duck in town', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/51,120,201', 767, 14, 'Male', 'UK', '', '01.01.1997', 1),
 (6, 'Dark', '$2a$10$3VoNh8uaT6ZxeG1nsp1PhuTK8HKml5U6svLyjFN/4GBqWJ6DAUWgS', 1, NULL, 1493390146966, 'scott@hypermine.com', 'cool kid', 'I\'m a Roseau member!', 'sd=001/0&hr=023/103,78,59&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/101,106,64&ls=001/101,106,64&rs=001/101,106,64&lg=006/119,159,187&sh=002/124,143,125', 'ch=s02/42,199,210', 200, 0, 'Male', 'UK', '', '01.01.1990', 0),
-(7, 'Dominic', '$2a$10$e0Y4w4SPnb7vjl5Jf4eUIOBL6nuYVBlzk99CoYFqbyXX2eLR1grAm', 1, NULL, 1493390146966, 'dsmithpw@gmail.com', 'Copies fade so fast...', 'I\'m a Roseau member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '26.02.1997', 0),
+(7, 'Dominic', '$2a$10$9iQ9y6khiAW5s5dT9ZyjcuH0DUGQmG18h9zAJcsk/BhCicOC7ld.y', 1, NULL, 1493548812885, 'dsmithpw@gmail.com', 'Copies fade so fast...', 'I\'m a Roseau member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 340, 30, 'Male', 'UK', '', '26.02.1997', 0),
 (8, 'Asc', '$2a$10$WthtAe3LHJlfBtBLoj2S9O/1cdCiPl5uQ1sRMDcO7k7KIxPEvitg.', 1, 1492627423, 1493390146966, 'spam@here.nty', 'H&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;pp&auml;ij&auml;&auml;!', 'I\'m a Roseau member!', 'sd=001/0&hr=000/255,255,255&hd=002/0,125,0&ey=000/0&fc=001/0,125,0&bd=001/0,125,0&lh=001/0,125,0&rh=001/0,125,0&ch=009/25,25,25&ls=001/25,25,25&rs=001/25,25,25&lg=004/25,25,25&sh=003/25,25,25', '', 200, 0, 'Male', 'UK', '', '11.11.1911', 0),
 (9, 'Ascii', '$2a$10$cs4KnN0aET3QXi0P4zwkDOYtTKyUwhBnSJtAH05lszoMpHXlPbQYe', 1, NULL, 1493390146966, 'spam@here.nty', 'null', 'I\'m a Roseau member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '11.11.1911', 0),
 (10, 'pugsAreOkay', '$2a$10$HDrSPqhVqrMqyIJYLcGJKuGvqc71eujYVsipdw71NXxjQmtAAjiEq', 1, NULL, 1493390146966, 'a@a.com', '', 'I\'m a Roseau member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '01.01.1980', 0),
@@ -3800,7 +3938,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_on
 (16, 'NAH', '$2a$10$bxLXptoISd7gsiM74.PYm.qVglKpjvZt/kHFe3s.QfKD.aIwjFoN.', 1, NULL, 1493390146966, 'j@j.com', '', 'I\'m a Roseau member!', 'sd=001/0&hr=021/200,210,230&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '01.01.1991', 0),
 (17, 'NuuttiD3w', '$2a$10$DWxGYChEjnxFOH9JCU7AJu47APUlaWkTVaMOgp7S2WPcNRsPW4ypS', 1, NULL, 1493390146966, 'nuutti03.ns@gmail.com', 'idk m8', 'I\'m a Roseau member!', 'sd=001/0&hr=002/225,204,120&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/76,136,43&ls=001/76,136,43&rs=001/76,136,43&lg=001/119,159,187&sh=004/255,255,255', '', 200, 0, 'Male', 'UK', '', '03.05.2003', 0),
 (18, 'AnotherUser', '$2a$10$.kjP76h0WOt4ogLWKo5.v.ghFs5uqDGESCT9/sSXELNPezJhbk32u', 1, 1492664949, 1493390146966, 'e2e@cc.com', 'xddddd', 'I\'m a Roseau member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '04.04.1997', 0),
-(19, 'JasonDev', '$2a$10$lg65ZXOp.tBF5a.QLhxFi.bvksQ3jaE5spepHEISO.Lc5Yxqyxhtm', 1, 1492668493, 1493474754262, 'jason.devvy@gmail.ocm', 'Is to play alex\'s creations', 'No', 'sd=001/0&hr=024/255,234,173&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/51,102,51&ls=001/51,102,51&rs=001/51,102,51&lg=004/102,102,102&sh=002/192,180,199', 'ch=s02/255,255,255', 223, 0, 'Male', 'UK', '', '30.07.1995', 0),
+(19, 'JasonDev', '$2a$10$oIEo4q6/PvxzGS09aE7K..mZQlDT70B7NUTqE8AdOwNLYOxiQ0JVu', 1, 1492668493, 1493559798885, 'jason.devvy@gmail.ocm', 'Is to play alex\'s creations', 'No', 'sd=001/0&hr=024/255,234,173&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/51,102,51&ls=001/51,102,51&rs=001/51,102,51&lg=004/102,102,102&sh=002/192,180,199', 'ch=s02/255,255,255', 413, 7, 'Male', 'UK', '', '30.07.1995', 0),
 (20, 'Book', '$2a$10$rw3Nlk7vh8gModpUCi38H.pqsLIx64LnA7Qy85oIDG.5COwOFsaQq', 1, 1492669289, 1493390146966, 'br@andon.pw', 'br', 'I\'m a Roseau member!', 'sd=001/0&hr=021/50,50,53&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/255,255,255&ls=002/255,255,255&rs=002/255,255,255&lg=001/119,159,187&sh=001/121,94,83', '', 200, 0, 'Male', 'UK', '', '15.02.1998', 0),
 (21, 'DevJoke', '$2a$10$ZiOcyMKnY77zapEk6Wv1sOqP9tPUgOZ5n2d0Lqu3tf4Ec/GSrKqKa', 1, 1492677244, 1493390146966, 'kevin.schilling1999@gmail.com', 'I\'m from Germany!', 'I\'m a Roseau member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '21.07.1999', 0),
 (22, 'Platinum', '$2a$10$NYvyzSa0mbFfC4HkLwuL6Ob1KYS7ksEPHmRCHp0xH0F/i18IFQCVe', 1, 1492686873, 1493390146966, 'zoheb.malik@hotmail.co.uk', 'Hello!', 'I\'m a Roseau member!', 'sd=001/0&hr=010/120,109,90&hd=002/215,188,169&ey=001/0&fc=001/215,188,169&bd=001/215,188,169&lh=001/215,188,169&rh=001/215,188,169&ch=001/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=001/51,51,51&sh=002/255,255,255', '', 200, 0, 'Male', 'UK', '', '13.01.1999', 0),
@@ -3848,7 +3986,8 @@ CREATE TABLE `users_permissions` (
 --
 
 INSERT INTO `users_permissions` (`id`, `rank`, `permission`) VALUES
-(1, 2, 'room_all_rights');
+(1, 2, 'room_all_rights'),
+(2, 2, 'room_kick_any_user');
 
 --
 -- Indexes for dumped tables
@@ -3986,7 +4125,7 @@ ALTER TABLE `messenger_friendships`
 -- AUTO_INCREMENT for table `messenger_messages`
 --
 ALTER TABLE `messenger_messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `messenger_requests`
 --
@@ -3996,7 +4135,7 @@ ALTER TABLE `messenger_requests`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT for table `room_bots`
 --
@@ -4006,7 +4145,7 @@ ALTER TABLE `room_bots`
 -- AUTO_INCREMENT for table `room_chatlogs`
 --
 ALTER TABLE `room_chatlogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=731;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=866;
 --
 -- AUTO_INCREMENT for table `room_public_connections`
 --
@@ -4031,7 +4170,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_permissions`
 --
 ALTER TABLE `users_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

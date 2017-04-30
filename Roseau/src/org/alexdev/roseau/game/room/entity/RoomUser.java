@@ -443,6 +443,8 @@ public class RoomUser {
 
 		this.danceID = 0;
 		this.timeUntilNextDrink = -1;
+		
+		this.resetAfkTimer();
 
 	}
 

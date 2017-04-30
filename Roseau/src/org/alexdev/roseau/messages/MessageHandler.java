@@ -27,6 +27,7 @@ import org.alexdev.roseau.messages.incoming.INFORETRIEVE;
 import org.alexdev.roseau.messages.incoming.INITUNITLISTENER;
 import org.alexdev.roseau.messages.incoming.INTODOOR;
 import org.alexdev.roseau.messages.incoming.JUMPPERF;
+import org.alexdev.roseau.messages.incoming.KILLUSER;
 import org.alexdev.roseau.messages.incoming.LETUSERIN;
 import org.alexdev.roseau.messages.incoming.LOGIN;
 import org.alexdev.roseau.messages.incoming.LOOKTO;
@@ -142,6 +143,8 @@ public class MessageHandler {
 		this.messages.put("SPLASH_POSITION", new SPLASHPOSITION());
 		this.messages.put("GIVE_TICKETS", new GIVE_TICKETS());
 		this.messages.put("Sign", new SIGN());
+		
+		this.messages.put("KILLUSER", new KILLUSER());
 	}
 	
 	private void registerMessengerPackets() {
