@@ -179,7 +179,7 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 
 			sqlConnection = this.dao.getStorage().getConnection();
 			
-			preparedStatement = this.dao.getStorage().prepare("UPDATE items SET extra_data = ?, x = ?, y = ?, z = ?, rotation = ?, room_id = ? WHERE id = ?", sqlConnection);
+			preparedStatement = this.dao.getStorage().prepare("UPDATE items SET extra_data = ?, x = ?, y = ?, z = ?, rotation = ?, room_id = ?, user_id = ? WHERE id = ?", sqlConnection);
 			
 			
 			if (item.getDefinition().getBehaviour().isTeleporter()) {
@@ -202,7 +202,8 @@ public class MySQLItemDao extends IProcessStorage<Item, ResultSet> implements It
 			preparedStatement.setDouble(4, item.getPosition().getZ());
 			preparedStatement.setInt(5, item.getPosition().getRotation());
 			preparedStatement.setInt(6, item.getRoomID());
-			preparedStatement.setLong(7, item.getID());
+			preparedStatement.setLong(7, item.getOwnerID());
+			preparedStatement.setLong(8, item.getID());
 			preparedStatement.executeUpdate();
 
 		} catch (Exception e) {

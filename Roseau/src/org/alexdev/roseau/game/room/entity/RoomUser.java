@@ -365,6 +365,7 @@ public class RoomUser {
 					if (entity.getType() == EntityType.PLAYER) {
 						((Player)entity).send(new PH_NOTICKETS());
 					}
+					
 					return false;
 				}
 			}
