@@ -20,6 +20,7 @@ import org.alexdev.roseau.messages.incoming.GETFLATINFO;
 import org.alexdev.roseau.messages.incoming.GETORDERINFO;
 import org.alexdev.roseau.messages.incoming.GETSTRIP;
 import org.alexdev.roseau.messages.incoming.GETUNITUSERS;
+import org.alexdev.roseau.messages.incoming.GIVE_TICKETS;
 import org.alexdev.roseau.messages.incoming.GOAWAY;
 import org.alexdev.roseau.messages.incoming.GOTOFLAT;
 import org.alexdev.roseau.messages.incoming.INFORETRIEVE;
@@ -138,6 +139,7 @@ public class MessageHandler {
 		this.messages.put("REMOVERIGHTS", new REMOVERIGHTS());
 		this.messages.put("JUMPPERF", new JUMPPERF());
 		this.messages.put("SPLASH_POSITION", new SPLASHPOSITION());
+		this.messages.put("GIVE_TICKETS", new GIVE_TICKETS());
 	}
 	
 	private void registerMessengerPackets() {

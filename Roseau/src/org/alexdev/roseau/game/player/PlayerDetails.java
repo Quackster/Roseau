@@ -2,6 +2,7 @@ package org.alexdev.roseau.game.player;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.Entity;
+import org.alexdev.roseau.messages.outgoing.PH_TICKETS;
 import org.alexdev.roseau.messages.outgoing.WALLETBALANCE;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
@@ -26,6 +27,7 @@ public class PlayerDetails implements SerializableObject {
 	private boolean authenticated;
 	private Entity entity;
 	private long lastonline;
+	private int tickets;
 
 	public PlayerDetails(Entity session) {
 		this.authenticated = false;
@@ -39,7 +41,7 @@ public class PlayerDetails implements SerializableObject {
 		this.figure = figure;
 	}
 
-	public void fill(int id, String username, String mission, String figure, String poolFigure, String email, int rank, int credits, String sex, String country, String badge, String birthday, long lastonline, String personalGreeting) {
+	public void fill(int id, String username, String mission, String figure, String poolFigure, String email, int rank, int credits, String sex, String country, String badge, String birthday, long lastonline, String personalGreeting, int tickets) {
 		this.id = id;
 		this.username = username;
 		this.mission = mission;
@@ -54,6 +56,7 @@ public class PlayerDetails implements SerializableObject {
 		this.poolFigure = poolFigure;
 		this.lastonline = lastonline;
 		this.personalGreeting = personalGreeting;
+		this.tickets = tickets;
 	}
 
 	@Override
@@ -126,20 +129,22 @@ public class PlayerDetails implements SerializableObject {
 	public int getRank() {
 		return rank;
 	}
-
-	public void setCredits(int newTotal) {
-
-		if (this.credits + newTotal <= Integer.MAX_VALUE) {
-			this.credits = newTotal;
-		}
-	}
-
+	
 	public void sendCredits() {
 
 		if (this.entity instanceof Player) {
 			((Player)this.entity).send(new WALLETBALANCE(this.credits));
 		}
 	}
+
+	public void sendTickets() {
+
+		if (this.entity instanceof Player) {
+			((Player)this.entity).send(new PH_TICKETS(this.tickets));
+		}
+	}
+
+
 
 	public int getCredits() {
 		return credits;
@@ -199,5 +204,24 @@ public class PlayerDetails implements SerializableObject {
 
 	public void setPersonalGreeting(String personalGreeting) {
 		this.personalGreeting = personalGreeting;
+	}
+
+	public int getTickets() {
+		return tickets;
+	}
+	
+	public void setCredits(int newTotal) {
+
+		if (this.credits + newTotal <= Integer.MAX_VALUE) {
+			this.credits = newTotal;
+		}
+	}
+
+
+	public void setTickets(int newTotal) {
+
+		if (this.tickets + newTotal <= Integer.MAX_VALUE) {
+			this.tickets = newTotal;
+		}
 	}
 }

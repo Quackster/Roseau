@@ -361,14 +361,22 @@ public class Room {
 			this.entities.remove(player);
 		}
 
-		player.getInventory().dispose();
+		RoomUser roomUser = player.getRoomUser();		
+		Item item = roomUser.getCurrentItem();
 
-		RoomUser roomUser = player.getRoomUser();
+		if (item != null) {
+			if (item.getDefinition().getSprite().equals("poolLift") || item.getDefinition().getSprite().equals("poolBooth")) {
+				item.showProgram("open");
+				item.unlockTiles();
+			}
+		}
+		
 		roomUser.dispose();
 
 		this.send(new LOGOUT(player.getDetails().getName()));
 		this.dispose();
 
+		player.getInventory().dispose();
 		player.getMainServerPlayer().getMessenger().sendStatus();
 	}
 

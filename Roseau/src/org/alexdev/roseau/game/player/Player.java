@@ -6,11 +6,15 @@ import java.util.stream.Collectors;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.inventory.Inventory;
+import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.messenger.Messenger;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomUser;
+import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
+import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
+import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
 import org.alexdev.roseau.server.IPlayerNetwork;
 
 public class Player implements Entity {
@@ -49,9 +53,14 @@ public class Player implements Entity {
 	public boolean hasPermission(String permission) {
 		return Roseau.getGame().getPlayerManager().hasPermission(this.details.getRank(), permission);
 	}
+
+
+	public void sendAlert(String string) {
+		this.send(new SYSTEMBROADCAST(string));
+	}
 	
 	public Player getMainServerPlayer() {
-		
+
 		try {
 			return Roseau.getGame()
 					.getPlayerManager()
@@ -108,9 +117,9 @@ public class Player implements Entity {
 
 			this.messenger.dispose();
 			this.inventory.dispose();
-			
-		} else {
 
+		} else {
+			
 			if (this.roomEntity != null) {
 				if (this.roomEntity.getRoom() != null) {
 					this.roomEntity.getRoom().leaveRoom(this, false);

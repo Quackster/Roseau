@@ -88,6 +88,13 @@ public class RoomWalkScheduler implements Runnable {
 			if (roomEntity.getPath().size() > 0) {
 
 				Position next = roomEntity.getPath().pop();
+				
+				if (!this.room.getMapping().isValidTile(entity, next.getX(), next.getY())) {
+					roomEntity.stopWalking();
+					roomEntity.setNext(null);
+					roomEntity.setNeedUpdate(true);
+					return;
+				}
 
 				roomEntity.removeStatus("lay");
 				roomEntity.removeStatus("sit");
