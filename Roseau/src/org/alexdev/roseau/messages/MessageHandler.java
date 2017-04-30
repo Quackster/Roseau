@@ -54,6 +54,7 @@ import org.alexdev.roseau.messages.incoming.SETFLATINFO;
 import org.alexdev.roseau.messages.incoming.SETITEMDATA;
 import org.alexdev.roseau.messages.incoming.SETSTRIPITEMDATA;
 import org.alexdev.roseau.messages.incoming.SETSTUFFDATA;
+import org.alexdev.roseau.messages.incoming.SIGN;
 import org.alexdev.roseau.messages.incoming.SPLASHPOSITION;
 import org.alexdev.roseau.messages.incoming.STATUSOK;
 import org.alexdev.roseau.messages.incoming.STOP;
@@ -140,6 +141,7 @@ public class MessageHandler {
 		this.messages.put("JUMPPERF", new JUMPPERF());
 		this.messages.put("SPLASH_POSITION", new SPLASHPOSITION());
 		this.messages.put("GIVE_TICKETS", new GIVE_TICKETS());
+		this.messages.put("Sign", new SIGN());
 	}
 	
 	private void registerMessengerPackets() {

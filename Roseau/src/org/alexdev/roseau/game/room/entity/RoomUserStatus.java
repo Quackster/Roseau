@@ -1,5 +1,7 @@
 package org.alexdev.roseau.game.room.entity;
 
+import org.alexdev.roseau.log.Log;
+
 public class RoomUserStatus {
 
 	private String key;

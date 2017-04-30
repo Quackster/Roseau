@@ -3,10 +3,15 @@ package org.alexdev.roseau.game.room.schedulers;
 import java.util.ArrayList;
 import java.util.List;
 import org.alexdev.roseau.game.entity.Entity;
+import org.alexdev.roseau.game.entity.EntityType;
+import org.alexdev.roseau.game.item.Item;
+import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.model.Rotation;
+import org.alexdev.roseau.log.Log;
+import org.alexdev.roseau.messages.outgoing.PH_NOTICKETS;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 
 public class RoomWalkScheduler implements Runnable {
@@ -89,7 +94,29 @@ public class RoomWalkScheduler implements Runnable {
 
 				Position next = roomEntity.getPath().pop();
 				
+				boolean tileValid = true;
+				
+				Item item = this.room.getMapping().getHighestItem(next.getX(), next.getY());
+				
+				if (item != null) {
+					if (item.getDefinition().getSprite().equals("poolLift")) {
+	
+						if (!(entity.getDetails().getTickets() > 0)) {
+	
+							if (entity.getType() == EntityType.PLAYER) {
+								((Player)entity).send(new PH_NOTICKETS());
+							}
+							
+							tileValid = false;
+						}
+ 					}
+				}
+				
 				if (!this.room.getMapping().isValidTile(entity, next.getX(), next.getY())) {
+					tileValid = false;
+				}
+				
+				if (!tileValid) {
 					roomEntity.stopWalking();
 					roomEntity.setNext(null);
 					roomEntity.setNeedUpdate(true);

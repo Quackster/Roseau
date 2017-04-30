@@ -11,6 +11,7 @@ import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.PURCHASE_ADDSTRIPITEM;
 import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
 import org.alexdev.roseau.server.messages.ClientMessage;
+import org.alexdev.roseau.util.Util;
 
 public class PURCHASE implements MessageEvent {
 
@@ -41,7 +42,7 @@ public class PURCHASE implements MessageEvent {
 				return;
 			}
 
-			String target = callID.split(" ")[2];
+			String target = Util.filterInput(callID.split(" ")[2]);
 
 			PlayerDetails details = Roseau.getDao().getPlayer().getDetails(target);
 

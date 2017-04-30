@@ -25,10 +25,10 @@ public class Roseau {
 	public static void main(String[] args) {
 
 		try {
-			
+
 			createConfig();
 			Log.startup();
-			
+
 			serverIP = Util.getConfiguration().get("Server", "server.ip", String.class);
 			serverPort = Util.getConfiguration().get("Server", "server.port", int.class);	
 
@@ -40,9 +40,9 @@ public class Roseau {
 				game = new Game(dao);
 				game.load();
 				Log.println();
-				
+
 				server = Class.forName(Roseau.getServerClassPath()).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
-				
+
 				Log.println("Settting up server");
 
 				server.setIp(serverIP);
@@ -65,7 +65,7 @@ public class Roseau {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static void createConfig() throws IOException {
 		File file = new File("roseau.properties");
 
@@ -89,7 +89,7 @@ public class Roseau {
 
 		Util.load();
 	}
-	
+
 
 	private static void writeMainConfiguration(PrintWriter writer) {
 		writer.println("[Server]");
@@ -129,13 +129,17 @@ public class Roseau {
 		writer.println();
 		writer.println("talking.lookat.distance=30");
 		writer.println("talking.lookat.reset=6");
+		writer.println();
+		writer.println("[Debug]");
+		writer.println("debug.enable=true");
+		writer.println();
 	}
 
 	private static String getServerClassPath() {
 		return "org.alexdev.roseau.server.netty.NettyServer";
 	}
 
-	
+
 	public static IServerHandler getServer() {
 		return server;
 	}

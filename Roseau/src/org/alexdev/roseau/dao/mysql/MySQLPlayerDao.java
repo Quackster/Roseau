@@ -67,7 +67,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 	public PlayerDetails getDetails(int userID) {
 
 		Player player = Roseau.getGame().getPlayerManager().getByID(userID);
-		PlayerDetails details = new PlayerDetails(player);
+		PlayerDetails details = null;
 
 		if (player != null) {
 			details = player.getDetails();
@@ -87,7 +87,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 				resultSet = preparedStatement.executeQuery();
 
 				if (resultSet.next()) {
-					this.fill(details, resultSet);
+					details = this.fill(new PlayerDetails(player), resultSet);
 				}
 
 			} catch (Exception e) {
@@ -106,7 +106,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 	public PlayerDetails getDetails(String username) {
 
 		Player player = Roseau.getGame().getPlayerManager().getByName(username);
-		PlayerDetails details = new PlayerDetails(player);
+		PlayerDetails details = null;
 
 		if (player != null) {
 			details = player.getDetails();
@@ -126,7 +126,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 				resultSet = preparedStatement.executeQuery();
 
 				if (resultSet.next()) {
-					this.fill(details, resultSet);
+					details = this.fill(new PlayerDetails(player), resultSet);
 				}
 
 			} catch (Exception e) {
@@ -147,6 +147,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		boolean found = false;
 
 		try {
 
@@ -159,7 +160,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			if (resultSet.next()) {
 				if (BCrypt.checkpw(password, resultSet.getString("password"))) {
 					this.fill(player.getDetails(), resultSet);
-					return true;
+					found = true;
 				}
 			}
 
@@ -171,7 +172,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			Storage.closeSilently(sqlConnection);
 		}
 
-		return false;
+		return found;
 	}
 
 	@Override
@@ -180,6 +181,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		int id = -1;
 
 		try {
 
@@ -190,7 +192,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
-				return resultSet.getInt("id");
+				id = resultSet.getInt("id");
 			}
 		} catch (Exception e) {
 			Log.exception(e);
@@ -200,7 +202,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			Storage.closeSilently(sqlConnection);
 		}
 
-		return -1;	
+		return id;	
 	}
 
 	@Override
