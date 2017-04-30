@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 30, 2017 at 03:51 PM
+-- Generation Time: Apr 30, 2017 at 05:53 PM
 -- Server version: 10.1.22-MariaDB-1~xenial
 -- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
@@ -1611,7 +1611,8 @@ INSERT INTO `item_definitions` (`id`, `sprite`, `color`, `length`, `width`, `hei
 (2636, 'table_xoxb', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
 (2637, 'table_battleships', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
 (2638, 'cardtablea', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
-(2639, 'cardtableb', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description');
+(2639, 'cardtableb', '', 1, 1, 1, '', 'PF', 'Unknown name', 'Unknown description'),
+(2640, 'poolQueue', '', 0, 0, 0, '', 'EM', 'Unknown name', 'Unknown description');
 
 -- --------------------------------------------------------
 
@@ -1700,7 +1701,9 @@ INSERT INTO `messenger_messages` (`id`, `to_id`, `from_id`, `time_sent`, `unread
 (40, 5, 15, 1493480330883, 0, ':p'),
 (41, 32, 13, 1493488691275, 0, 'hey'),
 (42, 19, 5, 1493550210587, 0, 'im back bish xoxoxo'),
-(43, 5, 19, 1493559781037, 1, 'Weba where are you??');
+(43, 5, 19, 1493559781037, 0, 'Weba where are you??'),
+(44, 19, 5, 1493560400128, 1, 'I\'m here now, mate.'),
+(45, 15, 5, 1493563726723, 1, 'Hey, my internet went out. :(');
 
 -- --------------------------------------------------------
 
@@ -2718,7 +2721,150 @@ INSERT INTO `room_chatlogs` (`id`, `user`, `room_id`, `timestamp`, `message_type
 (862, 'JasonDev', 21, 1493548446664, 0, 'vote |'),
 (863, 'Dominic', 21, 1493548651433, 0, 'im gay'),
 (864, 'JasonDev', 21, 1493548946721, 0, ':SIt'),
-(865, 'JasonDev', 71, 1493559810067, 0, 'welcome to fuse lol');
+(865, 'JasonDev', 71, 1493559810067, 0, 'welcome to fuse lol'),
+(866, 'Alito', 21, 1493560911542, 0, 'hello :D'),
+(867, 'Alex', 21, 1493560926690, 0, 'hey :D'),
+(868, 'Alex', 21, 1493560933236, 0, 'have u dived yet? :))'),
+(869, 'Alito', 21, 1493560935668, 0, 'how are you :)'),
+(870, 'Alex', 21, 1493560942819, 0, 'im good'),
+(871, 'Alex', 21, 1493560946378, 0, ':D'),
+(872, 'Alito', 21, 1493560958024, 0, 'divet?'),
+(873, 'Alex', 21, 1493560967397, 0, 'I just bought you tickets :)'),
+(874, 'Alito', 21, 1493560968699, 0, 'work?'),
+(875, 'Alex', 21, 1493560971547, 0, 'yes'),
+(876, 'Alito', 21, 1493560973294, 1, ':O'),
+(877, 'Alex', 21, 1493560979371, 0, 'i coded it'),
+(878, 'Alex', 21, 1493560985746, 0, 'just today'),
+(879, 'Alito', 21, 1493561001228, 0, ':D flood xd ok '),
+(880, 'Alito', 21, 1493561048431, 0, 'fantastic :D'),
+(881, 'Alito', 21, 1493561054130, 0, 'was hard to code it?'),
+(882, 'Alex', 21, 1493561056449, 0, ':D'),
+(883, 'Alex', 21, 1493561059044, 0, 'no'),
+(884, 'Alex', 21, 1493561061322, 0, 'it was easy'),
+(885, 'Alito', 21, 1493561098335, 0, ':D'),
+(886, 'Alex', 21, 1493561101441, 0, 'thanks :D'),
+(887, 'Alito', 21, 1493561111151, 0, 'arrows'),
+(888, 'Alex', 21, 1493561119356, 0, 'yes'),
+(889, 'Alito', 21, 1493561120663, 0, 'not working'),
+(890, 'Alex', 21, 1493561122497, 0, 'the arrows need to be coded'),
+(891, 'Alito', 21, 1493561124122, 0, 'never'),
+(892, 'Alex', 21, 1493561124488, 0, ':P'),
+(893, 'Alex', 21, 1493561129507, 0, 'i will code them'),
+(894, 'Alito', 21, 1493561136577, 1, 'ah'),
+(895, 'Alex', 21, 1493561156946, 0, 'are you going to dive again? |'),
+(896, 'Alex', 21, 1493561160106, 0, 'or not'),
+(897, 'Alito', 21, 1493561163995, 0, 'ok :D'),
+(898, 'Alito', 21, 1493561165707, 0, 'yes'),
+(899, 'Alex', 21, 1493561167721, 0, 'i can afford tickets for you'),
+(900, 'Alex', 21, 1493561169977, 0, 'xd'),
+(901, 'Alito', 21, 1493561180571, 0, 'I bought tickets'),
+(902, 'Alex', 21, 1493561184558, 0, 'ok :P'),
+(903, 'Alito', 21, 1493561185566, 0, 'you coded tickets :)'),
+(904, 'Alex', 21, 1493561189897, 0, 'yes :D'),
+(905, 'Alito', 21, 1493561194257, 0, 'really nice'),
+(906, 'Alito', 21, 1493561195659, 0, ':)'),
+(907, 'Alito', 21, 1493561240501, 0, ':)'),
+(908, 'Alito', 21, 1493561242975, 0, 'ty'),
+(909, 'Alex', 21, 1493561244057, 0, ':P'),
+(910, 'Alito', 21, 1493561254661, 0, ':d'),
+(911, 'Alito', 21, 1493561284975, 0, ':d'),
+(912, 'Alex', 21, 1493561289376, 0, 'really bad'),
+(913, 'Alex', 21, 1493561290456, 0, 'xD'),
+(914, 'Alito', 21, 1493561312365, 0, 'the points in the screen'),
+(915, 'Alito', 21, 1493561314537, 0, 'work?'),
+(916, 'Alex', 21, 1493561324832, 0, 'Uhm'),
+(917, 'Alex', 21, 1493561327336, 0, 'no :(');
+INSERT INTO `room_chatlogs` (`id`, `user`, `room_id`, `timestamp`, `message_type`, `message`) VALUES
+(918, 'Alex', 21, 1493561333769, 0, 'Is there suppose to be points?'),
+(919, 'Alito', 21, 1493561338980, 0, 'Yes'),
+(920, 'Alex', 21, 1493561356631, 0, 'is there a working emulator with this feature?'),
+(921, 'Alex', 21, 1493561358551, 0, 'so i can see'),
+(922, 'Alito', 21, 1493561384967, 0, 'I do not remember'),
+(923, 'Alito', 21, 1493561392033, 0, 'the old habbok'),
+(924, 'Alito', 21, 1493561403115, 0, 'had that'),
+(925, 'Alex', 21, 1493561413935, 0, 'hmm'),
+(926, 'Alito', 21, 1493561418242, 0, 'in youtube you can see'),
+(927, 'Alex', 21, 1493561418263, 0, 'I think I can cod eit'),
+(928, 'Alex', 21, 1493561423968, 0, '*code it'),
+(929, 'Alito', 21, 1493561461267, 0, 'I hope you can coded holograph '),
+(930, 'Alito', 21, 1493561463410, 0, 'in a future'),
+(931, 'Alito', 21, 1493561474963, 0, ': sit'),
+(932, 'Alito', 21, 1493561476035, 0, ':p'),
+(933, 'Alex', 21, 1493561483655, 0, ':P'),
+(934, 'Alito', 21, 1493561492665, 0, 'my emulator is very bad'),
+(935, 'Alex', 21, 1493561537246, 0, 'I really don\'t know anything much about Holograph >_<'),
+(936, 'Alex', 21, 1493561559097, 0, 'Also you know :sit command works? ;)'),
+(937, 'Alito', 21, 1493561575348, 0, 'Yes :) '),
+(938, 'Alito', 21, 1493561583764, 0, 'you need fix flood please :p'),
+(939, 'Alex', 21, 1493561605757, 0, ':P the flood timer isn\'t an issue'),
+(940, 'Alex', 21, 1493561608206, 0, 'for me?'),
+(941, 'Alex', 21, 1493561615638, 0, 'or do u mean on ur server?'),
+(942, 'Alito', 21, 1493561637875, 0, 'yes'),
+(943, 'Alex', 21, 1493561673918, 0, 'do you use discord?'),
+(944, 'Alito', 21, 1493561676794, 0, 'in my server the flood is on when im speaking and flooding room'),
+(945, 'Alito', 21, 1493561694071, 0, 'discord?'),
+(946, 'Alito', 21, 1493561721041, 0, 'I saw your like in my post :) thanks'),
+(947, 'Alex', 21, 1493561724196, 0, 'yes, it\'s like skype but 100x better '),
+(948, 'Alex', 21, 1493561727356, 0, 'i dont use skype'),
+(949, 'Alex', 21, 1493561732206, 0, 'you\'re welcome :)'),
+(950, 'Alito', 21, 1493561743480, 0, 'no, I use msn xD'),
+(951, 'Alex', 21, 1493561769476, 0, 'That is old :O'),
+(952, 'Alito', 21, 1493561781083, 0, 'yes, I like the old :p'),
+(953, 'Alex', 21, 1493561805358, 0, 'well that\'s why you\'re on my server'),
+(954, 'Alex', 21, 1493561806514, 0, 'xD'),
+(955, 'Alito', 21, 1493561814274, 0, 'not only'),
+(956, 'Alito', 21, 1493561823148, 0, 'for this :p'),
+(957, 'Alex', 21, 1493561854332, 0, 'hmm'),
+(958, 'Alito', 21, 1493561863363, 0, 'I like also this version'),
+(959, 'Alex', 21, 1493561877940, 0, 'I don\'t think the "points" existed in this version'),
+(960, 'Alex', 21, 1493561885812, 0, 'I am searching cct/dcr files'),
+(961, 'Alito', 21, 1493561903146, 0, 'in lido cct from v26'),
+(962, 'Alito', 21, 1493561905491, 0, 'maybe?'),
+(963, 'Alex', 21, 1493561913205, 0, 'the cct wont work'),
+(964, 'Alex', 21, 1493561915748, 0, '>_<'),
+(965, 'Alito', 21, 1493561925802, 0, ':c'),
+(966, 'Alito', 21, 1493561949060, 0, 'I put snowstorm cct v20 or less'),
+(967, 'Alex', 21, 1493561955339, 0, 'xD'),
+(968, 'Alito', 21, 1493561958034, 0, 'in my v26 and works :p'),
+(969, 'Alex', 21, 1493561962316, 0, ':O nice'),
+(970, 'Alito', 21, 1493561977844, 0, 'ty'),
+(971, 'Alex', 21, 1493562028292, 0, 'that was bad'),
+(972, 'Alex', 21, 1493562029547, 0, '-_-'),
+(973, 'Alito', 21, 1493562032699, 0, 'XD'),
+(974, 'Alito', 21, 1493562047990, 0, 'Today im making new ccts'),
+(975, 'Alito', 21, 1493562051830, 0, 'furnis'),
+(976, 'Alito', 21, 1493562062173, 0, 'this morning'),
+(977, 'Alex', 21, 1493562062866, 0, ':) your furniture looks really good'),
+(978, 'Alito', 21, 1493562063503, 0, ':p'),
+(979, 'Alito', 21, 1493562074784, 0, 'thank you '),
+(980, 'Alito', 21, 1493562093764, 0, 'I decompose flash images'),
+(981, 'Alito', 21, 1493562115682, 0, 'decompile'),
+(982, 'Alito', 21, 1493562117134, 0, ':p'),
+(983, 'Alex', 21, 1493562124057, 0, ':P'),
+(984, 'Alito', 21, 1493562135022, 0, 'I hate habbo in flash'),
+(985, 'Alex', 21, 1493562151074, 0, 'same'),
+(986, 'Alex', 21, 1493562156882, 0, 'they removed so much'),
+(987, 'Alex', 21, 1493562159850, 0, 'room-o-matic'),
+(988, 'Alex', 21, 1493562165275, 0, 'habbo lido'),
+(989, 'Alex', 21, 1493562167386, 0, 'hand'),
+(990, 'Alex', 21, 1493562169968, 0, ':('),
+(991, 'Alito', 21, 1493562176625, 0, ':('),
+(992, 'Alito', 21, 1493562193624, 0, 'I was when habbo old was removed '),
+(993, 'Alito', 21, 1493562203377, 0, 'in 2009 november'),
+(994, 'Alex', 21, 1493562211162, 0, ':P'),
+(995, 'Alito', 21, 1493562216809, 0, 'was very sad and bad'),
+(996, 'Alito', 21, 1493562249127, 0, 'room o matic, xrays snow, battle, old camera'),
+(997, 'Alito', 21, 1493562265716, 0, 'the old design jukebox, the trax machine'),
+(998, 'Alito', 21, 1493562292580, 0, 'I miss the old corridor'),
+(999, 'Alito', 21, 1493562300004, 0, 'i dont know the name in english :p'),
+(1000, 'Alito', 21, 1493562367061, 0, 'the room larger in public'),
+(1001, 'Alito', 21, 1493562394537, 0, 'Im lookin in habboemotion'),
+(1002, 'Alito', 21, 1493562466009, 0, 'hallway?'),
+(1003, 'Alito', 21, 1493562475942, 1, 'you know?'),
+(1004, 'Alito', 21, 1493562670285, 0, 'absent :c'),
+(1005, 'Alito', 21, 1493562677834, 0, 'see you later, homework :c'),
+(1006, 'Alito', 21, 1493562688017, 0, 'o/'),
+(1007, 'Alito', 21, 1493562694288, 0, ':wave');
 
 -- --------------------------------------------------------
 
@@ -2839,25 +2985,6 @@ INSERT INTO `room_public_items` (`id`, `definitionid`, `model`, `x`, `y`, `z`, `
 (8, 503, 'pool_b', 31, 11, 0, 0, 'Splash2', '31,10 31,9'),
 (9, 503, 'pool_b', 20, 19, 0, 0, 'Splash1', '19,19 18,19'),
 (10, 504, 'pool_b', 26, 4, 0, 0, 'door', '20,19'),
-(11, 501, 'md_a', 8, 0, 0, 0, 'curtains1', '8,2'),
-(12, 501, 'md_a', 9, 0, 0, 0, 'curtains2', '9,2'),
-(13, 502, 'md_a', 11, 11, 0, 0, 'Splash0', '12,11 13,11'),
-(14, 503, 'md_a', 12, 11, 0, 0, 'Splash0', '11,11 10,11'),
-(15, 502, 'md_a', 11, 12, 0, 0, 'Splash0', '12,12 13,12'),
-(16, 503, 'md_a', 12, 12, 0, 0, 'Splash0', '11,12 10,12'),
-(17, 510, 'md_a', 21, 15, 8, 0, 'wsQueueTile', '21,14'),
-(18, 510, 'md_a', 21, 16, 8, 0, 'wsQueueTile', '21,15'),
-(19, 510, 'md_a', 21, 17, 8, 0, 'wsQueueTile', '21,16'),
-(20, 510, 'md_a', 21, 18, 8, 0, 'wsQueueTile', '21,17'),
-(21, 511, 'md_a', 21, 12, 8, 0, 'wsSetPlayer', '1'),
-(22, 511, 'md_a', 21, 13, 8, 0, NULL, NULL),
-(23, 511, 'md_a', 21, 14, 8, 0, 'wsSetPlayer', '0'),
-(24, 512, 'md_a', 21, 8, 8, 0, 'wsQueueTile', '21,9'),
-(25, 512, 'md_a', 21, 9, 8, 0, 'wsQueueTile', '21,10'),
-(26, 512, 'md_a', 21, 10, 8, 0, 'wsQueueTile', '21,11'),
-(27, 512, 'md_a', 21, 11, 8, 0, 'wsQueueTile', '21,12'),
-(28, 513, 'md_a', 21, 19, 0, 0, 'qstart', '21,18'),
-(29, 513, 'md_a', 21, 7, 0, 0, 'qstart', '21,8'),
 (30, 2415, 'lobby_a', 9, 0, 7, 0, NULL, NULL),
 (31, 2416, 'lobby_a', 11, 0, 7, 4, NULL, NULL),
 (32, 2417, 'lobby_a', 12, 0, 7, 4, NULL, NULL),
@@ -2902,90 +3029,16 @@ INSERT INTO `room_public_items` (`id`, `definitionid`, `model`, `x`, `y`, `z`, `
 (71, 2417, 'lobby_a', 7, 25, 2, 2, NULL, NULL),
 (72, 2418, 'lobby_a', 7, 26, 2, 2, NULL, NULL),
 (73, 2428, 'lobby_a', 10, 26, 1, 2, NULL, NULL),
-(74, 2429, 'cinema_a', 2, 4, 3, 0, NULL, NULL),
-(75, 2430, 'cinema_a', 7, 4, 3, 2, NULL, NULL),
-(76, 2431, 'cinema_a', 8, 4, 3, 0, NULL, NULL),
-(77, 2430, 'cinema_a', 9, 4, 3, 6, NULL, NULL),
-(78, 2430, 'cinema_a', 2, 5, 3, 4, NULL, NULL),
-(79, 2430, 'cinema_a', 7, 5, 3, 2, NULL, NULL),
-(80, 2432, 'cinema_a', 8, 5, 3, 0, NULL, NULL),
-(81, 2430, 'cinema_a', 9, 5, 3, 6, NULL, NULL),
-(82, 2433, 'cinema_a', 2, 6, 3, 0, NULL, NULL),
-(83, 2430, 'cinema_a', 2, 7, 3, 0, NULL, NULL),
-(84, 2434, 'cinema_a', 13, 7, 1, 0, NULL, NULL),
-(85, 2434, 'cinema_a', 14, 7, 1, 0, NULL, NULL),
-(86, 2434, 'cinema_a', 15, 7, 1, 0, NULL, NULL),
-(87, 2434, 'cinema_a', 16, 7, 1, 0, NULL, NULL),
-(88, 2434, 'cinema_a', 17, 7, 1, 0, NULL, NULL),
-(89, 2434, 'cinema_a', 18, 7, 1, 0, NULL, NULL),
-(90, 2435, 'cinema_a', 21, 7, 1, 0, NULL, NULL),
-(91, 2436, 'cinema_a', 9, 8, 3, 0, NULL, NULL),
-(92, 2437, 'cinema_a', 13, 8, 2, 2, NULL, NULL),
-(93, 2437, 'cinema_a', 14, 8, 2, 0, NULL, NULL),
-(94, 2437, 'cinema_a', 15, 8, 2, 0, NULL, NULL),
-(95, 2437, 'cinema_a', 16, 8, 2, 0, NULL, NULL),
-(96, 2437, 'cinema_a', 17, 8, 2, 0, NULL, NULL),
-(97, 2437, 'cinema_a', 18, 8, 2, 0, NULL, NULL),
-(98, 2437, 'cinema_a', 19, 8, 2, 1, NULL, NULL),
-(99, 2435, 'cinema_a', 21, 8, 1, 0, NULL, NULL),
-(100, 2429, 'cinema_a', 2, 9, 3, 0, NULL, NULL),
-(101, 2434, 'cinema_a', 13, 9, 2, 0, NULL, NULL),
-(102, 2434, 'cinema_a', 14, 9, 2, 0, NULL, NULL),
-(103, 2434, 'cinema_a', 15, 9, 2, 0, NULL, NULL),
-(104, 2434, 'cinema_a', 16, 9, 2, 0, NULL, NULL),
-(105, 2434, 'cinema_a', 17, 9, 2, 0, NULL, NULL),
-(106, 2434, 'cinema_a', 18, 9, 2, 0, NULL, NULL),
-(107, 2434, 'cinema_a', 19, 9, 2, 0, NULL, NULL),
-(108, 2434, 'cinema_a', 20, 9, 2, 0, NULL, NULL),
-(109, 2435, 'cinema_a', 21, 9, 1, 0, NULL, NULL),
-(110, 2430, 'cinema_a', 2, 10, 3, 4, NULL, NULL),
-(111, 2430, 'cinema_a', 9, 10, 3, 4, NULL, NULL),
-(112, 2433, 'cinema_a', 2, 11, 3, 0, NULL, NULL),
-(113, 2433, 'cinema_a', 9, 11, 3, 0, NULL, NULL),
-(114, 2430, 'cinema_a', 2, 12, 3, 0, NULL, NULL),
-(115, 2430, 'cinema_a', 9, 12, 3, 0, NULL, NULL),
-(116, 2438, 'cinema_a', 17, 12, 1, 6, NULL, NULL),
-(117, 2439, 'cinema_a', 19, 12, 1, 2, NULL, NULL),
-(118, 2438, 'cinema_a', 15, 13, 1, 2, NULL, NULL),
-(119, 2436, 'cinema_a', 19, 13, 1, 0, NULL, NULL),
-(120, 2438, 'cinema_a', 20, 13, 1, 6, NULL, NULL),
-(121, 2436, 'cinema_a', 9, 14, 3, 0, NULL, NULL),
-(122, 2430, 'cinema_a', 2, 15, 3, 4, NULL, NULL),
-(123, 2438, 'cinema_a', 14, 15, 1, 4, NULL, NULL),
-(124, 2439, 'cinema_a', 19, 15, 1, 4, NULL, NULL),
-(125, 2433, 'cinema_a', 2, 16, 3, 0, NULL, NULL),
-(126, 2430, 'cinema_a', 7, 16, 3, 2, NULL, NULL),
-(127, 2433, 'cinema_a', 8, 16, 3, 2, NULL, NULL),
-(128, 2430, 'cinema_a', 9, 16, 3, 6, NULL, NULL),
-(129, 2438, 'cinema_a', 13, 16, 1, 2, NULL, NULL),
-(130, 2438, 'cinema_a', 14, 16, 1, 6, NULL, NULL),
-(131, 2429, 'cinema_a', 19, 16, 1, 0, NULL, NULL),
-(132, 2430, 'cinema_a', 2, 17, 3, 0, NULL, NULL),
-(133, 2430, 'cinema_a', 7, 17, 3, 2, NULL, NULL),
-(134, 2433, 'cinema_a', 8, 17, 3, 2, NULL, NULL),
-(135, 2430, 'cinema_a', 9, 17, 3, 6, NULL, NULL),
-(136, 2438, 'cinema_a', 19, 17, 1, 2, NULL, NULL),
-(137, 2429, 'cinema_a', 2, 18, 3, 0, NULL, NULL),
-(138, 2438, 'cinema_a', 14, 18, 1, 4, NULL, NULL),
-(139, 2440, 'cinema_a', 2, 19, 3, 0, NULL, NULL),
-(140, 2440, 'cinema_a', 2, 20, 3, 1, NULL, NULL),
-(141, 2441, 'cinema_a', 3, 20, 3, 6, NULL, NULL),
-(142, 2436, 'cinema_a', 9, 20, 3, 0, NULL, NULL),
-(143, 2438, 'cinema_a', 14, 20, 1, 0, NULL, NULL),
-(144, 2438, 'cinema_a', 19, 20, 1, 2, NULL, NULL),
-(145, 2439, 'cinema_a', 20, 20, 1, 6, NULL, NULL),
-(146, 2440, 'cinema_a', 2, 21, 3, 1, NULL, NULL),
-(147, 2441, 'cinema_a', 3, 21, 3, 6, NULL, NULL),
-(148, 2438, 'cinema_a', 19, 21, 1, 0, NULL, NULL),
-(149, 2440, 'cinema_a', 2, 22, 3, 1, NULL, NULL),
-(150, 2441, 'cinema_a', 3, 22, 3, 6, NULL, NULL),
-(151, 2436, 'cinema_a', 16, 22, 1, 0, NULL, NULL),
-(152, 2439, 'cinema_a', 18, 22, 1, 0, NULL, NULL),
-(153, 2440, 'cinema_a', 2, 23, 3, 1, NULL, NULL),
-(154, 2441, 'cinema_a', 3, 23, 3, 6, NULL, NULL),
-(155, 2440, 'cinema_a', 2, 24, 3, 1, NULL, NULL),
-(156, 2441, 'cinema_a', 3, 24, 3, 6, NULL, NULL),
-(157, 2440, 'cinema_a', 2, 25, 3, 2, NULL, NULL),
+(1057, 2640, 'pool_b', 26, 5, 0, 0, NULL, '26,4'),
+(1056, 2640, 'pool_b', 26, 6, 0, 0, NULL, '26,5'),
+(1055, 2640, 'pool_b', 26, 7, 0, 0, NULL, '26,6'),
+(1054, 2640, 'pool_b', 25, 7, 0, 0, NULL, '26,7'),
+(1053, 2640, 'pool_b', 24, 7, 0, 0, NULL, '25,7'),
+(1052, 2640, 'pool_b', 23, 7, 0, 0, NULL, '24,7'),
+(1051, 2640, 'pool_b', 22, 7, 0, 0, NULL, '23,7'),
+(1050, 2640, 'pool_b', 21, 7, 0, 0, NULL, '22,7'),
+(1049, 2640, 'pool_b', 21, 8, 0, 0, NULL, '21,7'),
+(1048, 2640, 'pool_b', 21, 9, 0, 0, NULL, '21,8'),
 (158, 2442, 'theater', 11, 10, 1, 0, NULL, NULL),
 (159, 2443, 'theater', 2, 11, 4, 2, NULL, NULL),
 (160, 2443, 'theater', 2, 12, 4, 2, NULL, NULL),
@@ -3865,8 +3918,7 @@ INSERT INTO `room_public_items` (`id`, `definitionid`, `model`, `x`, `y`, `z`, `
 (1042, 2615, 'hallD', 9, 9, 1, 6, '', ''),
 (1043, 2615, 'hallD', 15, 9, 1, 6, '', ''),
 (1044, 2615, 'hallD', 3, 15, 1, 6, '', ''),
-(1045, 2615, 'hallD', 9, 15, 1, 6, '', '');
-INSERT INTO `room_public_items` (`id`, `definitionid`, `model`, `x`, `y`, `z`, `rotation`, `object`, `data`) VALUES
+(1045, 2615, 'hallD', 9, 15, 1, 6, '', ''),
 (1046, 2615, 'hallD', 15, 15, 1, 6, '', '');
 
 -- --------------------------------------------------------
@@ -3924,7 +3976,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `personal_greeting`, `figure`, `pool_figure`, `credits`, `tickets`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
 (2, 'test', '$2a$10$tflTFPysv6cxMSQ7BYa1ZemOmbh4bc.vH.NoMOAQOaELrBEfh7THe', 1, 44324323, 1493472369828, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'I\'m a FUSE member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', 'ch=s01/51,120,201', 200, 0, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '$2a$10$mE0JhM56S/WVHyvPzC36MO8JNA/vH0tybU/4JSV8k4K6a0hllVFNO', 3, 1489384512, 1493547056118, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'The best duck in town', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/51,120,201', 767, 14, 'Male', 'UK', '', '01.01.1997', 1),
+(5, 'Alex', '$2a$10$/8fW25zdZyj.MWonsdVVv.rmdzIHNgFlfL2LE1.2UcKnrXfHxn0PW', 3, 1489384512, 1493567541819, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'The best duck in town', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/51,120,201', 822, 14, 'Male', 'UK', '', '01.01.1997', 1),
 (6, 'Dark', '$2a$10$3VoNh8uaT6ZxeG1nsp1PhuTK8HKml5U6svLyjFN/4GBqWJ6DAUWgS', 1, NULL, 1493390146966, 'scott@hypermine.com', 'cool kid', 'I\'m a FUSE member!', 'sd=001/0&hr=023/103,78,59&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/101,106,64&ls=001/101,106,64&rs=001/101,106,64&lg=006/119,159,187&sh=002/124,143,125', 'ch=s02/42,199,210', 200, 0, 'Male', 'UK', '', '01.01.1990', 0),
 (7, 'Dominic', '$2a$10$9iQ9y6khiAW5s5dT9ZyjcuH0DUGQmG18h9zAJcsk/BhCicOC7ld.y', 1, NULL, 1493548812885, 'dsmithpw@gmail.com', 'Copies fade so fast...', 'I\'m a FUSE member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 340, 30, 'Male', 'UK', '', '26.02.1997', 0),
 (8, 'Asc', '$2a$10$WthtAe3LHJlfBtBLoj2S9O/1cdCiPl5uQ1sRMDcO7k7KIxPEvitg.', 1, 1492627423, 1493390146966, 'spam@here.nty', 'H&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;pp&auml;ij&auml;&auml;!', 'I\'m a FUSE member!', 'sd=001/0&hr=000/255,255,255&hd=002/0,125,0&ey=000/0&fc=001/0,125,0&bd=001/0,125,0&lh=001/0,125,0&rh=001/0,125,0&ch=009/25,25,25&ls=001/25,25,25&rs=001/25,25,25&lg=004/25,25,25&sh=003/25,25,25', '', 200, 0, 'Male', 'UK', '', '11.11.1911', 0),
@@ -3934,7 +3986,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_on
 (12, 'mentle', '$2a$10$MI7dLGmSTc8rsER0Dm/0ceFdkrjOiFkbpkMmpfUwBJdmrN68NwW1.', 1, NULL, 1493390146966, 'mentle@rz.com', 'i\'m the one who opens if you knock', 'I\'m a FUSE member!', 'sd=001/0&hr=008/238,231,224&hd=002/248,229,218&ey=005/0&fc=001/248,229,218&bd=001/248,229,218&lh=001/248,229,218&rh=001/248,229,218&ch=005/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=006/255,255,255&sh=001/255,255,255', '', 200, 0, 'Male', 'UK', '', '11.02.1995', 0),
 (13, 'rere', '$2a$10$CYxeKcJdYA7adTooIhbh4Ot5snF7HnLTX0.LLFEr64rHRFrOzbQ8m', 1, NULL, 1493488679437, 'lol@nah.com', 'f', 'I\'m a FUSE member!', 'sd=001/0&hr=015/50,50,53&hd=002/238,231,224&ey=001/0&fc=001/238,231,224&bd=001/238,231,224&lh=001/238,231,224&rh=001/238,231,224&ch=009/51,51,51&ls=002/51,51,51&rs=002/51,51,51&lg=006/51,51,51&sh=003/255,255,255', '', 200, 0, 'Male', 'UK', '', '01.07.1991', 0),
 (14, 'vista4life', '$2a$10$dbxh8BFffHhe9Tuhf73gHO5fJi2LCoT3SJK4.npqK.BF3FvCvXgUK', 1, NULL, 1493390146966, 'obama@hotty.cm', 'obamaftw', 'I\'m a FUSE member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '01-01-1991', 0),
-(15, 'Alito', '$2a$10$.NRhGOkovylri9aBNKCZjOSr9X5.fhSkz8UgGb4gx4XgzlR46tyMW', 1, NULL, 1493512657648, 'alitohabbo@hotmail.com', 'Shockwave lover', 'Motto :p', 'sd=001/0&hr=013/200,210,230&hd=002/255,204,153&ey=005/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=003/106,64,92&ls=002/106,64,92&rs=002/106,64,92&lg=001/215,193,135&sh=001/209,223,175', 'ch=s02/255,255,255', 386, 0, 'Male', 'UK', '', '02.04.1993', 0),
+(15, 'Alito', '$2a$10$b5DsyJ.94t95Flztn42kt.0lvYRKh5xbno15WICUVPbX69mfu171a', 1, NULL, 1493560857980, 'alitohabbo@hotmail.com', 'Shockwave lover', 'Motto :p', 'sd=001/0&hr=013/200,210,230&hd=002/255,204,153&ey=005/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=003/106,64,92&ls=002/106,64,92&rs=002/106,64,92&lg=001/215,193,135&sh=001/209,223,175', 'ch=s02/255,255,255', 386, 38, 'Male', 'UK', '', '02.04.1993', 0),
 (16, 'NAH', '$2a$10$bxLXptoISd7gsiM74.PYm.qVglKpjvZt/kHFe3s.QfKD.aIwjFoN.', 1, NULL, 1493390146966, 'j@j.com', '', 'I\'m a FUSE member!', 'sd=001/0&hr=021/200,210,230&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '01.01.1991', 0),
 (17, 'NuuttiD3w', '$2a$10$DWxGYChEjnxFOH9JCU7AJu47APUlaWkTVaMOgp7S2WPcNRsPW4ypS', 1, NULL, 1493390146966, 'nuutti03.ns@gmail.com', 'idk m8', 'I\'m a FUSE member!', 'sd=001/0&hr=002/225,204,120&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/76,136,43&ls=001/76,136,43&rs=001/76,136,43&lg=001/119,159,187&sh=004/255,255,255', '', 200, 0, 'Male', 'UK', '', '03.05.2003', 0),
 (18, 'AnotherUser', '$2a$10$.kjP76h0WOt4ogLWKo5.v.ghFs5uqDGESCT9/sSXELNPezJhbk32u', 1, 1492664949, 1493390146966, 'e2e@cc.com', 'xddddd', 'I\'m a FUSE member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '04.04.1997', 0),
@@ -4115,7 +4167,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `item_definitions`
 --
 ALTER TABLE `item_definitions`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2640;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2641;
 --
 -- AUTO_INCREMENT for table `messenger_friendships`
 --
@@ -4125,7 +4177,7 @@ ALTER TABLE `messenger_friendships`
 -- AUTO_INCREMENT for table `messenger_messages`
 --
 ALTER TABLE `messenger_messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `messenger_requests`
 --
@@ -4145,7 +4197,7 @@ ALTER TABLE `room_bots`
 -- AUTO_INCREMENT for table `room_chatlogs`
 --
 ALTER TABLE `room_chatlogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=866;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1008;
 --
 -- AUTO_INCREMENT for table `room_public_connections`
 --
@@ -4155,7 +4207,7 @@ ALTER TABLE `room_public_connections`
 -- AUTO_INCREMENT for table `room_public_items`
 --
 ALTER TABLE `room_public_items`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1048;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1058;
 --
 -- AUTO_INCREMENT for table `room_rights`
 --
