@@ -11,41 +11,46 @@ public class MOVESTUFF implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 
-		int itemID = Integer.valueOf(reader.getArgument(0));
-		int x = Integer.valueOf(reader.getArgument(1));
-		int y = Integer.valueOf(reader.getArgument(2));
+		try {
+			int itemID = Integer.valueOf(reader.getArgument(0));
+			int x = Integer.valueOf(reader.getArgument(1));
+			int y = Integer.valueOf(reader.getArgument(2));
 
-		Room room = player.getRoomUser().getRoom();
+			Room room = player.getRoomUser().getRoom();
 
-		if (room == null) {
-			return;
-		}
-
-		if (!room.hasRights(player, false) && !room.getData().hasAllSuperUser()) {
-			return;
-		}
-
-		Item item = room.getItem(itemID);
-
-		if (item == null) {
-			return;
-		}
-
-		item.getPosition().setX(x);
-		item.getPosition().setY(y);
-
-		boolean rotation_only = false;
-
-		if (reader.getArgumentAmount() > 3) {
-			int rotation = Integer.valueOf(reader.getArgument(3));
-
-			if (rotation != item.getPosition().getRotation()) {
-				item.getPosition().setRotation(rotation);
-				rotation_only = true;
+			if (room == null) {
+				return;
 			}
-		}
 
-		room.getMapping().updateItemPosition(item, rotation_only);
+			if (!room.hasRights(player, false) && !room.getData().hasAllSuperUser()) {
+				return;
+			}
+
+			Item item = room.getItem(itemID);
+
+			if (item == null) {
+				return;
+			}
+
+			item.getPosition().setX(x);
+			item.getPosition().setY(y);
+
+			boolean rotation_only = false;
+
+			if (reader.getArgumentAmount() > 3) {
+				int rotation = Integer.valueOf(reader.getArgument(3));
+
+				if (rotation != item.getPosition().getRotation()) {
+					item.getPosition().setRotation(rotation);
+					rotation_only = true;
+				}
+			}
+
+			room.getMapping().updateItemPosition(item, rotation_only);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

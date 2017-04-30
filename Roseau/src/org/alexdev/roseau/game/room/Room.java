@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.entity.EntityType;
+import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.navigator.NavigatorRequest;
@@ -225,13 +226,16 @@ public class Room {
 		player.send(player.getRoomUser().getStatusComposer());
 
 		this.entities.add(player);
-		
+
 		if (player.getMainServerPlayer() != null) {
 			player.getMainServerPlayer().getMessenger().sendStatus();
 		} else {
-			player.send(new SYSTEMBROADCAST("Please reload client completely before entering rooms."));
-			player.kick();
-			return;
+
+			if (!GameVariables.DEBUG_ENABLE) {
+				player.send(new SYSTEMBROADCAST("Please reload client completely before entering rooms."));
+				player.kick();
+				return;
+			}
 		}
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
@@ -246,16 +250,15 @@ public class Room {
 			}
 		} else {
 
-			/*if (this.roomData.getModelName().equals("hallB")) {
-				player.send(new OPEN_GAMEBOARD("BattleShip"));
-			}
+			// Show the players whether curtain is closed/pool lift etc
+			// for anyone new who enters the room
+			for (Item item : this.passiveObjects.values()) {
 
-			if (this.roomData.getModelName().equals("hallD")) {
-				player.send(new OPEN_GAMEBOARD("Poker"));
-			}*/
-			
-			if (this.roomData.getModelName().equals("hallA")) {
-				//player.send(new OPEN_GAMEBOARD("TicTacToe"));
+				OutgoingMessageComposer composer = item.getCurrentProgram();
+
+				if (composer != null) {
+					player.send(composer);
+				}
 			}
 		}
 	}
@@ -271,13 +274,13 @@ public class Room {
 
 		return received;
 	}
-	
+
 	public boolean hasRights(Player user, boolean ownerCheckOnly) {
 
 		if (user.hasPermission("room_all_rights")) {
 			return true;
 		}
-		
+
 		if (this.roomData.getOwnerID() == user.getDetails().getID()) {
 			return true;
 		} else {
@@ -365,7 +368,7 @@ public class Room {
 
 		this.send(new LOGOUT(player.getDetails().getName()));
 		this.dispose();
-		
+
 		player.getMainServerPlayer().getMessenger().sendStatus();
 	}
 

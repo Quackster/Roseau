@@ -17,6 +17,9 @@ public class Position {
 		String[] coords = position.split(",", 2);
 		this.X = Short.parseShort(coords[0]);
 		this.Y = Short.parseShort(coords[1]);
+		this.bodyRotation = 0;
+		this.headRotation = 0;
+		this.Z = 0;
 	}
 
 	public Position(int x, int y) {
@@ -136,9 +139,8 @@ public class Position {
 	@Override
 	public String toString() {
 
-		return "[" + this.X + ", " + this.Y + "]";
+		return this.X + "," + this.Y;
 	}
-
 
 
 }

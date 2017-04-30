@@ -12,6 +12,7 @@ import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.CHAT;
 import org.alexdev.roseau.messages.outgoing.DOOR_OUT;
+import org.alexdev.roseau.messages.outgoing.JUMPINGPLACE_OK;
 import org.alexdev.roseau.messages.outgoing.OPEN_GAMEBOARD;
 import org.alexdev.roseau.messages.outgoing.OPEN_UIMAKOPPI;
 import org.alexdev.roseau.messages.outgoing.STATUS;
@@ -156,7 +157,7 @@ public class RoomUser {
 		boolean no_current_item = false;
 
 		if (item != null) {
-			if (item.getDefinition().getBehaviour().isCanSitOnTop() || item.getDefinition().getBehaviour().isCanLayOnTop() || item.getDefinition().getBehaviour().isTeleporter() || item.getDefinition().getSprite().equals("poolBooth")) {
+			if (item.getDefinition().getBehaviour().isCanSitOnTop() || item.getDefinition().getBehaviour().isCanLayOnTop() || item.getDefinition().getBehaviour().isTeleporter() || item.getDefinition().getSprite().equals("poolBooth") || item.getDefinition().getSprite().equals("poolLift")) {
 				this.current_item = item;
 				this.currentItemTrigger();
 
@@ -176,13 +177,19 @@ public class RoomUser {
 	}
 
 	public void currentItemTrigger() {
+		
+		Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
+		
+		if (item == null) {
+			this.current_item = null;
+		}
 
 		if (this.current_item == null) {
 			this.removeStatus("sit");
 			this.removeStatus("lay");
 		} else {
 
-			Item item = this.current_item;
+			item = this.current_item;
 			ItemDefinition definition = this.current_item.getDefinition();
 
 			if (definition == null) {
@@ -195,6 +202,15 @@ public class RoomUser {
 				item.lockTiles(); // users cant walk on this tile
 
 				((Player) this.entity).send(new OPEN_UIMAKOPPI());
+				((Player) this.entity).getRoomUser().setCanWalk(false);
+			}
+			
+			if (definition.getSprite().equals("poolLift")) {
+
+				item.showProgram("close");
+				item.lockTiles(); // users cant walk on this tile
+				
+				((Player) this.entity).send(new JUMPINGPLACE_OK());
 				((Player) this.entity).getRoomUser().setCanWalk(false);
 			}
 
@@ -260,11 +276,13 @@ public class RoomUser {
 					this.setCanWalk(false);
 					this.room.send(new DOOR_OUT(item, player.getDetails().getName()));
 
+					final Item currentTeleporter = this.current_item;
+					
 					Runnable task = new Runnable() {
 						@Override
 						public void run() {
 
-							if (item.getRoomID() != targetTeleporter.getRoomID()) {
+							if (currentTeleporter.getRoomID() != targetTeleporter.getRoomID()) {
 
 								if (previousRoom != null) {
 									previousRoom.leaveRoom(player, false);
@@ -275,7 +293,7 @@ public class RoomUser {
 							} else {
 								player.getRoomUser().getPosition().set(targetTeleporter.getPosition());
 								player.getRoomUser().sendStatusComposer();
-								room.getItem(item.getTargetTeleporterID()).leaveTeleporter(player);
+								room.getItem(currentTeleporter.getTargetTeleporterID()).leaveTeleporter(player);
 							}
 						}
 					};
@@ -291,15 +309,9 @@ public class RoomUser {
 
 	}
 
-	public boolean walkTo(Position position) {
-		return this.walkTo(position.getX(), position.getY());
-	}
 
 	public boolean walkTo(int x, int y) {
 
-		/*double height = player.getRoomUser().getRoom().getData().getModel().getHeight(x, y);
-
-		Log.println("height: " + height);*/
 
 		if (this.room == null) {
 			return false;
@@ -316,7 +328,7 @@ public class RoomUser {
 		Item item = this.room.getMapping().getHighestItem(x, y);
 
 		if (item != null) {
-			Log.println(item.getDefinition().getSprite() + " - " + item.getDefinition().getID());
+			Log.println(item.getDefinition().getSprite() + " - " + item.getDefinition().getID() + " - " + item.getCustomData());
 		}
 
 		if (!this.room.getMapping().isValidTile(this.entity, x, y)) {

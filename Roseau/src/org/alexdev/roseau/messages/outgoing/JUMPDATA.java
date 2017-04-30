@@ -5,11 +5,19 @@ import org.alexdev.roseau.server.messages.Response;
 
 public class JUMPDATA implements OutgoingMessageComposer {
 
+	private String name;
+	private String data;
+
+	public JUMPDATA(String name, String data) {
+		this.name = name;
+		this.data = data;
+	}
+
 	@Override
 	public void write(Response response) {
-		response.init("PT_PR");
-		response.appendKV2Argument("0", "Alex");
-		response.appendKV2Argument("1", "Alex");
+		response.init("JUMPDATA");
+		response.appendNewArgument(this.name);
+		response.appendNewArgument(this.data);
 		
 	}
 

@@ -25,6 +25,7 @@ import org.alexdev.roseau.messages.incoming.GOTOFLAT;
 import org.alexdev.roseau.messages.incoming.INFORETRIEVE;
 import org.alexdev.roseau.messages.incoming.INITUNITLISTENER;
 import org.alexdev.roseau.messages.incoming.INTODOOR;
+import org.alexdev.roseau.messages.incoming.JUMPPERF;
 import org.alexdev.roseau.messages.incoming.LETUSERIN;
 import org.alexdev.roseau.messages.incoming.LOGIN;
 import org.alexdev.roseau.messages.incoming.LOOKTO;
@@ -52,6 +53,7 @@ import org.alexdev.roseau.messages.incoming.SETFLATINFO;
 import org.alexdev.roseau.messages.incoming.SETITEMDATA;
 import org.alexdev.roseau.messages.incoming.SETSTRIPITEMDATA;
 import org.alexdev.roseau.messages.incoming.SETSTUFFDATA;
+import org.alexdev.roseau.messages.incoming.SPLASHPOSITION;
 import org.alexdev.roseau.messages.incoming.STATUSOK;
 import org.alexdev.roseau.messages.incoming.STOP;
 import org.alexdev.roseau.messages.incoming.TALK;
@@ -134,6 +136,8 @@ public class MessageHandler {
 		this.messages.put("CREATEFLAT", new CREATEFLAT());
 		this.messages.put("ASSIGNRIGHTS", new ASSIGNRIGHTS());
 		this.messages.put("REMOVERIGHTS", new REMOVERIGHTS());
+		this.messages.put("JUMPPERF", new JUMPPERF());
+		this.messages.put("SPLASH_POSITION", new SPLASHPOSITION());
 	}
 	
 	private void registerMessengerPackets() {

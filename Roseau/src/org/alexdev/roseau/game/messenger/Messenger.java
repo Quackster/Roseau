@@ -9,7 +9,6 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.settings.RoomType;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.BUDDYADDREQUESTS;
 import org.alexdev.roseau.messages.outgoing.BUDDYLIST;
 
@@ -94,17 +93,7 @@ public class Messenger {
 	}
 
 	public void sendStatus() {
-
-		//AbstractResponse message = new MessengerUpdateMessageComposer(new MessengerUser(this.player.getDetails().getId()), forceOffline);
-
-		for (MessengerUser friend : this.friends) {
-
-			if (friend.isOnline()) {
-				if (friend.getPlayer().getMessenger().hasInitalised()) {
-					friend.getPlayer().getMessenger().sendFriends();
-				}
-			}
-		}
+		this.sendStatus(-1);
 	}
 
 	public void sendStatus(int offlineUserID) {

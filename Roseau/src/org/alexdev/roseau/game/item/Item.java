@@ -12,6 +12,7 @@ import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.RoomTile;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.log.Log;
+import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_UPDATE;
 import org.alexdev.roseau.messages.outgoing.DOOR_OUT;
 import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
@@ -35,6 +36,7 @@ public class Item implements SerializableObject {
 
 	private int definitionID;
 	private int ownerID;
+	private String currentProgram = null;
 
 	public Item(int ID, int roomID, int ownerID, String x, int y, double z, int rotation, int definitionID, String itemData, String customData) {
 
@@ -55,7 +57,7 @@ public class Item implements SerializableObject {
 			this.position = new Position(Integer.valueOf(x), y, z);
 			this.position.setRotation(rotation);
 		}
-
+		
 		this.setTeleporterID();
 	}
 
@@ -145,12 +147,11 @@ public class Item implements SerializableObject {
 		}
 
 		if (this.getDefinition().getBehaviour().isCanLayOnTop()) {
-			tile_valid = true;//this.isValidPillowTile(position);
+			tile_valid = true;
 		}
 
 		if (this.getDefinition().getBehaviour().isTeleporter()) {
 			if (this.getDefinition().getDataClass().equals("DOOROPEN")) {
-
 				if (this.customData.equals("TRUE")) {
 					tile_valid = true;
 				}
@@ -159,6 +160,10 @@ public class Item implements SerializableObject {
 
 		if (this.getDefinition().getSprite().equals("poolBooth")) {
 			tile_valid = true;
+		}
+		
+		if (this.getDefinition().getSprite().equals("poolLift")) {
+			tile_valid = player.getDetails().getPoolFigure().length() > 0;
 		}
 
 		if (this.getDefinition().getSprite().equals("poolEnter")) {
@@ -314,13 +319,27 @@ public class Item implements SerializableObject {
 
 	}
 
-	public void showProgram(String data) {
+	public OutgoingMessageComposer getCurrentProgram() {
+
+		if (this.currentProgram != null) {
+			return new SHOWPROGRAM(new String[] { this.itemData, this.currentProgram });
+		} else {
+			return null;
+		}
+	}
+
+	
+	public OutgoingMessageComposer showProgram(String data) {
 
 		if (this.getRoom() == null) {
-			return;
+			return null;
 		}
 
-		this.getRoom().send(new SHOWPROGRAM(new String[] { this.itemData, data }));
+		this.currentProgram = data;
+		
+		OutgoingMessageComposer composer = new SHOWPROGRAM(new String[] { this.itemData, data });
+		this.getRoom().send(composer);
+		return composer;
 	}
 
 	public void updateStatus() {
@@ -435,7 +454,7 @@ public class Item implements SerializableObject {
 				item.updateStatus();
 
 				player.getRoomUser().setCanWalk(true);
-				player.getRoomUser().walkTo(item.getPosition().getSquareInFront());
+				player.getRoomUser().walkTo(item.getPosition().getSquareInFront().getX(), item.getPosition().getSquareInFront().getY());
 			}
 		};
 

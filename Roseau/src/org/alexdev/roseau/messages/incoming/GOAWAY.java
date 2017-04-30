@@ -20,7 +20,7 @@ public class GOAWAY implements MessageEvent {
 		Position near = player.getRoomUser().getPosition();
 
 		if (!near.isMatch(room.getData().getModel().getDoorPosition())) {
-			if (player.getRoomUser().walkTo(room.getData().getModel().getDoorPosition())) {
+			if (player.getRoomUser().walkTo(room.getData().getModel().getDoorPosition().getX(), room.getData().getModel().getDoorPosition().getY())) {
 				player.getRoomUser().setKickWhenStop(true);
 				//player.getRoomUser().setCanWalk(false);
 				return;
