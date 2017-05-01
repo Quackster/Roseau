@@ -21,6 +21,12 @@ public class SitCommand implements Command {
 				return;
 			}
 			
+			int rotation = roomUser.getPosition().getRotation();
+			
+			if (rotation != 0 && rotation != 2 && rotation != 4 && rotation != 6) {
+				return;
+			}
+			
 			roomUser.removeStatus("dance");
 			
 			double height = roomUser.getRoom().getMapping().getTile(
