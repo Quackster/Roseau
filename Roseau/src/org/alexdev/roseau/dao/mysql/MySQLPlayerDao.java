@@ -11,6 +11,7 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.util.IProcessStorage;
 import org.alexdev.roseau.game.GameVariables;
+import org.alexdev.roseau.game.player.Permission;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.log.DateTime;
@@ -299,9 +300,9 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 	}
 
 	@Override
-	public Map<Integer, List<String>> getPermissions() {
+	public List<Permission> getPermissions() {
 
-		Map<Integer, List<String>> permissions = Maps.newHashMap();
+		List<Permission> permissions = Lists.newArrayList();
 
 		Connection sqlConnection = null;
 		PreparedStatement preparedStatement = null;
@@ -317,12 +318,9 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 				
 				int rank = resultSet.getInt("rank");
 				String permission = resultSet.getString("permission");
+				boolean inheritable = resultSet.getByte("inheritable") == 1;
 				
-				if (!permissions.containsKey(rank)) {
-					permissions.put(rank, Lists.newArrayList());
-				}
-				
-				permissions.get(rank).add(permission);
+				permissions.add(new Permission(permission, inheritable, rank));
 			}
 
 		} catch (Exception e) {

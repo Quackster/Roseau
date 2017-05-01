@@ -11,6 +11,7 @@ import org.alexdev.roseau.messages.incoming.CARRYDRINK;
 import org.alexdev.roseau.messages.incoming.CARRYITEM;
 import org.alexdev.roseau.messages.incoming.CLOSE_UIMAKOPPI;
 import org.alexdev.roseau.messages.incoming.CREATEFLAT;
+import org.alexdev.roseau.messages.incoming.CRYFORHELP;
 import org.alexdev.roseau.messages.incoming.DANCE;
 import org.alexdev.roseau.messages.incoming.DELETEFLAT;
 import org.alexdev.roseau.messages.incoming.FINDUSER;
@@ -87,7 +88,8 @@ public class MessageHandler {
 		this.registerRoomPackets();
 		this.registerMessengerPackets();
 		this.registerItemPackets();
-
+		this.registerPoolHandlers();
+		this.registerModeration();
 	}
 
 	private void registerUserPackets() {
@@ -139,11 +141,6 @@ public class MessageHandler {
 		this.messages.put("CREATEFLAT", new CREATEFLAT());
 		this.messages.put("ASSIGNRIGHTS", new ASSIGNRIGHTS());
 		this.messages.put("REMOVERIGHTS", new REMOVERIGHTS());
-		this.messages.put("JUMPPERF", new JUMPPERF());
-		this.messages.put("SPLASH_POSITION", new SPLASHPOSITION());
-		this.messages.put("GIVE_TICKETS", new GIVE_TICKETS());
-		this.messages.put("Sign", new SIGN());
-		
 		this.messages.put("KILLUSER", new KILLUSER());
 	}
 	
@@ -177,6 +174,17 @@ public class MessageHandler {
 		this.messages.put("SETSTRIPITEMDATA", new SETSTRIPITEMDATA());
 		this.messages.put("LETUSERIN", new LETUSERIN());
 		this.messages.put("SETITEMDATA", new SETITEMDATA());
+	}
+	
+	private void registerPoolHandlers() {
+		this.messages.put("JUMPPERF", new JUMPPERF());
+		this.messages.put("SPLASH_POSITION", new SPLASHPOSITION());
+		this.messages.put("GIVE_TICKETS", new GIVE_TICKETS());
+		this.messages.put("Sign", new SIGN());
+	}
+	
+	private void registerModeration() {
+		this.messages.put("CRYFORHELP", new CRYFORHELP());
 	}
 	
 	

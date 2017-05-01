@@ -82,12 +82,39 @@ public class Messenger {
 
 	public void sendFriends(int offlineID) {
 
+		/*Collections.sort(this.friends, new Comparator<MessengerUser>() {
+			@Override
+			public int compare(MessengerUser a, MessengerUser b) {
+				return Long.signum(b.getDetails().getLastOnline() - a.getDetails().getLastOnline());
+			}
+		});
+
 		Collections.sort(this.friends, new Comparator<MessengerUser>() {
 			@Override
 			public int compare(MessengerUser a, MessengerUser b) {
 				return Boolean.compare(a.isOnline(), b.isOnline());
 			}
+		});*/
+
+		Collections.sort(this.friends, new Comparator<MessengerUser>() {
+			@Override
+			public int compare(MessengerUser a, MessengerUser b) {
+
+				int result = Long.compare(a.getDetails().getLastOnline(), b.getDetails().getLastOnline());
+
+				if (result == 0) {
+
+					if (a.isOnline() || b.isOnline()) {
+
+						result = Boolean.compare(a.isOnline(), b.isOnline());
+					}
+				}
+
+				return result;
+			}
 		});
+
+		//this.friends.stream().sorted(Comparator.comparing(MessengerUser::isOnline).thenComparing(MessengerUser::getDetails::getLastOnline));
 
 		this.player.send(new BUDDYLIST(this.friends, offlineID));
 	}

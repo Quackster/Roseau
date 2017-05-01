@@ -30,8 +30,8 @@ public class SitCommand implements Command {
 			roomUser.removeStatus("dance");
 			
 			double height = roomUser.getRoom().getMapping().getTile(
-					roomUser.getPosition().getX(), 
-					roomUser.getPosition().getY()).getHeight();
+										roomUser.getPosition().getX(), 
+										roomUser.getPosition().getY()).getHeight();
 			
 			roomUser.setStatus("sit", " " + String.valueOf((int)height), true, -1);
 			roomUser.setNeedUpdate(true);

@@ -20,42 +20,6 @@ public class BUDDYLIST implements OutgoingMessageComposer {
 
 	@Override
 	public void write(Response response) {
-
-		/*		msg.appendNewArgument(Integer.toString(this.ID));
-		msg.appendTabArgument(this.name);
-		msg.appendTabArgument(this.messengerMotto);
-		
-		// Determine location
-		String location = "";
-		CommunicationHandler client = HabboHotel.getGameClients().getClientOfUser(this.ID);
-		if(client != null)
-		{
-			if(client.getSpaceInstance() == null)
-			{
-				location = "On Hotel View";
-			}
-			else
-			{
-				if(client.getSpaceInstance().getInfo().isUserFlat())
-				{
-					location = "In a user flat";
-				}
-				else
-				{
-					location = client.getSpaceInstance().getInfo().name;
-				}
-			}
-		}
-		msg.appendNewArgument(location);
-		if(client == null)
-		{
-			msg.appendTabArgument(TimeHelper.formatDateTime(this.lastActivity));
-		}
-		else
-		{
-			// Current date & time (user is online)
-			msg.appendTabArgument(TimeHelper.formatDateTime());
-		}*/
 		
 		response.init("BUDDYLIST");
 
@@ -84,10 +48,10 @@ public class BUDDYLIST implements OutgoingMessageComposer {
 			}
 			
 			if (player != null && !forceOffline) {
-				response.appendTabArgument(DateTime.formatDateTime(user.getDetails().getLastOnline())); // last online
-			} else {
-				
 				response.appendTabArgument(DateTime.formatDateTime()); // last online	
+			} else {
+				response.appendTabArgument(DateTime.formatDateTime(user.getDetails().getLastOnline())); // last online
+				
 			}
 		}
 	}

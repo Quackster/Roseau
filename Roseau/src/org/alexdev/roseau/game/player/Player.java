@@ -11,6 +11,7 @@ import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
+import org.alexdev.roseau.messages.outgoing.CRYFORHELP;
 import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
 import org.alexdev.roseau.server.IPlayerNetwork;
 
@@ -38,12 +39,13 @@ public class Player implements Entity {
 		this.sendHotelAlert = true;
 	}
 
-	public void login() {
+	public void login(boolean initalAuthentication) {
 
 		Roseau.getDao().getPlayer().updateLastLogin(this.details);
 
-		if (this.network.getServerPort() == Roseau.getServerPort()) {
-			//this.messenger.load();
+		if (initalAuthentication) {
+			
+			
 		}
 	}
 

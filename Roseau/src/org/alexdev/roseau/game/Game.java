@@ -10,6 +10,7 @@ import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.game.catalogue.CatalogueManager;
 import org.alexdev.roseau.game.commands.CommandManager;
 import org.alexdev.roseau.game.item.ItemManager;
+import org.alexdev.roseau.game.moderation.ModerationManager;
 import org.alexdev.roseau.game.player.PlayerManager;
 import org.alexdev.roseau.game.room.RoomManager;
 import org.alexdev.roseau.log.Log;
@@ -22,6 +23,7 @@ public class Game {
 	private CatalogueManager catalogueManager;
 	private CommandManager commandManager;
 	private ScheduledFuture<?> gameScheduler = null;
+	private ModerationManager moderationManager;
 	
 	private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(8);
 	
@@ -31,6 +33,7 @@ public class Game {
 		this.itemManager = new ItemManager();
 		this.catalogueManager = new CatalogueManager();
 		this.commandManager = new CommandManager();
+		this.moderationManager = new ModerationManager();
 	}
 	
 	public void load() {
@@ -79,7 +82,7 @@ public class Game {
 		return commandManager;
 	}
 
-	/*public Timer getTimer() {
-		return timer;
-	}*/
+	public ModerationManager getModerationManager() {
+		return moderationManager;
+	}
 }

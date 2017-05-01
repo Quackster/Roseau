@@ -60,7 +60,7 @@ public class LOGIN implements MessageEvent {
 				room.loadRoom(player);
 			}
 			
-			player.login();
+			player.login(!(reader.getArgumentAmount() > 2));
 			
 			
 		} else {

@@ -45,7 +45,7 @@ public class ADDITEM implements MessageEvent {
 		item.setRoomID(room.getData().getID());
 		item.setWallPosition(wallPosition);
 		
-		room.getMapping().addItem(item, true);
+		room.getMapping().addItem(item);
 	}
 
 }

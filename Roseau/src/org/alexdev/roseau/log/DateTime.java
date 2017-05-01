@@ -15,12 +15,6 @@ public class DateTime {
 	 * @author Nillus
 	 */
 
-	public static Date date(long time) {
-		GregorianCalendar cal = new GregorianCalendar();
-		cal.setTimeInMillis(time);
-		return cal.getTime();
-	}
-
 	public static long getTime()
 	{
 		return System.currentTimeMillis();
@@ -54,7 +48,7 @@ public class DateTime {
 	}
 
 	public static String formatDateTime(long timestamp) {
-		return DateTime.formatDateTime(DateTime.date(timestamp));
+		return DateTime.formatDateTime(new Date(timestamp));
 	}
 
 }

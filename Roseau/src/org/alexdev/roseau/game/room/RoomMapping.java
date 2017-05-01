@@ -11,6 +11,7 @@ import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.game.room.settings.RoomType;
+import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_ADD;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_REMOVE;
 import org.alexdev.roseau.messages.outgoing.ADDWALLITEM;
@@ -69,33 +70,38 @@ public class RoomMapping {
 
 		for (Item item : items.values()) {
 
-			try {
-				if (item == null) {
-					continue;
-				}
+			if (item == null) {
+				continue;
+			}
 
-				double stacked_height = item.getDefinition().getHeight();
-				this.checkHighestItem(item, item.getPosition().getX(), item.getPosition().getY());
+			if (!item.getDefinition().getBehaviour().isOnFloor()) {
+				continue;
+			}
 
-				RoomTile roomTile = this.getTile(item.getPosition().getX(), item.getPosition().getY());
-				roomTile.getItems().add(item);
-				roomTile.setHeight(roomTile.getHeight() + stacked_height);
+			double stacked_height = item.getDefinition().getHeight();
+			
+			this.checkHighestItem(item, item.getPosition().getX(), item.getPosition().getY());
 
-				for (Position tile : item.getAffectedTiles()) {
+			RoomTile roomTile = this.getTile(item.getPosition().getX(), item.getPosition().getY());
 
-					if (this.checkHighestItem(item, tile.getX(), tile.getY())) {
+			if (roomTile == null) {
+				//continue;
+			}
 
-						RoomTile affectedRoomTile = this.getTile(tile.getX(), tile.getY());
+			roomTile.getItems().add(item);
+			roomTile.setHeight(roomTile.getHeight() + stacked_height);
 
-						if (affectedRoomTile != null) {
-							affectedRoomTile.getItems().add(item);
-							affectedRoomTile.setHeight(affectedRoomTile.getHeight() + stacked_height);
-						}
+			for (Position tile : item.getAffectedTiles()) {
+
+				if (this.checkHighestItem(item, tile.getX(), tile.getY())) {
+
+					RoomTile affectedRoomTile = this.getTile(tile.getX(), tile.getY());
+
+					if (affectedRoomTile != null) {
+						affectedRoomTile.getItems().add(item);
+						affectedRoomTile.setHeight(affectedRoomTile.getHeight() + stacked_height);
 					}
 				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
 			}
 		}
 	}
@@ -195,19 +201,15 @@ public class RoomMapping {
 		return players;
 	}
 
-	public void addItem(Item item, boolean wall_item) {
+	public void addItem(Item item) {
 
 		item.setRoomID(this.room.getData().getID());
-		//item.setCustomData("");
-		//item->extra_data = "";
-
+		
 		this.room.getItems().put(item.getID(), item);
 
-		if (!wall_item) {
-			if (item.getDefinition().getBehaviour().isOnFloor()) {
-				this.handleItemAdjustment(item, false);
-				this.regenerateCollisionMaps();
-			}
+		if (item.getDefinition().getBehaviour().isOnFloor()) {
+			this.handleItemAdjustment(item, false);
+			this.regenerateCollisionMaps();
 		}
 
 		if (item.getDefinition().getDataClass().equals("DIR")) {
@@ -253,10 +255,10 @@ public class RoomMapping {
 	public void removeItem(Item item) {
 
 		item.setRoomID(0);
-		item.setCustomData("");
 		item.save();
 
 		if (item.getDefinition().getBehaviour().isOnFloor()) {
+			item.setCustomData("");
 			this.room.send(new ACTIVEOBJECT_REMOVE(item));
 		}
 

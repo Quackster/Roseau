@@ -27,6 +27,7 @@ import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
+import org.alexdev.roseau.messages.outgoing.CRYFORHELP;
 import org.alexdev.roseau.messages.outgoing.DOORBELL_RINGING;
 import org.alexdev.roseau.messages.outgoing.FLATPROPERTY;
 import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
@@ -104,6 +105,8 @@ public class Room {
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
 			this.rights = Roseau.getDao().getRoom().getRoomRights(this.roomData.getID());
 			this.items = Roseau.getDao().getItem().getRoomItems(this.roomData.getID());
+		} else {
+			this.rights = Lists.newArrayList();
 		}
 	}
 
@@ -203,10 +206,10 @@ public class Room {
 				player.send(new FLATPROPERTY("floor", this.roomData.getFloor()));
 			} else {
 				player.send(new FLATPROPERTY("floor", "0"));
-			}
-
-			this.refreshFlatPrivileges(player, true);
+			}	
 		}
+
+		this.refreshFlatPrivileges(player, true);
 
 		if (this.roomData.getModel() != null) {
 			player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
@@ -238,6 +241,10 @@ public class Room {
 			}
 		}
 
+		/*Log.println("is silver: " + player.hasPermission("silver_hobba"));
+		Log.println("is kick: " + player.hasPermission("room_kick_any_user"));
+		Log.println("is brozne: " + player.hasPermission("bronze_hobba"));*/
+		
 		roomEntity.resetAfkTimer();
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
@@ -318,19 +325,26 @@ public class Room {
 
 	public void refreshFlatPrivileges(Player player, boolean enterRoom) {
 
+		if (player.getDetails().getRank() == 2) { // Bronze Hobba
+			player.getRoomUser().setStatus("mod", " 1", true, -1);
+		} else if (player.getDetails().getRank() == 3) { // Silver Hobba
+			player.getRoomUser().setStatus("mod", " 2", true, -1);
+		} else if (player.getDetails().getRank() == 4) { // Gold Hobba
+			player.getRoomUser().setStatus("mod", " 3", true, -1);
+		} else if (player.getDetails().getRank() == 5) { // Admin/owner
+			player.getRoomUser().setStatus("mod", " A", true, -1);
+		}
+		
 		if (this.roomData.getOwnerID() == player.getDetails().getID() || player.hasPermission("room_all_rights")) {
-
 			player.send(new YOUAREOWNER());
 			player.getRoomUser().setStatus("flatctrl", " useradmin", true, -1);
 
 		} else if (this.hasRights(player, false) || this.roomData.hasAllSuperUser()) {
-
 			player.send(new YOUARECONTROLLER());
 			player.getRoomUser().setStatus("flatctrl", "", true, -1);
-
 		} else {
-
 			player.getRoomUser().removeStatus("flatctrl");
+			player.getRoomUser().removeStatus("mod");
 			player.send(new YOUARENOTCONTROLLER());
 		}
 
@@ -411,15 +425,17 @@ public class Room {
 
 				this.clearData();
 
-				if (Roseau.getGame().getPlayerManager().getByID(this.roomData.getOwnerID()) == null 
-						&& this.roomData.getRoomType() == RoomType.PRIVATE) { 
+				if (Roseau.getGame().getPlayerManager().getByID(this.roomData.getOwnerID()) == null) {
+					if (this.roomData.getRoomType() == RoomType.PRIVATE) { 
 
 
-					this.entities = null;
-					this.disposed = true;
+						this.entities = null;
+						this.disposed = true;
 
-					Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getID());
-					this.roomData = null;
+						Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getID());
+						this.roomData = null;
+
+					}
 				}
 			}
 
@@ -600,11 +616,11 @@ public class Room {
 				if (nextItem.getDefinition().getSprite().equals("poolQueue")) {
 
 					if (nextItem.getPosition().getX() == 21 && nextItem.getPosition().getY() == 9) {
-						
+
 						if (!(entity.getDetails().getTickets() > 0)) {
 							return false;
 						}
-						
+
 						return true;
 					} else {
 						return false;

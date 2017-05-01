@@ -15,6 +15,7 @@ public class INITUNITLISTENER implements MessageEvent {
       	SendData Index, "ALLUNITS " & Chr(13) & "Habbo Lido,0,25," & PrvServer & "/" & PrvServer & ",22009,Habbo Lido" & vbTab & "lido,1,25,pool_a" & Chr(13)
       	*/
 		
+		//player.send(new CRYFORHELP());
 		player.send(new ALLUNITS(Roseau.getGame().getRoomManager().getPublicRooms()));
 	
 	}

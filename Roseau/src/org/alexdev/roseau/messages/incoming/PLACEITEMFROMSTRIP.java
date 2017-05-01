@@ -44,7 +44,7 @@ public class PLACEITEMFROMSTRIP implements MessageEvent {
 		//item.delete(); // delete the item because they dont display anyways
 		
 		// dont bother adding the item the room
-		room.getMapping().addItem(item, true);
+		room.getMapping().addItem(item);
 		player.getInventory().removeItem(item);
 	}
 
