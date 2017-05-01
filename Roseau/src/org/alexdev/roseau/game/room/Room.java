@@ -33,7 +33,6 @@ import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
 import org.alexdev.roseau.messages.outgoing.ITEMS;
 import org.alexdev.roseau.messages.outgoing.LOGOUT;
 import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
-import org.alexdev.roseau.messages.outgoing.PH_NOTICKETS;
 import org.alexdev.roseau.messages.outgoing.ROOM_READY;
 import org.alexdev.roseau.messages.outgoing.STATUS;
 import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;

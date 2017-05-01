@@ -1,6 +1,5 @@
 package org.alexdev.roseau.game;
 
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.util.Util;
 
 public class GameVariables {

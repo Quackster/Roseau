@@ -36,6 +36,10 @@ public class CLOSE_UIMAKOPPI implements MessageEvent {
 				
 				player.getRoomUser().setCanWalk(true);
 				
+				Position walk = new Position(item.getCustomData());
+				
+				player.getRoomUser().walkTo(walk.getX(), walk.getY());
+				
 			}
 		}
 	}
