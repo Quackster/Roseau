@@ -27,9 +27,11 @@ public class MEMBERINFO implements OutgoingMessageComposer {
 		Player player = Roseau.getGame().getPlayerManager().getByName(this.details.getName());
 
 		if (player == null) {
-			response.appendNewArgument("Offline"); // shows 'offline'
 			response.appendNewArgument(DateTime.formatDateTime(this.details.getLastOnline()));
+			response.appendNewArgument(""); // shows 'offline'
 		} else {
+			
+			response.appendNewArgument(DateTime.formatDateTime());
 
 			boolean hotelView = true;
 			Room room = null;
@@ -65,8 +67,6 @@ public class MEMBERINFO implements OutgoingMessageComposer {
 			} else {
 				response.appendNewArgument("On Hotel View");
 			}
-			
-			response.appendNewArgument(DateTime.formatDateTime());
 		}
 
 		response.appendNewArgument(details.getFigure());

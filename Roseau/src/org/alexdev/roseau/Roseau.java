@@ -3,6 +3,8 @@ package org.alexdev.roseau;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
+
 import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.dao.mysql.MySQLDao;
 import org.alexdev.roseau.game.Game;
@@ -18,6 +20,7 @@ public class Roseau {
 	private static Dao dao;
 
 	private static String serverIP;
+	private static String rawConfigIP;
 	private static int serverPort;
 	private static Configuration socketConfiguration;
 	private static IServerHandler privateRoomServer;
@@ -29,8 +32,10 @@ public class Roseau {
 			createConfig();
 			Log.startup();
 
-			serverIP = Util.getConfiguration().get("Server", "server.ip", String.class);
-			serverPort = Util.getConfiguration().get("Server", "server.port", int.class);	
+			serverIP = "0.0.0.0";
+			serverPort = Util.getConfiguration().get("Server", "server.port", int.class);
+			
+			Log.println("Server IP: " + serverIP);
 
 			if (Util.getConfiguration().get("Database", "type", String.class).equalsIgnoreCase("mysql")) {
 				dao = new MySQLDao();
@@ -52,6 +57,13 @@ public class Roseau {
 				privateRoomServer.setIp(serverIP);
 				privateRoomServer.setPort(serverPort - 1);
 				privateRoomServer.listenSocket();
+				
+				serverIP = Util.getConfiguration().get("Server", "server.ip", String.class);
+				rawConfigIP = serverIP;
+				
+				if (!validIP(rawConfigIP)) {
+					serverIP = InetAddress.getByName(rawConfigIP).getHostAddress();
+				}
 
 				if (server.listenSocket()) {
 					Log.println("Server is listening on " + serverIP + ":" + serverPort);
@@ -63,6 +75,15 @@ public class Roseau {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public static boolean validIP (String ip) {
+	    try {
+			String PATTERN = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$";
+			return ip.matches(PATTERN);
+		} catch (Exception e) {
+			return false;
 		}
 	}
 
@@ -176,5 +197,13 @@ public class Roseau {
 
 	public static void setSocketConfiguration(Configuration socketConfiguration) {
 		Roseau.socketConfiguration = socketConfiguration;
+	}
+
+	public static String getRawConfigIP() {
+		return rawConfigIP;
+	}
+
+	public static void setRawConfigIP(String rawConfigIP) {
+		Roseau.rawConfigIP = rawConfigIP;
 	}
 }

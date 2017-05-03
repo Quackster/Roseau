@@ -74,7 +74,7 @@ public class RoomMapping {
 				continue;
 			}
 
-			if (!item.getDefinition().getBehaviour().isOnFloor()) {
+			if (item.getDefinition().getBehaviour().isOnWall()) {
 				continue;
 			}
 

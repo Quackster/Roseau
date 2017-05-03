@@ -1,5 +1,6 @@
 package org.alexdev.roseau.game;
 
+import java.net.InetAddress;
 import java.util.List;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
@@ -28,6 +29,14 @@ public class GameScheduler implements Runnable {
 					player.getDetails().sendCredits();
 					player.getDetails().save();
 				}
+			}
+			
+			if ((this.tickRate % 300) == 0) {
+			
+				if (!Roseau.validIP(Roseau.getRawConfigIP())) {
+				Roseau.setServerIP(InetAddress.getByName(Roseau.getRawConfigIP()).getHostAddress());
+				}
+				
 			}
 			
 			for (int i = 0; i < players.size(); i++) {
