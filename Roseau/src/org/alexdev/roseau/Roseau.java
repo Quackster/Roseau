@@ -36,7 +36,7 @@ public class Roseau {
 			rawConfigIP = serverIP;
 			
 			if (!validIP(rawConfigIP)) {
-				serverIP = InetAddress.getByName(rawConfigIP).getHostAddress();
+				serverIP = "0.0.0.0"; //InetAddress.getByName(rawConfigIP).getHostAddress();
 			}
 			
 			serverPort = Util.getConfiguration().get("Server", "server.port", int.class);
@@ -62,6 +62,10 @@ public class Roseau {
 				privateRoomServer.setPort(serverPort - 1);
 				privateRoomServer.listenSocket();
 
+				if (!validIP(rawConfigIP)) {
+					serverIP = InetAddress.getByName(rawConfigIP).getHostAddress();
+				}
+				
 				if (server.listenSocket()) {
 					Log.println("Server is listening on " + serverIP + ":" + serverPort);
 				} else {
