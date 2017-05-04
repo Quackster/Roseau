@@ -65,6 +65,7 @@ public class PURCHASE implements MessageEvent {
 					targetPlayer.getDetails().save();
 
 					if (targetPlayer.getDetails().getID() != player.getDetails().getID()) {
+						player.sendAlert("You have bought 10 game tickets for " + targetPlayer.getDetails().getName());
 						targetPlayer.sendAlert(player.getDetails().getName() + " has bought 10 game tickets for you!");
 					} else {
 						player.sendAlert("You have bought 10 game tickets!");
