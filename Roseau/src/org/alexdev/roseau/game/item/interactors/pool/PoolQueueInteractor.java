@@ -4,7 +4,6 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.interactors.Interaction;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.model.Position;
-import org.alexdev.roseau.messages.outgoing.JUMPINGPLACE_OK;
 
 public class PoolQueueInteractor extends Interaction {
 

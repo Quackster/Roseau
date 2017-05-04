@@ -23,7 +23,6 @@ import java.nio.charset.Charset;
 
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
-import org.alexdev.roseau.server.netty.readers.NettyResponse;
 import org.alexdev.roseau.util.Util;
 import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.ChannelHandlerContext;
@@ -55,9 +54,6 @@ public class NetworkEncoder extends SimpleChannelHandler {
 				if (Util.getConfiguration().get("Logging", "log.packets", Boolean.class)) {
 					Log.println("SENT: " + msg.getResponse().getBodyString());
 				}
-
-				//ChannelBuffer buffer = (ChannelBuffer)response.get();
-				//Channels.write(ctx, e.getFuture(), (ChannelBuffer)e.getMessage());
 
 				Channels.write(ctx, e.getFuture(), ChannelBuffers.copiedBuffer(msg.getResponse().get(), charset));
 

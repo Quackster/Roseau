@@ -1,10 +1,7 @@
 package org.alexdev.roseau.game.item;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import org.alexdev.roseau.Roseau;
-import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.interactors.BlankInteractor;
 import org.alexdev.roseau.game.item.interactors.Interaction;
@@ -16,14 +13,11 @@ import org.alexdev.roseau.game.item.interactors.pool.PoolLadderInteractor;
 import org.alexdev.roseau.game.item.interactors.pool.PoolLiftInteractor;
 import org.alexdev.roseau.game.item.interactors.pool.PoolQueueInteractor;
 import org.alexdev.roseau.game.pathfinder.AffectedTile;
-import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.RoomTile;
 import org.alexdev.roseau.game.room.model.Position;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.messages.outgoing.ACTIVEOBJECT_UPDATE;
-import org.alexdev.roseau.messages.outgoing.DOOR_OUT;
 import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.messages.outgoing.UPDATEWALLITEM;
 import org.alexdev.roseau.server.messages.Response;

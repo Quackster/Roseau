@@ -10,9 +10,9 @@ public interface ItemDao {
 
 	public Map<Integer, ItemDefinition> getDefinitions();
 	public ConcurrentHashMap<Integer, Item> getPublicRoomItems(String model, int roomID);
-	ConcurrentHashMap<Integer, Item> getRoomItems(int roomID);
-	void saveItem(Item item);
-	void deleteItem(long id);
-	Item getItem(int itemID);
+	public ConcurrentHashMap<Integer, Item> getRoomItems(int roomID);
+	public void saveItem(Item item);
+	public void deleteItem(long id);
+	public Item getItem(int itemID);
 
 }

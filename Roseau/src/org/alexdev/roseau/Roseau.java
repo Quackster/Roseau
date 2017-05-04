@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.dao.mysql.MySQLDao;
@@ -13,6 +15,8 @@ import org.alexdev.roseau.server.IServerHandler;
 import org.alexdev.roseau.util.Configuration;
 import org.alexdev.roseau.util.Util;
 
+import com.google.common.collect.Lists;
+
 public class Roseau {
 
 	private static IServerHandler server;
@@ -21,9 +25,11 @@ public class Roseau {
 
 	private static String serverIP;
 	private static String rawConfigIP;
+	
 	private static int serverPort;
+	private static int privateServerPort;
+	
 	private static Configuration socketConfiguration;
-	private static IServerHandler privateRoomServer;
 
 	public static void main(String[] args) {
 
@@ -50,17 +56,21 @@ public class Roseau {
 				game.load();
 				Log.println();
 
-				server = Class.forName(Roseau.getServerClassPath()).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
-
 				Log.println("Settting up server");
-
+				
+				ArrayList<Integer> ports = Lists.newArrayList();
+				
+				privateServerPort = Util.getConfiguration().get("Server", "server.private.port", Integer.class);
+				
+				ports.add(serverPort);
+				ports.add(privateServerPort);
+				
+				for (int roomID : dao.getRoom().getPublicRoomIDs()) {
+					ports.add(serverPort + roomID);
+				}
+				
+				server = Class.forName(Roseau.getServerClassPath()).asSubclass(IServerHandler.class).getDeclaredConstructor(List.class).newInstance(ports);
 				server.setIp(serverIP);
-				server.setPort(serverPort);
-
-				privateRoomServer = Class.forName(Roseau.getServerClassPath()).asSubclass(IServerHandler.class).getDeclaredConstructor(String.class).newInstance("");
-				privateRoomServer.setIp(serverIP);
-				privateRoomServer.setPort(serverPort - 1);
-				privateRoomServer.listenSocket();
 
 				if (!validIP(rawConfigIP)) {
 					serverIP = InetAddress.getByName(rawConfigIP).getHostAddress();
@@ -116,7 +126,7 @@ public class Roseau {
 	private static void writeMainConfiguration(PrintWriter writer) {
 		writer.println("[Server]");
 		writer.println("server.ip=127.0.0.1");
-		writer.println("server.port=30000");
+		writer.println("server.port=37120");
 		writer.println();
 		writer.println("[Database]");
 		writer.println("type=mysql");
@@ -189,7 +199,7 @@ public class Roseau {
 	}
 
 	public static int getPrivateServerPort() {
-		return serverPort -1;
+		return privateServerPort;
 	}
 
 	public static Configuration getSocketConfiguration() {

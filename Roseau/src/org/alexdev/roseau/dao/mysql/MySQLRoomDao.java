@@ -102,6 +102,38 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 		return rooms;
 	}
+	
+	@Override
+	public List<Integer> getPublicRoomIDs() {
+
+		List<Integer> rooms = Lists.newArrayList();
+
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			sqlConnection = this.dao.getStorage().getConnection();
+			preparedStatement = this.dao.getStorage().prepare("SELECT id FROM rooms WHERE enabled = 1 AND room_type = " + RoomType.PUBLIC.getTypeCode() + " AND hidden = 0 ORDER BY order_id ASC", sqlConnection);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+
+				int id = resultSet.getInt("id");
+				rooms.add(id);
+			}
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(resultSet);
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
+
+		return rooms;
+	}
 
 	@Override
 	public List<Integer> setRoomConnections(Room room) {

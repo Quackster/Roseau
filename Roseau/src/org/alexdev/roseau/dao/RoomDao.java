@@ -20,7 +20,8 @@ public interface RoomDao {
 	public Room createRoom(Player player, String name, String description, String model, int state, boolean showOwnerName);
 	public List<Integer> setRoomConnections(Room room);
 	public List<Bot> getBots(Room room, int roomID);
-	void saveRoomRights(int roomID, List<Integer> rights);
+	public void saveRoomRights(int roomID, List<Integer> rights);
 	public Room saveChatlog(Player chatter, int roomID, String chatType, String message);
+	public List<Integer> getPublicRoomIDs();
 	
 }

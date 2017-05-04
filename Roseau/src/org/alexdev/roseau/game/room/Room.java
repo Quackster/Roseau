@@ -17,31 +17,12 @@ import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.game.room.model.Position;
-import org.alexdev.roseau.game.room.schedulers.RoomEvent;
-import org.alexdev.roseau.game.room.schedulers.RoomEventScheduler;
-import org.alexdev.roseau.game.room.schedulers.RoomWalkScheduler;
-import org.alexdev.roseau.game.room.schedulers.events.BotMoveRoomEvent;
-import org.alexdev.roseau.game.room.schedulers.events.ClubMassivaDiscoEvent;
-import org.alexdev.roseau.game.room.schedulers.events.HabboLidoEvent;
-import org.alexdev.roseau.game.room.schedulers.events.UserStatusEvent;
+import org.alexdev.roseau.game.room.schedulers.*;
+import org.alexdev.roseau.game.room.schedulers.events.*;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
-import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
-import org.alexdev.roseau.messages.outgoing.DOORBELL_RINGING;
-import org.alexdev.roseau.messages.outgoing.FLATPROPERTY;
-import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;
-import org.alexdev.roseau.messages.outgoing.ITEMS;
-import org.alexdev.roseau.messages.outgoing.LOGOUT;
-import org.alexdev.roseau.messages.outgoing.OBJECTS_WORLD;
-import org.alexdev.roseau.messages.outgoing.ROOM_READY;
-import org.alexdev.roseau.messages.outgoing.STATUS;
-import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
-import org.alexdev.roseau.messages.outgoing.USERS;
-import org.alexdev.roseau.messages.outgoing.YOUARECONTROLLER;
-import org.alexdev.roseau.messages.outgoing.YOUARENOTCONTROLLER;
-import org.alexdev.roseau.messages.outgoing.YOUAREOWNER;
-import org.alexdev.roseau.server.IServerHandler;
+import org.alexdev.roseau.messages.outgoing.*;
 import org.alexdev.roseau.server.messages.Response;
 
 import com.google.common.collect.Lists;
@@ -70,9 +51,6 @@ public class Room {
 
 	private List<Integer> rights;
 
-	private IServerHandler serverHandler = null;
-
-
 	public Room() {
 		this.roomData = new RoomData(this);
 		this.roomMapping = new RoomMapping(this);
@@ -88,17 +66,17 @@ public class Room {
 
 		if (this.roomData.getRoomType() == RoomType.PUBLIC && !this.roomData.isHidden()) {
 
-			this.serverHandler = Class.forName("org.alexdev.roseau.server.netty.NettyServer")
+			/*this.serverHandler = Class.forName("org.alexdev.roseau.server.netty.NettyServer")
 					.asSubclass(IServerHandler.class)
 					.getDeclaredConstructor(String.class)
-					.newInstance(String.valueOf(this.roomData.getID()));
+					.newInstance(String.valueOf(this.roomData.getID()));*/
 
 			Log.println("[ROOM] [" + this.roomData.getName() + "] Starting public room server on port: " + this.roomData.getServerPort());
 
 
-			this.serverHandler.setIp(Roseau.getServerIP());
-			this.serverHandler.setPort(this.roomData.getServerPort());
-			this.serverHandler.listenSocket();
+			//this.serverHandler.setIp(Roseau.getServerIP());
+			//this.serverHandler.setPort(this.roomData.getServerPort());
+			//this.serverHandler.listenSocket();
 		}
 
 

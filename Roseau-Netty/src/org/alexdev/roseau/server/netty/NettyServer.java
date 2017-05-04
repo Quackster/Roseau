@@ -1,6 +1,7 @@
 package org.alexdev.roseau.server.netty;
 
 import java.net.InetSocketAddress;
+import java.util.List;
 import java.util.concurrent.Executors;
 
 import org.alexdev.roseau.log.Log;
@@ -18,8 +19,8 @@ public class NettyServer extends IServerHandler {
 	private NioServerSocketChannelFactory factory;
 	private ServerBootstrap bootstrap;
 
-	public NettyServer(String extraData) {
-		super(extraData);
+	public NettyServer(List<Integer> ports) {
+		super(ports);
 	}
 
 	@Override
@@ -27,26 +28,29 @@ public class NettyServer extends IServerHandler {
 
 		this.factory = new NioServerSocketChannelFactory (
 				Executors.newCachedThreadPool(),
-				Executors.newCachedThreadPool()
-		);
+				Executors.newCachedThreadPool());
 
 		this.bootstrap = new ServerBootstrap(this.factory);
-		
+
 		ChannelPipeline pipeline = this.bootstrap.getPipeline();
 
 		pipeline.addLast("encoder", new NetworkEncoder());
 		pipeline.addLast("decoder", new NetworkDecoder(this));
 		pipeline.addLast("handler", new ConnectionHandler(this));
-		
+
 		try {
-			this.bootstrap.bind(new InetSocketAddress(this.getIp(), this.getPort()));
+
+			for (int port : this.getPorts()) {
+				this.bootstrap.bind(new InetSocketAddress(this.getIp(), port));
+			}
+
 		} catch (ChannelException ex) {
 			Log.exception(ex);
 			return false;
 		}
 
 		return true;
-		
+
 	}
 
 }

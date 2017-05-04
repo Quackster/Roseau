@@ -6,6 +6,6 @@ import org.alexdev.roseau.game.room.Room;
 
 public interface NavigatorDao {
 
-	List<Room> getRoomsByLikeName(String name);
+	public List<Room> getRoomsByLikeName(String name);
 
 }

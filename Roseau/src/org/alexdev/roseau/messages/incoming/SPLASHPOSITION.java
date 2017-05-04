@@ -1,7 +1,6 @@
 package org.alexdev.roseau.messages.incoming;
 
 import org.alexdev.roseau.game.item.Item;
-import org.alexdev.roseau.game.item.interactors.pool.PoolChangeBoothInteractor;
 import org.alexdev.roseau.game.item.interactors.pool.PoolLiftInteractor;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
