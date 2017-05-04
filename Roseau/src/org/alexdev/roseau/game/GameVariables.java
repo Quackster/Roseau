@@ -14,7 +14,7 @@ public class GameVariables {
 	public static int TALK_DISTANCE;
 	public static int USER_DEFAULT_CREDITS;
 	public static long TELEPORTER_DELAY = 800;
-	public static int MAX_ITEMS_PER_PAGE = 5;
+	public static int MAX_ITEMS_PER_PAGE = 9;
 	public static String MESSENGER_GREETING;
 	public static boolean DEBUG_ENABLE = false;
 	public static int AFK_ROOM_KICK;

@@ -61,7 +61,7 @@ public class RoomUser {
 		this.dispose();
 		this.entity = entity;
 	}
-	
+
 	public void dispose() {
 
 		if (this.statuses != null) {
@@ -108,7 +108,7 @@ public class RoomUser {
 		if (item == null) {
 			return;
 		}
-		
+
 		item.getInteraction().onTrigger((Player)this.entity);
 	}
 
@@ -119,44 +119,43 @@ public class RoomUser {
 		this.isWalking = false;
 		this.next = null;
 
-		if (this.entity instanceof Player) {
+		if (!(this.entity instanceof Player)) {
+			this.needsUpdate = true;
+			return;
+		}
+		
+		Player player = (Player)this.entity;
 
-			Player player = (Player)this.entity;
+		if (this.kickWhenStop) {
+			player.dispose();
+			player.kick();
+			return;
+		}
 
-			if (this.kickWhenStop) {
-				player.dispose();
-				player.kick();
-				return;
-			}
+		RoomConnection connectionRoom = this.room.getMapping().getRoomConnection(this.position.getX(), this.position.getY());
 
-			if (this.room.getData().getRoomType() == RoomType.PUBLIC) {
+		if (connectionRoom != null) {
+			Room room = Roseau.getGame().getRoomManager().getRoomByID(connectionRoom.getToID());
 
-				RoomConnection connectionRoom = this.room.getMapping().getRoomConnection(this.position.getX(), this.position.getY());
+			if (room != null) {
 
-				if (connectionRoom != null) {
-					Room room = Roseau.getGame().getRoomManager().getRoomByID(connectionRoom.getToID());
-
-					if (room != null) {
-
-						if (this.room != null) {
-							this.room.leaveRoom(player, false);
-						}
-
-						player.getNetwork().setServerPort(room.getData().getServerPort());
-
-						if (connectionRoom.getDoorPosition() != null) {
-							room.loadRoom(player, connectionRoom.getDoorPosition(), connectionRoom.getDoorPosition().getRotation());
-						} else {
-							room.loadRoom(player);
-						}
-
-						this.setNeedUpdate(true);
-
-						return;
-					} else {
-						Log.println("Tried to connect player to room ID: " + connectionRoom.getToID() + " but no room could be found.");
-					}
+				if (this.room != null) {
+					this.room.leaveRoom(player, false);
 				}
+
+				player.getNetwork().setServerPort(room.getData().getServerPort());
+
+				if (connectionRoom.getDoorPosition() != null) {
+					room.loadRoom(player, connectionRoom.getDoorPosition(), connectionRoom.getDoorPosition().getRotation());
+				} else {
+					room.loadRoom(player);
+				}
+
+				this.setNeedUpdate(true);
+
+				return;
+			} else {
+				Log.println("Tried to connect player to room ID: " + connectionRoom.getToID() + " but no room could be found.");
 			}
 		}
 
@@ -168,13 +167,10 @@ public class RoomUser {
 			if (item.canWalk(this.entity, position)) {
 				this.current_item = item;
 				this.currentItemTrigger();
-
-			}
-			else {
+			} else {
 				no_current_item = true;
 			}
-		}
-		else {
+		} else {
 			no_current_item = true;
 		}
 
@@ -185,11 +181,7 @@ public class RoomUser {
 	}
 
 	public void currentItemTrigger() {
-		
-		if (this.current_item == null) {
-			this.current_item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
-		}
-		
+
 		if (this.current_item == null) {
 			new BlankInteractor(null).onStoppedWalking((Player) this.entity);
 		} else {

@@ -18,6 +18,12 @@ public class ItemManager {
 	}
 	
 	private void loadDefinitions() {
+		
+		if (this.definitions != null) {
+			this.definitions.clear();
+			this.definitions = null;
+		}
+		
 		this.definitions = Roseau.getDao().getItem().getDefinitions();
 	}
 

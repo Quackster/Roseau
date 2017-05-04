@@ -131,7 +131,7 @@ public class Item implements SerializableObject {
 			response.appendArgument(Integer.toString(this.getDefinition().getLength()));
 			response.appendArgument(Integer.toString(this.getDefinition().getWidth()));
 			response.appendArgument(Integer.toString(this.position.getRotation()));
-			response.appendArgument(Integer.toString((int)this.position.getZ()));
+			response.appendArgument(Double.toString((int)this.position.getZ()));
 			response.appendArgument(this.getDefinition().getColor());
 			response.appendArgument(this.getDefinition().getName(), '/');
 			response.appendArgument(this.getDefinition().getDescription(), '/');

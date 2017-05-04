@@ -241,10 +241,6 @@ public class Room {
 			}
 		}
 
-		/*Log.println("is silver: " + player.hasPermission("silver_hobba"));
-		Log.println("is kick: " + player.hasPermission("room_kick_any_user"));
-		Log.println("is brozne: " + player.hasPermission("bronze_hobba"));*/
-		
 		roomEntity.resetAfkTimer();
 
 		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
@@ -261,7 +257,7 @@ public class Room {
 			}
 		} else {
 
-			// Show the players whether curtain is closed/pool lift etc
+			// Show the players whether curtain is closed in pool changing booth or the pool lift door etc
 			// for anyone new who enters the room
 			for (Item item : this.passiveObjects.values()) {
 

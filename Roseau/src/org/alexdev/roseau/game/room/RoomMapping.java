@@ -76,6 +76,10 @@ public class RoomMapping {
 			if (item.getDefinition().getBehaviour().isOnWall()) {
 				continue;
 			}
+			
+			if (item.getDefinition().getBehaviour().isCanStandOnTop()) {
+				continue;
+			}
 
 			double stacked_height = item.getDefinition().getHeight();
 			

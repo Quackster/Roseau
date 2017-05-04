@@ -2,6 +2,7 @@ package org.alexdev.roseau.game.commands;
 
 import java.util.Map;
 
+import org.alexdev.roseau.game.commands.types.ReloadDefinitionsCommand;
 import org.alexdev.roseau.game.commands.types.SitCommand;
 import org.alexdev.roseau.game.player.Player;
 
@@ -17,6 +18,7 @@ public class CommandManager {
 	
 	public void load() {
 		this.commands.put("sit", new SitCommand());
+		this.commands.put("reloaddef", new ReloadDefinitionsCommand());
 	}
 
 	public boolean hasCommand(String message) {
