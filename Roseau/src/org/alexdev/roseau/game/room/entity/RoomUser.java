@@ -148,6 +148,8 @@ public class RoomUser {
 						} else {
 							room.loadRoom(player);
 						}
+						
+						this.setNeedUpdate(true);
 
 						return;
 					} else {

@@ -30,16 +30,20 @@ public class STATUS extends OutgoingMessageComposer {
 		for (Entity entity : this.entities) {
 			response.appendNewArgument(entity.getDetails().getName());
 
+			if (entity.getRoomUser().isWalking()) {
+				
+				if (entity.getRoomUser().getNext() == null) {
+					entity.getRoomUser().stopWalking();
+				}
+			}
+			
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getX()));
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getY()), ',');
 			response.appendArgument(String.valueOf((int)entity.getRoomUser().getPosition().getZ()), ',');
 			
 			if (entity.getRoomUser().isWalking()) {
-				
-				if (entity.getRoomUser().getNext() == null) {
-					entity.getRoomUser().stopWalking();
-					
-				} else if (entity.getRoomUser().getNext() != null) {
+
+				if (entity.getRoomUser().getNext() != null) {
 
 					Position next = entity.getRoomUser().getNext();
 
@@ -48,6 +52,7 @@ public class STATUS extends OutgoingMessageComposer {
 					entity.getRoomUser().getPosition().setY(next.getY());
 				}
 			}
+			
 			
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getHeadRotation()), ',');
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getRotation()), ',');
