@@ -22,6 +22,7 @@ public class RoomWalkScheduler implements Runnable {
 	public void run() {
 
 		try {
+			
 			if (this.room.isDisposed() || this.room.getEntities().size() == 0) {
 				return;
 			}
@@ -49,8 +50,6 @@ public class RoomWalkScheduler implements Runnable {
 
 			if (update_entities.size() > 0) {
 				room.send(new STATUS(update_entities));
-
-
 			}
 
 		} catch (Exception e) {
@@ -72,19 +71,6 @@ public class RoomWalkScheduler implements Runnable {
 				Position next = roomEntity.getPath().pop();
 
 				boolean tileValid = true;
-
-				/*Item item = this.room.getMapping().getHighestItem(next.getX(), next.getY());
-
-				if (item != null) {
-					if (item.getDefinition().getSprite().equals("poolLift")) {
-
-						if (!(entity.getDetails().getTickets() > 0)) {
-							if (entity.getType() == EntityType.PLAYER) {
-								((Player)entity).send(new PH_NOTICKETS());
-							}
-						}
-					}
-				}*/
 
 				if (!this.room.getMapping().isValidTile(entity, next.getX(), next.getY())) {
 					tileValid = false;

@@ -24,6 +24,7 @@ public class STATUS extends OutgoingMessageComposer {
 
 	@Override
 	public void write() {
+		
 		response.init("STATUS ");
 
 		for (Entity entity : this.entities) {

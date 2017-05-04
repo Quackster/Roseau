@@ -32,10 +32,14 @@ public class Roseau {
 			createConfig();
 			Log.startup();
 
-			serverIP = "0.0.0.0";
-			serverPort = Util.getConfiguration().get("Server", "server.port", int.class);
+			serverIP = Util.getConfiguration().get("Server", "server.ip", String.class);
+			rawConfigIP = serverIP;
 			
-			Log.println("Server IP: " + serverIP);
+			if (!validIP(rawConfigIP)) {
+				serverIP = InetAddress.getByName(rawConfigIP).getHostAddress();
+			}
+			
+			serverPort = Util.getConfiguration().get("Server", "server.port", int.class);
 
 			if (Util.getConfiguration().get("Database", "type", String.class).equalsIgnoreCase("mysql")) {
 				dao = new MySQLDao();
@@ -57,13 +61,6 @@ public class Roseau {
 				privateRoomServer.setIp(serverIP);
 				privateRoomServer.setPort(serverPort - 1);
 				privateRoomServer.listenSocket();
-				
-				serverIP = Util.getConfiguration().get("Server", "server.ip", String.class);
-				rawConfigIP = serverIP;
-				
-				if (!validIP(rawConfigIP)) {
-					serverIP = InetAddress.getByName(rawConfigIP).getHostAddress();
-				}
 
 				if (server.listenSocket()) {
 					Log.println("Server is listening on " + serverIP + ":" + serverPort);
