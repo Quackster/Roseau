@@ -1,7 +1,6 @@
 package org.alexdev.roseau.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.alexdev.roseau.game.player.Permission;
 import org.alexdev.roseau.game.player.Player;

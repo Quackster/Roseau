@@ -27,7 +27,6 @@ import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.messages.outgoing.ACTIVE_OBJECTS;
-import org.alexdev.roseau.messages.outgoing.CRYFORHELP;
 import org.alexdev.roseau.messages.outgoing.DOORBELL_RINGING;
 import org.alexdev.roseau.messages.outgoing.FLATPROPERTY;
 import org.alexdev.roseau.messages.outgoing.HEIGHTMAP;

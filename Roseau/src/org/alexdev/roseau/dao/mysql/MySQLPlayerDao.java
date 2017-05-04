@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
-
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.util.IProcessStorage;
@@ -19,7 +17,6 @@ import org.alexdev.roseau.log.Log;
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> implements PlayerDao {
 

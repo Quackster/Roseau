@@ -11,7 +11,6 @@ import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
-import org.alexdev.roseau.messages.outgoing.CRYFORHELP;
 import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
 import org.alexdev.roseau.server.IPlayerNetwork;
 
