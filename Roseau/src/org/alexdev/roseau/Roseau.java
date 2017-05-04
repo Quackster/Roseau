@@ -127,6 +127,7 @@ public class Roseau {
 		writer.println("[Server]");
 		writer.println("server.ip=127.0.0.1");
 		writer.println("server.port=37120");
+		writer.println("server.private.port=37119");
 		writer.println();
 		writer.println("[Database]");
 		writer.println("type=mysql");
