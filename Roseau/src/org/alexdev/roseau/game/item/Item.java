@@ -8,6 +8,7 @@ import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.interactors.BlankInteractor;
 import org.alexdev.roseau.game.item.interactors.Interaction;
+import org.alexdev.roseau.game.item.interactors.TeleporterInteractor;
 import org.alexdev.roseau.game.item.interactors.furniture.BedInteractor;
 import org.alexdev.roseau.game.item.interactors.furniture.ChairInteractor;
 import org.alexdev.roseau.game.item.interactors.pool.PoolChangeBoothInteractor;
@@ -76,6 +77,8 @@ public class Item implements SerializableObject {
 			this.interaction = new ChairInteractor(this);
 		} else if (this.getDefinition().getBehaviour().isCanLayOnTop()) {
 			this.interaction = new BedInteractor(this);
+		} else if (this.getDefinition().getBehaviour().isTeleporter()) {
+			this.interaction = new TeleporterInteractor(this);
 		} else if (this.getDefinition().getSprite().equals("poolBooth")) {
 			this.interaction = new PoolChangeBoothInteractor(this);
 		} else if (this.getDefinition().getSprite().equals("poolQueue")) {
@@ -406,18 +409,8 @@ public class Item implements SerializableObject {
 		return targetTeleporterID;
 	}
 
-	/**
-	 * @return the interaction
-	 */
 	public Interaction getInteraction() {
 		return interaction;
-	}
-
-	/**
-	 * @param interaction the interaction to set
-	 */
-	public void setInteraction(Interaction interaction) {
-		this.interaction = interaction;
 	}
 
 	public void setTargetTeleporterID(int targetTeleporterID) {
@@ -428,34 +421,6 @@ public class Item implements SerializableObject {
 		return this.position;
 	}
 
-	public void leaveTeleporter(final Player player) {
-
-		if (!this.getDefinition().getBehaviour().isTeleporter()) {
-			return;
-		}
-
-		if (this.getRoom() == null) {
-			return;
-		}
-
-		this.getRoom().send(new DOOR_OUT(this, player.getDetails().getName()));
-
-		final Item item = this;
-
-		Runnable task = new Runnable() {
-			@Override
-			public void run() {
-
-				item.setCustomData("TRUE");
-				item.updateStatus();
-
-				player.getRoomUser().setCanWalk(true);
-				player.getRoomUser().walkTo(item.getPosition().getSquareInFront().getX(), item.getPosition().getSquareInFront().getY());
-			}
-		};
-
-		Roseau.getGame().getScheduler().schedule(task, GameVariables.TELEPORTER_DELAY, TimeUnit.MILLISECONDS);
-	}
 
 	public int getOwnerID() {
 		return ownerID;

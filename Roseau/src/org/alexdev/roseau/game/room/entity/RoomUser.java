@@ -61,6 +61,41 @@ public class RoomUser {
 		this.dispose();
 		this.entity = entity;
 	}
+	
+	public void dispose() {
+
+		if (this.statuses != null) {
+			this.statuses.clear();
+		}
+
+		if (this.path != null) {
+			this.path.clear();
+		}
+
+		this.statuses = null;
+		this.path = null;
+
+		this.statuses = new ConcurrentHashMap<String, RoomUserStatus>();
+		this.path = Lists.newLinkedList();
+
+		this.position = null;
+		this.goal = null;
+
+		this.position = new Position(0, 0, 0);
+		this.goal = new Position(0, 0, 0);
+
+		this.current_item = null;
+
+		this.needsUpdate = false;
+		this.isWalking = false;
+
+		this.danceID = 0;
+		this.timeUntilNextDrink = -1;
+
+		this.resetAfkTimer();
+
+	}
+
 
 	public void walkItemTrigger() {
 
@@ -163,87 +198,7 @@ public class RoomUser {
 
 		this.needsUpdate = true;
 
-		/*
-				if (this.room.getData().getModelName().equals("hallA")) {
-					((Player) this.entity).send(new OPEN_GAMEBOARD("TicTacToe"));
-				}
-
-				if (this.room.getData().getModelName().equals("hallB")) {
-					((Player) this.entity).send(new OPEN_GAMEBOARD("BattleShip"));
-				}
-
-				if (this.room.getData().getModelName().equals("hallD")) {
-					((Player) this.entity).send(new OPEN_GAMEBOARD("Poker"));
-				}
-			}
-
-			if (definition.getBehaviour().isCanLayOnTop()) {
-
-				if (item.isValidPillowTile(position)) {
-					this.getPosition().setRotation(item.getPosition().getRotation());
-					this.removeStatus("dance");
-					this.removeStatus("sit");
-					this.removeStatus("carryd");
-					this.setStatus("lay", " " + Double.toString(definition.getHeight() + 1.5) + " null", true, -1);
-				} else {
-
-
-
-					this.currentItemTrigger();
-				}
-			}
-
-			if (definition.getBehaviour().isTeleporter() && this.entity instanceof Player) {
-
-				Item teleporter = this.room.getItem(item.getTargetTeleporterID());
-
-				if (teleporter == null) {
-					teleporter = Roseau.getDao().getItem().getItem(item.getTargetTeleporterID());
-				}
-
-				final Player player = (Player) this.entity;
-				final Item targetTeleporter = teleporter;
-				final Room previousRoom = this.room;
-				final Room room = Roseau.getDao().getRoom().getRoom(targetTeleporter.getRoomID(), true);
-
-				if (room != null) {
-
-					this.setCanWalk(false);
-					this.room.send(new DOOR_OUT(item, player.getDetails().getName()));
-
-					final Item currentTeleporter = this.current_item;
-
-					Runnable task = new Runnable() {
-						@Override
-						public void run() {
-
-							if (currentTeleporter.getRoomID() != targetTeleporter.getRoomID()) {
-
-								if (previousRoom != null) {
-									previousRoom.leaveRoom(player, false);
-								}
-
-								room.loadRoom(player, targetTeleporter.getPosition(), targetTeleporter.getPosition().getRotation());
-
-							} else {
-								player.getRoomUser().getPosition().set(targetTeleporter.getPosition());
-								player.getRoomUser().sendStatusComposer();
-								room.getItem(currentTeleporter.getTargetTeleporterID()).leaveTeleporter(player);
-							}
-						}
-					};
-
-					Roseau.getGame().getScheduler().schedule(task, GameVariables.TELEPORTER_DELAY, TimeUnit.MILLISECONDS);
-
-					return;
-				}
-			}
-		}
-
-		this.needsUpdate = true;*/
-
 	}
-
 
 	public boolean walkTo(int x, int y) {
 
@@ -357,40 +312,6 @@ public class RoomUser {
 		}
 
 		this.needsUpdate = true;
-	}
-
-	public void dispose() {
-
-		if (this.statuses != null) {
-			this.statuses.clear();
-		}
-
-		if (this.path != null) {
-			this.path.clear();
-		}
-
-		this.statuses = null;
-		this.path = null;
-
-		this.statuses = new ConcurrentHashMap<String, RoomUserStatus>();
-		this.path = Lists.newLinkedList();
-
-		this.position = null;
-		this.goal = null;
-
-		this.position = new Position(0, 0, 0);
-		this.goal = new Position(0, 0, 0);
-
-		this.current_item = null;
-
-		this.needsUpdate = false;
-		this.isWalking = false;
-
-		this.danceID = 0;
-		this.timeUntilNextDrink = -1;
-
-		this.resetAfkTimer();
-
 	}
 
 	public void removeStatus(String key) {

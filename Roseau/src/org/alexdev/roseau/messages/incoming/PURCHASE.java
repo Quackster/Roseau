@@ -118,7 +118,7 @@ public class PURCHASE implements MessageEvent {
 
 					firstTeleporter.setCustomData(String.valueOf(secondTeleporter.getID()));
 					secondTeleporter.setCustomData(String.valueOf(firstTeleporter.getID()));
-
+					
 					firstTeleporter.save();
 					secondTeleporter.save();
 

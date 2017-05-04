@@ -11,6 +11,7 @@ import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
+import org.alexdev.roseau.game.item.interactors.TeleporterInteractor;
 import org.alexdev.roseau.game.navigator.NavigatorRequest;
 import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
@@ -251,8 +252,10 @@ public class Room {
 
 			if (item != null) {
 				if (item.getDefinition().getBehaviour().isTeleporter()) {
-					roomEntity.setCanWalk(false);
-					item.leaveTeleporter(player);
+					
+					TeleporterInteractor interactor = (TeleporterInteractor)item.getInteraction();
+					interactor.leaveTeleporter(player);
+					
 					return;
 				}
 			}
