@@ -3,7 +3,7 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class PH_TICKETS implements OutgoingMessageComposer {
+public class PH_TICKETS extends OutgoingMessageComposer {
 
 	private int tickets;
 
@@ -12,7 +12,7 @@ public class PH_TICKETS implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("PH_TICKETS");
 		response.appendArgument(Integer.toString(this.tickets));
 	}

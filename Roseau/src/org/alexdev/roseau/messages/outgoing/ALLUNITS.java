@@ -7,7 +7,7 @@ import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class ALLUNITS implements OutgoingMessageComposer {
+public class ALLUNITS extends OutgoingMessageComposer {
 
 	private List<Room> publicRooms;
 
@@ -18,7 +18,7 @@ public class ALLUNITS implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("ALLUNITS");
 		
 		/*

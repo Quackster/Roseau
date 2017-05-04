@@ -4,7 +4,7 @@ import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class FLATINFO implements OutgoingMessageComposer {
+public class FLATINFO extends OutgoingMessageComposer {
 
 	private Room room;
 
@@ -13,7 +13,7 @@ public class FLATINFO implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("SETFLATINFO");
 		response.appendNewArgument("/");
 		response.append(String.valueOf(this.room.getData().getID()));

@@ -3,7 +3,7 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class MYPERSISTENTMSG implements OutgoingMessageComposer {
+public class MYPERSISTENTMSG extends OutgoingMessageComposer {
 
 	private String personalMessage;
 	
@@ -12,7 +12,7 @@ public class MYPERSISTENTMSG implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("MYPERSISTENTMSG");
 		response.appendNewArgument(this.personalMessage);
 	}

@@ -8,7 +8,7 @@ import org.alexdev.roseau.log.DateTime;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class BUDDYLIST implements OutgoingMessageComposer {
+public class BUDDYLIST extends OutgoingMessageComposer {
 
 	private List<MessengerUser> friends;
 	private int offlineID; 
@@ -19,7 +19,7 @@ public class BUDDYLIST implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		
 		response.init("BUDDYLIST");
 

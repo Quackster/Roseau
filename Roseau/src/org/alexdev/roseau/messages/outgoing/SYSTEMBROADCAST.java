@@ -3,7 +3,7 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class SYSTEMBROADCAST implements OutgoingMessageComposer {
+public class SYSTEMBROADCAST extends OutgoingMessageComposer {
 
 	private String message;
 
@@ -12,7 +12,7 @@ public class SYSTEMBROADCAST implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("SYSTEMBROADCAST");
 		response.appendNewArgument(this.message);
 	}

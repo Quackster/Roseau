@@ -40,7 +40,7 @@ public class RoomWalkScheduler implements Runnable {
 
 						RoomUser roomEntity = entity.getRoomUser();
 
-						if (roomEntity.playerNeedsUpdate()) {
+						if (roomEntity.needsUpdate()) {
 							update_entities.add(entity);
 						}
 					}
@@ -50,25 +50,7 @@ public class RoomWalkScheduler implements Runnable {
 			if (update_entities.size() > 0) {
 				room.send(new STATUS(update_entities));
 
-				for (Entity entity : update_entities) {
 
-					if (entity.getRoomUser().isWalking()) {
-						if (entity.getRoomUser().getNext() != null) {
-
-							Position next = entity.getRoomUser().getNext();
-
-							entity.getRoomUser().getPosition().setZ(this.room.getData().getModel().getHeight(next.getX(), next.getY()));
-							entity.getRoomUser().getPosition().setX(next.getX());
-							entity.getRoomUser().getPosition().setY(next.getY());
-						}
-					}
-
-					entity.getRoomUser().walkItemTrigger();
-
-					if (entity.getRoomUser().playerNeedsUpdate()) {
-						entity.getRoomUser().setNeedUpdate(false);
-					}
-				}
 			}
 
 		} catch (Exception e) {

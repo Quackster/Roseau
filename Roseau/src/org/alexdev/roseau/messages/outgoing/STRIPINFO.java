@@ -5,7 +5,7 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class STRIPINFO implements OutgoingMessageComposer {
+public class STRIPINFO extends OutgoingMessageComposer {
 
 	private List<Item> items;
 
@@ -18,7 +18,7 @@ public class STRIPINFO implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("STRIPINFO");
 
 

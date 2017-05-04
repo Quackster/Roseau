@@ -9,7 +9,7 @@ import org.alexdev.roseau.log.DateTime;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class MEMBERINFO implements OutgoingMessageComposer {
+public class MEMBERINFO extends OutgoingMessageComposer {
 
 	private PlayerDetails details;
 
@@ -18,7 +18,7 @@ public class MEMBERINFO implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("MEMBERINFO");
 		response.appendArgument("");
 		response.appendNewArgument(details.getName());

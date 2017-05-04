@@ -4,7 +4,7 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class ACTIVEOBJECT_ADD implements OutgoingMessageComposer {
+public class ACTIVEOBJECT_ADD extends OutgoingMessageComposer {
 
 	private Item item;
 
@@ -13,7 +13,7 @@ public class ACTIVEOBJECT_ADD implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("ACTIVEOBJECT_ADD");
 		response.appendObject(this.item);
 	}

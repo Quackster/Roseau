@@ -4,7 +4,7 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class DOOR_OUT  implements OutgoingMessageComposer {
+public class DOOR_OUT  extends OutgoingMessageComposer {
 
 	private Item item;
 	private String player;
@@ -15,7 +15,7 @@ public class DOOR_OUT  implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("DOOR_OUT");
 		response.appendNewArgument(this.item.getPadding());
 		response.append(Integer.toString(this.item.getID()));

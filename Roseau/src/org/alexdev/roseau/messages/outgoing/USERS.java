@@ -9,7 +9,7 @@ import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class USERS implements OutgoingMessageComposer {
+public class USERS extends OutgoingMessageComposer {
 
 	private List<Entity> entities;
 	
@@ -22,7 +22,7 @@ public class USERS implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("USERS");
 		for (Entity entity : this.entities) {
 			response.append(Character.toString((char)13));

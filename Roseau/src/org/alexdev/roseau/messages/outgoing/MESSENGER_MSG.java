@@ -5,7 +5,7 @@ import org.alexdev.roseau.log.DateTime;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class MESSENGER_MSG implements OutgoingMessageComposer {
+public class MESSENGER_MSG extends OutgoingMessageComposer {
 
 	private long timestamp;
 	private String message;
@@ -30,7 +30,7 @@ public class MESSENGER_MSG implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("MESSENGER_MSG");
 		response.appendNewArgument(String.valueOf(this.messageID));
 		response.appendNewArgument(String.valueOf(this.fromID));

@@ -3,7 +3,7 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class FLATPROPERTY implements OutgoingMessageComposer {
+public class FLATPROPERTY extends OutgoingMessageComposer {
 
 	private String property;
 	private String data;
@@ -14,7 +14,7 @@ public class FLATPROPERTY implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("FLATPROPERTY");
 		response.appendNewArgument(this.property);
 		response.appendPartArgument(this.data);

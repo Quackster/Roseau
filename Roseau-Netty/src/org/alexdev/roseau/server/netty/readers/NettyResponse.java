@@ -99,5 +99,14 @@ public class NettyResponse implements Response {
 
 	public String getHeader() {
 		return header;
+	}
+
+	public boolean isFinalised() {
+		return finalised;
+	}
+
+	
+	public void setFinalised(boolean finalised) {
+		this.finalised = finalised;
 	}	
 }

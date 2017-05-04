@@ -3,7 +3,7 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class ORDERINFO implements OutgoingMessageComposer {
+public class ORDERINFO extends OutgoingMessageComposer {
 
 	private String name;
 	private int credits;
@@ -14,7 +14,7 @@ public class ORDERINFO implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("ORDERINFO");
 		response.appendNewArgument(name);
 		response.appendNewArgument(String.valueOf(this.credits));

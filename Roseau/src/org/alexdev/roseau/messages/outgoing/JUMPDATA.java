@@ -3,7 +3,7 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class JUMPDATA implements OutgoingMessageComposer {
+public class JUMPDATA extends OutgoingMessageComposer {
 
 	private String name;
 	private String data;
@@ -14,7 +14,7 @@ public class JUMPDATA implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("JUMPDATA");
 		response.appendNewArgument(this.name);
 		response.appendNewArgument(this.data);

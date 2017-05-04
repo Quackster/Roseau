@@ -6,7 +6,7 @@ import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class ACTIVE_OBJECTS implements OutgoingMessageComposer {
+public class ACTIVE_OBJECTS extends OutgoingMessageComposer {
 
 	private Room room;
 
@@ -15,7 +15,7 @@ public class ACTIVE_OBJECTS implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("ACTIVE_OBJECTS");
 
 		if (this.room != null) {

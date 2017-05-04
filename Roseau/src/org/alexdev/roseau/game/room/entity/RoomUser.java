@@ -116,6 +116,7 @@ public class RoomUser {
 		this.removeStatus("mv");
 
 		this.isWalking = false;
+		this.next = null;
 
 		if (this.entity instanceof Player) {
 
@@ -576,7 +577,7 @@ public class RoomUser {
 		this.path = path;
 	}
 
-	public boolean playerNeedsUpdate() {
+	public boolean needsUpdate() {
 		return needsUpdate;
 	}
 

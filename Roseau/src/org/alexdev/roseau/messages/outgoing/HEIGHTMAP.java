@@ -3,7 +3,7 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class HEIGHTMAP implements OutgoingMessageComposer {
+public class HEIGHTMAP extends OutgoingMessageComposer {
 
 	private String heightMap;
 
@@ -12,7 +12,7 @@ public class HEIGHTMAP implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("HEIGHTMAP");
 		response.appendNewArgument(this.heightMap);
 	}

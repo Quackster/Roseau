@@ -48,18 +48,18 @@ public class NetworkEncoder extends SimpleChannelHandler {
 			if (e.getMessage() instanceof OutgoingMessageComposer) {
 
 				OutgoingMessageComposer msg = (OutgoingMessageComposer) e.getMessage();
-				NettyResponse response = new NettyResponse();
-
-				msg.write(response);
+				if (!msg.getResponse().isFinalised()) {
+					msg.write();
+				}
 
 				if (Util.getConfiguration().get("Logging", "log.packets", Boolean.class)) {
-					Log.println("SENT: " + response.getBodyString());
+					Log.println("SENT: " + msg.getResponse().getBodyString());
 				}
 
 				//ChannelBuffer buffer = (ChannelBuffer)response.get();
 				//Channels.write(ctx, e.getFuture(), (ChannelBuffer)e.getMessage());
 
-				Channels.write(ctx, e.getFuture(), ChannelBuffers.copiedBuffer(response.get(), charset));
+				Channels.write(ctx, e.getFuture(), ChannelBuffers.copiedBuffer(msg.getResponse().get(), charset));
 
 				return;
 			}

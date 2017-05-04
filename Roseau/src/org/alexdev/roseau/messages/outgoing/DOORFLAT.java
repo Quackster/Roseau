@@ -3,7 +3,7 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class DOORFLAT implements OutgoingMessageComposer {
+public class DOORFLAT extends OutgoingMessageComposer {
 	
 	private int itemID;
 	private int roomID;
@@ -14,7 +14,7 @@ public class DOORFLAT implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 
 		response.init("DOORFLAT");
 		response.appendNewArgument(String.valueOf(this.itemID));

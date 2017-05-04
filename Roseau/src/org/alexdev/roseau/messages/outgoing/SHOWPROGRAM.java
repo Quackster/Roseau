@@ -3,7 +3,7 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class SHOWPROGRAM implements OutgoingMessageComposer {
+public class SHOWPROGRAM extends OutgoingMessageComposer {
 
 	private String[] parameters;
 
@@ -12,7 +12,7 @@ public class SHOWPROGRAM implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("SHOWPROGRAM");
 			response.appendNewArgument(parameters[0]);
 

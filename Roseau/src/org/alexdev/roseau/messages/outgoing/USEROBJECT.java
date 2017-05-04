@@ -4,7 +4,7 @@ import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class USEROBJECT implements OutgoingMessageComposer {
+public class USEROBJECT extends OutgoingMessageComposer {
 
 	private PlayerDetails details;
 
@@ -13,7 +13,7 @@ public class USEROBJECT implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("USEROBJECT");
 		response.appendObject(this.details);
 	}

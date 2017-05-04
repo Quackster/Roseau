@@ -3,7 +3,7 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class WALLETBALANCE implements OutgoingMessageComposer {
+public class WALLETBALANCE extends OutgoingMessageComposer {
 
 	private int credits;
 	
@@ -12,7 +12,7 @@ public class WALLETBALANCE implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("WALLETBALANCE");
 		response.appendNewArgument(String.valueOf(this.credits));
 	}

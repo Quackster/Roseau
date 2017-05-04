@@ -3,7 +3,7 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class SECRET_KEY implements OutgoingMessageComposer {
+public class SECRET_KEY extends OutgoingMessageComposer {
 
 	private String key;
 	
@@ -13,7 +13,7 @@ public class SECRET_KEY implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("SECRET_KEY");
 		response.appendNewArgument(key);
 	}

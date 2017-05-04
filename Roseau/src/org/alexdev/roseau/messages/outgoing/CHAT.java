@@ -3,7 +3,7 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class CHAT implements OutgoingMessageComposer {
+public class CHAT extends OutgoingMessageComposer {
 
 	private String header;
 	private String talkMessage;
@@ -16,7 +16,7 @@ public class CHAT implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 
 		response.init(this.header);
 		response.appendNewArgument(this.username);

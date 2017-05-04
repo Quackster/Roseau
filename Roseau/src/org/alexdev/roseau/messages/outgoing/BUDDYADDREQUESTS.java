@@ -7,7 +7,7 @@ import org.alexdev.roseau.game.messenger.MessengerUser;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class BUDDYADDREQUESTS implements OutgoingMessageComposer {
+public class BUDDYADDREQUESTS extends OutgoingMessageComposer {
 
 	private List<MessengerUser> requests;
 
@@ -16,7 +16,7 @@ public class BUDDYADDREQUESTS implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("BUDDYADDREQUESTS");
 		response.appendNewArgument("");
 

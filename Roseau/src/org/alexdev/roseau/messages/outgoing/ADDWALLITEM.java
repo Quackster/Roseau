@@ -4,7 +4,7 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class ADDWALLITEM implements OutgoingMessageComposer {
+public class ADDWALLITEM extends OutgoingMessageComposer {
 
 	private Item item;
 
@@ -13,7 +13,7 @@ public class ADDWALLITEM implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("ADDITEM");
 		response.append(Character.toString((char)13));
 		response.appendObject(this.item);

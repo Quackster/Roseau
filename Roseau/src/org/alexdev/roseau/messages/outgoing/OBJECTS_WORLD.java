@@ -6,7 +6,7 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class OBJECTS_WORLD implements OutgoingMessageComposer {
+public class OBJECTS_WORLD extends OutgoingMessageComposer {
 
 	private String model;
 	private ConcurrentHashMap<Integer, Item> passiveObjects;
@@ -17,7 +17,7 @@ public class OBJECTS_WORLD implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init(" OBJECTS WORLD 0");
 
 		response.appendArgument(model);

@@ -3,7 +3,7 @@ package org.alexdev.roseau.messages.outgoing;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class DOORBELL_RINGING implements OutgoingMessageComposer {
+public class DOORBELL_RINGING extends OutgoingMessageComposer {
 
 	private String name;
 	
@@ -12,7 +12,7 @@ public class DOORBELL_RINGING implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("DOORBELL_RINGING");
 		response.appendNewArgument(this.name);
 	}

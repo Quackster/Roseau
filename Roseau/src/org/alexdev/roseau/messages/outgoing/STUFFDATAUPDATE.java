@@ -4,7 +4,7 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class STUFFDATAUPDATE implements OutgoingMessageComposer {
+public class STUFFDATAUPDATE extends OutgoingMessageComposer {
 
 	private Item item;
 	private String customData;
@@ -15,7 +15,7 @@ public class STUFFDATAUPDATE implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("STUFFDATAUPDATE");
 		response.appendNewArgument(this.item.getPadding());
 		response.append(Integer.toString(this.item.getID()));

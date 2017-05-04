@@ -6,7 +6,7 @@ import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.messages.Response;
 
-public class UNITMEMBERS implements OutgoingMessageComposer {
+public class UNITMEMBERS extends OutgoingMessageComposer {
 
 	private List<Entity> entities;
 
@@ -15,7 +15,7 @@ public class UNITMEMBERS implements OutgoingMessageComposer {
 	}
 
 	@Override
-	public void write(Response response) {
+	public void write() {
 		response.init("UNITMEMBERS");
 		
 		for (Entity entity : this.entities) {
