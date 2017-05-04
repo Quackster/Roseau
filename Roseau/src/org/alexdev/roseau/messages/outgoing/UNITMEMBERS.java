@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
-import org.alexdev.roseau.server.messages.Response;
+
 
 public class UNITMEMBERS extends OutgoingMessageComposer {
 

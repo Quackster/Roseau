@@ -7,7 +7,7 @@ import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
-import org.alexdev.roseau.server.messages.Response;
+
 
 public class USERS extends OutgoingMessageComposer {
 

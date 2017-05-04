@@ -7,7 +7,7 @@ import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.DateTime;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
-import org.alexdev.roseau.server.messages.Response;
+
 
 public class MEMBERINFO extends OutgoingMessageComposer {
 

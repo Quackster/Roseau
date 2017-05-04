@@ -5,7 +5,7 @@ import java.util.List;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
-import org.alexdev.roseau.server.messages.Response;
+
 
 public class ITEMS extends OutgoingMessageComposer {
 

@@ -5,7 +5,7 @@ import java.util.List;
 import org.alexdev.roseau.game.navigator.NavigatorRequest;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
-import org.alexdev.roseau.server.messages.Response;
+
 
 public class BUSY_FLAT_RESULTS extends OutgoingMessageComposer {
 

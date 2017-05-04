@@ -73,6 +73,20 @@ public class PlayerDetails implements SerializableObject {
 		response.appendKVArgument("has_special_rights", "0");
 		response.appendKVArgument("badge_type", this.badge);
 	}
+	
+	public void sendCredits() {
+
+		if (this.entity instanceof Player) {
+			((Player)this.entity).send(new WALLETBALANCE(this.credits));
+		}
+	}
+
+	public void sendTickets() {
+
+		if (this.entity instanceof Player) {
+			((Player)this.entity).send(new PH_TICKETS(this.tickets));
+		}
+	}
 
 	public void save() {
 		Roseau.getDao().getPlayer().updatePlayer(this);
@@ -129,22 +143,6 @@ public class PlayerDetails implements SerializableObject {
 	public int getRank() {
 		return rank;
 	}
-	
-	public void sendCredits() {
-
-		if (this.entity instanceof Player) {
-			((Player)this.entity).send(new WALLETBALANCE(this.credits));
-		}
-	}
-
-	public void sendTickets() {
-
-		if (this.entity instanceof Player) {
-			((Player)this.entity).send(new PH_TICKETS(this.tickets));
-		}
-	}
-
-
 
 	public int getCredits() {
 		return credits;

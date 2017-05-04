@@ -6,7 +6,7 @@ import org.alexdev.roseau.game.messenger.MessengerUser;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.log.DateTime;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
-import org.alexdev.roseau.server.messages.Response;
+
 
 public class BUDDYLIST extends OutgoingMessageComposer {
 
