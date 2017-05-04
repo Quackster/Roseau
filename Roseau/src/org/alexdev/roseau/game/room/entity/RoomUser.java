@@ -24,6 +24,7 @@ import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.ItemDefinition;
+import org.alexdev.roseau.game.item.interactors.BlankInteractor;
 import org.alexdev.roseau.game.pathfinder.Pathfinder;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
@@ -62,53 +63,18 @@ public class RoomUser {
 	}
 
 	public void walkItemTrigger() {
-		if (this.entity instanceof Player) {
 
-			Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
-
-			if (item != null) {
-				ItemDefinition definition = item.getDefinition();
-
-				if (definition.getSprite().equals("poolEnter")) {
-					this.setStatus("swim", "", true, -1);
-					this.poolInteractor(item, "enter");
-					return;
-
-				} else if (definition.getSprite().equals("poolExit")) {
-					this.removeStatus("swim");
-					this.poolInteractor(item, "exit");
-					return;
-				}
-			}
+		if (!(this.entity instanceof Player)) {
+			return;
 		}
-	}
 
-	public void poolInteractor(Item item, String program) {
-		this.isWalking = false;
-		this.next = null;
+		Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
 
-		this.forceStopWalking();
-
-		String[] positions = item.getCustomData().split(" ", 2);
-
-		Position warp = new Position(positions[0]);
-		Position goal = new Position(positions[1]);
-
-		this.position.setX(warp.getX());
-		this.position.setY(warp.getY());
-		this.position.setZ(this.room.getMapping().getTile(warp.getX(), warp.getY()).getHeight());
-		this.needsUpdate = true;
-
-		//this.sendStatusComposer();
-		item.showProgram(program);
-
-		this.goal.setX(goal.getX());
-		this.goal.setY(goal.getY());
-		this.goal.setZ(this.room.getMapping().getTile(goal.getX(), goal.getY()).getHeight());
-		this.path.addAll(Pathfinder.makePath(this.entity));
-
-
-		this.isWalking = true;
+		if (item == null) {
+			return;
+		}
+		
+		item.getInteraction().onTrigger((Player)this.entity);
 	}
 
 	public void stopWalking() {
@@ -148,7 +114,7 @@ public class RoomUser {
 						} else {
 							room.loadRoom(player);
 						}
-						
+
 						this.setNeedUpdate(true);
 
 						return;
@@ -164,12 +130,7 @@ public class RoomUser {
 		boolean no_current_item = false;
 
 		if (item != null) {
-			if (item.getDefinition().getBehaviour().isCanSitOnTop() || 
-				item.getDefinition().getBehaviour().isCanLayOnTop() || 
-				item.getDefinition().getBehaviour().isTeleporter() || 
-				item.getDefinition().getSprite().equals("poolBooth") ||
-				item.getDefinition().getSprite().equals("poolQueue") ||
-				item.getDefinition().getSprite().equals("poolLift")) {
+			if (item.canWalk(this.entity, position)) {
 				this.current_item = item;
 				this.currentItemTrigger();
 
@@ -189,60 +150,20 @@ public class RoomUser {
 	}
 
 	public void currentItemTrigger() {
-
-		Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
-
-		if (item == null) {
-			this.current_item = null;
+		
+		if (this.current_item == null) {
+			this.current_item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
+		}
+		
+		if (this.current_item == null) {
+			new BlankInteractor(null).onStoppedWalking((Player) this.entity);
+		} else {
+			this.current_item.getInteraction().onStoppedWalking((Player) this.entity);
 		}
 
-		if (this.current_item == null) {
-			this.removeStatus("sit");
-			this.removeStatus("lay");
-		} else {
+		this.needsUpdate = true;
 
-			item = this.current_item;
-			ItemDefinition definition = this.current_item.getDefinition();
-
-			if (definition == null) {
-				return;
-			}
-
-			if (definition.getSprite().equals("poolBooth")) {
-
-				item.showProgram("close");
-				item.lockTiles(); // users cant walk on this tile
-
-				((Player) this.entity).send(new OPEN_UIMAKOPPI());
-				((Player) this.entity).getRoomUser().setCanWalk(false);
-			}
-
-			
-			if (definition.getSprite().equals("poolQueue")) {
-				Position next = new Position(item.getCustomData());
-				((Player) this.entity).getRoomUser().walkTo(next.getX(), next.getY());
-			}
-
-			
-			if (definition.getSprite().equals("poolLift")) {
-
-				item.showProgram("close");
-				item.lockTiles(); // users cant walk on this tile
-
-				((Player) this.entity).send(new JUMPINGPLACE_OK());
-				((Player) this.entity).getRoomUser().setCanWalk(false);
-
-				this.entity.getDetails().setTickets(this.entity.getDetails().getTickets() - 1);
-				this.entity.getDetails().sendTickets();
-				this.entity.getDetails().save();
-			}
-
-			if (definition.getBehaviour().isCanSitOnTop()) {
-				this.getPosition().setRotation(item.getPosition().getRotation());
-				this.removeStatus("dance");
-				this.removeStatus("lay");
-				this.setStatus("sit", " " + String.valueOf(this.position.getZ() + definition.getHeight()), true, -1);
-
+		/*
 				if (this.room.getData().getModelName().equals("hallA")) {
 					((Player) this.entity).send(new OPEN_GAMEBOARD("TicTacToe"));
 				}
@@ -266,16 +187,7 @@ public class RoomUser {
 					this.setStatus("lay", " " + Double.toString(definition.getHeight() + 1.5) + " null", true, -1);
 				} else {
 
-					for (Position tile : item.getValidPillowTiles()) {
 
-						if (this.position.getX() != tile.getX()) {
-							this.position.setY(tile.getY());
-						}
-
-						if (this.position.getY() != tile.getY()) {
-							this.position.setX(tile.getX());
-						}
-					}
 
 					this.currentItemTrigger();
 				}
@@ -328,7 +240,7 @@ public class RoomUser {
 			}
 		}
 
-		this.needsUpdate = true;
+		this.needsUpdate = true;*/
 
 	}
 
@@ -353,28 +265,28 @@ public class RoomUser {
 				Log.println(item.getDefinition().getSprite() + " - " + item.getDefinition().getID() + " - " + item.getCustomData());
 			}
 		}
-		
+
 		this.resetAfkTimer();
 
 		if (!this.room.getMapping().isValidTile(this.entity, x, y)) {
 			return false;
 		}
-		
+
 		Item item = this.room.getMapping().getHighestItem(x, y);
 		if (item != null) {
 			if (item.getDefinition().getSprite().equals("poolLift") || item.getDefinition().getSprite().equals("poolQueue")) {
-				
+
 				if (!(entity.getDetails().getTickets() > 0)) {
 					if (entity.getType() == EntityType.PLAYER) {
 						((Player)entity).send(new PH_NOTICKETS());
 					}
-					
+
 					return false;
 				}
 			}
 		}
-		
-		
+
+
 
 		if (this.position.isMatch(new Position(x, y))) {
 			return false;
@@ -476,7 +388,7 @@ public class RoomUser {
 
 		this.danceID = 0;
 		this.timeUntilNextDrink = -1;
-		
+
 		this.resetAfkTimer();
 
 	}

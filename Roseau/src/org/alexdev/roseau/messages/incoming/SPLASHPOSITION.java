@@ -1,6 +1,8 @@
 package org.alexdev.roseau.messages.incoming;
 
 import org.alexdev.roseau.game.item.Item;
+import org.alexdev.roseau.game.item.interactors.pool.PoolChangeBoothInteractor;
+import org.alexdev.roseau.game.item.interactors.pool.PoolLiftInteractor;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.Position;
@@ -28,8 +30,8 @@ public class SPLASHPOSITION implements MessageEvent {
 			player.getRoomUser().setCanWalk(true);
 			player.getRoomUser().walkTo(18, 19);
 			
-			item.showProgram("open");
-			item.unlockTiles();
+			PoolLiftInteractor interactor = (PoolLiftInteractor)item.getInteraction();
+			interactor.open();
 			
 		} else {
 			player.kickAllConnections();

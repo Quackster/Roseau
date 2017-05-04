@@ -6,6 +6,14 @@ import java.util.concurrent.TimeUnit;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.entity.Entity;
+import org.alexdev.roseau.game.item.interactors.BlankInteractor;
+import org.alexdev.roseau.game.item.interactors.Interaction;
+import org.alexdev.roseau.game.item.interactors.furniture.BedInteractor;
+import org.alexdev.roseau.game.item.interactors.furniture.ChairInteractor;
+import org.alexdev.roseau.game.item.interactors.pool.PoolChangeBoothInteractor;
+import org.alexdev.roseau.game.item.interactors.pool.PoolLadderInteractor;
+import org.alexdev.roseau.game.item.interactors.pool.PoolLiftInteractor;
+import org.alexdev.roseau.game.item.interactors.pool.PoolQueueInteractor;
 import org.alexdev.roseau.game.pathfinder.AffectedTile;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
@@ -37,6 +45,7 @@ public class Item implements SerializableObject {
 	private int definitionID;
 	private int ownerID;
 	private String currentProgram = null;
+	private Interaction interaction;
 
 	public Item(int ID, int roomID, int ownerID, String x, int y, double z, int rotation, int definitionID, String itemData, String customData) {
 
@@ -53,12 +62,35 @@ public class Item implements SerializableObject {
 			this.wallPosition = x;
 			this.position = new Position(-1, -1);
 		} else {
-			//this.x = Integer.valueOf(x);
 			this.position = new Position(Integer.valueOf(x), y, z);
 			this.position.setRotation(rotation);
 		}
 		
 		this.setTeleporterID();
+		this.setInteractionType();
+	}
+	
+	private void setInteractionType() {
+		
+		if (this.getDefinition().getBehaviour().isCanSitOnTop()) {
+			this.interaction = new ChairInteractor(this);
+		} else if (this.getDefinition().getBehaviour().isCanLayOnTop()) {
+			this.interaction = new BedInteractor(this);
+		} else if (this.getDefinition().getSprite().equals("poolBooth")) {
+			this.interaction = new PoolChangeBoothInteractor(this);
+		} else if (this.getDefinition().getSprite().equals("poolQueue")) {
+			this.interaction = new PoolQueueInteractor(this);
+		} else if (this.getDefinition().getSprite().equals("poolLift")) {
+			this.interaction = new PoolLiftInteractor(this);
+		} else if (this.getDefinition().getSprite().equals("poolEnter")) {
+			this.interaction = new PoolLadderInteractor(this, true);
+		} else if (this.getDefinition().getSprite().equals("poolExit")) {
+			this.interaction = new PoolLadderInteractor(this, false);
+		}
+		
+		if (this.interaction == null) {
+			this.interaction = new BlankInteractor(this);
+		}
 	}
 
 	private void setTeleporterID() {
@@ -182,58 +214,6 @@ public class Item implements SerializableObject {
 		return tile_valid; 
 	}
 
-	public boolean isValidPillowTile(Position position) {
-
-		if (this.getDefinition().getBehaviour().isCanLayOnTop()) {
-
-			if (this.position.getX() == position.getX() && this.position.getY() == position.getY()) {
-				return true;
-			} else {
-
-				int validPillowX = -1;
-				int validPillowY = -1;
-
-				if (this.position.getRotation() == 0) {
-					validPillowX = this.position.getX() + 1;
-					validPillowY = this.position.getY();
-				}
-
-				if (this.position.getRotation() == 2) {
-					validPillowX = this.position.getX();
-					validPillowY = this.position.getY() + 1;
-				}
-
-				if (validPillowX == position.getX() && validPillowY == position.getY()) {
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	public List<Position> getValidPillowTiles() {
-
-		List<Position> tiles = Lists.newArrayList();
-		tiles.add(new Position(this.position.getX(), this.position.getY()));
-
-		int validPillowX = -1;
-		int validPillowY = -1;
-
-		if (this.position.getRotation() == 0) {
-			validPillowX = this.position.getX() + 1;
-			validPillowY = this.position.getY();
-		}
-
-		if (this.position.getRotation() == 2) {
-			validPillowX = this.position.getX();
-			validPillowY = this.position.getY() + 1;
-		}
-		
-		tiles.add(new Position(validPillowX, validPillowY));
-
-		return tiles;
-	}
 
 	public RoomTile getTileInstance() {
 		return this.getRoom().getMapping().getTile(this.position.getX(), this.position.getY());
@@ -285,7 +265,6 @@ public class Item implements SerializableObject {
 				if (entity.getRoomUser().getCurrentItem().getID() == this.ID) {
 
 					if (!hasEntityCollision(entity.getRoomUser().getPosition().getX(), entity.getRoomUser().getPosition().getY())) {
-						Log.println("ITEM DEBUG 1");
 						entity.getRoomUser().setCurrentItem(null);
 					}
 
@@ -295,8 +274,6 @@ public class Item implements SerializableObject {
 
 			// Moved item inside a player
 			else if (hasEntityCollision(entity.getRoomUser().getPosition().getX(), entity.getRoomUser().getPosition().getY())) {
-				Log.println("ITEM DEBUG 2");
-
 				entity.getRoomUser().setCurrentItem(this);
 				affected_players.add(entity);
 			}
@@ -427,6 +404,20 @@ public class Item implements SerializableObject {
 
 	public int getTargetTeleporterID() {
 		return targetTeleporterID;
+	}
+
+	/**
+	 * @return the interaction
+	 */
+	public Interaction getInteraction() {
+		return interaction;
+	}
+
+	/**
+	 * @param interaction the interaction to set
+	 */
+	public void setInteraction(Interaction interaction) {
+		this.interaction = interaction;
 	}
 
 	public void setTargetTeleporterID(int targetTeleporterID) {

@@ -2,6 +2,7 @@ package org.alexdev.roseau.messages.incoming;
 
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.ItemDefinition;
+import org.alexdev.roseau.game.item.interactors.pool.PoolChangeBoothInteractor;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.model.Position;
@@ -23,21 +24,14 @@ public class CLOSE_UIMAKOPPI implements MessageEvent {
 		Item item = room.getMapping().getHighestItem(position.getX(), position.getY());
 
 		if (item != null) {
-			ItemDefinition definition = item.getDefinition();
-
-			if (definition == null) {
-				return;
-			}
-			
-			if (definition.getSprite().equals("poolBooth")) {
+			if (item.getDefinition().getSprite().equals("poolBooth")) {
 				
-				item.showProgram("open");
-				item.unlockTiles(); // users can now walk on this tile
-				
-				player.getRoomUser().setCanWalk(true);
+				PoolChangeBoothInteractor interactor = (PoolChangeBoothInteractor)item.getInteraction();
+				interactor.open();
 				
 				Position walk = new Position(item.getCustomData());
 				
+				player.getRoomUser().setCanWalk(true);
 				player.getRoomUser().walkTo(walk.getX(), walk.getY());
 				
 			}
