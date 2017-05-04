@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2017 at 11:47 PM
+-- Generation Time: May 05, 2017 at 01:46 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `catalogue` (
   `credits` bigint(20) NOT NULL DEFAULT '2',
   UNIQUE KEY `call_id` (`call_id`),
   KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=141 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=159 ;
 
 --
 -- Dumping data for table `catalogue`
@@ -177,7 +177,25 @@ INSERT INTO `catalogue` (`id`, `definition_id`, `call_id`, `credits`) VALUES
 (137, 2586, 'D2P', 2),
 (138, 2578, 'D6P', 2),
 (139, 2582, 'D7P', 2),
-(140, 2577, 'D9P', 2);
+(140, 2577, 'D9P', 2),
+(141, 2567, 'C1P', 2),
+(142, 2568, 'C4P', 2),
+(143, 2571, 'C5P', 2),
+(144, 2569, 'C8P', 2),
+(145, 2574, 'C3P', 2),
+(146, 2570, 'C2P', 2),
+(147, 2566, 'C6P', 2),
+(148, 2575, 'C7P', 2),
+(149, 2565, 'C9P', 2),
+(150, 2554, 'A1P', 2),
+(151, 2557, 'A4P', 2),
+(152, 2560, 'A5P', 2),
+(153, 2558, 'A8P', 2),
+(154, 2562, 'A3P', 2),
+(155, 2559, 'A2P', 2),
+(156, 2555, 'A6P', 2),
+(157, 2563, 'A7P', 2),
+(158, 2553, 'A9P', 2);
 
 -- --------------------------------------------------------
 
@@ -191,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `catalogue_deals` (
   `products` varchar(100) NOT NULL,
   `cost` int(11) NOT NULL DEFAULT '5',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `catalogue_deals`
@@ -203,7 +221,11 @@ INSERT INTO `catalogue_deals` (`id`, `call_id`, `products`, `cost`) VALUES
 (3, 'VOIMA', 'TUP,TUP,PMP,BV7', 5),
 (4, 'KIIHTELYS', 'PL4,LTP,RTV', 5),
 (5, 'deal 6', 'juliste|18,PUU,PUU,ANANAS', 5),
-(6, 'deal 7', 'juliste|7,PUU,PUU,ANANAS', 5);
+(6, 'deal 7', 'juliste|7,PUU,PUU,ANANAS', 5),
+(7, 'YLE', 'E9P,E9P,E9P,E9P,E9P,E9P', 5),
+(8, 'KOUVOLA', 'E7P,E7P,E7P,A7P', 5),
+(9, 'MAJAHARJU', 'JAA,PPA,JAA', 5),
+(10, 'POJAT', 'OSB,BMB,AURINKO,PPS', 5);
 
 -- --------------------------------------------------------
 
@@ -222,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `rotation` float NOT NULL DEFAULT '0',
   `extra_data` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=637 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=638 ;
 
 --
 -- Dumping data for table `items`
@@ -653,7 +675,8 @@ INSERT INTO `items` (`id`, `user_id`, `item_id`, `room_id`, `x`, `y`, `z`, `rota
 (632, 5, 1103, 74, '3', '4', '0.0', 0, ''),
 (633, 5, 1106, 74, '4', '7', '0.01', 0, ''),
 (634, 5, 1112, 74, '4', '3', '2.2', 4, '4'),
-(635, 5, 1031, 74, '4', '3', '0.0', 0, '');
+(635, 5, 1031, 74, '4', '3', '0.0', 0, ''),
+(637, 15, 1146, 0, '-1', '-1', '0.02', 0, '');
 
 -- --------------------------------------------------------
 
@@ -1975,7 +1998,7 @@ CREATE TABLE IF NOT EXISTS `room_chatlogs` (
   `message_type` tinyint(1) NOT NULL,
   `message` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1721 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1725 ;
 
 --
 -- Dumping data for table `room_chatlogs`
@@ -3702,7 +3725,11 @@ INSERT INTO `room_chatlogs` (`id`, `user`, `room_id`, `timestamp`, `message_type
 (1717, 'itsacademic', 14, 1493904577089, 0, 'drink'),
 (1718, 'itsacademic', 14, 1493904586513, 0, 'beer'),
 (1719, 'Alito', 35, 1493929313823, 0, 'lol'),
-(1720, 'Alito', 35, 1493929316027, 1, 'Wave ');
+(1720, 'Alito', 35, 1493929316027, 1, 'Wave '),
+(1721, 'Alito', 19, 1493938518066, 0, 'water'),
+(1722, 'Alito', 19, 1493938526257, 0, 'Phillip'),
+(1723, 'Alito', 19, 1493938531195, 1, 'Phillip'),
+(1724, 'Alito', 19, 1493938536680, 1, 'water');
 
 -- --------------------------------------------------------
 
@@ -4831,7 +4858,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_on
 (12, 'mentle', '$2a$10$MI7dLGmSTc8rsER0Dm/0ceFdkrjOiFkbpkMmpfUwBJdmrN68NwW1.', 1, NULL, 1493390146966, 'mentle@rz.com', 'i''m the one who opens if you knock', 'I''m a FUSE member!', 'sd=001/0&hr=008/238,231,224&hd=002/248,229,218&ey=005/0&fc=001/248,229,218&bd=001/248,229,218&lh=001/248,229,218&rh=001/248,229,218&ch=005/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=006/255,255,255&sh=001/255,255,255', '', 200, 0, 'Male', 'UK', '', '11.02.1995', 0),
 (13, 'rere', '$2a$10$CYxeKcJdYA7adTooIhbh4Ot5snF7HnLTX0.LLFEr64rHRFrOzbQ8m', 1, NULL, 1493488679437, 'lol@nah.com', 'f', 'I''m a FUSE member!', 'sd=001/0&hr=015/50,50,53&hd=002/238,231,224&ey=001/0&fc=001/238,231,224&bd=001/238,231,224&lh=001/238,231,224&rh=001/238,231,224&ch=009/51,51,51&ls=002/51,51,51&rs=002/51,51,51&lg=006/51,51,51&sh=003/255,255,255', '', 200, 0, 'Male', 'UK', '', '01.07.1991', 0),
 (14, 'vista4life', '$2a$10$dbxh8BFffHhe9Tuhf73gHO5fJi2LCoT3SJK4.npqK.BF3FvCvXgUK', 1, NULL, 1493390146966, 'obama@hotty.cm', 'obamaftw', 'I''m a FUSE member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '01-01-1991', 0),
-(15, 'Alito', '$2a$10$3i6CQ.pK5DokZfXrdzLA1ekFHPvK53dzkij9rLdTO6wTMOjkzMkjS', 1, NULL, 1493929951778, 'alitohabbo@hotmail.com', 'Lol', 'Yet Yet Yeti', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=005/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/199,69,217&ls=001/199,69,217&rs=001/199,69,217&lg=001/119,159,187&sh=003/47,45,38', 'ch=s02/255,255,255', 976, 58, 'Male', 'UK', '', '02.04.1993', 0),
+(15, 'Alito', '$2a$10$qsnPY29KTCTXcMv6IK8XrOloAXgYAqhSw/nZ6viqAU1ZMCKAbkxYW', 1, NULL, 1493939444665, 'alitohabbo@hotmail.com', 'ñ_ñ', 'Yet Yet Yeti', 'sd=001/0&hr=005/223,218,190&hd=001/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/199,69,217&ls=001/199,69,217&rs=001/199,69,217&lg=001/119,159,187&sh=003/47,45,38', 'ch=s02/255,255,255', 1024, 58, 'Male', 'UK', '', '02.04.1993', 0),
 (16, 'NAH', '$2a$10$bxLXptoISd7gsiM74.PYm.qVglKpjvZt/kHFe3s.QfKD.aIwjFoN.', 1, NULL, 1493390146966, 'j@j.com', '', 'I''m a FUSE member!', 'sd=001/0&hr=021/200,210,230&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '01.01.1991', 0),
 (17, 'NuuttiD3w', '$2a$10$DWxGYChEjnxFOH9JCU7AJu47APUlaWkTVaMOgp7S2WPcNRsPW4ypS', 1, NULL, 1493390146966, 'nuutti03.ns@gmail.com', 'idk m8', 'I''m a FUSE member!', 'sd=001/0&hr=002/225,204,120&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/76,136,43&ls=001/76,136,43&rs=001/76,136,43&lg=001/119,159,187&sh=004/255,255,255', '', 200, 0, 'Male', 'UK', '', '03.05.2003', 0),
 (18, 'AnotherUser', '$2a$10$.kjP76h0WOt4ogLWKo5.v.ghFs5uqDGESCT9/sSXELNPezJhbk32u', 1, 1492664949, 1493390146966, 'e2e@cc.com', 'xddddd', 'I''m a FUSE member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '04.04.1997', 0),
