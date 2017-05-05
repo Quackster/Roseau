@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2017 at 01:46 AM
+-- Generation Time: May 05, 2017 at 03:12 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `catalogue` (
   `credits` bigint(20) NOT NULL DEFAULT '2',
   UNIQUE KEY `call_id` (`call_id`),
   KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=159 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=166 ;
 
 --
 -- Dumping data for table `catalogue`
@@ -195,7 +195,14 @@ INSERT INTO `catalogue` (`id`, `definition_id`, `call_id`, `credits`) VALUES
 (155, 2559, 'A2P', 2),
 (156, 2555, 'A6P', 2),
 (157, 2563, 'A7P', 2),
-(158, 2553, 'A9P', 2);
+(158, 2553, 'A9P', 2),
+(159, 1119, 'MM1', 2),
+(160, 1120, 'MM2', 2),
+(161, 1121, 'MM3', 2),
+(162, 1122, 'MM4', 2),
+(163, 1123, 'MM5', 2),
+(164, 1124, 'MM6', 2),
+(165, 1125, 'MM7', 2);
 
 -- --------------------------------------------------------
 
@@ -244,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `rotation` float NOT NULL DEFAULT '0',
   `extra_data` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=638 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=642 ;
 
 --
 -- Dumping data for table `items`
@@ -533,7 +540,7 @@ INSERT INTO `items` (`id`, `user_id`, `item_id`, `room_id`, `x`, `y`, `z`, `rota
 (439, 15, 1178, 46, '4', '8', '0.01', 2, ''),
 (440, 15, 1176, 46, '4', '1', '0.02', 0, ''),
 (441, 15, 1017, 46, '4', '5', '0.01', 0, ''),
-(443, 15, 1176, 46, '11', '1', '0.01', 0, ''),
+(443, 15, 1176, 46, '11', '1', '0.0', 0, ''),
 (453, 15, 1148, 46, '7', '1', '0.01', 2, ''),
 (454, 15, 1148, 46, '4', '1', '0.0', 2, ''),
 (455, 15, 1013, 46, '8', '10', '0.04', 0, ''),
@@ -676,7 +683,10 @@ INSERT INTO `items` (`id`, `user_id`, `item_id`, `room_id`, `x`, `y`, `z`, `rota
 (633, 5, 1106, 74, '4', '7', '0.01', 0, ''),
 (634, 5, 1112, 74, '4', '3', '2.2', 4, '4'),
 (635, 5, 1031, 74, '4', '3', '0.0', 0, ''),
-(637, 15, 1146, 0, '-1', '-1', '0.02', 0, '');
+(637, 15, 1146, 0, '-1', '-1', '0.02', 0, ''),
+(638, 5, 1161, 0, '0', '0', '0', 0, ''),
+(639, 5, 1162, 0, '0', '0', '0', 0, ''),
+(641, 5, 1140, 0, '0', '0', '0', 0, '');
 
 -- --------------------------------------------------------
 
@@ -1746,7 +1756,7 @@ CREATE TABLE IF NOT EXISTS `messenger_messages` (
   `unread` tinyint(1) NOT NULL DEFAULT '1',
   `message` varchar(300) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=85 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=86 ;
 
 --
 -- Dumping data for table `messenger_messages`
@@ -1830,11 +1840,12 @@ INSERT INTO `messenger_messages` (`id`, `to_id`, `from_id`, `time_sent`, `unread
 (77, 5, 55, 1493901954639, 0, 'yeah, it never did. it was always the same throughout all'),
 (78, 15, 5, 1493903211353, 0, 'In my room now.'),
 (79, 55, 5, 1493903211369, 0, 'In my room now.'),
-(80, 5, 15, 1493926591459, 1, 'hi'),
-(81, 5, 15, 1493926596228, 1, 'im back :p'),
-(82, 5, 15, 1493929155314, 1, 'Discord not work :( we can use teamviewer?'),
-(83, 5, 15, 1493929160709, 1, 'or other'),
-(84, 5, 15, 1493929216688, 1, 'Im in rage :p');
+(80, 5, 15, 1493926591459, 0, 'hi'),
+(81, 5, 15, 1493926596228, 0, 'im back :p'),
+(82, 5, 15, 1493929155314, 0, 'Discord not work :( we can use teamviewer?'),
+(83, 5, 15, 1493929160709, 0, 'or other'),
+(84, 5, 15, 1493929216688, 0, 'Im in rage :p'),
+(85, 15, 5, 1493942194007, 1, 'Sad, next time we speak I want to talk to you about some things I''ve done to the server :D\n\nAlso you can contact me by email.\n\nquacksterr.15@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -4848,7 +4859,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `personal_greeting`, `figure`, `pool_figure`, `credits`, `tickets`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
 (2, 'test', '$2a$06$AqhaaU651jubHz5CIb8MSe9.S/pPEwynB9Z/o3AHvV2AEO/EALB5G', 1, 44324323, 1493472369828, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'I''m a FUSE member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', 'ch=s01/51,120,201', 200, 0, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '$2a$10$DUtOjFSUekwD4HhtVRUfLOjeEXV4uuFiFfIWeJjqpLT.K7Mswe0Ei', 3, 1489384512, 1493903921124, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'The best duck in town', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/51,120,201', 1138, 22, 'Male', 'UK', '', '01.01.1997', 1),
+(5, 'Alex', '$2a$10$sO7U7yKz6Z9fBfkKS6HHr.salmQS2oqJrCf1gXnDmNiiAVZ290PXO', 3, 1489384512, 1493941861424, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'The best duck in town', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/51,120,201', 1209, 22, 'Male', 'UK', '', '01.01.1997', 1),
 (6, 'Dark', '$2a$10$3VoNh8uaT6ZxeG1nsp1PhuTK8HKml5U6svLyjFN/4GBqWJ6DAUWgS', 1, NULL, 1493390146966, 'scott@hypermine.com', 'cool kid', 'I''m a FUSE member!', 'sd=001/0&hr=023/103,78,59&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/101,106,64&ls=001/101,106,64&rs=001/101,106,64&lg=006/119,159,187&sh=002/124,143,125', 'ch=s02/42,199,210', 200, 0, 'Male', 'UK', '', '01.01.1990', 0),
 (7, 'Dominic', '$2a$10$9iQ9y6khiAW5s5dT9ZyjcuH0DUGQmG18h9zAJcsk/BhCicOC7ld.y', 1, NULL, 1493548812885, 'dsmithpw@gmail.com', 'Copies fade so fast...', 'I''m a FUSE member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 340, 30, 'Male', 'UK', '', '26.02.1997', 0),
 (8, 'Asc', '$2a$10$CeaFcScTZjV2M2Ld51slluF46C8rzncssm.woj78xuVoDknPx7aLW', 1, 1492627423, 1493817062876, 'spam@here.nty', 'H&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;pp&auml;ij&auml;&auml;!', 'I''m a FUSE member!', 'sd=001/0&hr=000/255,255,255&hd=002/0,125,0&ey=000/0&fc=001/0,125,0&bd=001/0,125,0&lh=001/0,125,0&rh=001/0,125,0&ch=009/25,25,25&ls=001/25,25,25&rs=001/25,25,25&lg=004/25,25,25&sh=003/25,25,25', '', 260, 0, 'Male', 'UK', '', '11.11.1911', 0),
