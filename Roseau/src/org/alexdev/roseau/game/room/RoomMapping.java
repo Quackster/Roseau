@@ -80,6 +80,12 @@ public class RoomMapping {
 			if (item.getDefinition().getBehaviour().isCanStandOnTop()) {
 				continue;
 			}
+			
+			if (item.getDefinition().getSprite().equals("bed_budget_one") ||
+				item.getDefinition().getSprite().equals("bed_budgetb_one")) {
+				item.delete();
+				return;
+			}
 
 			double stacked_height = item.getDefinition().getHeight();
 			
@@ -206,6 +212,7 @@ public class RoomMapping {
 
 	public void addItem(Item item) {
 
+		
 		item.setRoomID(this.room.getData().getID());
 		
 		this.room.getItems().put(item.getID(), item);
