@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2017 at 03:12 AM
+-- Generation Time: May 05, 2017 at 03:29 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `catalogue` (
   `credits` bigint(20) NOT NULL DEFAULT '2',
   UNIQUE KEY `call_id` (`call_id`),
   KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=166 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=167 ;
 
 --
 -- Dumping data for table `catalogue`
@@ -202,7 +202,8 @@ INSERT INTO `catalogue` (`id`, `definition_id`, `call_id`, `credits`) VALUES
 (162, 1122, 'MM4', 2),
 (163, 1123, 'MM5', 2),
 (164, 1124, 'MM6', 2),
-(165, 1125, 'MM7', 2);
+(165, 1125, 'MM7', 2),
+(166, 1046, 'TAP', 5);
 
 -- --------------------------------------------------------
 
@@ -251,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `rotation` float NOT NULL DEFAULT '0',
   `extra_data` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=642 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=644 ;
 
 --
 -- Dumping data for table `items`
@@ -550,7 +551,7 @@ INSERT INTO `items` (`id`, `user_id`, `item_id`, `room_id`, `x`, `y`, `z`, `rota
 (460, 15, 1013, 69, '10', '7', '0.02', 6, ''),
 (461, 15, 1013, 46, '8', '1', '0.02', 4, ''),
 (466, 15, 1160, 69, '4', '10', '0.01', 6, ''),
-(467, 15, 1156, 69, '8', '13', '0.01', 6, 'ON'),
+(467, 15, 1156, 69, '8', '13', '0.01', 6, 'OFF'),
 (468, 15, 1159, 69, '7', '13', '2.0', 2, ''),
 (469, 15, 1157, 69, '4', '12', '0.01', 0, ''),
 (470, 15, 1158, 69, '11', '12', '0.01', 6, 'ON'),
@@ -573,7 +574,7 @@ INSERT INTO `items` (`id`, `user_id`, `item_id`, `room_id`, `x`, `y`, `z`, `rota
 (503, 15, 1177, 69, '7', '12', '0.01', 0, 'ON'),
 (504, 15, 1116, 69, '4', '2', '0.01', 2, ''),
 (505, 15, 2409, 69, 'frontwall -5.2188,-5.8889,5219', '-1', '0.01', 0, '23'),
-(506, 15, 1177, 69, '9', '12', '0.01', 0, 'ON'),
+(506, 15, 1177, 69, '9', '12', '0.01', 0, 'OFF'),
 (507, 15, 1038, 69, '4', '8', '0.01', 0, ''),
 (508, 15, 1041, 69, '9', '1', '0.02', 0, 'OFF'),
 (510, 15, 1105, 69, '4', '8', '2.0', 0, ''),
@@ -686,7 +687,9 @@ INSERT INTO `items` (`id`, `user_id`, `item_id`, `room_id`, `x`, `y`, `z`, `rota
 (637, 15, 1146, 0, '-1', '-1', '0.02', 0, ''),
 (638, 5, 1161, 0, '0', '0', '0', 0, ''),
 (639, 5, 1162, 0, '0', '0', '0', 0, ''),
-(641, 5, 1140, 0, '0', '0', '0', 0, '');
+(641, 5, 1140, 0, '0', '0', '0', 0, ''),
+(642, 15, 1128, 46, '7', '3', '0.0', 0, ''),
+(643, 15, 1172, 46, '6', '13', '2.0', 2, '');
 
 -- --------------------------------------------------------
 
@@ -1756,7 +1759,7 @@ CREATE TABLE IF NOT EXISTS `messenger_messages` (
   `unread` tinyint(1) NOT NULL DEFAULT '1',
   `message` varchar(300) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=86 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=87 ;
 
 --
 -- Dumping data for table `messenger_messages`
@@ -1845,7 +1848,8 @@ INSERT INTO `messenger_messages` (`id`, `to_id`, `from_id`, `time_sent`, `unread
 (82, 5, 15, 1493929155314, 0, 'Discord not work :( we can use teamviewer?'),
 (83, 5, 15, 1493929160709, 0, 'or other'),
 (84, 5, 15, 1493929216688, 0, 'Im in rage :p'),
-(85, 15, 5, 1493942194007, 1, 'Sad, next time we speak I want to talk to you about some things I''ve done to the server :D\n\nAlso you can contact me by email.\n\nquacksterr.15@gmail.com');
+(85, 15, 5, 1493942194007, 0, 'Sad, next time we speak I want to talk to you about some things I''ve done to the server :D\n\nAlso you can contact me by email.\n\nquacksterr.15@gmail.com'),
+(86, 5, 15, 1493989314644, 0, 'Hi :) ');
 
 -- --------------------------------------------------------
 
@@ -1858,7 +1862,7 @@ CREATE TABLE IF NOT EXISTS `messenger_requests` (
   `from_id` int(11) NOT NULL,
   `to_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `messenger_requests`
@@ -1896,7 +1900,7 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `wallpaper` varchar(5) NOT NULL DEFAULT '0',
   `floor` varchar(5) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=76 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=75 ;
 
 --
 -- Dumping data for table `rooms`
@@ -2009,7 +2013,7 @@ CREATE TABLE IF NOT EXISTS `room_chatlogs` (
   `message_type` tinyint(1) NOT NULL,
   `message` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1725 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1886 ;
 
 --
 -- Dumping data for table `room_chatlogs`
@@ -3740,7 +3744,169 @@ INSERT INTO `room_chatlogs` (`id`, `user`, `room_id`, `timestamp`, `message_type
 (1721, 'Alito', 19, 1493938518066, 0, 'water'),
 (1722, 'Alito', 19, 1493938526257, 0, 'Phillip'),
 (1723, 'Alito', 19, 1493938531195, 1, 'Phillip'),
-(1724, 'Alito', 19, 1493938536680, 1, 'water');
+(1724, 'Alito', 19, 1493938536680, 1, 'water'),
+(1725, 'Alito', 74, 1493989345332, 0, 'hello :)'),
+(1726, 'Alito', 74, 1493989361630, 1, 'I sent you a message in live'),
+(1727, 'Alex', 74, 1493989389334, 0, 'hello :)'),
+(1728, 'Alito', 74, 1493989401803, 0, ':) I saw private rooms'),
+(1729, 'Alex', 74, 1493989407960, 0, 'yes, the list works now '),
+(1730, 'Alito', 74, 1493989411179, 0, 'new change :P'),
+(1731, 'Alex', 74, 1493989414616, 0, 'Also, all catalogue products are purchasable'),
+(1732, 'Alex', 74, 1493989416397, 0, ';D'),
+(1733, 'Alex', 74, 1493989420429, 0, 'Plasto furniture'),
+(1734, 'Alex', 74, 1493989427991, 0, 'rugs and pink polar rug'),
+(1735, 'Alex', 74, 1493989448023, 0, 'Also, rug bug is fixed in your room :)'),
+(1736, 'Alito', 74, 1493989452711, 0, 'let me see :p'),
+(1737, 'Alex', 74, 1493989462774, 0, 'go to your room'),
+(1738, 'Alex', 74, 1493989465321, 0, 'and we can see'),
+(1739, 'Alito', 46, 1493989493806, 0, ':D'),
+(1740, 'Alex', 46, 1493989501931, 0, ':D'),
+(1741, 'Alito', 46, 1493989503009, 0, 'nice!'),
+(1742, 'Alex', 46, 1493989508056, 0, 'I made the server'),
+(1743, 'Alex', 46, 1493989510259, 0, 'ignore rugs :)'),
+(1744, 'Alex', 46, 1493989526320, 0, ':D'),
+(1745, 'Alito', 46, 1493989537929, 0, 'fantastic :P you are pro programming'),
+(1746, 'Alex', 46, 1493989541867, 0, 'Stacking on z shelf is fixed'),
+(1747, 'Alex', 46, 1493989549399, 0, 'and you can purchase ALL deals'),
+(1748, 'Alex', 46, 1493989551430, 0, ':P'),
+(1749, 'Alex', 46, 1493989561024, 0, 'there is a deal with doormat, z shelf and tv'),
+(1750, 'Alex', 46, 1493989566509, 0, 'my favourite :D'),
+(1751, 'Alex', 46, 1493989567916, 0, 'lol'),
+(1752, 'Alito', 46, 1493989581120, 1, 'z shelf?'),
+(1753, 'Alex', 46, 1493989592637, 0, 'under "mode"'),
+(1754, 'Alito', 46, 1493989618280, 0, 'I cant buy fireplace'),
+(1755, 'Alex', 46, 1493989634469, 0, 'oh'),
+(1756, 'Alex', 46, 1493989641860, 0, 'I have to add it :P'),
+(1757, 'Alito', 46, 1493989651751, 0, ':D'),
+(1758, 'Alito', 46, 1493989672862, 0, 'nice fixes :D'),
+(1759, 'Alito', 46, 1493989677002, 0, 'i like it'),
+(1760, 'Alex', 46, 1493989677096, 0, ':D'),
+(1761, 'Alex', 46, 1493989689660, 0, 'You can scroll up/dwn'),
+(1762, 'Alex', 46, 1493989694332, 0, 'on navigator private rooms'),
+(1763, 'Alex', 46, 1493989716501, 0, 'Now I need to add'),
+(1764, 'Alex', 46, 1493989719049, 0, 'favourite rooms'),
+(1765, 'Alito', 46, 1493989729253, 1, 'yes'),
+(1766, 'Alex', 46, 1493989737784, 0, ':) now I need to add favourites feature'),
+(1767, 'Alito', 46, 1493989754379, 0, 'and can you add the wave?'),
+(1768, 'Alex', 46, 1493989766404, 0, 'This habbo version was before "wave"'),
+(1769, 'Alito', 46, 1493989776592, 0, 'Ah'),
+(1770, 'Alex', 46, 1493989778295, 0, 'the "wave" button Club Slinky Helsinki rooms does nothing'),
+(1771, 'Alex', 46, 1493989783092, 0, 'have a look'),
+(1772, 'Alex', 35, 1493989817406, 0, 'there is a static wave button'),
+(1773, 'Alito', 35, 1493989818453, 0, 'I said it for that'),
+(1774, 'Alito', 35, 1493989820656, 0, ':p'),
+(1775, 'Alex', 35, 1493989823891, 0, 'but it sends nothing to server'),
+(1776, 'Alex', 35, 1493989831532, 0, 'and there''s nothing in DCRs about wave animation'),
+(1777, 'Alito', 35, 1493989836173, 0, 'hmm'),
+(1778, 'Alito', 69, 1493989878191, 0, ':p'),
+(1779, 'Alex', 69, 1493989907859, 0, 'yes still disconnects'),
+(1780, 'Alex', 69, 1493989910016, 0, 'i dont know why'),
+(1781, 'Alito', 69, 1493989948329, 0, 'then'),
+(1782, 'Alito', 69, 1493989972173, 0, 'then in v1 wave did not exist '),
+(1783, 'Alito', 69, 1493989977955, 0, 'and the dance'),
+(1784, 'Alito', 69, 1493989985612, 0, 'its like this?'),
+(1785, 'Alex', 69, 1493990038941, 0, 'back'),
+(1786, 'Alex', 69, 1493990041566, 0, 'what did u say'),
+(1787, 'Alito', 69, 1493990058551, 0, 'then in v1 wave did not exist '),
+(1788, 'Alex', 69, 1493990062551, 0, 'yes'),
+(1789, 'Alex', 69, 1493990066985, 0, 'i had to edit dcr string'),
+(1790, 'Alito', 69, 1493990074627, 0, 'and the dance its like this? '),
+(1791, 'Alex', 69, 1493990074924, 0, 'to get club slinky helsinki to load'),
+(1792, 'Alex', 69, 1493990085470, 0, 'yes'),
+(1793, 'Alito', 69, 1493990103846, 0, 'very different'),
+(1794, 'Alex', 69, 1493990106877, 0, 'I am so glad'),
+(1795, 'Alex', 69, 1493990112643, 0, 'rug bug is finally fixed :)'),
+(1796, 'Alito', 69, 1493990127816, 0, ':)'),
+(1797, 'Alex', 69, 1493990140927, 0, 'XD!'),
+(1798, 'Alito', 69, 1493990143568, 1, 'was hard?'),
+(1799, 'Alex', 69, 1493990146584, 0, 'no'),
+(1800, 'Alex', 69, 1493990153927, 0, 'I just made server ignore rugs when doing item collision'),
+(1801, 'Alex', 69, 1493990156521, 0, ':)'),
+(1802, 'Alito', 69, 1493990169351, 0, ':)'),
+(1803, 'Alito', 69, 1493990192087, 0, 'I understand bit I would not know how to made'),
+(1804, 'Alito', 69, 1493990198727, 0, 'but'),
+(1805, 'Alex', 69, 1493990208729, 0, 'Ah'),
+(1806, 'Alex', 69, 1493990217933, 0, 'I understand'),
+(1807, 'Alex', 69, 1493990236622, 0, 'water from sink XD'),
+(1808, 'Alex', 69, 1493990252666, 0, 'I will make'),
+(1809, 'Alex', 69, 1493990257323, 0, 'fireplace'),
+(1810, 'Alex', 69, 1493990259276, 0, 'purchasable'),
+(1811, 'Alito', 69, 1493990261058, 0, 'yes and blood from red sink :p'),
+(1812, 'Alex', 69, 1493990266792, 0, ':O'),
+(1813, 'Alito', 69, 1493990275949, 0, 'habboween :p'),
+(1814, 'Alex', 69, 1493990285027, 0, 'Oh yes :D'),
+(1815, 'Alito', 69, 1493990303356, 0, 'I just fixed '),
+(1816, 'Alito', 69, 1493990310950, 0, 'when you change your clothes in my retro'),
+(1817, 'Alex', 69, 1493990318826, 0, 'MUS server? :)'),
+(1818, 'Alito', 69, 1493990322247, 0, 'clouds'),
+(1819, 'Alex', 69, 1493990329904, 0, 'gg'),
+(1820, 'Alex', 69, 1493990331248, 0, ':)'),
+(1821, 'Alito', 69, 1493990332466, 1, 'MUS?'),
+(1822, 'Alito', 69, 1493990335061, 0, ':P'),
+(1823, 'Alex', 69, 1493990335654, 0, 'yes'),
+(1824, 'Alex', 69, 1493990340811, 0, 'uhm idk how to explain it'),
+(1825, 'Alex', 69, 1493990346670, 0, 'like u send commands to server'),
+(1826, 'Alito', 69, 1493990373750, 0, 'sorry Im very noob with this ');
+INSERT INTO `room_chatlogs` (`id`, `user`, `room_id`, `timestamp`, `message_type`, `message`) VALUES
+(1827, 'Alito', 69, 1493990377657, 0, ':('),
+(1828, 'Alex', 69, 1493990393956, 0, 'lol its fine'),
+(1829, 'Alito', 69, 1493990406911, 0, 'I only know a bit'),
+(1830, 'Alito', 69, 1493990420538, 0, 'about phpmyadmin'),
+(1831, 'Alito', 69, 1493990425272, 0, 'emu '),
+(1832, 'Alito', 69, 1493990429925, 0, 'phpretro :p'),
+(1833, 'Alex', 69, 1493990460082, 0, ':P'),
+(1834, 'Alito', 69, 1493990462910, 0, 'I did my retro with a youtube video xD'),
+(1835, 'Alex', 69, 1493990484629, 0, 'nice :P it''s been ages since i had to look at tutorials but'),
+(1836, 'Alito', 69, 1493990484644, 0, 'and was hard find domain etc '),
+(1837, 'Alex', 69, 1493990490348, 0, 'i remember reading stuff on ragezone'),
+(1838, 'Alex', 69, 1493990501567, 0, 'and i remember they said http://localhost/ and i thought it was'),
+(1839, 'Alex', 69, 1493990506395, 0, 'a website u go to'),
+(1840, 'Alex', 69, 1493990508379, 0, 'LOL'),
+(1841, 'Alex', 69, 1493990510910, 0, ':P'),
+(1842, 'Alito', 69, 1493990512660, 0, 'Yes!'),
+(1843, 'Alito', 69, 1493990519145, 0, ':P'),
+(1844, 'Alito', 69, 1493990544052, 0, 'now I know with xampp it works'),
+(1845, 'Alex', 69, 1493990548240, 0, ':P'),
+(1846, 'Alito', 69, 1493990563599, 0, 'your emu is java?'),
+(1847, 'Alex', 69, 1493990567287, 0, 'yes'),
+(1848, 'Alex', 69, 1493990592209, 0, 'so it can run on linux >_>'),
+(1849, 'Alito', 69, 1493990593021, 0, 'java read lingo?'),
+(1850, 'Alex', 69, 1493990606475, 0, 'client is read by your PC'),
+(1851, 'Alex', 69, 1493990609221, 0, 'not server'),
+(1852, 'Alito', 69, 1493990618144, 0, 'ah '),
+(1853, 'Alex', 69, 1493990625771, 0, 'client just sends packets to server :P'),
+(1854, 'Alex', 69, 1493990629068, 0, 'and server sends back'),
+(1855, 'Alito', 69, 1493990656010, 0, 'I understand :p '),
+(1856, 'Alex', 69, 1493990664933, 0, ':)'),
+(1857, 'Alex', 69, 1493990672003, 0, 'now'),
+(1858, 'Alex', 69, 1493990675050, 0, 'I need to debug'),
+(1859, 'Alex', 69, 1493990684050, 0, 'and get fireplace for catalogue'),
+(1860, 'Alito', 69, 1493990703564, 0, 'yes, mode fireplace'),
+(1861, 'Alex', 69, 1493990722090, 0, 'it took forever'),
+(1862, 'Alex', 69, 1493990732700, 0, 'to add plasto furniture to catalogue but it''s all added now :)'),
+(1863, 'Alito', 69, 1493990752780, 0, 'the RGB colours?'),
+(1864, 'Alex', 69, 1493990764171, 0, 'HTML hex colours'),
+(1865, 'Alex', 69, 1493990766546, 0, 'for furniture'),
+(1866, 'Alex', 69, 1493990775767, 0, 'like FFFFFF'),
+(1867, 'Alito', 69, 1493990785548, 1, 'Yes I have plasto with colours :P'),
+(1868, 'Alito', 69, 1493990790060, 0, 'I fixed some items '),
+(1869, 'Alito', 69, 1493990812654, 0, '#FFFFF is white'),
+(1870, 'Alito', 69, 1493990816498, 0, ':p'),
+(1871, 'Alex', 69, 1493990835453, 0, 'yes :P'),
+(1872, 'Alito', 69, 1493990863253, 0, 'you can select colours from color-hex.com '),
+(1873, 'Alex', 69, 1493990863565, 0, 'i have to restart server'),
+(1874, 'Alex', 69, 1493990867393, 0, 'yes :P'),
+(1875, 'Alex', 69, 1493990868846, 0, ':D'),
+(1876, 'Alito', 69, 1493990875191, 0, ':) Ok see you '),
+(1877, 'Alex', 69, 1493990881113, 0, 'restarting server, cya soon :D'),
+(1878, 'Alito', 69, 1493990881300, 0, 'in 30 minutes ok?'),
+(1879, 'Alex', 69, 1493990884581, 0, 'oh'),
+(1880, 'Alex', 69, 1493990887003, 0, 'yes sure'),
+(1881, 'Alito', 69, 1493990887785, 0, ':p shower time'),
+(1882, 'Alito', 69, 1493990888816, 0, 'haha'),
+(1883, 'Alex', 69, 1493990890175, 0, 'lol'),
+(1884, 'Alex', 69, 1493990893175, 0, 'cya l8r :D'),
+(1885, 'Alito', 69, 1493990897488, 0, 'cya :D');
 
 -- --------------------------------------------------------
 
@@ -4859,7 +5025,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_online`, `email`, `mission`, `personal_greeting`, `figure`, `pool_figure`, `credits`, `tickets`, `sex`, `country`, `badge`, `birthday`, `has_logged_in`) VALUES
 (2, 'test', '$2a$06$AqhaaU651jubHz5CIb8MSe9.S/pPEwynB9Z/o3AHvV2AEO/EALB5G', 1, 44324323, 1493472369828, 'ereewr@wwwwaaac.com', 'eating more cake, k?', 'I''m a FUSE member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=003/121,94,83', 'ch=s01/51,120,201', 200, 0, 'Female', 'UK', '', '01.01.1997', 1),
-(5, 'Alex', '$2a$10$sO7U7yKz6Z9fBfkKS6HHr.salmQS2oqJrCf1gXnDmNiiAVZ290PXO', 3, 1489384512, 1493941861424, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'The best duck in town', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/51,120,201', 1209, 22, 'Male', 'UK', '', '01.01.1997', 1),
+(5, 'Alex', '$2a$10$8K79N.9Rgnv.aYjOqYuB3OonnYrUvx4HVlalE7SQlp5floFphL45G', 3, 1489384512, 1493989886359, 'we3rejfpef3@cefc.com', 'so i herd u liek duckz', 'The best duck in town', 'sd=001/0&hr=005/223,218,190&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=008/102,102,102&ls=001/102,102,102&rs=001/102,102,102&lg=006/149,120,78&sh=003/47,45,38', 'ch=s02/51,120,201', 1289, 22, 'Male', 'UK', '', '01.01.1997', 1),
 (6, 'Dark', '$2a$10$3VoNh8uaT6ZxeG1nsp1PhuTK8HKml5U6svLyjFN/4GBqWJ6DAUWgS', 1, NULL, 1493390146966, 'scott@hypermine.com', 'cool kid', 'I''m a FUSE member!', 'sd=001/0&hr=023/103,78,59&hd=002/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/101,106,64&ls=001/101,106,64&rs=001/101,106,64&lg=006/119,159,187&sh=002/124,143,125', 'ch=s02/42,199,210', 200, 0, 'Male', 'UK', '', '01.01.1990', 0),
 (7, 'Dominic', '$2a$10$9iQ9y6khiAW5s5dT9ZyjcuH0DUGQmG18h9zAJcsk/BhCicOC7ld.y', 1, NULL, 1493548812885, 'dsmithpw@gmail.com', 'Copies fade so fast...', 'I''m a FUSE member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 340, 30, 'Male', 'UK', '', '26.02.1997', 0),
 (8, 'Asc', '$2a$10$CeaFcScTZjV2M2Ld51slluF46C8rzncssm.woj78xuVoDknPx7aLW', 1, 1492627423, 1493817062876, 'spam@here.nty', 'H&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;rp&auml;tih&ouml;pp&auml;ij&auml;&auml;!', 'I''m a FUSE member!', 'sd=001/0&hr=000/255,255,255&hd=002/0,125,0&ey=000/0&fc=001/0,125,0&bd=001/0,125,0&lh=001/0,125,0&rh=001/0,125,0&ch=009/25,25,25&ls=001/25,25,25&rs=001/25,25,25&lg=004/25,25,25&sh=003/25,25,25', '', 260, 0, 'Male', 'UK', '', '11.11.1911', 0),
@@ -4869,7 +5035,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `rank`, `join_date`, `last_on
 (12, 'mentle', '$2a$10$MI7dLGmSTc8rsER0Dm/0ceFdkrjOiFkbpkMmpfUwBJdmrN68NwW1.', 1, NULL, 1493390146966, 'mentle@rz.com', 'i''m the one who opens if you knock', 'I''m a FUSE member!', 'sd=001/0&hr=008/238,231,224&hd=002/248,229,218&ey=005/0&fc=001/248,229,218&bd=001/248,229,218&lh=001/248,229,218&rh=001/248,229,218&ch=005/255,255,255&ls=001/255,255,255&rs=001/255,255,255&lg=006/255,255,255&sh=001/255,255,255', '', 200, 0, 'Male', 'UK', '', '11.02.1995', 0),
 (13, 'rere', '$2a$10$CYxeKcJdYA7adTooIhbh4Ot5snF7HnLTX0.LLFEr64rHRFrOzbQ8m', 1, NULL, 1493488679437, 'lol@nah.com', 'f', 'I''m a FUSE member!', 'sd=001/0&hr=015/50,50,53&hd=002/238,231,224&ey=001/0&fc=001/238,231,224&bd=001/238,231,224&lh=001/238,231,224&rh=001/238,231,224&ch=009/51,51,51&ls=002/51,51,51&rs=002/51,51,51&lg=006/51,51,51&sh=003/255,255,255', '', 200, 0, 'Male', 'UK', '', '01.07.1991', 0),
 (14, 'vista4life', '$2a$10$dbxh8BFffHhe9Tuhf73gHO5fJi2LCoT3SJK4.npqK.BF3FvCvXgUK', 1, NULL, 1493390146966, 'obama@hotty.cm', 'obamaftw', 'I''m a FUSE member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '01-01-1991', 0),
-(15, 'Alito', '$2a$10$qsnPY29KTCTXcMv6IK8XrOloAXgYAqhSw/nZ6viqAU1ZMCKAbkxYW', 1, NULL, 1493939444665, 'alitohabbo@hotmail.com', 'ñ_ñ', 'Yet Yet Yeti', 'sd=001/0&hr=005/223,218,190&hd=001/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/199,69,217&ls=001/199,69,217&rs=001/199,69,217&lg=001/119,159,187&sh=003/47,45,38', 'ch=s02/255,255,255', 1024, 58, 'Male', 'UK', '', '02.04.1993', 0),
+(15, 'Alito', '$2a$10$Lq0qhMuwcSpJiFIQSY4H.O9lvhDgffSdJ7PZ3WgXEN0sZuzOUs4q6', 1, NULL, 1493989894187, 'alitohabbo@hotmail.com', 'ñ_ñ', 'Yet Yet Yeti', 'sd=001/0&hr=005/223,218,190&hd=001/255,204,153&ey=003/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=010/199,69,217&ls=001/199,69,217&rs=001/199,69,217&lg=001/119,159,187&sh=003/47,45,38', 'ch=s02/255,255,255', 1036, 58, 'Male', 'UK', '', '02.04.1993', 0),
 (16, 'NAH', '$2a$10$bxLXptoISd7gsiM74.PYm.qVglKpjvZt/kHFe3s.QfKD.aIwjFoN.', 1, NULL, 1493390146966, 'j@j.com', '', 'I''m a FUSE member!', 'sd=001/0&hr=021/200,210,230&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '01.01.1991', 0),
 (17, 'NuuttiD3w', '$2a$10$DWxGYChEjnxFOH9JCU7AJu47APUlaWkTVaMOgp7S2WPcNRsPW4ypS', 1, NULL, 1493390146966, 'nuutti03.ns@gmail.com', 'idk m8', 'I''m a FUSE member!', 'sd=001/0&hr=002/225,204,120&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/76,136,43&ls=001/76,136,43&rs=001/76,136,43&lg=001/119,159,187&sh=004/255,255,255', '', 200, 0, 'Male', 'UK', '', '03.05.2003', 0),
 (18, 'AnotherUser', '$2a$10$.kjP76h0WOt4ogLWKo5.v.ghFs5uqDGESCT9/sSXELNPezJhbk32u', 1, 1492664949, 1493390146966, 'e2e@cc.com', 'xddddd', 'I''m a FUSE member!', 'sd=001/0&hr=001/255,255,255&hd=002/255,204,153&ey=001/0&fc=001/255,204,153&bd=001/255,204,153&lh=001/255,204,153&rh=001/255,204,153&ch=001/232,177,55&ls=001/232,177,55&rs=001/232,177,55&lg=001/119,159,187&sh=001/175,220,223', '', 200, 0, 'Male', 'UK', '', '04.04.1997', 0),
