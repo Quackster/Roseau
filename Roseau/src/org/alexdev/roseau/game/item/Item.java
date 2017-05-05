@@ -134,10 +134,16 @@ public class Item implements SerializableObject {
 				response.appendArgument("extr=", '/');
 				response.appendArgument(Integer.toString(this.targetTeleporterID), '/');
 			}
+			
+			if (!this.getDefinition().getSprite().equals("fireplace_polyfon")) {
 
 			if (this.customData != null && this.getDefinition().getDataClass() != null) {
 				response.appendArgument(this.getDefinition().getDataClass(), '/');
 				response.appendArgument(this.customData, '/');
+			}
+			} else {
+				response.appendArgument(this.getDefinition().getDataClass(), '/');
+				response.appendArgument(this.customData, '/');				
 			}
 
 			return;

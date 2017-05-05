@@ -164,6 +164,15 @@ public class RoomMapping {
 				tile_valid = false;
 			}
 		}
+		
+		Player goal = this.isValidGoal(x, y);
+		
+		if (goal != null) {
+			if (entity != goal) {
+				tile_valid = false;
+			}
+		}
+		
 
 		return tile_valid;
 	}
@@ -380,6 +389,28 @@ public class RoomMapping {
 
 			if (player.getRoomUser().getPosition().getX() == x &&
 					player.getRoomUser().getPosition().getY() == y) {
+
+				return player;
+			}
+		}
+
+		return null;
+	}
+	
+	public Player isValidGoal(int x, int y) {
+
+		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
+			return null;
+		}
+
+		for (Player player : this.room.getPlayers()) {
+
+			if (player.getRoomUser().getGoal() == null) {
+				continue;
+			}
+			
+			if (player.getRoomUser().getGoal().getX() == x &&
+					player.getRoomUser().getGoal().getY() == y) {
 
 				return player;
 			}

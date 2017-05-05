@@ -111,6 +111,8 @@ public class RoomUser {
 		this.removeStatus("mv");
 
 		this.isWalking = false;
+		
+		this.goal = null;
 		this.next = null;
 
 		if (!(this.entity instanceof Player)) {
@@ -233,9 +235,7 @@ public class RoomUser {
 			return false;
 		}
 
-		this.goal.setX(x);
-		this.goal.setY(y);
-
+		this.goal = new Position(x, y);
 		LinkedList<Position> path = Pathfinder.makePath(this.entity);
 
 		if (path == null) {
