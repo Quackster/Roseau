@@ -23,8 +23,11 @@ public class NettyResponse implements Response {
 	}
 
 	@Override
-	public void append(String s) {
-		this.buffer.append(s);
+	public void append(Object s) {
+		
+		String data = String.valueOf(s);
+		data = data.replace('#', '*');
+		this.buffer.append(data);
 	}
 
 	@Override
@@ -49,24 +52,24 @@ public class NettyResponse implements Response {
 
 	@Override
 	public void appendKVArgument(String key, String value) {
-			this.buffer.append((char)13);
-			this.buffer.append(key);
-			this.buffer.append('=');
-			this.buffer.append(value);
+		this.append((char)13);
+		this.append(key);
+		this.append('=');
+		this.append(value);
 	}
 
 	@Override
 	public void appendKV2Argument(String key, String value) {
-			this.buffer.append((char)13);
-			this.buffer.append(key);
-			this.buffer.append(':');
-			this.buffer.append(value);
+		this.append((char)13);
+		this.append(key);
+		this.append(':');
+		this.append(value);
 	}
 
 	@Override
 	public void appendArgument(String arg, char delimiter) {
-			this.buffer.append(delimiter);
-			this.buffer.append(arg);	
+		this.append(delimiter);
+		this.append(arg);	
 	}
 
 
@@ -89,11 +92,11 @@ public class NettyResponse implements Response {
 	public String get() {
 
 		if (!this.finalised) {
-				this.buffer.append('#');
-				this.buffer.append('#');
+			this.buffer.append('#');
+			this.buffer.append('#');
 			this.finalised = true;
 		}
-		
+
 		return this.buffer.toString();
 	}
 
@@ -105,7 +108,7 @@ public class NettyResponse implements Response {
 		return finalised;
 	}
 
-	
+
 	public void setFinalised(boolean finalised) {
 		this.finalised = finalised;
 	}	

@@ -23,5 +23,6 @@ public interface RoomDao {
 	public void saveRoomRights(int roomID, List<Integer> rights);
 	public Room saveChatlog(Player chatter, int roomID, String chatType, String message);
 	public List<Integer> getPublicRoomIDs();
+	public List<Room> getLatestPlayerRooms(List<Integer> blacklist, int multiplier);
 	
 }

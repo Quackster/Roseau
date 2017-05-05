@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.room.settings.RoomType;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 public class RoomManager {
@@ -58,13 +59,28 @@ public class RoomManager {
 		}
 	}
 	
-	public List<Room> getPopularRooms() {
+	public List<Room> getPopularRooms(int multiplier) {
 		try {
 			List<Room> rooms =  this.loadedRooms.values().stream().filter(
 					room -> room.getData().getRoomType() == RoomType.PRIVATE && 
 					room.getData().isHidden() == false && 
 					room.getData().getUsersNow() > 0).
 					collect(Collectors.toList());
+			
+			List<Integer> loadedIDs = Lists.newArrayList();
+			
+			for (Room room : rooms) {
+				loadedIDs.add(Integer.valueOf(room.getData().getID()));
+			}
+			
+			int range = 0;
+			
+			if (multiplier > 0) {
+				range = multiplier / 11;
+			}
+			
+			List<Room> latestRooms = Roseau.getDao().getRoom().getLatestPlayerRooms(loadedIDs, range);
+			rooms.addAll(latestRooms);
 			
 			Collections.sort(rooms,new Comparator<Room>() {
 			    @Override
@@ -73,7 +89,8 @@ public class RoomManager {
 			    }
 			});
 			
-			return rooms;
+			
+			return rooms.subList(range, rooms.size());
 		} catch (Exception e) {
 			return null;
 		}

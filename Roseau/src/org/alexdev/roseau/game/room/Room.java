@@ -138,6 +138,14 @@ public class Room {
 
 	public void loadRoom(final Player player, Position door, int rotation) {
 
+		if (player.getMainServerPlayer() == null) {
+			if (!GameVariables.DEBUG_ENABLE) {
+				player.send(new SYSTEMBROADCAST("Please reload client completely before entering rooms."));
+				player.kick();
+				return;
+			}
+		}
+		
 		RoomUser roomEntity = player.getRoomUser();
 
 		roomEntity.setRoom(this);
@@ -210,13 +218,6 @@ public class Room {
 
 		if (player.getMainServerPlayer() != null) {
 			player.getMainServerPlayer().getMessenger().sendStatus();
-		} else {
-
-			if (!GameVariables.DEBUG_ENABLE) {
-				player.send(new SYSTEMBROADCAST("Please reload client completely before entering rooms."));
-				player.kick();
-				return;
-			}
 		}
 
 		roomEntity.resetAfkTimer();

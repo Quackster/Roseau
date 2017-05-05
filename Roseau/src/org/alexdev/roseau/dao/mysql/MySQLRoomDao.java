@@ -226,6 +226,49 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 		return rooms;
 	}
+	
+	@Override
+	public List<Room> getLatestPlayerRooms(List<Integer> blacklist, int range) {
+
+		List<Room> rooms = Lists.newArrayList();
+
+		Connection sqlConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			sqlConnection = this.dao.getStorage().getConnection();
+			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE room_type = 0 ORDER BY id DESC LIMIT " + (range * 11) + "," + (range * 11) + 11, sqlConnection);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+
+				int id = resultSet.getInt("id");
+				
+				if (blacklist.contains(Integer.valueOf(id))) {
+					continue;
+				}
+
+				Room room = Roseau.getGame().getRoomManager().getRoomByID(id);
+
+				if (room == null) {
+					room = this.fill(resultSet);
+				}
+				
+				rooms.add(room);
+			}
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Storage.closeSilently(resultSet);
+			Storage.closeSilently(preparedStatement);
+			Storage.closeSilently(sqlConnection);
+		}
+
+		return rooms;
+	}
 
 
 
