@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
 
+import org.alexdev.roseau.game.room.entity.ChatUtility;
 import org.ini4j.InvalidFileFormatException;
 import org.ini4j.Wini;
 
@@ -17,6 +18,7 @@ public class Util {
 		configuration = new Wini(new File("roseau.properties"));
 		habboConfig =  new Wini(new File("habbohotel.properties"));
 		secureRandom = new SecureRandom();
+		ChatUtility.setupEmotes(false);
 	}
 	
 	public boolean isNullOrEmpty(String param) { 

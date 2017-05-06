@@ -18,6 +18,12 @@ public class CREATEFLAT implements MessageEvent {
 		String roomModel = reader.getArgument(3, "/");
 		String roomState = reader.getArgument(4, "/");
 		boolean showOwnerName = reader.getArgument(5, "/").equals("1");
+		
+		Player publicRoomPlayer = player.getPublicRoomPlayer();
+
+		if (publicRoomPlayer != null) {
+			publicRoomPlayer.getNetwork().close();
+		}
 
 		if (!floor.equals("first floor")) {
 			player.kickAllConnections();
@@ -25,6 +31,8 @@ public class CREATEFLAT implements MessageEvent {
 		}
 		
 		if (!(roomName.length() > 2)) {
+			
+			player.sendAlert("The room name needs to be at least 3 characters long");
 			return;
 		}
 		
@@ -49,12 +57,6 @@ public class CREATEFLAT implements MessageEvent {
 			// Possibru scripter? HAX! KICK THEM!!!
 			player.kickAllConnections();
 			return;
-		}
-
-		Player publicRoomPlayer = Roseau.getGame().getPlayerManager().getPlayerDifferentConnection(player.getDetails().getID(), player.getNetwork().getConnectionId());
-
-		if (publicRoomPlayer != null) {
-			publicRoomPlayer.getNetwork().close();
 		}
 
 		Room room = Roseau.getDao().getRoom().createRoom(player, roomName, "", roomModel, state, showOwnerName);

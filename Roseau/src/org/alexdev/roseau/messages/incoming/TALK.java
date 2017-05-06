@@ -6,6 +6,7 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
+import org.alexdev.roseau.game.room.entity.ChatUtility;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.messages.outgoing.CHAT;
 import org.alexdev.roseau.server.messages.ClientMessage;
@@ -107,7 +108,13 @@ public class TALK implements MessageEvent {
 					talkDuration = talkMessage.length() / 2;
 				}
 			}
-
+			
+			String emote = ChatUtility.detectEmote(talkMessage.split(" "));
+			
+			if (emote != null) {
+				player.getRoomUser().setStatus("gest", " " + emote, false, 5);
+			}
+			
 			player.getRoomUser().setStatus("talk", "", false, talkDuration, true);
 
 			for (Bot bot : player.getRoomUser().getRoom().getMapping().getNearbyBots(player, player.getRoomUser().getPosition(), 5)) {
