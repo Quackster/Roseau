@@ -30,6 +30,7 @@ public class Roseau {
 	private static int privateServerPort;
 	
 	private static Configuration socketConfiguration;
+	private static String serverClassPath;
 
 	public static void main(String[] args) {
 
@@ -39,9 +40,10 @@ public class Roseau {
 			Log.startup();
 
 			serverIP = Util.getConfiguration().get("Server", "server.ip", String.class);
+			serverClassPath = Util.getConfiguration().get("Server", "server.class.path", String.class);
 			rawConfigIP = serverIP;
 			
-			if (!validIP(rawConfigIP)) {
+			if (!hasValidIpAddress(rawConfigIP)) {
 				serverIP = "0.0.0.0"; //InetAddress.getByName(rawConfigIP).getHostAddress();
 			}
 			
@@ -72,7 +74,7 @@ public class Roseau {
 				server = Class.forName(Roseau.getServerClassPath()).asSubclass(IServerHandler.class).getDeclaredConstructor(List.class).newInstance(ports);
 				server.setIp(serverIP);
 
-				if (!validIP(rawConfigIP)) {
+				if (!hasValidIpAddress(rawConfigIP)) {
 					serverIP = InetAddress.getByName(rawConfigIP).getHostAddress();
 				}
 				
@@ -89,7 +91,7 @@ public class Roseau {
 		}
 	}
 	
-	public static boolean validIP (String ip) {
+	public static boolean hasValidIpAddress(String ip) {
 	    try {
 			String PATTERN = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$";
 			return ip.matches(PATTERN);
@@ -128,6 +130,7 @@ public class Roseau {
 		writer.println("server.ip=127.0.0.1");
 		writer.println("server.port=37120");
 		writer.println("server.private.port=37119");
+		writer.println("server.class.path=org.alexdev.roseau.server.netty.NettyServer");
 		writer.println();
 		writer.println("[Database]");
 		writer.println("type=mysql");
@@ -171,7 +174,7 @@ public class Roseau {
 	}
 
 	private static String getServerClassPath() {
-		return "org.alexdev.roseau.server.netty.NettyServer";
+		return serverClassPath;
 	}
 
 

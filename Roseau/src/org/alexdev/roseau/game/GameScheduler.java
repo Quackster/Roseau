@@ -33,7 +33,7 @@ public class GameScheduler implements Runnable {
 			
 			if ((this.tickRate % 300) == 0) {
 			
-				if (!Roseau.validIP(Roseau.getRawConfigIP())) {
+				if (!Roseau.hasValidIpAddress(Roseau.getRawConfigIP())) {
 				Roseau.setServerIP(InetAddress.getByName(Roseau.getRawConfigIP()).getHostAddress());
 				}
 				
