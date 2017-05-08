@@ -591,7 +591,7 @@ public class Room {
             }
 
         } else if (nextItem != null) {
-            
+
             if (nextItem.getDefinition().getSprite().equals("poolQueue")) {
                 if (nextItem.getPosition().getX() == 21 && nextItem.getPosition().getY() == 9) {
 
@@ -605,19 +605,19 @@ public class Room {
                 }
             }
         }
-            if (heightCurrent > heightNeighour) {
-                if ((heightCurrent - heightNeighour) >= 1.5) {
-                    Log.println("triggered: " + (heightCurrent - heightNeighour));
-                    return false;
-                }
+        
+        if (heightCurrent > heightNeighour) {
+            if ((heightCurrent - heightNeighour) >= 1.5) {
+                return false;
             }
+        }
 
-            if (heightNeighour > heightCurrent) {
-                if ((heightNeighour - heightCurrent) >= 1.5) {
-                    Log.println("triggered2: " + (heightNeighour - heightCurrent));
-                    return false;
-                }
+        if (heightNeighour > heightCurrent) {
+            if ((heightNeighour - heightCurrent) >= 1.5) {
+                return false;
             }
+        }
+
         if (!current.isMatch(this.roomData.getModel().getDoorPosition())) {
 
             if (!this.roomMapping.isValidTile(entity, current.getX(), current.getY())) {
