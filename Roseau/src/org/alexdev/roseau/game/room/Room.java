@@ -12,6 +12,7 @@ import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.interactors.TeleporterInteractor;
+import org.alexdev.roseau.game.item.interactors.furniture.ChairInteractor;
 import org.alexdev.roseau.game.navigator.NavigatorRequest;
 import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
@@ -29,722 +30,695 @@ import com.google.common.collect.Lists;
 
 public class Room {
 
-	private int orderID = -1;
-	private boolean disposed;
+    private int orderID = -1;
+    private boolean disposed;
 
-	private RoomData roomData;
-	private RoomMapping roomMapping;
+    private RoomData roomData;
+    private RoomMapping roomMapping;
 
-	private RoomEventScheduler roomEventScheduler;
-	private RoomWalkScheduler roomWalkScheduler;
+    private RoomEventScheduler roomEventScheduler;
+    private RoomWalkScheduler roomWalkScheduler;
 
-	private List<Entity> entities;
+    private List<Entity> entities;
 
-	private ConcurrentHashMap<Integer, Item> passiveObjects;
-	private ConcurrentHashMap<Integer, Item> items;
+    private ConcurrentHashMap<Integer, Item> passiveObjects;
+    private ConcurrentHashMap<Integer, Item> items;
 
-	private List<Bot> bots;
-	private ArrayList<RoomEvent> events;
+    private List<Bot> bots;
+    private ArrayList<RoomEvent> events;
 
-	private ScheduledFuture<?> tickTask = null;
-	private ScheduledFuture<?> eventTask = null;
+    private ScheduledFuture<?> tickTask = null;
+    private ScheduledFuture<?> eventTask = null;
 
-	private List<Integer> rights;
+    private List<Integer> rights;
 
-	public Room() {
-		this.roomData = new RoomData(this);
-		this.roomMapping = new RoomMapping(this);
+    public Room() {
+        this.roomData = new RoomData(this);
+        this.roomMapping = new RoomMapping(this);
 
-		this.roomEventScheduler = new RoomEventScheduler(this);
-		this.roomWalkScheduler = new RoomWalkScheduler(this);
+        this.roomEventScheduler = new RoomEventScheduler(this);
+        this.roomWalkScheduler = new RoomWalkScheduler(this);
 
-		this.entities = Lists.newArrayList();
-		this.events = Lists.newArrayList();
-	}
+        this.entities = Lists.newArrayList();
+        this.events = Lists.newArrayList();
+    }
 
-	public void load() throws Exception {
+    public void load() throws Exception {
 
-		if (this.roomData.getRoomType() == RoomType.PUBLIC && !this.roomData.isHidden()) {
+        if (this.roomData.getRoomType() == RoomType.PUBLIC && !this.roomData.isHidden()) {
 
-			/*this.serverHandler = Class.forName("org.alexdev.roseau.server.netty.NettyServer")
+            /*this.serverHandler = Class.forName("org.alexdev.roseau.server.netty.NettyServer")
 					.asSubclass(IServerHandler.class)
 					.getDeclaredConstructor(String.class)
 					.newInstance(String.valueOf(this.roomData.getID()));*/
 
-			Log.println("[ROOM] [" + this.roomData.getName() + "] Starting public room server on port: " + this.roomData.getServerPort());
+            Log.println("[ROOM] [" + this.roomData.getName() + "] Starting public room server on port: " + this.roomData.getServerPort());
 
 
-			//this.serverHandler.setIp(Roseau.getServerIP());
-			//this.serverHandler.setPort(this.roomData.getServerPort());
-			//this.serverHandler.listenSocket();
-		}
+            //this.serverHandler.setIp(Roseau.getServerIP());
+            //this.serverHandler.setPort(this.roomData.getServerPort());
+            //this.serverHandler.listenSocket();
+        }
 
 
-		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
-			this.rights = Roseau.getDao().getRoom().getRoomRights(this.roomData.getID());
-			this.items = Roseau.getDao().getItem().getRoomItems(this.roomData.getID());
-		} else {
-			this.rights = Lists.newArrayList();
-		}
-	}
+        if (this.roomData.getRoomType() == RoomType.PRIVATE) {
+            this.rights = Roseau.getDao().getRoom().getRoomRights(this.roomData.getID());
+            this.items = Roseau.getDao().getItem().getRoomItems(this.roomData.getID());
+        } else {
+            this.rights = Lists.newArrayList();
+        }
+    }
 
-	public void firstPlayerEntry() {
-		this.disposed = false;
+    public void firstPlayerEntry() {
+        this.disposed = false;
 
 
-		if (this.tickTask == null) {
-			this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this.roomWalkScheduler, 0, 500, TimeUnit.MILLISECONDS);
-		}
+        if (this.tickTask == null) {
+            this.tickTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this.roomWalkScheduler, 0, 500, TimeUnit.MILLISECONDS);
+        }
 
-		this.passiveObjects = Roseau.getDao().getItem().getPublicRoomItems(this.roomData.getModelName(), this.roomData.getID());
-		this.bots = Roseau.getDao().getRoom().getBots(this, this.roomData.getID());
+        this.passiveObjects = Roseau.getDao().getItem().getPublicRoomItems(this.roomData.getModelName(), this.roomData.getID());
+        this.bots = Roseau.getDao().getRoom().getBots(this, this.roomData.getID());
 
-		this.roomMapping.regenerateCollisionMaps();
+        this.roomMapping.regenerateCollisionMaps();
 
-		if (this.roomData.getModelName().equals("bar_b")) {
-			this.registerNewEvent(new ClubMassivaDiscoEvent(this));
-		}
+        if (this.roomData.getModelName().equals("bar_b")) {
+            this.registerNewEvent(new ClubMassivaDiscoEvent(this));
+        }
 
-		if (this.roomData.getModelName().equals("pool_b")) {
-			this.registerNewEvent(new HabboLidoEvent(this));
-		}
+        if (this.roomData.getModelName().equals("pool_b")) {
+            this.registerNewEvent(new HabboLidoEvent(this));
+        }
 
-		if (this.bots.size() > 0) {
-			this.entities.addAll(this.bots);
-			this.registerNewEvent(new BotMoveRoomEvent(this));
-		}
+        if (this.bots.size() > 0) {
+            this.entities.addAll(this.bots);
+            this.registerNewEvent(new BotMoveRoomEvent(this));
+        }
 
-		this.registerNewEvent(new UserStatusEvent(this));
-	}
+        this.registerNewEvent(new UserStatusEvent(this));
+    }
 
-	private void registerNewEvent(RoomEvent event) {
+    private void registerNewEvent(RoomEvent event) {
 
-		if (this.eventTask == null) {
-			this.eventTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this.roomEventScheduler, 0, 500, TimeUnit.MILLISECONDS);
-		}
+        if (this.eventTask == null) {
+            this.eventTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this.roomEventScheduler, 0, 500, TimeUnit.MILLISECONDS);
+        }
 
-		this.events.add(event);
+        this.events.add(event);
 
-	}
+    }
 
-	public void loadRoom(Player player) {
+    public void loadRoom(Player player) {
 
-		if (this.roomData.getModel() != null) {
-			this.loadRoom(player, this.roomData.getModel().getDoorPosition(), this.roomData.getModel().getDoorRot());
-		} else {
-			Log.println("Could not load door data for room model '" + this.roomData.getModelName() + "'");
-		}
-	}
+        if (this.roomData.getModel() != null) {
+            this.loadRoom(player, this.roomData.getModel().getDoorPosition(), this.roomData.getModel().getDoorRot());
+        } else {
+            Log.println("Could not load door data for room model '" + this.roomData.getModelName() + "'");
+        }
+    }
 
-	public void loadRoom(final Player player, Position door, int rotation) {
+    public void loadRoom(final Player player, Position door, int rotation) {
 
-		if (player.getMainServerPlayer() == null) {
-			if (!GameVariables.DEBUG_ENABLE) {
-				player.send(new SYSTEMBROADCAST("Please reload client completely before entering rooms."));
-				player.kick();
-				return;
-			}
-		}
-		
-		RoomUser roomEntity = player.getRoomUser();
+        if (player.getMainServerPlayer() == null) {
+            if (!GameVariables.DEBUG_ENABLE) {
+                player.send(new SYSTEMBROADCAST("Please reload client completely before entering rooms."));
+                player.kick();
+                return;
+            }
+        }
 
-		roomEntity.setRoom(this);
-		roomEntity.getStatuses().clear();
+        RoomUser roomEntity = player.getRoomUser();
 
-		if (this.roomData == null) {
-			Log.println("null wot");
+        roomEntity.setRoom(this);
+        roomEntity.getStatuses().clear();
 
-		}
+        if (this.roomData == null) {
+            Log.println("null wot");
 
-		if (this.roomData.getModel() != null) {
-			roomEntity.getPosition().setX(door.getX());
-			roomEntity.getPosition().setY(door.getY());
-			roomEntity.getPosition().setZ(door.getZ());
-			roomEntity.getPosition().setRotation(rotation);
-		}
+        }
 
-		if (this.roomData.getModel() == null) {
-			Log.println("Could not load heightmap for room model '" + this.roomData.getModelName() + "'");
-		}	
+        if (this.roomData.getModel() != null) {
+            roomEntity.getPosition().setX(door.getX());
+            roomEntity.getPosition().setY(door.getY());
+            roomEntity.getPosition().setZ(door.getZ());
+            roomEntity.getPosition().setRotation(rotation);
+        }
 
-		if (this.entities.size() > 0) {
-			this.send(player.getRoomUser().getUsersComposer());
-			player.getRoomUser().sendStatusComposer();
-		} else {
-			this.firstPlayerEntry();
-		}
+        if (this.roomData.getModel() == null) {
+            Log.println("Could not load heightmap for room model '" + this.roomData.getModelName() + "'");
+        }	
 
-		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
+        if (this.entities.size() > 0) {
+            this.send(player.getRoomUser().getUsersComposer());
+            player.getRoomUser().sendStatusComposer();
+        } else {
+            this.firstPlayerEntry();
+        }
 
-			player.getInventory().load();
-			player.send(new ROOM_READY(this.roomData.getDescription()));
+        if (this.roomData.getRoomType() == RoomType.PRIVATE) {
 
-			int wallData = Integer.parseInt(this.roomData.getWall());
-			int floorData = Integer.parseInt(this.roomData.getFloor());
+            player.getInventory().load();
+            player.send(new ROOM_READY(this.roomData.getDescription()));
 
-			if (wallData > 0) {
-				player.send(new FLATPROPERTY("wallpaper", this.roomData.getWall()));
-			} else {
-				player.send(new FLATPROPERTY("wallpaper", "201"));
-			}
+            int wallData = Integer.parseInt(this.roomData.getWall());
+            int floorData = Integer.parseInt(this.roomData.getFloor());
 
-			if (floorData > 0) {
-				player.send(new FLATPROPERTY("floor", this.roomData.getFloor()));
-			} else {
-				player.send(new FLATPROPERTY("floor", "0"));
-			}	
-		}
+            if (wallData > 0) {
+                player.send(new FLATPROPERTY("wallpaper", this.roomData.getWall()));
+            } else {
+                player.send(new FLATPROPERTY("wallpaper", "201"));
+            }
 
-		this.refreshFlatPrivileges(player, true);
+            if (floorData > 0) {
+                player.send(new FLATPROPERTY("floor", this.roomData.getFloor()));
+            } else {
+                player.send(new FLATPROPERTY("floor", "0"));
+            }	
+        }
 
-		if (this.roomData.getModel() != null) {
-			player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
-		}
+        this.refreshFlatPrivileges(player, true);
 
-		player.send(new OBJECTS_WORLD(this.roomData.getModelName(), this.passiveObjects));
-		player.send(new ACTIVE_OBJECTS(this));
+        if (this.roomData.getModel() != null) {
+            player.send(new HEIGHTMAP(this.roomData.getModel().getHeightMap()));
+        }
 
-		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
-			player.send(new ITEMS(this));
-		}
+        player.send(new OBJECTS_WORLD(this.roomData.getModelName(), this.passiveObjects));
+        player.send(new ACTIVE_OBJECTS(this));
 
-		player.send(new USERS(this.entities));
-		player.send(new STATUS(this.entities));
+        if (this.roomData.getRoomType() == RoomType.PRIVATE) {
+            player.send(new ITEMS(this));
+        }
 
-		player.send(player.getRoomUser().getUsersComposer());
-		player.send(player.getRoomUser().getStatusComposer());
-
-		this.entities.add(player);
-
-		if (player.getMainServerPlayer() != null) {
-			player.getMainServerPlayer().getMessenger().sendStatus();
-		}
-
-		roomEntity.resetAfkTimer();
-
-		if (this.roomData.getRoomType() == RoomType.PRIVATE) {
-			final Item item = this.roomMapping.getHighestItem(door.getX(), door.getY());
-
-			if (item != null) {
-				if (item.getDefinition().getBehaviour().isTeleporter()) {
-					
-					TeleporterInteractor interactor = (TeleporterInteractor)item.getInteraction();
-					interactor.leaveTeleporter(player);
-					
-					return;
-				}
-			}
-		} else {
-
-			// Show the players whether curtain is closed in pool changing booth or the pool lift door etc
-			// for anyone new who enters the room
-			for (Item item : this.passiveObjects.values()) {
-
-				OutgoingMessageComposer composer = item.getCurrentProgram();
-
-				if (composer != null) {
-					player.send(composer);
-				}
-			}
-		}
-	}
-
-	public boolean ringDoorbell(Player player) {
-
-		boolean received = false;
-
-		for (Player rights : this.getPlayersWithRights()) {
-			rights.send(new DOORBELL_RINGING(player.getDetails().getName()));
-			received = true;
-		}
-
-		return received;
-	}
-
-	public boolean hasRights(Player user, boolean ownerCheckOnly) {
-
-		if (user.hasPermission("room_all_rights")) {
-			return true;
-		}
-
-		if (this.roomData.getOwnerID() == user.getDetails().getID()) {
-			return true;
-		} else {
-			if (!ownerCheckOnly) {
-				return this.rights.contains(Integer.valueOf(user.getDetails().getID()));
-			}
-		}
-
-		return false;
-	}
-
-	public void giveUserRights(Player player) {
+        player.send(new USERS(this.entities));
+        player.send(new STATUS(this.entities));
 
-		if (this.rights.contains(Integer.valueOf(player.getDetails().getID()))) {
-			return;
-		}
+        player.send(player.getRoomUser().getUsersComposer());
+        player.send(player.getRoomUser().getStatusComposer());
 
-		this.rights.add(Integer.valueOf(player.getDetails().getID()));
-		this.refreshFlatPrivileges(player, false);
-		this.roomData.saveRights();
-	}
+        this.entities.add(player);
 
-	public void removeUserRights(Player player) {
+        if (player.getMainServerPlayer() != null) {
+            player.getMainServerPlayer().getMessenger().sendStatus();
+        }
 
-		if (!this.rights.contains(Integer.valueOf(player.getDetails().getID()))) {
-			return;
-		}
+        roomEntity.resetAfkTimer();
 
-		this.rights.remove(Integer.valueOf(player.getDetails().getID()));
-		this.refreshFlatPrivileges(player, false);
-		this.roomData.saveRights();
-	}
+        if (this.roomData.getRoomType() == RoomType.PRIVATE) {
+            final Item item = this.roomMapping.getHighestItem(door.getX(), door.getY());
 
-	public void refreshFlatPrivileges(Player player, boolean enterRoom) {
+            if (item != null) {
+                if (item.getDefinition().getBehaviour().isTeleporter()) {
 
-		if (player.getDetails().getRank() == 2) { // Bronze Hobba
-			player.getRoomUser().setStatus("mod", " 1", true, -1);
-		} else if (player.getDetails().getRank() == 3) { // Silver Hobba
-			player.getRoomUser().setStatus("mod", " 2", true, -1);
-		} else if (player.getDetails().getRank() == 4) { // Gold Hobba
-			player.getRoomUser().setStatus("mod", " 3", true, -1);
-		} else if (player.getDetails().getRank() == 5) { // Admin/owner
-			player.getRoomUser().setStatus("mod", " A", true, -1);
-		}
-		
-		if (this.roomData.getOwnerID() == player.getDetails().getID() || player.hasPermission("room_all_rights")) {
-			player.send(new YOUAREOWNER());
-			player.getRoomUser().setStatus("flatctrl", " useradmin", true, -1);
+                    TeleporterInteractor interactor = (TeleporterInteractor)item.getInteraction();
+                    interactor.leaveTeleporter(player);
 
-		} else if (this.hasRights(player, false) || this.roomData.hasAllSuperUser()) {
-			player.send(new YOUARECONTROLLER());
-			player.getRoomUser().setStatus("flatctrl", "", true, -1);
-		} else {
-			player.getRoomUser().removeStatus("flatctrl");
-			player.getRoomUser().removeStatus("mod");
-			player.send(new YOUARENOTCONTROLLER());
-		}
+                    return;
+                }
+            }
+        } else {
 
-		if (!enterRoom) {
-			player.getRoomUser().setNeedUpdate(true);
-		}
-	}
+            // Show the players whether curtain is closed in pool changing booth or the pool lift door etc
+            // for anyone new who enters the room
+            for (Item item : this.passiveObjects.values()) {
 
-	public void send(OutgoingMessageComposer response, boolean checkRights) {
+                OutgoingMessageComposer composer = item.getCurrentProgram();
 
-		if (this.disposed) {
-			return;
-		}
+                if (composer != null) {
+                    player.send(composer);
+                }
+            }
+        }
+    }
 
-		for (Player player : this.getPlayers()) {
-			player.send(response);
-		}
-	}
+    public boolean ringDoorbell(Player player) {
 
+        boolean received = false;
 
-	public void leaveRoom(Player player, boolean hotelView) {
+        for (Player rights : this.getPlayersWithRights()) {
+            rights.send(new DOORBELL_RINGING(player.getDetails().getName()));
+            received = true;
+        }
 
-		if (hotelView) {
-			if (player.getPrivateRoomPlayer() != null) { 
-				player.getPrivateRoomPlayer().getNetwork().close();
-			}
-		}
+        return received;
+    }
 
-		if (this.entities != null) {
-			this.entities.remove(player);
-		}
+    public boolean hasRights(Player user, boolean ownerCheckOnly) {
 
-		RoomUser roomUser = player.getRoomUser();		
-		Item item = roomUser.getCurrentItem();
+        if (user.hasPermission("room_all_rights")) {
+            return true;
+        }
 
-		if (item != null) {
-			if (item.getDefinition().getSprite().equals("poolLift") || item.getDefinition().getSprite().equals("poolBooth")) {
-				item.showProgram("open");
-				item.unlockTiles();
-			}
-		}
+        if (this.roomData.getOwnerID() == user.getDetails().getID()) {
+            return true;
+        } else {
+            if (!ownerCheckOnly) {
+                return this.rights.contains(Integer.valueOf(user.getDetails().getID()));
+            }
+        }
 
-		roomUser.dispose();
+        return false;
+    }
 
-		this.send(new LOGOUT(player.getDetails().getName()));
-		this.dispose();
+    public void giveUserRights(Player player) {
 
-		player.getInventory().dispose();
+        if (this.rights.contains(Integer.valueOf(player.getDetails().getID()))) {
+            return;
+        }
 
-		if (player.getMainServerPlayer() != null) {
-			player.getMainServerPlayer().getMessenger().sendStatus();
-		}
-	}
+        this.rights.add(Integer.valueOf(player.getDetails().getID()));
+        this.refreshFlatPrivileges(player, false);
+        this.roomData.saveRights();
+    }
 
-	public void dispose(boolean forceDisposal) {
+    public void removeUserRights(Player player) {
 
-		try {
+        if (!this.rights.contains(Integer.valueOf(player.getDetails().getID()))) {
+            return;
+        }
 
-			if (forceDisposal) {
+        this.rights.remove(Integer.valueOf(player.getDetails().getID()));
+        this.refreshFlatPrivileges(player, false);
+        this.roomData.saveRights();
+    }
 
-				for (Player player : this.getPlayers()) {
-					this.leaveRoom(player, true);
-				}
+    public void refreshFlatPrivileges(Player player, boolean enterRoom) {
 
-				this.clearData();
-				this.entities = null;
-				Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getID());
+        if (player.getDetails().getRank() == 2) { // Bronze Hobba
+            player.getRoomUser().setStatus("mod", " 1", true, -1);
+        } else if (player.getDetails().getRank() == 3) { // Silver Hobba
+            player.getRoomUser().setStatus("mod", " 2", true, -1);
+        } else if (player.getDetails().getRank() == 4) { // Gold Hobba
+            player.getRoomUser().setStatus("mod", " 3", true, -1);
+        } else if (player.getDetails().getRank() == 5) { // Admin/owner
+            player.getRoomUser().setStatus("mod", " A", true, -1);
+        }
 
-			} else {
+        if (this.roomData.getOwnerID() == player.getDetails().getID() || player.hasPermission("room_all_rights")) {
+            player.send(new YOUAREOWNER());
+            player.getRoomUser().setStatus("flatctrl", " useradmin", true, -1);
 
-				if (this.disposed) {
-					return;
-				}
+        } else if (this.hasRights(player, false) || this.roomData.hasAllSuperUser()) {
+            player.send(new YOUARECONTROLLER());
+            player.getRoomUser().setStatus("flatctrl", "", true, -1);
+        } else {
+            player.getRoomUser().removeStatus("flatctrl");
+            player.getRoomUser().removeStatus("mod");
+            player.send(new YOUARENOTCONTROLLER());
+        }
 
-				if (this.getPlayers().size() > 0) {
-					return;
-				}
+        if (!enterRoom) {
+            player.getRoomUser().setNeedUpdate(true);
+        }
+    }
 
-				this.clearData();
+    public void send(OutgoingMessageComposer response, boolean checkRights) {
 
-				if (Roseau.getGame().getPlayerManager().getByID(this.roomData.getOwnerID()) == null) {
-					if (this.roomData.getRoomType() == RoomType.PRIVATE) { 
+        if (this.disposed) {
+            return;
+        }
 
+        for (Player player : this.getPlayers()) {
+            player.send(response);
+        }
+    }
 
-						this.entities = null;
-						this.disposed = true;
 
-						Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getID());
-						this.roomData = null;
+    public void leaveRoom(Player player, boolean hotelView) {
 
-					}
-				}
-			}
+        if (hotelView) {
+            if (player.getPrivateRoomPlayer() != null) { 
+                player.getPrivateRoomPlayer().getNetwork().close();
+            }
+        }
 
-		} catch (Exception e) {
-			Log.exception(e);
-		}
+        if (this.entities != null) {
+            this.entities.remove(player);
+        }
 
-	}
+        RoomUser roomUser = player.getRoomUser();		
+        Item item = roomUser.getCurrentItem();
 
-	private void clearData() {
+        if (item != null) {
+            if (item.getDefinition().getSprite().equals("poolLift") || item.getDefinition().getSprite().equals("poolBooth")) {
+                item.showProgram("open");
+                item.unlockTiles();
+            }
+        }
 
-		if (this.entities != null) {
-			this.entities.clear();
-		}
+        roomUser.dispose();
 
-		if (this.bots != null) {
-			this.bots.clear();
-		}
+        this.send(new LOGOUT(player.getDetails().getName()));
+        this.dispose();
 
-		if (this.events != null) {
-			this.events.clear();
-		}
+        player.getInventory().dispose();
 
-		if (this.tickTask != null) {
-			this.tickTask.cancel(true);
-			this.tickTask = null;
-		}
+        if (player.getMainServerPlayer() != null) {
+            player.getMainServerPlayer().getMessenger().sendStatus();
+        }
+    }
 
-		if (this.eventTask != null) {
-			this.eventTask.cancel(true);
-			this.eventTask = null;
-		}
-	}
+    public void dispose(boolean forceDisposal) {
 
+        try {
 
+            if (forceDisposal) {
 
-	public void send(OutgoingMessageComposer response) {
+                for (Player player : this.getPlayers()) {
+                    this.leaveRoom(player, true);
+                }
 
-		if (this.disposed) {
-			return;
-		}
+                this.clearData();
+                this.entities = null;
+                Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getID());
 
-		for (Player player : this.getPlayers()) {
-			player.send(response);
-		}
-	}
+            } else {
 
-	public List<Player> getPlayers() {
+                if (this.disposed) {
+                    return;
+                }
 
-		List<Player> sessions = Lists.newArrayList();
+                if (this.getPlayers().size() > 0) {
+                    return;
+                }
 
-		for (Entity entity : this.getEntities(EntityType.PLAYER)) {
-			Player player = (Player)entity;
-			sessions.add(player);
-		}
+                this.clearData();
 
-		return sessions;
-	}
+                if (Roseau.getGame().getPlayerManager().getByID(this.roomData.getOwnerID()) == null) {
+                    if (this.roomData.getRoomType() == RoomType.PRIVATE) { 
 
-	public List<Player> getPlayersWithRights() {
 
-		List<Player> sessions = Lists.newArrayList();
+                        this.entities = null;
+                        this.disposed = true;
 
-		for (Player player : this.getPlayers()) {
-			if (this.hasRights(player, false)) {
-				sessions.add(player);
-			}
-		}
+                        Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getID());
+                        this.roomData = null;
 
-		return sessions;
-	}
+                    }
+                }
+            }
 
+        } catch (Exception e) {
+            Log.exception(e);
+        }
 
-	public Player getPlayerByID(int ID) {
+    }
 
-		for (Player player : this.getPlayers()) {
-			if (player.getDetails().getID() == ID) {
-				return player;
-			}
-		}
+    private void clearData() {
 
-		return null;
+        if (this.entities != null) {
+            this.entities.clear();
+        }
 
-	}
+        if (this.bots != null) {
+            this.bots.clear();
+        }
 
-	public Player getPlayerByName(String name) {
+        if (this.events != null) {
+            this.events.clear();
+        }
 
-		for (Player player : this.getPlayers()) {
-			if (player.getDetails().getName().equals(name)) {
-				return player;
-			}
-		}
+        if (this.tickTask != null) {
+            this.tickTask.cancel(true);
+            this.tickTask = null;
+        }
 
-		return null;
+        if (this.eventTask != null) {
+            this.eventTask.cancel(true);
+            this.eventTask = null;
+        }
+    }
 
-	}
 
-	public List<Entity> getEntities(EntityType type) {
-		List<Entity> e = new ArrayList<Entity>();
 
-		for (Entity entity : this.entities) {
-			if (entity.getType() == type) {
-				e.add(entity);
-			}
-		}
+    public void send(OutgoingMessageComposer response) {
 
-		return e;
-	}
+        if (this.disposed) {
+            return;
+        }
 
-	public List<Entity> getEntities() {
-		return entities;
-	}
+        for (Player player : this.getPlayers()) {
+            player.send(response);
+        }
+    }
 
-	public ArrayList<RoomEvent> getEvents() {
-		return events;
-	}
+    public List<Player> getPlayers() {
 
-	public RoomData getData() {
-		return roomData;
-	}
+        List<Player> sessions = Lists.newArrayList();
 
-	public boolean isDisposed() {
-		return disposed;
-	}
+        for (Entity entity : this.getEntities(EntityType.PLAYER)) {
+            Player player = (Player)entity;
+            sessions.add(player);
+        }
 
-	public void setDisposed(boolean disposed) {
-		this.disposed = disposed;
-	}
+        return sessions;
+    }
 
-	public void save() {
-		Roseau.getDao().getRoom().updateRoom(this);
-	}
+    public List<Player> getPlayersWithRights() {
 
-	public void dispose() {
-		this.dispose(false);
-	}
+        List<Player> sessions = Lists.newArrayList();
 
-	public boolean isValidStep(Entity entity, Position current, Position neighbour, boolean isFinalMove) {
+        for (Player player : this.getPlayers()) {
+            if (this.hasRights(player, false)) {
+                sessions.add(player);
+            }
+        }
 
-		if (this.roomData.getModel().invalidXYCoords(current.getX(), current.getY())) {
-			return false;
-		}
+        return sessions;
+    }
 
-		if (this.roomData.getModel().invalidXYCoords(neighbour.getX(), neighbour.getY())) {
-			return false;
-		}
 
-		if (this.roomData.getModel().isBlocked(current.getX(), current.getY())) {
-			return false;
-		}
+    public Player getPlayerByID(int ID) {
 
-		if (this.roomData.getModel().isBlocked(neighbour.getX(), neighbour.getY())) {
-			return false;
-		}
+        for (Player player : this.getPlayers()) {
+            if (player.getDetails().getID() == ID) {
+                return player;
+            }
+        }
 
-		double heightCurrent = this.roomData.getModel().getHeight(current);
-		double heightNeighour = this.roomData.getModel().getHeight(neighbour);
+        return null;
 
-		Item currentItem = this.roomMapping.getHighestItem(current.getX(), current.getY());
-		Item nextItem = this.roomMapping.getHighestItem(neighbour.getX(), neighbour.getY());
+    }
 
-		if (currentItem != null) {
-			
-			
-			if (currentItem.getDefinition().getSprite().equals("poolEnter") || currentItem.getDefinition().getSprite().equals("poolExit")) {
-				return entity.getDetails().getPoolFigure().length() > 0;
-			}
+    public Player getPlayerByName(String name) {
 
-			if (nextItem != null) {
-				if (nextItem.getDefinition().getSprite().equals("poolQueue")) {
-					if (currentItem.getDefinition().getSprite().equals("poolQueue")) {
-						return true;
-					}
-				}
-			}
-			
-			// Can only leave chair from the front
-			if (currentItem.getDefinition().getBehaviour().isCanSitOnTop()) {
-				if (neighbour.isMatch(currentItem.getPosition().getSquareInFront())) {
-					return true;
-				} else {
-					return false;
-				}
-				
-			}
+        for (Player player : this.getPlayers()) {
+            if (player.getDetails().getName().equals(name)) {
+                return player;
+            }
+        }
 
-		} else {
+        return null;
 
-			if (nextItem != null) {
-				if (nextItem.getDefinition().getSprite().equals("poolQueue")) {
+    }
 
-					if (nextItem.getPosition().getX() == 21 && nextItem.getPosition().getY() == 9) {
+    public List<Entity> getEntities(EntityType type) {
+        List<Entity> e = new ArrayList<Entity>();
 
-						if (!(entity.getDetails().getTickets() > 0)) {
-							return false;
-						}
+        for (Entity entity : this.entities) {
+            if (entity.getType() == type) {
+                e.add(entity);
+            }
+        }
 
-						return true;
-					} else {
-						return false;
-					}
-				}
-				
-				// Can only enter chair from the front
-				if (nextItem.getDefinition().getBehaviour().isCanSitOnTop()) {
-					if (current.isMatch(nextItem.getPosition().getSquareInFront())) {
-						return true;
-					} else {
-						return false;
-					}
-					
-				}
-			}
-		}
+        return e;
+    }
 
-		if (!this.roomData.getModel().hasDisabledHeightCheck()) {
+    public List<Entity> getEntities() {
+        return entities;
+    }
 
-			if (heightCurrent > heightNeighour) {
-				if ((heightCurrent - heightNeighour) >= 3.0) {
-					return false;
-				}
-			}
+    public ArrayList<RoomEvent> getEvents() {
+        return events;
+    }
 
-			if (heightNeighour > heightCurrent) {
-				if ((heightNeighour - heightCurrent) >= 1.2) {
-					return false;
-				}
-			}
+    public RoomData getData() {
+        return roomData;
+    }
 
-		}
+    public boolean isDisposed() {
+        return disposed;
+    }
 
-		if (!current.isMatch(this.roomData.getModel().getDoorPosition())) {
+    public void setDisposed(boolean disposed) {
+        this.disposed = disposed;
+    }
 
-			if (!this.roomMapping.isValidTile(entity, current.getX(), current.getY())) {
-				return false;
-			}
+    public void save() {
+        Roseau.getDao().getRoom().updateRoom(this);
+    }
 
-			if (!current.isMatch(entity.getRoomUser().getPosition())) {
-				if (currentItem != null) {
-					if (!isFinalMove) {
-						return currentItem.getDefinition().getBehaviour().isCanStandOnTop();
-					}
+    public void dispose() {
+        this.dispose(false);
+    }
 
-					if (isFinalMove) {
-						return currentItem.canWalk(entity, current);
+    public boolean isValidStep(Entity entity, Position current, Position neighbour, boolean isFinalMove) {
 
-					}
-				}
-			}
-		}
+        if (this.roomData.getModel().invalidXYCoords(current.getX(), current.getY())) {
+            return false;
+        }
 
-		return true;
-	}
+        if (this.roomData.getModel().invalidXYCoords(neighbour.getX(), neighbour.getY())) {
+            return false;
+        }
 
+        if (this.roomData.getModel().isBlocked(current.getX(), current.getY())) {
+            return false;
+        }
 
-	public ConcurrentHashMap<Integer, Item> getItems() {
-		return items;
-	}
+        if (this.roomData.getModel().isBlocked(neighbour.getX(), neighbour.getY())) {
+            return false;
+        }
 
-	public List<Item> getWallItems() {
+        double heightCurrent = this.roomData.getModel().getHeight(current);
+        double heightNeighour = this.roomData.getModel().getHeight(neighbour);
 
-		List<Item> items = Lists.newArrayList();
+        Item currentItem = this.roomMapping.getHighestItem(current.getX(), current.getY());
+        Item nextItem = this.roomMapping.getHighestItem(neighbour.getX(), neighbour.getY());
 
-		for (Item item : this.items.values()) {
-			if (item.getDefinition().getBehaviour().isOnWall()) {
-				items.add(item);
-			}
-		}
+        if (currentItem != null) {
 
-		return items;
-	}
+            if (currentItem.getDefinition().getSprite().equals("poolEnter") || currentItem.getDefinition().getSprite().equals("poolExit")) {
+                return entity.getDetails().getPoolFigure().length() > 0;
+            }
 
-	public RoomMapping getMapping() {
-		return roomMapping;
-	}
+            if (nextItem != null) {
 
+                if (nextItem.getDefinition().getSprite().equals("poolQueue")) {
+                    if (currentItem.getDefinition().getSprite().equals("poolQueue")) {
+                        return true;
+                    }
+                }
+            }
 
-	public void setRoomMapping(RoomMapping roomMapping) {
-		this.roomMapping = roomMapping;
-	}
+        } else if (nextItem != null) {
+            
+            if (nextItem.getDefinition().getSprite().equals("poolQueue")) {
+                if (nextItem.getPosition().getX() == 21 && nextItem.getPosition().getY() == 9) {
 
-	public void serialise(Response response, NavigatorRequest request) {
-		response.appendNewArgument(String.valueOf(this.roomData.getID()));
-		response.appendPartArgument(this.roomData.getName());
+                    if (!(entity.getDetails().getTickets() > 0)) {
+                        return false;
+                    }
 
-		if (request != NavigatorRequest.PRIVATE_ROOMS) {
-			if (this.roomData.showOwnerName()) {
-				response.appendPartArgument(this.roomData.getOwnerName());
-			} else {
-				response.appendPartArgument("-");
-			}
-		} else {
-			response.appendPartArgument(this.roomData.getOwnerName());
-		}
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+            if (heightCurrent > heightNeighour) {
+                if ((heightCurrent - heightNeighour) >= 1.5) {
+                    Log.println("triggered: " + (heightCurrent - heightNeighour));
+                    return false;
+                }
+            }
 
-		response.appendPartArgument(this.roomData.getState().toString());
-		response.appendPartArgument("");//this.roomData.getPassword()); // password...
-		response.appendPartArgument("floor1");
-		response.appendPartArgument(Roseau.getServerIP());
-		response.appendPartArgument(Roseau.getServerIP());
-		response.appendPartArgument(String.valueOf(Roseau.getPrivateServerPort()));
-		response.appendPartArgument(String.valueOf(this.roomData.getUsersNow()));
-		response.appendPartArgument("null");
-		response.appendPartArgument(this.roomData.getDescription());
-	}
+            if (heightNeighour > heightCurrent) {
+                if ((heightNeighour - heightCurrent) >= 1.5) {
+                    Log.println("triggered2: " + (heightNeighour - heightCurrent));
+                    return false;
+                }
+            }
+        if (!current.isMatch(this.roomData.getModel().getDoorPosition())) {
 
-	public Item getItem(int id) {
+            if (!this.roomMapping.isValidTile(entity, current.getX(), current.getY())) {
+                return false;
+            }
 
-		if (this.items.containsKey(id)) {
-			return this.items.get(id);
-		}
+            if (!current.isMatch(entity.getRoomUser().getPosition())) {
+                if (currentItem != null) {
+                    if (!isFinalMove) {
+                        return currentItem.getDefinition().getBehaviour().isCanStandOnTop();
+                    }
 
-		return null;
-	}
+                    if (isFinalMove) {
+                        return currentItem.canWalk(entity, current);
 
-	public ConcurrentHashMap<Integer, Item> getPassiveObjects() {
-		return passiveObjects;
-	}
+                    }
+                }
+            }
+        }
 
-	public int getOrderID() {
-		return orderID;
-	}
+        return true;
+    }
 
-	public void setOrderID(int orderID) {
-		this.orderID = orderID;
-	}
 
-	public List<Bot> getBots() {
-		return bots;
-	}
+    public ConcurrentHashMap<Integer, Item> getItems() {
+        return items;
+    }
 
-	public List<Integer> getRights() {
-		return rights;
-	}
+    public List<Item> getWallItems() {
+
+        List<Item> items = Lists.newArrayList();
+
+        for (Item item : this.items.values()) {
+            if (item.getDefinition().getBehaviour().isOnWall()) {
+                items.add(item);
+            }
+        }
+
+        return items;
+    }
+
+    public RoomMapping getMapping() {
+        return roomMapping;
+    }
+
+
+    public void setRoomMapping(RoomMapping roomMapping) {
+        this.roomMapping = roomMapping;
+    }
+
+    public void serialise(Response response, NavigatorRequest request) {
+        response.appendNewArgument(String.valueOf(this.roomData.getID()));
+        response.appendPartArgument(this.roomData.getName());
+
+        if (request != NavigatorRequest.PRIVATE_ROOMS) {
+            if (this.roomData.showOwnerName()) {
+                response.appendPartArgument(this.roomData.getOwnerName());
+            } else {
+                response.appendPartArgument("-");
+            }
+        } else {
+            response.appendPartArgument(this.roomData.getOwnerName());
+        }
+
+        response.appendPartArgument(this.roomData.getState().toString());
+        response.appendPartArgument("");//this.roomData.getPassword()); // password...
+        response.appendPartArgument("floor1");
+        response.appendPartArgument(Roseau.getServerIP());
+        response.appendPartArgument(Roseau.getServerIP());
+        response.appendPartArgument(String.valueOf(Roseau.getPrivateServerPort()));
+        response.appendPartArgument(String.valueOf(this.roomData.getUsersNow()));
+        response.appendPartArgument("null");
+        response.appendPartArgument(this.roomData.getDescription());
+    }
+
+    public Item getItem(int id) {
+
+        if (this.items.containsKey(id)) {
+            return this.items.get(id);
+        }
+
+        return null;
+    }
+
+    public ConcurrentHashMap<Integer, Item> getPassiveObjects() {
+        return passiveObjects;
+    }
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
+    public List<Bot> getBots() {
+        return bots;
+    }
+
+    public List<Integer> getRights() {
+        return rights;
+    }
 }
