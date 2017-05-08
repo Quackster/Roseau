@@ -575,6 +575,8 @@ public class Room {
 		Item nextItem = this.roomMapping.getHighestItem(neighbour.getX(), neighbour.getY());
 
 		if (currentItem != null) {
+			
+			
 			if (currentItem.getDefinition().getSprite().equals("poolEnter") || currentItem.getDefinition().getSprite().equals("poolExit")) {
 				return entity.getDetails().getPoolFigure().length() > 0;
 			}
@@ -585,6 +587,16 @@ public class Room {
 						return true;
 					}
 				}
+			}
+			
+			// Can only leave chair from the front
+			if (currentItem.getDefinition().getBehaviour().isCanSitOnTop()) {
+				if (neighbour.isMatch(currentItem.getPosition().getSquareInFront())) {
+					return true;
+				} else {
+					return false;
+				}
+				
 			}
 
 		} else {
@@ -602,6 +614,16 @@ public class Room {
 					} else {
 						return false;
 					}
+				}
+				
+				// Can only enter chair from the front
+				if (nextItem.getDefinition().getBehaviour().isCanSitOnTop()) {
+					if (current.isMatch(nextItem.getPosition().getSquareInFront())) {
+						return true;
+					} else {
+						return false;
+					}
+					
 				}
 			}
 		}

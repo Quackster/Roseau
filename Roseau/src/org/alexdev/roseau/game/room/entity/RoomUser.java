@@ -90,7 +90,6 @@ public class RoomUser {
 
 	}
 
-
 	public void walkItemTrigger() {
 
 		if (!(this.entity instanceof Player)) {
@@ -229,8 +228,6 @@ public class RoomUser {
 			}
 		}
 
-
-
 		if (this.position.isMatch(new Position(x, y))) {
 			return false;
 		}
@@ -277,13 +274,16 @@ public class RoomUser {
 
 	}
 
+	/*
+	 * Rotation calculator taken from Blunk v5
+	 */
 	public void lookTowards(Position look) {
 
 		if (this.isWalking) {
 			return;
 		}
 
-		int diff = this.getPosition().getRotation() - Rotation.calculateHumanDirection(this.position.getX(), this.position.getY(), look.getX(), look.getY());
+		int diff = this.getPosition().getRotation() - Rotation.calculateDirection(this.position.getX(), this.position.getY(), look.getX(), look.getY());
 
 
 		if ((this.getPosition().getRotation() % 2) == 0) {
@@ -485,12 +485,12 @@ public class RoomUser {
 		return afkTimer;
 	}
 
-	public void setAfkTimer(int aFKtime) {
-		afkTimer = aFKtime;
+	public void setAfkTimer(int afkTimer) {
+		this.afkTimer = afkTimer;
 	}
 
 	public void resetAfkTimer() {
-		afkTimer = GameVariables.AFK_ROOM_KICK;
+		this.afkTimer = GameVariables.AFK_ROOM_KICK;
 	}
 
 

@@ -86,7 +86,7 @@ public class RoomWalkScheduler implements Runnable {
 				roomEntity.removeStatus("lay");
 				roomEntity.removeStatus("sit");
 
-				int rotation = Rotation.calculateHumanMoveDirection(roomEntity.getPosition().getX(), roomEntity.getPosition().getY(), next.getX(), next.getY());
+				int rotation = Rotation.calculateDirection(roomEntity.getPosition().getX(), roomEntity.getPosition().getY(), next.getX(), next.getY());
 				double height = this.room.getData().getModel().getHeight(next.getX(), next.getY());
 
 				roomEntity.getPosition().setRotation(rotation);

@@ -32,7 +32,7 @@ public class LOOKTO implements MessageEvent {
 			return;
 		}
 
-		int rotation = Rotation.calculateHumanDirection(
+		int rotation = Rotation.calculateDirection(
 				player.getRoomUser().getPosition().getX(), 
 				player.getRoomUser().getPosition().getY(), 
 				x, 

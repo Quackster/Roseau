@@ -2,7 +2,7 @@ package org.alexdev.roseau.game.room.model;
 
 public class Rotation {
 	
-	public static byte calculateHumanDirection(int X, int Y, int toX, int toY)
+	public static byte calculateDirection(int X, int Y, int toX, int toY)
 	{
 		byte result = 0;
         if (X > toX && Y > toY)
@@ -39,36 +39,5 @@ public class Rotation {
         }
 
         return result;
-	}
-	
-	public static byte calculateHumanMoveDirection(int X, int Y, int toX, int toY)
-	{
-		if (X == toX)
-        {
-            if (Y < toY)
-                return 4;
-            else
-                return 0;
-        }
-        else if (X > toX)
-        {
-            if (Y == toY)
-                return 6;
-            else if (Y < toY)
-                return 5;
-            else
-                return 7;
-        }
-        else if (X < toX)
-        {
-            if (Y == toY)
-                return 2;
-            else if (Y < toY)
-                return 3;
-            else
-                return 1;
-        }
-		
-		return 0;
 	}
 }
