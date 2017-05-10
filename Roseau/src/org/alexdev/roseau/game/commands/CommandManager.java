@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.alexdev.roseau.game.commands.types.AboutCommand;
 import org.alexdev.roseau.game.commands.types.HelpCommand;
-import org.alexdev.roseau.game.commands.types.ReloadDefinitionsCommand;
 import org.alexdev.roseau.game.commands.types.SitCommand;
 import org.alexdev.roseau.game.player.Player;
 

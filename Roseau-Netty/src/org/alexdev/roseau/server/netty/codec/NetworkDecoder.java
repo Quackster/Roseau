@@ -84,7 +84,7 @@ public class NetworkDecoder extends FrameDecoder {
 			return new NettyRequest(header, request);
 
 		} catch (Exception e){
-
+		    buffer.readBytes(buffer.readableBytes());
 		}
 
 

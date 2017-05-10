@@ -1,11 +1,8 @@
 package org.alexdev.roseau.game.room.entity;
 
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
-import org.alexdev.roseau.game.player.Player;
 
 /*
  * Written by office.boy (Mike) and Nillus from Blunk v5
