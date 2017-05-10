@@ -132,52 +132,6 @@ public class PlayerManager {
 		return false;
 	}
 
-	public boolean approveName(String name)
-	{
-		// FAILproof!
-		if (name != null) {
-
-			// Atleast 3 characters and not more than 20?
-			if (name.length() >= 3 && name.length() <= 20) {
-				// Does username start with MOD- ?
-				if (name.indexOf("MOD-") != 0) {
-
-					// We don't want m0d neither...
-					if (name.indexOf("M0D-") != 0)
-					{
-						// Check for characters
-						String allowed = GameVariables.USERNAME_CHARS;
-
-						if (allowed.equals("*")) {
-
-							// Any name can pass!
-							return true;
-						} else {
-
-							// Check each character in the name
-							char[] nameChars = name.toCharArray();
-
-							for (int i = 0; i < nameChars.length; i++) {
-
-								// Is this character allowed?
-								if (allowed.indexOf(Character.toLowerCase(nameChars[i])) == -1) {
-									// Not allowed
-									return false;
-								}
-							}
-
-							// Passed all checks!
-							return true;
-						}
-					}
-				}
-			}
-		}
-
-		// Bad for whatever reason!
-		return false;
-	}
-
 	public List<Player> getMainServerPlayers() {
 		try {
 			List<Player> players =  this.players.values().stream().filter(player -> 

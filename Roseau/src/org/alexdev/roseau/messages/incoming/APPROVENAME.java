@@ -17,7 +17,7 @@ public class APPROVENAME implements MessageEvent {
 			String name = reader.getArgument(0);
 
 			if (name.length() > 0) {
-				if (Roseau.getGame().getPlayerManager().approveName(name)) {
+				if (REGISTER.approveName(name)) {
 					player.send(new NAME_APPROVED());
 				} else {
 					player.send(new NAME_UNACCEPTABLE());
