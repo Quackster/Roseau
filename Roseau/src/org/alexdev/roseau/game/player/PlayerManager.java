@@ -5,8 +5,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import org.alexdev.roseau.Roseau;
-import org.alexdev.roseau.game.GameVariables;
-
 import com.google.common.collect.Lists;
 
 public class PlayerManager {

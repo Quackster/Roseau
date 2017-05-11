@@ -17,75 +17,74 @@ import com.google.common.collect.Lists;
 
 public class MySQLNavigatorDao extends IProcessStorage<Room, ResultSet> implements NavigatorDao {
 
-	private MySQLDao dao;
+    private MySQLDao dao;
 
-	public MySQLNavigatorDao(MySQLDao dao) {
-		this.dao = dao;
-	}
-	
-	@Override
-	public List<Room> getRoomsByLikeName(String name) {
+    public MySQLNavigatorDao(MySQLDao dao) {
+        this.dao = dao;
+    }
 
-		List<Room> rooms = Lists.newArrayList();
+    @Override
+    public List<Room> getRoomsByLikeName(String name) {
 
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
+        List<Room> rooms = Lists.newArrayList();
 
-		try {
+        Connection sqlConnection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE name LIKE ? AND room_type = 0", sqlConnection);
-			preparedStatement.setString(1, "%" + name + "%");
-			resultSet = preparedStatement.executeQuery();
+        try {
 
-			while (resultSet.next()) {
+            sqlConnection = this.dao.getStorage().getConnection();
+            preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE name LIKE ? AND room_type = 0", sqlConnection);
+            preparedStatement.setString(1, "%" + name + "%");
+            resultSet = preparedStatement.executeQuery();
 
-				int id = resultSet.getInt("id");
+            while (resultSet.next()) {
 
-				Room room = Roseau.getGame().getRoomManager().getRoomByID(id);
+                int id = resultSet.getInt("id");
 
-				if (room == null) {
-					room = this.fill(resultSet);
-				}
+                Room room = Roseau.getGame().getRoomManager().getRoomByID(id);
 
-				rooms.add(room);
-			}
+                if (room == null) {
+                    room = this.fill(resultSet);
+                }
 
-		} catch (Exception e) {
-			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
-		}
+                rooms.add(room);
+            }
 
-		return rooms;
-	}
-	
-	@Override
-	public Room fill(ResultSet row) throws Exception {
+        } catch (Exception e) {
+            Log.exception(e);
+        } finally {
+            Storage.closeSilently(resultSet);
+            Storage.closeSilently(preparedStatement);
+            Storage.closeSilently(sqlConnection);
+        }
 
-		RoomType type = RoomType.getType(row.getInt("room_type"));
+        return rooms;
+    }
 
-		PlayerDetails details = null;
+    @Override
+    public Room fill(ResultSet row) throws Exception {
 
-		if (type == RoomType.PRIVATE) {
-			details = Roseau.getDao().getPlayer().getDetails(row.getInt("owner_id"));
-		}
+        RoomType type = RoomType.getType(row.getInt("room_type"));
 
-		Room instance = new Room();
-		
-		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getID(), details == null ? "" : details.getName(), row.getString("name"), 
-				row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"),
-				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"), false, row.getInt("show_owner_name") == 1);
-		
-		if (details != null) {
-		instance.getData().setOwnerName(details.getName());
-		}
-		
-		instance.load();
+        PlayerDetails details = null;
 
-		return instance;
-	}
+        if (type == RoomType.PRIVATE) {
+            details = Roseau.getDao().getPlayer().getDetails(row.getInt("owner_id"));
+        }
+
+        Room instance = new Room();
+
+        instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getID(), details == null ? "" : details.getName(), row.getString("name"), 
+                row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"),
+                row.getString("cct"), row.getString("wallpaper"), row.getString("floor"), false, row.getInt("show_owner_name") == 1);
+
+        if (details != null) {
+            instance.getData().setOwnerName(details.getName());
+        }
+
+        instance.load();
+        return instance;
+    }
 }

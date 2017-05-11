@@ -57,27 +57,26 @@ public class Storage {
 		return null;
 	}
 	
-	public boolean execute(String query) {
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
+    public void execute(String query) {
+        
+        Connection sqlConnection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
-		try {
+        try {
 
-			sqlConnection = this.getConnection();
-			preparedStatement = this.prepare(query, sqlConnection);
-			return preparedStatement.execute();
+            sqlConnection = this.getConnection();
+            preparedStatement = this.prepare(query, sqlConnection);
+            preparedStatement.execute();
 
-		} catch (Exception e) {
-			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
-		}
-
-		return false;
-	}
+        } catch (Exception e) {
+            Log.exception(e);
+        } finally {
+            Storage.closeSilently(resultSet);
+            Storage.closeSilently(preparedStatement);
+            Storage.closeSilently(sqlConnection);
+        }
+    }
 	
 	public boolean exists(String query) {
 		

@@ -277,13 +277,10 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 		ResultSet resultSet = null;
 
 		try {
-
 			sqlConnection = this.dao.getStorage().getConnection();
-
 			preparedStatement = dao.getStorage().prepare("UPDATE users SET last_online = ? WHERE id = ?", sqlConnection);
 			preparedStatement.setLong(1, DateTime.getTime());
 			preparedStatement.setInt(2, details.getID());
-
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -293,7 +290,6 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			Storage.closeSilently(preparedStatement);
 			Storage.closeSilently(sqlConnection);
 		}
-
 	}
 
 	@Override
