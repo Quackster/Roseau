@@ -60,16 +60,16 @@ public class Roseau {
 
 				Log.println("Settting up server");
 				
-				ArrayList<Integer> ports = Lists.newArrayList();
-				
-				privateServerPort = Util.getConfiguration().get("Server", "server.private.port", Integer.class);
-				
-				ports.add(serverPort);
-				ports.add(privateServerPort);
-				
-				for (int roomID : dao.getRoom().getPublicRoomIDs()) {
-					ports.add(serverPort + roomID);
-				}
+                ArrayList<Integer> ports = Lists.newArrayList();
+                
+                privateServerPort = Util.getConfiguration().get("Server", "server.private.port", Integer.class);
+                
+                ports.add(serverPort);
+                ports.add(privateServerPort);
+                
+                for (int roomID : dao.getRoom().getPublicRoomIDs()) {
+                	ports.add(serverPort + roomID);
+                }
 				
 				server = Class.forName(Roseau.getServerClassPath()).asSubclass(IServerHandler.class).getDeclaredConstructor(List.class).newInstance(ports);
 				server.setIp(serverIP);

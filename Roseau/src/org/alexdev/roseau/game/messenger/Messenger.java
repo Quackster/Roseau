@@ -42,11 +42,7 @@ public class Messenger {
 
 		Optional<MessengerUser> friend = this.friends.stream().filter(f -> f.getDetails().getID() == id).findFirst();
 
-		if (friend.isPresent()) {
-			return friend.get();
-		} else {
-			return null;
-		}
+		return friend.orElse(null);
 	}
 
 	public MessengerUser getRequest(int id) {
