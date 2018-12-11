@@ -11,7 +11,6 @@ public class INTODOOR implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-
 		int itemID = Integer.valueOf(reader.getMessageBody());
 
 		Room room = player.getRoomUser().getRoom();

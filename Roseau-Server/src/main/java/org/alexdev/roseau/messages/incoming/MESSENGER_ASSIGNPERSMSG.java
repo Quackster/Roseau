@@ -9,7 +9,6 @@ public class MESSENGER_ASSIGNPERSMSG implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-		
 		String persistentMessage = Util.filterInput(reader.getMessageBody());
 		
 		if (persistentMessage.length() > 23) {

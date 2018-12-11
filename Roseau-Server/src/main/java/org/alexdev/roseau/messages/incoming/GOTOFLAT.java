@@ -9,7 +9,6 @@ public class GOTOFLAT implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-		
 		Room room = player.getRoomUser().getRoom();
 
 		if (room == null) {

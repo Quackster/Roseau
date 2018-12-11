@@ -8,7 +8,6 @@ public class DANCE implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-		
 		if (player.getRoomUser().getRoom() == null) {
 			return;
 		}

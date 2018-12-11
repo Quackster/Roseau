@@ -7,7 +7,6 @@ public class HelpCommand implements Command {
 
 	@Override
 	public void handleCommand(Player player, String message) {
-		
 		StringBuilder about = new StringBuilder();
 		about.append("Commands:\n\n");
 		about.append("- :sit\n");

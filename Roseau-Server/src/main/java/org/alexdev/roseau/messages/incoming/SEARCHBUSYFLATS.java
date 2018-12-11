@@ -16,10 +16,7 @@ public class SEARCHBUSYFLATS implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-
-
 		if (reader.getMessageBody().length() > 0) {
-
 			String[] parts = reader.getMessageBody().replace("/", "").split(",");
 			int multipler = Integer.valueOf(parts[0]);
 

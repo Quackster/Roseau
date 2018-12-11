@@ -11,7 +11,6 @@ public class FLATPROPERTYBYITEM implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-		
 		String decoration = reader.getArgument(1, "/");
 		int itemID = Integer.valueOf(reader.getArgument(2, "/"));
 

@@ -12,7 +12,6 @@ public class LOGIN implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-
 		if (!(reader.getArgumentAmount() > 1)) {
 			player.send(new SYSTEMBROADCAST("Your username or password was incorrect."));
 			player.getNetwork().close();

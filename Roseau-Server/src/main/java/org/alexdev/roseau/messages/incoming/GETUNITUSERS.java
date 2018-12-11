@@ -13,7 +13,6 @@ public class GETUNITUSERS implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-		
 		Room publicRoom = Roseau.getGame().getRoomManager().getRoomByName(reader.getArgument(1, "/"));
 		
 		if (publicRoom == null) {

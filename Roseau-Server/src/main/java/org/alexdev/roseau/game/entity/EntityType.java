@@ -3,7 +3,6 @@ package org.alexdev.roseau.game.entity;
 import org.alexdev.roseau.game.player.Player;
 
 public enum EntityType {
-
 	PLAYER(Player.class),
 	PET(Entity.class),
 	BOT(Entity.class);

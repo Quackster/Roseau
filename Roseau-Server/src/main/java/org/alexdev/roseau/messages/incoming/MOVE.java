@@ -8,7 +8,6 @@ public class MOVE implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-
 		if (reader.getArgumentAmount() < 2) {
 			return;
 		}

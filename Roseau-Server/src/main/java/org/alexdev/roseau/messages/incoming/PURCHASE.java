@@ -17,7 +17,6 @@ public class PURCHASE implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-
 		if (!(DateTime.getTime() - player.getOrderInfoProtection() > 500)) {
 			return;
 		}
@@ -50,7 +49,6 @@ public class PURCHASE implements MessageEvent {
 				player.sendAlert("The player '" + target + "' cannot be found.");
 				return;
 			} else {
-
 				Player targetPlayer = Roseau.getGame().getPlayerManager().getByIDMainServer(details.getID());
 
 				if (targetPlayer == null) {
@@ -93,11 +91,9 @@ public class PURCHASE implements MessageEvent {
 		}
 
 		if (product != null) {
-
 			int oldCredits = player.getDetails().getCredits();
 
 			if (oldCredits >= product.getCredits()) {
-
 				Item item = Roseau.getDao().getInventory().newItem(product.getDefinition().getID(), player.getDetails().getID(), "");
 
 				if (item.getDefinition().getBehaviour().isDecoration() || callID.contains("juliste ")) {
@@ -113,7 +109,6 @@ public class PURCHASE implements MessageEvent {
 
 
 				if (item.getDefinition().getBehaviour().isTeleporter()) {
-
 					Item firstTeleporter = item;
 					Item secondTeleporter = Roseau.getDao().getInventory().newItem(product.getDefinition().getID(), player.getDetails().getID(), "");
 
@@ -143,11 +138,9 @@ public class PURCHASE implements MessageEvent {
 		CatalogueDeal deal = Roseau.getGame().getCatalogueManager().getDealByCall(callID);
 
 		if (deal != null) {
-
 			int oldCredits = player.getDetails().getCredits();
 
 			if (oldCredits >= deal.getCost()) {
-
 				for (CatalogueItem item : deal.getItems()) {
 					Item newItem = Roseau.getDao().getInventory().newItem(item.getDefinition().getID(), player.getDetails().getID(), "");
 
@@ -164,7 +157,6 @@ public class PURCHASE implements MessageEvent {
 				}
 
 				p.getInventory().load();
-
 				player.send(new PURCHASE_ADDSTRIPITEM());
 
 				player.getDetails().setCredits(player.getDetails().getCredits() - deal.getCost());

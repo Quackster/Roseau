@@ -10,7 +10,6 @@ public class MESSENGER_REMOVEBUDDY implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-		
 		String username = reader.getMessageBody();
 		
 		if (username == null) {

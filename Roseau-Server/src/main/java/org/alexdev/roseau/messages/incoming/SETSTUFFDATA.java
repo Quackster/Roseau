@@ -10,7 +10,6 @@ public class SETSTUFFDATA implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-		
 		int itemID = Integer.valueOf(reader.getArgument(1, "/"));
 		String dataClass = reader.getArgument(2, "/");
 		String customData = reader.getArgument(3, "/");

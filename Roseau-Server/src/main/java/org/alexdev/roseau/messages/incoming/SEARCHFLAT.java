@@ -11,7 +11,6 @@ public class SEARCHFLAT implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-		
 		String query = reader.getMessageBody().substring(2);
 		
 		if (!(query.length() > 1)) {

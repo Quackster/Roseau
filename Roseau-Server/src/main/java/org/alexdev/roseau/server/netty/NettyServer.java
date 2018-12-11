@@ -25,7 +25,6 @@ public class NettyServer extends IServerHandler {
 
 	@Override
 	public boolean listenSocket() {
-
 		this.factory = new NioServerSocketChannelFactory (
 				Executors.newCachedThreadPool(),
 				Executors.newCachedThreadPool());
@@ -39,7 +38,6 @@ public class NettyServer extends IServerHandler {
 		pipeline.addLast("handler", new ConnectionHandler(this));
 
 		try {
-
 			for (int port : this.getPorts()) {
 				this.bootstrap.bind(new InetSocketAddress(this.getIp(), port));
 			}

@@ -29,7 +29,6 @@ public class RoomMapping {
 	private List<Integer>  roomConnections;
 
 	private int mapSizeX;
-
 	private int mapSizeY;
 
 	public RoomMapping(Room room) {
@@ -38,7 +37,6 @@ public class RoomMapping {
 	}
 
 	public void regenerateCollisionMaps() {
-
 		this.mapSizeX = this.room.getData().getModel().getMapSizeX();
 		this.mapSizeY = this.room.getData().getModel().getMapSizeY();
 
@@ -68,7 +66,6 @@ public class RoomMapping {
 		}
 
 		for (Item item : items.values()) {
-
 			if (item == null) {
 				continue;
 			}
@@ -101,9 +98,7 @@ public class RoomMapping {
 			roomTile.setHeight(roomTile.getHeight() + stacked_height);
 
 			for (Position tile : item.getAffectedTiles()) {
-
 				if (this.checkHighestItem(item, tile.getX(), tile.getY())) {
-
 					RoomTile affectedRoomTile = this.getTile(tile.getX(), tile.getY());
 
 					if (affectedRoomTile != null) {
@@ -116,7 +111,6 @@ public class RoomMapping {
 	}
 
 	private boolean checkHighestItem(Item item, int x, int y) {
-
 		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
 			return false;
 		}
@@ -148,7 +142,7 @@ public class RoomMapping {
 		}
 
 		Item item = tile.getHighestItem();
-		boolean tile_valid = (this.room.getData().getModel().isBlocked(x, y) == false);
+		boolean tile_valid = (!this.room.getData().getModel().isBlocked(x, y));
 
 		if (item != null) {
 			tile_valid = item.canWalk(entity, new Position(x, y));
@@ -178,7 +172,6 @@ public class RoomMapping {
 	}
 
 	public List<Player> getNearbyPlayers(Entity entity, Position start, int distance) {
-
 		List<Player> players = Lists.newArrayList();
 
 		for (Player roomPlayer : room.getPlayers()) {
@@ -187,10 +180,9 @@ public class RoomMapping {
 				continue;
 			}
 
-			Position currentPoint = start;
 			Position playerPoint = roomPlayer.getRoomUser().getPosition();
 
-			if (currentPoint.getDistance(playerPoint) <= distance) {
+			if (start.getDistance(playerPoint) <= distance) {
 				players.add(roomPlayer);
 			}
 		}
@@ -199,7 +191,6 @@ public class RoomMapping {
 	}
 
 	public List<Bot> getNearbyBots(Entity entity, Position start, int distance) {
-
 		List<Bot> players = Lists.newArrayList();
 
 		for (Entity roomPlayer : room.getEntities(EntityType.BOT)) {
@@ -208,10 +199,9 @@ public class RoomMapping {
 				continue;
 			}
 
-			Position currentPoint = start;
 			Position playerPoint = roomPlayer.getRoomUser().getPosition();
 
-			if (currentPoint.getDistance(playerPoint) <= distance) {
+			if (start.getDistance(playerPoint) <= distance) {
 				players.add((Bot)roomPlayer);
 			}
 		}
@@ -220,8 +210,6 @@ public class RoomMapping {
 	}
 
 	public void addItem(Item item) {
-
-		
 		item.setRoomID(this.room.getData().getID());
 		
 		this.room.getItems().put(item.getID(), item);
@@ -250,7 +238,6 @@ public class RoomMapping {
 	}
 
 	public void updateItemPosition(Item item, boolean rotation_only) {
-
 		item.setCustomData("");
 
 		if (item.getDefinition().getBehaviour().isOnFloor()) {
@@ -272,7 +259,6 @@ public class RoomMapping {
 
 
 	public void removeItem(Item item) {
-
 		item.setRoomID(0);
 		item.save();
 
@@ -291,7 +277,6 @@ public class RoomMapping {
 	}
 
 	private void handleItemAdjustment(Item item, boolean rotation_only) {
-
 		if (rotation_only) {
 			for (Item items : this.getTile(item.getPosition().getX(), item.getPosition().getY()).getItems()) {
 				if (items != item && items.getPosition().getZ() >= item.getPosition().getZ()) {
@@ -315,10 +300,8 @@ public class RoomMapping {
 	}
 
 	public void updateItem(Player player, Item item, String dataClass, String customData) {
-
 		if (item == null) {
 			return;
-
 		}
 
 		if (item.getDefinition().getDataClass().equals("NULL")) {
@@ -353,7 +336,6 @@ public class RoomMapping {
 
 
 	private double getStackHeight(int x, int y) {
-
 		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
 			return 0;
 		}
@@ -362,7 +344,6 @@ public class RoomMapping {
 	}
 
 	public RoomTile getTile(int x, int y) {
-
 		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
 			return null;
 		}
@@ -371,7 +352,6 @@ public class RoomMapping {
 	}
 
 	public Item getHighestItem(int x, int y) {
-
 		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
 			return null;
 		}
@@ -380,13 +360,11 @@ public class RoomMapping {
 	}
 
 	public Player getPlayer(int x, int y) {
-
 		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
 			return null;
 		}
 
 		for (Player player : this.room.getPlayers()) {
-
 			if (player.getRoomUser().getPosition().getX() == x &&
 					player.getRoomUser().getPosition().getY() == y) {
 
@@ -398,13 +376,11 @@ public class RoomMapping {
 	}
 	
 	public Player isValidGoal(int x, int y) {
-
 		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
 			return null;
 		}
 
 		for (Player player : this.room.getPlayers()) {
-
 			if (player.getRoomUser().getGoal() == null) {
 				continue;
 			}
@@ -419,14 +395,11 @@ public class RoomMapping {
 		return null;
 	}
 
-
 	public RoomConnection[][] getConnections() {
 		return connections;
 	}
 
-
 	public RoomConnection getRoomConnection(int x, int y) {
-
 		if (this.room.getData().getModel().invalidXYCoords(x, y)) {
 			return null;
 		}
@@ -437,9 +410,4 @@ public class RoomMapping {
 	public List<Integer> getRoomWalkwayIDs() {
 		return roomConnections;
 	}
-
-	public void setRoomConnections(List<Integer> roomConnections) {
-		this.roomConnections = roomConnections;
-	}
-
 }

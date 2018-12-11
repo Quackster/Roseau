@@ -14,7 +14,6 @@ public class GETORDERINFO implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-
 		String callID = reader.getMessageBody().substring(4).replace(" " + player.getDetails().getName(), "");
 		String catalogueID = callID;
 		

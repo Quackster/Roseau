@@ -4,7 +4,6 @@ import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.item.ItemDefinition;
 
 public class CatalogueItem {
-
 	private int credits;
 	private int definitionID;
 	private String callID;

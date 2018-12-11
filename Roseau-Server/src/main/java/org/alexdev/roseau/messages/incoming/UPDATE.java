@@ -9,9 +9,7 @@ public class UPDATE implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-		
 		if (reader.getMessageBody().contains("ph_figure")) {
-
 			String poolFigure = reader.getMessageBody().substring(10);
 			
 			player.getDetails().setPoolFigure(poolFigure);
@@ -21,7 +19,6 @@ public class UPDATE implements MessageEvent {
 				player.getRoomUser().getRoom().send(player.getRoomUser().getUsersComposer());
 			}
 		} else {
-			
 			String password = reader.getArgument(1, Character.toString((char)13)).split("=")[1];
 			String email = reader.getArgument(2, Character.toString((char)13)).split("=")[1];
 			String figure = reader.getArgument(3, Character.toString((char)13)).substring(7); // remove "figure="
@@ -29,7 +26,6 @@ public class UPDATE implements MessageEvent {
 			String sex = reader.getArgument(9, Character.toString((char)13)).split("=")[1];
 			
 			if (!sex.equals(player.getDetails().getSex())) {
-				
 				// Changed sex? Then we remove their opposite sex pool figure
 				player.getDetails().setPoolFigure("");
 			}

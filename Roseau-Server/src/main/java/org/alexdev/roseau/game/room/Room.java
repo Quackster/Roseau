@@ -118,7 +118,6 @@ public class Room {
     }
 
     private void registerNewEvent(RoomEvent event) {
-
         if (this.eventTask == null) {
             this.eventTask = Roseau.getGame().getScheduler().scheduleAtFixedRate(this.roomEventScheduler, 0, 500, TimeUnit.MILLISECONDS);
         }
@@ -128,7 +127,6 @@ public class Room {
     }
 
     public void loadRoom(Player player) {
-
         if (this.roomData.getModel() != null) {
             this.loadRoom(player, this.roomData.getModel().getDoorPosition(), this.roomData.getModel().getDoorRot());
         } else {
@@ -137,7 +135,6 @@ public class Room {
     }
 
     public void loadRoom(final Player player, Position door, int rotation) {
-
         if (player.getMainServerPlayer() == null) {
             if (!GameVariables.DEBUG_ENABLE) {
                 player.send(new SYSTEMBROADCAST("Please reload client completely before entering rooms."));
@@ -250,7 +247,6 @@ public class Room {
     }
 
     public boolean ringDoorbell(Player player) {
-
         boolean received = false;
 
         for (Player rights : this.getPlayersWithRights()) {
@@ -262,7 +258,6 @@ public class Room {
     }
 
     public boolean hasRights(Player user, boolean ownerCheckOnly) {
-
         if (user.hasPermission("room_all_rights")) {
             return true;
         }
@@ -279,7 +274,6 @@ public class Room {
     }
 
     public void giveUserRights(Player player) {
-
         if (this.rights.contains(Integer.valueOf(player.getDetails().getID()))) {
             return;
         }
@@ -290,7 +284,6 @@ public class Room {
     }
 
     public void removeUserRights(Player player) {
-
         if (!this.rights.contains(Integer.valueOf(player.getDetails().getID()))) {
             return;
         }
@@ -301,7 +294,6 @@ public class Room {
     }
 
     public void refreshFlatPrivileges(Player player, boolean enterRoom) {
-
         if (player.getDetails().getRank() == 2) { // Bronze Hobba
             player.getRoomUser().setStatus("mod", " 1", true, -1);
         } else if (player.getDetails().getRank() == 3) { // Silver Hobba
@@ -331,7 +323,6 @@ public class Room {
     }
 
     public void send(OutgoingMessageComposer response, boolean checkRights) {
-
         if (this.disposed) {
             return;
         }
@@ -343,7 +334,6 @@ public class Room {
 
 
     public void leaveRoom(Player player, boolean hotelView) {
-
         if (hotelView) {
             if (player.getPrivateRoomPlayer() != null) { 
                 player.getPrivateRoomPlayer().getNetwork().close();
@@ -377,9 +367,7 @@ public class Room {
     }
 
     public void dispose(boolean forceDisposal) {
-
         try {
-
             if (forceDisposal) {
 
                 for (Player player : this.getPlayers()) {
@@ -391,7 +379,6 @@ public class Room {
                 Roseau.getGame().getRoomManager().getLoadedRooms().remove(this.getData().getID());
 
             } else {
-
                 if (this.disposed) {
                     return;
                 }
@@ -423,7 +410,6 @@ public class Room {
     }
 
     private void clearData() {
-
         if (this.entities != null) {
             this.entities.clear();
         }
@@ -450,7 +436,6 @@ public class Room {
 
 
     public void send(OutgoingMessageComposer response) {
-
         if (this.disposed) {
             return;
         }
@@ -461,7 +446,6 @@ public class Room {
     }
 
     public List<Player> getPlayers() {
-
         List<Player> sessions = Lists.newArrayList();
 
         for (Entity entity : this.getEntities(EntityType.PLAYER)) {
@@ -473,7 +457,6 @@ public class Room {
     }
 
     public List<Player> getPlayersWithRights() {
-
         List<Player> sessions = Lists.newArrayList();
 
         for (Player player : this.getPlayers()) {
@@ -487,7 +470,6 @@ public class Room {
 
 
     public Player getPlayerByID(int ID) {
-
         for (Player player : this.getPlayers()) {
             if (player.getDetails().getID() == ID) {
                 return player;
@@ -499,7 +481,6 @@ public class Room {
     }
 
     public Player getPlayerByName(String name) {
-
         for (Player player : this.getPlayers()) {
             if (player.getDetails().getName().equals(name)) {
                 return player;
@@ -551,7 +532,6 @@ public class Room {
     }
 
     public boolean isValidStep(Entity entity, Position current, Position neighbour, boolean isFinalMove) {
-
         if (this.roomData.getModel().invalidXYCoords(current.getX(), current.getY())) {
             return false;
         }
@@ -575,7 +555,6 @@ public class Room {
         Item nextItem = this.roomMapping.getHighestItem(neighbour.getX(), neighbour.getY());
 
         if (currentItem != null) {
-
             if (currentItem.getDefinition().getSprite().equals("poolEnter") || currentItem.getDefinition().getSprite().equals("poolExit")) {
                 return entity.getDetails().getPoolFigure().length() > 0;
             }
@@ -590,7 +569,6 @@ public class Room {
             }
 
         } else if (nextItem != null) {
-
             if (nextItem.getDefinition().getSprite().equals("poolQueue")) {
                 if (nextItem.getPosition().getX() == 21 && nextItem.getPosition().getY() == 9) {
 
@@ -618,7 +596,6 @@ public class Room {
         }
 
         if (!current.isMatch(this.roomData.getModel().getDoorPosition())) {
-
             if (!this.roomMapping.isValidTile(entity, current.getX(), current.getY())) {
                 return false;
             }
@@ -660,11 +637,6 @@ public class Room {
 
     public RoomMapping getMapping() {
         return roomMapping;
-    }
-
-
-    public void setRoomMapping(RoomMapping roomMapping) {
-        this.roomMapping = roomMapping;
     }
 
     public void serialise(Response response, NavigatorRequest request) {

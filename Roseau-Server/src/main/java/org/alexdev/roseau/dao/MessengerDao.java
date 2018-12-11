@@ -6,7 +6,6 @@ import org.alexdev.roseau.game.messenger.MessengerMessage;
 import org.alexdev.roseau.game.messenger.MessengerUser;
 
 public interface MessengerDao {
-
 	public List<MessengerUser> getFriends(int userId);
 	public List<MessengerUser> getRequests(int userId);
 	public boolean newRequest(int fromId, int toId);

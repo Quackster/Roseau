@@ -1,5 +1,7 @@
 package org.alexdev.roseau.game.room.schedulers.events;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map.Entry;
 
 import org.alexdev.roseau.game.entity.Entity;
@@ -19,9 +21,7 @@ public class UserStatusEvent extends RoomEvent {
 
 		try {
 			if (this.canTick(2)) { // 1 second
-
 				for (Entity entity : this.room.getEntities()) {
-
 					RoomUser roomUser = entity.getRoomUser();
 
 					if (roomUser.getLookResetTime() > 0) {
@@ -34,11 +34,12 @@ public class UserStatusEvent extends RoomEvent {
 						}
 					}
 
+					List<String> toRemove =  new ArrayList<>();
+
 					for (Entry<String, RoomUserStatus> set : entity.getRoomUser().getStatuses().entrySet()) {
 						RoomUserStatus statusEntry = set.getValue();
 
 						if (statusEntry.getKey().equals("carryd")) {
-
 							if (roomUser.isWalking()) {
 								return;
 							}
@@ -70,7 +71,8 @@ public class UserStatusEvent extends RoomEvent {
 							statusEntry.tick();
 
 							if (statusEntry.getDuration() == 0) {
-								entity.getRoomUser().removeStatus(statusEntry.getKey());
+								toRemove.add(statusEntry.getKey());
+								//entity.getRoomUser().removeStatus(statusEntry.getKey());
 
 								if (statusEntry.getKey().equals("carryd")) {
 									roomUser.setTimeUntilNextDrink(-1);
@@ -79,6 +81,10 @@ public class UserStatusEvent extends RoomEvent {
 								roomUser.setNeedUpdate(true);
 							}
 						}
+					}
+
+					for (String statusKey : toRemove) {
+						entity.getRoomUser().removeStatus(statusKey);
 					}
 				}
 			}

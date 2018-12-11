@@ -17,19 +17,16 @@ public class BotMoveRoomEvent extends RoomEvent {
 
 	@Override
 	public void tick() {
-
 		if (this.room.getBots().size() < 1) {
 			return;
 		}
 
 		for (Bot bot : this.room.getBots()) {
-
 			RoomUser roomUser = bot.getRoomUser();
 
 			List<Player> nearbyPlayers = this.room.getMapping().getNearbyPlayers(bot, bot.getStartPosition(), 3);
 
 			if (nearbyPlayers.size() > 0) {
-
 				if (!roomUser.getPosition().isMatch(bot.getStartPosition())) {
 					if (!roomUser.isWalking()) {
 
@@ -46,9 +43,7 @@ public class BotMoveRoomEvent extends RoomEvent {
 					}
 				}
 			} else {
-
 				if (this.canTick(10)) { // 5 seconds
-
 					if (bot.getPositions().size() > 0) {
 						int[] position = bot.getPositions().get(Util.getRandom().nextInt(bot.getPositions().size() - 1));
 						bot.getRoomUser().walkTo(position[0], position[1]);

@@ -33,10 +33,6 @@ public class RoomManager {
 	
 	public List<Room> getPublicRooms() {
 		try {
-			List<Room> rooms =  this.loadedRooms.values().stream().filter(
-					room -> room.getData().getRoomType() == RoomType.PUBLIC && 
-					room.getData().isHidden() == false)
-					.collect(Collectors.toList());
 			
 			/*Collections.sort(rooms,new Comparator<Room>() {
 			    @Override
@@ -44,15 +40,10 @@ public class RoomManager {
 			        return b.getUsers().size() - a.getUsers().size();
 			    }
 			});*/
-			
-			Collections.sort(rooms,new Comparator<Room>() {
-			    @Override
-			    public int compare(Room a, Room b) {
-			        return a.getOrderID() - b.getOrderID();
-			    }
-			});
-			
-			return rooms;
+
+			return this.loadedRooms.values().stream().filter(
+					room -> room.getData().getRoomType() == RoomType.PUBLIC &&
+							!room.getData().isHidden()).sorted(Comparator.comparingInt(Room::getOrderID)).collect(Collectors.toList());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -62,15 +53,15 @@ public class RoomManager {
 	public List<Room> getPopularRooms(int multiplier) {
 		try {
 			List<Room> rooms =  this.loadedRooms.values().stream().filter(
-					room -> room.getData().getRoomType() == RoomType.PRIVATE && 
-					room.getData().isHidden() == false && 
+					room -> room.getData().getRoomType() == RoomType.PRIVATE &&
+							!room.getData().isHidden() &&
 					room.getData().getUsersNow() > 0).
 					collect(Collectors.toList());
 			
 			List<Integer> loadedIDs = Lists.newArrayList();
 			
 			for (Room room : rooms) {
-				loadedIDs.add(Integer.valueOf(room.getData().getID()));
+				loadedIDs.add(room.getData().getID());
 			}
 			
 			int range = 0;
@@ -82,13 +73,7 @@ public class RoomManager {
 			List<Room> latestRooms = Roseau.getDao().getRoom().getLatestPlayerRooms(loadedIDs, range);
 			rooms.addAll(latestRooms);
 			
-			Collections.sort(rooms,new Comparator<Room>() {
-			    @Override
-			    public int compare(Room a, Room b) {
-			        return b.getPlayers().size() - a.getPlayers().size();
-			    }
-			});
-			
+			rooms.sort((a, b) -> b.getPlayers().size() - a.getPlayers().size());
 			
 			return rooms.subList(range, rooms.size());
 		} catch (Exception e) {
@@ -98,7 +83,7 @@ public class RoomManager {
 	
 	public List<Room> getPlayerRooms(int userID) {
 		try {
-			return this.loadedRooms.values().stream().filter(room -> room.getData().getOwnerID() == userID && room.getData().isHidden() == false).collect(Collectors.toList());
+			return this.loadedRooms.values().stream().filter(room -> room.getData().getOwnerID() == userID && !room.getData().isHidden()).collect(Collectors.toList());
 		} catch (Exception e) {
 			return null;
 		}
@@ -123,7 +108,6 @@ public class RoomManager {
 	}
 	
 	public Room getRoomByName(String name) {
-
 		try {
 			return Roseau.getGame().getRoomManager().getLoadedRooms().values().stream().filter(r -> r.getData().getName().equals(name)).findFirst().get();
 		} catch (Exception e) {

@@ -10,9 +10,7 @@ public class APPROVENAME implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-
 		if (reader.getArgumentAmount() > 0) {
-
 			String name = reader.getArgument(0);
 
 			if (name.length() > 0) {

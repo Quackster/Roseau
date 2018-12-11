@@ -16,9 +16,7 @@ public class ClubMassivaDiscoEvent extends RoomEvent {
 
 	@Override
 	public void tick() {
-
-		if (this.canTick(10)) { // 30 seconds 
-			
+		if (this.canTick(10)) { // 30 seconds
 			this.currentLampID = this.getNewLampID();
 			room.send(new SHOWPROGRAM(new String[] {"lamp", "setlamp", String.valueOf(this.currentLampID)}));
 			

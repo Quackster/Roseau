@@ -7,7 +7,6 @@ public class AboutCommand implements Command {
 
 	@Override
 	public void handleCommand(Player player, String message) {
-		
 		StringBuilder about = new StringBuilder();
 		about.append("Roseau V1 server written by Quackster\n\n");
 		about.append("With the help of:\n\n");

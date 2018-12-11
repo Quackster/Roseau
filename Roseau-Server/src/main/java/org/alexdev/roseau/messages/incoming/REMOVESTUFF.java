@@ -10,7 +10,6 @@ public class REMOVESTUFF implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-
 		int itemID = Integer.valueOf(reader.getArgument(0));
 		
 		Room room = player.getRoomUser().getRoom();

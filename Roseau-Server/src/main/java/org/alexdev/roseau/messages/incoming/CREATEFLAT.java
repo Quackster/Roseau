@@ -12,7 +12,6 @@ public class CREATEFLAT implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-
 		String floor = reader.getArgument(1, "/");
 		String roomName = Util.filterInput(reader.getArgument(2, "/"));
 		String roomModel = reader.getArgument(3, "/");

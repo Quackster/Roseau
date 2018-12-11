@@ -29,7 +29,6 @@ public class HabboLidoEvent extends RoomEvent {
 			}
 
 			if (this.canTick(9)) {
-
 				int cameraEffect = Util.getRandom().nextInt(3);
 
 				if (cameraEffect == 0) {
@@ -37,7 +36,6 @@ public class HabboLidoEvent extends RoomEvent {
 				}
 
 				if (cameraEffect == 1) {
-
 					if (this.cameraType != 1) {
 						this.cameraType = 1;
 						this.room.send(new SHOWPROGRAM(new String[] {"cam1", "setcamera", Integer.toString(this.cameraType) }));	
@@ -53,7 +51,6 @@ public class HabboLidoEvent extends RoomEvent {
 			}
 			
 			for (Player player : this.room.getPlayers()) {
-
 				RoomUser roomUser = player.getRoomUser();
 						
 				Item item = this.room.getMapping().getHighestItem(roomUser.getPosition().getX(), roomUser.getPosition().getY());
@@ -75,7 +72,6 @@ public class HabboLidoEvent extends RoomEvent {
 	}
 
 	private void findNewTarget() {
-
 		List<Player> players = room.getPlayers();
 
 		if (players.isEmpty()) {

@@ -15,7 +15,6 @@ public class MESSENGER_INIT implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-
 		if (!player.getDetails().isAuthenticated()) {
 			return;
 		}

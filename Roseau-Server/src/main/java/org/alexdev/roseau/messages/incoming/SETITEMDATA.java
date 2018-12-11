@@ -11,7 +11,6 @@ public class SETITEMDATA implements MessageEvent {
 
 	@Override
 	public void handle(Player player, ClientMessage reader) {
-		
 		int itemID = Integer.valueOf(reader.getArgument(1, "/"));
 		String stickyData = reader.getMessageBody().replace("/" + itemID + "/", "");
 

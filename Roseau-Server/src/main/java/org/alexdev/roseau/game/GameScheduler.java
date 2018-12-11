@@ -15,12 +15,9 @@ public class GameScheduler implements Runnable {
 	public void run() {
 		try {
 			List<Player> players = Roseau.getGame().getPlayerManager().getMainServerPlayers();
-			
 
 			if ((this.tickRate % GameVariables.CREDITS_EVERY_SECS) == 0) {
-				for (int i = 0; i < players.size(); i++) {
-					Player player = players.get(i);
-					
+				for (Player player : players) {
 					player.getDetails().setCredits(player.getDetails().getCredits() + GameVariables.CREDITS_EVERY_AMOUNT);
 					player.getDetails().sendCredits();
 					player.getDetails().save();
@@ -29,29 +26,25 @@ public class GameScheduler implements Runnable {
 			
 			if ((this.tickRate % 300) == 0) {
 				if (!Roseau.hasValidIpAddress(Roseau.getRawConfigIP())) {
-				Roseau.setServerIP(InetAddress.getByName(Roseau.getRawConfigIP()).getHostAddress());
+					Roseau.setServerIP(InetAddress.getByName(Roseau.getRawConfigIP()).getHostAddress());
 				}
-				
 			}
-			
-			for (int i = 0; i < players.size(); i++) {
-				
-				Player player = players.get(i);
-				
+
+			for (Player player : players) {
 				Player roomHandlePlayer = null;
-				
+
 				if (player.getPrivateRoomPlayer() != null) {
 					roomHandlePlayer = player.getPrivateRoomPlayer();
 				}
-				
+
 				if (player.getPublicRoomPlayer() != null) {
 					roomHandlePlayer = player.getPublicRoomPlayer();
 				}
-				
+
 				if (roomHandlePlayer != null) {
-					
+
 					RoomUser roomUser = roomHandlePlayer.getRoomUser();
-					
+
 					if (roomUser.getAfkTimer() > 0) {
 						roomUser.setAfkTimer(roomUser.getAfkTimer() - 1);
 					} else {
