@@ -1,18 +1,14 @@
-README
+# README
 
-Roseau was created for nostalgia purposes, now that this server is almost completed, I've come to realise how basic this shit is.
+Roseau was created for nostalgia purposes.
 
-----------------------------------------
- How to enable the debug window for V1
-----------------------------------------
+### How to enable the debug window for V1
 
 Make the HTML client link to loader_debug.dcr instead of loader.dcr
 There's no need to rename any files, loader_debug.dcr should be included with 
 the client files that I supplied.
 
-----------------------------------------
- Credits
-----------------------------------------
+### Credits
 
 With Ascii from Puomi Hotel (long time Suelake v5 player, btw), these things were possible:
 
@@ -34,4 +30,4 @@ the v1 catalogue.
 
 Thanks guys, this is the most completed v1 server to date!
 
-- Alex
+\- Alex
