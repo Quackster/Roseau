@@ -1,0 +1,2 @@
+include 'Roseau-Server'
+project(":Roseau-Server").projectDir = file("Roseau-Server")
