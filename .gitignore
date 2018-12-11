@@ -7,22 +7,11 @@
 bin/
 tmp/
 session-cookies/
+log/
 
 gradlew
 gradlew.bat
 run.bat
 
 habbohotel.properties
-game.properties
-icarus.properties
-locale.ini
-log4j.properties
-error.log
-site-config.ini
-Icarus-Web-all.jar
-
-tools/www/c_images
-tools/www/dcr
-tools/www/web-gallery
-tools/www/gamedata
-tools/www/gordon
+roseau.properties
