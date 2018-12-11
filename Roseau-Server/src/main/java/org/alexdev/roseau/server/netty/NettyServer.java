@@ -15,23 +15,18 @@ import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 
 public class NettyServer extends IServerHandler {
-
-	private NioServerSocketChannelFactory factory;
-	private ServerBootstrap bootstrap;
-
 	public NettyServer(List<Integer> ports) {
 		super(ports);
 	}
 
 	@Override
 	public boolean listenSocket() {
-		this.factory = new NioServerSocketChannelFactory (
+		NioServerSocketChannelFactory factory = new NioServerSocketChannelFactory(
 				Executors.newCachedThreadPool(),
 				Executors.newCachedThreadPool());
 
-		this.bootstrap = new ServerBootstrap(this.factory);
-
-		ChannelPipeline pipeline = this.bootstrap.getPipeline();
+		ServerBootstrap bootstrap = new ServerBootstrap(factory);
+		ChannelPipeline pipeline = bootstrap.getPipeline();
 
 		pipeline.addLast("encoder", new NetworkEncoder());
 		pipeline.addLast("decoder", new NetworkDecoder(this));
@@ -39,7 +34,7 @@ public class NettyServer extends IServerHandler {
 
 		try {
 			for (int port : this.getPorts()) {
-				this.bootstrap.bind(new InetSocketAddress(this.getIp(), port));
+				bootstrap.bind(new InetSocketAddress(this.getIp(), port));
 			}
 
 		} catch (ChannelException ex) {

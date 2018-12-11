@@ -1,6 +1,7 @@
 package org.alexdev.roseau.messages.outgoing;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -15,7 +16,7 @@ public class STATUS extends OutgoingMessageComposer {
 	private List<Entity> entities;
 
 	public STATUS(Entity entity) {
-		this.entities = Arrays.asList(new Entity[] { entity });
+		this.entities = Collections.singletonList(entity);
 	}
 
 	public STATUS(List<Entity> entities) {
@@ -24,7 +25,6 @@ public class STATUS extends OutgoingMessageComposer {
 
 	@Override
 	public void write() {
-		
 		response.init("STATUS ");
 
 		for (Entity entity : this.entities) {
@@ -57,18 +57,17 @@ public class STATUS extends OutgoingMessageComposer {
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getHeadRotation()), ',');
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getRotation()), ',');
 
-			String status = "/";
+			StringBuilder status = new StringBuilder("/");
 
 			for (Entry<String, RoomUserStatus> set : entity.getRoomUser().getStatuses().entrySet()) {
-
 				RoomUserStatus statusEntry = set.getValue();
 
-				status += statusEntry.getStatus();
-				status += statusEntry.getValue();
-				status += "/";
+				status.append(statusEntry.getStatus());
+				status.append(statusEntry.getValue());
+				status.append("/");
 			}
 
-			response.append(status);
+			response.append(status.toString());
 
 			/*if (entity.getRoomUser().needsUpdate()) {
 				entity.getRoomUser().setNeedUpdate(false);
