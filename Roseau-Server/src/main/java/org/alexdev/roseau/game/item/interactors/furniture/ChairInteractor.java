@@ -5,6 +5,7 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.item.interactors.Interaction;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.model.Position;
+import org.alexdev.roseau.util.StringUtil;
 
 public class ChairInteractor extends Interaction {
 
@@ -20,7 +21,7 @@ public class ChairInteractor extends Interaction {
         player.getRoomUser().getPosition().setRotation(item.getPosition().getRotation());
         player.getRoomUser().removeStatus("dance");
         player.getRoomUser().removeStatus("lay");
-        player.getRoomUser().setStatus("sit", " " + String.valueOf(definition.getHeight()), true, -1);
+        player.getRoomUser().setStatus("sit", " " + (int)(definition.getTopHeight() + item.getPosition().getZ()), true, -1);
     }
 
     public boolean hasValidEntry(Entity entity, Position neighbour) {

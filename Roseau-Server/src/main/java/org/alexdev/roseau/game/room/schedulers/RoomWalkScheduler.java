@@ -87,7 +87,7 @@ public class RoomWalkScheduler implements Runnable {
 				double height = this.room.getMapping().getTile(next.getX(), next.getY()).getHeight();
 
 				roomEntity.getPosition().setRotation(rotation);
-				roomEntity.setStatus("mv", " " + next.getX() + "," + next.getY() + "," + StringUtil.format(height), true, -1);
+				roomEntity.setStatus("mv", " " + next.getX() + "," + next.getY() + "," + (int)height, true, -1);
 				roomEntity.setNext(next);
 
 			}

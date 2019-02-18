@@ -40,7 +40,7 @@ public class STATUS extends OutgoingMessageComposer {
 			
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getX()));
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getY()), ',');
-			response.appendArgument(StringUtil.format(entity.getRoomUser().getPosition().getZ()), ',');
+			response.appendArgument((int)entity.getRoomUser().getPosition().getZ(), ',');
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getHeadRotation()), ',');
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getRotation()), ',');
 

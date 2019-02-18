@@ -8,6 +8,7 @@ import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.model.Position;
 
 import com.google.common.collect.Lists;
+import org.alexdev.roseau.util.StringUtil;
 
 public class BedInteractor extends Interaction {
 
@@ -26,7 +27,7 @@ public class BedInteractor extends Interaction {
 			player.getRoomUser().getPosition().setRotation(item.getPosition().getRotation());
 			player.getRoomUser().removeStatus("dance");
 			player.getRoomUser().removeStatus("lay");
-			player.getRoomUser().setStatus("lay", " " + Double.toString(definition.getHeight() + 1.5) + " null", true, -1);
+			player.getRoomUser().setStatus("lay", " " + StringUtil.format(definition.getTopHeight() + 1.5) + " null", true, -1);
 			
 		} else {
 

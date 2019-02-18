@@ -7,7 +7,8 @@ public class ItemDefinition {
 	private String color;
 	private int length;
 	private int width;
-	private double height;
+	private double topHeight;
+	private double stackHeight;
 	private String stringBehaviour;
 	private ItemBehaviour behaviour;
 	private String name;
@@ -20,7 +21,7 @@ public class ItemDefinition {
 		this.color = color;
 		this.length = length;
 		this.width = width;
-		this.height = height;
+		this.topHeight = height;
 		this.stringBehaviour = behaviour;
 		this.name = name;
 		this.description = description;
@@ -30,7 +31,7 @@ public class ItemDefinition {
 		if (!this.behaviour.isCanSitOnTop()
 				&& !this.behaviour.isCanLayOnTop()
 				&& !this.behaviour.isCanStackOnTop()) {
-			this.height = 0.001;
+			this.stackHeight = 0.001;
 		}
 	}
 
@@ -54,8 +55,8 @@ public class ItemDefinition {
 		return width;
 	}
 	
-	public double getHeight() {
-		return height;
+	public double getTopHeight() {
+		return topHeight;
 	}
 	
 	public ItemBehaviour getBehaviour() {
@@ -74,5 +75,12 @@ public class ItemDefinition {
 		return dataClass;
 	}
 
-	
+
+	public double getStackHeight() {
+		return stackHeight;
+	}
+
+	public void setStackHeight(double stackHeight) {
+		this.stackHeight = stackHeight;
+	}
 }

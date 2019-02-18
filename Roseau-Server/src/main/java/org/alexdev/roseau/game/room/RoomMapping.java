@@ -119,7 +119,7 @@ public class RoomMapping {
 				}
 			}
 
-			/*double stacked_height = item.getDefinition().getHeight();
+			/*double stacked_height = item.getDefinition().getTopHeight();
 			
 			this.checkHighestItem(item, item.getPosition().getX(), item.getPosition().getY());
 
@@ -130,7 +130,7 @@ public class RoomMapping {
 			}
 
 			roomTile.getItems().add(item);
-			roomTile.setHeight(roomTile.getHeight() + stacked_height);
+			roomTile.setHeight(roomTile.getTopHeight() + stacked_height);
 
 			for (Position tile : item.getAffectedTiles()) {
 				if (this.checkHighestItem(item, tile.getX(), tile.getY())) {
@@ -138,7 +138,7 @@ public class RoomMapping {
 
 					if (affectedRoomTile != null) {
 						affectedRoomTile.getItems().add(item);
-						affectedRoomTile.setHeight(affectedRoomTile.getHeight() + stacked_height);
+						affectedRoomTile.setHeight(affectedRoomTile.getTopHeight() + stacked_height);
 					}
 				}
 			}*/
