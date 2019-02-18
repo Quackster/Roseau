@@ -219,6 +219,11 @@ public class Item implements SerializableObject {
 		return this.getRoom().getMapping().getTile(this.position.getX(), this.position.getY());
 	}
 
+
+	public double getTotalHeight() {
+		return this.position.getZ() + this.getDefinition().getHeight();
+	}
+
 	public void lockTiles() {
 		this.getRoom().getMapping().getTile(this.position.getX(), this.position.getY()).setOverrideLock(true);
 
@@ -419,5 +424,4 @@ public class Item implements SerializableObject {
 	public void setOwnerID(int ownerID) {
 		this.ownerID = ownerID;
 	}
-
 }

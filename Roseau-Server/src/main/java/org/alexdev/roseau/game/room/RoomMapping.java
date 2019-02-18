@@ -1,5 +1,7 @@
 package org.alexdev.roseau.game.room;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -57,15 +59,17 @@ public class RoomMapping {
 			}
 		}
 
-		ConcurrentHashMap<Integer, Item> items;
+		List<Item> items;
 
 		if (room.getData().getRoomType() == RoomType.PUBLIC) { 
-			items = room.getPassiveObjects();
+			items = new ArrayList<>(this.room.getPassiveObjects().values());
 		} else {
-			items = room.getItems();
+			items = new ArrayList<>(this.room.getItems().values());
 		}
 
-		for (Item item : items.values()) {
+		items.sort(Comparator.comparingDouble((Item item) -> item.getPosition().getZ()));
+
+		for (Item item : items) {
 			if (item == null) {
 				continue;
 			}
@@ -73,18 +77,49 @@ public class RoomMapping {
 			if (item.getDefinition().getBehaviour().isOnWall()) {
 				continue;
 			}
-			
-			if (item.getDefinition().getBehaviour().isCanStandOnTop()) {
-				continue;
-			}
-			
+
 			if (item.getDefinition().getSprite().equals("bed_budget_one") ||
 				item.getDefinition().getSprite().equals("bed_budgetb_one")) {
 				item.delete();
 				return;
 			}
 
-			double stacked_height = item.getDefinition().getHeight();
+			RoomTile tile = this.getTile(item.getPosition().getX(), item.getPosition().getY());
+
+			if (tile == null) {
+				continue;
+			}
+
+			tile.getItems().add(item);
+
+			if (tile.getHeight() < item.getTotalHeight() || item.getDefinition().getBehaviour().isPassiveObject()) {
+				tile.setHeight(item.getTotalHeight());
+				tile.setHighestItem(item);
+
+				for (Position position : item.getAffectedTiles()) {
+					if (position.getX() == item.getPosition().getX() && position.getY() == item.getPosition().getY()) {
+						continue;
+					}
+
+					RoomTile affectedTile = this.getTile(position.getX(), position.getY());
+
+					if (affectedTile == null) {
+						continue;
+					}
+
+					// If there's an item in the affected tiles that has a higher height, then don't override it.
+					if (affectedTile.getHighestItem() != null) {
+						if (affectedTile.getHeight() > item.getTotalHeight()) {
+							continue;
+						}
+					}
+
+					affectedTile.setHeight(item.getTotalHeight());
+					affectedTile.setHighestItem(item);
+				}
+			}
+
+			/*double stacked_height = item.getDefinition().getHeight();
 			
 			this.checkHighestItem(item, item.getPosition().getX(), item.getPosition().getY());
 
@@ -106,7 +141,7 @@ public class RoomMapping {
 						affectedRoomTile.setHeight(affectedRoomTile.getHeight() + stacked_height);
 					}
 				}
-			}
+			}*/
 		}
 	}
 

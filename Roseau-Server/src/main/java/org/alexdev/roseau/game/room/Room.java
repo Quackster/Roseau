@@ -266,7 +266,7 @@ public class Room {
             return true;
         } else {
             if (!ownerCheckOnly) {
-                return this.rights.contains(Integer.valueOf(user.getDetails().getID()));
+                return this.rights.contains(user.getDetails().getID());
             }
         }
 
@@ -274,17 +274,17 @@ public class Room {
     }
 
     public void giveUserRights(Player player) {
-        if (this.rights.contains(Integer.valueOf(player.getDetails().getID()))) {
+        if (this.rights.contains(player.getDetails().getID())) {
             return;
         }
 
-        this.rights.add(Integer.valueOf(player.getDetails().getID()));
+        this.rights.add(player.getDetails().getID());
         this.refreshFlatPrivileges(player, false);
         this.roomData.saveRights();
     }
 
     public void removeUserRights(Player player) {
-        if (!this.rights.contains(Integer.valueOf(player.getDetails().getID()))) {
+        if (!this.rights.contains(player.getDetails().getID())) {
             return;
         }
 
