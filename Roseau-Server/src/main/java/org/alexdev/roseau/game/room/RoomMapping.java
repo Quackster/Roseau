@@ -321,14 +321,11 @@ public class RoomMapping {
 			}
 		}
 		else {
-			
+
+			System.out.println("" + this.getTile(item.getPosition().getX(), item.getPosition().getY()).getHeight());
+
 			// Don't make rugs stackable on top of other objects
-			if (item.getDefinition().getBehaviour().isCanStandOnTop()) {	
-				item.getPosition().setZ(this.room.getData().getModel().getHeight(item.getPosition().getX(), item.getPosition().getY()));
-			} else {
-				item.getPosition().setZ(this.getStackHeight(item.getPosition().getX(), item.getPosition().getY()));
-					
-			}
+			item.getPosition().setZ(this.getTile(item.getPosition().getX(), item.getPosition().getY()).getHeight());
 		}
 
 		item.updateEntities();

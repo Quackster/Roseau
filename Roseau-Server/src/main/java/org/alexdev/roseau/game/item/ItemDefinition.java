@@ -21,12 +21,17 @@ public class ItemDefinition {
 		this.length = length;
 		this.width = width;
 		this.height = height;
-		
 		this.stringBehaviour = behaviour;
 		this.name = name;
 		this.description = description;
 		this.dataClass = dataClass;
 		this.behaviour = ItemBehaviour.parse(this.stringBehaviour);
+
+		if (!this.behaviour.isCanSitOnTop()
+				&& !this.behaviour.isCanLayOnTop()
+				&& !this.behaviour.isCanStackOnTop()) {
+			this.height = 0.001;
+		}
 	}
 
 	public int getID() {

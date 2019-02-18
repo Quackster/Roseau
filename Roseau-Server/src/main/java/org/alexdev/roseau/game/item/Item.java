@@ -24,6 +24,7 @@ import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
 import com.google.common.collect.Lists;
+import org.alexdev.roseau.util.StringUtil;
 
 public class Item implements SerializableObject {
 	private int ID;
@@ -107,7 +108,7 @@ public class Item implements SerializableObject {
 			response.appendArgument(this.getDefinition().getSprite());
 			response.appendArgument(Integer.toString(this.position.getX()));
 			response.appendArgument(Integer.toString(this.position.getY()));
-			response.appendArgument(Integer.toString((int)this.position.getZ()));
+			response.appendArgument(StringUtil.format(this.position.getZ()));
 			response.appendArgument(Integer.toString(this.position.getRotation()));
 			return;
 		}
@@ -121,7 +122,7 @@ public class Item implements SerializableObject {
 			response.appendArgument(Integer.toString(this.getDefinition().getLength()));
 			response.appendArgument(Integer.toString(this.getDefinition().getWidth()));
 			response.appendArgument(Integer.toString(this.position.getRotation()));
-			response.appendArgument(Double.toString((int)this.position.getZ()));
+			response.appendArgument(StringUtil.format(this.position.getZ()));
 			response.appendArgument(this.getDefinition().getColor());
 			response.appendArgument(this.getDefinition().getName(), '/');
 			response.appendArgument(this.getDefinition().getDescription(), '/');

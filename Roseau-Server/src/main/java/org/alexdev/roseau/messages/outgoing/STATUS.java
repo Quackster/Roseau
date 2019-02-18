@@ -9,6 +9,7 @@ import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.entity.RoomUserStatus;
 import org.alexdev.roseau.game.room.model.Position;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
+import org.alexdev.roseau.util.StringUtil;
 
 
 public class STATUS extends OutgoingMessageComposer {
@@ -39,21 +40,7 @@ public class STATUS extends OutgoingMessageComposer {
 			
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getX()));
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getY()), ',');
-			response.appendArgument(String.valueOf((int)entity.getRoomUser().getPosition().getZ()), ',');
-			
-			if (entity.getRoomUser().isWalking()) {
-
-				if (entity.getRoomUser().getNext() != null) {
-
-					Position next = entity.getRoomUser().getNext();
-
-					entity.getRoomUser().getPosition().setZ(entity.getRoomUser().getRoom().getData().getModel().getHeight(next.getX(), next.getY()));
-					entity.getRoomUser().getPosition().setX(next.getX());
-					entity.getRoomUser().getPosition().setY(next.getY());
-				}
-			}
-			
-			
+			response.appendArgument(StringUtil.format(entity.getRoomUser().getPosition().getZ()), ',');
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getHeadRotation()), ',');
 			response.appendArgument(String.valueOf(entity.getRoomUser().getPosition().getRotation()), ',');
 
@@ -68,17 +55,6 @@ public class STATUS extends OutgoingMessageComposer {
 			}
 
 			response.append(status.toString());
-
-			/*if (entity.getRoomUser().needsUpdate()) {
-				entity.getRoomUser().setNeedUpdate(false);
-			}*/
-			
-
-			if (entity.getRoomUser().needsUpdate()) {
-				entity.getRoomUser().setNeedUpdate(false);
-			}
-			
-			entity.getRoomUser().walkItemTrigger();
 		}
 	}
 

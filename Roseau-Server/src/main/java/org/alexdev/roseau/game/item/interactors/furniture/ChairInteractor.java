@@ -20,7 +20,7 @@ public class ChairInteractor extends Interaction {
         player.getRoomUser().getPosition().setRotation(item.getPosition().getRotation());
         player.getRoomUser().removeStatus("dance");
         player.getRoomUser().removeStatus("lay");
-        player.getRoomUser().setStatus("sit", " " + String.valueOf(player.getRoomUser().getPosition().getZ() + definition.getHeight()), true, -1);
+        player.getRoomUser().setStatus("sit", " " + String.valueOf(definition.getHeight()), true, -1);
     }
 
     public boolean hasValidEntry(Entity entity, Position neighbour) {

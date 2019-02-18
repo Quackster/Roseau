@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.RoomConnection;
+import org.alexdev.roseau.game.room.RoomTile;
 import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.game.room.model.Rotation;
 import org.alexdev.roseau.log.Log;
@@ -106,9 +107,7 @@ public class RoomUser {
 	}
 
 	public void stopWalking() {
-
 		this.removeStatus("mv");
-
 		this.isWalking = false;
 		
 		this.goal = null;
@@ -176,7 +175,6 @@ public class RoomUser {
 	}
 
 	public void currentItemTrigger() {
-
 		if (this.current_item == null) {
 			new BlankInteractor(null).onStoppedWalking((Player) this.entity);
 		} else {
@@ -188,9 +186,14 @@ public class RoomUser {
 	}
 
 	public boolean walkTo(int x, int y) {
-
 		if (this.room == null) {
 			return false;
+		}
+
+		if (this.next != null) {
+			this.position.setX(this.next.getX());
+			this.position.setY(this.next.getY());
+			this.updateNewHeight(this.position);
 		}
 
 		if (!this.canWalk) {
@@ -259,7 +262,6 @@ public class RoomUser {
 
 
 	public void chat(final String response, final int delay) {
-
 		final Room room = this.room;
 		final PlayerDetails details = this.entity.getDetails();
 
@@ -278,7 +280,6 @@ public class RoomUser {
 	 * Rotation calculator taken from Blunk v5
 	 */
 	public void lookTowards(Position look) {
-
 		if (this.isWalking) {
 			return;
 		}
@@ -494,4 +495,26 @@ public class RoomUser {
 	}
 
 
+	/**
+	 * Update new height.
+	 */
+	public void updateNewHeight(Position position) {
+		if (this.room == null) {
+			return;
+		}
+
+		RoomTile tile = this.room.getMapping().getTile(position.getX(), position.getY());
+
+		if (tile == null) {
+			return;
+		}
+
+		double height = tile.getHeight();
+		double oldHeight = this.position.getZ();
+
+		if (height != oldHeight) {
+			this.position.setZ(height);
+			this.needsUpdate = true;
+		}
+	}
 }

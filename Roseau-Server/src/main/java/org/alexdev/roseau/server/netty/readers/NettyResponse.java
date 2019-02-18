@@ -13,7 +13,6 @@ public class NettyResponse implements Response {
 
 	@Override
 	public void init(String header) {
-
 		this.finalised = false;
 		this.header = header;
 		this.buffer = new StringBuilder();
@@ -24,34 +23,33 @@ public class NettyResponse implements Response {
 
 	@Override
 	public void append(Object s) {
-		
 		String data = String.valueOf(s);
 		data = data.replace('#', '*');
 		this.buffer.append(data);
 	}
 
 	@Override
-	public void appendArgument(String arg) {
-		appendArgument(arg, ' ');
+	public void appendArgument(Object arg) {
+		appendArgument(arg.toString(), ' ');
 	}
 
 	@Override
-	public void appendNewArgument(String arg) {
+	public void appendNewArgument(Object arg) {
 		appendArgument(arg, (char)13);
 	}
 
 	@Override
-	public void appendPartArgument(String arg) {
+	public void appendPartArgument(Object arg) {
 		appendArgument(arg, '/');
 	}
 
 	@Override
-	public void appendTabArgument(String arg) {
+	public void appendTabArgument(Object arg) {
 		appendArgument(arg, (char)9);
 	}
 
 	@Override
-	public void appendKVArgument(String key, String value) {
+	public void appendKVArgument(Object key, Object value) {
 		this.append((char)13);
 		this.append(key);
 		this.append('=');
@@ -59,7 +57,7 @@ public class NettyResponse implements Response {
 	}
 
 	@Override
-	public void appendKV2Argument(String key, String value) {
+	public void appendKV2Argument(Object key, Object value) {
 		this.append((char)13);
 		this.append(key);
 		this.append(':');
@@ -67,7 +65,7 @@ public class NettyResponse implements Response {
 	}
 
 	@Override
-	public void appendArgument(String arg, char delimiter) {
+	public void appendArgument(Object arg, char delimiter) {
 		this.append(delimiter);
 		this.append(arg);	
 	}
