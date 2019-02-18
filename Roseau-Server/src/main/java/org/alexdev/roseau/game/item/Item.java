@@ -221,7 +221,7 @@ public class Item implements SerializableObject {
 
 
 	public double getTotalHeight() {
-		return this.position.getZ() + this.getDefinition().getStackHeight();
+		return this.position.getZ() + this.getDefinition().getTopHeight();
 	}
 
 	public void lockTiles() {

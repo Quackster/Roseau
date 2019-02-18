@@ -26,6 +26,14 @@ public class RoomTile {
 	}
 
 	public double getHeight() {
+		double height = this.height;
+
+		if (this.highestItem != null) {
+			if (this.highestItem.getDefinition().getBehaviour().isCanSitOnTop() || this.highestItem.getDefinition().getBehaviour().isCanLayOnTop()) {
+				height -= this.highestItem.getDefinition().getTopHeight();
+			}
+		}
+
 		return height;
 	}
 

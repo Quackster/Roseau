@@ -8,7 +8,6 @@ public class ItemDefinition {
 	private int length;
 	private int width;
 	private double topHeight;
-	private double stackHeight;
 	private String stringBehaviour;
 	private ItemBehaviour behaviour;
 	private String name;
@@ -31,7 +30,7 @@ public class ItemDefinition {
 		if (!this.behaviour.isCanSitOnTop()
 				&& !this.behaviour.isCanLayOnTop()
 				&& !this.behaviour.isCanStackOnTop()) {
-			this.stackHeight = 0.001;
+			this.topHeight = 0.001;
 		}
 	}
 
@@ -73,14 +72,5 @@ public class ItemDefinition {
 
 	public String getDataClass() {
 		return dataClass;
-	}
-
-
-	public double getStackHeight() {
-		return stackHeight;
-	}
-
-	public void setStackHeight(double stackHeight) {
-		this.stackHeight = stackHeight;
 	}
 }
