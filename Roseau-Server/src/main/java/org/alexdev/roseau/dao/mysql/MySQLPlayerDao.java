@@ -73,6 +73,7 @@ public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> im
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
+				details = new PlayerDetails(null);
 				details = this.fill(details, resultSet);
 			}
 
