@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = 'org.alexdev.kepler.Kepler'
+mainClassName = 'org.alexdev.roseau.Roseau'
 
 repositories {
     mavenCentral()
