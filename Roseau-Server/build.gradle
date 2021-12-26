@@ -1,6 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
+java {
+    sourceCompatibility = JavaVersion.toVersion("1.11")
+    targetCompatibility = JavaVersion.toVersion("1.11")
+}
+
 mainClassName = 'org.alexdev.roseau.Roseau'
 
 repositories {
@@ -9,25 +14,25 @@ repositories {
 
 dependencies {
     // https://mvnrepository.com/artifact/io.netty/netty
-    compile group: 'io.netty', name: 'netty', version: '3.5.3.Final'
+    implementation group: 'io.netty', name: 'netty', version: '3.5.3.Final'
 
     // https://mvnrepository.com/artifact/com.google.guava/guava
-    compile group: 'com.google.guava', name: 'guava', version: '11.0.2'
+    implementation group: 'com.google.guava', name: 'guava', version: '11.0.2'
 
     // https://mvnrepository.com/artifact/org.ini4j/ini4j
-    compile group: 'org.ini4j', name: 'ini4j', version: '0.5.1'
+    implementation group: 'org.ini4j', name: 'ini4j', version: '0.5.1'
 
     // https://mvnrepository.com/artifact/com.jolbox/bonecp
-    compile group: 'com.jolbox', name: 'bonecp', version: '0.7.1.RELEASE'
+    implementation group: 'com.jolbox', name: 'bonecp', version: '0.7.1.RELEASE'
 
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
-    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
 
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.2'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.2'
 
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
-    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.2'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.2'
 }
 
 // Create fat jar with libraries inside of it.
