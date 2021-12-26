@@ -1,6 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
+java {
+    sourceCompatibility = JavaVersion.toVersion("1.11")
+    targetCompatibility = JavaVersion.toVersion("1.11")
+}
+
 mainClassName = 'org.alexdev.roseau.Roseau'
 
 repositories {
@@ -21,7 +26,7 @@ dependencies {
     implementation group: 'com.jolbox', name: 'bonecp', version: '0.7.1.RELEASE'
 
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
-    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
 
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.2'
