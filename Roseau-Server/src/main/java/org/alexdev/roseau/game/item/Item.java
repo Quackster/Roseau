@@ -108,7 +108,7 @@ public class Item implements SerializableObject {
 			response.appendArgument(this.getDefinition().getSprite());
 			response.appendArgument(Integer.toString(this.position.getX()));
 			response.appendArgument(Integer.toString(this.position.getY()));
-			response.appendArgument(StringUtil.format(this.position.getZ()));
+			response.appendArgument((int)(this.position.getZ()));
 			response.appendArgument(Integer.toString(this.position.getRotation()));
 			return;
 		}
