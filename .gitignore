@@ -17,3 +17,4 @@ habbohotel.properties
 roseau.properties
 log/output.log
 log/output.log
+*.log
