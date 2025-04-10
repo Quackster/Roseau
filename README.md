@@ -1,4 +1,5 @@
 **Roseau**
+
 *Habbo Hotel v1 server, 2001 client revision*
 
 Roseau has been a small project I worked on for a few months now and I've finally come to the point where this is pretty damn complete, far surpassing the original v1 servers that have already been released. 
@@ -18,23 +19,16 @@ This server is written in Java, and uses libraries such as Netty (old version, l
 
 **Features**
 
-
-- Register
-[LIST]
+###Register
 - Check for existing names
 - Check for bad names
 - Create new user
 
-
-
-[*]User
-
+###User
 - Login
 - Edit user details (figure, email, etc)
 
-
-
-[*]Navigator
+###Navigator
 
 - Lists all public rooms
 - Clicking on a public room shows the users in each room
@@ -43,18 +37,14 @@ This server is written in Java, and uses libraries such as Netty (old version, l
 - List own rooms
 - Hides room owner names if the option had been ticked
 
-
-
-[*]Messenger
+###Messenger
 - Search users on console
 - Send user a friend request
 - Accept friend request
 - Reject friend request
 - Send friend message (and can offline message)
 
-
-
-[*]Private room
+###Private room
 
 - Create private room through public room room-o-matics
 - Edit room details
@@ -63,12 +53,9 @@ This server is written in Java, and uses libraries such as Netty (old version, l
 - Password protect room
 - Delete room
 
-
-
-[*]Public Room
+###Public Room
 
 - 12 public rooms added
-[LIST]
 - Main Lobby
 - Median Lobby
 - Skylight Lobby
@@ -84,15 +71,19 @@ This server is written in Java, and uses libraries such as Netty (old version, l
 - Cafe Ole
 - Hotel Kitchen
 
+All public rooms are fully furnished to what official Habbo had
 
-[*]All public rooms are fully furnished to what official Habbo had
-[*]Walkways between rooms work (Habbo Lido to the diving deck, Club Massiva downstairs disco floor, etc)
-[*]Room-o-Matic works
-[*]Sitting on furniture in public rooms
-[*]Bots in public rooms (Habburger's, Cafe Ole, The Dirty Duck Pub)
-[*]Disco lights in Club Massiva working]
-[/LIST]
-[*]Lido and Diving Deck
+Walkways between rooms work (Habbo Lido to the diving deck, Club Massiva downstairs disco floor, etc)
+
+Room-o-Matic works
+
+Sitting on furniture in public rooms
+
+Bots in public rooms (Habburger's, Cafe Ole, The Dirty Duck Pub)
+
+Disco lights in Club Massiva working]
+
+###Lido and Diving Deck
 - Change clothes working (with curtain closing)
 - Pool lift door closes and opens depending if a user is inside or not.
 - Buying tickets work for self and other players.
@@ -100,7 +91,7 @@ This server is written in Java, and uses libraries such as Netty (old version, l
 - Swimming.
 - Queue works (line up on first tile and the user automatically walks when there is a free spot).
 
-[*]Item
+###Item
 
 - Place room items
 - Move and rotate room items
@@ -115,20 +106,20 @@ This server is written in Java, and uses libraries such as Netty (old version, l
 - Turning items on/off (with rights)
 - Randomisation of the rotation of the bottle when it's spun
 
-[*]Catalogue
+###Catalogue
 
 - All items are purchasable
 - Purchase posters
 - Place floor and wall items to decorate wall and floors of private rooms
 
 
-[*]Ranked features
+###Ranked features
 
 - Call for help
 - Alert call for help to Hobba staff (picked up call for help not coded).
 
 
-[*]Commands
+###Commands
 
 - :about
 - :sit
@@ -185,7 +176,7 @@ Compiled version can be found in /Roseau-bin/ and the client can be found in /cl
 
 I personally use Pale Moon portable 32 bit version (it has to be 32 bit otherwise it won't work). Shockwave works flawless in this browser. The download is only 31 MB.
 
-Pale Moon 32bit: [url]https://www.palemoon.org/palemoon-portable.shtml[/url]
+Pale Moon 32bit: https://www.palemoon.org/palemoon-portable.shtml
 
 Alternatively you can use an older version of Mozilla Firefox as 52 has most NAPI functions disabled but 36-38 will work, or Internet Explorer (not recommended to use IE due to the fact it freezes all the time).
 
@@ -236,11 +227,9 @@ public class PoolLiftInteractor extends Interaction {
 }
 ```
 
-
-**Thanks to**
+**Credits**
 
 With Ascii from Puomi Hotel, these things were possible:
-
 
 - wall items loading
 - the correct ITEMS structure
@@ -249,12 +238,12 @@ With Ascii from Puomi Hotel, these things were possible:
 - correct structure for teleporters flashing
 - teaching me how to edit the DCR to enable Club Slinky Helsinki to work
 - 
-And [USER=348824]lab-hotel[/USER] from RaGEZONE helped me out with:
+And lab-hotel from RaGEZONE helped me out with:
 
 - Instant console messaging.
 - Enabling the debug window for the version 1 client.
 
-And lastly, office.boy[/USER] and Nillus who made my life easier with their Blunk v5 server, it helped me
+And lastly, office.boy and Nillus who made my life easier with their Blunk v5 server, it helped me
 with some protocol that was simillar to v1, and their item definition database which was very helpful for
 the v1 catalogue.
 
