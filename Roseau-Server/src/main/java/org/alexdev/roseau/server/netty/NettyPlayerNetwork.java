@@ -1,15 +1,15 @@
 package org.alexdev.roseau.server.netty;
 
+import io.netty.channel.Channel;
 import org.alexdev.roseau.messages.OutgoingMessageComposer;
 import org.alexdev.roseau.server.IPlayerNetwork;
-import org.jboss.netty.channel.Channel;
 
 public class NettyPlayerNetwork extends IPlayerNetwork {
 
-	private Channel channel;
+	private final Channel channel;
 
 	public NettyPlayerNetwork(Channel channel, int connectionId) {
-		super(connectionId, Integer.valueOf(channel.getLocalAddress().toString().split(":")[1]));
+		super(connectionId, ((java.net.InetSocketAddress) channel.localAddress()).getPort());
 		this.channel = channel;
 	}
 
@@ -20,7 +20,6 @@ public class NettyPlayerNetwork extends IPlayerNetwork {
 
 	@Override
 	public void send(OutgoingMessageComposer response) {
-		channel.write(response);
-		
+		channel.writeAndFlush(response);
 	}
 }

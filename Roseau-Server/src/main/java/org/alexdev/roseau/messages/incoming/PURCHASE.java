@@ -14,161 +14,151 @@ import org.alexdev.roseau.server.messages.ClientMessage;
 import org.alexdev.roseau.util.Util;
 
 public class PURCHASE implements MessageEvent {
+    @Override
+    public void handle(Player player, ClientMessage reader) {
+        if (!(DateTime.getTime() - player.getOrderInfoProtection() > 500)) {
+            return;
+        }
 
-	@Override
-	public void handle(Player player, ClientMessage reader) {
-		if (!(DateTime.getTime() - player.getOrderInfoProtection() > 500)) {
-			return;
-		}
+        String callId = reader.getMessageBody();
 
-		String callID = reader.getMessageBody();
+        if (!callId.contains("hyppy")) {
+            callId = callId.replace(" " + player.getDetails().getName(), "");
+        }
 
-		if (!callID.contains("hyppy")) {
-			callID = callID.replace(" " + player.getDetails().getName(), "");
-		}
+        callId = callId.replace("/", "");
 
-		callID = callID.replace("/", "");
+        Player p = player.getPrivateRoomPlayer();
+        CatalogueItem product = null;
 
-		Player p = player.getPrivateRoomPlayer();
-		CatalogueItem product = null;
+        if (callId.contains("hyppy")) {
+            int oldCredits = player.getDetails().getCredits();
 
-		if (callID.contains("hyppy")) {
+            if (oldCredits < 10) {
+                player.sendAlert("Sorry, but you do not have enough Credits to purchase this.");
+                return;
+            }
 
-			int oldCredits = player.getDetails().getCredits();
+            String target = Util.filterInput(callId.split(" ")[2]);
 
-			if (oldCredits < 10) {
-				player.sendAlert("Sorry, but you do not have enough Credits to purchase this.");
-				return;
-			}
+            PlayerDetails details = Roseau.getDao().getPlayer().getDetails(target);
 
-			String target = Util.filterInput(callID.split(" ")[2]);
+            if (details == null) {
+                player.sendAlert("The player '" + target + "' cannot be found.");
+                return;
+            } else {
+                Player targetPlayer = Roseau.getGame().getPlayerManager().getByIDMainServer(details.getId());
 
-			PlayerDetails details = Roseau.getDao().getPlayer().getDetails(target);
+                if (targetPlayer == null) {
+                    details.setTickets(details.getTickets() + 10);
+                    details.save();
+                } else {
+                    int newTickets = targetPlayer.getDetails().getTickets() + 10;
 
-			if (details == null) {
-				player.sendAlert("The player '" + target + "' cannot be found.");
-				return;
-			} else {
-				Player targetPlayer = Roseau.getGame().getPlayerManager().getByIDMainServer(details.getID());
+                    targetPlayer.getDetails().setTickets(newTickets);
+                    targetPlayer.getDetails().sendTickets();
+                    targetPlayer.getDetails().save();
 
-				if (targetPlayer == null) {
-					details.setTickets(details.getTickets() + 10);
-					details.save();
-				} else {
-					
-					int newTickets = targetPlayer.getDetails().getTickets() + 10;
-					
-					targetPlayer.getDetails().setTickets(newTickets);
-					targetPlayer.getDetails().sendTickets();
-					targetPlayer.getDetails().save();
+                    if (targetPlayer.getDetails().getId() != player.getDetails().getId()) {
+                        player.sendAlert("You have bought 10 game tickets for " + targetPlayer.getDetails().getName());
+                        targetPlayer.sendAlert(player.getDetails().getName() + " has bought 10 game tickets for you!");
+                    } else {
+                        player.sendAlert("You have bought 10 game tickets!");
+                    }
 
-					if (targetPlayer.getDetails().getID() != player.getDetails().getID()) {
-						player.sendAlert("You have bought 10 game tickets for " + targetPlayer.getDetails().getName());
-						targetPlayer.sendAlert(player.getDetails().getName() + " has bought 10 game tickets for you!");
-					} else {
-						player.sendAlert("You have bought 10 game tickets!");
-					}
-					
-					if (targetPlayer.getPublicRoomPlayer() != null) {
-						targetPlayer.getPublicRoomPlayer().getDetails().setTickets(newTickets);
-					}
-					
-					//Roseau.getGame().getPlayerManager().syncPlayerTickets(targetPlayer.getDetails().getId(), newTickets);
-				}
+                    if (targetPlayer.getPublicRoomPlayer() != null) {
+                        targetPlayer.getPublicRoomPlayer().getDetails().setTickets(newTickets);
+                    }
 
-				player.getDetails().setCredits(player.getDetails().getCredits() - 5);
-				player.getDetails().sendCredits();
-				player.getDetails().save();
-			}
+                    //Roseau.getGame().getPlayerManager().syncPlayerTickets(targetPlayer.getDetails().getId(), newTickets);
+                }
 
-			return;
-		}
+                player.getDetails().setCredits(player.getDetails().getCredits() - 5);
+                player.getDetails().sendCredits();
+                player.getDetails().save();
+            }
 
-		if (callID.contains("L ") || callID.contains("T ") || callID.contains("juliste ")) {
-			product = Roseau.getGame().getCatalogueManager().getItemByCall(callID.split(" ")[0]);
-		} else {
-			product = Roseau.getGame().getCatalogueManager().getItemByCall(callID);
-		}
+            return;
+        }
 
-		if (product != null) {
-			int oldCredits = player.getDetails().getCredits();
+        if (callId.contains("L ") || callId.contains("T ") || callId.contains("juliste ")) {
+            product = Roseau.getGame().getCatalogueManager().getItemByCall(callId.split(" ")[0]);
+        } else {
+            product = Roseau.getGame().getCatalogueManager().getItemByCall(callId);
+        }
 
-			if (oldCredits >= product.getCredits()) {
-				Item item = Roseau.getDao().getInventory().newItem(product.getDefinition().getID(), player.getDetails().getID(), "");
+        if (product != null) {
+            int oldCredits = player.getDetails().getCredits();
 
-				if (item.getDefinition().getBehaviour().isDecoration() || callID.contains("juliste ")) {
-					item.setCustomData(callID.split(" ")[1]);
-					item.save();
-				}
+            if (oldCredits >= product.getCredits()) {
+                Item item = Roseau.getDao().getInventory().newItem(product.getDefinition().getId(), player.getDetails().getId(), "");
 
+                if (item.getDefinition().getBehaviour().isDecoration() || callId.contains("juliste ")) {
+                    item.setCustomData(callId.split(" ")[1]);
+                    item.save();
+                }
 
-				if (item.getDefinition().getBehaviour().isPostIt()) {
-					item.setCustomData("20");
-					item.save();
-				}
+                if (item.getDefinition().getBehaviour().isPostIt()) {
+                    item.setCustomData("20");
+                    item.save();
+                }
 
+                if (item.getDefinition().getBehaviour().isTeleporter()) {
+                    Item firstTeleporter = item;
+                    Item secondTeleporter = Roseau.getDao().getInventory().newItem(product.getDefinition().getId(), player.getDetails().getId(), "");
 
-				if (item.getDefinition().getBehaviour().isTeleporter()) {
-					Item firstTeleporter = item;
-					Item secondTeleporter = Roseau.getDao().getInventory().newItem(product.getDefinition().getID(), player.getDetails().getID(), "");
+                    firstTeleporter.setCustomData(String.valueOf(secondTeleporter.getId()));
+                    secondTeleporter.setCustomData(String.valueOf(firstTeleporter.getId()));
 
-					firstTeleporter.setCustomData(String.valueOf(secondTeleporter.getID()));
-					secondTeleporter.setCustomData(String.valueOf(firstTeleporter.getID()));
-					
-					firstTeleporter.save();
-					secondTeleporter.save();
+                    firstTeleporter.save();
+                    secondTeleporter.save();
 
-					p.getInventory().addItem(secondTeleporter);
-				}
+                    p.getInventory().addItem(secondTeleporter);
+                }
 
-				p.getInventory().addItem(item);
+                p.getInventory().addItem(item);
 
-				player.send(new PURCHASE_ADDSTRIPITEM());
-				//player.send(new PURCHASEOK());
+                player.send(new PURCHASE_ADDSTRIPITEM());
+                //player.send(new PURCHASEOK());
 
-				player.getDetails().setCredits(player.getDetails().getCredits() - product.getCredits());
-				player.getDetails().sendCredits();
-				player.getDetails().save();
+                player.getDetails().setCredits(player.getDetails().getCredits() - product.getCredits());
+                player.getDetails().sendCredits();
+                player.getDetails().save();
+            } else {
+                player.send(new SYSTEMBROADCAST("You don't have enough credits to purchase this item!"));
+            }
+        }
 
-			} else {
-				player.send(new SYSTEMBROADCAST("You don't have enough credits to purchase this item!"));
-			}
-		}
+        CatalogueDeal deal = Roseau.getGame().getCatalogueManager().getDealByCall(callId);
 
-		CatalogueDeal deal = Roseau.getGame().getCatalogueManager().getDealByCall(callID);
+        if (deal != null) {
+            int oldCredits = player.getDetails().getCredits();
 
-		if (deal != null) {
-			int oldCredits = player.getDetails().getCredits();
+            if (oldCredits >= deal.getCost()) {
+                for (CatalogueItem item : deal.getItems()) {
+                    Item newItem = Roseau.getDao().getInventory().newItem(item.getDefinition().getId(), player.getDetails().getId(), "");
 
-			if (oldCredits >= deal.getCost()) {
-				for (CatalogueItem item : deal.getItems()) {
-					Item newItem = Roseau.getDao().getInventory().newItem(item.getDefinition().getID(), player.getDetails().getID(), "");
+                    if (newItem == null) {
+                        continue;
+                    }
 
-					if (newItem == null) {
-						continue;
-					}
+                    if (item.getExtraData() != null) {
+                        newItem.setCustomData(item.getExtraData());
+                        newItem.save();
+                    }
 
-					if (item.getExtraData() != null) {
-						newItem.setCustomData(item.getExtraData());
-						newItem.save();
-					}
+                    p.getInventory().addItem(newItem);
+                }
 
-					p.getInventory().addItem(newItem);
-				}
+                p.getInventory().load();
+                player.send(new PURCHASE_ADDSTRIPITEM());
 
-				p.getInventory().load();
-				player.send(new PURCHASE_ADDSTRIPITEM());
-
-				player.getDetails().setCredits(player.getDetails().getCredits() - deal.getCost());
-				player.getDetails().sendCredits();
-				player.getDetails().save();
-
-			} else {
-				player.send(new SYSTEMBROADCAST("You don't have enough credits to purchase this item!"));
-			}
-
-		}
-
-	}
-
+                player.getDetails().setCredits(player.getDetails().getCredits() - deal.getCost());
+                player.getDetails().sendCredits();
+                player.getDetails().save();
+            } else {
+                player.send(new SYSTEMBROADCAST("You don't have enough credits to purchase this item!"));
+            }
+        }
+    }
 }

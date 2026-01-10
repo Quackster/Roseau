@@ -16,7 +16,7 @@ public class FLATCREATED extends OutgoingMessageComposer {
 	@Override
 	public void write() {
 		response.init("FLATCREATED");
-		response.appendNewArgument(Integer.toString(room.getData().getID()));
+		response.appendNewArgument(Integer.toString(room.getData().getId()));
 		response.appendArgument(room.getData().getName());
 
 	}

@@ -7,49 +7,45 @@ import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class MESSENGER_ACCEPTBUDDY implements MessageEvent {
+    @Override
+    public void handle(Player player, ClientMessage reader) {
+        String username = reader.getMessageBody();
 
-	@Override
-	public void handle(Player player, ClientMessage reader) {
-		String username = reader.getMessageBody();
-		
-		if (username == null) {
-			return;
-		}
+        if (username == null) {
+            return;
+        }
 
-		int fromID = Roseau.getDao().getPlayer().getId(username);
-		
-		if (fromID < 1) {
-			return;
-		}
-		
-		if (fromID == player.getDetails().getID()) {
-			return;
-		}
+        int fromId = Roseau.getDao().getPlayer().getId(username);
 
-		if (!player.getMessenger().hasRequest(fromID)) {
-			return;
-		}
+        if (fromId < 1) {
+            return;
+        }
 
-		int toID = player.getDetails().getID();
-		
-		Roseau.getDao().getMessenger().removeRequest(fromID, toID);
-		Roseau.getDao().getMessenger().newFriend(toID, fromID);
-		
-		MessengerUser user = new MessengerUser(fromID);
-		
-		player.getMessenger().getFriends().add(user);
-		player.getMessenger().getRequests().remove(player.getMessenger().getRequest(fromID));
-		
-		if (user.isOnline()) {
-			
-			MessengerUser to = new MessengerUser(toID);
-			
-			user.getPlayer().getMessenger().getFriends().add(to);
-			user.getPlayer().getMessenger().sendFriends();
-		}
-		
-		player.getMessenger().sendFriends();
-		
-	}
+        if (fromId == player.getDetails().getId()) {
+            return;
+        }
 
+        if (!player.getMessenger().hasRequest(fromId)) {
+            return;
+        }
+
+        int toId = player.getDetails().getId();
+
+        Roseau.getDao().getMessenger().removeRequest(fromId, toId);
+        Roseau.getDao().getMessenger().newFriend(toId, fromId);
+
+        MessengerUser user = new MessengerUser(fromId);
+
+        player.getMessenger().getFriends().add(user);
+        player.getMessenger().getRequests().remove(player.getMessenger().getRequest(fromId));
+
+        if (user.isOnline()) {
+            MessengerUser to = new MessengerUser(toId);
+
+            user.getPlayer().getMessenger().getFriends().add(to);
+            user.getPlayer().getMessenger().sendFriends();
+        }
+
+        player.getMessenger().sendFriends();
+    }
 }

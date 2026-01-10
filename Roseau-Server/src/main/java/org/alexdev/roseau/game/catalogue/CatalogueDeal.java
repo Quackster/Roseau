@@ -1,50 +1,44 @@
 package org.alexdev.roseau.game.catalogue;
 
-import java.util.List;
-
 import org.alexdev.roseau.Roseau;
-import com.google.common.collect.Lists;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CatalogueDeal {
-	private String callID;
-	private String[] items;
-	private int cost;
-	
-	public CatalogueDeal(String callID, String[] items, int cost) {
-		this.callID = callID;
+	private final String callId;
+	private final String[] items;
+	private final int cost;
+
+	public CatalogueDeal(String callId, String[] items, int cost) {
+		this.callId = callId;
 		this.items = items;
 		this.cost = cost;
 	}
 
-	public String getCallID() {
-		return callID;
+	public String getCallId() {
+		return callId;
 	}
 
 	public List<CatalogueItem> getItems() {
-		List<CatalogueItem> items = Lists.newArrayList();
-		
-		for (String id : this.items) {
-			CatalogueItem item = null;
-			
-			if (id.contains("|")) {
-				item = Roseau.getGame().getCatalogueManager().getItemByCall(id.split("\\|")[0]);
-				item.setExtraData(id.split("\\|")[1]);
-				
-				
-			} else {
-				item = Roseau.getGame().getCatalogueManager().getItemByCall(id);
-			}
-		
-			items.add(item);
-		}
-		
-		return items;
+		return Arrays.stream(this.items)
+			.map(id -> {
+				if (id.contains("|")) {
+					String[] parts = id.split("\\|", 2);
+					CatalogueItem item = Roseau.getGame().getCatalogueManager().getItemByCall(parts[0]);
+					if (item != null && parts.length > 1) {
+						item.setExtraData(parts[1]);
+					}
+					return item;
+				} else {
+					return Roseau.getGame().getCatalogueManager().getItemByCall(id);
+				}
+			})
+			.collect(Collectors.toList());
 	}
 
 	public int getCost() {
 		return cost;
 	}
-	
-	
-
 }

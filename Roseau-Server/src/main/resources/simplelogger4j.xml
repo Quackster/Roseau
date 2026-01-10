@@ -1,0 +1,18 @@
+<config>
+    <minLevel>DEBUG</minLevel>
+    <pattern>[%{timestamp:datetime('yyyy-MM-dd HH:mm:ss')|padRight(20)}] [%{level:LEVEL|padRight(8)}] (%{class:CYAN}) %{message}</pattern>
+    <consoleColour>true</consoleColour>
+    <appenders>
+        <console enabled="true"/>
+        <file enabled="true" path="log/output.log" bufferSize="16384" append="true"/>
+        <file enabled="true" path="log/error.log" bufferSize="16384" append="true" level="ERROR"/>
+    </appenders>
+    <levelPalette
+        debug="BLUE"
+        info=""
+        warn="BRIGHT_YELLOW"
+        success="GREEN"
+        error="RED"
+        critical="BG_BRIGHT_RED"
+    />
+</config>

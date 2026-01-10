@@ -67,14 +67,14 @@ import org.alexdev.roseau.messages.incoming.UPDATEFLAT;
 import org.alexdev.roseau.messages.incoming.VERSIONCHECK;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
-import com.google.common.collect.Maps;
+import java.util.Optional;
 
 public class MessageHandler {
 	
-	private HashMap<String, MessageEvent> messages;
+	private final HashMap<String, MessageEvent> messages;
 
 	public MessageHandler() {
-		this.messages = Maps.newHashMap();
+		this.messages = new HashMap<>();
 		this.register();
 	}
 	
@@ -189,9 +189,8 @@ public class MessageHandler {
 	
 	
 	public void handleRequest(Player player, ClientMessage message) {
-		if (messages.containsKey(message.getHeader())) {
-			messages.get(message.getHeader()).handle(player, message);
-		}
+		Optional.ofNullable(messages.get(message.getHeader()))
+			.ifPresent(handler -> handler.handle(player, message));
 	}
 
 	public HashMap<String, MessageEvent> getMessages() {

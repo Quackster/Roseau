@@ -8,7 +8,6 @@ import org.alexdev.roseau.messages.OutgoingMessageComposer;
 
 
 public class ITEMS extends OutgoingMessageComposer {
-
 	private Room room;
 
 	public ITEMS(Room room) {

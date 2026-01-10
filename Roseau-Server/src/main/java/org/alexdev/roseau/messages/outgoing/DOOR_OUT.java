@@ -17,7 +17,7 @@ public class DOOR_OUT  extends OutgoingMessageComposer {
 	public void write() {
 		response.init("DOOR_OUT");
 		response.appendNewArgument(this.item.getPadding());
-		response.append(Integer.toString(this.item.getID()));
+		response.append(Integer.toString(this.item.getId()));
 		response.appendPartArgument(this.player);
 	}
 

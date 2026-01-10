@@ -6,17 +6,15 @@ import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class GOTOFLAT implements MessageEvent {
+    @Override
+    public void handle(Player player, ClientMessage reader) {
+        Room room = player.getRoomUser().getRoom();
 
-	@Override
-	public void handle(Player player, ClientMessage reader) {
-		Room room = player.getRoomUser().getRoom();
+        if (room == null) {
+            player.getPrivateRoomPlayer().kick();
+            return;
+        }
 
-		if (room == null) {
-			player.getPrivateRoomPlayer().kick();
-			return;
-		}
-		
-		room.loadRoom(player);
-	}
-
+        room.loadRoom(player);
+    }
 }

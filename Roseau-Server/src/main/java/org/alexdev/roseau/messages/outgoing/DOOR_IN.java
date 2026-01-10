@@ -18,7 +18,7 @@ public class DOOR_IN  extends OutgoingMessageComposer {
 	public void write() {
 		response.init("DOOR_IN");
 		response.appendNewArgument(this.item.getPadding());
-		response.append(Integer.toString(this.item.getID()));
+		response.append(Integer.toString(this.item.getId()));
 		response.appendPartArgument(this.player);
 	}
 

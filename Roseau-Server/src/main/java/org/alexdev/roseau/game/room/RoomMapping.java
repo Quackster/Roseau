@@ -245,9 +245,9 @@ public class RoomMapping {
 	}
 
 	public void addItem(Item item) {
-		item.setRoomID(this.room.getData().getID());
+		item.setRoomId(this.room.getData().getId());
 		
-		this.room.getItems().put(item.getID(), item);
+		this.room.getItems().put(item.getId(), item);
 
 		if (item.getDefinition().getBehaviour().isOnFloor()) {
 			this.handleItemAdjustment(item, false);
@@ -294,7 +294,7 @@ public class RoomMapping {
 
 
 	public void removeItem(Item item) {
-		item.setRoomID(0);
+		item.setRoomId(0);
 		item.save();
 
 		if (item.getDefinition().getBehaviour().isOnFloor()) {
@@ -303,10 +303,10 @@ public class RoomMapping {
 		}
 
 		if (item.getDefinition().getBehaviour().isOnWall()) {
-			this.room.send(new REMOVEWALLITEM(item.getID()));
+			this.room.send(new REMOVEWALLITEM(item.getId()));
 		}
 
-		this.room.getItems().remove(item.getID());
+		this.room.getItems().remove(item.getId());
 		this.regenerateCollisionMaps();
 
 	}
@@ -439,7 +439,7 @@ public class RoomMapping {
 		return this.connections[x][y];
 	}
 
-	public List<Integer> getRoomWalkwayIDs() {
+	public List<Integer> getRoomWalkwayIds() {
 		return roomConnections;
 	}
 }

@@ -27,7 +27,7 @@ public class STRIPINFO extends OutgoingMessageComposer {
 			for (Item item : items) {
 
 				response.appendNewArgument("roseau");
-				response.appendArgument(String.valueOf(item.getID()), ';');
+				response.appendArgument(String.valueOf(item.getId()), ';');
 				response.appendArgument("0", ';');
 
 				if (item.getDefinition().getBehaviour().isSTUFF()) {

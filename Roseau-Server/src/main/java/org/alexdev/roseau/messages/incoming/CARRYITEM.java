@@ -7,16 +7,13 @@ import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class CARRYITEM implements MessageEvent {
+    @Override
+    public void handle(Player player, ClientMessage reader) {
+        String item = reader.getMessageBody();
+        item = item.replace('/', '?');
 
-	@Override
-	public void handle(Player player, ClientMessage reader) {
-		
-		String item = reader.getMessageBody();
-		item = item.replace('/', '?');
-
-		RoomUser roomUser = player.getRoomUser();
-		roomUser.removeStatus("dance");
-		roomUser.setStatus("carryd", " " + item, false, GameVariables.CARRY_DRINK_TIME, true);
-	}
-
+        RoomUser roomUser = player.getRoomUser();
+        roomUser.removeStatus("dance");
+        roomUser.setStatus("carryd", " " + item, false, GameVariables.CARRY_DRINK_TIME, true);
+    }
 }

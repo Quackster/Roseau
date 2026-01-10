@@ -1,7 +1,6 @@
 package org.alexdev.roseau.game.item;
 
 public class ItemDefinition {
-
 	private int id;
 	private String sprite;
 	private String color;
@@ -34,7 +33,7 @@ public class ItemDefinition {
 		}
 	}
 
-	public int getID() {
+	public int getId() {
 		return id;
 	}
 	

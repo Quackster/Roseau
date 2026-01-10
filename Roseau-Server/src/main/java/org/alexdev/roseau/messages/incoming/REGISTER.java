@@ -3,12 +3,14 @@ package org.alexdev.roseau.messages.incoming;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.GameVariables;
 import org.alexdev.roseau.game.player.Player;
-import org.alexdev.roseau.log.Log;
+import org.oldskooler.simplelogger4j.SimpleLog;
 import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 import org.alexdev.roseau.util.Util;
 
 public class REGISTER implements MessageEvent {
+
+    private static final SimpleLog logger = SimpleLog.of(REGISTER.class);
 
     @Override
     public void handle(Player player, ClientMessage reader) {
@@ -33,7 +35,7 @@ country=*/
         String sex = reader.getArgument(9, Character.toString((char)13)).split("=")[1];
 
         if (name.length() < 3) {
-            Log.println("Invalid name: " + name);
+            logger.warn("Invalid name: " + name);
             return;
         }
 
@@ -43,12 +45,12 @@ country=*/
         }
 
         if (password.length() < 3) {
-            Log.println("Invalid password: " + password);
+            logger.warn("Invalid password");
             return;
         }
 
         if (figure.length() < 3) {
-            Log.println("Invalid figure: " + figure);
+            logger.warn("Invalid figure");
             return;
         }
 
@@ -69,12 +71,12 @@ country=*/
         }
 
         if (!approveName(name)) {
-            Log.println("Name not approved: " + name);
+            logger.warn("Name not approved: " + name);
             return;
         }
 
         if (Roseau.getDao().getPlayer().isNameTaken(name)) {
-            Log.println("Name taken: " + name);
+            logger.warn("Name taken: " + name);
             return;
         }
 

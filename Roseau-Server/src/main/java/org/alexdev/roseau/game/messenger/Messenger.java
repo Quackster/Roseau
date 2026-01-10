@@ -1,16 +1,16 @@
 package org.alexdev.roseau.game.messenger;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.messages.outgoing.BUDDYADDREQUESTS;
 import org.alexdev.roseau.messages.outgoing.BUDDYLIST;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class Messenger {
 	private boolean initalised;
@@ -25,76 +25,53 @@ public class Messenger {
 	}
 
 	public void load() {
-		this.friends = Roseau.getDao().getMessenger().getFriends(player.getDetails().getID());
-		this.requests = Roseau.getDao().getMessenger().getRequests(player.getDetails().getID());
+		this.friends = Roseau.getDao().getMessenger().getFriends(player.getDetails().getId());
+		this.requests = Roseau.getDao().getMessenger().getRequests(player.getDetails().getId());
 	}
 
 	public boolean hasRequest(int id) {
-		return this.getRequest(id) != null;
+		return getRequest(id) != null;
 	}
 
 	public boolean isFriend(int id) {
-		return this.getFriend(id) != null;
+		return getFriend(id) != null;
 	}
 
 	public MessengerUser getFriend(int id) {
-		Optional<MessengerUser> friend = this.friends.stream().filter(f -> f.getDetails().getID() == id).findFirst();
-		return friend.orElse(null);
+		return friends.stream()
+			.filter(friend -> friend.getDetails().getId() == id)
+			.findFirst()
+			.orElse(null);
 	}
 
 	public MessengerUser getRequest(int id) {
-		Optional<MessengerUser> request = this.requests.stream().filter(f -> f.getDetails().getID() == id).findFirst();
-		return request.orElse(null);
+		return requests.stream()
+			.filter(request -> request.getDetails().getId() == id)
+			.findFirst()
+			.orElse(null);
 	}
 
 	public void removeFriend(int id) {
-		MessengerUser user = this.getFriend(id);
-		this.friends.remove(user);
+		getFriend(id);
+		friends.removeIf(friend -> friend.getDetails().getId() == id);
 	}
-
 
 	public void sendRequests() {
-		if (!(this.requests.size() > 0)) {
+		if (requests.isEmpty()) {
 			return;
 		}
-
 		this.player.send(new BUDDYADDREQUESTS(this.requests));
 	}
-
 
 	public void sendFriends() {
 		this.sendFriends(-1);
 	}
 
 	public void sendFriends(int offlineID) {
-
-		/*Collections.sort(this.friends, new Comparator<MessengerUser>() {
-			@Override
-			public int compare(MessengerUser a, MessengerUser b) {
-				return Long.signum(b.getDetails().getLastOnline() - a.getDetails().getLastOnline());
-			}
-		});
-
-		Collections.sort(this.friends, new Comparator<MessengerUser>() {
-			@Override
-			public int compare(MessengerUser a, MessengerUser b) {
-				return Boolean.compare(a.isOnline(), b.isOnline());
-			}
-		});*/
-
-		this.friends.sort((a, b) -> {
-			int result = Long.compare(a.getDetails().getLastOnline(), b.getDetails().getLastOnline());
-			if (result == 0) {
-
-				if (a.isOnline() || b.isOnline()) {
-					result = Boolean.compare(a.isOnline(), b.isOnline());
-				}
-			}
-
-			return result;
-		});
-
-		//this.friends.stream().sorted(Comparator.comparing(MessengerUser::isOnline).thenComparing(MessengerUser::getDetails::getLastOnline));
+		this.friends.sort(
+			Comparator.<MessengerUser>comparingLong(friend -> friend.getDetails().getLastOnline())
+				.thenComparing(friend -> !friend.isOnline())
+		);
 
 		this.player.send(new BUDDYLIST(this.friends, offlineID));
 	}
@@ -104,28 +81,22 @@ public class Messenger {
 	}
 
 	public void sendStatus(int offlineUserID) {
-		for (MessengerUser friend : this.friends) {
-			if (friend.isOnline()) {
-				if (friend.getPlayer().getMessenger().hasInitalised()) {
-					friend.getPlayer().getMessenger().sendFriends(offlineUserID);
-				}
-			}
-		}
+		friends.stream()
+			.filter(MessengerUser::isOnline)
+			.map(MessengerUser::getPlayer)
+			.map(Player::getMessenger)
+			.filter(Messenger::hasInitalised)
+			.forEach(messenger -> messenger.sendFriends(offlineUserID));
 	}
 
 	public void dispose() {
-		this.sendStatus(this.player.getDetails().getID());
+		this.sendStatus(this.player.getDetails().getId());
 
-		if (this.friends != null) {
-			this.friends.clear();
-			this.friends = null;
-		}
-
-		if (this.requests != null) {
-			this.requests.clear();
-			this.requests = null;
-		}
-
+		Optional.ofNullable(this.friends).ifPresent(List::clear);
+		Optional.ofNullable(this.requests).ifPresent(List::clear);
+		
+		this.friends = null;
+		this.requests = null;
 		this.player = null;
 	}
 
@@ -146,39 +117,24 @@ public class Messenger {
 	}
 
 	public String getLocation() {
-		String location = "";
-		boolean hotelView = true;
-		Room room = null;
-
-		if (player.getPrivateRoomPlayer() != null) {
-			room = player.getPrivateRoomPlayer().getRoomUser().getRoom();
-
-			if (room != null) {
-				hotelView = false;
-			}
-		} 
-
-		if (player.getPublicRoomPlayer() != null) {
-			room = player.getPublicRoomPlayer().getRoomUser().getRoom();
-
-			if (room != null) {
-				hotelView = false;
-			}
-		}
-
-		if (!hotelView) {
+		return Stream.of(
+			Optional.ofNullable(player.getPrivateRoomPlayer())
+				.map(p -> p.getRoomUser().getRoom()),
+			Optional.ofNullable(player.getPublicRoomPlayer())
+				.map(p -> p.getRoomUser().getRoom())
+		)
+		.filter(Optional::isPresent)
+		.map(Optional::get)
+		.findFirst()
+		.map(room -> {
 			if (room.getData().getRoomType() == RoomType.PRIVATE) {
-				location = "In a user flat";
-			} 
-
-			if (room.getData().getRoomType() == RoomType.PUBLIC) {
-				location = room.getData().getName();
+				return "In a user flat";
 			}
-
-		} else {
-			location = "On Hotel View";
-		}
-
-		return location;
+			if (room.getData().getRoomType() == RoomType.PUBLIC) {
+				return room.getData().getName();
+			}
+			return "On Hotel View";
+		})
+		.orElse("On Hotel View");
 	}
 }

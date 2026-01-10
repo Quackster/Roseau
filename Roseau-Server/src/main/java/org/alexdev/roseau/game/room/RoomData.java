@@ -6,10 +6,9 @@ import org.alexdev.roseau.game.room.settings.RoomState;
 import org.alexdev.roseau.game.room.settings.RoomType;
 
 public class RoomData {
-
 	private int id;
 	private RoomType roomType;
-	private int ownerID;
+	private int ownerId;
 	private String ownerName;
 	private String name;
 	private RoomState state;
@@ -30,11 +29,11 @@ public class RoomData {
 		this.room = room;
 	}
 	
-	public void fill(int id, boolean hidden, RoomType type, int ownerID, String ownerName, String name, int state, String password, int usersNow, int usersMax, String description, String model, String clazz, String wall,String floor, boolean allSuperUser, boolean showOwnerName) {
+	public void fill(int id, boolean hidden, RoomType type, int ownerId, String ownerName, String name, int state, String password, int usersNow, int usersMax, String description, String model, String clazz, String wall, String floor, boolean allSuperUser, boolean showOwnerName) {
 		this.id = id;
 		this.hidden = hidden;
 		this.roomType = type;
-		this.ownerID = ownerID;
+		this.ownerId = ownerId;
 		this.ownerName = ownerName;
 		this.name = name;
 		this.state = RoomState.getState(state);
@@ -102,12 +101,12 @@ public class RoomData {
 		return -1;
 	}
 
-	public int getID() {
+	public int getId() {
 		return id;
 	}
 
-	public int getOwnerID() {
-		return ownerID;
+	public int getOwnerId() {
+		return ownerId;
 	}
 
 	public String getOwnerName() {
@@ -126,10 +125,9 @@ public class RoomData {
 		
 		int finalAmount = this.room.getPlayers().size();
 		
-		if (this.room.getMapping().getRoomWalkwayIDs().size() > 0) {
-			
-			for (int roomID : this.room.getMapping().getRoomWalkwayIDs()) {
-				Room room = Roseau.getGame().getRoomManager().getRoomByID(roomID);
+		if (this.room.getMapping().getRoomWalkwayIds().size() > 0) {
+			for (int roomId : this.room.getMapping().getRoomWalkwayIds()) {
+				Room room = Roseau.getGame().getRoomManager().getRoomByID(roomId);
 				finalAmount += room.getPlayers().size();
 			}
 		}
@@ -141,8 +139,8 @@ public class RoomData {
 		return roomType;
 	}
 
-	public void setOwnerID(int ownerID) {
-		this.ownerID = ownerID;
+	public void setOwnerId(int ownerId) {
+		this.ownerId = ownerId;
 	}
 
 	public void setOwnerName(String ownerName) {

@@ -13,9 +13,10 @@ import org.alexdev.roseau.game.item.ItemManager;
 import org.alexdev.roseau.game.moderation.ModerationManager;
 import org.alexdev.roseau.game.player.PlayerManager;
 import org.alexdev.roseau.game.room.RoomManager;
-import org.alexdev.roseau.log.Log;
+import org.oldskooler.simplelogger4j.SimpleLog;
 
 public class Game {
+    private static final SimpleLog logger = SimpleLog.of(Game.class);
 
 	private PlayerManager playerManager;
 	private RoomManager roomManager;
@@ -50,7 +51,7 @@ public class Game {
 			this.gameScheduler = Roseau.getGame().getScheduler().scheduleAtFixedRate(new GameScheduler(), 0, 1, TimeUnit.SECONDS);
 			
 		} catch (Exception e) {
-			Log.exception(e);
+			logger.error("Failed to load game", e);
 		}
 	}
 	

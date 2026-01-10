@@ -1,26 +1,26 @@
 package org.alexdev.roseau.game.player;
 
-import org.alexdev.roseau.game.entity.EntityType;
-
-import java.util.List;
-
+import org.oldskooler.simplelogger4j.SimpleLog;
 import org.alexdev.roseau.game.entity.Entity;
+import org.alexdev.roseau.game.entity.EntityType;
 import org.alexdev.roseau.game.room.entity.RoomUser;
 import org.alexdev.roseau.game.room.model.Position;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.util.Util;
 
+import java.util.List;
+import java.util.Optional;
+
 public class Bot implements Entity {
+    private static final SimpleLog logger = SimpleLog.of(Bot.class);
 
-	private PlayerDetails details;
-	private RoomUser roomEntity;
+	private final PlayerDetails details;
+	private final RoomUser roomEntity;
 
-	private Position startPosition;
+	private final Position startPosition;
 
-	private List<int[]> positions;
-	private List<String> responses;
-	private List<String> triggers;
-
+	private final List<int[]> positions;
+	private final List<String> responses;
+	private final List<String> triggers;
 
 	public Bot(Position position, List<int[]> positions, List<String> responses, List<String> triggers) {
 		this.details = new PlayerDetails(this);
@@ -31,35 +31,24 @@ public class Bot implements Entity {
 		this.responses = responses;
 		this.triggers = triggers;
 		
-		for (String response : responses) {
-			Log.println(response);
-		}
+		responses.forEach(response -> logger.debug("Bot response: " + response));
 	}
 	
 	public String containsTrigger(String phrase) {
-		
-		for (String trigger : this.triggers) {
-			if (phrase.toLowerCase().contains(trigger.toLowerCase())) {
-				return trigger;
-			}
-		}
-		
-		return null;
+		return triggers.stream()
+			.filter(trigger -> phrase.toLowerCase().contains(trigger.toLowerCase()))
+			.findFirst()
+			.orElse(null);
 	}
 
 	public String getResponse(String username, String item) {
-		
-		if (this.responses.size() > 0) {
-			String response = this.responses.get(Util.getRandom().nextInt(this.responses.size()));
-			
-			String newResponse = response;
-			newResponse = newResponse.replace("%username%", username);
-			newResponse = newResponse.replace("%item%", item);
-			
-			return newResponse;
-		}
-		
-		return null;
+		return Optional.of(responses)
+			.filter(resps -> !resps.isEmpty())
+			.map(resps -> resps.get(Util.getRandom().nextInt(resps.size())))
+			.map(response -> response
+				.replace("%username%", username)
+				.replace("%item%", item))
+			.orElse(null);
 	}
 
 	public PlayerDetails getDetails() {

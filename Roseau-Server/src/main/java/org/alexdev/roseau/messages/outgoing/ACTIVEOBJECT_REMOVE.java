@@ -15,6 +15,6 @@ public class ACTIVEOBJECT_REMOVE extends OutgoingMessageComposer {
 	public void write() {
 		response.init("ACTIVEOBJECT_REMOVE");
 		response.appendNewArgument(this.item.getPadding());
-		response.append(String.valueOf(this.item.getID()));
+		response.append(String.valueOf(this.item.getId()));
 	}
 }

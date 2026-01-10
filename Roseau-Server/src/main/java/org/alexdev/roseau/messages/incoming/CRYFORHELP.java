@@ -8,34 +8,30 @@ import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class CRYFORHELP implements MessageEvent {
+    @Override
+    public void handle(Player player, ClientMessage reader) {
+        ///Private Room: returd;0;ngga plz;39[9]returd[9]Alex[9]open[9][9]floor1[9]127.0.0.1[9]127.0.0.1[9]90[9]0[9]null[9]
 
-	@Override
-	public void handle(Player player, ClientMessage reader) {
+        Room room = player.getRoomUser().getRoom();
 
-		///Private Room: returd;0;ngga plz;39[9]returd[9]Alex[9]open[9][9]floor1[9]127.0.0.1[9]127.0.0.1[9]90[9]0[9]null[9]
+        if (room == null) {
+            return;
+        }
 
+        // Ugly way to get the distress message, but whatever
 
-		Room room = player.getRoomUser().getRoom();
+        String distressMessage = null;
 
-		if (room == null) {
-			return;
-		}
+        if (room.getData().getRoomType() == RoomType.PRIVATE) {
+            distressMessage = reader.getArgument(0, Character.toString((char) 9));
+            distressMessage = distressMessage.replace("/Private Room: " + room.getData().getName(), "").substring(3);
+            distressMessage = distressMessage.replace(";" + room.getData().getId(), "");
+        } else {
+            distressMessage = reader.getMessageBody();
+            distressMessage = distressMessage.replace("/" + room.getData().getName(), "").substring(3);
+            distressMessage = distressMessage.split(";")[0];
+        }
 
-		// Ugly way to get the distress message, but whatever
-
-
-		String distressMessage = null;
-
-		if (room.getData().getRoomType() == RoomType.PRIVATE) {
-			distressMessage = reader.getArgument(0, Character.toString((char)9));
-			distressMessage = distressMessage.replace("/Private Room: " + room.getData().getName(), "").substring(3);
-			distressMessage = distressMessage.replace(";" + room.getData().getID(), "");
-		} else {
-			distressMessage = reader.getMessageBody();
-			distressMessage = distressMessage.replace("/" + room.getData().getName(), "").substring(3);
-			distressMessage = distressMessage.split(";")[0];
-		}
-		
-		Roseau.getGame().getModerationManager().callForHelp(room, player, distressMessage);
-	}
+        Roseau.getGame().getModerationManager().callForHelp(room, player, distressMessage);
+    }
 }

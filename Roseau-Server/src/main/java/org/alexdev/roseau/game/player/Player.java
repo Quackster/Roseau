@@ -64,7 +64,7 @@ public class Player implements Entity {
 					.getPlayerManager()
 					.getPlayers()
 					.values().stream()
-					.filter(s -> s.getDetails().getID() == this.details.getID() && 
+					.filter(s -> s.getDetails().getId() == this.details.getId() &&
 					s.getNetwork().getServerPort() == (Roseau.getServerPort())).findFirst().get();
 
 		} catch (Exception e) {
@@ -80,7 +80,7 @@ public class Player implements Entity {
 					.getPlayerManager()
 					.getPlayers()
 					.values().stream()
-					.filter(s -> s.getDetails().getID() == this.details.getID() && 
+					.filter(s -> s.getDetails().getId() == this.details.getId() && 
 					s.getNetwork().getServerPort() == (Roseau.getPrivateServerPort())).findFirst().get();
 
 		} catch (Exception e) {
@@ -95,7 +95,7 @@ public class Player implements Entity {
 					.getPlayerManager()
 					.getPlayers()
 					.values().stream()
-					.filter(s -> s.getDetails().getID() == this.details.getID() && 
+					.filter(s -> s.getDetails().getId() == this.details.getId() && 
 					s.getNetwork().getServerPort() != (Roseau.getPrivateServerPort()) &&
 					s.getNetwork().getServerPort() != Roseau.getServerPort()).findFirst().get();
 
@@ -139,7 +139,7 @@ public class Player implements Entity {
 
 		try {
 
-			List<Player> players = Roseau.getGame().getPlayerManager().getPlayers().values().stream().filter(s -> s.getDetails().getID() == this.details.getID()).collect(Collectors.toList());
+			List<Player> players = Roseau.getGame().getPlayerManager().getPlayers().values().stream().filter(s -> s.getDetails().getId() == this.details.getId()).collect(Collectors.toList());
 
 			for (Player player : players) {
 				player.kick();

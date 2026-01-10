@@ -1,5 +1,6 @@
-package org.alexdev.roseau.dao.mysql;
+package org.alexdev.roseau.dao.jdbc;
 
+import org.oldskooler.simplelogger4j.SimpleLog;
 import org.alexdev.roseau.dao.CatalogueDao;
 import org.alexdev.roseau.dao.Dao;
 import org.alexdev.roseau.dao.InventoryDao;
@@ -8,10 +9,10 @@ import org.alexdev.roseau.dao.MessengerDao;
 import org.alexdev.roseau.dao.NavigatorDao;
 import org.alexdev.roseau.dao.PlayerDao;
 import org.alexdev.roseau.dao.RoomDao;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.util.Util;
 
-public class MySQLDao implements Dao {
+public class JdbcDao implements Dao {
+    private static final SimpleLog logger = SimpleLog.of(JdbcDao.class);
 
 	private Storage storage;
 	private boolean isConnected;
@@ -24,50 +25,46 @@ public class MySQLDao implements Dao {
 	private NavigatorDao navigator;
 	private MessengerDao messenger;
 
-	public MySQLDao() {
-
+	public JdbcDao() {
 		this.connect();
-		this.player = new MySQLPlayerDao(this);
-		this.room = new MySQLRoomDao(this);
-		this.item = new MySQLItemDao(this);
-		this.catalogue = new MySQLCatalogueDao(this);
-		this.inventory = new MySQLInventoryDao(this);
-		this.navigator = new MySQLNavigatorDao(this);
-		this.messenger = new MySQLMessengerDao(this);
+		this.player = new JdbcPlayerDao(this);
+		this.room = new JdbcRoomDao(this);
+		this.item = new JdbcItemDao(this);
+		this.catalogue = new JdbcCatalogueDao(this);
+		this.inventory = new JdbcInventoryDao(this);
+		this.navigator = new JdbcNavigatorDao(this);
+		this.messenger = new JdbcMessengerDao(this);
 	}
 
 	@Override
 	public boolean connect() {
+		logger.info("Connecting to database");
 
-		Log.println("Connecting to MySQL server");
-		
-		storage = new Storage(Util.getConfiguration().get("Database", "mysql.hostname", String.class), 
-				Util.getConfiguration().get("Database", "mysql.username", String.class), 
-				Util.getConfiguration().get("Database", "mysql.password", String.class), 
-				Util.getConfiguration().get("Database", "mysql.database", String.class)); 
+		storage = new Storage(Util.getConfiguration().get("Database", "db.hostname", String.class),
+				Util.getConfiguration().get("Database", "db.username", String.class),
+				Util.getConfiguration().get("Database", "db.password", String.class),
+				Util.getConfiguration().get("Database", "db.database", String.class));
 
 		isConnected = storage.isConnected();
 
 		if (!isConnected) {
-			Log.println("Could not connect");
+			logger.error("Could not connect to database");
 		} else {
-			Log.println("Connection to MySQL was a success");
+			logger.info("Database connection successful");
 		}
-		
-		Log.println();
-		
+
 		return isConnected;
 	}
 
 	public Storage getStorage() {
 		return storage;
 	}
-	
+
 	@Override
 	public boolean isConnected() {
 		return isConnected;
 	}
-		
+
 	@Override
 	public PlayerDao getPlayer() {
 		return this.player;

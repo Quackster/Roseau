@@ -2,34 +2,32 @@ package org.alexdev.roseau.game.room;
 
 import org.alexdev.roseau.game.room.model.Position;
 
-public class RoomConnection 
-{
-	private int roomID;
-	private int toID;
-	
+public class RoomConnection {
+	private int roomId;
+	private int toId;
 	private Position door;
-	
-	public RoomConnection(int roomID, int toID, Position door) {
+
+	public RoomConnection(int roomId, int toId, Position door) {
 		super();
-		this.roomID = roomID;
-		this.toID = toID;
+		this.roomId = roomId;
+		this.toId = toId;
 		this.door = door;
 	}
 
-	public int getRoomID() {
-		return roomID;
+	public int getRoomId() {
+		return roomId;
 	}
 
-	public void setRoomID(int roomID) {
-		this.roomID = roomID;
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
 	}
 
-	public int getToID() {
-		return toID;
+	public int getToId() {
+		return toId;
 	}
 
-	public void setToID(int toID) {
-		this.toID = toID;
+	public void setToId(int toId) {
+		this.toId = toId;
 	}
 
 	public Position getDoorPosition() {

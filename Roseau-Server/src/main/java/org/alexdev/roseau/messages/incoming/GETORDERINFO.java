@@ -11,48 +11,42 @@ import org.alexdev.roseau.messages.outgoing.ORDERINFO;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class GETORDERINFO implements MessageEvent {
+    @Override
+    public void handle(Player player, ClientMessage reader) {
+        String callId = reader.getMessageBody().substring(4).replace(" " + player.getDetails().getName(), "");
+        String catalogueId = callId;
 
-	@Override
-	public void handle(Player player, ClientMessage reader) {
-		String callID = reader.getMessageBody().substring(4).replace(" " + player.getDetails().getName(), "");
-		String catalogueID = callID;
-		
-		if (callID.contains("L ") || callID.contains("T ") || callID.contains("juliste ")) {
-			catalogueID = callID.split(" ")[0];
-		}
-		
-		
-		CatalogueItem item = Roseau.getGame().getCatalogueManager().getItemByCall(catalogueID);
-		CatalogueDeal deal = Roseau.getGame().getCatalogueManager().getDealByCall(catalogueID);
-		
-		boolean validOrderInfo = false;
+        if (callId.contains("L ") || callId.contains("T ") || callId.contains("juliste ")) {
+            catalogueId = callId.split(" ")[0];
+        }
 
-		if (deal != null) {
-			
-			player.send(new ORDERINFO(deal.getCallID(), deal.getCost()));
-			validOrderInfo = true;
+        CatalogueItem item = Roseau.getGame().getCatalogueManager().getItemByCall(catalogueId);
+        CatalogueDeal deal = Roseau.getGame().getCatalogueManager().getDealByCall(catalogueId);
 
-		} else if (item != null) {
-			
-			ItemDefinition definition = item.getDefinition();
+        boolean validOrderInfo = false;
 
-			if (definition == null) {
-				return;
-			}
+        if (deal != null) {
+            player.send(new ORDERINFO(deal.getCallId(), deal.getCost()));
+            validOrderInfo = true;
+        } else if (item != null) {
+            ItemDefinition definition = item.getDefinition();
 
-			String extraData = "";
+            if (definition == null) {
+                return;
+            }
 
-			if (callID.contains("L ") || callID.contains("T ") || callID.contains("juliste ")) {
-				extraData += " " + callID.split(" ")[1];
-			}
+            String extraData = "";
 
-			player.send(new ORDERINFO(item.getCallID() + extraData, item.getCredits()));
-			validOrderInfo = true;
-		}
-		
-		if (validOrderInfo) {
-			player.setOrderInfoProtection(DateTime.getTime());
-		}
-	}
+            if (callId.contains("L ") || callId.contains("T ") || callId.contains("juliste ")) {
+                extraData += " " + callId.split(" ")[1];
+            }
 
+            player.send(new ORDERINFO(item.getCallId() + extraData, item.getCredits()));
+            validOrderInfo = true;
+        }
+
+        if (validOrderInfo) {
+            player.setOrderInfoProtection(DateTime.getTime());
+        }
+    }
 }

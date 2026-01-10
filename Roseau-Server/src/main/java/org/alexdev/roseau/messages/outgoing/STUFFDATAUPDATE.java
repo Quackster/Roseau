@@ -18,7 +18,7 @@ public class STUFFDATAUPDATE extends OutgoingMessageComposer {
 	public void write() {
 		response.init("STUFFDATAUPDATE");
 		response.appendNewArgument(this.item.getPadding());
-		response.append(Integer.toString(this.item.getID()));
+		response.append(Integer.toString(this.item.getId()));
 		response.appendPartArgument("");
 		response.appendPartArgument(this.item.getDefinition().getDataClass());
 		response.appendPartArgument(this.customData);

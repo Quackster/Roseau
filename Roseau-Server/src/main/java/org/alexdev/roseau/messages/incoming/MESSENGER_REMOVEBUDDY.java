@@ -7,41 +7,39 @@ import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class MESSENGER_REMOVEBUDDY implements MessageEvent {
+    @Override
+    public void handle(Player player, ClientMessage reader) {
+        String username = reader.getMessageBody();
 
-	@Override
-	public void handle(Player player, ClientMessage reader) {
-		String username = reader.getMessageBody();
-		
-		if (username == null) {
-			return;
-		}
+        if (username == null) {
+            return;
+        }
 
-		int friendID = Roseau.getDao().getPlayer().getId(username);
-		
-		if (friendID < 1) {
-			return;
-		}
-		
-		if (friendID == player.getDetails().getID()) {
-			return;
-		}
+        int friendId = Roseau.getDao().getPlayer().getId(username);
 
-		if (!player.getMessenger().isFriend(friendID)) {
-			return;
-		}
+        if (friendId < 1) {
+            return;
+        }
 
-		int toID = player.getDetails().getID();
-		Roseau.getDao().getMessenger().removeFriend(friendID, toID);
-		
-		MessengerUser friend = player.getMessenger().getFriend(friendID);
-		
-		if (friend.isOnline()) {
-			friend.getPlayer().getMessenger().removeFriend(player.getDetails().getID());
-			friend.getPlayer().getMessenger().sendFriends();
-		}	
-		
-		player.getMessenger().removeFriend(friendID);
-		player.getMessenger().sendFriends();
-	}
+        if (friendId == player.getDetails().getId()) {
+            return;
+        }
 
+        if (!player.getMessenger().isFriend(friendId)) {
+            return;
+        }
+
+        int toId = player.getDetails().getId();
+        Roseau.getDao().getMessenger().removeFriend(friendId, toId);
+
+        MessengerUser friend = player.getMessenger().getFriend(friendId);
+
+        if (friend.isOnline()) {
+            friend.getPlayer().getMessenger().removeFriend(player.getDetails().getId());
+            friend.getPlayer().getMessenger().sendFriends();
+        }
+
+        player.getMessenger().removeFriend(friendId);
+        player.getMessenger().sendFriends();
+    }
 }

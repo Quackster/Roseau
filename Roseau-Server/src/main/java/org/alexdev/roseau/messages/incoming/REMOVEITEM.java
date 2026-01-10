@@ -7,27 +7,25 @@ import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class REMOVEITEM implements MessageEvent {
+    @Override
+    public void handle(Player player, ClientMessage reader) {
+        int itemId = Integer.valueOf(reader.getArgument(1, "/"));
 
-	@Override
-	public void handle(Player player, ClientMessage reader) {
-		int itemID = Integer.valueOf(reader.getArgument(1, "/"));
-		
-		Room room = player.getRoomUser().getRoom();
-		player.getRoomUser().resetAfkTimer();
-		
-		if (!room.hasRights(player, true)) {
-			return;
-		}
-		
-		Item item = room.getItem(itemID);
+        Room room = player.getRoomUser().getRoom();
+        player.getRoomUser().resetAfkTimer();
 
-		if (item == null) {
-			return;
-		}
-		
-		room.getMapping().removeItem(item);
-		
-		item.delete();
-	}
+        if (!room.hasRights(player, true)) {
+            return;
+        }
 
+        Item item = room.getItem(itemId);
+
+        if (item == null) {
+            return;
+        }
+
+        room.getMapping().removeItem(item);
+
+        item.delete();
+    }
 }

@@ -2,6 +2,7 @@ package org.alexdev.roseau.game.room.schedulers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.alexdev.roseau.game.entity.Entity;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.game.room.entity.RoomUser;
@@ -12,7 +13,7 @@ import org.alexdev.roseau.util.StringUtil;
 
 public class RoomWalkScheduler implements Runnable {
 
-	private Room room;
+	private final Room room;
 
 	public RoomWalkScheduler(Room room) {
 		this.room = room;
@@ -21,32 +22,26 @@ public class RoomWalkScheduler implements Runnable {
 	@Override
 	public void run() {
 		try {
-			if (this.room.isDisposed() || this.room.getEntities().size() == 0) {
+			if (this.room.isDisposed() || this.room.getEntities().isEmpty()) {
 				return;
 			}
 
-			List<Entity> update_entities = new ArrayList<Entity>();
-			List<Entity> entities = this.room.getEntities();
-
-			for (int i = 0; i < entities.size(); i++) {
-				Entity entity = entities.get(i);
-
-				if (entity != null) {
-					if (entity.getRoomUser() != null) {
-						this.processEntity(entity);
-
-						RoomUser roomEntity = entity.getRoomUser();
-
-						if (roomEntity.needsUpdate()) {
-							roomEntity.setNeedUpdate(false);
-							update_entities.add(entity);
-						}
+			List<Entity> updateEntities = this.room.getEntities().stream()
+				.filter(entity -> entity != null)
+				.filter(entity -> entity.getRoomUser() != null)
+				.peek(this::processEntity)
+				.filter(entity -> {
+					RoomUser roomEntity = entity.getRoomUser();
+					if (roomEntity.needsUpdate()) {
+						roomEntity.setNeedUpdate(false);
+						return true;
 					}
-				}
-			}
+					return false;
+				})
+				.collect(Collectors.toList());
 
-			if (update_entities.size() > 0) {
-				room.send(new STATUS(update_entities));
+			if (!updateEntities.isEmpty()) {
+				room.send(new STATUS(updateEntities));
 			}
 
 		} catch (Exception e) {
@@ -63,14 +58,14 @@ public class RoomWalkScheduler implements Runnable {
 		if (roomEntity.isWalking()) {
 			roomEntity.setLookResetTime(-1);
 
-			if (entity.getRoomUser().getNext() != null) {
-				Position next = entity.getRoomUser().getNext();
-				entity.getRoomUser().getPosition().setY(next.getY());
-				entity.getRoomUser().getPosition().setX(next.getX());
-				entity.getRoomUser().updateNewHeight(next);
-			}
+			java.util.Optional.ofNullable(entity.getRoomUser().getNext())
+				.ifPresent(next -> {
+					entity.getRoomUser().getPosition().setY(next.getY());
+					entity.getRoomUser().getPosition().setX(next.getX());
+					entity.getRoomUser().updateNewHeight(next);
+				});
 
-			if (roomEntity.getPath().size() > 0) {
+			if (!roomEntity.getPath().isEmpty()) {
 				Position next = roomEntity.getPath().pop();
 
 				if (!this.room.getMapping().isValidTile(entity, next.getX(), next.getY())) {
@@ -89,15 +84,11 @@ public class RoomWalkScheduler implements Runnable {
 				roomEntity.getPosition().setRotation(rotation);
 				roomEntity.setStatus("mv", " " + next.getX() + "," + next.getY() + "," + StringUtil.format(height), true, -1);
 				roomEntity.setNext(next);
-
-			}
-			else {
+			} else {
 				roomEntity.stopWalking();
-
 			}
 
 			roomEntity.setNeedUpdate(true);
 		}
 	}
-
 }

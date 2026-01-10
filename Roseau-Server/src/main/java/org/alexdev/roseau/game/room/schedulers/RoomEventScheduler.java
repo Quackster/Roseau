@@ -1,9 +1,10 @@
 package org.alexdev.roseau.game.room.schedulers;
 
 import org.alexdev.roseau.game.room.Room;
-import org.alexdev.roseau.log.Log;
+import org.oldskooler.simplelogger4j.SimpleLog;
 
 public class RoomEventScheduler implements Runnable {
+    private static final SimpleLog logger = SimpleLog.of(RoomEventScheduler.class);
 
 	private Room room;
 	
@@ -18,7 +19,7 @@ public class RoomEventScheduler implements Runnable {
 			try {
 				event.tick();
 			} catch (Exception e) {
-				Log.exception(e);
+				logger.error("Error in room event tick", e);
 			}
 		}
 		

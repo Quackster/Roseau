@@ -1,31 +1,30 @@
 package org.alexdev.roseau.game.messenger;
 
 public class MessengerMessage {
-
-	private int ID;
-	private int toID;
-	private int fromID;
+	private int id;
+	private int toId;
+	private int fromId;
 	private long timeSent;
 	private String message;
 	
-	public MessengerMessage(int ID, int toID, int fromID, long timeSent, String message) {
-		this.ID = ID;
-		this.toID = toID;
-		this.fromID = fromID;
+	public MessengerMessage(int id, int toId, int fromId, long timeSent, String message) {
+		this.id = id;
+		this.toId = toId;
+		this.fromId = fromId;
 		this.timeSent = timeSent;
 		this.message = message;
 	}
 
-	public int getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
 
-	public int getToID() {
-		return toID;
+	public int getToId() {
+		return toId;
 	}
 
-	public int getFromID() {
-		return fromID;
+	public int getFromId() {
+		return fromId;
 	}
 
 	public long getTimeSent() {

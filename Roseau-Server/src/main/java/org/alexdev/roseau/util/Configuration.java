@@ -5,9 +5,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.alexdev.roseau.log.Log;
+import org.oldskooler.simplelogger4j.SimpleLog;
 
 public class Configuration {
+    private static final SimpleLog logger = SimpleLog.of(Configuration.class);
 
 	private File file;
 	private Properties config;
@@ -16,13 +17,10 @@ public class Configuration {
 		
 		this.config = new Properties();
 		
-		try {
-			FileInputStream stream = new FileInputStream(file.getAbsolutePath());
+		try (FileInputStream stream = new FileInputStream(file.getAbsolutePath())) {
 			this.config.load(stream);
-			stream.close();
-			
 		} catch (IOException e) {
-			Log.exception(e);
+			logger.error("Failed to load configuration file: " + file.getAbsolutePath(), e);
 		}
 	}
 	

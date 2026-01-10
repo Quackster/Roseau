@@ -1,6 +1,7 @@
 package org.alexdev.roseau.game.room.entity;
 
 import java.util.LinkedList;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -9,7 +10,6 @@ import org.alexdev.roseau.game.room.RoomConnection;
 import org.alexdev.roseau.game.room.RoomTile;
 import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.game.room.model.Rotation;
-import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.outgoing.CHAT;
 import org.alexdev.roseau.messages.outgoing.PH_NOTICKETS;
 import org.alexdev.roseau.messages.outgoing.STATUS;
@@ -24,29 +24,25 @@ import org.alexdev.roseau.game.pathfinder.Pathfinder;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
 import org.alexdev.roseau.game.room.model.Position;
-import com.google.common.collect.Lists;
+import org.oldskooler.simplelogger4j.SimpleLog;
 
 public class RoomUser {
+    private static final SimpleLog logger = SimpleLog.of(RoomUser.class);
 
-	private int danceID;
+	private int danceId;
 	private int timeUntilNextDrink;
-
 	private Position position;
 	private Position goal;
 	private Position next = null;
-
 	private ConcurrentHashMap<String, RoomUserStatus> statuses;
 	private LinkedList<Position> path;
-
 	private Room room;
-
 	private boolean isWalking = false;
 	private boolean needsUpdate = false;
 	private boolean canWalk = true;
-
 	private Entity entity;
 	private int lookResetTime;
-	private Item current_item;
+	private Item currentItem;
 
 	private int afkTimer;
 
@@ -71,7 +67,7 @@ public class RoomUser {
 		this.path = null;
 
 		this.statuses = new ConcurrentHashMap<String, RoomUserStatus>();
-		this.path = Lists.newLinkedList();
+		this.path = new java.util.LinkedList<>();
 
 		this.position = null;
 		this.goal = null;
@@ -79,12 +75,10 @@ public class RoomUser {
 		this.position = new Position(0, 0, 0);
 		this.goal = new Position(0, 0, 0);
 
-		this.current_item = null;
-
+		this.currentItem = null;
 		this.needsUpdate = false;
 		this.isWalking = false;
-
-		this.danceID = 0;
+		this.danceId = 0;
 		this.timeUntilNextDrink = -1;
 
 		this.resetAfkTimer();
@@ -129,7 +123,7 @@ public class RoomUser {
 		RoomConnection connectionRoom = this.room.getMapping().getRoomConnection(this.position.getX(), this.position.getY());
 
 		if (connectionRoom != null) {
-			Room room = Roseau.getGame().getRoomManager().getRoomByID(connectionRoom.getToID());
+			Room room = Roseau.getGame().getRoomManager().getRoomByID(connectionRoom.getToId());
 
 			if (room != null) {
 
@@ -149,40 +143,40 @@ public class RoomUser {
 
 				return;
 			} else {
-				Log.println("Tried to connect player to room ID: " + connectionRoom.getToID() + " but no room could be found.");
+				logger.warn("Tried to connect player to room ID: " + connectionRoom.getToId() + " but no room could be found.");
 			}
 		}
 
 		Item item = this.room.getMapping().getHighestItem(this.position.getX(), this.position.getY());
 
-		boolean no_current_item = false;
+		boolean noCurrentItem = false;
 
 		if (item != null) {
 			if (item.canWalk(this.entity, position)) {
-				this.current_item = item;
+				this.currentItem = item;
 				this.currentItemTrigger();
 			} else {
-				no_current_item = true;
+				noCurrentItem = true;
 			}
 		} else {
-			no_current_item = true;
+			noCurrentItem = true;
 		}
 
-		if (no_current_item) {
-			this.current_item = null;
+		if (noCurrentItem) {
+			this.currentItem = null;
 		}
 
 	}
 
 	public void currentItemTrigger() {
-		if (this.current_item == null) {
-			new BlankInteractor(null).onStoppedWalking((Player) this.entity);
-		} else {
-			this.current_item.getInteraction().onStoppedWalking((Player) this.entity);
-		}
+		Optional.ofNullable(this.currentItem)
+			.map(Item::getInteraction)
+			.ifPresentOrElse(
+				interaction -> interaction.onStoppedWalking((Player) this.entity),
+				() -> new BlankInteractor(null).onStoppedWalking((Player) this.entity)
+			);
 
 		this.needsUpdate = true;
-
 	}
 
 	public boolean walkTo(int x, int y) {
@@ -190,11 +184,12 @@ public class RoomUser {
 			return false;
 		}
 
-		if (this.next != null) {
-			this.position.setX(this.next.getX());
-			this.position.setY(this.next.getY());
-			this.updateNewHeight(this.position);
-		}
+		Optional.ofNullable(this.next)
+			.ifPresent(next -> {
+				this.position.setX(next.getX());
+				this.position.setY(next.getY());
+				this.updateNewHeight(this.position);
+			});
 
 		if (!this.canWalk) {
 			return false;
@@ -205,10 +200,8 @@ public class RoomUser {
 		}
 
 		if (GameVariables.DEBUG_ENABLE) {
-			Item item = this.room.getMapping().getHighestItem(x, y);
-			if (item != null) {
-				Log.println(item.getDefinition().getSprite() + " - " + item.getDefinition().getID() + " - " + item.getCustomData());
-			}
+			Optional.ofNullable(this.room.getMapping().getHighestItem(x, y))
+				.ifPresent(item -> logger.debug(item.getDefinition().getSprite() + " - " + item.getDefinition().getId() + " - " + item.getCustomData()));
 		}
 
 		this.resetAfkTimer();
@@ -217,39 +210,28 @@ public class RoomUser {
 			return false;
 		}
 
-		Item item = this.room.getMapping().getHighestItem(x, y);
-		if (item != null) {
-			if (item.getDefinition().getSprite().equals("poolLift") || item.getDefinition().getSprite().equals("poolQueue")) {
-
-				if (!(entity.getDetails().getTickets() > 0)) {
-					if (entity.getType() == EntityType.PLAYER) {
-						((Player)entity).send(new PH_NOTICKETS());
-					}
-
-					return false;
+		Optional.ofNullable(this.room.getMapping().getHighestItem(x, y))
+			.filter(item -> (item.getDefinition().getSprite().equals("poolLift") || item.getDefinition().getSprite().equals("poolQueue")))
+			.filter(item -> !(entity.getDetails().getTickets() > 0))
+			.ifPresent(item -> {
+				if (entity.getType() == EntityType.PLAYER) {
+					((Player)entity).send(new PH_NOTICKETS());
 				}
-			}
-		}
+			});
 
 		if (this.position.isMatch(new Position(x, y))) {
 			return false;
 		}
 
 		this.goal = new Position(x, y);
-		LinkedList<Position> path = Pathfinder.makePath(this.entity);
-
-		if (path == null) {
-			return false;
-		}
-
-		if (path.size() == 0) {
-			return false;
-		}
-
-		this.path = path;
-		this.isWalking = true;
-
-		return true;
+		return Optional.ofNullable(Pathfinder.makePath(this.entity))
+			.filter(path -> !path.isEmpty())
+			.map(path -> {
+				this.path = path;
+				this.isWalking = true;
+				return true;
+			})
+			.orElse(false);
 	}
 
 	public void chat(String talkMessage) {
@@ -265,15 +247,9 @@ public class RoomUser {
 		final Room room = this.room;
 		final PlayerDetails details = this.entity.getDetails();
 
-		Runnable task = new Runnable() {
-			@Override
-			public void run() {
-				room.send(new CHAT("CHAT", details.getName(), response));
-			}
-		};
+		Runnable task = () -> room.send(new CHAT("CHAT", details.getName(), response));
 
 		Roseau.getGame().getScheduler().schedule(task, GameVariables.BOT_RESPONSE_DELAY, TimeUnit.MILLISECONDS);
-
 	}
 
 	/*
@@ -370,15 +346,15 @@ public class RoomUser {
 	}
 
 	public boolean isDancing() {
-		return this.danceID != 0;
+		return this.danceId != 0;
 	}
 
-	public int getDanceID() {
-		return danceID;
+	public int getDanceId() {
+		return danceId;
 	}
 
-	public void setDanceID(int danceID) {
-		this.danceID = danceID;
+	public void setDanceId(int danceId) {
+		this.danceId = danceId;
 	}
 
 	public ConcurrentHashMap<String, RoomUserStatus> getStatuses() {
@@ -412,7 +388,7 @@ public class RoomUser {
 	}
 
 	public int getRoomID() {
-		return (room == null ? 0 : room.getData().getID());
+		return (room == null ? 0 : room.getData().getId());
 	}
 
 	public void setRoom(Room room) {
@@ -467,11 +443,11 @@ public class RoomUser {
 	}
 
 	public Item getCurrentItem() {
-		return current_item;
+		return currentItem;
 	}
 
-	public void setCurrentItem(Item currentitem) {
-		this.current_item = currentitem;
+	public void setCurrentItem(Item currentItem) {
+		this.currentItem = currentItem;
 	}
 
 	public boolean isKickWhenStop() {

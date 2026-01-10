@@ -5,19 +5,19 @@ import org.alexdev.roseau.game.item.ItemDefinition;
 
 public class CatalogueItem {
 	private int credits;
-	private int definitionID;
-	private String callID;
+	private int definitionId;
+	private String callId;
 	private String extraData;
-	
-	public CatalogueItem(String callID, int definitionID, int credits) {
-		this.callID = callID;
+
+	public CatalogueItem(String callId, int definitionId, int credits) {
+		this.callId = callId;
 		this.credits = credits;
-		this.definitionID = definitionID;
+		this.definitionId = definitionId;
 		this.extraData = null;
 	}
 
-	public String getCallID() {
-		return callID;
+	public String getCallId() {
+		return callId;
 	}
 
 	public int getCredits() {
@@ -25,7 +25,7 @@ public class CatalogueItem {
 	}
 
 	public ItemDefinition getDefinition() {
-		return Roseau.getGame().getItemManager().getDefinition(this.definitionID);
+		return Roseau.getGame().getItemManager().getDefinition(this.definitionId);
 	}
 
 	public String getExtraData() {

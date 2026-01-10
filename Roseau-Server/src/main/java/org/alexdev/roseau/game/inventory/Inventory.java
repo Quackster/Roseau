@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.GameVariables;
@@ -11,11 +13,8 @@ import org.alexdev.roseau.game.item.Item;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.messages.outgoing.STRIPINFO;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
 public class Inventory {
-	private Player player;
+	private final Player player;
 
 	private List<Item> items;
 	private Map<Integer, List<Item>> paginatedItems;
@@ -24,17 +23,15 @@ public class Inventory {
 
 	public Inventory(Player player) {
 		this.player = player;
-		this.paginatedItems = Maps.newHashMap();
-		this.items = Lists.newArrayList();
+		this.paginatedItems = new java.util.concurrent.ConcurrentHashMap<>();
+		this.items = new ArrayList<>();
 		this.cursor = 0;
 	}
 
 	public void load() {
 		this.dispose();
 		
-		//Log.println("Inventory.java::load()");
-
-		this.items = Roseau.getDao().getInventory().getInventoryItems(this.player.getDetails().getID());
+		this.items = Roseau.getDao().getInventory().getInventoryItems(this.player.getDetails().getId());
 		
 		this.refreshPagination();
 	}
@@ -42,30 +39,24 @@ public class Inventory {
 	public void refreshPagination() {
 		this.paginatedItems.clear();
 
-		int pageID = 0;
-		int counter = 0;
-
-		for (Item item : this.items) {
-
-			if (counter > (GameVariables.MAX_ITEMS_PER_PAGE - 1)) {
-				pageID++;
-				counter = 0;
-			} else {
-				counter++;
-			}
-
-			if (!this.paginatedItems.containsKey(pageID)) {
-				this.paginatedItems.put(pageID, new ArrayList<Item>());
-			}
-
-			this.paginatedItems.get(pageID).add(item);
+		if (items.isEmpty()) {
+			return;
 		}
+
+		IntStream.range(0, items.size())
+			.boxed()
+			.collect(Collectors.groupingBy(
+				index -> index / GameVariables.MAX_ITEMS_PER_PAGE,
+				Collectors.mapping(items::get, Collectors.toList())
+			))
+			.forEach(paginatedItems::put);
 	}
 
-
 	public Item getItem(int id) {
-		Optional<Item> inventoryItem = this.items.stream().filter(item -> item.getID() == id).findFirst();
-		return inventoryItem.orElse(null);
+		return items.stream()
+			.filter(item -> item.getId() == id)
+			.findFirst()
+			.orElse(null);
 	}
 
 	public void removeItem(Item item) {
@@ -73,59 +64,51 @@ public class Inventory {
 	}
 	
 	public void removeItem(Item item, boolean refreshPagination) {
-		if (item != null) {
-			this.items.remove(item);
-		}
+		Optional.ofNullable(item)
+			.ifPresent(items::remove);
 
 		if (refreshPagination) {
 			this.refreshPagination();
-
 		}
 	}
 
 	public void addItem(Item item) {
-		if (item != null) {
-			this.items.add(item);
-		}
+		Optional.ofNullable(item)
+			.ifPresent(items::add);
 
 		this.refreshPagination();
 	}
 
 	public void refresh(String mode) {
-		if (this.paginatedItems.size() > 0) {
-			if (mode.equals("last")) {
-				cursor = this.paginatedItems.size() - 1;
-			}
+		Optional.of(mode)
+			.ifPresent(m -> {
+				switch (m) {
+					case "last" -> cursor = Math.max(0, paginatedItems.size() - 1);
+					case "new" -> cursor = 0;
+					case "next" -> cursor++;
+				}
+			});
 
-			if (mode.equals("new")) {
-				cursor = 0;
-			}
-
-			if (mode.equals("next")) {
-				cursor++;
-			}
-
-			if (this.paginatedItems.containsKey(this.cursor)) {
-				this.player.send(new STRIPINFO(this.paginatedItems.get(this.cursor)));
-			} else {
-				this.paginatedItems.size();
-				this.refresh("new");
-			}
-
-		} else {
-			this.player.send(new STRIPINFO());
-		}
+		Optional.ofNullable(paginatedItems.get(cursor))
+			.ifPresentOrElse(
+				pageItems -> player.send(new STRIPINFO(pageItems)),
+				() -> {
+					if (!paginatedItems.isEmpty()) {
+						this.refresh("new");
+					} else {
+						player.send(new STRIPINFO());
+					}
+				}
+			);
 	}
 
 	public void dispose() {
-		if (this.items != null) {
-			this.items.clear();
-			this.items = null;
-		}
+		Optional.ofNullable(this.items)
+			.ifPresent(List::clear);
+		this.items = new ArrayList<>();
 	}
 
 	public List<Item> getItems() {
 		return items;
 	}
-
 }

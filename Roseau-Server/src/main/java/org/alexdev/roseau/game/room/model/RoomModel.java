@@ -19,10 +19,10 @@
 
 package org.alexdev.roseau.game.room.model;
 
-import org.alexdev.roseau.log.Log;
+import org.oldskooler.simplelogger4j.SimpleLog;
 
-public class RoomModel 
-{
+public class RoomModel {
+    private static final SimpleLog logger = SimpleLog.of(RoomModel.class);
 	public final static int OPEN = 0;
 	public final static int CLOSED = 1;
 
@@ -117,8 +117,7 @@ public class RoomModel
 
 			}
 		} catch (Exception e) {
-			Log.println("Error parsing room model: " + this.name);
-			e.printStackTrace();
+			logger.error("Error parsing room model: " + this.name, e);
 		}
 
 	}

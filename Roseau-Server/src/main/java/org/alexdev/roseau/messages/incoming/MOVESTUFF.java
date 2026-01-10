@@ -7,46 +7,43 @@ import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class MOVESTUFF implements MessageEvent {
+    @Override
+    public void handle(Player player, ClientMessage reader) {
+        int itemId = Integer.valueOf(reader.getArgument(0));
+        int x = Integer.valueOf(reader.getArgument(1));
+        int y = Integer.valueOf(reader.getArgument(2));
 
-	@Override
-	public void handle(Player player, ClientMessage reader) {
+        Room room = player.getRoomUser().getRoom();
+        player.getRoomUser().resetAfkTimer();
 
-		int itemID = Integer.valueOf(reader.getArgument(0));
-		int x = Integer.valueOf(reader.getArgument(1));
-		int y = Integer.valueOf(reader.getArgument(2));
+        if (room == null) {
+            return;
+        }
 
-		Room room = player.getRoomUser().getRoom();
-		player.getRoomUser().resetAfkTimer();
+        if (!room.hasRights(player, false) && !room.getData().hasAllSuperUser()) {
+            return;
+        }
 
-		if (room == null) {
-			return;
-		}
+        Item item = room.getItem(itemId);
 
-		if (!room.hasRights(player, false) && !room.getData().hasAllSuperUser()) {
-			return;
-		}
+        if (item == null) {
+            return;
+        }
 
-		Item item = room.getItem(itemID);
+        item.getPosition().setX(x);
+        item.getPosition().setY(y);
 
-		if (item == null) {
-			return;
-		}
+        boolean rotation_only = false;
 
-		item.getPosition().setX(x);
-		item.getPosition().setY(y);
+        if (reader.getArgumentAmount() > 3) {
+            int rotation = Integer.valueOf(reader.getArgument(3));
 
-		boolean rotation_only = false;
+            if (rotation != item.getPosition().getRotation()) {
+                item.getPosition().setRotation(rotation);
+                rotation_only = true;
+            }
+        }
 
-		if (reader.getArgumentAmount() > 3) {
-			int rotation = Integer.valueOf(reader.getArgument(3));
-
-			if (rotation != item.getPosition().getRotation()) {
-				item.getPosition().setRotation(rotation);
-				rotation_only = true;
-			}
-		}
-
-		room.getMapping().updateItemPosition(item, rotation_only);
-	}
-
+        room.getMapping().updateItemPosition(item, rotation_only);
+    }
 }

@@ -6,33 +6,30 @@ import org.alexdev.roseau.messages.MessageEvent;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class MESSENGER_DECLINEBUDDY implements MessageEvent {
+    @Override
+    public void handle(Player player, ClientMessage reader) {
+        String username = reader.getMessageBody();
 
-	@Override
-	public void handle(Player player, ClientMessage reader) {
-		String username = reader.getMessageBody();
-		
-		if (username == null) {
-			return;
-		}
+        if (username == null) {
+            return;
+        }
 
-		int fromID = Roseau.getDao().getPlayer().getId(username);
-		
-		if (fromID < 1) {
-			return;
-		}
-		
-		if (fromID == player.getDetails().getID()) {
-			return;
-		}
+        int fromId = Roseau.getDao().getPlayer().getId(username);
 
-		if (!player.getMessenger().hasRequest(fromID)) {
-			return;
-		}
+        if (fromId < 1) {
+            return;
+        }
 
-		int toID = player.getDetails().getID();
-		
-		Roseau.getDao().getMessenger().removeRequest(fromID, toID);
+        if (fromId == player.getDetails().getId()) {
+            return;
+        }
 
-	}
+        if (!player.getMessenger().hasRequest(fromId)) {
+            return;
+        }
 
+        int toId = player.getDetails().getId();
+
+        Roseau.getDao().getMessenger().removeRequest(fromId, toId);
+    }
 }

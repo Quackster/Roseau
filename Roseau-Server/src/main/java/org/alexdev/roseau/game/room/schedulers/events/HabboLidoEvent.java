@@ -12,8 +12,7 @@ import org.alexdev.roseau.messages.outgoing.SHOWPROGRAM;
 import org.alexdev.roseau.util.Util;
 
 public class HabboLidoEvent extends RoomEvent {
-
-	private int followingID = -1;
+	private int followingId = -1;
 	private int cameraType = -1;
 
 	public HabboLidoEvent(Room room) {
@@ -22,9 +21,8 @@ public class HabboLidoEvent extends RoomEvent {
 
 	@Override
 	public void tick() {
-
 		try {
-			if (this.room.getPlayerByID(this.followingID) == null) {
+			if (this.room.getPlayerByID(this.followingId) == null) {
 				this.findNewTarget();
 			}
 
@@ -86,8 +84,8 @@ public class HabboLidoEvent extends RoomEvent {
 			player = players.get(Util.getRandom().nextInt(players.size()));
 		}
 
-		/*if (this.followingID != player.getDetails().getId()) {*/
-		this.followingID = player.getDetails().getID();
+		/*if (this.followingId != player.getDetails().getId()) {*/
+		this.followingId = player.getDetails().getId();
 		this.room.send(new SHOWPROGRAM(new String[] {"cam1", "targetcamera", player.getDetails().getName() }));
 		//}
 	}

@@ -7,8 +7,7 @@ import org.alexdev.roseau.messages.outgoing.WALLETBALANCE;
 import org.alexdev.roseau.server.messages.Response;
 import org.alexdev.roseau.server.messages.SerializableObject;
 
-public class PlayerDetails implements SerializableObject {
-
+public final class PlayerDetails implements SerializableObject {
 	private int id = -1;
 	private String username;
 	private String mission;
@@ -23,10 +22,9 @@ public class PlayerDetails implements SerializableObject {
 	private String poolFigure;
 	private String password;
 	private String personalGreeting;
-
 	private boolean authenticated;
 	private Entity entity;
-	private long lastonline;
+	private long lastOnline;
 	private int tickets;
 
 	public PlayerDetails(Entity session) {
@@ -41,7 +39,7 @@ public class PlayerDetails implements SerializableObject {
 		this.figure = figure;
 	}
 
-	public void fill(int id, String username, String mission, String figure, String poolFigure, String email, int rank, int credits, String sex, String country, String badge, String birthday, long lastonline, String personalGreeting, int tickets) {
+	public void fill(int id, String username, String mission, String figure, String poolFigure, String email, int rank, int credits, String sex, String country, String badge, String birthday, long lastOnline, String personalGreeting, int tickets) {
 		this.id = id;
 		this.username = username;
 		this.mission = mission;
@@ -54,7 +52,7 @@ public class PlayerDetails implements SerializableObject {
 		this.badge = badge;
 		this.birthday = birthday;
 		this.poolFigure = poolFigure;
-		this.lastonline = lastonline;
+		this.lastOnline = lastOnline;
 		this.personalGreeting = personalGreeting;
 		this.tickets = tickets;
 	}
@@ -62,7 +60,7 @@ public class PlayerDetails implements SerializableObject {
 	@Override
 	public void serialise(Response response) {
 		response.appendKVArgument("name", this.username);
-		response.appendKVArgument("figure", this.figure); 
+		response.appendKVArgument("figure", this.figure);
 		response.appendKVArgument("email", this.email);
 		response.appendKVArgument("birthday", this.birthday);
 		response.appendKVArgument("phonenumber", "+44");
@@ -73,16 +71,14 @@ public class PlayerDetails implements SerializableObject {
 		response.appendKVArgument("has_special_rights", "0");
 		response.appendKVArgument("badge_type", this.badge);
 	}
-	
-	public void sendCredits() {
 
+	public void sendCredits() {
 		if (this.entity instanceof Player) {
 			((Player)this.entity).send(new WALLETBALANCE(this.credits));
 		}
 	}
 
 	public void sendTickets() {
-
 		if (this.entity instanceof Player) {
 			((Player)this.entity).send(new PH_TICKETS(this.tickets));
 		}
@@ -96,7 +92,7 @@ public class PlayerDetails implements SerializableObject {
 		return false;
 	}
 
-	public int getID() {
+	public int getId() {
 		return id;
 	}
 
@@ -193,7 +189,7 @@ public class PlayerDetails implements SerializableObject {
 	}
 
 	public long getLastOnline() {
-		return this.lastonline;
+		return this.lastOnline;
 	}
 
 	public String getPersonalGreeting() {
@@ -207,17 +203,14 @@ public class PlayerDetails implements SerializableObject {
 	public int getTickets() {
 		return tickets;
 	}
-	
-	public void setCredits(int newTotal) {
 
+	public void setCredits(int newTotal) {
 		if (this.credits + newTotal <= Integer.MAX_VALUE) {
 			this.credits = newTotal;
 		}
 	}
 
-
 	public void setTickets(int newTotal) {
-
 		if (this.tickets + newTotal <= Integer.MAX_VALUE) {
 			this.tickets = newTotal;
 		}

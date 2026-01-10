@@ -9,33 +9,26 @@ import org.alexdev.roseau.messages.OutgoingMessageComposer;
 
 
 public class BUDDYLIST extends OutgoingMessageComposer {
-
 	private List<MessengerUser> friends;
-	private int offlineID; 
-	
-	public BUDDYLIST(List<MessengerUser> friends, int offlineID) {
+	private int offlineId;
+
+	public BUDDYLIST(List<MessengerUser> friends, int offlineId) {
 		this.friends = friends;
-		this.offlineID = offlineID;
+		this.offlineId = offlineId;
 	}
 
 	@Override
 	public void write() {
-		
 		response.init("BUDDYLIST");
-
 		for (MessengerUser user : this.friends) {
-			
 			boolean forceOffline = false;
-			
-			if (this.offlineID > 0) {
-				if (user.getDetails().getID() == this.offlineID) {
+			if (this.offlineId > 0) {
+				if (user.getDetails().getId() == this.offlineId) {
 					forceOffline = true;
 				}
 			}
-			
 			user.update();
-			
-			response.appendNewArgument(String.valueOf(user.getDetails().getID()));
+			response.appendNewArgument(String.valueOf(user.getDetails().getId()));
 			response.appendTabArgument(user.getDetails().getName()); // friend name
 			response.appendTabArgument(user.getDetails().getPersonalGreeting()); 
 			

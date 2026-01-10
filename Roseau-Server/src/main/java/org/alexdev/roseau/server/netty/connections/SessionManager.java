@@ -1,43 +1,47 @@
 package org.alexdev.roseau.server.netty.connections;
 
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-
+import io.netty.channel.Channel;
+import io.netty.util.AttributeKey;
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.server.netty.NettyPlayerNetwork;
-import org.jboss.netty.channel.Channel;
+
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public class SessionManager {
 	
-	private ConcurrentMap<Integer, Player> sessions;
+	private static final AttributeKey<Player> PLAYER_KEY = AttributeKey.valueOf("player");
+	private final ConcurrentMap<Integer, Player> sessions;
 
 	public SessionManager() {
-		sessions = new ConcurrentHashMap<Integer, Player>();
+		sessions = new ConcurrentHashMap<>();
 	}
 	
 	public Player addSession(Channel channel) {
+		Integer channelId = channel.hashCode();
 		
-		Player player = new Player(new NettyPlayerNetwork(channel, channel.getId()));
-		channel.setAttachment(player);
+		Player player = new Player(new NettyPlayerNetwork(channel, channelId));
+		channel.attr(PLAYER_KEY).set(player);
 		
-		Roseau.getGame().getPlayerManager().getPlayers().put(channel.getId(), player);
-		sessions.putIfAbsent(channel.getId(), player);
+		Roseau.getGame().getPlayerManager().getPlayers().put(channelId, player);
+		sessions.putIfAbsent(channelId, player);
 		
 		return player;
 	}
 
-	public void removeSession(Channel channel) { 
+	public void removeSession(Channel channel) {
 		try {
-			Roseau.getGame().getPlayerManager().getPlayers().remove(channel.getId());
-			sessions.remove(channel.getId());
+			Integer channelId = channel.hashCode();
+			Roseau.getGame().getPlayerManager().getPlayers().remove(channelId);
+			sessions.remove(channelId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public boolean hasSession(Channel channel) {
-		return sessions.containsKey(channel.getId());
+		return sessions.containsKey(channel.hashCode());
 	}
 
 	public ConcurrentMap<Integer, Player> getSessions() {
