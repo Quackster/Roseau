@@ -497,6 +497,8 @@ public class RoomUser {
 
 	/**
 	 * Update new height.
+	 * 
+	 * @param position the position to update height for
 	 */
 	public void updateNewHeight(Position position) {
 		if (this.room == null) {

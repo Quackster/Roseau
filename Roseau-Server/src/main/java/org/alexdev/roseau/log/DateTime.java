@@ -14,6 +14,11 @@ public class DateTime {
 	 * @author Nillus
 	 */
 
+	/**
+	 * Gets the current time in milliseconds.
+	 * 
+	 * @return the current time in milliseconds since January 1, 1970 UTC
+	 */
 	public static long getTime() {
 		return System.currentTimeMillis();
 	}
