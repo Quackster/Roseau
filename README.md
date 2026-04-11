@@ -19,16 +19,16 @@ This server is written in Java, and uses libraries such as Netty (old version, l
 
 **Features**
 
-###Register
+### Register
 - Check for existing names
 - Check for bad names
 - Create new user
 
-###User
+### User
 - Login
 - Edit user details (figure, email, etc)
 
-###Navigator
+### Navigator
 
 - Lists all public rooms
 - Clicking on a public room shows the users in each room
@@ -37,14 +37,14 @@ This server is written in Java, and uses libraries such as Netty (old version, l
 - List own rooms
 - Hides room owner names if the option had been ticked
 
-###Messenger
+### Messenger
 - Search users on console
 - Send user a friend request
 - Accept friend request
 - Reject friend request
 - Send friend message (and can offline message)
 
-###Private room
+### Private room
 
 - Create private room through public room room-o-matics
 - Edit room details
@@ -53,7 +53,7 @@ This server is written in Java, and uses libraries such as Netty (old version, l
 - Password protect room
 - Delete room
 
-###Public Room
+### Public Room
 
 - 12 public rooms added
 - Main Lobby
@@ -81,9 +81,9 @@ Sitting on furniture in public rooms
 
 Bots in public rooms (Habburger's, Cafe Ole, The Dirty Duck Pub)
 
-Disco lights in Club Massiva working]
+Disco lights in Club Massiva working
 
-###Lido and Diving Deck
+### Lido and Diving Deck
 - Change clothes working (with curtain closing)
 - Pool lift door closes and opens depending if a user is inside or not.
 - Buying tickets work for self and other players.
@@ -91,7 +91,7 @@ Disco lights in Club Massiva working]
 - Swimming.
 - Queue works (line up on first tile and the user automatically walks when there is a free spot).
 
-###Item
+### Item
 
 - Place room items
 - Move and rotate room items
@@ -106,26 +106,23 @@ Disco lights in Club Massiva working]
 - Turning items on/off (with rights)
 - Randomisation of the rotation of the bottle when it's spun
 
-###Catalogue
+### Catalogue
 
 - All items are purchasable
 - Purchase posters
 - Place floor and wall items to decorate wall and floors of private rooms
 
 
-###Ranked features
+### Ranked features
 
 - Call for help
 - Alert call for help to Hobba staff (picked up call for help not coded).
 
 
-###Commands
+### Commands
 
 - :about
 - :sit
-
-
-[/LIST]
 
 **Ranks**
 
@@ -166,7 +163,7 @@ Disco lights in Club Massiva working]
 
 **Source repository**
 
-Download: [url]https://github.com/Quackster/Roseau/archive/master.zip[/url]
+Download: https://github.com/Quackster/Roseau/archive/master.zip
 
 The repository includes the client files, the loader and the MySQL database for the server.
 
@@ -237,7 +234,7 @@ With Ascii from Puomi Hotel, these things were possible:
 - SHOWPROGRAM for the Club Massiva disco lights
 - correct structure for teleporters flashing
 - teaching me how to edit the DCR to enable Club Slinky Helsinki to work
-- 
+  
 And lab-hotel from RaGEZONE helped me out with:
 
 - Instant console messaging.
