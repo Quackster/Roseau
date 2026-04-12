@@ -40,6 +40,9 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.2'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 
@@ -53,4 +56,8 @@ tasks.shadowJar {
 
 artifacts {
     archives tasks.named("shadowJar")
+}
+
+test {
+    useJUnitPlatform()
 }
