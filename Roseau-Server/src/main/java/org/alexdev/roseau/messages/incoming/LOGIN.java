@@ -5,7 +5,7 @@ import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.room.Room;
 import org.alexdev.roseau.log.Log;
 import org.alexdev.roseau.messages.MessageEvent;
-import org.alexdev.roseau.messages.outgoing.SYSTEMBROADCAST;
+import org.alexdev.roseau.messages.outgoing.ERROR;
 import org.alexdev.roseau.server.messages.ClientMessage;
 
 public class LOGIN implements MessageEvent {
@@ -13,8 +13,7 @@ public class LOGIN implements MessageEvent {
 	@Override
 	public void handle(Player player, ClientMessage reader) {
 		if (!(reader.getArgumentAmount() > 1)) {
-			player.send(new SYSTEMBROADCAST("Your username or password was incorrect."));
-			player.getNetwork().close();
+			player.send(new ERROR("Login incorrect"));
 			return;
 		}
 		
@@ -63,9 +62,7 @@ public class LOGIN implements MessageEvent {
 			
 			
 		} else {
-			player.send(new SYSTEMBROADCAST("Your username or password was incorrect."));
-			player.getNetwork().close();
-			return;
+			player.send(new ERROR("Login incorrect"));
 		}
 	}
 }
