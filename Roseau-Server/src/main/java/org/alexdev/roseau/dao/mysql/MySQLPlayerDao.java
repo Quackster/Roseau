@@ -21,7 +21,7 @@ import com.google.common.collect.Lists;
 public class MySQLPlayerDao extends IProcessStorage<PlayerDetails, ResultSet> implements PlayerDao {
 
 	private MySQLDao dao;
-	private String fields = "id, username, password, rank, mission, figure, pool_figure, email, credits, sex, country, badge, birthday, last_online, personal_greeting, tickets";
+	private String fields = "id, username, password, `rank`, mission, figure, pool_figure, email, credits, sex, country, badge, birthday, last_online, personal_greeting, tickets";
 
 	public MySQLPlayerDao(MySQLDao dao) {
 		this.dao = dao;
