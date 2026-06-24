@@ -6,7 +6,7 @@ Roseau has been a small project I worked on for a few months now and I've finall
 
 If you're wondering where the development thread of this went, I got sick and tired of constantly creating development threads and never finishing the project so I decided to delete it, and complete it and then release it as a surprise to the community.
 
-This server is written in Java, and uses libraries such as Netty (old version, like 3.x.x) and other libraries that allow MySQL connection pooling, which is BoneCP.
+This server is written in Java, uses Netty 3.x, and persists data through Entity4j entity mappings.
 
 **Key features**
 

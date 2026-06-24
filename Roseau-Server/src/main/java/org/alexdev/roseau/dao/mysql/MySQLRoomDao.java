@@ -1,16 +1,18 @@
 package org.alexdev.roseau.dao.mysql;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import org.alexdev.roseau.Roseau;
 import org.alexdev.roseau.dao.RoomDao;
-import org.alexdev.roseau.dao.util.IProcessStorage;
+import org.alexdev.roseau.dao.mysql.entity.RoomBotEntity;
+import org.alexdev.roseau.dao.mysql.entity.RoomChatlogEntity;
+import org.alexdev.roseau.dao.mysql.entity.RoomEntity;
+import org.alexdev.roseau.dao.mysql.entity.RoomModelEntity;
+import org.alexdev.roseau.dao.mysql.entity.RoomPublicConnectionEntity;
+import org.alexdev.roseau.dao.mysql.entity.RoomRightEntity;
+import org.alexdev.roseau.dao.mysql.mapper.EntityMapper;
 import org.alexdev.roseau.game.player.Bot;
 import org.alexdev.roseau.game.player.Player;
 import org.alexdev.roseau.game.player.PlayerDetails;
@@ -22,11 +24,12 @@ import org.alexdev.roseau.game.room.model.RoomModel;
 import org.alexdev.roseau.game.room.settings.RoomType;
 import org.alexdev.roseau.log.DateTime;
 import org.alexdev.roseau.log.Log;
+import org.oldskooler.entity4j.DbContext;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements RoomDao {
+public class MySQLRoomDao implements RoomDao {
 
 	private MySQLDao dao;
 	private Map<String, RoomModel> roomModels;
@@ -34,99 +37,52 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 	public MySQLRoomDao(MySQLDao dao) {
 		this.dao = dao;
 		this.roomModels = Maps.newHashMap();
-
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		try {
-
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM room_models", sqlConnection);
-			resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-				roomModels.put(resultSet.getString("id"), new RoomModel(resultSet.getString("id"), resultSet.getString("heightmap"), resultSet.getInt("door_x"), resultSet.getInt("door_y"), 
-						resultSet.getInt("door_z"), resultSet.getInt("door_dir"), resultSet.getByte("has_pool") == 1, resultSet.getByte("disable_height_check") == 1));
-			}
-
-		} catch (Exception e) {
-			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
-		}
+		this.loadRoomModels();
 	}
 
 	@Override
 	public List<Room> getPublicRooms(boolean storeInMemory) {
 		List<Room> rooms = Lists.newArrayList();
 
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		try {
-
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE enabled = 1 AND room_type = " + RoomType.PUBLIC.getTypeCode() + " ORDER BY order_id ASC", sqlConnection);
-			resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-				int id = resultSet.getInt("id");
-
-				Room room = Roseau.getGame().getRoomManager().getRoomByID(id);
-
-				if (room == null) {
-					room = this.fill(resultSet);
-					room.setOrderID(resultSet.getInt("order_id"));
-				}
-
+		try (DbContext context = this.dao.getStorage().context()) {
+			for (RoomEntity entity : context.from(RoomEntity.class)
+					.filter(f -> f.equals(RoomEntity::getEnabled, 1)
+							.and()
+							.equals(RoomEntity::getRoomType, RoomType.PUBLIC.getTypeCode()))
+					.orderBy(o -> o.col(RoomEntity::getOrderId).asc())
+					.toList()) {
+				Room room = getCachedOrMapped(entity);
+				room.setOrderID(entity.getOrderId());
 				rooms.add(room);
 
 				if (storeInMemory) {
 					Roseau.getGame().getRoomManager().add(room);
 				}
 			}
-
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
 		}
 
 		return rooms;
 	}
-	
+
 	@Override
 	public List<Integer> getPublicRoomIDs() {
 		List<Integer> rooms = Lists.newArrayList();
 
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		try {
-
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT id FROM rooms WHERE enabled = 1 AND room_type = " + RoomType.PUBLIC.getTypeCode() + " AND hidden = 0 ORDER BY order_id ASC", sqlConnection);
-			resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-
-				int id = resultSet.getInt("id");
-				rooms.add(id);
+		try (DbContext context = this.dao.getStorage().context()) {
+			for (RoomEntity entity : context.from(RoomEntity.class)
+					.filter(f -> f.equals(RoomEntity::getEnabled, 1)
+							.and()
+							.equals(RoomEntity::getRoomType, RoomType.PUBLIC.getTypeCode())
+							.and()
+							.equals(RoomEntity::getHidden, 0))
+					.orderBy(o -> o.col(RoomEntity::getOrderId).asc())
+					.toList()) {
+				rooms.add(entity.getId());
 			}
-
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
 		}
 
 		return rooms;
@@ -136,44 +92,29 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 	public List<Integer> setRoomConnections(Room room) {
 		List<Integer> connections = Lists.newArrayList();
 
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		try {
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM room_public_connections WHERE room_id = ?", sqlConnection);
-			preparedStatement.setInt(1, room.getData().getID());
-			resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-
-				int toRoomID = resultSet.getInt("to_id");
+		try (DbContext context = this.dao.getStorage().context()) {
+			for (RoomPublicConnectionEntity entity : context.from(RoomPublicConnectionEntity.class)
+					.filter(f -> f.equals(RoomPublicConnectionEntity::getRoomId, room.getData().getID()))
+					.toList()) {
+				int toRoomID = entity.getToId();
 
 				if (!connections.contains(toRoomID)) {
 					connections.add(toRoomID);
 				}
 
-				for (String coordinate : resultSet.getString("coordinates").split(" ")) {
-
+				for (String coordinate : entity.getCoordinates().split(" ")) {
 					Position pos = new Position(coordinate);
-
 					Position doorPosition = null;
 
-					if (resultSet.getInt("door_x") > -1) {
-						doorPosition = new Position(resultSet.getInt("door_x"), resultSet.getInt("door_y"), resultSet.getInt("door_z"));
+					if (entity.getDoorX() > -1) {
+						doorPosition = new Position(entity.getDoorX(), entity.getDoorY(), entity.getDoorZ());
 					}
 
 					room.getMapping().getConnections()[pos.getX()][pos.getY()] = new RoomConnection(room.getData().getID(), toRoomID, doorPosition);
 				}
 			}
-
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
 		}
 
 		return connections;
@@ -183,259 +124,152 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 	public List<Room> getPlayerRooms(PlayerDetails details, boolean storeInMemory) {
 		List<Room> rooms = Lists.newArrayList();
 
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		try {
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE owner_id = " + details.getID(), sqlConnection);
-			resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-				int id = resultSet.getInt("id");
-
-				Room room = Roseau.getGame().getRoomManager().getRoomByID(id);
-
-				if (room == null) {
-					room = this.fill(resultSet);
-				}
-
+		try (DbContext context = this.dao.getStorage().context()) {
+			for (RoomEntity entity : context.from(RoomEntity.class)
+					.filter(f -> f.equals(RoomEntity::getOwnerId, details.getID()))
+					.toList()) {
+				Room room = getCachedOrMapped(entity);
 				rooms.add(room);
 
 				if (storeInMemory) {
 					Roseau.getGame().getRoomManager().add(room);
 				}
 			}
-
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
 		}
 
 		return rooms;
 	}
-	
+
 	@Override
 	public List<Room> getLatestPlayerRooms(List<Integer> blacklist, int range) {
 		List<Room> rooms = Lists.newArrayList();
 
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		try {
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE room_type = 0 ORDER BY id DESC LIMIT " + (range * 11) + "," + (range * 11) + 11, sqlConnection);
-			resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-
-				int id = resultSet.getInt("id");
-				
-				if (blacklist.contains(Integer.valueOf(id))) {
+		try (DbContext context = this.dao.getStorage().context()) {
+			for (RoomEntity entity : context.from(RoomEntity.class)
+					.filter(f -> f.equals(RoomEntity::getRoomType, RoomType.PRIVATE.getTypeCode()))
+					.orderBy(o -> o.col(RoomEntity::getId).desc())
+					.offset(range * 11)
+					.limit(11)
+					.toList()) {
+				if (blacklist.contains(entity.getId())) {
 					continue;
 				}
 
-				Room room = Roseau.getGame().getRoomManager().getRoomByID(id);
-
-				if (room == null) {
-					room = this.fill(resultSet);
-				}
-				
-				rooms.add(room);
+				rooms.add(getCachedOrMapped(entity));
 			}
-
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
 		}
 
 		return rooms;
 	}
 
-
-
 	@Override
 	public Room getRoom(int roomID, boolean storeInMemory) {
-		Room room = null;
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
+		try (DbContext context = this.dao.getStorage().context()) {
+			RoomEntity entity = context.from(RoomEntity.class)
+					.filter(f -> f.equals(RoomEntity::getId, roomID))
+					.first()
+					.orElse(null);
 
-		try {
-
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM rooms WHERE id = " + roomID, sqlConnection);
-			resultSet = preparedStatement.executeQuery();
-
-			if (resultSet.next()) {
-
-				int id = resultSet.getInt("id");
-
-				room = Roseau.getGame().getRoomManager().getRoomByID(id);
-
-				if (room == null) {
-					room = this.fill(resultSet);
-				}
-
-				if (storeInMemory) {
-					Roseau.getGame().getRoomManager().add(room);
-				}
+			if (entity == null) {
+				return null;
 			}
 
+			Room room = getCachedOrMapped(entity);
+
+			if (storeInMemory) {
+				Roseau.getGame().getRoomManager().add(room);
+			}
+
+			return room;
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
+			return null;
 		}
-
-		return room;
 	}
-
 
 	@Override
 	public List<Integer> getRoomRights(int roomID) {
 		List<Integer> rooms = Lists.newArrayList();
 
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		try {
-
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM room_rights WHERE room_id = " + roomID, sqlConnection);
-			resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-				rooms.add(Integer.valueOf(resultSet.getInt("user_id")));
+		try (DbContext context = this.dao.getStorage().context()) {
+			for (RoomRightEntity entity : context.from(RoomRightEntity.class)
+					.filter(f -> f.equals(RoomRightEntity::getRoomId, roomID))
+					.toList()) {
+				rooms.add(entity.getUserId());
 			}
-
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
 		}
-
 
 		return rooms;
 	}
 
 	@Override
 	public void saveRoomRights(int roomID, List<Integer> rights) {
-		this.dao.getStorage().execute("DELETE FROM room_rights WHERE room_id = '" + roomID + "'");
+		try (DbContext context = this.dao.getStorage().context()) {
+			context.from(RoomRightEntity.class)
+					.filter(f -> f.equals(RoomRightEntity::getRoomId, roomID))
+					.delete();
 
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		for (int userID : rights) {
-
-			try {
-
-				sqlConnection = this.dao.getStorage().getConnection();
-				preparedStatement = this.dao.getStorage().prepare("INSERT INTO room_rights (room_id, user_id) VALUES (?, ?)", sqlConnection);
-				preparedStatement.setInt(1, roomID);
-				preparedStatement.setInt(2, userID);
-				preparedStatement.execute();
-
-			} catch (Exception e) {
-				Log.exception(e);
-			} finally {
-				Storage.closeSilently(resultSet);
-				Storage.closeSilently(preparedStatement);
-				Storage.closeSilently(sqlConnection);
+			for (int userID : rights) {
+				RoomRightEntity entity = new RoomRightEntity();
+				entity.setRoomId(roomID);
+				entity.setUserId(userID);
+				context.insert(entity);
 			}
-
+		} catch (Exception e) {
+			Log.exception(e);
 		}
-
 	}
 
 	@Override
 	public void deleteRoom(Room room) {
-		this.dao.getStorage().execute("DELETE FROM rooms WHERE id = " + room.getData().getID());
+		try (DbContext context = this.dao.getStorage().context()) {
+			context.from(RoomEntity.class)
+					.filter(f -> f.equals(RoomEntity::getId, room.getData().getID()))
+					.delete();
+		} catch (Exception e) {
+			Log.exception(e);
+		}
 	}
 
 	@Override
 	public Room createRoom(Player player, String name, String description, String model, int state, boolean showOwnerName) {
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		
-		Room room = null;
+		RoomEntity entity = new RoomEntity();
+		entity.setName(name);
+		entity.setDescription(description);
+		entity.setOwnerId(player.getDetails().getID());
+		entity.setModel(model);
+		entity.setState(state);
+		entity.setShowOwnerName(showOwnerName ? 1 : 0);
+		entity.setRoomType(RoomType.PRIVATE.getTypeCode());
 
-		try {
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = dao.getStorage().prepare("INSERT INTO rooms (name, description, owner_id, model, state, show_owner_name) VALUES (?, ?, ?, ?, ?, ?)", sqlConnection);
-			preparedStatement.setString(1, name);
-			preparedStatement.setString(2, description);
-			preparedStatement.setInt(3, player.getDetails().getID());
-			preparedStatement.setString(4, model);
-			preparedStatement.setInt(5, state);
-			preparedStatement.setInt(6, showOwnerName ? 1 : 0);
-			preparedStatement.executeUpdate();
-
-			ResultSet row = preparedStatement.getGeneratedKeys();
-
-			if (row != null && row.next()) {
-				room = this.getRoom(row.getInt(1), true);
-			}
-
-		} catch (SQLException e) {
+		try (DbContext context = this.dao.getStorage().context()) {
+			context.insert(entity);
+			return this.getRoom(entity.getId(), true);
+		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
+			return null;
 		}
-
-		return room;
 	}
+
 	@Override
 	public Room saveChatlog(Player chatter, int roomID, String chatType, String message) {
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
+		RoomChatlogEntity entity = new RoomChatlogEntity();
+		entity.setUser(chatter.getDetails().getName());
+		entity.setRoomId(roomID);
+		entity.setTimestamp(DateTime.getTime());
+		entity.setMessageType(chatTypeCode(chatType));
+		entity.setMessage(message);
 
-		try {
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = dao.getStorage().prepare("INSERT INTO room_chatlogs (user, room_id, timestamp, message_type, message) VALUES (?, ?, ?, ?, ?)", sqlConnection);
-			preparedStatement.setString(1, chatter.getDetails().getName());
-			preparedStatement.setInt(2, roomID);
-			preparedStatement.setLong(3, DateTime.getTime());
-
-			switch (chatType) {
-				case "CHAT":
-					preparedStatement.setInt(4, 0);
-					break;
-				case "SHOUT":
-					preparedStatement.setInt(4, 1);
-					break;
-				default:
-					preparedStatement.setInt(4, 2);
-					break;
-			}
-			
-			preparedStatement.setString(5, message);
-			preparedStatement.execute();
-
-		} catch (SQLException e) {
+		try (DbContext context = this.dao.getStorage().context()) {
+			context.insert(entity);
+		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
 		}
 
 		return null;
@@ -443,114 +277,45 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 
 	@Override
 	public void updateRoom(Room room) {
-
 		RoomData data = room.getData();
 
+		try (DbContext context = this.dao.getStorage().context()) {
+			RoomEntity entity = context.from(RoomEntity.class)
+					.filter(f -> f.equals(RoomEntity::getId, data.getID()))
+					.first()
+					.orElse(null);
 
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
+			if (entity == null) {
+				return;
+			}
 
-		try {
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = dao.getStorage().prepare("UPDATE rooms SET name = ?, description = ?, state = ?, password = ?, wallpaper = ?, floor = ?, allsuperuser = ?, show_owner_name = ? WHERE id = ?", sqlConnection);
-			preparedStatement.setString(1, data.getName());
-			preparedStatement.setString(2, data.getDescription());
-			preparedStatement.setInt(3, data.getState().getStateCode());
-			preparedStatement.setString(4, data.getPassword());
-			preparedStatement.setString(5, data.getWall());
-			preparedStatement.setString(6, data.getFloor());
-			preparedStatement.setInt(7, data.hasAllSuperUser() ? 1 : 0);
-			preparedStatement.setInt(8, data.showOwnerName() ? 1 : 0);
-			preparedStatement.setInt(9, data.getID());
-
-			preparedStatement.executeUpdate();
-
-		} catch (SQLException e) {
+			entity.setName(data.getName());
+			entity.setDescription(data.getDescription());
+			entity.setState(data.getState().getStateCode());
+			entity.setPassword(data.getPassword());
+			entity.setWallpaper(data.getWall());
+			entity.setFloor(data.getFloor());
+			entity.setAllsuperuser(data.hasAllSuperUser() ? 1 : 0);
+			entity.setShowOwnerName(data.showOwnerName() ? 1 : 0);
+			context.update(entity);
+		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
 		}
-
 	}
 
 	@Override
 	public List<Bot> getBots(Room room, int roomID) {
 		List<Bot> bots = Lists.newArrayList();
 
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		try {
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT id, name,figure,motto,start_x,start_y,start_z,start_rotation,walk_to,messages,triggers,responses FROM room_bots WHERE room_id = ?", sqlConnection);
-			preparedStatement.setInt(1, roomID);
-
-			resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-
-				List<int[]> positions = Lists.newArrayList();
-				List<String> responses = Lists.newArrayList();
-				List<String> triggers = Lists.newArrayList();
-
-				if (resultSet.getString("walk_to").length() > 0) {
-					for (String coordinate : resultSet.getString("walk_to").split(" ")) {
-						int x = Integer.valueOf(coordinate.split(",")[0]);
-						int y = Integer.valueOf(coordinate.split(",")[1]);
-						positions.add(new int[] { x, y} );
-					}
-				}
-
-				String dbResponses = resultSet.getString("responses");
-
-				if (dbResponses.contains("|")) {
-					responses.addAll(Arrays.asList(dbResponses.split("|")));
-				} else {
-					responses.add(dbResponses);
-				}
-
-				String dbTriggers = resultSet.getString("triggers");
-
-				if (dbTriggers.contains(",")) {
-					triggers.addAll(Arrays.asList(dbTriggers.split(",")));
-				} else {
-					triggers.add(dbTriggers);
-				}
-
-				Bot bot = new Bot(
-						new Position(
-								resultSet.getInt("start_x"), 
-								resultSet.getInt("start_y"),
-								resultSet.getInt("start_z"), 
-								resultSet.getInt("start_rotation")),
-						positions,
-						responses,
-						triggers);
-
-				bot.getDetails().fill(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("motto"), resultSet.getString("figure"), "Male");
-
-				bot.getRoomUser().getPosition().setX(bot.getStartPosition().getX());
-				bot.getRoomUser().getPosition().setY(bot.getStartPosition().getY());
-				bot.getRoomUser().getPosition().setZ(bot.getStartPosition().getZ());
-
-				bot.getRoomUser().getPosition().setHeadRotation(bot.getStartPosition().getRotation());
-				bot.getRoomUser().getPosition().setBodyRotation(bot.getStartPosition().getRotation());
-
-				bot.getRoomUser().setRoom(room);
-
+		try (DbContext context = this.dao.getStorage().context()) {
+			for (RoomBotEntity entity : context.from(RoomBotEntity.class)
+					.filter(f -> f.equals(RoomBotEntity::getRoomId, roomID))
+					.toList()) {
+				Bot bot = toBot(room, entity);
 				bots.add(bot);
 			}
-
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
 		}
 
 		return bots;
@@ -561,32 +326,70 @@ public class MySQLRoomDao extends IProcessStorage<Room, ResultSet> implements Ro
 		return roomModels.get(model);
 	}
 
-	@Override
-	public Room fill(ResultSet row) throws Exception {
-
-		RoomType type = RoomType.getType(row.getInt("room_type"));
-
-		PlayerDetails details = null;
-
-		if (type == RoomType.PRIVATE) {
-			details = Roseau.getGame().getPlayerManager().getPlayerData(row.getInt("owner_id"));
+	private void loadRoomModels() {
+		try (DbContext context = this.dao.getStorage().context()) {
+			for (RoomModelEntity entity : context.from(RoomModelEntity.class).toList()) {
+				roomModels.put(entity.getId(), EntityMapper.toRoomModel(entity));
+			}
+		} catch (Exception e) {
+			Log.exception(e);
 		}
-
-		Room instance = new Room();
-
-		instance.getData().fill(row.getInt("id"), (row.getInt("hidden") == 1), type, details == null ? 0 : details.getID(), details == null ? "" : details.getName(), row.getString("name"), 
-				row.getInt("state"), row.getString("password"), row.getInt("users_now"), row.getInt("users_max"), row.getString("description"), row.getString("model"),
-				row.getString("cct"), row.getString("wallpaper"), row.getString("floor"), row.getInt("allsuperuser") == 1, row.getInt("show_owner_name") == 1);
-
-		if (details != null) {
-			instance.getData().setOwnerName(details.getName());
-		}
-
-		instance.load();
-
-		return instance;
 	}
 
+	private Room getCachedOrMapped(RoomEntity entity) {
+		Room room = Roseau.getGame().getRoomManager().getRoomByID(entity.getId());
+		return room == null ? EntityMapper.toRoom(entity) : room;
+	}
 
+	private Bot toBot(Room room, RoomBotEntity entity) {
+		List<int[]> positions = Lists.newArrayList();
+		List<String> responses = Lists.newArrayList();
+		List<String> triggers = Lists.newArrayList();
 
+		if (entity.getWalkTo() != null && entity.getWalkTo().length() > 0) {
+			for (String coordinate : entity.getWalkTo().split(" ")) {
+				int x = Integer.valueOf(coordinate.split(",")[0]);
+				int y = Integer.valueOf(coordinate.split(",")[1]);
+				positions.add(new int[] { x, y });
+			}
+		}
+
+		String dbResponses = entity.getResponses();
+
+		if (dbResponses != null && dbResponses.contains("|")) {
+			responses.addAll(Arrays.asList(dbResponses.split("\\|")));
+		} else if (dbResponses != null) {
+			responses.add(dbResponses);
+		}
+
+		String dbTriggers = entity.getTriggers();
+
+		if (dbTriggers != null && dbTriggers.contains(",")) {
+			triggers.addAll(Arrays.asList(dbTriggers.split(",")));
+		} else if (dbTriggers != null) {
+			triggers.add(dbTriggers);
+		}
+
+		Bot bot = new Bot(new Position(entity.getStartX(), entity.getStartY(), entity.getStartZ(), entity.getStartRotation()),
+				positions, responses, triggers);
+		bot.getDetails().fill(entity.getId(), entity.getName(), entity.getMotto(), entity.getFigure(), "Male");
+		bot.getRoomUser().getPosition().setX(bot.getStartPosition().getX());
+		bot.getRoomUser().getPosition().setY(bot.getStartPosition().getY());
+		bot.getRoomUser().getPosition().setZ(bot.getStartPosition().getZ());
+		bot.getRoomUser().getPosition().setHeadRotation(bot.getStartPosition().getRotation());
+		bot.getRoomUser().getPosition().setBodyRotation(bot.getStartPosition().getRotation());
+		bot.getRoomUser().setRoom(room);
+		return bot;
+	}
+
+	private int chatTypeCode(String chatType) {
+		switch (chatType) {
+			case "CHAT":
+				return 0;
+			case "SHOUT":
+				return 1;
+			default:
+				return 2;
+		}
+	}
 }

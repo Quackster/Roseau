@@ -38,20 +38,27 @@ public class MySQLDao implements Dao {
 
 	@Override
 	public boolean connect() {
+		DatabaseEngine engine = DatabaseEngine.from(Util.getConfiguration().get("Database", "type", String.class));
+		String prefix = engine.getConfigPrefix();
 
-		Log.println("Connecting to MySQL server");
-		
-		storage = new Storage(Util.getConfiguration().get("Database", "mysql.hostname", String.class), 
-				Util.getConfiguration().get("Database", "mysql.username", String.class), 
-				Util.getConfiguration().get("Database", "mysql.password", String.class), 
-				Util.getConfiguration().get("Database", "mysql.database", String.class)); 
+		Log.println("Connecting to " + prefix + " database");
+
+		storage = new Storage(
+				engine,
+				this.getDatabaseSetting(engine, "hostname", "127.0.0.1"),
+				this.getDatabasePort(engine, "port", engine.getDefaultPort()),
+				this.getDatabaseSetting(engine, "username", ""),
+				this.getDatabaseSetting(engine, "password", ""),
+				this.getDatabaseSetting(engine, "database", "roseau"),
+				this.getDatabaseSetting(engine, "path", "roseau.sqlite"),
+				this.getDatabaseSetting(engine, "options", ""));
 
 		isConnected = storage.isConnected();
 
 		if (!isConnected) {
 			Log.println("Could not connect");
 		} else {
-			Log.println("Connection to MySQL was a success");
+			Log.println("Connection to " + prefix + " was a success");
 		}
 		
 		Log.println();
@@ -61,6 +68,30 @@ public class MySQLDao implements Dao {
 
 	public Storage getStorage() {
 		return storage;
+	}
+
+	private String getDatabaseSetting(DatabaseEngine engine, String key, String defaultValue) {
+		String value = Util.getConfiguration().get("Database", key);
+
+		if (value == null || value.trim().isEmpty()) {
+			value = Util.getConfiguration().get("Database", engine.getConfigPrefix() + "." + key);
+		}
+
+		if (value == null || value.trim().isEmpty()) {
+			return defaultValue;
+		}
+
+		return value.trim();
+	}
+
+	private int getDatabasePort(DatabaseEngine engine, String key, int defaultValue) {
+		String value = this.getDatabaseSetting(engine, key, "");
+
+		if (value.isEmpty()) {
+			return defaultValue;
+		}
+
+		return Integer.parseInt(value);
 	}
 	
 	@Override

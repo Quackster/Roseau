@@ -1,22 +1,25 @@
 plugins {
     id 'java'
     id 'application'
-    id 'com.github.johnrengelman.shadow' version '8.1.1' // For Java 8
+    id 'com.gradleup.shadow' version '9.4.2'
 }
 
 group = 'org.oldskooler'
 // version = '1.5'
-mainClassName = 'org.alexdev.roseau.Roseau'
+
+application {
+    mainClass = 'org.alexdev.roseau.Roseau'
+}
 
 repositories {
-    maven { url 'https://jitpack.io' }
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 java {
     withSourcesJar()
     withJavadocJar()
-    toolchain { languageVersion = JavaLanguageVersion.of(11) }
+    toolchain { languageVersion = JavaLanguageVersion.of(25) }
 }
 
 dependencies {
@@ -29,11 +32,12 @@ dependencies {
     // https://mvnrepository.com/artifact/org.ini4j/ini4j
     implementation group: 'org.ini4j', name: 'ini4j', version: '0.5.1'
 
-    // https://mvnrepository.com/artifact/com.jolbox/bonecp
-    implementation group: 'com.jolbox', name: 'bonecp', version: '0.7.1.RELEASE'
+    implementation 'com.github.Quackster:Entity4j:v1.0.0'
 
-    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
-    implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+    implementation 'com.mysql:mysql-connector-j:9.7.0'
+    implementation 'org.postgresql:postgresql:42.7.11'
+    implementation 'com.microsoft.sqlserver:mssql-jdbc:13.4.0.jre11'
+    implementation 'org.xerial:sqlite-jdbc:3.53.2.0'
 
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.2'

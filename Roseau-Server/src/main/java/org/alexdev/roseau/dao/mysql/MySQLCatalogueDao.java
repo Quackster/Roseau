@@ -1,21 +1,21 @@
 package org.alexdev.roseau.dao.mysql;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.Map;
 
 import org.alexdev.roseau.dao.CatalogueDao;
+import org.alexdev.roseau.dao.mysql.entity.CatalogueDealEntity;
+import org.alexdev.roseau.dao.mysql.entity.CatalogueEntity;
 import org.alexdev.roseau.game.catalogue.CatalogueDeal;
 import org.alexdev.roseau.game.catalogue.CatalogueItem;
 import org.alexdev.roseau.log.Log;
+import org.oldskooler.entity4j.DbContext;
 
 import com.google.common.collect.Maps;
 
 public class MySQLCatalogueDao implements CatalogueDao {
 
 	private MySQLDao dao;
-	
+
 	public MySQLCatalogueDao(MySQLDao dao) {
 		this.dao = dao;
 	}
@@ -23,60 +23,30 @@ public class MySQLCatalogueDao implements CatalogueDao {
 	@Override
 	public Map<String, CatalogueItem> getBuyableItems() {
 		Map<String, CatalogueItem> buyableItems = Maps.newHashMap();
-		
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
 
-		try {
-
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM catalogue", sqlConnection);
-			resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-				buyableItems.put(resultSet.getString("call_id"), new CatalogueItem(resultSet.getString("call_id"), resultSet.getInt("definition_id"), resultSet.getInt("credits")));
+		try (DbContext context = this.dao.getStorage().context()) {
+			for (CatalogueEntity entity : context.from(CatalogueEntity.class).toList()) {
+				buyableItems.put(entity.getCallId(), new CatalogueItem(entity.getCallId(), entity.getDefinitionId(), entity.getCredits()));
 			}
-
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
 		}
-		
+
 		return buyableItems;
 	}
-	
+
 	@Override
 	public Map<String, CatalogueDeal> getItemDeals() {
 		Map<String, CatalogueDeal> deals = Maps.newHashMap();
-		
-		Connection sqlConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
 
-		try {
-
-			sqlConnection = this.dao.getStorage().getConnection();
-			preparedStatement = this.dao.getStorage().prepare("SELECT * FROM catalogue_deals", sqlConnection);
-			resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-				deals.put(resultSet.getString("call_id"), new CatalogueDeal(resultSet.getString("call_id"), resultSet.getString("products").split(","), resultSet.getInt("cost")));
+		try (DbContext context = this.dao.getStorage().context()) {
+			for (CatalogueDealEntity entity : context.from(CatalogueDealEntity.class).toList()) {
+				deals.put(entity.getCallId(), new CatalogueDeal(entity.getCallId(), entity.getProducts().split(","), entity.getCost()));
 			}
-
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			Storage.closeSilently(resultSet);
-			Storage.closeSilently(preparedStatement);
-			Storage.closeSilently(sqlConnection);
 		}
-		
+
 		return deals;
 	}
-
-
 }

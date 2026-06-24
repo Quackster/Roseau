@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.alexdev.roseau.dao.Dao;
+import org.alexdev.roseau.dao.mysql.DatabaseEngine;
 import org.alexdev.roseau.dao.mysql.MySQLDao;
 import org.alexdev.roseau.game.Game;
 import org.alexdev.roseau.log.Log;
@@ -47,8 +48,11 @@ public class Roseau {
 			
 			serverPort = Util.getConfiguration().get("Server", "server.port", int.class);
 
-			if (Util.getConfiguration().get("Database", "type", String.class).equalsIgnoreCase("mysql")) {
+			if (DatabaseEngine.isSupported(Util.getConfiguration().get("Database", "type", String.class))) {
 				dao = new MySQLDao();
+			} else {
+				Log.println("Unsupported database engine: " + Util.getConfiguration().get("Database", "type", String.class));
+				return;
 			}
 
 			if (dao.isConnected()) {
@@ -132,10 +136,13 @@ public class Roseau {
 		writer.println();
 		writer.println("[Database]");
 		writer.println("type=mysql");
-		writer.println("mysql.hostname=127.0.0.1");
-		writer.println("mysql.username=user");
-		writer.println("mysql.password=");
-		writer.println("mysql.database=roseau");
+		writer.println("hostname=127.0.0.1");
+		writer.println("port=3306");
+		writer.println("username=user");
+		writer.println("password=");
+		writer.println("database=roseau");
+		writer.println("options=");
+		writer.println("path=roseau.sqlite");
 		writer.println();
 		writer.println("[Logging]");
 		writer.println("log.errors=true");
