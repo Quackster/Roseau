@@ -173,7 +173,7 @@ Compiled version can be found in /Roseau-bin/ and the client can be found in /cl
 
 I personally use Pale Moon portable 32 bit version (it has to be 32 bit otherwise it won't work). Shockwave works flawless in this browser. The download is only 31 MB.
 
-Pale Moon 32bit: https://www.palemoon.org/palemoon-portable.shtml
+Pale Moon 32bit: https://www.palemoon.org/download.shtml#Portable_versions
 
 Alternatively you can use an older version of Mozilla Firefox as 52 has most NAPI functions disabled but 36-38 will work, or Internet Explorer (not recommended to use IE due to the fact it freezes all the time).
 
