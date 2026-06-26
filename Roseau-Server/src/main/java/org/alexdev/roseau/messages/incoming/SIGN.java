@@ -15,7 +15,7 @@ public class SIGN implements MessageEvent {
 			return;
 		}
 		
-		if (!room.getData().getModelName().equals("pool_b")) {
+		if (!room.getData().getModelName().startsWith("pool_")) {
 			return;
 		}
 		
