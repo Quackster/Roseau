@@ -18,6 +18,8 @@ public class GameVariables {
 	public static String MESSENGER_GREETING;
 	public static boolean DEBUG_ENABLE = false;
 	public static int AFK_ROOM_KICK;
+	public static String CHAT_FILTER_WORDS;
+	public static String CHAT_FILTER_REPLACEMENT;
 	
 	
 	public static void setVariables() {
@@ -33,5 +35,8 @@ public class GameVariables {
 		TALK_DISTANCE = Util.getHabboConfig().get("Player", "talking.lookat.distance", Integer.class);
 		USER_DEFAULT_CREDITS = Util.getHabboConfig().get("Register", "user.default.credits", int.class);
 		DEBUG_ENABLE = Util.getHabboConfig().get("Debug", "debug.enable", Boolean.class);
+		CHAT_FILTER_WORDS = Util.getHabboConfig().get("Chat", "filter.words", String.class);
+		CHAT_FILTER_REPLACEMENT = Util.getHabboConfig().get("Chat", "filter.replacement", String.class);
+
 	}
 }
