@@ -3,6 +3,7 @@ package org.alexdev.roseau.game.room.entity;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Random;
+import org.alexdev.roseau.game.GameVariables;
 
 /*
  * Written by office.boy (Mike) and Nillus from Blunk v5
@@ -53,7 +54,27 @@ public class ChatUtility {
 	
 	public static String[] filterWords(String[] words)
 	{
-		// TODO: crappy word filter for swearwords
+		String filterList = GameVariables.CHAT_FILTER_WORDS;
+		String replacement = GameVariables.CHAT_FILTER_REPLACEMENT;
+
+		if (filterList == null || filterList.isEmpty() || replacement == null || replacement.isEmpty()) {
+			return words;
+		}
+
+		String[] bannedWords = filterList.split(",");
+
+		for (int i = 0; i < words.length; i++) {
+			// try to prevent bypasses like f.uck
+			String normalized = words[i].replaceAll("[^a-zA-Z]", "");
+
+			for (String banned : bannedWords) {
+				if (normalized.equalsIgnoreCase(banned.trim())) {
+					words[i] = replacement;
+					break;
+				}
+			}
+		}
+
 		return words;
 	}
 	

@@ -28,6 +28,7 @@ public class TALK implements MessageEvent {
 		}
 
 		String talkMessage = Util.filterInput(reader.getMessageBody());
+		talkMessage = String.join(" ", ChatUtility.filterWords(talkMessage.split(" ")));
 
 		if (!reader.getHeader().equals("CHAT") && !reader.getHeader().equals("SHOUT")  && !reader.getHeader().equals("WHISPER")) {
 			return;
